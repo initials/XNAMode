@@ -727,6 +727,19 @@ namespace org.flixel
 				_data[Index] += 4;
 			if((Index%widthInTiles <= 0) || (_data[Index-1] > 0)) 					//LEFT
 				_data[Index] += 8;
+            if (_data[Index] == 15)
+            {
+                float  last = FlxU.random();
+                if ( last < 0.2) _data[Index] += 1;
+                if (last < 0.4) _data[Index] += 1;
+                if (last < 0.6) _data[Index] += 1;
+                if (last < 0.8) _data[Index] += 1;
+                if (last < 0.9) _data[Index] += 1;
+                //if (last < 0.82) _data[Index] += 1;
+                //if (last < 0.83) _data[Index] += 1;
+
+            }
+
 			if((auto == ALT) && (_data[Index] == 15))	//The alternate algo checks for interior corners
 			{
 				if((Index%widthInTiles > 0) && (Index+widthInTiles < totalTiles) && (_data[Index+widthInTiles-1] <= 0))

@@ -25,7 +25,7 @@ namespace XNAMode
         {
             base.create();
 
-            FlxG.backColor = Color.SlateGray;
+            //FlxG.backColor = Color.SlateGray;
 
             ImgDirt = FlxG.Content.Load<Texture2D>("Mode/dirt");
 
@@ -44,7 +44,7 @@ namespace XNAMode
             _bubbles.createSprites(Bubbles, 1500, true, 1.0f, 1.0f);
             _bubbles.start(false, 0.1f, 100);
 
-            add(_bubbles);
+            //add(_bubbles);
 
             XElement xelement = XElement.Load("level1.oel");
 
@@ -62,7 +62,7 @@ namespace XNAMode
 
                 b.loadTiles(ImgDirt);
 
-                add(b);
+                //add(b);
 
 
 
@@ -74,7 +74,7 @@ namespace XNAMode
 
             rotatore.loadTiles(ImgDirt, 16,16,0);
 
-            add(rotatore);
+            ////add(rotatore);
 
 
 
@@ -91,7 +91,7 @@ namespace XNAMode
             FlxText t = new FlxText(10, 50, 200);
             t.text = "Initials Video Games";
             t.scale = 3.0f;
-            add(t);
+            //add(t);
 
 
 
@@ -103,22 +103,22 @@ namespace XNAMode
 
             string newMap = cav.convertMultiArrayToString(matr);
 
-            Console.WriteLine(newMap);
+            //Console.WriteLine(newMap);
 
 
 
             tiles = new FlxTilemap();
 
-            tiles.auto = FlxTilemap.ALT;
+            tiles.auto = FlxTilemap.AUTO;
             
             //tiles.loadMap("1,0,0,0,0,0,0,1,1,0\n1,1,0,0,0,0,0,1,1,1\n0,1,0,0,0,0,0,1,1,0\n0,0,0,1,0,0,0,1,1,1\n0,0,0,1,0,0,0,1,1,0\n0,0,0,0,0,0,0,1,1,1\n", FlxTilemap.ImgAuto);
 
-            tiles.loadMap(newMap, FlxTilemap.ImgAutoAlt);
+            tiles.loadMap(newMap, FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"));
 
             add(tiles);
 
-            _player = new Player(1, 1, null, null);
-            add(_player);
+            _player = new Player(55, 1, null, null);
+            //add(_player);
 
 
             
@@ -135,7 +135,7 @@ namespace XNAMode
             FlxU.collide(_player, tiles);
 
             PlayerIndex pi;
-            Console.WriteLine(FlxG.gamepads.isNewThumbstickDown(FlxG.controllingPlayer));
+            //Console.WriteLine(FlxG.gamepads.isNewThumbstickDown(FlxG.controllingPlayer));
 
             float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
 
@@ -144,7 +144,7 @@ namespace XNAMode
             float rotation = (float)Math.Atan2(rightX, rightY);
             rotation = (rotation < 0) ? MathHelper.ToDegrees(rotation + MathHelper.TwoPi) : MathHelper.ToDegrees(rotation);
 
-            Console.WriteLine(rotation);
+            //Console.WriteLine(rotation);
 
 
 
@@ -197,8 +197,12 @@ namespace XNAMode
                     _curBullet = 0;
             }
              * 
-             */ 
+             */
 
+            if (FlxG.keys.A)
+            {
+                FlxG.state = new XMLPlayState();
+            }
 
 
             base.update();
