@@ -3,23 +3,27 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace org.flixel
 {
     //@benbaird X-flixel only. Moves all of the flixel logo screen stuff to a FlxState.
     public class FlxSplash : FlxState
     {
-		//logo stuff
+        //logo stuff
         private List<FlxLogoPixel> _f;
-		private static Color _fc = Color.Gray;
-		private float _logoTimer = 0;
-		private Texture2D _poweredBy;
-		private SoundEffect _fSound;
+        private static Color _fc = Color.Gray;
+        private float _logoTimer = 0;
+        private Texture2D _poweredBy;
+        private SoundEffect _fSound;
         private static FlxState _nextScreen;
-        private FlxSprite pwr;
 
-        private Texture2D Bubbles;
-        private FlxEmitter _bubbles;
+        private Texture2D _initialsLogo;
+        private SoundEffect _tagtoneSound;
+        private const string SndTag = "initials/initials_empire_tagtone3";
+
+        private FlxSprite _logo;
+
 
         public FlxSplash()
             : base()
@@ -29,28 +33,29 @@ namespace org.flixel
         public override void create()
         {
             base.create();
-
-
-            Bubbles = FlxG.Content.Load<Texture2D>("Mode/bubble");
-            _bubbles = new FlxEmitter();
-            _bubbles.x = 125;
-            _bubbles.y = 125;
-            _bubbles.width = 24;
-            _bubbles.height = 24;
-            _bubbles.delay = 3.0f;
-            _bubbles.setXSpeed(-200, 200);
-            _bubbles.setYSpeed(-200, 200);
-            _bubbles.createSprites(Bubbles, 100, true, 1.0f, 1.0f);
-            _bubbles.start(true, 3.0f, 100);
-
-            add(_bubbles);
-
-
             _f = null;
-            _poweredBy = FlxG.Content.Load<Texture2D>("flixel/initialsLogo");
+            _poweredBy = FlxG.Content.Load<Texture2D>("flixel/poweredby");
             _fSound = FlxG.Content.Load<SoundEffect>("flixel/flixel");
 
-            FlxG.flash.start(FlxG.backColor, 1f, null, false);
+            _initialsLogo = FlxG.Content.Load<Texture2D>("initials/initialsLogo");
+            //_tagtoneSound = FlxG.Content.Load<SoundEffect>("initials/initials_empire_tagtone3");
+            
+
+            
+
+
+            _logo = new FlxSprite();
+            _logo.loadGraphic(_initialsLogo, false, false, 216,24);
+            _logo.x = FlxG.width / 2 - 216 / 2;
+            _logo.y = FlxG.height / 2 - 24;
+
+            add(_logo);
+
+            //_tagtoneSound.Play(FlxG.volume, 0.0f, 0.0f);
+
+            FlxG.play(SndTag,1.0f);
+
+
         }
 
         public static void setSplashInfo(Color flixelColor, FlxState nextScreen)
@@ -61,8 +66,16 @@ namespace org.flixel
 
         public override void update()
         {
-            if (_f == null)
+
+
+
+            if (_f == null && _logoTimer > 5.5f)
             {
+
+                _logo.visible = false;
+
+                FlxG.flash.start(FlxG.backColor, 1f, null, false);
+
                 _f = new List<FlxLogoPixel>();
                 int scale = 10;
                 float pwrscale;
@@ -80,22 +93,12 @@ namespace org.flixel
                 add(new FlxLogoPixel(left + pixelsize, top + (pixelsize * 2), pixelsize, 3, _fc));
                 add(new FlxLogoPixel(left, top + (pixelsize * 3), pixelsize, 4, _fc));
 
-                //pwr = new FlxSprite((FlxG.width - (int)((float)_poweredBy.Width * pwrscale)) / 2, top + (pixelsize * 4) + 16, _poweredBy);
-                //pwr.loadGraphic(_poweredBy, false, false, (int)((float)_poweredBy.Width * pwrscale), (int)((float)_poweredBy.Height * pwrscale));
+                FlxSprite pwr = new FlxSprite((FlxG.width - (int)((float)_poweredBy.Width * pwrscale)) / 2, top + (pixelsize * 4) + 16, _poweredBy);
+                pwr.loadGraphic(_poweredBy, false, false, (int)((float)_poweredBy.Width * pwrscale), (int)((float)_poweredBy.Height * pwrscale));
 
-                //pwr.color = _fc;
-                //pwr.scale = pwrscale;
-                //pwr.angularAcceleration = 1;
-                //add(pwr);
-
-                pwr = new FlxSprite(20, 20, _poweredBy);
-                pwr.loadGraphic(_poweredBy, false, false, (int)(float)_poweredBy.Width, (int)(float)_poweredBy.Height);
                 pwr.color = _fc;
+                pwr.scale = pwrscale;
                 add(pwr);
-
-
-
-
 
                 _fSound.Play(FlxG.volume, 0f, 0f);
             }
@@ -104,12 +107,10 @@ namespace org.flixel
 
             base.update();
 
-            pwr.scale += 0.02f;
-            
-
-
-            if (_logoTimer > 2.5f)
+            if (_logoTimer > 8.5f || FlxG.keys.SPACE)
             {
+                FlxG.destroySounds(true);
+
                 FlxG.state = _nextScreen;
             }
         }

@@ -48,15 +48,10 @@ namespace XNAMode
 		
 		//used to safely reload the playstate after dying
 		public bool reload;
-
-
 		
 		override public void create()
 		{
             base.create();
-
-
-
 
             ImgTech=FlxG.Content.Load<Texture2D>("Mode/tech_tiles");
             ImgDirtTop=FlxG.Content.Load<Texture2D>("Mode/dirt_top");
@@ -115,22 +110,22 @@ namespace XNAMode
 			b.loadGraphic(ImgDirt);
 			_blocks.add(b);
 
-            buildRoom(r * 0, r * 0, false);
+            buildRoom(r * 0, r * 0, true);
 			buildRoom(r*1,r*0);
 			buildRoom(r*2,r*0);
-            buildRoom(r * 3, r * 0, false);
-            buildRoom(r * 0, r * 1, false);
+            buildRoom(r * 3, r * 0, true);
+            buildRoom(r * 0, r * 1, true);
 			buildRoom(r*1,r*1);
 			buildRoom(r*2,r*1);
-            buildRoom(r * 3, r * 1, false);
+            buildRoom(r * 3, r * 1, true);
 			buildRoom(r*0,r*2);
 			buildRoom(r*1,r*2);
 			buildRoom(r*2,r*2);
 			buildRoom(r*3,r*2);
-            buildRoom(r * 0, r * 3, false);
+			buildRoom(r*0,r*3,true);
 			buildRoom(r*1,r*3);
 			buildRoom(r*2,r*3);
-            buildRoom(r * 3, r * 3, true);
+			buildRoom(r*3,r*3,true);
 			
 			//Add bots and spawners after we add blocks to the state,
 			// so that they're drawn on top of the level, and so that
@@ -321,7 +316,6 @@ namespace XNAMode
 			if(reload)
 				FlxG.state = new PlayState();
 			
-
 			//Toggle the bounding box visibility
 			if(FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B))
 				FlxG.showBounds = !FlxG.showBounds;
@@ -367,12 +361,12 @@ namespace XNAMode
 			}
 			
 			//then place a bunch of blocks
-			int numBlocks = 3+(int)(FlxU.random()*3);
+			int numBlocks = 5+(int)(FlxU.random()*4);
 			if(!Spawners) numBlocks++;
 			int maxW = 10;
 			int minW = 2;
 			int maxH = 6;
-			int minH = 2;
+			int minH = 1;
 			int bx;
 			int by;
 			int bw;
@@ -384,8 +378,8 @@ namespace XNAMode
 				do
 				{
 					//keep generating different specs if they overlap the spawner
-					bw = minW + (int)(FlxU.random()*(maxW-minW)) / 2;
-                    bh = minH + (int)(FlxU.random() * (maxH - minH))/ 2;
+					bw = minW + (int)(FlxU.random()*(maxW-minW));
+                    bh = minH + (int)(FlxU.random() * (maxH - minH));
                     bx = -1 + (int)(FlxU.random() * (rw + 1 - bw));
                     by = -1 + (int)(FlxU.random() * (rw + 1 - bh));
 					if(Spawners)
@@ -396,7 +390,7 @@ namespace XNAMode
 				
 				FlxTileblock b;
 				
-				b = new FlxTileblock(RX+bx*8,RY+by*8,bw*16,bh*16);
+				b = new FlxTileblock(RX+bx*8,RY+by*8,bw*8,bh*8);
 				b.loadTiles(ImgTech);
 				_blocks.add(b);
 				

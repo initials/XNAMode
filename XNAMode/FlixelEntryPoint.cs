@@ -7,12 +7,12 @@ using Microsoft.Xna.Framework;
 
 namespace XNAMode
 {
-    public class HelloWorld : FlxGame
+    public class FlixelEntryPoint : FlxGame
     {
-        public HelloWorld(Game game)
+        public FlixelEntryPoint(Game game)
             : base(game)
         {
-            initGame(640, 360, new XMLPlayState(), Color.Fuchsia, false, Color.Azure);
+            initGame(640, 360, new XMLPlayState(), Color.Black, true, Color.Azure);
             FlxG.debug = true;
 
         }

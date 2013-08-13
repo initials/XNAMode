@@ -8,8 +8,6 @@ using org.flixel;
 using System.Linq;
 using System.Xml.Linq;
 
-
-
 namespace XNAMode
 {
     public class XMLPlayState : FlxState
@@ -135,6 +133,72 @@ namespace XNAMode
             rotatore.y = np.Y;
 
             FlxU.collide(_player, tiles);
+
+            PlayerIndex pi;
+            Console.WriteLine(FlxG.gamepads.isNewThumbstickDown(FlxG.controllingPlayer));
+
+            float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
+
+            float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
+
+            float rotation = (float)Math.Atan2(rightX, rightY);
+            rotation = (rotation < 0) ? MathHelper.ToDegrees(rotation + MathHelper.TwoPi) : MathHelper.ToDegrees(rotation);
+
+            Console.WriteLine(rotation);
+
+
+
+
+            /*
+            if (!flickering() && (_bulletInterval > 8) &&
+                    (FlxG.gamepads.isButtonDown(Buttons.RightThumbstickDown, FlxG.controllingPlayer, out pi) ||
+                FlxG.gamepads.isButtonDown(Buttons.RightThumbstickLeft, FlxG.controllingPlayer, out pi) ||
+                FlxG.gamepads.isButtonDown(Buttons.RightThumbstickRight, FlxG.controllingPlayer, out pi) ||
+                FlxG.gamepads.isButtonDown(Buttons.RightThumbstickUp, FlxG.controllingPlayer, out pi)))
+            {
+
+                float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
+
+                float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
+
+                if (rightY < -0.75)
+                {
+                    velocity.Y -= 36;
+                }
+
+                float rotation = (float)Math.Atan2(rightX, rightY);
+                rotation = (rotation < 0) ? MathHelper.ToDegrees(rotation + MathHelper.TwoPi) : MathHelper.ToDegrees(rotation);
+
+
+                _bulletInterval = 0;
+                rightX *= 100;
+                rightY *= -100;
+
+
+
+                int bXVel = 0;
+                int bYVel = 0;
+                int bX = (int)x;
+                int bY = (int)y;
+
+                bY -= (int)_bullets[_curBullet].height - 4;
+                bYVel = (int)rightY;
+                bX -= (int)_bullets[_curBullet].width - 4;
+                bXVel = (int)rightX;
+
+
+
+                ((Bullet)(_bullets[_curBullet])).shoot(bX, bY, bXVel, bYVel);
+                ((Bullet)(_bullets[_curBullet])).angle = rotation;
+
+                //System.Diagnostics.Trace.WriteLine(rightX + " .. ry " + rightY + " " + rotation + " " + MathHelper.ToDegrees(rotation));
+
+                if (++_curBullet >= _bullets.Count)
+                    _curBullet = 0;
+            }
+             * 
+             */ 
+
 
 
             base.update();

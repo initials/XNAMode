@@ -84,7 +84,7 @@ namespace org.flixel
             //load up the master class, and away we go!
             
             //_flixelgame = new FlxGame();
-            _flixelgame = new XNAMode.HelloWorld(this);
+            _flixelgame = new XNAMode.FlixelEntryPoint(this);
 
 
             Components.Add(_flixelgame);

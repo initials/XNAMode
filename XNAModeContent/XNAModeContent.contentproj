@@ -268,7 +268,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="flixel\initialsLogo.png">
+    <Compile Include="initials\initialsLogo.png">
       <Name>initialsLogo</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -286,6 +286,28 @@
       <Name>warlock_ss_22x29</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="initials\initials_empire_tagtone1.mp3">
+      <Name>initials_empire_tagtone1</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="initials\initials_empire_tagtone2.mp3">
+      <Name>initials_empire_tagtone2</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="initials\initials_empire_tagtone3.mp3">
+      <Name>initials_empire_tagtone3</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="initials\initials_empire_tagtone4.mp3">
+      <Name>initials_empire_tagtone4</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

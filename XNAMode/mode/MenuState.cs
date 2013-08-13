@@ -8,10 +8,6 @@ using Microsoft.Xna.Framework.Storage;
 #endif
 using org.flixel;
 
-
-
-
-
 namespace XNAMode
 {
     public class MenuState : FlxState
@@ -31,7 +27,6 @@ namespace XNAMode
 		private bool _ok2;
 
 
-
 #if !WINDOWS_PHONE
         FlxSave save;
         private bool hasCheckedSaveFile = false;
@@ -40,8 +35,6 @@ namespace XNAMode
 		override public void create()
 		{
             base.create();
-
-            FlxG.angle = 0;
 
             ImgGibs = FlxG.Content.Load<Texture2D>("Mode/spawner_gibs");
             ImgCursor = FlxG.Content.Load<Texture2D>("Mode/cursor");
@@ -71,20 +64,6 @@ namespace XNAMode
 			
 			FlxG.mouse.show(ImgCursor);
 
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
  #if !WINDOWS_PHONE
            if (!_alreadySaved)
             {
@@ -110,24 +89,13 @@ namespace XNAMode
 #if !WINDOWS_PHONE
             if (!hasCheckedSaveFile)
             {
-                FlxG.log("can save?" + save.canSave);
-
-
                 if (save.waitingOnDeviceSelector)
                 {
                     return;
                 }
-
-                
-
-
                 else if (save.canSave)
                 {
                     hasCheckedSaveFile = true;
-
-                    FlxG.log(save.bind("Mode").ToString());
-
-
                     if (save.bind("Mode"))
                     {
                         if (save.data["plays"] == null)
@@ -243,7 +211,6 @@ namespace XNAMode
             }
 
 			base.update();
-
 		}
 
 		private void onFlixel()

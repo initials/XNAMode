@@ -107,11 +107,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FlixelEntryPoint.cs" />
     <Compile Include="flixel\FlxCaveGenerator.cs" />
     <Compile Include="flixel\FlxOgmoLevel.cs" />
     <Compile Include="flixel\FlxSaveData.cs" />
-    <Compile Include="HelloWorld.cs" />
-    <Compile Include="Main.cs" />
     <Compile Include="flixel\data\FlxAnim.cs" />
     <Compile Include="flixel\data\FlxConsole.cs" />
     <Compile Include="flixel\data\FlxFactory.cs" />
@@ -155,8 +154,6 @@
     <Compile Include="mode\VictoryState.cs" />
     <Compile Include="mode\XMLPlayState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Game1.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

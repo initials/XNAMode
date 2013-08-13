@@ -25,7 +25,6 @@ Content\mode\spawner.xnb
 Content\mode\spawner_gibs.xnb
 Content\mode\tech_tiles.xnb
 Content\mode\tiles_all.xnb
-Content\flixel\initialsLogo.xnb
 Content\mode\bubble.xnb
 Content\mode\warlock_ss_22x29.xnb
 Content\flixel\beep.xnb
@@ -45,5 +44,10 @@ Content\mode\menu_hit.xnb
 Content\mode\menu_hit_2.xnb
 Content\mode\mode.xnb
 Content\mode\shoot.xnb
+Content\initials\initialsLogo.xnb
+Content\initials\initials_empire_tagtone1.xnb
+Content\initials\initials_empire_tagtone2.xnb
+Content\initials\initials_empire_tagtone3.xnb
+Content\initials\initials_empire_tagtone4.xnb
 Content\mode\button.wma
 level1.oel

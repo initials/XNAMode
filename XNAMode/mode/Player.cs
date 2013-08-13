@@ -29,16 +29,16 @@ namespace XNAMode
 		public Player(int X, int Y, List<FlxObject> Bullets, FlxEmitter Gibs)
             : base(X, Y)
 		{
-            ImgSpaceman = FlxG.Content.Load<Texture2D>("Mode/warlock_ss_22x29");
+            ImgSpaceman = FlxG.Content.Load<Texture2D>("Mode/spaceman");
 
-			loadGraphic(ImgSpaceman,true,false,22,29);
+			loadGraphic(ImgSpaceman,true,true,8);
 			_restart = 0;
 			
 			//bounding box tweaks
-			width = 11;
-			height = 14;
-			offset.X = 3;
-			offset.Y = 15 ;
+			width = 6;
+			height = 7;
+			offset.X = 1;
+			offset.Y = 1;
 			
 			//basic player physics
 			int runSpeed = 80;
@@ -49,14 +49,13 @@ namespace XNAMode
 			maxVelocity.Y = _jumpPower;
 			
 			//animations
-			addAnimation("idle", new int[] {0,1,2,3}, 12);
-			addAnimation("run", new int [] {5,6,7,8,9}, 12);
-			addAnimation("jump", new int[] {5});
-            addAnimation("idle_up", new int[] { 0, 1, 2, 3 }, 12);
-            addAnimation("run_up", new int[] { 5, 6, 7, 8, 9 }, 12);
-			addAnimation("jump_up", new int[] {5});
-			addAnimation("jump_down", new int[] {6});
-
+			addAnimation("idle", new int[] {0});
+			addAnimation("run", new int [] {1, 2, 3, 0}, 12);
+			addAnimation("jump", new int[] {4});
+			addAnimation("idle_up", new int[] {5});
+			addAnimation("run_up", new int[] {6, 7, 8, 5}, 12);
+			addAnimation("jump_up", new int[] {9});
+			addAnimation("jump_down", new int[] {10});
 			
 			//bullet stuff
 			_bullets = Bullets;
@@ -65,8 +64,6 @@ namespace XNAMode
 			
 			//Gibs emitted upon death
 			_gibs = Gibs;
-
-            //this.color = new Color(0xff, 0x00, 0x39);
 		}
 		
 		override public void update()
@@ -84,7 +81,7 @@ namespace XNAMode
 			
 			//MOVEMENT
 			acceleration.X = 0;
-			if(FlxG.keys.LEFT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadLeft, FlxG.controllingPlayer, out pi ))
+			if(FlxG.keys.LEFT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi))
 			{
 				facing = Flx2DFacing.Left;
 				acceleration.X -= drag.X;
