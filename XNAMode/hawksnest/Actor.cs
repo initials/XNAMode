@@ -12,12 +12,19 @@ namespace XNAMode
 {
     class Actor : FlxSprite
     {
-
+        /// <summary>
+        /// Determines whether or not game inputs affect charactetr.
+        /// </summary>
+        public bool isPlayerControlled;
 
 
         public Actor(int xPos, int yPos)
             : base(xPos,yPos)
 		{
+
+            isPlayerControlled = false;
+
+
             //basic player physics
             int runSpeed = 80;
             drag.X = runSpeed * 8;
@@ -36,22 +43,26 @@ namespace XNAMode
             PlayerIndex pi;
 
             //MOVEMENT
-            acceleration.X = 0;
-            if (FlxG.keys.LEFT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi))
-            {
-                facing = Flx2DFacing.Left;
-                acceleration.X -= drag.X;
-            }
-            else if (FlxG.keys.RIGHT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi))
-            {
-                facing = Flx2DFacing.Right;
-                acceleration.X += drag.X;
-            }
-            if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi))
-                && velocity.Y == 0)
-            {
-                velocity.Y = -205;
 
+            if (isPlayerControlled)
+            {
+                acceleration.X = 0;
+                if (FlxG.keys.LEFT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi))
+                {
+                    facing = Flx2DFacing.Left;
+                    acceleration.X -= drag.X;
+                }
+                else if (FlxG.keys.RIGHT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi))
+                {
+                    facing = Flx2DFacing.Right;
+                    acceleration.X += drag.X;
+                }
+                if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi))
+                    && velocity.Y == 0)
+                {
+                    velocity.Y = -205;
+
+                }
             }
 
 

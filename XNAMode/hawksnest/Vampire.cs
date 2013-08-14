@@ -13,6 +13,11 @@ namespace XNAMode
     {
         private Texture2D ImgVampire;
 
+        /// <summary>
+        /// Determines whether or not game inputs affect charactetr.
+        /// </summary>
+        //public static bool isPlayerControlled;
+
         public Vampire(int xPos, int yPos)
             : base(xPos, yPos)
         {
@@ -30,6 +35,9 @@ namespace XNAMode
             addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0, 1, 2 }, 12);
+
+            isPlayerControlled = true;
+
 
         }
 

@@ -32,7 +32,19 @@ namespace XNAMode
         {
             base.create();
 
-            //FlxG.backColor = Color.SlateGray;
+
+            FlxG.backColor = Color.Black;
+
+            FlxTileblock ti = new FlxTileblock(0, 0, FlxG.width + 48, FlxG.height / 2 );
+            ti.loadTiles(FlxG.Content.Load<Texture2D>("initials/envir_dusk"), 48, 64, 0);
+            ti.scrollFactor.X = 0.4f;
+            ti.scrollFactor.Y = 0.4f;
+            //ti.scale = 2;
+            add(ti);
+
+
+
+
 
             ImgDirt = FlxG.Content.Load<Texture2D>("Mode/dirt");
 
@@ -110,17 +122,17 @@ namespace XNAMode
 
 
 
-            FlxCaveGenerator cav = new FlxCaveGenerator(40, 22);
+            FlxCaveGenerator cav = new FlxCaveGenerator(50, 40);
             cav.initWallRatio = 0.48f;
             cav.numSmoothingIterations = 5;
 
-            cav.genInitMatrix(40, 22);
+            cav.genInitMatrix(50, 40);
 
             // works!
             //int[,] matr = cav.generateCaveLevel();
 
 
-            int[,] matr = cav.generateCaveLevel(2, 2, 2, 0, 1, 1, 1, 0);
+            int[,] matr = cav.generateCaveLevel(0, 2, 2, 0, 0, 1, 1, 0);
 
 
             string newMap = cav.convertMultiArrayToString(matr);
@@ -166,6 +178,10 @@ namespace XNAMode
 
 
             add(actors);
+
+            FlxG.follow(vampire, 1.5f);
+            FlxG.followAdjust(0.5f, 0.0f);
+            FlxG.followBounds(0, 0, 50*16, 40*16);
 
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));

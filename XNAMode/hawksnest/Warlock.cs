@@ -13,9 +13,13 @@ namespace XNAMode
     {
         private Texture2D ImgWarlock;
 
+ 
         public Warlock(int xPos, int yPos)
             : base(xPos, yPos)
         {
+
+            isPlayerControlled = false;
+
             ImgWarlock = FlxG.Content.Load<Texture2D>("initials/warlock_ss_22x29");
 
             loadGraphic(ImgWarlock, true, false, 22,29);
@@ -45,7 +49,6 @@ namespace XNAMode
 
         override public void update()
         {
-
 
 
             base.update();
