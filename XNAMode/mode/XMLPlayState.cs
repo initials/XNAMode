@@ -18,6 +18,7 @@ namespace XNAMode
         private FlxEmitter _bubbles;
         private FlxTileblock rotatore;
         private FlxTilemap tiles;
+        private FlxTilemap decorations;
 
         private Player _player;
 
@@ -46,6 +47,11 @@ namespace XNAMode
 
             //add(_bubbles);
 
+
+
+            // Good example of reading a level
+
+            /*
             XElement xelement = XElement.Load("level1.oel");
 
             Console.WriteLine("List of all rects");
@@ -68,6 +74,7 @@ namespace XNAMode
 
 
             }
+            */
 
 
             rotatore = new FlxTileblock(30,30,120,50);
@@ -97,9 +104,18 @@ namespace XNAMode
 
 
 
-            FlxCaveGenerator cav = new FlxCaveGenerator(70,70);
-            cav.genInitMatrix(70, 70);
-            int[,] matr = cav.generateCaveLevel();
+            FlxCaveGenerator cav = new FlxCaveGenerator(40,22);
+            cav.initWallRatio = 0.48f;
+            cav.numSmoothingIterations = 5;
+
+            cav.genInitMatrix(40, 22);
+            
+            // works!
+            //int[,] matr = cav.generateCaveLevel();
+
+
+            int[,] matr = cav.generateCaveLevel(2,2,2,0,1,1,1,0);
+
 
             string newMap = cav.convertMultiArrayToString(matr);
 
@@ -117,9 +133,26 @@ namespace XNAMode
 
             add(tiles);
 
+
+
+            int[,] decr = cav.createDecorationsMap(matr);
+            string newDec = cav.convertMultiArrayToString(decr);
+
+            decorations = new FlxTilemap();
+            decorations.auto = FlxTilemap.RANDOM;
+            decorations.loadMap(newDec, FlxG.Content.Load<Texture2D>("initials/decorations_16x16"),16,16);
+            add(decorations);
+
+
+
+
+
             _player = new Player(55, 1, null, null);
             //add(_player);
 
+
+
+            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
             
         }
@@ -134,7 +167,6 @@ namespace XNAMode
 
             FlxU.collide(_player, tiles);
 
-            PlayerIndex pi;
             //Console.WriteLine(FlxG.gamepads.isNewThumbstickDown(FlxG.controllingPlayer));
 
             float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
@@ -202,6 +234,27 @@ namespace XNAMode
             if (FlxG.keys.A)
             {
                 FlxG.state = new XMLPlayState();
+            }
+
+            /*
+             * 			highlightBox.x = Math.floor(FlxG.mouse.x / TILE_WIDTH) * TILE_WIDTH;
+			highlightBox.y = Math.floor(FlxG.mouse.y / TILE_HEIGHT) * TILE_HEIGHT;
+
+			if (FlxG.mouse.pressed())
+			{
+				// FlxTilemaps can be manually edited at runtime as well.
+				// Setting a tile to 0 removes it, and setting it to anything else will place a tile.
+				// If auto map is on, the map will automatically update all surrounding tiles.
+				collisionMap.setTile(FlxG.mouse.x / TILE_WIDTH, FlxG.mouse.y / TILE_HEIGHT, FlxG.keys.SHIFT?0:1);
+			}
+             * 
+             */ 
+            if (FlxG.mouse.pressed())
+            {
+
+                tiles.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 0, true);
+
+
             }
 
 

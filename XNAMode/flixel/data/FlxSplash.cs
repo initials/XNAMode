@@ -19,7 +19,6 @@ namespace org.flixel
         private static FlxState _nextScreen;
 
         private Texture2D _initialsLogo;
-        private SoundEffect _tagtoneSound;
         private const string SndTag = "initials/initials_empire_tagtone3";
 
         private FlxSprite _logo;
