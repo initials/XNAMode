@@ -144,6 +144,10 @@
     <Compile Include="flixel\FlxTileblock.cs" />
     <Compile Include="flixel\FlxTilemap.cs" />
     <Compile Include="flixel\FlxU.cs" />
+    <Compile Include="hawksnest\Actor.cs" />
+    <Compile Include="hawksnest\CaveState.cs" />
+    <Compile Include="hawksnest\Vampire.cs" />
+    <Compile Include="hawksnest\Warlock.cs" />
     <Compile Include="mode\Bot.cs" />
     <Compile Include="mode\BotBullet.cs" />
     <Compile Include="mode\Bullet.cs" />

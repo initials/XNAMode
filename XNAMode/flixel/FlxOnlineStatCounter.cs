@@ -275,7 +275,6 @@ namespace org.flixel
                     //  Display data to the console.
                     string strContent;
                     strContent = rs.RequestData.ToString();
-                    Console.WriteLine(strContent);
 
                     if (!pushToDict)
                         lastRecievedStat = strContent;
