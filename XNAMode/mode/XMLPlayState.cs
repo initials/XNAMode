@@ -253,7 +253,7 @@ namespace XNAMode
             {
 
                 tiles.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 0, true);
-
+                decorations.setTile((int)FlxG.mouse.x / 16, ((int)FlxG.mouse.y / 16) - 1, 0, true);
 
             }
 

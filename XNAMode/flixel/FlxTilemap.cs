@@ -223,7 +223,7 @@ namespace org.flixel
             }
             if (auto == RANDOM)
             {
-                Console.WriteLine("auto is == RANDOM");
+                //Console.WriteLine("auto is == RANDOM");
 
                 collideIndex = startingIndex = drawIndex = 1;
                 i = 0;
@@ -532,7 +532,7 @@ namespace org.flixel
 
             refresh = true;
 
-            if (auto == OFF)
+            if (auto == OFF || auto == RANDOM)
             {
                 updateTile(Index);
                 return ok;

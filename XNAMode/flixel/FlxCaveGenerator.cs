@@ -293,11 +293,12 @@ namespace org.flixel
 
             int[,] outMat = this.genInitMatrix(_numTilesRows, _numTilesCols);
 
-            for (int _y = 0; _y < numRows - 1; _y++)
+            for (int _y = 1; _y < numRows - 2; _y++)
             {
-                for (int _x = 0; _x < numCols; _x++)
+                for (int _x = 1; _x < numCols - 1; _x++)
                 {
-                    if (inMat[_y, _x] == 0 && inMat[_y + 1, _x]==1)
+                    // test for flat surface with empty above 
+                    if (inMat[_y, _x] == 0 && inMat[_y + 1, _x] == 1 && inMat[_y + 1, _x - 1] == 1 && inMat[_y + 1, _x + 1] == 1)
                     {
                         outMat[_y, _x] = 1;
                     }
