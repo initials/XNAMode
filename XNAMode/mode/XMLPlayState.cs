@@ -152,12 +152,8 @@ namespace XNAMode
 
 
 
-
             _player = new Player(55, 1, null, null);
             //add(_player);
-
-
-
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
             
@@ -266,10 +262,25 @@ namespace XNAMode
                 
             }
 
-            if (FlxG.keys.justPressed(Keys.V))
+            if (FlxG.keys.justPressed(Keys.K))
             {
                 FlxOnlineStatCounter.sendStats("hawksnest", "marksman", 1);
+
+                Console.WriteLine(FlxOnlineStatCounter.lastRecievedStat);
             }
+            if (FlxG.keys.justPressed(Keys.L))
+            {
+                FlxOnlineStatCounter.getStatsForLevel("hawksnest", "marksman", 1);
+
+                Console.WriteLine(FlxOnlineStatCounter.lastRecievedStat);
+
+            }
+            if (FlxG.keys.justPressed(Keys.J))
+            {
+                FlxOnlineStatCounter.getAllStats("hawksnest");
+
+            }           
+
 
             base.update();
         }
