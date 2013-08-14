@@ -110,6 +110,7 @@
     <Compile Include="FlixelEntryPoint.cs" />
     <Compile Include="flixel\FlxCaveGenerator.cs" />
     <Compile Include="flixel\FlxOgmoLevel.cs" />
+    <Compile Include="flixel\FlxOnlineStatCounter.cs" />
     <Compile Include="flixel\FlxSaveData.cs" />
     <Compile Include="flixel\data\FlxAnim.cs" />
     <Compile Include="flixel\data\FlxConsole.cs" />

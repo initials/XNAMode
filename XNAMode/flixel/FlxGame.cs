@@ -348,6 +348,15 @@ namespace org.flixel
                 }
                 FlxG.spriteBatch.End();
             }
+
+            
+            //FlxG.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
+            //var new_pos = new Vector2(50,50);
+            //FlxG.spriteBatch.Draw(lightmask, new_pos, Color.White);
+            //FlxG.spriteBatch.Draw(lightmask, new Vector2(10,100), Color.White);
+            //FlxG.spriteBatch.End();
+
+
             GraphicsDevice.SetRenderTarget(null);
 
             //Copy the result to the screen, scaled to fit

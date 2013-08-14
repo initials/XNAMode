@@ -161,6 +161,9 @@ namespace XNAMode
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
             
+
+
+            
         }
 
         override public void update()
@@ -260,9 +263,13 @@ namespace XNAMode
 
                 tiles.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 0, true);
                 decorations.setTile((int)FlxG.mouse.x / 16, ((int)FlxG.mouse.y / 16) - 1, 0, true);
-
+                
             }
 
+            if (FlxG.keys.justPressed(Keys.V))
+            {
+                FlxOnlineStatCounter.sendStats("hawksnest", "marksman", 1);
+            }
 
             base.update();
         }
