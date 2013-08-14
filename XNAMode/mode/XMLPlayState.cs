@@ -15,6 +15,7 @@ namespace XNAMode
         protected Texture2D ImgDirt;
 
         private Texture2D Bubbles;
+        private Texture2D DecorTex;
         private FlxEmitter _bubbles;
         private FlxTileblock rotatore;
         private FlxTilemap tiles;
@@ -138,9 +139,14 @@ namespace XNAMode
             int[,] decr = cav.createDecorationsMap(matr);
             string newDec = cav.convertMultiArrayToString(decr);
 
+            DecorTex = FlxG.Content.Load<Texture2D>("initials/decorations_16x16");
+
+
             decorations = new FlxTilemap();
             decorations.auto = FlxTilemap.RANDOM;
-            decorations.loadMap(newDec, FlxG.Content.Load<Texture2D>("initials/decorations_16x16"),16,16);
+            decorations.randomLimit = (int)DecorTex.Width / 16;
+
+            decorations.loadMap(newDec, DecorTex ,16,16);
             add(decorations);
 
 

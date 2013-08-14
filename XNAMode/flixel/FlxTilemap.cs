@@ -96,6 +96,12 @@ namespace org.flixel
         public bool refresh;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public int randomLimit;
+
+
+        /// <summary>
         /// Read-only variable, do NOT recommend changing after the map is loaded!
         /// </summary>
         public int widthInTiles;
@@ -110,6 +116,7 @@ namespace org.flixel
         /// <summary>
         /// Rendering helper.
         /// </summary>
+        /// 
         protected Rectangle _flashRect;
         protected Rectangle _flashRect2;
 
@@ -810,7 +817,7 @@ namespace org.flixel
         protected void randomTile(int Index)
         {
             if (_data[Index] == 0) return;
-            _data[Index] = (int)(FlxU.random() * 10);
+            _data[Index] = (int)(FlxU.random() * randomLimit);
         }
 
         /// <summary>
