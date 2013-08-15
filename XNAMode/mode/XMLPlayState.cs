@@ -10,6 +10,9 @@ using System.Xml.Linq;
 
 namespace XNAMode
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class XMLPlayState : FlxState
     {
         protected Texture2D ImgDirt;

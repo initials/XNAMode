@@ -23,7 +23,9 @@ using System;
 
 namespace org.flixel
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class FlxKeyboard
     {
         private PlayerIndex pi;
