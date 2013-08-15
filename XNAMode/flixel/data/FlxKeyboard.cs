@@ -19,6 +19,7 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace org.flixel
 {
@@ -472,7 +473,7 @@ namespace org.flixel
          *============================================*/
         public const int MaxInputs = 4;
 
-        public string trackingString;
+        public string trackingString = "";
 
         /*==============================================
          * 
@@ -539,10 +540,18 @@ namespace org.flixel
         {
             if (controllingPlayer.HasValue)
             {
+                
+
                 // Read input from the specified player.
                 playerIndex = controllingPlayer.Value;
 
                 int i = (int)playerIndex;
+
+                if (_curKeyboard[i].IsKeyDown(key) && _lastKeyboard[i].IsKeyUp(key))
+                {
+
+                    trackingString += key.ToString();
+                }
 
                 return (_curKeyboard[i].IsKeyDown(key) &&
                         _lastKeyboard[i].IsKeyUp(key));
@@ -590,7 +599,7 @@ namespace org.flixel
 
                 int i = (int)playerIndex;
 
-                trackingString += _curKeyboard[i].IsKeyDown(key).ToString();
+                
 
                 return _curKeyboard[i].IsKeyDown(key);
             }
