@@ -38,10 +38,6 @@ namespace org.flixel
 
             _initialsLogo = FlxG.Content.Load<Texture2D>("initials/initialsLogo");
             //_tagtoneSound = FlxG.Content.Load<SoundEffect>("initials/initials_empire_tagtone3");
-            
-
-            
-
 
             _logo = new FlxSprite();
             _logo.loadGraphic(_initialsLogo, false, false, 216,24);
@@ -54,24 +50,10 @@ namespace org.flixel
 
             FlxG.play(SndTag,1.0f);
 
-
             FlxTransition tra = new FlxTransition();
-            tra.createSprites(null, Color.Green, 14,10,40,40);
+            tra.createSprites(null, Color.DarkViolet, 18, 12, 40, 40,0,20,0.01f);
+            tra.startFadeIn();
             add(tra);
-
-
-            //FlxSprite s;
-
-            //s = new FlxSprite(30, 30);
-            //s.createGraphic(10, 10, Color.Gold);
-            //s.scale = 0.1f;
-            //add(s);
-
-            //s = new FlxSprite(130, 130);
-            //s.createGraphic(10, 10, Color.Fuchsia);
-            //s.scale = 2.0f;
-            //add(s);
-
 
 
         }
@@ -90,7 +72,7 @@ namespace org.flixel
 
                 _logo.visible = false;
 
-                FlxG.flash.start(FlxG.backColor, 1.0f, null, false);
+                //FlxG.flash.start(FlxG.backColor, 1.0f, null, false);
 
                 _f = new List<FlxLogoPixel>();
                 int scale = 10;
