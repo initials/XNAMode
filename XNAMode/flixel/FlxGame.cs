@@ -9,7 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace org.flixel
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class FlxGame : DrawableGameComponent
     {
         private FlxState _firstScreen;

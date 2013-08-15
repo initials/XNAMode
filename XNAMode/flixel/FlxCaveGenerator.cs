@@ -8,7 +8,9 @@ using System.Linq;
 namespace org.flixel
 {
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class FlxCaveGenerator
     {
         static public int _numTilesCols = 50;
