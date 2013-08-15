@@ -257,25 +257,29 @@ namespace org.flixel
             FlxG.gamepads.update();
             FlxG.mouse.update();
             FlxG.updateSounds();
-            if (FlxG.keys.isNewKeyPress(Keys.D0, null, out pi))
+            if (FlxG.keys.isNewKeyPress(Keys.OemPipe, null, out pi))
             {
                 FlxG.mute = !FlxG.mute;
                 showSoundTray();
             }
-            else if (FlxG.keys.isNewKeyPress(Keys.OemMinus, null, out pi))
+            else if (FlxG.keys.isNewKeyPress(Keys.OemOpenBrackets, null, out pi))
             {
                 FlxG.mute = false;
                 FlxG.volume -= 0.1f;
                 showSoundTray();
             }
-            else if (FlxG.keys.isNewKeyPress(Keys.OemPlus, null, out pi))
+            else if (FlxG.keys.isNewKeyPress(Keys.OemCloseBrackets, null, out pi))
             {
                 FlxG.mute = false;
                 FlxG.volume += 0.1f;
                 showSoundTray();
             }
-            else if (FlxG.keys.isNewKeyPress(Keys.D1, null, out pi) || FlxG.keys.isNewKeyPress(Keys.OemTilde, null, out pi))
+            else if ( FlxG.keys.isNewKeyPress(Keys.OemTilde, null, out pi))
             {
+
+                //FlxG.keys.isNewKeyPress(Keys.D1, null, out pi) ||
+
+
                 _console.toggle();
             }
             else if (FlxG.autoHandlePause && (FlxG.keys.isPauseGame(FlxG.controllingPlayer) || FlxG.gamepads.isPauseGame(FlxG.controllingPlayer)))

@@ -18,9 +18,14 @@ namespace XNAMode
 
         FlxText _nameEntry;
 
+        FlxSave save;
+        bool hasCheckedSave ;
+
         override public void create()
         {
             base.create();
+
+            hasCheckedSave = false;
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
@@ -33,6 +38,9 @@ namespace XNAMode
             add(_menuItems);
 
 
+            save = new FlxSave();
+            //save.bind("Mode");
+            //Console.WriteLine(save.data["player_name"]) ;
 
 
             _nameEntry = new FlxText(10, 200, FlxG.width);
@@ -43,6 +51,9 @@ namespace XNAMode
 
             add(_nameEntry);
 
+
+
+            
 
         }
 
@@ -91,7 +102,74 @@ namespace XNAMode
             if (FlxG.keys.isNewKeyPress( Keys.W, null, out pi))  _nameEntry.text += shift ? "W" : "w"; 
             if (FlxG.keys.isNewKeyPress( Keys.X, null, out pi))  _nameEntry.text += shift ? "X" : "x"; 
             if (FlxG.keys.isNewKeyPress( Keys.Y, null, out pi))  _nameEntry.text += shift ? "Y" : "y"; 
-            if (FlxG.keys.isNewKeyPress( Keys.Z, null, out pi))  _nameEntry.text += shift ? "Z" : "z"; 
+            if (FlxG.keys.isNewKeyPress( Keys.Z, null, out pi))  _nameEntry.text += shift ? "Z" : "z";
+
+            if (FlxG.keys.isNewKeyPress(Keys.D1, null, out pi)) _nameEntry.text += shift ? "!" : "1";
+            if (FlxG.keys.isNewKeyPress(Keys.D2, null, out pi)) _nameEntry.text += shift ? "@" : "2";
+            if (FlxG.keys.isNewKeyPress(Keys.D3, null, out pi)) _nameEntry.text += shift ? "#" : "3";
+            if (FlxG.keys.isNewKeyPress(Keys.D4, null, out pi)) _nameEntry.text += shift ? "$" : "4";
+            if (FlxG.keys.isNewKeyPress(Keys.D5, null, out pi)) _nameEntry.text += shift ? "%" : "5";
+            if (FlxG.keys.isNewKeyPress(Keys.D6, null, out pi)) _nameEntry.text += shift ? "^" : "6";
+            if (FlxG.keys.isNewKeyPress(Keys.D7, null, out pi)) _nameEntry.text += shift ? "&" : "7";
+            if (FlxG.keys.isNewKeyPress(Keys.D8, null, out pi)) _nameEntry.text += shift ? "*" : "8"; 
+            if (FlxG.keys.isNewKeyPress(Keys.D9, null, out pi)) _nameEntry.text += shift ? "(" : "9";
+            if (FlxG.keys.isNewKeyPress(Keys.D0, null, out pi)) _nameEntry.text += shift ? ")" : "0";
+            if (FlxG.keys.isNewKeyPress(Keys.OemMinus, null, out pi)) _nameEntry.text += shift ? "_" : "-";
+
+            if (FlxG.keys.isNewKeyPress(Keys.Back, null, out pi))
+            {
+
+                if (_nameEntry.text.Length <= 0)
+                {
+                    return;
+                }
+
+                string backspaced = _nameEntry.text;
+
+                _nameEntry.text = backspaced.Remove(backspaced.Length - 1);
+            }
+
+
+            if (!hasCheckedSave)
+            {
+                
+                if (save.waitingOnDeviceSelector)
+                {
+                    Console.WriteLine("enter waitingOnDeviceSelector");
+                    return;
+                }
+                else if (save.canSave)
+                {
+                    hasCheckedSave = true;
+                    Console.WriteLine("enter can save");
+                    if (save.bind("Mode"))
+                    {
+                        Console.WriteLine("bound");
+                        _nameEntry.text = save.data["player_name"]  ;
+                        FlxG.log("Player name is: " + save.data["player_name"]);
+                        save.forceSave(0);
+                    }
+                }
+            }
+            if (FlxG.keys.isNewKeyPress(Keys.Enter, null, out pi))
+            {
+
+                if (save.waitingOnDeviceSelector)
+                {
+                    //Console.WriteLine("enter waitingOnDeviceSelector");
+                    return;
+                }
+                else if (save.canSave)
+                {
+                    //Console.WriteLine("enter can save");
+                    if (save.bind("Mode"))
+                    {
+                        save.data["player_name"] = _nameEntry.text;
+                        FlxG.log("Player name is: " + save.data["player_name"]);
+                        save.forceSave(0);
+                    }
+                }
+            }
 
 
             base.update();

@@ -128,12 +128,7 @@ namespace org.flixel
                 // Open the file.
                 Stream stream = _so.OpenFile(_savefile, FileMode.Open);
 
-                Console.WriteLine("before Serialisation");
-
-
                 _savedata.deserialize(stream);
-
-                Console.WriteLine("After Serialisation");
 
                 // Close the file.
                 stream.Close();
@@ -344,12 +339,7 @@ namespace org.flixel
         public void deserialize(Stream reader)
         {
 
-            Console.WriteLine("in deserialize");
-
-
             _data.Clear();
-
-            Console.WriteLine("after clear");
 
             XmlSerializer serializer = new XmlSerializer(typeof(List<FlxSaveDataEntry>));
             List<FlxSaveDataEntry> list = (List<FlxSaveDataEntry>)serializer.Deserialize(reader);
