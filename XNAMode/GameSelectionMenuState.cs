@@ -15,6 +15,8 @@ namespace XNAMode
 
         FlxText _menuItems;
 
+        FlxText _nameEntry;
+
         override public void create()
         {
             base.create();
@@ -25,11 +27,20 @@ namespace XNAMode
 
             _menuItems.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
 
-            _menuItems.text = "1. Mode\n2. Hawksnest";
+            _menuItems.text = "1. Mode\n2. Hawksnest\n\nEnter name, use @ symbol to specify Twitter handle.";
 
             add(_menuItems);
 
 
+
+
+            _nameEntry = new FlxText(10, 200, FlxG.width);
+
+            _nameEntry.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
+
+            _nameEntry.text = "";
+
+            add(_nameEntry);
 
 
         }
@@ -37,15 +48,17 @@ namespace XNAMode
         override public void update()
         {
 
-            if (FlxG.keys.ONE)
+            if (FlxG.keys.F1)
             {
                 FlxG.state = new MenuState();
+
             }
-            if (FlxG.keys.TWO)
+            if (FlxG.keys.F2)
             {
                 FlxG.state = new CaveState();
 
             }
+
 
 
             base.update();
