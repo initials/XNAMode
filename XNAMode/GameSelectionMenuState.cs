@@ -21,6 +21,15 @@ namespace XNAMode
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
+            _menuItems = new FlxText(0, 30, FlxG.width);
+
+            _menuItems.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
+
+            _menuItems.text = "1. Mode\n2. Hawksnest";
+
+            add(_menuItems);
+
+
 
 
         }
@@ -28,6 +37,10 @@ namespace XNAMode
         override public void update()
         {
 
+            if (FlxG.keys.ONE)
+            {
+
+            }
 
 
 
