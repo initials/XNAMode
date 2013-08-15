@@ -7,6 +7,9 @@ using org.flixel;
 
 namespace XNAMode
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PlayState : FlxState
     {
         protected Texture2D ImgTech;

@@ -6,6 +6,9 @@ using org.flixel;
 
 namespace XNAMode
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Bullet : FlxSprite
     {
         //[Embed(source="../../../data/bullet.png")] private var ImgBullet:Class;
