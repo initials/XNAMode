@@ -444,6 +444,8 @@ namespace org.flixel
                 _lastKeyboard[i] = _curKeyboard[i];
 
                 _curKeyboard[i] = Keyboard.GetState((PlayerIndex)i);
+
+                FlxG.log(_curKeyboard[i].ToString());
             }
         }
 

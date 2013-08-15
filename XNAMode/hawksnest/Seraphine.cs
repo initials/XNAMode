@@ -13,7 +13,7 @@ namespace XNAMode
     class Seraphine : FlxSprite
     {
 
-        public Template(int xPos, int yPos)
+        public Seraphine(int xPos, int yPos)
             : base(xPos, yPos)
         {
 

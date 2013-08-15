@@ -59,9 +59,9 @@ namespace XNAMode
 
             }
 
-            string key = FlxG.keys.curKeyState();
 
-            Console.WriteLine(key);
+
+            //Console.WriteLine(FlxG.keys.curKeyState.ToString());
 
 
 
