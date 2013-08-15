@@ -10,6 +10,9 @@ using org.flixel;
 
 namespace XNAMode
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MenuState : FlxState
     {
         private static bool _alreadySaved = false;
