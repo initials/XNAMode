@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Template : FlxSprite
+    class Seraphine : FlxSprite
     {
 
         public Template(int xPos, int yPos)

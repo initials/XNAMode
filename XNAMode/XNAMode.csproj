@@ -147,9 +147,25 @@
     <Compile Include="flixel\FlxU.cs" />
     <Compile Include="GameSelectionMenuState.cs" />
     <Compile Include="hawksnest\Actor.cs" />
+    <Compile Include="hawksnest\Automaton.cs" />
     <Compile Include="hawksnest\CaveState.cs" />
+    <Compile Include="hawksnest\Corsair.cs" />
+    <Compile Include="hawksnest\Executor.cs" />
+    <Compile Include="hawksnest\Gloom.cs" />
+    <Compile Include="hawksnest\Harvester.cs" />
+    <Compile Include="hawksnest\Marksman.cs" />
+    <Compile Include="hawksnest\Medusa.cs" />
+    <Compile Include="hawksnest\Mistress.cs" />
+    <Compile Include="hawksnest\Mummy.cs" />
+    <Compile Include="hawksnest\Nymph.cs" />
+    <Compile Include="hawksnest\Paladin.cs" />
+    <Compile Include="hawksnest\Seraphine.cs" />
+    <Compile Include="hawksnest\Succubus.cs" />
+    <Compile Include="hawksnest\Tormentor.cs" />
+    <Compile Include="hawksnest\Unicorn.cs" />
     <Compile Include="hawksnest\Vampire.cs" />
     <Compile Include="hawksnest\Warlock.cs" />
+    <Compile Include="hawksnest\Zombie.cs" />
     <Compile Include="mode\Bot.cs" />
     <Compile Include="mode\BotBullet.cs" />
     <Compile Include="mode\Bullet.cs" />
@@ -161,6 +177,7 @@
     <Compile Include="mode\VictoryState.cs" />
     <Compile Include="mode\XMLPlayState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateSprite.cs" />
     <Compile Include="TemplateState.cs" />
   </ItemGroup>
   <ItemGroup>

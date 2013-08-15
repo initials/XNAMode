@@ -10,10 +10,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Template : FlxSprite
+    class Zombie : FlxSprite
     {
 
-        public Template(int xPos, int yPos)
+        public Zombie(int xPos, int yPos)
             : base(xPos, yPos)
         {
 
