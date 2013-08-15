@@ -21,7 +21,7 @@ namespace XNAMode
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
-            _menuItems = new FlxText(0, 30, FlxG.width);
+            _menuItems = new FlxText(10, 30, FlxG.width);
 
             _menuItems.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
 
@@ -39,9 +39,13 @@ namespace XNAMode
 
             if (FlxG.keys.ONE)
             {
+                FlxG.state = new MenuState();
+            }
+            if (FlxG.keys.TWO)
+            {
+                FlxG.state = new CaveState();
 
             }
-
 
 
             base.update();

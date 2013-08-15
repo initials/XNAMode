@@ -132,7 +132,7 @@ namespace XNAMode
             //int[,] matr = cav.generateCaveLevel();
 
 
-            int[,] matr = cav.generateCaveLevel(0, 2, 2, 0, 0, 1, 1, 0);
+            int[,] matr = cav.generateCaveLevel(3, 2, 2, 0, 1, 1, 1, 0);
 
 
             string newMap = cav.convertMultiArrayToString(matr);

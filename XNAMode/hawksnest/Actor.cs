@@ -26,11 +26,11 @@ namespace XNAMode
 
 
             //basic player physics
-            int runSpeed = 80;
-            drag.X = runSpeed * 8;
-            acceleration.Y = 420;
+            int runSpeed = 120;
+            drag.X = runSpeed * 4;
+            acceleration.Y = 820;
             maxVelocity.X = runSpeed;
-            maxVelocity.Y = 205;
+            maxVelocity.Y = 1000;
 
 
 
@@ -60,7 +60,7 @@ namespace XNAMode
                 if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi))
                     && velocity.Y == 0)
                 {
-                    velocity.Y = -205;
+                    velocity.Y = -805;
 
                 }
             }
