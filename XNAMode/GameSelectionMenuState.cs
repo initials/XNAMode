@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using org.flixel;
+using Microsoft.Xna.Framework.GamerServices;
 
 using System.Linq;
 using System.Xml.Linq;
@@ -59,12 +60,7 @@ namespace XNAMode
 
             }
 
-
-
-            //Console.WriteLine(FlxG.keys.curKeyState.ToString());
-
-
-
+            _nameEntry.text = FlxG.keys.trackingString;
 
 
             base.update();
