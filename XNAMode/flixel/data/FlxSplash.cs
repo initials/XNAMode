@@ -50,10 +50,13 @@ namespace org.flixel
 
             FlxG.play(SndTag,1.0f);
 
-            FlxTransition tra = new FlxTransition();
-            tra.createSprites(null, Color.DarkViolet, 18, 12, 40, 40,0,20,0.01f);
-            tra.startFadeIn();
-            add(tra);
+            //FlxTransition tra = new FlxTransition();
+            //tra.createSprites(null, Color.DarkViolet, 18, 12, 40, 40,0,20,0.01f);
+            //tra.startFadeIn();
+            //add(tra);
+
+            FlxG.transition.startFadeIn();
+
 
 
         }

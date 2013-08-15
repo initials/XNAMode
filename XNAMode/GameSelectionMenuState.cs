@@ -21,19 +21,44 @@ namespace XNAMode
         FlxSave save;
         bool hasCheckedSave ;
 
+        //FlxTransition transition;
+
+
         override public void create()
         {
+
+            FlxG.backColor = new Color(0xc2, 0x88, 0x83);
+
             base.create();
+
+            //FlxSprite bg = new FlxSprite(0, 0);
+            //bg.loadGraphic(FlxG.Content.Load<Texture2D>("initials/Ambience"));
+            //bg.scale = 2;
+            //add(bg);
+
+
+
+            //c28883
+
+
+            FlxTileblock bg = new FlxTileblock(0, FlxG.height - 256, 256 * 3, 256);
+            
+            bg.loadTiles(FlxG.Content.Load<Texture2D>("initials/Ambience"), 256, 256, 0);
+
+            add(bg);
+
+
+
 
             hasCheckedSave = false;
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
-            _menuItems = new FlxText(10, 30, FlxG.width);
+            _menuItems = new FlxText(10, 10, FlxG.width);
 
             _menuItems.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
 
-            _menuItems.text = "1. Mode\n2. Hawksnest\n\nEnter name, use @ symbol to specify Twitter handle.";
+            _menuItems.text = "F1. Mode\nF2. Hawksnest\n\nEnter name, use @ symbol to specify Twitter handle. Press enter when complete.";
 
             add(_menuItems);
 
@@ -43,7 +68,7 @@ namespace XNAMode
             //Console.WriteLine(save.data["player_name"]) ;
 
 
-            _nameEntry = new FlxText(10, 200, FlxG.width);
+            _nameEntry = new FlxText(10, 80, FlxG.width);
 
             _nameEntry.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
 
@@ -52,8 +77,11 @@ namespace XNAMode
             add(_nameEntry);
 
 
+            FlxG.flash.start(Color.Black,0.5f);
+
 
             
+
 
         }
 
@@ -145,9 +173,14 @@ namespace XNAMode
                     if (save.bind("Mode"))
                     {
                         Console.WriteLine("bound");
-                        _nameEntry.text = save.data["player_name"]  ;
+                        if (save.data["player_name"] == null)
+                            _nameEntry.text = "";
+                        else
+                            _nameEntry.text = save.data["player_name"];
                         FlxG.log("Player name is: " + save.data["player_name"]);
                         save.forceSave(0);
+
+                        FlxG.transition.startFadeIn();
                     }
                 }
             }
@@ -169,6 +202,13 @@ namespace XNAMode
                         save.forceSave(0);
                     }
                 }
+
+                FlxG.transition.startFadeOut();
+            }
+
+            if (FlxG.transition.complete)
+            {
+                FlxG.state = new CaveState();
             }
 
 

@@ -301,6 +301,9 @@ namespace org.flixel
                     FlxG.flash.update();
                 if (FlxG.fade.exists)
                     FlxG.fade.update();
+                if (FlxG.transition.exists)
+                    FlxG.transition.update();
+
                 FlxG.quake.update();
                 _quakeOffset.X = FlxG.quake.x;
                 _quakeOffset.Y = FlxG.quake.y;
@@ -323,6 +326,8 @@ namespace org.flixel
                     FlxG.flash.render(FlxG.spriteBatch);
                 if (FlxG.fade.exists)
                     FlxG.fade.render(FlxG.spriteBatch);
+                if (FlxG.transition.exists)
+                    FlxG.transition.render(FlxG.spriteBatch);
 
                 if (FlxG.mouse.cursor.visible)
                     FlxG.mouse.cursor.render(FlxG.spriteBatch);

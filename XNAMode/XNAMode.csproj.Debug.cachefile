@@ -25,17 +25,11 @@ Content\mode\spawner.xnb
 Content\mode\spawner_gibs.xnb
 Content\mode\tech_tiles.xnb
 Content\mode\tiles_all.xnb
-Content\initials\initialsLogo.xnb
 Content\mode\bubble.xnb
 Content\mode\warlock_ss_22x29.xnb
-Content\initials\autotiles_16x16.xnb
 Content\flixel\beep.xnb
 Content\flixel\flixel.xnb
 Content\mode\button.xnb
-Content\initials\initials_empire_tagtone1.xnb
-Content\initials\initials_empire_tagtone2.xnb
-Content\initials\initials_empire_tagtone3.xnb
-Content\initials\initials_empire_tagtone4.xnb
 Content\flixel\deffont.xnb
 Content\mode\asplode.xnb
 Content\mode\countdown.xnb
@@ -50,6 +44,12 @@ Content\mode\menu_hit.xnb
 Content\mode\menu_hit_2.xnb
 Content\mode\mode.xnb
 Content\mode\shoot.xnb
+Content\initials\initialsLogo.xnb
+Content\initials\initials_empire_tagtone1.xnb
+Content\initials\initials_empire_tagtone2.xnb
+Content\initials\initials_empire_tagtone3.xnb
+Content\initials\initials_empire_tagtone4.xnb
+Content\initials\autotiles_16x16.xnb
 Content\initials\decorations_16x16.xnb
 Content\initials\automaton_ss_11x24.xnb
 Content\initials\batParticles_12x12.xnb
@@ -74,5 +74,6 @@ Content\initials\warlock_ss_22x29.xnb
 Content\initials\zombie_ss_13x19.xnb
 Content\initials\envir_dusk.xnb
 Content\flixel\transition_40x40.xnb
+Content\initials\Ambience.xnb
 Content\mode\button.wma
 level1.oel

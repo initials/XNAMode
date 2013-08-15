@@ -229,6 +229,11 @@ namespace org.flixel
 		 */
         static public FlxFade fade;
 
+        /// <summary>
+        /// Does a checkboard transition.
+        /// </summary>
+        static public FlxTransition transition;
+
         /**
          * Log data to the developer console.
          * 
@@ -293,6 +298,9 @@ namespace org.flixel
             FlxG.quake = new FlxQuake((int)_scale);
             FlxG.flash = new FlxFlash();
             FlxG.fade = new FlxFade();
+            FlxG.transition = new FlxTransition();
+            FlxG.transition.createSprites(null, Color.DarkViolet, 18, 12, 40, 40, 0, 20, 0.03f);
+
         }
         //@benbaird End XNA-specific public static properties
 

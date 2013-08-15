@@ -26,9 +26,9 @@ namespace XNAMode
             loadGraphic(ImgVampire, true, false, 14, 19);
 
             //bounding box tweaks
-            width = 12;
+            width = 6;
             height = 14;
-            offset.X = 1;
+            offset.X = 4;
             offset.Y = 5;
 
             //animations

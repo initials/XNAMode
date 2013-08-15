@@ -13,9 +13,12 @@ namespace org.flixel
 
         private float _speed;
 
+        public bool complete;
+
         public FlxTransition()
         {
             _speed = 0.05f;
+            complete = false;
         }
 
         public FlxTransition createSprites(Texture2D Graphics, Color color, int rows, int cols, int width, int height)
@@ -107,6 +110,7 @@ namespace org.flixel
 
         public void startFadeIn() 
         {
+            complete = false;
             transitionBackward = true;
 
             FlxSprite o;
@@ -122,6 +126,7 @@ namespace org.flixel
 
         public void startFadeOut()
         {
+            complete = false;
             transitionForward = true;
 
             FlxSprite o;
@@ -146,11 +151,26 @@ namespace org.flixel
                 o = members[i++] as FlxSprite;
 
                 if (transitionForward)
+                {
                     o.scale += _speed;
+
+                    if (o.scale > 1.25f)
+                    {
+                        complete = true;
+                        transitionForward = false;
+                        transitionBackward = true;
+                    }
+
+                }
                 else if (transitionBackward)
                 {
                     o.scale -= _speed;
-                    if (o.scale <= 0.0f) o.scale = 0;
+                    if (o.scale <= 0.0f)
+                    {
+                        o.scale = 0;
+                        //complete = true;
+                    }
+
                 }
             }
         }
