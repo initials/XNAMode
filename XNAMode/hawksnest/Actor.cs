@@ -60,7 +60,7 @@ namespace XNAMode
                 if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi))
                     && velocity.Y == 0)
                 {
-                    velocity.Y = -805;
+                    velocity.Y = -305;
 
                 }
             }

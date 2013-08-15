@@ -12,7 +12,7 @@ namespace org.flixel
     {
         //logo stuff
         private List<FlxLogoPixel> _f;
-        private static Color _fc = Color.Gray;
+        private static Color _fc = Color.Yellow;
         private float _logoTimer = 0;
         private Texture2D _poweredBy;
         private SoundEffect _fSound;
@@ -47,12 +47,31 @@ namespace org.flixel
             _logo.loadGraphic(_initialsLogo, false, false, 216,24);
             _logo.x = FlxG.width / 2 - 216 / 2;
             _logo.y = FlxG.height / 2 - 24;
-
+            //_logo.color = new Color(0,0,0);
             add(_logo);
 
             //_tagtoneSound.Play(FlxG.volume, 0.0f, 0.0f);
 
             FlxG.play(SndTag,1.0f);
+
+
+            FlxTransition tra = new FlxTransition();
+            tra.createSprites(null, Color.Green, 14,10,40,40);
+            add(tra);
+
+
+            //FlxSprite s;
+
+            //s = new FlxSprite(30, 30);
+            //s.createGraphic(10, 10, Color.Gold);
+            //s.scale = 0.1f;
+            //add(s);
+
+            //s = new FlxSprite(130, 130);
+            //s.createGraphic(10, 10, Color.Fuchsia);
+            //s.scale = 2.0f;
+            //add(s);
+
 
 
         }
@@ -66,14 +85,12 @@ namespace org.flixel
         public override void update()
         {
 
-
-
-            if (_f == null && _logoTimer > 5.5f)
+            if (_f == null && _logoTimer > 2.5f)
             {
 
                 _logo.visible = false;
 
-                FlxG.flash.start(FlxG.backColor, 1f, null, false);
+                FlxG.flash.start(FlxG.backColor, 1.0f, null, false);
 
                 _f = new List<FlxLogoPixel>();
                 int scale = 10;
@@ -95,7 +112,7 @@ namespace org.flixel
                 FlxSprite pwr = new FlxSprite((FlxG.width - (int)((float)_poweredBy.Width * pwrscale)) / 2, top + (pixelsize * 4) + 16, _poweredBy);
                 pwr.loadGraphic(_poweredBy, false, false, (int)((float)_poweredBy.Width * pwrscale), (int)((float)_poweredBy.Height * pwrscale));
 
-                pwr.color = _fc;
+                //pwr.color = _fc;
                 pwr.scale = pwrscale;
                 add(pwr);
 
@@ -103,10 +120,12 @@ namespace org.flixel
             }
 
             _logoTimer += FlxG.elapsed;
+            
+            //Console.WriteLine(_logoTimer);
 
             base.update();
 
-            if (_logoTimer > 8.5f || FlxG.keys.SPACE)
+            if (_logoTimer > 5.5f || FlxG.keys.SPACE)
             {
                 FlxG.destroySounds(true);
 

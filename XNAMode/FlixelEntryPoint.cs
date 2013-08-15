@@ -12,7 +12,7 @@ namespace XNAMode
         public FlixelEntryPoint(Game game)
             : base(game)
         {
-            initGame(640, 360, new GameSelectionMenuState(), Color.Black, true, Color.Black);
+            initGame(640, 360, new GameSelectionMenuState(), Color.DarkSlateGray, true, Color.DarkSlateGray);
             FlxG.debug = true;
 
         }

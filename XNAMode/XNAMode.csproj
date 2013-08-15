@@ -143,6 +143,7 @@
     <Compile Include="flixel\FlxText.cs" />
     <Compile Include="flixel\FlxTileblock.cs" />
     <Compile Include="flixel\FlxTilemap.cs" />
+    <Compile Include="flixel\FlxTransition.cs" />
     <Compile Include="flixel\FlxU.cs" />
     <Compile Include="GameSelectionMenuState.cs" />
     <Compile Include="hawksnest\Actor.cs" />
