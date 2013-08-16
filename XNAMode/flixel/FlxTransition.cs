@@ -89,7 +89,7 @@ namespace org.flixel
 
                     s.angle = angle;
 
-                    s.angularVelocity = angularVelocity * _y ;
+                    s.angularVelocity = angularVelocity + (angularVelocity * _y);
 
                     s.scale = 0.0f;
 

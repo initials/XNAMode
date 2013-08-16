@@ -111,6 +111,11 @@ namespace org.flixel
         static public int level;
         static public List<int> scores = new List<int>();
         static public int score;
+
+        /// <summary>
+        /// Stores the players username, 
+        /// </summary>
+        public static string username;
 		/**
 		 * <code>FlxG.saves</code> is a generic bucket for storing
 		 * FlxSaves so you can access them whenever you want.

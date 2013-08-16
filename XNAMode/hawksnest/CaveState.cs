@@ -37,6 +37,10 @@ namespace XNAMode
 
             base.create();
 
+            string levelData = FlxU.randomString(10);
+            FlxG.log("levelData: " + levelData);
+
+
             FlxTileblock ti = new FlxTileblock(0, 0, FlxG.width + 48, FlxG.height / 2 );
             ti.loadTiles(FlxG.Content.Load<Texture2D>("initials/envir_dusk"), 48, 64, 0);
             ti.scrollFactor.X = 0.4f;

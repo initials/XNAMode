@@ -163,7 +163,7 @@ namespace XNAMode
                 
                 if (save.waitingOnDeviceSelector)
                 {
-                    Console.WriteLine("enter waitingOnDeviceSelector");
+                    //Console.WriteLine("enter waitingOnDeviceSelector");
                     return;
                 }
                 else if (save.canSave)
@@ -172,15 +172,16 @@ namespace XNAMode
                     Console.WriteLine("enter can save");
                     if (save.bind("Mode"))
                     {
-                        Console.WriteLine("bound");
+                        //Console.WriteLine("bound");
                         if (save.data["player_name"] == null)
                             _nameEntry.text = "";
                         else
                             _nameEntry.text = save.data["player_name"];
                         FlxG.log("Player name is: " + save.data["player_name"]);
+                        FlxG.username = save.data["player_name"];
                         save.forceSave(0);
 
-                        FlxG.transition.startFadeIn();
+                        //FlxG.transition.startFadeIn();
                     }
                 }
             }
@@ -199,6 +200,8 @@ namespace XNAMode
                     {
                         save.data["player_name"] = _nameEntry.text;
                         FlxG.log("Player name is: " + save.data["player_name"]);
+                        FlxG.username = save.data["player_name"];
+
                         save.forceSave(0);
                     }
                 }

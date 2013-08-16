@@ -344,7 +344,7 @@ namespace org.flixel
         /// <returns></returns>
         static public void sendStats(string game, string levelname, int score)
         {
-            string uri = "http://initialsgames.com/highscores/commands.php?f=addData&levelname=" + levelname + "&score=" + score.ToString() + "&gamename=" + game;
+            string uri = "http://initialsgames.com/highscores/commands.php?f=addData&levelname=" + levelname + "&score=" + score.ToString() + "&gamename=" + game + "&user=" + FlxG.username;
 
             clientGetAsyncEntry(uri, false);
 
