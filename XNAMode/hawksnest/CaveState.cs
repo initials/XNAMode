@@ -58,7 +58,7 @@ namespace XNAMode
             string levelData = FlxU.randomString(10);
             FlxG.log("levelData: " + levelData);
 
-
+            //bg
             FlxTileblock ti = new FlxTileblock(0, 0, FlxG.width + 48, FlxG.height / 2 );
             ti.loadTiles(FlxG.Content.Load<Texture2D>("initials/envir_dusk"), 48, 64, 0);
             ti.scrollFactor.X = 0.4f;
@@ -66,110 +66,26 @@ namespace XNAMode
             //ti.scale = 2;
             add(ti);
 
-            ImgDirt = FlxG.Content.Load<Texture2D>("Mode/dirt");
-
-            Bubbles = FlxG.Content.Load<Texture2D>("Mode/bubble");
-            _bubbles = new FlxEmitter();
-            _bubbles.x = 0;
-            _bubbles.y = FlxG.height - 20;
-            _bubbles.width = FlxG.width;
-            _bubbles.height = 20;
-            _bubbles.delay = 3.0f;
-            _bubbles.setXSpeed(-200, 200);
-            _bubbles.setYSpeed(-2, 2);
-            _bubbles.setRotation(0, 0);
-            _bubbles.gravity = -98;
-            _bubbles.createSprites(Bubbles, 1500, true, 1.0f, 1.0f);
-            _bubbles.start(false, 0.1f, 100);
-
-            //add(_bubbles);
-
-
-
-            // Good example of reading a level
-
-            /*
-            XElement xelement = XElement.Load("level1.oel");
-
-            Console.WriteLine("List of all rects");
-            foreach (XElement xEle in xelement.Descendants("rect"))
-            {
-                Console.WriteLine("Rect: " + (string)xEle.Attribute("x") + " " + (string)xEle.Attribute("y") + " " + (string)xEle.Attribute("w") + " " + (string)xEle.Attribute("h"));
-                int x = (int)xEle.Attribute("x");
-                int y = (int)xEle.Attribute("y");
-                int w = (int)xEle.Attribute("w");
-                int h = (int)xEle.Attribute("h");
-
-
-                FlxTileblock b = new FlxTileblock(x, y, w, h);
-
-                b.loadTiles(ImgDirt);
-
-                //add(b);
-
-
-
-
-            }
-            */
-
-
-            rotatore = new FlxTileblock(30, 30, 120, 50);
-
-            rotatore.loadTiles(ImgDirt, 16, 16, 0);
-
-            ////add(rotatore);
-
-
-
-
-
-            //_bigGibs = new FlxEmitter();
-            //_bigGibs.setXSpeed(-200, 200);
-            //_bigGibs.setYSpeed(-300, 0);
-            //_bigGibs.setRotation(-720, -720);
-
-            //_bigGibs.createSprites(ImgSpawnerGibs, 50, true, 0.5f, 0.35f);
-
-
-            FlxText t = new FlxText(10, 50, 200);
-            t.text = "Initials Video Games";
-            t.scale = 3.0f;
-            //add(t);
-
-
-
-
-
             FlxCaveGenerator cav = new FlxCaveGenerator(50, 40);
             cav.initWallRatio = 0.48f;
             cav.numSmoothingIterations = 5;
-
             cav.genInitMatrix(50, 40);
-
-            // works!
-            //int[,] matr = cav.generateCaveLevel();
-
-
             int[,] matr = cav.generateCaveLevel(3, 0, 2, 0, 1, 0, 1, 0);
-
-
             string newMap = cav.convertMultiArrayToString(matr);
 
+
             tiles = new FlxTilemap();
-
             tiles.auto = FlxTilemap.AUTO;
-
-            //tiles.loadMap("1,0,0,0,0,0,0,1,1,0\n1,1,0,0,0,0,0,1,1,1\n0,1,0,0,0,0,0,1,1,0\n0,0,0,1,0,0,0,1,1,1\n0,0,0,1,0,0,0,1,1,0\n0,0,0,0,0,0,0,1,1,1\n", FlxTilemap.ImgAuto);
-
             tiles.loadMap(newMap, FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"));
-
             add(tiles);
 
-
-
+            
             int[,] decr = cav.createDecorationsMap(matr);
+            
+
             string newDec = cav.convertMultiArrayToString(decr);
+
+            //Console.WriteLine(newDec);
 
             DecorTex = FlxG.Content.Load<Texture2D>("initials/decorations_16x16");
 
@@ -185,16 +101,65 @@ namespace XNAMode
             actors = new FlxGroup();
 
 
-            warlock = new Warlock(100, 5);
+
+
+
+
+            int[] p = cav.findRandomSolid(decr);
+            vampire = new Vampire(p[1] * 16, p[0] * 16);
+            actors.add(vampire);
+
+            p = cav.findRandomSolid(decr);
+            warlock = new Warlock(p[1] * 16, p[0] * 16);
             actors.add(warlock);
 
-            vampire = new Vampire(120, 5);
-            actors.add(vampire);
+            p = cav.findRandomSolid(decr);
+            automaton = new Automaton(p[1] * 16, p[0] * 16);
+            actors.add(automaton);
+
+            p = cav.findRandomSolid(decr);
+            corsair = new Corsair(p[1] * 16, p[0] * 16);
+            actors.add(corsair);
+
+            p = cav.findRandomSolid(decr);
+            executor = new Executor(p[1] * 16, p[0] * 16);
+            actors.add(executor);
+
+            p = cav.findRandomSolid(decr);
+            gloom = new Gloom(p[1] * 16, p[0] * 16);
+            actors.add(gloom);
+
+            p = cav.findRandomSolid(decr);
+            harvester = new Harvester(p[1] * 16, p[0] * 16);
+            actors.add(harvester);
+
+            //marksman = new Marksman(240, 5);
+
+            /*
+        private Corsair corsair;
+        private Executor executor;
+        private Gloom gloom;
+        private Harvester harvester;
+        private Marksman marksman;
+        private Medusa medusa;
+        private Mistress mistress;
+        private Mummy mummy;
+        private Nymph nymph;
+        private Paladin paladin;
+        private Seraphine seraphine;
+        private Succubus succubus;
+        private Tormentor tormentor;
+        private Unicorn unicorn;
+        private Warlock warlock;
+        private Vampire vampire;
+        private Zombie zombie;
+            */
+
 
 
             add(actors);
 
-            FlxG.follow(vampire, 1.5f);
+            FlxG.follow(vampire, 0.5f);
             FlxG.followAdjust(0.5f, 0.0f);
             FlxG.followBounds(0, 0, 50*16, 40*16);
 
@@ -210,13 +175,9 @@ namespace XNAMode
         override public void update()
         {
 
-
-            Vector2 np = FlxU.rotatePoint(rotatore.x, rotatore.y, 80, 80, 0.1f);
-            rotatore.x = np.X;
-            rotatore.y = np.Y;
-
             FlxU.collide(actors, tiles);
 
+            /*
             //Console.WriteLine(FlxG.gamepads.isNewThumbstickDown(FlxG.controllingPlayer));
 
             float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
@@ -227,7 +188,7 @@ namespace XNAMode
             rotation = (rotation < 0) ? MathHelper.ToDegrees(rotation + MathHelper.TwoPi) : MathHelper.ToDegrees(rotation);
 
             //Console.WriteLine(rotation);
-
+            */
 
 
 
@@ -285,6 +246,27 @@ namespace XNAMode
             {
                 FlxG.state = new CaveState();
             }
+
+
+            if (FlxG.keys.justPressed(Keys.S))
+            {
+                FlxG.log("Just pressed S");
+                int i = 0;
+                int l = actors.members.Count;
+                while (i < l)
+                {
+                    (actors.members[i] as Actor).isPlayerControlled = false;
+                    i++;
+                }
+
+                int x = (int)(FlxU.random() * actors.members.Count);
+
+                (actors.members[x] as Actor).isPlayerControlled = true;
+                FlxG.follow(actors.members[x], 2.5f);
+
+            }
+
+
 
             /*
              * 			

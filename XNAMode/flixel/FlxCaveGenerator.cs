@@ -287,6 +287,32 @@ namespace org.flixel
             return count;
         }
 
+        public int[] findRandomSolid(int[,] inMat)
+        {
+            int numRows = inMat.GetLength(0);
+            int numCols = inMat.GetLength(1);
+
+            int n = 0;
+            int rx = 0;
+            int ry = 0;
+
+            while (n != 1)
+            {
+                rx = (int)(FlxU.random() * numRows);
+                ry = (int)(FlxU.random() * numCols);
+                
+                if(inMat[rx,ry] == 1) {
+                    //Console.WriteLine(rx + "<-should be 1-> " + ry);
+                    n=1;
+                    
+                }
+
+            }
+
+            return new int[] {rx, ry};
+
+
+        }
 
         public int[,] createDecorationsMap(int[,] inMat)
         {
