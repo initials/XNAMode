@@ -13,7 +13,7 @@ namespace XNAMode
     class Seraphine : Actor
     {
 
-        public Seraphine(int xPos, int yPos)
+        public Seraphine(int xPos, int yPos, List<FlxObject> Bullets)
             : base(xPos, yPos)
         {
 
@@ -30,6 +30,12 @@ namespace XNAMode
             acceleration.Y = 600;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
+
+            width = 10;
+            height = 20;
+            offset.X = 7;
+            offset.Y = 10;
+
 
 
         }

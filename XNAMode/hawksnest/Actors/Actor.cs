@@ -18,6 +18,11 @@ namespace XNAMode
         public bool isPlayerControlled;
 
 
+        public List<FlxObject> _bullets;
+        public int _curBullet;
+
+
+
         public Actor(int xPos, int yPos)
             : base(xPos,yPos)
 		{
@@ -64,28 +69,28 @@ namespace XNAMode
 
                 }
 
-                if (!flickering() && 
-        (FlxG.gamepads.isButtonDown(Buttons.RightThumbstickDown, FlxG.controllingPlayer, out pi) ||
-    FlxG.gamepads.isButtonDown(Buttons.RightThumbstickLeft, FlxG.controllingPlayer, out pi) ||
-    FlxG.gamepads.isButtonDown(Buttons.RightThumbstickRight, FlxG.controllingPlayer, out pi) ||
-    FlxG.gamepads.isButtonDown(Buttons.RightThumbstickUp, FlxG.controllingPlayer, out pi)))
-                {
+    //            if (!flickering() && 
+    //    (FlxG.gamepads.isButtonDown(Buttons.RightThumbstickDown, FlxG.controllingPlayer, out pi) ||
+    //FlxG.gamepads.isButtonDown(Buttons.RightThumbstickLeft, FlxG.controllingPlayer, out pi) ||
+    //FlxG.gamepads.isButtonDown(Buttons.RightThumbstickRight, FlxG.controllingPlayer, out pi) ||
+    //FlxG.gamepads.isButtonDown(Buttons.RightThumbstickUp, FlxG.controllingPlayer, out pi)))
+    //            {
 
-                    float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
+    //                float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
 
-                    float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
+    //                float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
 
-                    if (rightY < -0.75)
-                    {
-                        velocity.Y -= 36;
-                    }
+    //                if (rightY < -0.75)
+    //                {
+    //                    velocity.Y -= 36;
+    //                }
 
-                    float rotation = (float)Math.Atan2(rightX, rightY);
-                    rotation = (rotation < 0) ? MathHelper.ToDegrees(rotation + MathHelper.TwoPi) : MathHelper.ToDegrees(rotation);
+    //                float rotation = (float)Math.Atan2(rightX, rightY);
+    //                rotation = (rotation < 0) ? MathHelper.ToDegrees(rotation + MathHelper.TwoPi) : MathHelper.ToDegrees(rotation);
 
 
 
-                }
+    //            }
             }
 
 

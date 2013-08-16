@@ -14,9 +14,11 @@ namespace XNAMode
         private Texture2D ImgWarlock;
 
 
-        public Warlock(int xPos, int yPos)
+        public Warlock(int xPos, int yPos, List<FlxObject> Bullets)
             : base(xPos, yPos)
         {
+
+            _bullets = Bullets;
 
             isPlayerControlled = false;
 
@@ -30,13 +32,6 @@ namespace XNAMode
             offset.X = 4;
             offset.Y = 9;
 
-            //basic player physics
-            int runSpeed = 80;
-            drag.X = runSpeed * 8;
-            acceleration.Y = 200;
-            maxVelocity.X = runSpeed;
-            maxVelocity.Y = 205;
-
 
             //animations
             addAnimation("run", new int[] { 5, 6, 7, 8, 9 }, 12);
@@ -49,6 +44,25 @@ namespace XNAMode
 
         override public void update()
         {
+
+            PlayerIndex pi;
+            //SHOOTING
+            if (!flickering() && (FlxG.keys.justPressed(Keys.C) ||
+                    FlxG.gamepads.isNewButtonPress(Buttons.RightTrigger, FlxG.controllingPlayer, out pi)))
+            {
+                float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
+
+                float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
+
+                Console.WriteLine(rightX + " " + rightY);
+
+
+
+                ((Fireball)(_bullets[_curBullet])).shoot((int)x, (int)y, (int)(rightX * 300), (int)(rightY*=-300));
+                //((Fireball)(_bullets[_curBullet])).angularVelocity = 10;
+                if (++_curBullet >= _bullets.Count)
+                    _curBullet = 0;
+            }
 
 
             base.update();

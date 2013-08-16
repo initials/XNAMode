@@ -166,6 +166,7 @@
     <Compile Include="hawksnest\Actors\Vampire.cs" />
     <Compile Include="hawksnest\Actors\Warlock.cs" />
     <Compile Include="hawksnest\Actors\Zombie.cs" />
+    <Compile Include="hawksnest\Fireball.cs" />
     <Compile Include="mode\Bot.cs" />
     <Compile Include="mode\BotBullet.cs" />
     <Compile Include="mode\Bullet.cs" />

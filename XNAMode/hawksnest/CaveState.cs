@@ -24,6 +24,9 @@ namespace XNAMode
         private FlxTilemap decorations;
 
 
+        protected FlxGroup _bullets;
+        
+
         private Automaton automaton;
         private Corsair corsair;
         private Executor executor;
@@ -71,6 +74,7 @@ namespace XNAMode
             ti.scrollFactor.X = 0.02f;
             ti.scrollFactor.Y = 0.02f;
             //ti.scale = 2;
+            
             add(ti);
 
             FlxCaveGenerator cav = new FlxCaveGenerator(50, 40);
@@ -106,8 +110,14 @@ namespace XNAMode
 
 
             actors = new FlxGroup();
+            _bullets = new FlxGroup();
 
+            int i = 0;
 
+            for (i = 0; i < 30; i++)
+                _bullets.add(new Fireball());
+
+            add(_bullets);
 
 
 
@@ -117,8 +127,13 @@ namespace XNAMode
             actors.add(vampire);
 
             p = cav.findRandomSolid(decr);
-            warlock = new Warlock(p[1] * 16, p[0] * 16);
+            warlock = new Warlock(p[1] * 16, p[0] * 16, _bullets.members);
             actors.add(warlock);
+
+            p = cav.findRandomSolid(decr);
+            zombie = new Zombie(p[1] * 16, p[0] * 16);
+            actors.add(zombie);
+
 
             p = cav.findRandomSolid(decr);
             automaton = new Automaton(p[1] * 16, p[0] * 16);
@@ -149,6 +164,11 @@ namespace XNAMode
             actors.add(mistress);
 
             p = cav.findRandomSolid(decr);
+            medusa = new Medusa(p[1] * 16, p[0] * 16);
+            actors.add(medusa);
+
+
+            p = cav.findRandomSolid(decr);
             mummy = new Mummy(p[1] * 16, p[0] * 16);
             actors.add(mummy);
 
@@ -161,7 +181,7 @@ namespace XNAMode
             actors.add(paladin);
 
             p = cav.findRandomSolid(decr);
-            seraphine = new Seraphine(p[1] * 16, p[0] * 16);
+            seraphine = new Seraphine(p[1] * 16, p[0] * 16, _bullets.members);
             actors.add(seraphine);
 
             p = cav.findRandomSolid(decr);
@@ -176,9 +196,7 @@ namespace XNAMode
             unicorn = new Unicorn(p[1] * 16, p[0] * 16);
             actors.add(unicorn);
 
-            p = cav.findRandomSolid(decr);
-            zombie = new Zombie(p[1] * 16, p[0] * 16);
-            actors.add(zombie);
+
 
 
 
@@ -205,6 +223,11 @@ namespace XNAMode
         {
 
             FlxU.collide(actors, tiles);
+
+            //FlxU.overlap(actors, _bullets, overlapped);
+            FlxU.collide(tiles, _bullets);
+
+
 
             /*
             //Console.WriteLine(FlxG.gamepads.isNewThumbstickDown(FlxG.controllingPlayer));
@@ -359,6 +382,31 @@ namespace XNAMode
 
 
             base.update();
+        }
+
+        protected bool killSecond(object Sender, FlxSpriteCollisionEvent e)
+        {
+            e.Object2.kill();
+            return true;
+        }
+
+        protected bool overlapped(object Sender, FlxSpriteCollisionEvent e)
+        {
+            /*
+            if ((e.Object1 is BotBullet) || (e.Object1 is Bullet))
+                e.Object1.kill();
+            e.Object2.hurt(1);
+            return true;
+             */
+
+            if (!(e.Object1 is Warlock) && (e.Object2 is Fireball))
+            {
+                e.Object1.kill();
+                e.Object2.kill();
+            }
+
+            return true;
+
         }
 
 
