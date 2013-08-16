@@ -187,7 +187,12 @@ namespace XNAMode
             }
             if (FlxG.keys.isNewKeyPress(Keys.Enter, null, out pi))
             {
+                if (_nameEntry.text == "")
+                {
+                    _menuItems.text = "Name cannot be blank";
 
+                    return;
+                }
                 if (save.waitingOnDeviceSelector)
                 {
                     //Console.WriteLine("enter waitingOnDeviceSelector");

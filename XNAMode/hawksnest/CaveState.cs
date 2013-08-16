@@ -21,10 +21,28 @@ namespace XNAMode
         private FlxTilemap tiles;
         private FlxTilemap decorations;
 
-        private Player _player;
 
+        private Automaton automaton;
+        private Corsair corsair;
+        private Executor executor;
+        private Gloom gloom;
+        private Harvester harvester;
+        private Marksman marksman;
+        private Medusa medusa;
+        private Mistress mistress;
+        private Mummy mummy;
+        private Nymph nymph;
+        private Paladin paladin;
+        private Seraphine seraphine;
+        private Succubus succubus;
+        private Tormentor tormentor;
+        private Unicorn unicorn;
         private Warlock warlock;
         private Vampire vampire;
+        private Zombie zombie;
+
+
+
 
         private FlxGroup actors;
 
@@ -133,7 +151,7 @@ namespace XNAMode
             //int[,] matr = cav.generateCaveLevel();
 
 
-            int[,] matr = cav.generateCaveLevel(3, 2, 2, 0, 1, 1, 1, 0);
+            int[,] matr = cav.generateCaveLevel(3, 0, 2, 0, 1, 0, 1, 0);
 
 
             string newMap = cav.convertMultiArrayToString(matr);
@@ -167,10 +185,10 @@ namespace XNAMode
             actors = new FlxGroup();
 
 
-            warlock = new Warlock(100, 50);
+            warlock = new Warlock(100, 5);
             actors.add(warlock);
 
-            vampire = new Vampire(120, 50);
+            vampire = new Vampire(120, 5);
             actors.add(vampire);
 
 
