@@ -30,10 +30,12 @@ namespace XNAMode
 
         override public void create()
         {
+
+            
+            FlxG.backColor = new Color(0xFF, 0xC6, 0x5E);
+
+
             base.create();
-
-
-            FlxG.backColor = Color.Black;
 
             FlxTileblock ti = new FlxTileblock(0, 0, FlxG.width + 48, FlxG.height / 2 );
             ti.loadTiles(FlxG.Content.Load<Texture2D>("initials/envir_dusk"), 48, 64, 0);
@@ -42,12 +44,7 @@ namespace XNAMode
             //ti.scale = 2;
             add(ti);
 
-
-
-
-
             ImgDirt = FlxG.Content.Load<Texture2D>("Mode/dirt");
-
 
             Bubbles = FlxG.Content.Load<Texture2D>("Mode/bubble");
             _bubbles = new FlxEmitter();
@@ -136,10 +133,6 @@ namespace XNAMode
 
 
             string newMap = cav.convertMultiArrayToString(matr);
-
-            //Console.WriteLine(newMap);
-
-
 
             tiles = new FlxTilemap();
 
