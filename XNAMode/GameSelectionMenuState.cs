@@ -58,7 +58,7 @@ namespace XNAMode
 
             _menuItems.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
 
-            _menuItems.text = "F1. Mode\nF2. Hawksnest\n\nEnter name, use @ symbol to specify Twitter handle. Press enter when complete.";
+            _menuItems.text = "F1. Mode\nF2. Homewreckrz\n\nEnter name, use @ symbol to specify Twitter handle. Press enter when complete.";
 
             add(_menuItems);
 
@@ -77,7 +77,7 @@ namespace XNAMode
             add(_nameEntry);
 
 
-            FlxG.flash.start(Color.Black,0.5f);
+            FlxG.flash.start(Color.Black,1.5f);
 
 
             

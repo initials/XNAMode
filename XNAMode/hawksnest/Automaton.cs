@@ -12,12 +12,15 @@ namespace XNAMode
 {
     class Automaton : FlxSprite
     {
-
         public Automaton(int xPos, int yPos)
             : base(xPos, yPos)
         {
 
+            loadGraphic(FlxG.Content.Load<Texture2D>("initials/automaton_ss_11x24"), true, false, 11, 24);
 
+            addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6,7 }, 12);
+            addAnimation("idle", new int[] { 0 }, 12);
+            addAnimation("attack", new int[] { 2,4 }, 18);
 
 
 
