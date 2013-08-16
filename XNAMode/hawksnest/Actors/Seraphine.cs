@@ -13,7 +13,7 @@ namespace XNAMode
     class Seraphine : Actor
     {
 
-        public Seraphine(int xPos, int yPos, List<FlxObject> Bullets)
+        public Seraphine(int xPos, int yPos)
             : base(xPos, yPos)
         {
 

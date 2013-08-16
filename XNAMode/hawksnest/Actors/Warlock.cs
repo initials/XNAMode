@@ -48,13 +48,14 @@ namespace XNAMode
             PlayerIndex pi;
             //SHOOTING
             if (!flickering() && (FlxG.keys.justPressed(Keys.C) ||
-                    FlxG.gamepads.isNewButtonPress(Buttons.RightTrigger, FlxG.controllingPlayer, out pi)))
+                    FlxG.gamepads.isNewButtonPress(Buttons.RightTrigger, FlxG.controllingPlayer, out pi)) || 
+                    FlxG.gamepads.isButtonDown(Buttons.LeftTrigger, FlxG.controllingPlayer, out pi))
             {
                 float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
 
                 float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
 
-                Console.WriteLine(rightX + " " + rightY);
+                //Console.WriteLine(rightX + " " + rightY);
 
 
 

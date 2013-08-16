@@ -114,7 +114,7 @@ namespace XNAMode
 
             int i = 0;
 
-            for (i = 0; i < 30; i++)
+            for (i = 0; i < 2000; i++)
                 _bullets.add(new Fireball());
 
             add(_bullets);
@@ -181,7 +181,7 @@ namespace XNAMode
             actors.add(paladin);
 
             p = cav.findRandomSolid(decr);
-            seraphine = new Seraphine(p[1] * 16, p[0] * 16, _bullets.members);
+            seraphine = new Seraphine(p[1] * 16, p[0] * 16);
             actors.add(seraphine);
 
             p = cav.findRandomSolid(decr);
@@ -224,7 +224,7 @@ namespace XNAMode
 
             FlxU.collide(actors, tiles);
 
-            //FlxU.overlap(actors, _bullets, overlapped);
+            FlxU.overlap(actors, _bullets, overlapped);
             FlxU.collide(tiles, _bullets);
 
 
