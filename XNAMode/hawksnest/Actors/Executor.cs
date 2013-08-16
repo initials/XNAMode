@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Executor : FlxSprite
+    class Executor : Actor
     {
 
         public Executor(int xPos, int yPos)

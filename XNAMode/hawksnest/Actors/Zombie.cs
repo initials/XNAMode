@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Zombie : FlxSprite
+    class Zombie : Actor
     {
 
         public Zombie(int xPos, int yPos)

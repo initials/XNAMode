@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Unicorn : FlxSprite
+    class Unicorn : Actor
     {
 
         public Unicorn(int xPos, int yPos)

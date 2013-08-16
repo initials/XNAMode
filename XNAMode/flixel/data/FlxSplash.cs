@@ -110,7 +110,7 @@ namespace org.flixel
 
             base.update();
 
-            if (_logoTimer > 5.5f || FlxG.keys.SPACE)
+            if (_logoTimer > 5.5f || FlxG.keys.SPACE || FlxG.keys.ENTER)
             {
                 FlxG.destroySounds(true);
 

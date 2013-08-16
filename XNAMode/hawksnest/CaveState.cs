@@ -14,6 +14,8 @@ namespace XNAMode
     {
         protected Texture2D ImgDirt;
 
+        private const float FOLLOW_LERP = 3.0f;
+
         private Texture2D Bubbles;
         private Texture2D DecorTex;
         private FlxEmitter _bubbles;
@@ -41,6 +43,7 @@ namespace XNAMode
         private Vampire vampire;
         private Zombie zombie;
 
+        private FlxText p1CurrentActor;
 
 
 
@@ -55,14 +58,18 @@ namespace XNAMode
 
             base.create();
 
+
+
+
+
             string levelData = FlxU.randomString(10);
             FlxG.log("levelData: " + levelData);
 
             //bg
             FlxTileblock ti = new FlxTileblock(0, 0, FlxG.width + 48, FlxG.height / 2 );
             ti.loadTiles(FlxG.Content.Load<Texture2D>("initials/envir_dusk"), 48, 64, 0);
-            ti.scrollFactor.X = 0.4f;
-            ti.scrollFactor.Y = 0.4f;
+            ti.scrollFactor.X = 0.02f;
+            ti.scrollFactor.Y = 0.02f;
             //ti.scale = 2;
             add(ti);
 
@@ -133,41 +140,63 @@ namespace XNAMode
             harvester = new Harvester(p[1] * 16, p[0] * 16);
             actors.add(harvester);
 
-            //marksman = new Marksman(240, 5);
+            p = cav.findRandomSolid(decr);
+            marksman = new Marksman(p[1] * 16, p[0] * 16);
+            actors.add(marksman);
 
-            /*
-        private Corsair corsair;
-        private Executor executor;
-        private Gloom gloom;
-        private Harvester harvester;
-        private Marksman marksman;
-        private Medusa medusa;
-        private Mistress mistress;
-        private Mummy mummy;
-        private Nymph nymph;
-        private Paladin paladin;
-        private Seraphine seraphine;
-        private Succubus succubus;
-        private Tormentor tormentor;
-        private Unicorn unicorn;
-        private Warlock warlock;
-        private Vampire vampire;
-        private Zombie zombie;
-            */
+            p = cav.findRandomSolid(decr);
+            mistress = new Mistress(p[1] * 16, p[0] * 16);
+            actors.add(mistress);
+
+            p = cav.findRandomSolid(decr);
+            mummy = new Mummy(p[1] * 16, p[0] * 16);
+            actors.add(mummy);
+
+            p = cav.findRandomSolid(decr);
+            nymph = new Nymph(p[1] * 16, p[0] * 16);
+            actors.add(nymph);
+
+            p = cav.findRandomSolid(decr);
+            paladin = new Paladin(p[1] * 16, p[0] * 16);
+            actors.add(paladin);
+
+            p = cav.findRandomSolid(decr);
+            seraphine = new Seraphine(p[1] * 16, p[0] * 16);
+            actors.add(seraphine);
+
+            p = cav.findRandomSolid(decr);
+            succubus = new Succubus(p[1] * 16, p[0] * 16);
+            actors.add(succubus);
+
+            p = cav.findRandomSolid(decr);
+            tormentor = new Tormentor(p[1] * 16, p[0] * 16);
+            actors.add(tormentor);
+
+            p = cav.findRandomSolid(decr);
+            unicorn = new Unicorn(p[1] * 16, p[0] * 16);
+            actors.add(unicorn);
+
+            p = cav.findRandomSolid(decr);
+            zombie = new Zombie(p[1] * 16, p[0] * 16);
+            actors.add(zombie);
 
 
 
             add(actors);
 
-            FlxG.follow(vampire, 0.5f);
-            FlxG.followAdjust(0.5f, 0.0f);
+            FlxG.follow(vampire, FOLLOW_LERP);
+            //FlxG.followAdjust(0.5f, 0.0f);
             FlxG.followBounds(0, 0, 50*16, 40*16);
 
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
 
-
+            p1CurrentActor = new FlxText(2, 2, FlxG.width);
+            p1CurrentActor.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
+            p1CurrentActor.text = "";
+            p1CurrentActor.scrollFactor = Vector2.Zero;
+            add(p1CurrentActor);
 
 
         }
@@ -253,16 +282,29 @@ namespace XNAMode
                 FlxG.log("Just pressed S");
                 int i = 0;
                 int l = actors.members.Count;
+                int active = 0;
+
                 while (i < l)
                 {
+                    if ((actors.members[i] as Actor).isPlayerControlled == true) active = i;
+
                     (actors.members[i] as Actor).isPlayerControlled = false;
                     i++;
                 }
 
-                int x = (int)(FlxU.random() * actors.members.Count);
+                //int x = (int)(FlxU.random() * actors.members.Count);
+
+                int x = active + 1;
+
+                if (x >= actors.members.Count) x = 0;
+
 
                 (actors.members[x] as Actor).isPlayerControlled = true;
-                FlxG.follow(actors.members[x], 2.5f);
+                FlxG.follow(actors.members[x], FOLLOW_LERP);
+                p1CurrentActor.text = actors.members[x].ToString();
+
+                //(actors.members[x] as Actor).ToString()
+
 
             }
 

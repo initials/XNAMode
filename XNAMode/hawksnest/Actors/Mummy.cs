@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Mummy : FlxSprite
+    class Mummy : Actor
     {
 
         public Mummy(int xPos, int yPos)

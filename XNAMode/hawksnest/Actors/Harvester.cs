@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Harvester : FlxSprite
+    class Harvester : Actor
     {
 
         public Harvester(int xPos, int yPos)

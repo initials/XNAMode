@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Corsair : FlxSprite
+    class Corsair : Actor
     {
 
         public Corsair(int xPos, int yPos)

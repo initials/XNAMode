@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Gloom : FlxSprite
+    class Gloom : Actor
     {
 
         public Gloom(int xPos, int yPos)

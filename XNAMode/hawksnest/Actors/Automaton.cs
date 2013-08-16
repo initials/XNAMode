@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Automaton : FlxSprite
+    class Automaton : Actor
     {
         public Automaton(int xPos, int yPos)
             : base(xPos, yPos)

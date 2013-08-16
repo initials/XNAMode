@@ -58,7 +58,7 @@ namespace XNAMode
 
             _menuItems.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
 
-            _menuItems.text = "F1. Mode\nF2. Homewreckrz\n\nEnter name, use @ symbol to specify Twitter handle. Press enter when complete.";
+            _menuItems.text = "Homewreckrz\n\nEnter name, use @ symbol to specify Twitter handle.\nPress enter when complete.";
 
             add(_menuItems);
 
@@ -68,7 +68,7 @@ namespace XNAMode
             //Console.WriteLine(save.data["player_name"]) ;
 
 
-            _nameEntry = new FlxText(10, 80, FlxG.width);
+            _nameEntry = new FlxText(10,100, FlxG.width);
 
             _nameEntry.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
 

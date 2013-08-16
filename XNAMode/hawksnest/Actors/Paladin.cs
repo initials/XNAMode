@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Paladin : FlxSprite
+    class Paladin : Actor
     {
 
         public Paladin(int xPos, int yPos)

@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Tormentor : FlxSprite
+    class Tormentor : Actor
     {
 
         public Tormentor(int xPos, int yPos)

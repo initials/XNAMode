@@ -376,20 +376,20 @@ namespace org.flixel
             //GraphicsDevice.SamplerStates[0].MagFilter = TextureFilter.Point;
             //GraphicsDevice.SamplerStates[0].MinFilter = TextureFilter.Point;
             //GraphicsDevice.SamplerStates[0].MipFilter = TextureFilter.Point;
-            
-            //FlxG.spriteBatch.Draw(backRender,
-            //    new Rectangle(targetLeft + _quakeOffset.X, _quakeOffset.Y, targetWidth, GraphicsDevice.Viewport.Height),
-            //    Color.White);
-
 
             FlxG.spriteBatch.Draw(backRender,
-                new Rectangle(targetLeft + _quakeOffset.X + FlxG.width, _quakeOffset.Y + FlxG.height, targetWidth, GraphicsDevice.Viewport.Height), 
-                null,
-                Color.White,
-                FlxG.angle, 
-                new Vector2(FlxG.width/2, FlxG.height/2), 
-                SpriteEffects.None, 
-                0f);
+                new Rectangle(targetLeft + _quakeOffset.X, _quakeOffset.Y, targetWidth, GraphicsDevice.Viewport.Height),
+                Color.White);
+
+
+            //FlxG.spriteBatch.Draw(backRender,
+            //    new Rectangle(targetLeft + _quakeOffset.X + FlxG.width, _quakeOffset.Y + FlxG.height, targetWidth, GraphicsDevice.Viewport.Height), 
+            //    null,
+            //    Color.White,
+            //    FlxG.angle, 
+            //    new Vector2(FlxG.width/2, FlxG.height/2), 
+            //    SpriteEffects.None, 
+            //    0f);
 
             //Render console if necessary
             if (_console.visible)

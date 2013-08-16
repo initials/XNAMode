@@ -508,9 +508,11 @@ namespace org.flixel
 			}
 		}
 
-		//@desc		Tells the camera subsystem what FlxCore object to follow
-		//@param	Target		The object to follow
-		//@param	Lerp		How much lag the camera should have (can help smooth out the camera movement)
+        /// <summary>
+        /// Tells the camera subsystem what FlxCore object to follow
+        /// </summary>
+        /// <param name="Target">The object to follow</param>
+        /// <param name="Lerp">How much lag the camera should have (can help smooth out the camera movement)</param>
 		static public void follow(FlxObject Target, float Lerp)
 		{
 			followTarget = Target;

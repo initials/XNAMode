@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Marksman : FlxSprite
+    class Marksman : Actor
     {
 
         public Marksman(int xPos, int yPos)
