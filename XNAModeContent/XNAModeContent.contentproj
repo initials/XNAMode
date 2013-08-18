@@ -340,11 +340,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\executor_ss_17x21.png">
-      <Name>executor_ss_17x21</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="initials\gloom_spritesheet.png">
       <Name>gloom_spritesheet</Name>
       <Importer>TextureImporter</Importer>
@@ -420,11 +415,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\warlock_ss_22x29.png">
-      <Name>warlock_ss_22x29</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="initials\zombie_ss_13x19.png">
       <Name>zombie_ss_13x19</Name>
       <Importer>TextureImporter</Importer>
@@ -479,6 +469,20 @@
   <ItemGroup>
     <Compile Include="flixel\transition_30x30.png">
       <Name>transition_30x30</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="initials\warlock_ss_29x29.png">
+      <Name>warlock_ss_29x29</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="initials\executor_ss_21x21.png">
+      <Name>executor_ss_21x21</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

@@ -26,9 +26,9 @@ namespace XNAMode
 
             //bounding box tweaks
             width = 7;
-            height = 20;
+            height = 26;
             offset.X = 2;
-            offset.Y = 4;
+            offset.Y = 0;
 
             //basic player physics
             int runSpeed = 120;
@@ -37,11 +37,23 @@ namespace XNAMode
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
+            jumpPower = -30;
 
         }
 
         override public void update()
         {
+
+            if (isPlayerControlled)
+            {
+                PlayerIndex pi;
+                if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi)))
+                {
+                    velocity.Y = -80;
+
+                }
+            }
+
 
 
 

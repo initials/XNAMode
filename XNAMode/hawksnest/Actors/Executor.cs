@@ -17,20 +17,20 @@ namespace XNAMode
             : base(xPos, yPos)
         {
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/executor_ss_17x21"), true, false, 17, 21);
+            loadGraphic(FlxG.Content.Load<Texture2D>("initials/executor_ss_21x21"), true, false, 21, 21);
 
-            addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5,6,7 }, 12);
+            addAnimation("run", new int[] { 1, 2, 3, 4, 5,6,7,8 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0, 1, 2 }, 12);
 
             //bounding box tweaks
             width = 7;
             height = 20;
-            offset.X = 2;
-            offset.Y = 4;
+            offset.X = 7;
+            offset.Y = 1;
 
             //basic player physics
-            int runSpeed = 120;
+            int runSpeed = 60;
             drag.X = runSpeed * 4;
             acceleration.Y = 820;
             maxVelocity.X = runSpeed;

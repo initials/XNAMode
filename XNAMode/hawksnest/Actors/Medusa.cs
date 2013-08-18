@@ -17,7 +17,7 @@ namespace XNAMode
             : base(xPos, yPos)
         {
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/medusa_ss_35x30"), true, false, 35, 22);
+            loadGraphic(FlxG.Content.Load<Texture2D>("initials/medusa_ss_35x30"), true, false, 35, 30);
 
             addAnimation("run", new int[] { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
@@ -26,8 +26,8 @@ namespace XNAMode
             //bounding box tweaks
             width = 7;
             height = 20;
-            offset.X = 2;
-            offset.Y = 4;
+            offset.X = 9;
+            offset.Y = 10;
 
             //basic player physics
             int runSpeed = 120;

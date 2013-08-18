@@ -22,6 +22,11 @@ namespace XNAMode
         /// </summary>
         public float jumpPower;
 
+        /// <summary>
+        /// How many frames have passed since the character left the ground.
+        /// </summary>
+        public float framesSinceLeftGround;
+
 
         public List<FlxObject> _bullets;
         public int _curBullet;
@@ -51,6 +56,17 @@ namespace XNAMode
 
             PlayerIndex pi;
 
+            // Calculate how many frames since the player left the ground
+
+            if (velocity.Y == 0) framesSinceLeftGround = 0;
+
+            else
+            {
+                framesSinceLeftGround++;
+
+
+            }
+
             //MOVEMENT
 
             if (isPlayerControlled)
@@ -66,10 +82,19 @@ namespace XNAMode
                     facing = Flx2DFacing.Right;
                     acceleration.X += drag.X;
                 }
-                if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi))
-                    && velocity.Y == 0)
+
+                // && velocity.Y == 0
+                if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi)) && framesSinceLeftGround < 10)
                 {
+
                     velocity.Y = jumpPower;
+
+                }
+                if ((FlxG.keys.justPressed(Keys.C) || FlxG.gamepads.isNewButtonPress(Buttons.X, FlxG.controllingPlayer, out pi)))
+                {
+                    FlxG.log("Attacking");
+
+                    play("attack");
 
                 }
 
@@ -107,7 +132,7 @@ namespace XNAMode
             {
                 play("idle");
             }
-            else
+            else if (FlxU.abs(velocity.X) > 1)
             {
                 play("run");
             }

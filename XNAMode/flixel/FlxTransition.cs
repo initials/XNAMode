@@ -48,6 +48,9 @@ namespace org.flixel
                     s.scrollFactor.X = 0;
                     s.scrollFactor.Y = 0;
 
+                    s.solid = false;
+                    s.boundingBoxOverride = false;
+
                     add(s);
 
 
@@ -100,6 +103,9 @@ namespace org.flixel
 
                     s.scrollFactor.X = 0;
                     s.scrollFactor.Y = 0;
+
+                    s.solid = false;
+                    s.boundingBoxOverride = false;
 
                     add(s);
 

@@ -21,12 +21,13 @@ namespace XNAMode
 
             addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5}, 12);
             addAnimation("idle", new int[] { 0 }, 12);
+            addAnimation("jump", new int[] { 1, 1, 1, 2, 3 }, 6, false);
             addAnimation("attack", new int[] { 0,1,2}, 12);
 
             //bounding box tweaks
-            width = 12;
+            width = 10;
             height = 20;
-            offset.X = 3;
+            offset.X = 4;
             offset.Y = 1;
 
             //basic player physics

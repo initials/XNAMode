@@ -17,16 +17,16 @@ namespace XNAMode
             : base(xPos, yPos)
         {
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/succubus_ss_35x30"), true, false, 35, 22);
+            loadGraphic(FlxG.Content.Load<Texture2D>("initials/succubus_ss_35x30"), true, false, 35, 20);
 
             addAnimation("run", new int[] { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }, 18);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0, 1, 2 }, 12);
 
             //bounding box tweaks
-            width = 35;
-            height = 30;
-            offset.X = 0;
+            width = 9;
+            height = 20;
+            offset.X = 8;
             offset.Y = 0;
 
             //basic player physics

@@ -35,7 +35,7 @@ namespace XNAMode
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
-            jumpPower = -40;
+            jumpPower = -140;
 
 
         }

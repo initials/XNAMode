@@ -24,9 +24,9 @@ namespace XNAMode
             addAnimation("attack", new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }, 12);
 
             //bounding box tweaks
-            width = 7;
+            width = 5;
             height = 20;
-            offset.X = 2;
+            offset.X = 13;
             offset.Y = 4;
 
             //basic player physics

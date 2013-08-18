@@ -22,14 +22,14 @@ namespace XNAMode
 
             isPlayerControlled = false;
 
-            ImgWarlock = FlxG.Content.Load<Texture2D>("initials/warlock_ss_22x29");
+            ImgWarlock = FlxG.Content.Load<Texture2D>("initials/warlock_ss_29x29");
 
-            loadGraphic(ImgWarlock, true, false, 22, 29);
+            loadGraphic(ImgWarlock, true, false, 29, 29);
 
             //bounding box tweaks
-            width = 14;
+            width = 7;
             height = 20;
-            offset.X = 4;
+            offset.X = 11;
             offset.Y = 9;
 
 

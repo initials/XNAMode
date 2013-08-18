@@ -31,6 +31,13 @@ namespace XNAMode
             offset.X = 4;
             offset.Y = 5;
 
+            //basic player physics
+            int runSpeed = 35;
+            drag.X = runSpeed * 4;
+            acceleration.Y = 820;
+            maxVelocity.X = runSpeed;
+            maxVelocity.Y = 1000;
+
             //animations
             addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);

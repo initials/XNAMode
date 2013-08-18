@@ -24,13 +24,13 @@ namespace XNAMode
             addAnimation("attack", new int[] { 0, 1, 2 }, 12);
 
             //bounding box tweaks
-            width = 35;
-            height = 30;
-            offset.X = 0;
-            offset.Y = 0;
+            width = 9;
+            height = 15;
+            offset.X = 2;
+            offset.Y = 4;
 
             //basic player physics
-            int runSpeed = 120;
+            int runSpeed = 60;
             drag.X = runSpeed * 4;
             acceleration.Y = 820;
             maxVelocity.X = runSpeed;

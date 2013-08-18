@@ -24,6 +24,10 @@ namespace XNAMode
             offset.Y = 0;
             exists = false;
 
+            addAnimation("explode", new int[] { 0,1,2 }, 12, false);
+            addAnimation("normal", new int[] { 0 }, 0, false);
+
+            play("normal");
         }
 
         override public void update()
@@ -43,7 +47,7 @@ namespace XNAMode
             //if (onScreen()) FlxG.play(SndHit);
             dead = true;
             solid = false;
-            //play("poof");
+            play("explode");
         }
 
         public void shoot(int X, int Y, int VelocityX, int VelocityY)

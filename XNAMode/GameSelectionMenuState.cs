@@ -110,6 +110,14 @@ namespace XNAMode
 
             }
 
+            if (FlxG.keys.F3)
+            {
+                FlxG.state = new CharacterTestState();
+
+            }
+
+
+
             PlayerIndex pi;
 
             //_nameEntry.text = FlxG.keys.trackingString;

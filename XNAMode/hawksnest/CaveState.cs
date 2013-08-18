@@ -58,6 +58,7 @@ namespace XNAMode
             
             FlxG.backColor = new Color(0xFF, 0xC6, 0x5E);
 
+            //FlxG.backColor = Color.Black;
 
             base.create();
 
@@ -69,14 +70,14 @@ namespace XNAMode
             FlxG.log("levelData: " + levelData);
 
             //bg
-            FlxTileblock ti = new FlxTileblock(0, 0, FlxG.width + 48, FlxG.height / 2 );
+            FlxTileblock ti = new FlxTileblock(0, 0, FlxG.width + 48, FlxG.height / 2);
             ti.loadTiles(FlxG.Content.Load<Texture2D>("initials/envir_dusk"), 48, 64, 0);
             ti.scrollFactor.X = 0.02f;
             ti.scrollFactor.Y = 0.02f;
             ti.boundingBoxOverride = false;
             //ti.scale = 2;
-            
             add(ti);
+
 
             FlxCaveGenerator cav = new FlxCaveGenerator(50, 40);
             cav.initWallRatio = 0.48f;
@@ -85,22 +86,15 @@ namespace XNAMode
             int[,] matr = cav.generateCaveLevel(3, 0, 2, 0, 1, 0, 1, 0);
             string newMap = cav.convertMultiArrayToString(matr);
 
-
             tiles = new FlxTilemap();
             tiles.auto = FlxTilemap.AUTO;
             tiles.loadMap(newMap, FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"));
             add(tiles);
 
-            
+
             int[,] decr = cav.createDecorationsMap(matr);
-            
-
             string newDec = cav.convertMultiArrayToString(decr);
-
-            //Console.WriteLine(newDec);
-
             DecorTex = FlxG.Content.Load<Texture2D>("initials/decorations_16x16");
-
 
             decorations = new FlxTilemap();
             decorations.auto = FlxTilemap.RANDOM;
@@ -197,19 +191,13 @@ namespace XNAMode
             unicorn = new Unicorn(p[1] * 16, p[0] * 16);
             actors.add(unicorn);
 
-
-
-
-
             add(actors);
 
             FlxG.follow(vampire, FOLLOW_LERP);
             //FlxG.followAdjust(0.5f, 0.0f);
             FlxG.followBounds(0, 0, 50*16, 40*16);
 
-
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
-
 
             p1CurrentActor = new FlxText(2, 2, FlxG.width);
             p1CurrentActor.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);

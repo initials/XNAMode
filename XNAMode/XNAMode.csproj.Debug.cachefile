@@ -54,7 +54,6 @@ Content\initials\decorations_16x16.xnb
 Content\initials\automaton_ss_11x24.xnb
 Content\initials\batParticles_12x12.xnb
 Content\initials\corsair_18x21.xnb
-Content\initials\executor_ss_17x21.xnb
 Content\initials\gloom_spritesheet.xnb
 Content\initials\harvester_ss_14x27.xnb
 Content\initials\marksman_ss_31x24.xnb
@@ -70,7 +69,6 @@ Content\initials\succubus_ss_35x30.xnb
 Content\initials\tormentor_ss_13x24.xnb
 Content\initials\unicorn_ss_20x25.xnb
 Content\initials\vampire_ss_14x19.xnb
-Content\initials\warlock_ss_22x29.xnb
 Content\initials\zombie_ss_13x19.xnb
 Content\initials\envir_dusk.xnb
 Content\flixel\transition_40x40.xnb
@@ -80,5 +78,7 @@ Content\buttons\BP3_SSTRIP_32.xnb
 Content\buttons\BP3_SSTRIP_48.xnb
 Content\buttons\BP3_SSTRIP_64.xnb
 Content\flixel\transition_30x30.xnb
+Content\initials\warlock_ss_29x29.xnb
+Content\initials\executor_ss_21x21.xnb
 Content\mode\button.wma
 level1.oel

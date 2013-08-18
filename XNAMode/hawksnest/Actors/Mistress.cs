@@ -28,10 +28,10 @@ namespace XNAMode
             addAnimation("attack", new int[] { 0, 1, 2, 3, 4, 5, 6 }, 12);
 
             //bounding box tweaks
-            width = 6;
-            height = 30;
-            offset.X = 15;
-            offset.Y = 5;
+            width = 7;
+            height = 18;
+            offset.X = 9;
+            offset.Y = 4;
 
             //basic player physics
             int runSpeed = 120;
