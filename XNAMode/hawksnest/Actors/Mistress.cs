@@ -18,11 +18,7 @@ namespace XNAMode
         {
 
 
-            //bounding box tweaks
-            width = 35;
-            height = 30;
-            offset.X = 0;
-            offset.Y = 0;
+
 
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/mistress_ss_35x30"), true, false, 35, 22);
@@ -31,6 +27,18 @@ namespace XNAMode
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0, 1, 2, 3, 4, 5, 6 }, 12);
 
+            //bounding box tweaks
+            width = 6;
+            height = 30;
+            offset.X = 15;
+            offset.Y = 5;
+
+            //basic player physics
+            int runSpeed = 120;
+            drag.X = runSpeed * 4;
+            acceleration.Y = 820;
+            maxVelocity.X = runSpeed;
+            maxVelocity.Y = 1000;
 
 
 

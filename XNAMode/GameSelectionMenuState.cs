@@ -19,9 +19,11 @@ namespace XNAMode
         FlxText _nameEntry;
 
         FlxSave save;
-        bool hasCheckedSave ;
+        bool hasCheckedSave;
 
         //FlxTransition transition;
+
+        FlxButton play;
 
 
         override public void create()
@@ -42,7 +44,7 @@ namespace XNAMode
 
 
             FlxTileblock bg = new FlxTileblock(0, FlxG.height - 256, 256 * 3, 256);
-            
+
             bg.loadTiles(FlxG.Content.Load<Texture2D>("initials/Ambience"), 256, 256, 0);
 
             add(bg);
@@ -68,7 +70,7 @@ namespace XNAMode
             //Console.WriteLine(save.data["player_name"]) ;
 
 
-            _nameEntry = new FlxText(10,100, FlxG.width);
+            _nameEntry = new FlxText(10, 100, FlxG.width);
 
             _nameEntry.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
 
@@ -77,10 +79,19 @@ namespace XNAMode
             add(_nameEntry);
 
 
-            FlxG.flash.start(Color.Black,1.5f);
+            // e4b48a dda16d
+
+            play = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 30, playGame, FlxButton.ControlPadA);
+            play.loadGraphic((new FlxSprite()).createGraphic(100, 20, new Color(0xe4, 0xb4, 0x8a)), (new FlxSprite()).createGraphic(102, 22, new Color(0xdd, 0xa1, 0x6d)));
+            play.loadText(new FlxText(2, 2, 100, "Play Game"), new FlxText(2, 2, 100, "WRECK HOMEZ"));
+            add(play);
 
 
-            
+
+            FlxG.flash.start(Color.Black, 1.5f);
+
+
+
 
 
         }
@@ -105,32 +116,32 @@ namespace XNAMode
 
             bool shift = FlxG.keys.SHIFT;
 
-            if (FlxG.keys.isNewKeyPress( Keys.A, null, out pi))  _nameEntry.text += shift ? "A" : "a"; 
-            if (FlxG.keys.isNewKeyPress( Keys.B, null, out pi))  _nameEntry.text += shift ? "B" : "b"; 
-            if (FlxG.keys.isNewKeyPress( Keys.C, null, out pi))  _nameEntry.text += shift ? "C" : "c"; 
-            if (FlxG.keys.isNewKeyPress( Keys.D, null, out pi))  _nameEntry.text += shift ? "D" : "d"; 
-            if (FlxG.keys.isNewKeyPress( Keys.E, null, out pi))  _nameEntry.text += shift ? "E" : "e"; 
-            if (FlxG.keys.isNewKeyPress( Keys.F, null, out pi))  _nameEntry.text += shift ? "F" : "f"; 
-            if (FlxG.keys.isNewKeyPress( Keys.G, null, out pi))  _nameEntry.text += shift ? "G" : "g"; 
-            if (FlxG.keys.isNewKeyPress( Keys.H, null, out pi))  _nameEntry.text += shift ? "H" : "h"; 
-            if (FlxG.keys.isNewKeyPress( Keys.I, null, out pi))  _nameEntry.text += shift ? "I" : "i"; 
-            if (FlxG.keys.isNewKeyPress( Keys.J, null, out pi))  _nameEntry.text += shift ? "J" : "j"; 
-            if (FlxG.keys.isNewKeyPress( Keys.K, null, out pi))  _nameEntry.text += shift ? "K" : "k"; 
-            if (FlxG.keys.isNewKeyPress( Keys.L, null, out pi))  _nameEntry.text += shift ? "L" : "l"; 
-            if (FlxG.keys.isNewKeyPress( Keys.M, null, out pi))  _nameEntry.text += shift ? "M" : "m"; 
-            if (FlxG.keys.isNewKeyPress( Keys.N, null, out pi))  _nameEntry.text += shift ? "N" : "n"; 
-            if (FlxG.keys.isNewKeyPress( Keys.O, null, out pi))  _nameEntry.text += shift ? "O" : "o"; 
-            if (FlxG.keys.isNewKeyPress( Keys.P, null, out pi))  _nameEntry.text += shift ? "P" : "p"; 
-            if (FlxG.keys.isNewKeyPress( Keys.Q, null, out pi))  _nameEntry.text += shift ? "Q" : "q"; 
-            if (FlxG.keys.isNewKeyPress( Keys.R, null, out pi))  _nameEntry.text += shift ? "R" : "r"; 
-            if (FlxG.keys.isNewKeyPress( Keys.S, null, out pi))  _nameEntry.text += shift ? "S" : "s"; 
-            if (FlxG.keys.isNewKeyPress( Keys.T, null, out pi))  _nameEntry.text += shift ? "T" : "t"; 
-            if (FlxG.keys.isNewKeyPress( Keys.U, null, out pi))  _nameEntry.text += shift ? "U" : "u"; 
-            if (FlxG.keys.isNewKeyPress( Keys.V, null, out pi))  _nameEntry.text += shift ? "V" : "v"; 
-            if (FlxG.keys.isNewKeyPress( Keys.W, null, out pi))  _nameEntry.text += shift ? "W" : "w"; 
-            if (FlxG.keys.isNewKeyPress( Keys.X, null, out pi))  _nameEntry.text += shift ? "X" : "x"; 
-            if (FlxG.keys.isNewKeyPress( Keys.Y, null, out pi))  _nameEntry.text += shift ? "Y" : "y"; 
-            if (FlxG.keys.isNewKeyPress( Keys.Z, null, out pi))  _nameEntry.text += shift ? "Z" : "z";
+            if (FlxG.keys.isNewKeyPress(Keys.A, null, out pi)) _nameEntry.text += shift ? "A" : "a";
+            if (FlxG.keys.isNewKeyPress(Keys.B, null, out pi)) _nameEntry.text += shift ? "B" : "b";
+            if (FlxG.keys.isNewKeyPress(Keys.C, null, out pi)) _nameEntry.text += shift ? "C" : "c";
+            if (FlxG.keys.isNewKeyPress(Keys.D, null, out pi)) _nameEntry.text += shift ? "D" : "d";
+            if (FlxG.keys.isNewKeyPress(Keys.E, null, out pi)) _nameEntry.text += shift ? "E" : "e";
+            if (FlxG.keys.isNewKeyPress(Keys.F, null, out pi)) _nameEntry.text += shift ? "F" : "f";
+            if (FlxG.keys.isNewKeyPress(Keys.G, null, out pi)) _nameEntry.text += shift ? "G" : "g";
+            if (FlxG.keys.isNewKeyPress(Keys.H, null, out pi)) _nameEntry.text += shift ? "H" : "h";
+            if (FlxG.keys.isNewKeyPress(Keys.I, null, out pi)) _nameEntry.text += shift ? "I" : "i";
+            if (FlxG.keys.isNewKeyPress(Keys.J, null, out pi)) _nameEntry.text += shift ? "J" : "j";
+            if (FlxG.keys.isNewKeyPress(Keys.K, null, out pi)) _nameEntry.text += shift ? "K" : "k";
+            if (FlxG.keys.isNewKeyPress(Keys.L, null, out pi)) _nameEntry.text += shift ? "L" : "l";
+            if (FlxG.keys.isNewKeyPress(Keys.M, null, out pi)) _nameEntry.text += shift ? "M" : "m";
+            if (FlxG.keys.isNewKeyPress(Keys.N, null, out pi)) _nameEntry.text += shift ? "N" : "n";
+            if (FlxG.keys.isNewKeyPress(Keys.O, null, out pi)) _nameEntry.text += shift ? "O" : "o";
+            if (FlxG.keys.isNewKeyPress(Keys.P, null, out pi)) _nameEntry.text += shift ? "P" : "p";
+            if (FlxG.keys.isNewKeyPress(Keys.Q, null, out pi)) _nameEntry.text += shift ? "Q" : "q";
+            if (FlxG.keys.isNewKeyPress(Keys.R, null, out pi)) _nameEntry.text += shift ? "R" : "r";
+            if (FlxG.keys.isNewKeyPress(Keys.S, null, out pi)) _nameEntry.text += shift ? "S" : "s";
+            if (FlxG.keys.isNewKeyPress(Keys.T, null, out pi)) _nameEntry.text += shift ? "T" : "t";
+            if (FlxG.keys.isNewKeyPress(Keys.U, null, out pi)) _nameEntry.text += shift ? "U" : "u";
+            if (FlxG.keys.isNewKeyPress(Keys.V, null, out pi)) _nameEntry.text += shift ? "V" : "v";
+            if (FlxG.keys.isNewKeyPress(Keys.W, null, out pi)) _nameEntry.text += shift ? "W" : "w";
+            if (FlxG.keys.isNewKeyPress(Keys.X, null, out pi)) _nameEntry.text += shift ? "X" : "x";
+            if (FlxG.keys.isNewKeyPress(Keys.Y, null, out pi)) _nameEntry.text += shift ? "Y" : "y";
+            if (FlxG.keys.isNewKeyPress(Keys.Z, null, out pi)) _nameEntry.text += shift ? "Z" : "z";
 
             if (FlxG.keys.isNewKeyPress(Keys.D1, null, out pi)) _nameEntry.text += shift ? "!" : "1";
             if (FlxG.keys.isNewKeyPress(Keys.D2, null, out pi)) _nameEntry.text += shift ? "@" : "2";
@@ -139,7 +150,7 @@ namespace XNAMode
             if (FlxG.keys.isNewKeyPress(Keys.D5, null, out pi)) _nameEntry.text += shift ? "%" : "5";
             if (FlxG.keys.isNewKeyPress(Keys.D6, null, out pi)) _nameEntry.text += shift ? "^" : "6";
             if (FlxG.keys.isNewKeyPress(Keys.D7, null, out pi)) _nameEntry.text += shift ? "&" : "7";
-            if (FlxG.keys.isNewKeyPress(Keys.D8, null, out pi)) _nameEntry.text += shift ? "*" : "8"; 
+            if (FlxG.keys.isNewKeyPress(Keys.D8, null, out pi)) _nameEntry.text += shift ? "*" : "8";
             if (FlxG.keys.isNewKeyPress(Keys.D9, null, out pi)) _nameEntry.text += shift ? "(" : "9";
             if (FlxG.keys.isNewKeyPress(Keys.D0, null, out pi)) _nameEntry.text += shift ? ")" : "0";
             if (FlxG.keys.isNewKeyPress(Keys.OemMinus, null, out pi)) _nameEntry.text += shift ? "_" : "-";
@@ -160,7 +171,7 @@ namespace XNAMode
 
             if (!hasCheckedSave)
             {
-                
+
                 if (save.waitingOnDeviceSelector)
                 {
                     //Console.WriteLine("enter waitingOnDeviceSelector");
@@ -187,31 +198,7 @@ namespace XNAMode
             }
             if (FlxG.keys.isNewKeyPress(Keys.Enter, null, out pi))
             {
-                if (_nameEntry.text == "")
-                {
-                    _menuItems.text = "Name cannot be blank";
-
-                    return;
-                }
-                if (save.waitingOnDeviceSelector)
-                {
-                    //Console.WriteLine("enter waitingOnDeviceSelector");
-                    return;
-                }
-                else if (save.canSave)
-                {
-                    //Console.WriteLine("enter can save");
-                    if (save.bind("Mode"))
-                    {
-                        save.data["player_name"] = _nameEntry.text;
-                        FlxG.log("Player name is: " + save.data["player_name"]);
-                        FlxG.username = save.data["player_name"];
-
-                        save.forceSave(0);
-                    }
-                }
-
-                FlxG.transition.startFadeOut();
+                playGame();
             }
 
             if (FlxG.transition.complete)
@@ -224,5 +211,35 @@ namespace XNAMode
         }
 
 
+        public void playGame()
+        {
+            if (_nameEntry.text == "")
+            {
+                _menuItems.text = "Name cannot be blank";
+
+                return;
+            }
+            if (save.waitingOnDeviceSelector)
+            {
+                //Console.WriteLine("enter waitingOnDeviceSelector");
+                return;
+            }
+            else if (save.canSave)
+            {
+                //Console.WriteLine("enter can save");
+                if (save.bind("Mode"))
+                {
+                    save.data["player_name"] = _nameEntry.text;
+                    FlxG.log("Player name is: " + save.data["player_name"]);
+                    FlxG.username = save.data["player_name"];
+
+                    save.forceSave(0);
+                }
+            }
+
+            FlxG.transition.startFadeOut();
+        }
+
     }
+        
 }

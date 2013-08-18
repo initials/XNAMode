@@ -73,6 +73,7 @@ namespace XNAMode
             ti.loadTiles(FlxG.Content.Load<Texture2D>("initials/envir_dusk"), 48, 64, 0);
             ti.scrollFactor.X = 0.02f;
             ti.scrollFactor.Y = 0.02f;
+            ti.boundingBoxOverride = false;
             //ti.scale = 2;
             
             add(ti);
@@ -296,13 +297,14 @@ namespace XNAMode
 
             if (FlxG.keys.A)
             {
+                FlxG.transition.startFadeIn(0.025f);
+
                 FlxG.state = new CaveState();
             }
 
 
-            if (FlxG.keys.justPressed(Keys.S))
+            if (FlxG.keys.justPressed(Keys.S) || FlxG.gamepads.isNewButtonPress(Buttons.Y))
             {
-                FlxG.log("Just pressed S");
                 int i = 0;
                 int l = actors.members.Count;
                 int active = 0;

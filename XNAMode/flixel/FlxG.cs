@@ -304,7 +304,7 @@ namespace org.flixel
             FlxG.flash = new FlxFlash();
             FlxG.fade = new FlxFade();
             FlxG.transition = new FlxTransition();
-            FlxG.transition.createSprites(null, Color.DarkViolet, 18, 12, 40, 40, 0, 20, 0.03f);
+            FlxG.transition.createSprites(null, Color.DarkViolet, 12, 6, 30, 30, 0, 20, 0.03f);
 
         }
         //@benbaird End XNA-specific public static properties

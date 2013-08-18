@@ -17,6 +17,11 @@ namespace XNAMode
         /// </summary>
         public bool isPlayerControlled;
 
+        /// <summary>
+        /// How high the character will jump.
+        /// </summary>
+        public float jumpPower;
+
 
         public List<FlxObject> _bullets;
         public int _curBullet;
@@ -37,8 +42,7 @@ namespace XNAMode
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
-
-
+            jumpPower = -305;
 
         }
 
@@ -65,7 +69,7 @@ namespace XNAMode
                 if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi))
                     && velocity.Y == 0)
                 {
-                    velocity.Y = -305;
+                    velocity.Y = jumpPower;
 
                 }
 

@@ -19,6 +19,10 @@ namespace org.flixel
         {
             _speed = 0.05f;
             complete = false;
+            //scrollFactor = Vector2.Zero;
+            scrollFactor.X = 0;
+            scrollFactor.Y = 0;
+
         }
 
         public FlxTransition createSprites(Texture2D Graphics, Color color, int rows, int cols, int width, int height)
@@ -35,13 +39,14 @@ namespace org.flixel
                 {
                     s = new FlxSprite(width * _y, height * _x);
 
-                    s.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/transition_40x40"),false,false,width,height);
+                    s.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/transition_30x30"),false,false,width,height);
 
                     //s.angle = 45;
 
                     //s.angularVelocity = 15;
-
-                    s.scale = 0.0f;
+                    //s.scrollFactor = Vector2.Zero;
+                    s.scrollFactor.X = 0;
+                    s.scrollFactor.Y = 0;
 
                     add(s);
 
@@ -93,7 +98,8 @@ namespace org.flixel
 
                     s.scale = 0.0f;
 
-                    
+                    s.scrollFactor.X = 0;
+                    s.scrollFactor.Y = 0;
 
                     add(s);
 
@@ -110,6 +116,19 @@ namespace org.flixel
 
         public void startFadeIn() 
         {
+            startFadeIn(_speed);
+        }
+
+        public void startFadeOut()
+        {
+            startFadeOut(_speed); 
+        }
+
+
+
+        public void startFadeIn(float speed)
+        {
+            _speed = speed;
             complete = false;
             transitionBackward = true;
 
@@ -124,8 +143,9 @@ namespace org.flixel
             }
         }
 
-        public void startFadeOut()
+        public void startFadeOut(float speed)
         {
+            _speed = speed;
             complete = false;
             transitionForward = true;
 
@@ -139,6 +159,7 @@ namespace org.flixel
 
             }
         }
+
 
 
         public void updateTransition()

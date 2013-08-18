@@ -76,5 +76,9 @@ Content\initials\envir_dusk.xnb
 Content\flixel\transition_40x40.xnb
 Content\initials\Ambience.xnb
 Content\initials\warlock_fireball.xnb
+Content\buttons\BP3_SSTRIP_32.xnb
+Content\buttons\BP3_SSTRIP_48.xnb
+Content\buttons\BP3_SSTRIP_64.xnb
+Content\flixel\transition_30x30.xnb
 Content\mode\button.wma
 level1.oel

@@ -110,7 +110,7 @@ namespace org.flixel
 
             base.update();
 
-            if (_logoTimer > 5.5f || FlxG.keys.SPACE || FlxG.keys.ENTER)
+            if (_logoTimer > 5.5f || FlxG.keys.SPACE || FlxG.keys.ENTER || FlxG.gamepads.isButtonDown(Buttons.A))
             {
                 FlxG.destroySounds(true);
 

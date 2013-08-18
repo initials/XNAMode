@@ -1,0 +1,8 @@
+Thanks for downloading the Xbox 360 Button Pack 3 from Sinnix.net. I hope you find it useful and I wish you the best of luck with your game. (or whatever else you're doing with them)
+
+All of these buttons have be designed with television in mind and I have personally tested them on a variety of television screens to ensure maximum legibility. I have also colour corrected them to reduce colour bleed and other TV artifacts.  All that being said, I know a lot of people like to use my stuff on websites and they look awesome on a PC screen too.
+
+LICENSE
+XNA Button Pack 3 by Jeff Jenkins is licensed under a Creative Commons Attribution 3.0 Unported License. For full license details visit http://sinnix.net
+
+In accordance with the Creative Commons license, you agree to credit Jeff Jenkins in your game by downloading this file.

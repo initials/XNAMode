@@ -67,6 +67,11 @@ namespace org.flixel
 		 */
 		public int frames;
 
+        /// <summary>
+        /// Override for drawing bounding box. Used to turn off bg sprites bounding boxes
+        /// </summary>
+        public bool boundingBoxOverride;
+
         //Animation helpers
         private List<FlxAnim> _animations;
 		private uint _flipped;
@@ -151,6 +156,7 @@ namespace org.flixel
             _curFrame = 0;
             _caf = 0;
             _frameTimer = 0;
+            boundingBoxOverride = true;
 
             //_mtx = new Matrix();
             _callback = null;
@@ -378,7 +384,7 @@ namespace org.flixel
                                 _radians, vc, scale, SpriteEffects.FlipHorizontally, 0);
             }
 
-            if (FlxG.showBounds)
+            if (FlxG.showBounds && boundingBoxOverride==true)
             {
                 pos = getScreenXY();
                 pos.X += offset.X;

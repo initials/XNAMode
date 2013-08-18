@@ -23,6 +23,19 @@ namespace XNAMode
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0,1,2}, 12);
 
+            //bounding box tweaks
+            width = 12;
+            height = 20;
+            offset.X = 3;
+            offset.Y = 1;
+
+            //basic player physics
+            int runSpeed = 120;
+            drag.X = runSpeed * 4;
+            acceleration.Y = 820;
+            maxVelocity.X = runSpeed;
+            maxVelocity.Y = 1000;
+
         }
 
         override public void update()

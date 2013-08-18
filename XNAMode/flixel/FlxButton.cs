@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace org.flixel
 {
@@ -13,6 +14,23 @@ namespace org.flixel
      */
     public class FlxButton : FlxGroup
     {
+
+        public const int ControlPadA = 0;
+        public const int ControlPadB = 1;
+        public const int ControlPadX = 2;
+        public const int ControlPadY = 3;
+        public const int ControlPadRStick = 4;
+        public const int ControlPadLStick = 5;
+        public const int ControlPadDPad = 6;
+        public const int ControlPadRB = 7;
+        public const int ControlPadLB = 8;
+        public const int ControlPadRT = 9;
+        public const int ControlPadLT = 10;
+        public const int ControlPadBack = 11;
+        public const int ControlPadStart = 12;
+
+
+
         /**
          * Set this to true if you want this button to function even while the game is paused.
          */
@@ -39,6 +57,16 @@ namespace org.flixel
          * Stores the 'on' or highlighted button state label.
          */
         protected FlxText _onT;
+
+        /// <summary>
+        /// holds the controller button graphic
+        /// </summary>
+        protected FlxSprite _controllerButton;
+
+        /// <summary>
+        /// Holds the controller button that can activate the button.
+        /// </summary>
+        protected int _controllerButtonIndex;
         /**
          * This function is called when the button is clicked.
          */
@@ -85,7 +113,54 @@ namespace org.flixel
             _initialized = false;
             _sf = Vector2.Zero;
             pauseProof = false;
+
+            _controllerButtonIndex = -1;
+            //_controllerButton = new FlxSprite((int)width+5,0);
+            //_controllerButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_32"),true,false,32,32);
+            //_controllerButton.solid = false;
+            ////_controllerButton.scale
+            //add(_controllerButton, true);
+
+
+
         }
+
+
+        public FlxButton(int X, int Y, FlxButtonClick Callback, int Button)
+            : base()
+        {
+            x = X;
+            y = Y;
+            width = 100;
+            height = 20;
+            _off = new FlxSprite().createGraphic((int)width, (int)height, new Color(0x7f, 0x7f, 0x7f));
+            _off.solid = false;
+            add(_off, true);
+            _on = new FlxSprite().createGraphic((int)width, (int)height, Color.White);
+            _on.solid = false;
+            add(_on, true);
+            _offT = null;
+            _onT = null;
+            _callback = Callback;
+            _onToggle = false;
+            _pressed = false;
+            _initialized = false;
+            _sf = Vector2.Zero;
+            pauseProof = false;
+            _controllerButtonIndex = Button;
+
+            _controllerButton = new FlxSprite((int)width + 5, 0);
+            _controllerButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_32"), true, false, 31, 32);
+            _controllerButton.width = 29;
+            _controllerButton.height = 30;
+            _controllerButton.offset.X = 1;
+            _controllerButton.offset.Y = 1;
+            _controllerButton.addAnimation("frame", new int[] {Button});
+            _controllerButton.play("frame");
+            _controllerButton.solid = false;
+            add(_controllerButton, true);
+        }
+
 
         /**
          * Set your own image as the button background.
@@ -163,6 +238,30 @@ namespace org.flixel
                 if (FlxG.state == null) return;
                 FlxG.mouse.addMouseListener(onMouseUp);
                 _initialized = true;
+            }
+
+            if (_controllerButtonIndex != -1)
+            {
+                PlayerIndex pi;
+
+                if (FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi) && _controllerButtonIndex == 0)
+                {
+                    Console.WriteLine("Button A has been pressed");
+
+                    _callback();
+                }
+                if (FlxG.gamepads.isNewButtonPress(Buttons.B, FlxG.controllingPlayer, out pi) && _controllerButtonIndex == 1)
+                {
+                    _callback();
+                }
+                if (FlxG.gamepads.isNewButtonPress(Buttons.X, FlxG.controllingPlayer, out pi) && _controllerButtonIndex == 2)
+                {
+                    _callback();
+                }
+                if (FlxG.gamepads.isNewButtonPress(Buttons.Y, FlxG.controllingPlayer, out pi) && _controllerButtonIndex == 3)
+                {
+                    _callback();
+                }
             }
 
             base.update();
@@ -243,8 +342,13 @@ namespace org.flixel
          */
         private void onMouseUp(object Sender, FlxMouseEvent MouseEvent)
         {
+
             if (!exists || !visible || !active || !FlxG.mouse.justReleased() || (FlxG.pause && !pauseProof) || (_callback == null)) return;
             if (overlapsPoint(FlxG.mouse.x, FlxG.mouse.y)) _callback();
+
+            
+
+
         }
 
     }
