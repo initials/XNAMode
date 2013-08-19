@@ -13,9 +13,11 @@ namespace XNAMode
     class Marksman : Actor
     {
 
-        public Marksman(int xPos, int yPos)
+        public Marksman(int xPos, int yPos, List<FlxObject> Bullets)
             : base(xPos, yPos)
         {
+
+            _bullets = Bullets;
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/marksman_ss_31x24"), true, false, 31, 24);
 
@@ -44,7 +46,18 @@ namespace XNAMode
         override public void update()
         {
 
-
+            PlayerIndex pi;
+            //SHOOTING
+            if (!flickering() && (FlxG.keys.justPressed(Keys.C) ||
+                    FlxG.gamepads.isNewButtonPress(Buttons.RightTrigger, FlxG.controllingPlayer, out pi)) ||
+                    FlxG.gamepads.isButtonDown(Buttons.LeftTrigger, FlxG.controllingPlayer, out pi))
+            {
+                float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
+                float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
+                ((Arrow)(_bullets[_curBullet])).shoot((int)x, (int)y, (int)(rightX * 300), (int)(rightY *= -300));
+                if (++_curBullet >= _bullets.Count)
+                    _curBullet = 0;
+            }
 
             base.update();
 

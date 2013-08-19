@@ -28,6 +28,12 @@ namespace XNAMode
             addAnimation("normal", new int[] { 0 }, 0, false);
 
             play("normal");
+
+            drag.X = 300;
+            acceleration.Y = 820;
+            maxVelocity.X = 30;
+            maxVelocity.Y = 1000;
+
         }
 
         override public void update()

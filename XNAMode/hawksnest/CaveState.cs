@@ -15,6 +15,7 @@ namespace XNAMode
         protected Texture2D ImgDirt;
 
         private const float FOLLOW_LERP = 3.0f;
+        private const int BULLETS_PER_ACTOR = 100;
 
         private Texture2D DecorTex;
         private FlxTilemap tiles;
@@ -108,12 +109,11 @@ namespace XNAMode
             vampire = new Vampire(p[1] * 16, p[0] * 16);
             actors.add(vampire);
 
-
             // Warlock
             int i = 0;
-            for (i = 0; i < 100; i++)
+            for (i = 0; i < BULLETS_PER_ACTOR; i++)
                 _bullets.add(new Fireball());
-            add(_bullets);
+            _bulletsAll.add(_bullets);
 
             p = cav.findRandomSolid(decr);
             warlock = new Warlock(p[1] * 16, p[0] * 16, _bullets.members);
@@ -143,8 +143,13 @@ namespace XNAMode
             harvester = new Harvester(p[1] * 16, p[0] * 16);
             actors.add(harvester);
 
+            // Marksman
+            for (i = 0; i < BULLETS_PER_ACTOR; i++)
+                _arrows.add(new Arrow());
+            _bulletsAll.add(_arrows);
+
             p = cav.findRandomSolid(decr);
-            marksman = new Marksman(p[1] * 16, p[0] * 16);
+            marksman = new Marksman(p[1] * 16, p[0] * 16, _arrows.members);
             actors.add(marksman);
 
             p = cav.findRandomSolid(decr);
@@ -185,6 +190,7 @@ namespace XNAMode
             actors.add(unicorn);
 
             add(actors);
+            add(_bulletsAll);
 
             FlxG.follow(vampire, FOLLOW_LERP);
             //FlxG.followAdjust(0.5f, 0.0f);
