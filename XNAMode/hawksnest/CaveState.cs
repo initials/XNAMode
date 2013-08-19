@@ -160,7 +160,6 @@ namespace XNAMode
             medusa = new Medusa(p[1] * 16, p[0] * 16);
             actors.add(medusa);
 
-
             p = cav.findRandomSolid(decr);
             mummy = new Mummy(p[1] * 16, p[0] * 16);
             actors.add(mummy);
@@ -215,19 +214,13 @@ namespace XNAMode
             FlxU.overlap(actors, _bullets, overlapped);
             FlxU.collide(tiles, _bullets);
 
-
-
             /*
-            //Console.WriteLine(FlxG.gamepads.isNewThumbstickDown(FlxG.controllingPlayer));
-
             float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
-
             float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
 
             float rotation = (float)Math.Atan2(rightX, rightY);
             rotation = (rotation < 0) ? MathHelper.ToDegrees(rotation + MathHelper.TwoPi) : MathHelper.ToDegrees(rotation);
 
-            //Console.WriteLine(rotation);
             */
 
 
@@ -304,12 +297,8 @@ namespace XNAMode
                     i++;
                 }
 
-                //int x = (int)(FlxU.random() * actors.members.Count);
-
                 int x = active + 1;
-
                 if (x >= actors.members.Count) x = 0;
-
 
                 (actors.members[x] as Actor).isPlayerControlled = true;
                 FlxG.follow(actors.members[x], FOLLOW_LERP);
