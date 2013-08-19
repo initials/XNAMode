@@ -16,10 +16,10 @@ namespace XNAMode
 
         private const float FOLLOW_LERP = 3.0f;
 
-        private Texture2D Bubbles;
+        //private Texture2D Bubbles;
         private Texture2D DecorTex;
-        private FlxEmitter _bubbles;
-        private FlxTileblock rotatore;
+        //private FlxEmitter _bubbles;
+        //private FlxTileblock rotatore;
         private FlxTilemap tiles;
         private FlxTilemap decorations;
 
@@ -80,7 +80,13 @@ namespace XNAMode
             cav.initWallRatio = 0.48f;
             cav.numSmoothingIterations = 5;
             cav.genInitMatrix(50, 40);
+            
             int[,] matr = cav.generateCaveLevel(3, 0, 2, 0, 1, 0, 1, 0);
+
+
+            // TEST THIS
+            //int[,] matr = cav.generateCaveLevel(new int[] { 10,20,30 }, new int[] { 10,15,20 }, new int[] { 38,39 }, new int[] { 0,49 });
+
             string newMap = cav.convertMultiArrayToString(matr);
 
             tiles = new FlxTilemap();

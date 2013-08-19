@@ -8,6 +8,7 @@ namespace org.flixel
 {
     /// <summary>
     /// Contains the hud that is non scaled.
+    /// Can be used to displayed non scaled graphics.
     /// </summary>
     public class FlxHud
     {
@@ -22,10 +23,10 @@ namespace org.flixel
         private FlxText p3HudText;
         private FlxText p4HudText;
 
-        private FlxSprite p1HudSprite;
-        private FlxSprite p2HudSprite;
-        private FlxSprite p3HudSprite;
-        private FlxSprite p4HudSprite;
+        //private FlxSprite p1HudSprite;
+        //private FlxSprite p2HudSprite;
+        //private FlxSprite p3HudSprite;
+        //private FlxSprite p4HudSprite;
 
 
 
@@ -36,11 +37,14 @@ namespace org.flixel
 
         public FlxHud(int targetLeft, int targetWidth)
         {
+            _consoleRect = new Rectangle(0, 0, FlxG.spriteBatch.GraphicsDevice.Viewport.Width, FlxG.spriteBatch.GraphicsDevice.Viewport.Height);
+            _consoleColor = new Color(0, 0, 0, 0x7F);
+
             visible = false;
             p1HudText = new FlxText(targetLeft, 0, targetWidth, "p1HudText").setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
             p2HudText = new FlxText(targetLeft, 0, targetWidth, "p2HudText").setFormat(null, 1, Color.White, FlxJustification.Right, Color.White);
-            p3HudText = new FlxText(targetLeft, FlxG.height - 20, targetWidth, "p3HudText").setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
-            p4HudText = new FlxText(targetLeft, FlxG.height - 20, targetWidth, "p4HudText").setFormat(null, 1, Color.White, FlxJustification.Right, Color.White);           
+            p3HudText = new FlxText(targetLeft, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 20, targetWidth, "p3HudText").setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
+            p4HudText = new FlxText(targetLeft, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 20, targetWidth, "p4HudText").setFormat(null, 1, Color.White, FlxJustification.Right, Color.White);           
             
         }
 
