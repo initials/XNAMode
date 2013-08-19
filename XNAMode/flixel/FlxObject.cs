@@ -12,51 +12,55 @@ namespace org.flixel
 	 */
     public class FlxObject
     {
-        /**
-         * Kind of a global on/off switch for any objects descended from <code>FlxObject</code>.
-         */
+        /// <summary>
+        /// Kind of a global on/off switch for any objects descended from <code>FlxObject</code>.
+        /// </summary>
         public bool exists;
-        /**
-         * If an object is not alive, the game loop will not automatically call <code>update()</code> on it.
-         */
+        /// <summary>
+        /// If an object is not alive, the game loop will not automatically call <code>update()</code> on it.
+        /// </summary>
         public bool active;
-        /**
-         * If an object is not visible, the game loop will not automatically call <code>render()</code> on it.
-         */
+        /// <summary>
+        /// If an object is not visible, the game loop will not automatically call <code>render()</code> on it.
+        /// </summary>
         public bool visible;
-		/**
-		 * Internal tracker for whether or not the object collides (see <code>solid</code>).
-		 */
+		/// <summary>
+        /// Internal tracker for whether or not the object collides (see <code>solid</code>).
+		/// </summary>
 		protected bool _solid;
-		/**
-		 * Internal tracker for whether an object will move/alter position after a collision (see <code>fixed</code>).
-		 */
+		/// <summary>
+        /// Internal tracker for whether an object will move/alter position after a collision (see <code>fixed</code>).
+		/// </summary>
 		protected bool _fixed;
 
-		/**
-		 * The basic speed of this object.
-		 */
+		/// <summary>
+        /// The basic speed of this object.
+		/// </summary>
 		public Vector2 velocity;
-		/**
-		 * How fast the speed of this object is changing.
-		 * Useful for smooth movement and gravity.
-		 */
+
+        /// <summary>
+        /// How fast the speed of this object is changing.
+        /// Useful for smooth movement and gravity.
+        /// </summary>
 		public Vector2 acceleration;
-		/**
-		 * This isn't drag exactly, more like deceleration that is only applied
-		 * when acceleration is not affecting the sprite.
-		 */
+
+        /// <summary>
+        /// This isn't drag exactly, more like deceleration that is only applied
+        /// when acceleration is not affecting the sprite.
+        /// </summary>
 		public Vector2 drag;
-		/**
-		 * If you are using <code>acceleration</code>, you can use <code>maxVelocity</code> with it
-		 * to cap the speed automatically (very useful!).
-		 */
+
+        /// <summary>
+        /// If you are using <code>acceleration</code>, you can use <code>maxVelocity</code> with it
+        /// to cap the speed automatically (very useful!).
+        /// </summary>
 		public Vector2 maxVelocity;
-		/**
-		 * Set the angle of a sprite to rotate it.
-		 * WARNING: rotating sprites decreases rendering
-		 * performance for this sprite by a factor of 10x!
-		 */
+
+        /// <summary>
+        /// Set the angle of a sprite to rotate it.
+        /// WARNING: rotating sprites decreases rendering
+        /// performance for this sprite by a factor of 10x!
+        /// </summary>
         public float angle
         {
             get { return _angle; }
@@ -66,131 +70,136 @@ namespace org.flixel
         protected float _angle = 0f;
         protected float _radians = 0f;
 
-        /**
-         * This is how fast you want this sprite to spin.
-         */
+        /// <summary>
+        /// This is how fast you want this sprite to spin.
+        /// </summary>
 		public float angularVelocity;
-		/**
-		 * How fast the spin speed should change.
-		 */
+		/// <summary>
+        /// How fast the spin speed should change.
+		/// </summary>
 		public float angularAcceleration;
-		/**
-		 * Like <code>drag</code> but for spinning.
-		 */
+		/// <summary>
+        /// Like <code>drag</code> but for spinning.
+		/// </summary>
 		public float angularDrag;
-		/**
-		 * Use in conjunction with <code>angularAcceleration</code> for fluid spin speed control.
-		 */
+		/// <summary>
+        /// Use in conjunction with <code>angularAcceleration</code> for fluid spin speed control.
+		/// </summary>
 		public float maxAngular;
-		/**
-		 * WARNING: The origin of the sprite will default to its center.
-		 * If you change this, the visuals and the collisions will likely be
-		 * pretty out-of-sync if you do any rotation.
-		 */
-        // modified for X-flixel
+ 
+        /// <summary>
+        /// WARNING: The origin of the sprite will default to its center.
+        /// If you change this, the visuals and the collisions will likely be
+        /// pretty out-of-sync if you do any rotation.
+        /// 
+        /// modified for X-flixel
+        /// </summary>
         protected Vector2 _origin = Vector2.Zero;
         virtual public Vector2 origin
         {
             get { return _origin; }
             set { _origin = value; }
         }
-		/**
-		 * If you want to do Asteroids style stuff, check out thrust,
-		 * instead of directly accessing the object's velocity or acceleration.
-		 */
+
+        /// <summary>
+        /// If you want to do Asteroids style stuff, check out thrust,
+        /// instead of directly accessing the object's velocity or acceleration.
+        /// </summary>
 		public float thrust;
-		/**
-		 * Used to cap <code>thrust</code>, helpful and easy!
-		 */
+		/// <summary>
+        /// Used to cap <code>thrust</code>, helpful and easy!
+		/// </summary>
 		public float maxThrust;
-		/**
-		 * A handy "empty point" object
-		 */
+		/// <summary>
+        /// A handy "empty point" object
+		/// </summary>
 		static protected Vector2 _pZero = Vector2.Zero;
 		
-		/**
-		 * A point that can store numbers from 0 to 1 (for X and Y independently)
-		 * that governs how much this object is affected by the camera subsystem.
-		 * 0 means it never moves, like a HUD element or far background graphic.
-		 * 1 means it scrolls along a the same speed as the foreground layer.
-		 * scrollFactor is initialized as (1,1) by default.
-		 */
+        /// <summary>
+        /// A point that can store numbers from 0 to 1 (for X and Y independently)
+        /// that governs how much this object is affected by the camera subsystem.
+        /// 0 means it never moves, like a HUD element or far background graphic.
+        /// 1 means it scrolls along a the same speed as the foreground layer.
+        /// scrollFactor is initialized as (1,1) by default.
+        /// </summary>
 		public Vector2 scrollFactor;
-		/**
-		 * Internal helper used for retro-style flickering.
-		 */
+		/// <summary>
+        /// Internal helper used for retro-style flickering.
+		/// </summary>
 		protected bool _flicker;
-		/**
-		 * Internal helper used for retro-style flickering.
-		 */
+		/// <summary>
+        /// Internal helper used for retro-style flickering.
+		/// </summary>
 		protected float _flickerTimer;
-		/**
-		 * Handy for storing health percentage or armor points or whatever.
-		 */
+		/// <summary>
+        /// Handy for storing health percentage or armor points or whatever.
+		/// </summary>
 		public float health;
-		/**
-		 * Handy for tracking gameplay or animations.
-		 */
+		/// <summary>
+        /// Handy for tracking gameplay or animations.
+		/// </summary>
         public bool dead;
 
-		/**
-		 * This is just a pre-allocated x-y point container to be used however you like
-		 */
+		/// <summary>
+        /// This is just a pre-allocated x-y point container to be used however you like
+		/// </summary>
 		protected Vector2 _point;
-		/**
-		 * This is just a pre-allocated rectangle container to be used however you like
-		 */
+		/// <summary>
+        /// This is just a pre-allocated rectangle container to be used however you like
+		/// </summary>
 		protected Rectangle _rect;
-		/**
-		 * This is a pre-allocated Flash Point object, which is useful for certain Flash graphics API calls
-		 */
+		/// <summary>
+        ///  This is a pre-allocated Flash Point object, which is useful for certain Flash graphics API calls
+		/// </summary>
 		protected Vector2 _flashPoint;
-		/**
-		 * Set this to false if you want to skip the automatic motion/movement stuff (see <code>updateMotion()</code>).
-		 * FlxObject and FlxSprite default to true.
-		 * FlxText, FlxTileblock, FlxTilemap and FlxSound default to false.
-		 */
+
+        /// <summary>
+        /// Set this to false if you want to skip the automatic motion/movement stuff (see <code>updateMotion()</code>).
+        /// FlxObject and FlxSprite default to true.
+        /// FlxText, FlxTileblock, FlxTilemap and FlxSound default to false.
+        /// </summary>
 		public bool moves;
-		/**
-		 * These store a couple of useful numbers for speeding up collision resolution.
-		 */
+		/// <summary>
+        /// These store a couple of useful numbers for speeding up collision resolution.
+		/// </summary>
 		public FlxRect colHullX;
-		/**
-		 * These store a couple of useful numbers for speeding up collision resolution.
-		 */
+		/// <summary>
+        /// These store a couple of useful numbers for speeding up collision resolution.
+		/// </summary>
         public FlxRect colHullY;
-		/**
-		 * These store a couple of useful numbers for speeding up collision resolution.
-		 */
+		/// <summary>
+        /// These store a couple of useful numbers for speeding up collision resolution.
+		/// </summary>
 		public Vector2 colVector;
-		/**
-		 * An array of <code>FlxPoint</code> objects.  By default contains a single offset (0,0).
-		 */
+		/// <summary>
+        /// An array of <code>FlxPoint</code> objects.  By default contains a single offset (0,0).
+		/// </summary>
 		public List<Vector2> colOffsets = new List<Vector2>();
-		/**
-		 * Dedicated internal flag for whether or not this class is a FlxGroup.
-		 */
+		/// <summary>
+        ///  Dedicated internal flag for whether or not this class is a FlxGroup.
+		/// </summary>
 		internal bool _group;
-		/**
-		 * Flag that indicates whether or not you just hit the floor.
-		 * Primarily useful for platformers, this flag is reset during the <code>updateMotion()</code>.
-		 */
+
+        /// <summary>
+        /// Flag that indicates whether or not you just hit the floor.
+        /// Primarily useful for platformers, this flag is reset during the <code>updateMotion()</code>.
+        /// </summary>
 		public bool onFloor;
-		/**
-		 * Flag for direction collision resolution.
-		 */
+		/// <summary>
+        /// Flag for direction collision resolution.
+		/// </summary>
 		public bool collideLeft;
-		/**
-		 * Flag for direction collision resolution.
-		 */
+		/// <summary>
+        /// Flag for direction collision resolution.
+		/// </summary>
 		public bool collideRight;
-		/**
-		 * Flag for direction collision resolution.
-		 */
+		/// <summary>
+        /// Flag for direction collision resolution.
+		/// </summary>
 		public bool collideTop;
-		/**
-		 * Flag for direction collision resolution.
-		 */
+		/// <summary>
+        /// Flag for direction collision resolution.
+		/// </summary>
 		public bool collideBottom;
 
         // X-flixel only: Positioning variables to compensate for the fact that in
@@ -201,22 +210,31 @@ namespace org.flixel
         public float height;
 
 
-        /**
-         * Creates a new <code>FlxObject</code>.
-         * 
-         * @param	X		The X-coordinate of the point in space.
-         * @param	Y		The Y-coordinate of the point in space.
-         * @param	Width	Desired width of the rectangle.
-         * @param	Height	Desired height of the rectangle.
-         */
+        /// <summary>
+        /// Creates a new <code>FlxObject</code>.
+        /// </summary>
         public FlxObject()
         {
             constructor1(0, 0, 0, 0);
         }
+        /// <summary>
+        /// Creates a new <code>FlxObject</code>.
+        /// </summary>
+        /// <param name="X">The X-coordinate of the point in space.</param>
+        /// <param name="Y">The Y-coordinate of the point in space.</param>
+        /// <param name="Width">Desired width of the rectangle.</param>
+        /// <param name="Height">Desired height of the rectangle.</param>
         public FlxObject(float X, float Y, float Width, float Height)
         {
             constructor1(X, Y, Width, Height);
         }
+        /// <summary>
+        /// Creates a new <code>FlxObject</code>.
+        /// </summary>
+        /// <param name="X">The X-coordinate of the point in space.</param>
+        /// <param name="Y">The Y-coordinate of the point in space.</param>
+        /// <param name="Width">Desired width of the rectangle.</param>
+        /// <param name="Height">Desired height of the rectangle.</param>
         private void constructor1(float X, float Y, float Width, float Height)
         {
             x = X;
@@ -267,37 +285,37 @@ namespace org.flixel
             _group = false;
         }
 
-		/**
-		 * Called by <code>FlxGroup</code>, commonly when game states are changed.
-		 */
+		/// <summary>
+        /// Called by <code>FlxGroup</code>, commonly when game states are changed.
+		/// </summary>
 		virtual public void destroy()
 		{
 			//Nothing to destroy yet
 		}
 
-        /**
-         * Set <code>solid</code> to true if you want to collide this object.
-         */
+        /// <summary>
+        /// Set <code>solid</code> to true if you want to collide this object.
+        /// </summary>
         public bool solid
         {
             get { return _solid; }
             set { _solid = value; }
         }
 
-        /**
-         * Set <code>fixed</code> to true if you want the object to stay in place during collisions.
-         * Useful for levels and other environmental objects.
-         */
+        /// <summary>
+        /// Set <code>fixed</code> to true if you want the object to stay in place during collisions.
+        /// Useful for levels and other environmental objects.
+        /// </summary>
         public bool @fixed
         {
             get { return _fixed; }
             set { _fixed = value; }
         }
 
-		/**
-		 * Called by <code>FlxObject.updateMotion()</code> and some constructors to
-		 * rebuild the basic collision data for this object.
-		 */
+        /// <summary>
+        /// Called by <code>FlxObject.updateMotion()</code> and some constructors to
+        /// rebuild the basic collision data for this object.
+        /// </summary>
         virtual public void refreshHulls()
 		{
 			colHullX.x = x;
@@ -310,10 +328,10 @@ namespace org.flixel
 			colHullY.height = height;
 		}
 
-		/**
-		 * Internal function for updating the position and speed of this object.
-		 * Useful for cases when you need to update this but are buried down in too many supers.
-		 */
+        /// <summary>
+        /// Internal function for updating the position and speed of this object.
+        /// Useful for cases when you need to update this but are buried down in too many supers.
+        /// </summary>
         protected void updateMotion()
         {
             if (!moves)
@@ -362,10 +380,10 @@ namespace org.flixel
                 colHullY.y += colVector.Y;
         }
 
-        /**
-         * Just updates the retro-style flickering.
-         * Considered update logic rather than rendering because it toggles visibility.
-         */
+        /// <summary>
+        /// Just updates the retro-style flickering.
+        /// Considered update logic rather than rendering because it toggles visibility.
+        /// </summary>
         public virtual void updateFlickering()
         {
             if (flickering())
@@ -387,30 +405,29 @@ namespace org.flixel
             }
         }
 
-		/**
-		 * Called by the main game loop, handles motion/physics and game logic
-		 */
+		/// <summary>
+        /// Called by the main game loop, handles motion/physics and game logic
+		/// </summary>
         virtual public void update()
 		{
 			updateMotion();
 			updateFlickering();
 		}
 
-        /**
-         * Override this function to draw graphics (see <code>FlxSprite</code>).
-         */
+        /// <summary>
+        /// Override this function to draw graphics (see <code>FlxSprite</code>).
+        /// </summary>
+        /// <param name="spriteBatch">Sprite Batch</param>
         virtual public void render(SpriteBatch spriteBatch)
         {
             //Objects don't have any visual logic/display of their own.
         }
 
-		/**
-		 * Checks to see if some <code>FlxObject</code> object overlaps this <code>FlxObject</code> object.
-		 * 
-		 * @param	Object	The object being tested.
-		 * 
-		 * @return	Whether or not the two objects overlap.
-		 */
+        /// <summary>
+        /// Checks to see if some <code>FlxObject</code> object overlaps this <code>FlxObject</code> object.
+        /// </summary>
+        /// <param name="Object">he object being tested.</param>
+        /// <returns>Whether or not the two objects overlap.</returns>
         virtual public bool overlaps(FlxObject Object)
 		{
             _point = getScreenXY();
@@ -422,19 +439,23 @@ namespace org.flixel
 			return true;
 		}
 
-		/**
-		 * Checks to see if a point in 2D space overlaps this <code>FlxObject</code> object.
-		 * 
-		 * @param	X			The X coordinate of the point.
-		 * @param	Y			The Y coordinate of the point.
-		 * @param	PerPixel	Whether or not to use per pixel collision checking (only available in <code>FlxSprite</code> subclass).
-		 * 
-		 * @return	Whether or not the point overlaps this object.
-		 */
+        /// <summary>
+        /// Checks to see if a point in 2D space overlaps this <code>FlxObject</code> object.
+        /// </summary>
+        /// <param name="X">The X coordinate of the point.</param>
+        /// <param name="Y">The Y coordinate of the point.</param>
+        /// <returns>Whether or not the point overlaps this object.</returns>
         virtual public bool overlapsPoint(float X, float Y)
         {
             return overlapsPoint(X, Y, false);
         }
+        /// <summary>
+        /// Checks to see if a point in 2D space overlaps this <code>FlxObject</code> object.
+        /// </summary>
+        /// <param name="X">The X coordinate of the point.</param>
+        /// <param name="Y">The Y coordinate of the point.</param>
+        /// <param name="PerPixel">Whether or not to use per pixel collision checking (only available in <code>FlxSprite</code> subclass).</param>
+        /// <returns>Whether or not the point overlaps this object.</returns>
         virtual public bool overlapsPoint(float X, float Y, bool PerPixel)
 		{
 			X = X + FlxU.floor(FlxG.scroll.X);
@@ -445,85 +466,79 @@ namespace org.flixel
 			return true;
 		}
 
-		/**
-		 * If you don't want to call <code>FlxU.collide()</code> you can use this instead.
-		 * Just calls <code>FlxU.collide(this,Object);</code>.  Will collide against itself
-		 * if Object==null.
-		 * 
-		 * @param	Object		The <FlxObject> you want to collide with.
-		 */
+        /// <summary>
+        /// If you don't want to call <code>FlxU.collide()</code> you can use this instead.
+        /// Just calls <code>FlxU.collide(this,Object);</code>.  Will collide against itself
+        /// if Object==null.
+        /// </summary>
+        /// <param name="Object">The <FlxObject> you want to collide with.</param>
+        /// <returns>Whether the object collides or not.</returns>
         virtual public bool collide(FlxObject Object)
 		{
 			return FlxU.collide(this,((Object==null)?this:Object));
 		}
 
-		/**
-		 * <code>FlxU.collide()</code> (and thus <code>FlxObject.collide()</code>) call
-		 * this function each time two objects are compared to see if they collide.
-		 * It doesn't necessarily mean these objects WILL collide, however.
-		 * 
-		 * @param	Object	The <code>FlxObject</code> you're about to run into.
-		 */
+        /// <summary>
+        /// <code>FlxU.collide()</code> (and thus <code>FlxObject.collide()</code>) call
+        /// this function each time two objects are compared to see if they collide.
+        /// It doesn't necessarily mean these objects WILL collide, however.
+        /// </summary>
+        /// <param name="Object">The <code>FlxObject</code> you're about to run into.</param>
         virtual public void preCollide(FlxObject Object)
 		{
 			//Most objects don't have to do anything here.
 		}
 
-		/**
-		 * Called when this object's left side collides with another <code>FlxObject</code>'s right.
-		 * NOTE: by default this function just calls <code>hitSide()</code>.
-		 * 
-		 * @param	Contact		The <code>FlxObject</code> you just ran into.
-		 * @param	Velocity	The suggested new velocity for this object.
-		 */
+        /// <summary>
+        /// Called when this object's left side collides with another <code>FlxObject</code>'s right.
+        /// NOTE: by default this function just calls <code>hitSide()</code>.
+        /// </summary>
+        /// <param name="Contact">The <code>FlxObject</code> you just ran into.</param>
+        /// <param name="Velocity">The suggested new velocity for this object.</param>
 		virtual public void hitLeft(FlxObject Contact, float Velocity)
 		{
 			hitSide(Contact,Velocity);
 		}
-		
-		/**
-		 * Called when this object's right side collides with another <code>FlxObject</code>'s left.
-		 * NOTE: by default this function just calls <code>hitSide()</code>.
-		 * 
-		 * @param	Contact		The <code>FlxObject</code> you just ran into.
-		 * @param	Velocity	The suggested new velocity for this object.
-		 */
+
+        /// <summary>
+        /// Called when this object's right side collides with another <code>FlxObject</code>'s left.
+        /// NOTE: by default this function just calls <code>hitSide()</code>.
+        /// </summary>
+        /// <param name="Contact">The <code>FlxObject</code> you just ran into.</param>
+        /// <param name="Velocity">The suggested new velocity for this object.</param>
         virtual public void hitRight(FlxObject Contact, float Velocity)
 		{
 			hitSide(Contact,Velocity);
 		}
 
-		/**
-		 * Since most games have identical behavior for running into walls,
-		 * you can just override this function instead of overriding both hitLeft and hitRight. 
-		 * 
-		 * @param	Contact		The <code>FlxObject</code> you just ran into.
-		 * @param	Velocity	The suggested new velocity for this object.
-		 */
+        /// <summary>
+        /// Since most games have identical behavior for running into walls,
+        ///  you can just override this function instead of overriding both hitLeft and hitRight. 
+        /// </summary>
+        /// <param name="Contact">The <code>FlxObject</code> you just ran into.</param>
+        /// <param name="Velocity">The suggested new velocity for this object.</param>
         virtual public void hitSide(FlxObject Contact, float Velocity)
 		{
 			if(!@fixed || (Contact.@fixed && ((velocity.Y != 0) || (velocity.X != 0))))
 				velocity.X = Velocity;
 		}
 
-		/**
-		 * Called when this object's top collides with the bottom of another <code>FlxObject</code>.
-		 * 
-		 * @param	Contact		The <code>FlxObject</code> you just ran into.
-		 * @param	Velocity	The suggested new velocity for this object.
-		 */
+        /// <summary>
+        /// Called when this object's top collides with the bottom of another <code>FlxObject</code>.
+        /// </summary>
+        /// <param name="Contact">The <code>FlxObject</code> you just ran into.</param>
+        /// <param name="Velocity">The suggested new velocity for this object.</param>
         virtual public void hitTop(FlxObject Contact, float Velocity)
 		{
 			if(!@fixed || (Contact.@fixed && ((velocity.Y != 0) || (velocity.X != 0))))
 				velocity.Y = Velocity;
 		}
 
-		/**
-		 * Called when this object's bottom edge collides with the top of another <code>FlxObject</code>.
-		 * 
-		 * @param	Contact		The <code>FlxObject</code> you just ran into.
-		 * @param	Velocity	The suggested new velocity for this object.
-		 */
+        /// <summary>
+        /// Called when this object's bottom edge collides with the top of another <code>FlxObject</code>.
+        /// </summary>
+        /// <param name="Contact">The <code>FlxObject</code> you just ran into.</param>
+        /// <param name="Velocity">The suggested new velocity for this object.</param>
         virtual public void hitBottom(FlxObject Contact, float Velocity)
 		{
 			onFloor = true;
@@ -531,11 +546,10 @@ namespace org.flixel
 				velocity.Y = Velocity;
 		}
 
-		/**
-		 * Call this function to "damage" (or give health bonus) to this sprite.
-		 * 
-		 * @param	Damage		How much health to take away (use a negative number to give a health bonus).
-		 */
+        /// <summary>
+        /// Call this function to "damage" (or give health bonus) to this sprite.
+        /// </summary>
+        /// <param name="Damage">How much health to take away (use a negative number to give a health bonus).</param>
 		virtual public void hurt(float Damage)
 		{
 			health = health - Damage;
@@ -543,36 +557,33 @@ namespace org.flixel
 				kill();
 		}
 		
-		/**
-		 * Call this function to "kill" a sprite so that it no longer 'exists'.
-		 */
+		/// <summary>
+        /// Call this function to "kill" a sprite so that it no longer 'exists'.
+		/// </summary>
         virtual public void kill()
 		{
 			exists = false;
 			dead = true;
 		}
 
-		/**
-		 * Tells this object to flicker, retro-style.
-		 * 
-		 * @param	Duration	How many seconds to flicker for.
-		 */
+        /// <summary>
+        /// Tells this object to flicker, retro-style.
+        /// </summary>
+        /// <param name="Duration">How many seconds to flicker for.</param>
 		public void flicker(float Duration) { _flickerTimer = Duration; if(_flickerTimer < 0) { _flicker = false; visible = true; } }
 		
-		/**
-		 * Check to see if the object is still flickering.
-		 * 
-		 * @return	Whether the object is flickering or not.
-		 */
+        /// <summary>
+        /// Check to see if the object is still flickering.
+        /// </summary>
+        /// <returns>Whether the object is flickering or not.</returns>
 		public bool flickering() { return _flickerTimer >= 0; }
 
-		/**
-		 * Call this function to figure out the on-screen position of the object.
-		 * 
-		 * @param	P	Takes a <code>Point</code> object and assigns the post-scrolled X and Y values of this object to it.
-		 * 
-		 * @return	The <code>Point</code> you passed in, or a new <code>Point</code> if you didn't pass one, containing the screen X and Y position of this object.
-		 */
+        /// <summary>
+        /// Call this function to figure out the on-screen position of the object.
+        /// 
+        /// @param	P	Takes a <code>Point</code> object and assigns the post-scrolled X and Y values of this object to it.
+        /// </summary>
+        /// <returns>The <code>Point</code> you passed in, or a new <code>Point</code> if you didn't pass one, containing the screen X and Y position of this object.</returns>
         virtual public Vector2 getScreenXY()
 		{
             Vector2 Point = Vector2.Zero;
@@ -581,11 +592,10 @@ namespace org.flixel
 			return Point;
 		}
 		
-		/**
-		 * Check and see if this object is currently on screen.
-		 * 
-		 * @return	Whether the object is on screen or not.
-		 */
+        /// <summary>
+        /// Check and see if this object is currently on screen.
+        /// </summary>
+        /// <returns>Whether the object is on screen or not.</returns>
         virtual public bool onScreen()
 		{
             _point = getScreenXY();
@@ -594,13 +604,12 @@ namespace org.flixel
 			return true;
 		}
 
-		/**
-		 * Handy function for reviving game objects.
-		 * Resets their existence flags and position, including LAST position.
-		 * 
-		 * @param	X	The new X position of this object.
-		 * @param	Y	The new Y position of this object.
-		 */
+        /// <summary>
+        /// Handy function for reviving game objects.
+        /// Resets their existence flags and position, including LAST position.
+        /// </summary>
+        /// <param name="X">The new X position of this object.</param>
+        /// <param name="Y">The new Y position of this object.</param>
         virtual public void reset(float X, float Y)
 		{
 			x = X;
@@ -609,9 +618,10 @@ namespace org.flixel
 			dead = false;
 		}
 
-		/**
-		 * Returns the appropriate color for the bounding box depending on object state.
-		 */
+		/// <summary>
+        /// Returns the appropriate color for the bounding box depending on object state.
+		/// </summary>
+		/// <returns>Color of the bounding box</returns>
 		public Color getBoundingColor()
 		{
 			if(solid)

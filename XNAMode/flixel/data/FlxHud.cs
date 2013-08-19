@@ -28,8 +28,6 @@ namespace org.flixel
         //private FlxSprite p3HudSprite;
         //private FlxSprite p4HudSprite;
 
-
-
         public Color color
         {
             get { return _consoleColor; }
@@ -102,8 +100,8 @@ namespace org.flixel
         public void render(SpriteBatch spriteBatch)
         {
 
-            spriteBatch.Draw(FlxG.XnaSheet, _consoleRect,
-                _srcRect, _consoleColor);
+            spriteBatch.Draw(FlxG.XnaSheet, _consoleRect, _srcRect, _consoleColor);
+
             p1HudText.render(spriteBatch);
             p2HudText.render(spriteBatch);
             p3HudText.render(spriteBatch);

@@ -42,24 +42,16 @@ namespace XNAMode
 
         override public void update()
         {
-
-
             if (isPlayerControlled)
             {
                 PlayerIndex pi;
                 if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi)))
                 {
                     velocity.Y = -155;
-
                 }
             }
 
-
-
             base.update();
-
         }
-
-
     }
 }
