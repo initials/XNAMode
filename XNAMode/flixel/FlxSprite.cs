@@ -449,11 +449,11 @@ namespace org.flixel
 			_animations.Add(new FlxAnim(Name, Frames, FrameRate, Looped));
 		}
 
-        /**
-         * Pass in a function to be called whenever this sprite's animation changes.
-         * 
-         * @param	AnimationCallback		A function that has 3 parameters: a string name, a uint frame number, and a uint frame index.
-         */
+
+        /// <summary>
+        /// Pass in a function to be called whenever this sprite's animation changes.
+        /// </summary>
+        /// <param name="ac">A function that has 3 parameters: a string name, a uint frame number, and a uint frame index.</param>
         public void addAnimationCallback(FlxAnimationCallback ac)
         {
             _callback = ac;

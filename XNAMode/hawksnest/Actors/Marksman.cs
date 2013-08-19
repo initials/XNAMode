@@ -23,7 +23,8 @@ namespace XNAMode
 
             addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
-            addAnimation("attack", new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }, 12);
+            addAnimation("attack", new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }, 30,false);
+            addAnimationCallback(stopAttacking);
 
             //bounding box tweaks
             width = 5;
@@ -38,9 +39,6 @@ namespace XNAMode
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
-
-
-
         }
 
         override public void update()
@@ -52,9 +50,10 @@ namespace XNAMode
                     FlxG.gamepads.isNewButtonPress(Buttons.RightTrigger, FlxG.controllingPlayer, out pi)) ||
                     FlxG.gamepads.isButtonDown(Buttons.LeftTrigger, FlxG.controllingPlayer, out pi))
             {
+                attacking = true;
                 float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
                 float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
-                ((Arrow)(_bullets[_curBullet])).shoot((int)x, (int)y, (int)(rightX * 300), (int)(rightY *= -300));
+                ((Arrow)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 300), (int)(rightY *= -300));
                 if (++_curBullet >= _bullets.Count)
                     _curBullet = 0;
             }

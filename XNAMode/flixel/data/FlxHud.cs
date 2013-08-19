@@ -36,7 +36,7 @@ namespace org.flixel
         public FlxHud(int targetLeft, int targetWidth)
         {
             _consoleRect = new Rectangle(0, 0, FlxG.spriteBatch.GraphicsDevice.Viewport.Width, FlxG.spriteBatch.GraphicsDevice.Viewport.Height);
-            _consoleColor = new Color(0, 0, 0, 0x7F);
+            _consoleColor = new Color(0, 0, 0, 0x00);
 
             visible = false;
             p1HudText = new FlxText(targetLeft, 0, targetWidth, "p1HudText").setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);

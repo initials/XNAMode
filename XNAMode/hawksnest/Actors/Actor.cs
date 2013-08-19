@@ -31,6 +31,8 @@ namespace XNAMode
         public List<FlxObject> _bullets;
         public int _curBullet;
 
+        public bool attacking = false;
+
 
 
         public Actor(int xPos, int yPos)
@@ -50,6 +52,11 @@ namespace XNAMode
             jumpPower = -305;
 
         }
+
+        public void stopAttacking(string Name, uint Frame, int FrameIndex)
+        {
+            //attacking = false;
+        }   
 
         override public void update()
         {
@@ -92,9 +99,7 @@ namespace XNAMode
                 }
                 if ((FlxG.keys.justPressed(Keys.C) || FlxG.gamepads.isNewButtonPress(Buttons.X, FlxG.controllingPlayer, out pi)))
                 {
-                    FlxG.log("Attacking");
-
-                    play("attack");
+                    attacking = true;
 
                 }
 
@@ -124,7 +129,11 @@ namespace XNAMode
 
 
             //ANIMATION
-            if (velocity.Y != 0)
+            if (attacking)
+            {
+                play("attack");
+            }
+            else if (velocity.Y != 0)
             {
                 play("jump");
             }
@@ -143,4 +152,5 @@ namespace XNAMode
 
 
     }
+
 }

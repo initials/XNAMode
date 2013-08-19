@@ -15,11 +15,12 @@ namespace XNAMode
 
         public Arrow()
         {
-            ImgBullet = FlxG.Content.Load<Texture2D>("initials/warlock_fireball");
+            ImgBullet = FlxG.Content.Load<Texture2D>("initials/arrow_8x1");
 
-            loadGraphic(ImgBullet, false, false, 6, 9);
-            width = 6;
-            height = 9;
+            loadGraphic(ImgBullet, false, false, 8,1);
+
+            width = 8;
+            height = 1;
             offset.X = 0;
             offset.Y = 0;
             exists = false;
@@ -29,9 +30,9 @@ namespace XNAMode
 
             play("normal");
 
-            drag.X = 300;
+            drag.X = 30;
             acceleration.Y = 820;
-            maxVelocity.X = 30;
+            maxVelocity.X = 1000;
             maxVelocity.Y = 1000;
 
         }
@@ -58,6 +59,7 @@ namespace XNAMode
 
         public void shoot(int X, int Y, int VelocityX, int VelocityY)
         {
+            play("normal");
             //FlxG.play(SndShoot);
             base.reset(X, Y);
             solid = true;

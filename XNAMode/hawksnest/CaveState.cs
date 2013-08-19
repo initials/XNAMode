@@ -212,7 +212,7 @@ namespace XNAMode
             FlxU.collide(actors, tiles);
 
             FlxU.overlap(actors, _bullets, overlapped);
-            FlxU.collide(tiles, _bullets);
+            FlxU.collide(tiles, _bulletsAll);
 
             /*
             float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
@@ -371,7 +371,16 @@ namespace XNAMode
             return true;
              */
 
-            if (!(e.Object1 is Warlock) && (e.Object2 is Fireball))
+            if ((e.Object1 is Warlock) && (e.Object2 is Fireball))
+            {
+
+            }
+            else if ((e.Object1 is Marksman) && (e.Object2 is Arrow))
+            {
+
+            }
+
+            else
             {
                 e.Object1.kill();
                 e.Object2.kill();

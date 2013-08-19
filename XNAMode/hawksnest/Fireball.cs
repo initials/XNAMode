@@ -53,6 +53,7 @@ namespace XNAMode
         public void shoot(int X, int Y, int VelocityX, int VelocityY)
         {
             //FlxG.play(SndShoot);
+            play("normal");
             base.reset(X, Y);
             solid = true;
             velocity.X = VelocityX;
