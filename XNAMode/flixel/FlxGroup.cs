@@ -193,12 +193,11 @@ namespace org.flixel
 			return null;
 		}
 
-		/**
-		 * Call this function to retrieve the first object with dead == false in the group.
-		 * This is handy for checking if everything's wiped out, or choosing a squad leader, etc.
-		 * 
-		 * @return	A <code>FlxObject</code> currently flagged as not dead.
-		 */
+        /// <summary>
+        /// Call this function to retrieve the first object with dead == false in the group.
+        /// This is handy for checking if everything's wiped out, or choosing a squad leader, etc.
+        /// </summary>
+        /// <returns>A <code>FlxObject</code> currently flagged as not dead.</returns>
 		public FlxObject getFirstAlive()
 		{
 			int i = 0;
@@ -213,12 +212,11 @@ namespace org.flixel
 			return null;
 		}
 
-		/**
-		 * Call this function to retrieve the first object with dead == true in the group.
-		 * This is handy for checking if everything's wiped out, or choosing a squad leader, etc.
-		 * 
-		 * @return	A <code>FlxObject</code> currently flagged as dead.
-		 */
+        /// <summary>
+        /// Call this function to retrieve the first object with dead == true in the group.
+        /// This is handy for checking if everything's wiped out, or choosing a squad leader, etc.
+        /// </summary>
+        /// <returns>A <code>FlxObject</code> currently flagged as dead.</returns>
 		public FlxObject getFirstDead()
 		{
 			int i = 0;
@@ -233,11 +231,10 @@ namespace org.flixel
 			return null;
 		}
 
-		/**
-		 * Call this function to find out how many members of the group are not dead.
-		 * 
-		 * @return	The number of <code>FlxObject</code>s flagged as not dead.  Returns -1 if group is empty.
-		 */
+        /// <summary>
+        /// Call this function to find out how many members of the group are not dead.
+        /// </summary>
+        /// <returns>The number of <code>FlxObject</code>s flagged as not dead.  Returns -1 if group is empty.</returns>
 		public int countLiving()
 		{
 			int count = -1;
@@ -258,11 +255,10 @@ namespace org.flixel
 			return count;
 		}
 
-		/**
-		 * Call this function to find out how many members of the group are dead.
-		 * 
-		 * @return	The number of <code>FlxObject</code>s flagged as dead.  Returns -1 if group is empty.
-		 */
+        /// <summary>
+        /// Call this function to find out how many members of the group are dead.
+        /// </summary>
+        /// <returns>The number of <code>FlxObject</code>s flagged as dead.  Returns -1 if group is empty.</returns>
 		public int countDead()
 		{
 			int count = -1;
@@ -283,11 +279,10 @@ namespace org.flixel
 			return count;
 		}
 
-		/**
-		 * Returns a count of how many objects in this group are on-screen right now.
-		 * 
-		 * @return	The number of <code>FlxObject</code>s that are on screen.  Returns -1 if group is empty.
-		 */
+        /// <summary>
+        /// Returns a count of how many objects in this group are on-screen right now.
+        /// </summary>
+        /// <returns>The number of <code>FlxObject</code>s that are on screen.  Returns -1 if group is empty.</returns>
 		public int countOnScreen()
 		{
 			int count = -1;
@@ -308,11 +303,10 @@ namespace org.flixel
 			return count;
 		}		
 
-		/**
-		 * Returns a member at random from the group.
-		 * 
-		 * @return	A <code>FlxObject</code> from the members list.
-		 */
+        /// <summary>
+        /// Returns a member at random from the group.
+        /// </summary>
+        /// <returns>A <code>FlxObject</code> from the members list.</returns>
 		public FlxObject getRandom()
 		{
 			int c = 0;
@@ -327,9 +321,9 @@ namespace org.flixel
 			return o;
 		}
 
-		/**
-		 * Internal function, helps with the moving/updating of group members.
-		 */
+		/// <summary>
+        /// Internal function, helps with the moving/updating of group members.
+		/// </summary>
         protected void saveOldPosition()
 		{
 			if(_first)
@@ -343,10 +337,10 @@ namespace org.flixel
 			_last.Y = y;
 		}
 
-		/**
-		 * Internal function that actually goes through and updates all the group members.
-		 * Depends on <code>saveOldPosition()</code> to set up the correct values in <code>_last</code> in order to work properly.
-		 */
+        /// <summary>
+        /// Internal function that actually goes through and updates all the group members.
+        /// Depends on <code>saveOldPosition()</code> to set up the correct values in <code>_last</code> in order to work properly.
+        /// </summary>
 		virtual protected void updateMembers()
 		{
 			float mx = 0;
@@ -394,10 +388,10 @@ namespace org.flixel
 			}
 		}
 
-		/**
-		 * Automatically goes through and calls update on everything you added,
-		 * override this function to handle custom input and perform collisions.
-		 */
+        /// <summary>
+        /// Automatically goes through and calls update on everything you added,
+        /// override this function to handle custom input and perform collisions.
+        /// </summary>
         override public void update()
 		{
 			saveOldPosition();
@@ -406,9 +400,10 @@ namespace org.flixel
 			updateFlickering();
 		}
 
-		/**
-		 * Internal function that actually loops through and renders all the group members.
-		 */
+		/// <summary>
+        /// Internal function that actually loops through and renders all the group members.
+		/// </summary>
+		/// <param name="spriteBatch">Sprite Batch</param>
 		protected void renderMembers(SpriteBatch spriteBatch)
 		{
 			int i = 0;
@@ -422,18 +417,19 @@ namespace org.flixel
 			}
 		}
 
-		/**
-		 * Automatically goes through and calls render on everything you added,
-		 * override this loop to control render order manually.
-		 */
+        /// <summary>
+        /// Automatically goes through and calls render on everything you added,
+        /// override this loop to control render order manually.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite Batch</param>
         override public void render(SpriteBatch spriteBatch)
 		{
             renderMembers(spriteBatch);
 		}
 
-		/**
-		 * Internal function that calls kill on all members.
-		 */
+		/// <summary>
+        /// Internal function that calls kill on all members.
+		/// </summary>
 		protected void killMembers()
 		{
 			int i = 0;
@@ -447,18 +443,18 @@ namespace org.flixel
 			}
 		}
 
-		/**
-		 * Calls kill on the group and all its members.
-		 */
+		/// <summary>
+        /// Calls kill on the group and all its members.
+		/// </summary>
         override public void kill()
 		{
 			killMembers();
 			base.kill();
 		}
 
-		/**
-		 * Internal function that actually loops through and destroys each member.
-		 */
+		/// <summary>
+        /// Internal function that actually loops through and destroys each member.
+		/// </summary>
 		protected void destroyMembers()
 		{
 			int i = 0;
@@ -473,22 +469,21 @@ namespace org.flixel
             members.Clear();
 		}
 
-		/**
-		 * Override this function to handle any deleting or "shutdown" type operations you might need,
-		 * such as removing traditional Flash children like Sprite objects.
-		 */
+        /// <summary>
+        /// Override this function to handle any deleting or "shutdown" type operations you might need,
+        /// such as removing traditional Flash children like Sprite objects.
+        /// </summary>
         override public void destroy()
 		{
 			destroyMembers();
 			base.destroy();
 		}
 
-		/**
-		 * If the group's position is reset, we want to reset all its members too.
-		 * 
-		 * @param	X	The new X position of this object.
-		 * @param	Y	The new Y position of this object.
-		 */
+        /// <summary>
+        /// If the group's position is reset, we want to reset all its members too.
+        /// </summary>
+        /// <param name="X">The new X position of this object.</param>
+        /// <param name="Y">The new Y position of this object.</param>
 		override public void reset(float X, float Y)
 		{
 			saveOldPosition();
@@ -535,6 +530,5 @@ namespace org.flixel
 				}
 			}
 		}
-
     }
 }

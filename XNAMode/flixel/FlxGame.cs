@@ -18,16 +18,22 @@ namespace org.flixel
 
         private SoundEffect _sndBeep;
 
-        //basic display stuff
+        /// <summary>
+        /// basic display stuff
+        /// </summary>
         internal FlxState _state;
         private RenderTarget2D backRender;
         internal int targetWidth = 0;
         internal int targetLeft = 0;
 
-		//basic update stuff
+		/// <summary>
+        /// basic update stuff
+		/// </summary>
 		private bool _paused;
 
-        //Pause screen, sound tray, support panel, dev console, and special effects objects
+        /// <summary>
+        /// Pause screen, sound tray, support panel, dev console, and special effects objects
+        /// </summary>
         internal FlxPause _pausePanel;
         internal bool _soundTrayVisible;
         internal Rectangle _soundTrayRect;
@@ -35,24 +41,38 @@ namespace org.flixel
         internal FlxSprite[] _soundTrayBars;
         internal FlxText _soundCaption;
         internal FlxConsole _console;
+
+        /// <summary>
+        /// A hud for having non scaled text. Important for nice clean text if you're working at 2x or 3x
+        /// </summary>
         internal FlxHud _hud;
 
 
-		//pause stuff
+		/// <summary>
+        /// pause stuff
+		/// </summary>
         private string[] _helpStrings;
 
-        //effect stuff
+        /// <summary>
+        /// effect stuff
+        /// </summary>
         private Point _quakeOffset = Point.Zero;
 
-        public FlxGame(Game game) : base(game) { }
+        /// <summary>
+        /// Constructor 
+        /// </summary>
+        /// <param name="game">Game</param>
+        public FlxGame(Game game) : base(game) { }	
 
-
-        //@desc		Constructor
-        //@param	GameSizeX		The width of your game in pixels (e.g. 320)
-        //@param	GameSizeY		The height of your game in pixels (e.g. 240)
-        //@param	InitialState	The class name of the state you want to create and switch to first (e.g. MenuState)
-        //@param	BGColor			The color of the app's background
-        //@param	FlixelColor		The color of the great big 'f' in the flixel logo
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="GameSizeX">The width of your game in pixels (e.g. 320)</param>
+        /// <param name="GameSizeY">The height of your game in pixels (e.g. 240)</param>
+        /// <param name="InitialState">The class name of the state you want to create and switch to first (e.g. MenuState)</param>
+        /// <param name="BGColor">The color of the app's background</param>
+        /// <param name="showFlixelLogo">Whether or not to go to the FlxSplash screen first.</param>
+        /// <param name="logoColor">The color of the great big 'f' in the flixel logo</param>
         public void initGame(int GameSizeX, int GameSizeY,
             FlxState InitialState, Color BGColor,
             bool showFlixelLogo, Color logoColor)
@@ -74,11 +94,13 @@ namespace org.flixel
             }
         }
 
-		//@desc		Sets up the strings that are displayed on the left side of the pause game popup
-		//@param	X		What to display next to the X button
-		//@param	C		What to display next to the C button
-		//@param	Mouse	What to display next to the mouse icon
-		//@param	Arrows	What to display next to the arrows icon
+        /// <summary>
+        /// Sets up the strings that are displayed on the left side of the pause game popup
+        /// </summary>
+        /// <param name="X">What to display next to the X button</param>
+        /// <param name="C">What to display next to the C button</param>
+        /// <param name="Mouse">What to display next to the mouse icon</param>
+        /// <param name="Arrows">What to display next to the arrows icon</param>
 		protected void help(string X, string C, string Mouse, string Arrows)
 		{
             _helpStrings = new string[4];
@@ -100,7 +122,9 @@ namespace org.flixel
                 _pausePanel.helpArrows = _helpStrings[3];
             }
 		}
-
+        /// <summary>
+        /// Initializes the backRender RenderTarget2D
+        /// </summary>
         public override void Initialize()
         {
             base.Initialize();
@@ -109,7 +133,9 @@ namespace org.flixel
                 DepthFormat.None, 0, RenderTargetUsage.DiscardContents);
         }
 
-        //@benbaird initializes the console, the pause overlay, and the soundbar
+        /// <summary>
+        /// @benbaird initializes the console, the pause overlay, and the soundbar
+        /// </summary>
         private void initConsole()
         {
 
@@ -154,6 +180,9 @@ namespace org.flixel
 			}
         }
 
+        /// <summary>
+        /// Load Content 
+        /// </summary>
         protected override void LoadContent()
         {
             //load up graphical content used for the flixel engine
@@ -172,6 +201,9 @@ namespace org.flixel
             }
         }
 
+        /// <summary>
+        /// Unload content.
+        /// </summary>
         protected override void UnloadContent()
         {
             _sndBeep.Dispose();
@@ -181,9 +213,11 @@ namespace org.flixel
                 FlxG.state.destroy();
             }
         }
-
-        //@desc		Switch from one FlxState to another
-        //@param	State		The class name of the state you want (e.g. PlayState)
+	
+        /// <summary>
+        /// Switch from one FlxState to another
+        /// </summary>
+        /// <param name="newscreen">The class name of the state you want (e.g. PlayState)</param>
         public void switchState(FlxState newscreen)
         {
             FlxG.unfollow();
@@ -203,9 +237,9 @@ namespace org.flixel
             _state.create();
         }
 
-		/**
-		 * Internal function to help with basic pause game functionality.
-		 */
+		/// <summary>
+        /// Internal function to help with basic pause game functionality.
+		/// </summary>
         internal void unpauseGame()
 		{
 			//if(!FlxG.panel.visible) flash.ui.Mouse.hide();
@@ -214,9 +248,9 @@ namespace org.flixel
 			//stage.frameRate = _framerate;
 		}
 
-		/**
-		 * Internal function to help with basic pause game functionality.
-		 */
+		/// <summary>
+        /// Internal function to help with basic pause game functionality.
+		/// </summary>
         internal void pauseGame()
 		{
             //if((x != 0) || (y != 0))
@@ -229,7 +263,10 @@ namespace org.flixel
 			//stage.frameRate = _frameratePaused;
 		}
 
-        //@desc		This is the main game loop
+        /// <summary>
+        /// This is the main game loop
+        /// </summary>
+        /// <param name="gameTime">Game Time</param>
         public override void Update(GameTime gameTime)
         {
             PlayerIndex pi;
@@ -284,10 +321,7 @@ namespace org.flixel
             }
             else if ( FlxG.keys.isNewKeyPress(Keys.OemTilde, null, out pi))
             {
-
                 //FlxG.keys.isNewKeyPress(Keys.D1, null, out pi) ||
-
-
                 _console.toggle();
             }
             else if (FlxG.autoHandlePause && (FlxG.keys.isPauseGame(FlxG.controllingPlayer) || FlxG.gamepads.isPauseGame(FlxG.controllingPlayer)))
@@ -319,7 +353,10 @@ namespace org.flixel
         }
 
 
-        //Rendering
+        /// <summary>
+        /// Rendering
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
         public override void Draw(GameTime gameTime)
         {
             //Render the screen to our internal game-sized back buffer.
@@ -367,15 +404,13 @@ namespace org.flixel
                 }
                 FlxG.spriteBatch.End();
             }
-
             
             //FlxG.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
             //var new_pos = new Vector2(50,50);
             //FlxG.spriteBatch.Draw(lightmask, new_pos, Color.White);
             //FlxG.spriteBatch.Draw(lightmask, new Vector2(10,100), Color.White);
             //FlxG.spriteBatch.End();
-
-
+            
             GraphicsDevice.SetRenderTarget(null);
 
             //Copy the result to the screen, scaled to fit
@@ -388,7 +423,6 @@ namespace org.flixel
             FlxG.spriteBatch.Draw(backRender,
                 new Rectangle(targetLeft + _quakeOffset.X, _quakeOffset.Y, targetWidth, GraphicsDevice.Viewport.Height),
                 Color.White);
-
 
             //FlxG.spriteBatch.Draw(backRender,
             //    new Rectangle(targetLeft + _quakeOffset.X + FlxG.width, _quakeOffset.Y + FlxG.height, targetWidth, GraphicsDevice.Viewport.Height), 
@@ -413,7 +447,9 @@ namespace org.flixel
             FlxG.spriteBatch.End();
         }
 
-		//@desc		This function is only used by the FlxGame class to do important internal management stuff
+		/// <summary>
+		/// This function is only used by the FlxGame class to do important internal management stuff
+		/// </summary>
 		private void showSoundTray()
 		{
             if (!FlxG.mute)
@@ -436,7 +472,5 @@ namespace org.flixel
 				else _soundTrayBars[i].alpha = 0.5f;
 			}
 		}
-
     }
-
 }

@@ -8,73 +8,88 @@ using Microsoft.Xna.Framework.Input;
 
 namespace org.flixel
 {
-
+    /// <summary>
+    /// Call back for when animations finish.
+    /// </summary>
+    /// <param name="Name">name of the call back</param>
+    /// <param name="Frame">frame to call back on</param>
+    /// <param name="FrameIndex">Frame index ?</param>
     public delegate void FlxAnimationCallback(string Name, uint Frame, int FrameIndex);
 
-    /**
-     * This is a global helper class full of useful functions for audio,
-     * input, basic info, and the camera system among other things.
-     */
+    /// <summary>
+    /// This is a global helper class full of useful functions for audio,
+    /// input, basic info, and the camera system among other things.
+    /// </summary>
     public class FlxG
     {
         //@benbaird Global, XNA-specific stuff that any component should be able
         // to access from anywhere. (As read-only properties, generally.)
         public static Game Game;
+
+        /// <summary>
+        /// Content Manager
+        /// </summary>
         private static ContentManager _content;
         private static Texture2D _xnatiles;
         private static SpriteFont _font;
         private static SpriteBatch _spriteBatch;
 
-		/**
-		 * If you build and maintain your own version of flixel,
-		 * you can give it your own name here.  Appears in the console.
-		 */
+        /// <summary>
+        /// If you build and maintain your own version of flixel,
+        /// you can give it your own name here.  Appears in the console.
+        /// </summary>
 		static public string LIBRARY_NAME = "X-flixel-initials";
-		/**
-		 * Assign a major version to your library.
-		 * Appears before the decimal in the console.
-		 */
+        /// <summary>
+        /// Assign a major version to your library.
+        /// Appears before the decimal in the console.
+        /// </summary>
 		static public uint LIBRARY_MAJOR_VERSION = 2;
-		/**
-		 * Assign a minor version to your library.
-		 * Appears after the decimal in the console.
-		 */
+
+        /// <summary>
+        /// Assign a minor version to your library.
+        /// Appears after the decimal in the console.
+        /// </summary>
 		static public uint LIBRARY_MINOR_VERSION = 43;
 
-        /**
-         * Internal tracker for game object (so we can pause & unpause)
-         */
+        /// <summary>
+        /// Internal tracker for game object (so we can pause & unpause)
+        /// </summary>
         static protected internal FlxGame _game;
-		/**
-		 * Internal tracker for game pause state.
-		 */
+		/// <summary>
+        /// Internal tracker for game pause state.
+		/// </summary>
 		static protected bool _pause;
-		/**
-		 * Whether you are running in Debug or Release mode.
-		 * Set automatically by <code>FlxFactory</code> during startup.
-		 */
+
+        /// <summary>
+        /// Whether you are running in Debug or Release mode.
+        /// Set automatically by <code>FlxFactory</code> during startup.
+        /// </summary>
 		static public bool debug;
-		/**
-		 * Set <code>showBounds</code> to true to display the bounding boxes of the in-game objects.
-		 */
+		/// <summary>
+        /// Set <code>showBounds</code> to true to display the bounding boxes of the in-game objects.
+		/// </summary>
 		static public bool showBounds;
 
-        /**
-         * Represents the amount of time in seconds that passed since last frame.
-         */
+        /// <summary>
+        ///  Represents the amount of time in seconds that passed since last frame.
+        /// </summary>
         public static float elapsed = 0f;
-        //@benbaird compatibility with AS3's getTimer()
+        /// <summary>
+        /// @benbaird compatibility with AS3's getTimer()
+        /// </summary>
         public static uint getTimer = 0;
-		/**
-		 * Essentially locks the framerate to a minimum value - any slower and you'll get slowdown instead of frameskip; default is 1/30th of a second.
-		 */
+		/// <summary>
+        /// Essentially locks the framerate to a minimum value - any slower and you'll get slowdown instead of frameskip; default is 1/30th of a second.
+		/// </summary>
 		static public float maxElapsed;
-		/**
-		 * How fast or slow time should pass in the game; default is 1.0.
-		 */
+		/// <summary>
+        /// How fast or slow time should pass in the game; default is 1.0.
+		/// </summary>
 		static public float timeScale;
 
-        //@desc A reference or pointer to the current FlxState object being used by the game
+        /// <summary>
+        /// A reference or pointer to the current FlxState object being used by the game
+        /// </summary>
         public static FlxState state
         {
             get
@@ -87,28 +102,36 @@ namespace org.flixel
             }
         }
 
-        /**
-         * The width of the screen in game pixels.
-         */
+        /// <summary>
+        /// The width of the screen in game pixels.
+        /// </summary>
         public static int width = 1280;
-        /**
-         * The height of the screen in game pixels.
-         */
+        /// <summary>
+        /// The height of the screen in game pixels.
+        /// </summary>
         public static int height = 720;
 
+        /// <summary>
+        /// BG color
+        /// </summary>
         public static Color backColor = Color.Black;
 
-		/**
-		 * Setting this to true will disable/skip stuff that isn't necessary for mobile platforms like Android (or Windows Phone 7). [BETA]
-		 */
+		/// <summary>
+        /// Setting this to true will disable/skip stuff that isn't necessary for mobile platforms like Android (or Windows Phone 7). [BETA]
+		/// </summary>
 		static public bool mobile; 
 
-		/**
-		 * <code>FlxG.levels</code> and <code>FlxG.scores</code> are generic
-		 * global variables that can be used for various cross-state stuff.
-		 */
+        /// <summary>
+        /// <code>FlxG.levels</code> and <code>FlxG.scores</code> are generic
+        /// global variables that can be used for various cross-state stuff.
+        /// </summary>
         static public List<int> levels = new List<int>();
         static public int level;
+
+        /// <summary>
+        /// <code>FlxG.levels</code> and <code>FlxG.scores</code> are generic
+        /// global variables that can be used for various cross-state stuff.
+        /// </summary>
         static public List<int> scores = new List<int>();
         static public int score;
 
@@ -125,81 +148,88 @@ namespace org.flixel
         static public int save;
 #endif
 
-        //@benbaird X-flixel only. Returns the scale of the screen size in comparison to the actual game size.
+        /// <summary>
+        /// @benbaird X-flixel only. Returns the scale of the screen size in comparison to the actual game size.
+        /// </summary>
         private static float _scale = 0;
         public static float scale
         {
             get { return _scale; }
         }
 
-		/**
-		 * A reference to a <code>FlxMouse</code> object.  Important for input!
-		 */
+		/// <summary>
+        /// A reference to a <code>FlxMouse</code> object.  Important for input!
+		/// </summary>
 		static public FlxMouse mouse = new FlxMouse();
-		/**
-		 * A reference to a <code>FlxKeyboard</code> object.  Important for input!
-		 */
+		/// <summary>
+        ///  A reference to a <code>FlxKeyboard</code> object.  Important for input!
+		/// </summary>
 		static public FlxKeyboard keys = new FlxKeyboard();
-		/**
-		 * An array of <code>FlxGamepad</code> objects.  Important for input!
-		 */
+		/// <summary>
+        /// An array of <code>FlxGamepad</code> objects.  Important for input!
+		/// </summary>
 		static public FlxGamepad gamepads = new FlxGamepad();
 
-        //@benbaird Used for compatibility with Xbox input standards
+        /// <summary>
+        /// @benbaird Used for compatibility with Xbox input standards
+        /// </summary>
         public static PlayerIndex? controllingPlayer
         {
             get;
             set;
         }
 
-		/**
-		 * A handy container for a background music object.
-		 */
+		/// <summary>
+        /// A handy container for a background music object.
+		/// </summary>
 		static public FlxSound music;
-		/**
-		 * A list of all the sounds being played in the game.
-		 */
+		/// <summary>
+        /// A list of all the sounds being played in the game.
+		/// </summary>
 		static public List<FlxSound> sounds = new List<FlxSound>();
-		/**
-		 * Internal flag for whether or not the game is muted.
-		 */
+		/// <summary>
+        /// Internal flag for whether or not the game is muted.
+		/// </summary>
 		static protected bool _mute;
-		/**
-		 * Internal volume level, used for global sound control.
-		 */
+		/// <summary>
+        /// Internal volume level, used for global sound control.
+		/// </summary>
 		static protected float _volume;
 
-
+        /// <summary>
+        /// Adjusts the angle of the entire game.
+        /// Not working since moving to 3x pixel size.
+        /// </summary>
         static public float angle;
 
-		/**
-		 * Tells the camera to follow this <code>FlxCore</code> object around.
-		 */
+		/// <summary>
+        /// Tells the camera to follow this <code>FlxCore</code> object around.
+		/// </summary>
 		static public FlxObject followTarget;
-		/**
-		 * Used to force the camera to look ahead of the <code>followTarget</code>.
-		 */
+		/// <summary>
+        /// Used to force the camera to look ahead of the <code>followTarget</code>.
+		/// </summary>
 		static public Vector2 followLead;
-		/**
-		 * Used to smoothly track the camera as it follows.
-		 */
+		/// <summary>
+        /// Used to smoothly track the camera as it follows.
+		/// </summary>
 		static public float followLerp;
-		/**
-		 * Stores the top and left edges of the camera area.
-		 */
+		/// <summary>
+        /// Stores the top and left edges of the camera area.
+		/// </summary>
 		static public Point followMin;
-		/**
-		 * Stores the bottom and right edges of the camera area.
-		 */
+		/// <summary>
+        /// Stores the bottom and right edges of the camera area.
+		/// </summary>
 		static public Point followMax;
-		/**
-		 * Internal, used to assist camera and scrolling.
-		 */
+		/// <summary>
+        /// Internal, used to assist camera and scrolling.
+		/// </summary>
 		static protected Vector2 _scrollTarget;
 
-        /**
-         * Stores the basic parallax scrolling values.
-         */
+        /// <summary>
+        /// Stores the basic parallax scrolling values.
+        /// </summary>
         static public Vector2 scroll;
 
 		/**
@@ -213,25 +243,20 @@ namespace org.flixel
         //static protected var _cache:Object;
 
 		/**
-		 * Access to the Kongregate high scores and achievements API.
-		 */
-        //static public var kong:FlxKong;
-
-		/**
 		 * The support panel (twitter, reddit, stumbleupon, paypal, etc) visor thing
 		 */
         //static public FlxPanel panel;
-		/**
-		 * A special effect that shakes the screen.  Usage: FlxG.quake.start();
-		 */
+		/// <summary>
+        /// A special effect that shakes the screen.  Usage: FlxG.quake.start();
+		/// </summary>
 		static public FlxQuake quake;
-		/**
-		 * A special effect that flashes a color on the screen.  Usage: FlxG.flash.start();
-		 */
+		/// <summary>
+        /// A special effect that flashes a color on the screen.  Usage: FlxG.flash.start();
+		/// </summary>
 		static public FlxFlash flash;
-		/**
-		 * A special effect that fades a color onto the screen.  Usage: FlxG.fade.start();
-		 */
+		/// <summary>
+        /// A special effect that fades a color onto the screen.  Usage: FlxG.fade.start();
+		/// </summary>
         static public FlxFade fade;
 
         /// <summary>
@@ -239,11 +264,10 @@ namespace org.flixel
         /// </summary>
         static public FlxTransition transition;
 
-        /**
-         * Log data to the developer console.
-         * 
-         * @param	Data		Anything you want to log to the console.
-         */
+        /// <summary>
+        /// Log data to the developer console.
+        /// </summary>
+        /// <param name="Data">Anything you want to log to the console.</param>
         public static void log(string Data) { _game._console.log(Data); }
 
         /// <summary>
@@ -264,9 +288,9 @@ namespace org.flixel
         public static void setHudText(int Player, string Data) { _game._hud.setHudText(Player, Data); }
 
 
-        /**
-         * Set <code>pause</code> to true to pause the game, all sounds, and display the pause popup.
-         */
+        /// <summary>
+        /// Set <code>pause</code> to true to pause the game, all sounds, and display the pause popup.
+        /// </summary>
         static public bool pause
         {
             get { return _pause; }
@@ -289,9 +313,16 @@ namespace org.flixel
             }
         }
 
-        //@benbaird Begin XNA-specific public static properties
-        public static bool autoHandlePause = false; //whether to automatically handle user pause requests. Typically you'd set this to true only for gameplay states, and set to false for all others (menus, etc.)
+        /// <summary>
+        /// @benbaird Begin XNA-specific public static properties
+        /// 
+        /// whether to automatically handle user pause requests. Typically you'd set this to true only for gameplay states, and set to false for all others (menus, etc.)
+        /// </summary>
+        public static bool autoHandlePause = false; 
 
+        /// <summary>
+        /// Content manager
+        /// </summary>
         public static ContentManager Content
         {
             get { return _content; }
@@ -309,6 +340,10 @@ namespace org.flixel
             get { return _xnatiles; }
         }
 
+        /// <summary>
+        /// Load Content
+        /// </summary>
+        /// <param name="gd"> Graphics device. </param>
         public static void LoadContent(GraphicsDevice gd)
         {
             _content = Game.Content;
@@ -327,9 +362,9 @@ namespace org.flixel
         }
         //@benbaird End XNA-specific public static properties
 
-		/**
-		 * Reset the input helper objects (useful when changing screens or states)
-		 */
+		/// <summary>
+        /// Reset the input helper objects (useful when changing screens or states)
+		/// </summary>
 		static public void resetInput()
 		{
 			keys.reset();
@@ -337,16 +372,19 @@ namespace org.flixel
             gamepads.reset();
 		}
 
-		/**
-		 * Set up and play a looping background soundtrack.
-		 * 
-		 * @param	Music		The sound file you want to loop in the background.
-		 * @param	Volume		How loud the sound should be, from 0 to 1.
-		 */
+        /// <summary>
+        /// Set up and play a looping background soundtrack.
+        /// </summary>
+        /// <param name="Music">The sound file you want to loop in the background.</param>
         static public void playMusic(string Music)
         {
             playMusic(Music, 1.0f);
         }
+        /// <summary>
+        /// Set up and play a looping background soundtrack.
+        /// </summary>
+        /// <param name="Music">The sound file you want to loop in the background.</param>
+        /// <param name="Volume">How loud the sound should be, from 0 to 1.</param>
 		static public void playMusic(string Music, float Volume)
 		{
 			if(music == null)
@@ -359,23 +397,32 @@ namespace org.flixel
 			music.play();
 		}
 
-		/**
-		 * Creates a new sound object from an embedded <code>Class</code> object.
-		 * 
-		 * @param	EmbeddedSound	The sound you want to play.
-		 * @param	Volume			How loud to play it (0 to 1).
-		 * @param	Looped			Whether or not to loop this sound.
-		 * 
-		 * @return	A <code>FlxSound</code> object.
-		 */
+        /// <summary>
+        /// Creates a new sound object from an embedded <code>Class</code> object.
+        /// </summary>
+        /// <param name="EmbeddedSound">The sound you want to play.</param>
+        /// <returns>A <code>FlxSound</code> object.</returns>
         static public FlxSound play(string EmbeddedSound)
         {
             return play(EmbeddedSound, 1.0f, false);
         }
+        /// <summary>
+        /// Creates a new sound object from an embedded <code>Class</code> object.
+        /// </summary>
+        /// <param name="EmbeddedSound">The sound you want to play.</param>
+        /// <param name="Volume">How loud to play it (0 to 1).</param>
+        /// <returns>A <code>FlxSound</code> object.</returns>
         static public FlxSound play(string EmbeddedSound, float Volume)
         {
             return play(EmbeddedSound, Volume, false);
         }
+        /// <summary>
+        /// Creates a new sound object from an embedded <code>Class</code> object.
+        /// </summary>
+        /// <param name="EmbeddedSound">The sound you want to play.</param>
+        /// <param name="Volume">How loud to play it (0 to 1).</param>
+        /// <param name="Looped">Whether or not to loop this sound.</param>
+        /// <returns>A <code>FlxSound</code> object.</returns>
         static public FlxSound play(string EmbeddedSound, float Volume, bool Looped)
 		{
 			int i = 0;
@@ -394,22 +441,21 @@ namespace org.flixel
             return sounds[i];
 		}
 
-        /**
-         * Set <code>mute</code> to true to turn off the sound.
-         * 
-         * @default false
-         */
+        /// <summary>
+        /// Set <code>mute</code> to true to turn off the sound.
+        /// 
+        /// default = false;
+        /// </summary>
         public static bool mute
         {
             get { return _mute; }
             set { _mute = value; changeSounds(); }
         }
 
-		/**
-		 * Get a number that represents the mute state that we can multiply into a sound transform.
-		 * 
-		 * @return		An unsigned integer - 0 if muted, 1 if not muted.
-		 */
+        /// <summary>
+        /// Get a number that represents the mute state that we can multiply into a sound transform.
+        /// </summary>
+        /// <returns>An unsigned integer - 0 if muted, 1 if not muted.</returns>
 		static public int getMuteValue()
 		{
 			if(_mute)
@@ -418,6 +464,9 @@ namespace org.flixel
 				return 1;
 		}
 
+        /// <summary>
+        /// Volume control.
+        /// </summary>
         static public float volume
         {
             get { return _volume; }
@@ -432,11 +481,10 @@ namespace org.flixel
             }
         }
 
-		/**
-		 * Called by FlxGame on state changes to stop and destroy sounds.
-		 * 
-		 * @param	ForceDestroy		Kill sounds even if they're flagged <code>survive</code>.
-		 */
+        /// <summary>
+        /// Called by FlxGame on state changes to stop and destroy sounds.
+        /// </summary>
+        /// <param name="ForceDestroy">Kill sounds even if they're flagged <code>survive</code>.</param>
 		static internal void destroySounds(bool ForceDestroy)
 		{
 			if(sounds == null)
@@ -454,9 +502,9 @@ namespace org.flixel
 			}
 		}
 
-		/**
-		 * An internal function that adjust the volume levels and the music channel after a change.
-		 */
+		/// <summary>
+        /// An internal function that adjust the volume levels and the music channel after a change.
+		/// </summary>
 		static protected void changeSounds()
 		{
 			if((music != null) && music.active)
@@ -472,9 +520,9 @@ namespace org.flixel
 			}
 		}
 
-		/**
-		 * Called by the game loop to make sure the sounds get updated each frame.
-		 */
+		/// <summary>
+        /// Called by the game loop to make sure the sounds get updated each frame.
+		/// </summary>
 		static internal void updateSounds()
 		{
 			if((music != null) && music.active)
@@ -490,9 +538,9 @@ namespace org.flixel
 			}
 		}
 
-		/**
-		 * Internal helper, pauses all game sounds.
-		 */
+		/// <summary>
+        /// Internal helper, pauses all game sounds.
+		/// </summary>
 		static protected void pauseSounds()
 		{
 			if((music != null) && music.active)
@@ -508,9 +556,9 @@ namespace org.flixel
 			}
 		}
 
-		/**
-		 * Internal helper, pauses all game sounds.
-		 */
+		/// <summary>
+        /// Internal helper, pauses all game sounds.
+		/// </summary>
 		static protected void playSounds()
 		{
 			if((music != null) && music.active)
@@ -543,27 +591,35 @@ namespace org.flixel
             scroll.Y = _scrollTarget.Y = (height >> 1) - followTarget.y - ((int)followTarget.height >> 1);
 		}
 		
-		//@desc		Specify an additional camera component - the velocity-based "lead", or amount the camera should track in front of a sprite
-		//@param	LeadX		Percentage of X velocity to add to the camera's motion
-		//@param	LeadY		Percentage of Y velocity to add to the camera's motion
+        /// <summary>
+        /// Specify an additional camera component - the velocity-based "lead", or amount the camera should track in front of a sprite
+        /// </summary>
+        /// <param name="LeadX">Percentage of X velocity to add to the camera's motion</param>
+        /// <param name="LeadY">Percentage of Y velocity to add to the camera's motion</param>
 		static public void followAdjust(float LeadX, float LeadY)
 		{
 			followLead = new Vector2(LeadX, LeadY);
 		}
 
-        /**
-         * Specify the boundaries of the level or where the camera is allowed to move.
-         * 
-         * @param	MinX				The smallest X value of your level (usually 0).
-         * @param	MinY				The smallest Y value of your level (usually 0).
-         * @param	MaxX				The largest X value of your level (usually the level width).
-         * @param	MaxY				The largest Y value of your level (usually the level height).
-         * @param	UpdateWorldBounds	Whether the quad tree's dimensions should be updated to match.
-         */
+        /// <summary>
+        /// Specify the boundaries of the level or where the camera is allowed to move.
+        /// </summary>
+        /// <param name="MinX">The smallest X value of your level (usually 0).</param>
+        /// <param name="MinY">The smallest Y value of your level (usually 0).</param>
+        /// <param name="MaxX">The largest X value of your level (usually the level width).</param>
+        /// <param name="MaxY">The largest Y value of your level (usually the level height).</param>
         static public void followBounds(int MinX, int MinY, int MaxX, int MaxY)
         {
             followBounds(MinX, MinY, MaxX, MaxY, true);
         }
+        /// <summary>
+        /// Specify the boundaries of the level or where the camera is allowed to move.
+        /// </summary>
+        /// <param name="MinX">The smallest X value of your level (usually 0).</param>
+        /// <param name="MinY">The smallest Y value of your level (usually 0).</param>
+        /// <param name="MaxX">The largest X value of your level (usually the level width).</param>
+        /// <param name="MaxY">The largest Y value of your level (usually the level height).</param>
+        /// <param name="UpdateWorldBounds">Whether the quad tree's dimensions should be updated to match.</param>
         static public void followBounds(int MinX, int MinY, int MaxX, int MaxY, bool UpdateWorldBounds)
 		{
             followMin = new Point(-MinX, -MinY);
@@ -577,9 +633,9 @@ namespace org.flixel
             doFollow();
         }
 
-        /**
-         * Stops and resets the camera.
-         */
+        /// <summary>
+        /// Stops and resets the camera.
+        /// </summary>
         internal static void unfollow()
         {
             followTarget = null;
@@ -591,9 +647,12 @@ namespace org.flixel
             _scrollTarget = new Vector2();
         }
 
-        /**
-         * Called by <code>FlxGame</code> to set up <code>FlxG</code> during <code>FlxGame</code>'s constructor.
-         */
+        /// <summary>
+        /// Called by <code>FlxGame</code> to set up <code>FlxG</code> during <code>FlxGame</code>'s constructor.
+        /// </summary>
+        /// <param name="Game">Game</param>
+        /// <param name="Width">W</param>
+        /// <param name="Height">H</param>
         static internal void setGameData(FlxGame Game, int Width, int Height)
 		{
             _game = Game;
@@ -622,9 +681,9 @@ namespace org.flixel
         }
 
 
-        /**
-         * Internal function that updates the camera and parallax scrolling.
-         */
+        /// <summary>
+        /// Internal function that updates the camera and parallax scrolling.
+        /// </summary>
         internal static void doFollow()
 		{
 			if(followTarget != null)
@@ -659,7 +718,5 @@ namespace org.flixel
 				}
 			}
 		}
-
-		
     }
 }
