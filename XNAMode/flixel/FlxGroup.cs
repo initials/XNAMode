@@ -6,22 +6,27 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace org.flixel
 {
-    //@desc		This class wraps the baseline .NET collection and adds a couple of extra functions...
+    /// <summary>
+    /// This class wraps the baseline .NET collection and adds a couple of extra functions...
+    /// </summary>
     public class FlxGroup : FlxObject
     {
-		/**
-		 * Array of all the <code>FlxObject</code>s that exist in this layer.
-		 */
+		/// <summary>
+        /// Array of all the <code>FlxObject</code>s that exist in this layer.
+		/// </summary>
 		public List<FlxObject> members;
-		/**
-		 * Helpers for moving/updating group members.
-		 */
+		/// <summary>
+        /// Helpers for moving/updating group members.
+		/// </summary>
 		protected Vector2 _last;
+        /// <summary>
+        /// Helpers for moving/updating group members.
+        /// </summary>
 		protected bool _first;
 
-		/**
-		 * Constructor
-		 */
+		/// <summary>
+        /// Constructor
+		/// </summary>
 		public FlxGroup()
             : base()
 		{
@@ -32,18 +37,22 @@ namespace org.flixel
 			_first = true;
 		}
 
-		/**
-		 * Adds a new <code>FlxObject</code> subclass (FlxSprite, FlxBlock, etc) to the list of children
-		 *
-		 * @param	Object			The object you want to add
-		 * @param	ShareScroll		Whether or not this FlxObject should sync up with this layer's scrollFactor
-		 *
-		 * @return	The same <code>FlxObject</code> object that was passed in.
-		 */
+        /// <summary>
+        /// Adds a new <code>FlxObject</code> subclass (FlxSprite, FlxBlock, etc) to the list of children
+        /// </summary>
+        /// <param name="Object">The object you want to add</param>
+        /// 
         public FlxObject add(FlxObject Object)
         {
             return add(Object, false);
         }
+
+        /// <summary>
+        /// Adds a new <code>FlxObject</code> subclass (FlxSprite, FlxBlock, etc) to the list of children
+        /// </summary>
+        /// <param name="Object">The object you want to add</param>
+        /// <param name="ShareScroll">Whether or not this FlxObject should sync up with this layer's scrollFactor</param>
+        /// <returns>The same <code>FlxObject</code> object that was passed in.</returns>
         public FlxObject add(FlxObject Object, bool ShareScroll)
 		{
             if (members.IndexOf(Object) < 0)
@@ -54,14 +63,12 @@ namespace org.flixel
 			return Object;
 		}
 
-		/**
-		 * Replaces an existing <code>FlxObject</code> with a new one.
-		 * 
-		 * @param	OldObject	The object you want to replace.
-		 * @param	NewObject	The new object you want to use instead.
-		 * 
-		 * @return	The new object.
-		 */
+        /// <summary>
+        /// Replaces an existing <code>FlxObject</code> with a new one.
+        /// </summary>
+        /// <param name="OldObject">The object you want to replace.</param>
+        /// <param name="NewObject">The new object you want to use instead.</param>
+        /// <returns>The new object.</returns>
 		public FlxObject replace(FlxObject OldObject, FlxObject NewObject)
 		{
 			int index = members.IndexOf(OldObject);
@@ -71,18 +78,21 @@ namespace org.flixel
 			return NewObject;
 		}
 
-		/**
-		 * Removes an object from the group.
-		 * 
-		 * @param	Object	The <code>FlxObject</code> you want to remove.
-		 * @param	Splice	Whether the object should be cut from the array entirely or not.
-		 * 
-		 * @return	The removed object.
-		 */
+        /// <summary>
+        /// Removes an object from the group.
+        /// </summary>
+        /// <param name="Object">The <code>FlxObject</code> you want to remove.</param>
+        /// <returns></returns>
         public FlxObject remove(FlxObject Object)
         {
             return remove(Object, false);
         }
+        /// <summary>
+        /// Removes an object from the group.
+        /// </summary>
+        /// <param name="Object">The <code>FlxObject</code> you want to remove.</param>
+        /// <param name="Splice">Whether the object should be cut from the array entirely or not.</param>
+        /// <returns>The removed object.</returns>
 		public FlxObject remove(FlxObject Object, bool Splice)
 		{
             int index = members.IndexOf(Object);
@@ -95,30 +105,27 @@ namespace org.flixel
 			return Object;
 		}
 
-        /**
-         * Call this function to sort the group according to a particular value and order.
-         * Due to differences in language capabilities between AS3/C#, you must implement
-         * your own IComparer interface for each sorting operation you want to perform.
-         * 
-         * For example, to sort game objects for Zelda-style overlaps you might call
-         * sort by an objects "y" member at the bottom of your <code>FlxState.update()</code>
-         * override.  To sort all existing objects after a big explosion or bomb attack,
-         * you might sort by "exists."
-         * 
-         * @param	Sorter	The <code>IComparer</code> object which will receive the sorting
-         *          comparisons.
-         */
+        /// <summary>
+        /// Call this function to sort the group according to a particular value and order.
+        /// Due to differences in language capabilities between AS3/C#, you must implement
+        /// your own IComparer interface for each sorting operation you want to perform.
+        /// 
+        /// For example, to sort game objects for Zelda-style overlaps you might call
+        /// sort by an objects "y" member at the bottom of your <code>FlxState.update()</code>
+        /// override.  To sort all existing objects after a big explosion or bomb attack,
+        /// you might sort by "exists."
+        /// </summary>
+        /// <param name="Sorter">Sorter	The <code>IComparer</code> object which will receive the sorting comparisons. </param>
         public void sort(IComparer<FlxObject> Sorter)
 		{
             members.Sort(Sorter);
 		}
 
-		/**
-		 * Call this function to retrieve the first object with exists == false in the group.
-		 * This is handy for recycling in general, e.g. respawning enemies.
-		 * 
-		 * @return	A <code>FlxObject</code> currently flagged as not existing.
-		 */
+        /// <summary>
+        /// Call this function to retrieve the first object with exists == false in the group.
+        /// This is handy for recycling in general, e.g. respawning enemies.
+        /// </summary>
+        /// <returns>	A <code>FlxObject</code> currently flagged as not existing.</returns>
 		public FlxObject getFirstAvail()
 		{
 			int i = 0;
@@ -133,12 +140,11 @@ namespace org.flixel
 			return null;
 		}
 
-		/**
-		 * Call this function to retrieve the first index set to 'null'.
-		 * Returns -1 if no index stores a null object.
-		 * 
-		 * @return	An <code>int</code> indicating the first null slot in the group.
-		 */
+        /// <summary>
+        /// Call this function to retrieve the first index set to 'null'.
+        /// Returns -1 if no index stores a null object.
+        /// </summary>
+        /// <returns>An <code>int</code> indicating the first null slot in the group.</returns>
 		public int getFirstNull()
 		{
 			int i = 0;
@@ -153,14 +159,12 @@ namespace org.flixel
 			return -1;
 		}
 
-		/**
-		 * Finds the first object with exists == false and calls reset on it.
-		 * 
-		 * @param	X	The new X position of this object.
-		 * @param	Y	The new Y position of this object.
-		 * 
-		 * @return	Whether a suitable <code>FlxObject</code> was found and reset.
-		 */
+        /// <summary>
+        /// Finds the first object with exists == false and calls reset on it.
+        /// </summary>
+        /// <param name="X">The new X position of this object.</param>
+        /// <param name="Y">The new Y position of this object.</param>
+        /// <returns>Whether a suitable <code>FlxObject</code> was found and reset.</returns>
 		public bool resetFirstAvail(int X, int Y)
 		{
 			FlxObject o = getFirstAvail();
@@ -170,12 +174,11 @@ namespace org.flixel
 			return true;
 		}
 
-		/**
-		 * Call this function to retrieve the first object with exists == true in the group.
-		 * This is handy for checking if everything's wiped out, or choosing a squad leader, etc.
-		 * 
-		 * @return	A <code>FlxObject</code> currently flagged as existing.
-		 */
+        /// <summary>
+        /// Call this function to retrieve the first object with exists == true in the group.
+        /// This is handy for checking if everything's wiped out, or choosing a squad leader, etc.
+        /// </summary>
+        /// <returns>A <code>FlxObject</code> currently flagged as existing.</returns>
 		public FlxObject getFirstExtant()
 		{
 			int i = 0;

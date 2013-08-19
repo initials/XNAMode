@@ -952,6 +952,28 @@ namespace org.flixel
 
             return hit;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        private static Random randomTicks = new Random((int)DateTime.Now.Ticks);
+
+        /// <summary>
+        /// Generate a random string
+        /// </summary>
+        /// <param name="size">of this length</param>
+        /// <returns></returns>
+        static public string randomString(int size)
+        {
+            StringBuilder builder = new StringBuilder();
+            char ch;
+            for (int i = 0; i < size; i++)
+            {
+                ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * randomTicks.NextDouble() + 65)));
+                builder.Append(ch);
+            }
+
+            return builder.ToString();
+        }
 
     }
 }

@@ -149,6 +149,7 @@
     <Compile Include="GameSelectionMenuState.cs" />
     <Compile Include="hawksnest\Actors\Actor.cs" />
     <Compile Include="hawksnest\Actors\Automaton.cs" />
+    <Compile Include="hawksnest\Arrow.cs" />
     <Compile Include="hawksnest\CaveState.cs" />
     <Compile Include="hawksnest\Actors\Corsair.cs" />
     <Compile Include="hawksnest\Actors\Executor.cs" />
