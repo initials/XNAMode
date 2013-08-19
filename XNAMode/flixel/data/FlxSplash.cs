@@ -55,7 +55,7 @@ namespace org.flixel
             //tra.startFadeIn();
             //add(tra);
 
-            FlxG.transition.startFadeIn();
+            FlxG.transition.startFadeIn(0.015f);
 
 
 

@@ -55,16 +55,13 @@ namespace XNAMode
         override public void create()
         {
 
-            
+            FlxG.showHud();
+
             FlxG.backColor = new Color(0xFF, 0xC6, 0x5E);
 
             //FlxG.backColor = Color.Black;
 
             base.create();
-
-
-
-
 
             string levelData = FlxU.randomString(10);
             FlxG.log("levelData: " + levelData);
@@ -107,19 +104,18 @@ namespace XNAMode
             actors = new FlxGroup();
             _bullets = new FlxGroup();
 
-            int i = 0;
-
-            for (i = 0; i < 2000; i++)
-                _bullets.add(new Fireball());
-
-            add(_bullets);
-
-
-
-
+            //Vampire
             int[] p = cav.findRandomSolid(decr);
             vampire = new Vampire(p[1] * 16, p[0] * 16);
             actors.add(vampire);
+
+
+            // Warlock
+            int i = 0;
+
+            for (i = 0; i < 100; i++)
+                _bullets.add(new Fireball());
+            add(_bullets);
 
             p = cav.findRandomSolid(decr);
             warlock = new Warlock(p[1] * 16, p[0] * 16, _bullets.members);
@@ -314,14 +310,8 @@ namespace XNAMode
 
                 (actors.members[x] as Actor).isPlayerControlled = true;
                 FlxG.follow(actors.members[x], FOLLOW_LERP);
-                p1CurrentActor.text = actors.members[x].ToString();
-
-                //(actors.members[x] as Actor).ToString()
-
-
+                FlxG.setHudText(1,actors.members[x].GetType().Name);
             }
-
-
 
             /*
              * 			

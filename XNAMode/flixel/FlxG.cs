@@ -29,7 +29,7 @@ namespace org.flixel
 		 * If you build and maintain your own version of flixel,
 		 * you can give it your own name here.  Appears in the console.
 		 */
-		static public string LIBRARY_NAME = "X-flixel";
+		static public string LIBRARY_NAME = "X-flixel-initials";
 		/**
 		 * Assign a major version to your library.
 		 * Appears before the decimal in the console.
@@ -245,6 +245,24 @@ namespace org.flixel
          * @param	Data		Anything you want to log to the console.
          */
         public static void log(string Data) { _game._console.log(Data); }
+
+        /// <summary>
+        /// public access to showing the hud
+        /// </summary>
+        public static void showHud() { _game._hud.showHud(); }
+
+        /// <summary>
+        /// public access to hiding the hud
+        /// </summary>
+        public static void hideHud() { _game._hud.hideHud(); }
+
+        /// <summary>
+        /// Set's the hud text to, for the player number
+        /// </summary>
+        /// <param name="Player">Number of the player you want the hud text to be.</param>
+        /// <param name="Data">String to enter.</param>
+        public static void setHudText(int Player, string Data) { _game._hud.setHudText(Player, Data); }
+
 
         /**
          * Set <code>pause</code> to true to pause the game, all sounds, and display the pause popup.

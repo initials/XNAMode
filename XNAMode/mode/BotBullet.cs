@@ -18,7 +18,7 @@ namespace XNAMode
 
 			loadGraphic(ImgBullet,true);
 			addAnimation("idle", new int[] {0, 1}, 50);
-			addAnimation("poof", new int[] {2, 3, 4}, 50, false);
+			addAnimation("explode", new int[] {2, 3, 4}, 50, false);
 			exists = false;
 		}
 		
@@ -39,7 +39,7 @@ namespace XNAMode
 			if(onScreen()) FlxG.play(SndHit);
 			dead = true;
 			solid = false;
-			play("poof");
+			play("explode");
 		}
 		
 		public void shoot(int X, int Y, int VelocityX, int VelocityY)

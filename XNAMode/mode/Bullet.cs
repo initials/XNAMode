@@ -33,7 +33,7 @@ namespace XNAMode
 			addAnimation("down", new int[] {1});
 			addAnimation("left",new int[] {2});
 			addAnimation("right",new int[] {3});
-			addAnimation("poof", new int[] {4, 5, 6, 7}, 50, false);
+			addAnimation("explode", new int[] {4, 5, 6, 7}, 50, false);
 		}
 		
 		override public void update()
@@ -53,7 +53,7 @@ namespace XNAMode
 			if(onScreen()) FlxG.play(SndHit);
 			dead = true;
 			solid = false;
-			play("poof");
+			play("explode");
 		}
 		
 		public void shoot(int X, int Y, int VelocityX, int VelocityY)

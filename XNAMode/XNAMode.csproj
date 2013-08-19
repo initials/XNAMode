@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FlixelEntryPoint.cs" />
+    <Compile Include="flixel\data\FlxHud.cs" />
     <Compile Include="flixel\FlxCaveGenerator.cs" />
     <Compile Include="flixel\FlxOgmoLevel.cs" />
     <Compile Include="flixel\FlxOnlineStatCounter.cs" />

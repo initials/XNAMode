@@ -35,6 +35,8 @@ namespace org.flixel
         internal FlxSprite[] _soundTrayBars;
         internal FlxText _soundCaption;
         internal FlxConsole _console;
+        internal FlxHud _hud;
+
 
 		//pause stuff
         private string[] _helpStrings;
@@ -110,6 +112,10 @@ namespace org.flixel
         //@benbaird initializes the console, the pause overlay, and the soundbar
         private void initConsole()
         {
+
+            _hud = new FlxHud(targetLeft, targetWidth);
+
+
             //initialize the debug console
             _console = new FlxConsole(targetLeft, targetWidth);
 
@@ -237,6 +243,8 @@ namespace org.flixel
 
             //Animate flixel HUD elements
             _console.update();
+
+            _hud.update();
 
 			if(_soundTrayTimer > 0)
 				_soundTrayTimer -= FlxG.elapsed;
@@ -396,6 +404,12 @@ namespace org.flixel
             {
                 _console.render(FlxG.spriteBatch);
             }
+
+            if (_hud.visible)
+            {
+                _hud.render(FlxG.spriteBatch);
+            }
+
             FlxG.spriteBatch.End();
         }
 

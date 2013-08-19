@@ -314,6 +314,16 @@ namespace org.flixel
 
         }
 
+        /// <summary>
+        /// Looks for any tiles that are "ground tiles"
+        /// ! = new tile.
+        /// !00!
+        /// 1!!1
+        /// 1111
+        /// 0000
+        /// </summary>
+        /// <param name="inMat">multi array to analyse</param>
+        /// <returns>multi array that has decorations only</returns>
         public int[,] createDecorationsMap(int[,] inMat)
         {
             int numRows = inMat.GetLength(0);
@@ -338,6 +348,36 @@ namespace org.flixel
             }
             return outMat;
         }
+
+
+
+
+        public int[,] createHangingDecorationsMap(int[,] inMat)
+        {
+            int numRows = inMat.GetLength(0);
+            int numCols = inMat.GetLength(1);
+
+            int[,] outMat = this.genInitMatrix(_numTilesRows, _numTilesCols);
+
+            for (int _y = 1; _y < numRows - 2; _y++)
+            {
+                for (int _x = 1; _x < numCols - 1; _x++)
+                {
+                    // test for flat surface with empty above 
+                    if (inMat[_y, _x] == 0 && inMat[_y - 1, _x] == 1 && inMat[_y + 1, _x - 1] == 1 && inMat[_y + 1, _x + 1] == 1)
+                    {
+                        outMat[_y, _x] = 1;
+                    }
+                    else
+                    {
+                        outMat[_y, _x] = 0;
+                    }
+                }
+            }
+            return outMat;
+        }
+
+
 
 
         /// <summary>
