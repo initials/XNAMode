@@ -16,16 +16,13 @@ namespace XNAMode
 
         private const float FOLLOW_LERP = 3.0f;
 
-        //private Texture2D Bubbles;
         private Texture2D DecorTex;
-        //private FlxEmitter _bubbles;
-        //private FlxTileblock rotatore;
         private FlxTilemap tiles;
         private FlxTilemap decorations;
 
-
         protected FlxGroup _bullets;
-        
+        protected FlxGroup _arrows;
+        protected FlxGroup _bulletsAll;
 
         private Automaton automaton;
         private Corsair corsair;
@@ -45,11 +42,7 @@ namespace XNAMode
         private Warlock warlock;
         private Vampire vampire;
         private Zombie zombie;
-
         private FlxText p1CurrentActor;
-
-
-
         private FlxGroup actors;
 
         override public void create()
@@ -58,8 +51,6 @@ namespace XNAMode
             FlxG.showHud();
 
             FlxG.backColor = new Color(0xFF, 0xC6, 0x5E);
-
-            //FlxG.backColor = Color.Black;
 
             base.create();
 
@@ -109,6 +100,8 @@ namespace XNAMode
 
             actors = new FlxGroup();
             _bullets = new FlxGroup();
+            _bulletsAll = new FlxGroup();
+            _arrows = new FlxGroup();
 
             //Vampire
             int[] p = cav.findRandomSolid(decr);
@@ -118,7 +111,6 @@ namespace XNAMode
 
             // Warlock
             int i = 0;
-
             for (i = 0; i < 100; i++)
                 _bullets.add(new Fireball());
             add(_bullets);
@@ -130,7 +122,6 @@ namespace XNAMode
             p = cav.findRandomSolid(decr);
             zombie = new Zombie(p[1] * 16, p[0] * 16);
             actors.add(zombie);
-
 
             p = cav.findRandomSolid(decr);
             automaton = new Automaton(p[1] * 16, p[0] * 16);

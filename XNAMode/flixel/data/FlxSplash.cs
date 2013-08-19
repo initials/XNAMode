@@ -37,28 +37,16 @@ namespace org.flixel
             _fSound = FlxG.Content.Load<SoundEffect>("flixel/flixel");
 
             _initialsLogo = FlxG.Content.Load<Texture2D>("initials/initialsLogo");
-            //_tagtoneSound = FlxG.Content.Load<SoundEffect>("initials/initials_empire_tagtone3");
 
             _logo = new FlxSprite();
             _logo.loadGraphic(_initialsLogo, false, false, 216,24);
             _logo.x = FlxG.width / 2 - 216 / 2;
             _logo.y = FlxG.height / 2 - 24;
-            //_logo.color = new Color(0,0,0);
             add(_logo);
-
-            //_tagtoneSound.Play(FlxG.volume, 0.0f, 0.0f);
 
             FlxG.play(SndTag,1.0f);
 
-            //FlxTransition tra = new FlxTransition();
-            //tra.createSprites(null, Color.DarkViolet, 18, 12, 40, 40,0,20,0.01f);
-            //tra.startFadeIn();
-            //add(tra);
-
             FlxG.transition.startFadeIn(0.015f);
-
-
-
         }
 
         public static void setSplashInfo(Color flixelColor, FlxState nextScreen)
