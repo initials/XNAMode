@@ -49,11 +49,13 @@ namespace XNAMode
         override public void create()
         {
 
-            FlxG.showHud();
 
             FlxG.backColor = new Color(0xFF, 0xC6, 0x5E);
 
             base.create();
+
+            FlxG.resetHud();
+            FlxG.showHud();
 
             string levelData = FlxU.randomString(10);
             FlxG.log("levelData: " + levelData);
@@ -328,13 +330,16 @@ namespace XNAMode
                 FlxG.showBounds = !FlxG.showBounds;
 
 
-            if (FlxG.mouse.pressed())
+            if (FlxG.mouse.pressedRightButton())
             {
-
                 tiles.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 0, true);
                 decorations.setTile((int)FlxG.mouse.x / 16, ((int)FlxG.mouse.y / 16) - 1, 0, true);
-
             }
+            if (FlxG.mouse.pressedLeftButton())
+            {
+                tiles.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 1, true);
+            }
+
 
             if (FlxG.keys.justPressed(Keys.K))
             {

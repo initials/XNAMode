@@ -76,6 +76,8 @@ namespace org.flixel
 
         /// <summary>
         /// Override for drawing bounding box. Used to turn off bg sprites bounding boxes
+        /// <para>True = displays bounding box.</para>
+        /// <para>False = never will display bounding box.</para>
         /// </summary>
         public bool boundingBoxOverride;
 

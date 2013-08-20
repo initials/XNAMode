@@ -297,9 +297,7 @@ namespace org.flixel
                 return;
             _sound.Volume = FlxG.getMuteValue() * FlxG.volume * _volume * _volumeAdjust;
 		}
-
     }
-
 
     public static class FlxSoundManager
     {

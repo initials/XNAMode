@@ -33,48 +33,27 @@ namespace XNAMode
 
             base.create();
 
-            //FlxSprite bg = new FlxSprite(0, 0);
-            //bg.loadGraphic(FlxG.Content.Load<Texture2D>("initials/Ambience"));
-            //bg.scale = 2;
-            //add(bg);
-
-
-
-            //c28883
-
+            FlxG.showHud();
 
             FlxTileblock bg = new FlxTileblock(0, FlxG.height - 256, 256 * 3, 256);
-
             bg.loadTiles(FlxG.Content.Load<Texture2D>("initials/Ambience"), 256, 256, 0);
-
             add(bg);
-
-
 
             hasCheckedSave = false;
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
-
+            
             _menuItems = new FlxText(10, 10, FlxG.width);
-
             _menuItems.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
-
-            _menuItems.text = "Homewreckrz\n\nEnter name, use @ symbol to specify Twitter handle.\nPress enter when complete.";
-
+            _menuItems.text = "Homewreckr\n\nEnter name, use @ symbol to specify Twitter handle.\nPress enter when complete.";
             add(_menuItems);
 
 
             save = new FlxSave();
-            //save.bind("Mode");
-            //Console.WriteLine(save.data["player_name"]) ;
-
 
             _nameEntry = new FlxText(10, 100, FlxG.width);
-
             _nameEntry.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
-
             _nameEntry.text = "";
-
             add(_nameEntry);
 
             play = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 30, playGame, FlxButton.ControlPadA);
@@ -82,12 +61,9 @@ namespace XNAMode
             play.loadText(new FlxText(2, 2, 100, "Play Game"), new FlxText(2, 2, 100, "WRECK HOMEZ"));
             add(play);
 
+            FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54 , FlxG.height - 27);
+
             FlxG.flash.start(Color.Black, 1.5f);
-
-
-
-
-
         }
 
         override public void update()
@@ -111,9 +87,6 @@ namespace XNAMode
             }
 
             PlayerIndex pi;
-
-            //_nameEntry.text = FlxG.keys.trackingString;
-
             bool shift = FlxG.keys.SHIFT;
 
             if (FlxG.keys.isNewKeyPress(Keys.A, null, out pi)) _nameEntry.text += shift ? "A" : "a";
@@ -174,16 +147,13 @@ namespace XNAMode
 
                 if (save.waitingOnDeviceSelector)
                 {
-                    //Console.WriteLine("enter waitingOnDeviceSelector");
                     return;
                 }
                 else if (save.canSave)
                 {
                     hasCheckedSave = true;
-                    Console.WriteLine("enter can save");
                     if (save.bind("Mode"))
                     {
-                        //Console.WriteLine("bound");
                         if (save.data["player_name"] == null)
                             _nameEntry.text = "";
                         else
@@ -191,8 +161,6 @@ namespace XNAMode
                         FlxG.log("Player name is: " + save.data["player_name"]);
                         FlxG.username = save.data["player_name"];
                         save.forceSave(0);
-
-                        //FlxG.transition.startFadeIn();
                     }
                 }
             }

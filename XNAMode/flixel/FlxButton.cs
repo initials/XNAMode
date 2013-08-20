@@ -158,16 +158,16 @@ namespace org.flixel
             pauseProof = false;
             _controllerButtonIndex = Button;
 
-            _controllerButton = new FlxSprite((int)width + 5, 0);
-            _controllerButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_32"), true, false, 31, 32);
-            _controllerButton.width = 29;
-            _controllerButton.height = 30;
-            _controllerButton.offset.X = 1;
-            _controllerButton.offset.Y = 1;
-            _controllerButton.addAnimation("frame", new int[] {Button});
-            _controllerButton.play("frame");
-            _controllerButton.solid = false;
-            add(_controllerButton, true);
+            //_controllerButton = new FlxSprite((int)width + 5, 0);
+            //_controllerButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_32"), true, false, 31, 32);
+            //_controllerButton.width = 29;
+            //_controllerButton.height = 30;
+            //_controllerButton.offset.X = 1;
+            //_controllerButton.offset.Y = 1;
+            //_controllerButton.addAnimation("frame", new int[] {Button});
+            //_controllerButton.play("frame");
+            //_controllerButton.solid = false;
+            //add(_controllerButton, true);
         }
 
         /// <summary>
@@ -358,6 +358,14 @@ namespace org.flixel
             
 
 
+        }
+        /// <summary>
+        /// returns the position of the game pad position.
+        /// </summary>
+        /// <returns></returns>
+        public Vector2 getGamepadButtonPosition()
+        {
+            return new Vector2(_controllerButton.x, _controllerButton.y);
         }
 
     }

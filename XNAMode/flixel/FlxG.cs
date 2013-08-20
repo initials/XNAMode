@@ -92,6 +92,12 @@ namespace org.flixel
 		static public float timeScale;
 
         /// <summary>
+        /// A holder for the level of zoom the game is.
+        /// </summary>
+        static public int zoom;
+
+
+        /// <summary>
         /// A reference or pointer to the current FlxState object being used by the game
         /// </summary>
         public static FlxState state
@@ -291,6 +297,18 @@ namespace org.flixel
         /// <param name="Data">String to enter.</param>
         public static void setHudText(int Player, string Data) { _game._hud.setHudText(Player, Data); }
 
+        /// <summary>
+        /// resets strings to "" and positions to zero
+        /// </summary>
+        public static void resetHud() { _game._hud.reset(); }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Button"></param>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        public static void setHudGamepadButton(int Button, float X, float Y) { _game._hud.setHudGamepadButton(Button, X , Y); }
 
         /// <summary>
         /// Set <code>pause</code> to true to pause the game, all sounds, and display the pause popup.
