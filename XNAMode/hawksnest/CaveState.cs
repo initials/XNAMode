@@ -214,6 +214,7 @@ namespace XNAMode
             FlxU.overlap(actors, _bullets, overlapped);
             FlxU.collide(tiles, _bulletsAll);
 
+
             /*
             float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
             float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;

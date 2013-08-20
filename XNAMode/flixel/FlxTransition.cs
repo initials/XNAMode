@@ -128,14 +128,6 @@ namespace org.flixel
         {
             startFadeIn(_speed);
         }
-
-        public void startFadeOut()
-        {
-            startFadeOut(_speed); 
-        }
-
-
-
         public void startFadeIn(float speed)
         {
             _speed = speed;
@@ -152,8 +144,24 @@ namespace org.flixel
 
             }
         }
+        
+        public void startFadeOut()
+        {
+            startFadeOut(_speed);
+        }
 
         public void startFadeOut(float speed)
+        {
+            startFadeOut(speed, 0, 0);
+        }
+
+        /// <summary>
+        /// Starts the fade out process, all sprites start at zero scale.
+        /// </summary>
+        /// <param name="speed"></param>
+        /// <param name="Angle"></param>
+        /// <param name="AngularVelocity"></param>
+        public void startFadeOut(float speed, float Angle, float AngularVelocity)
         {
             _speed = speed;
             complete = false;
@@ -166,10 +174,10 @@ namespace org.flixel
             {
                 o = members[i++] as FlxSprite;
                 o.scale = 0.0f;
-
+                o.angle = Angle;
+                o.angularVelocity = AngularVelocity;
             }
         }
-
 
 
         public void updateTransition()
