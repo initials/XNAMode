@@ -16,7 +16,7 @@ namespace XNAMode
         public Medusa(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            actorName = "";
+            actorName = "Medusa";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/medusa_ss_35x30"), true, false, 35, 30);
 

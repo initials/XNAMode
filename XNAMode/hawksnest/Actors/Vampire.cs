@@ -13,15 +13,11 @@ namespace XNAMode
     {
         private Texture2D ImgVampire;
 
-        /// <summary>
-        /// Determines whether or not game inputs affect charactetr.
-        /// </summary>
-        //public static bool isPlayerControlled;
-
         public Vampire(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            actorName = "";
+            actorName = "Count Esperanza";
+
             ImgVampire = FlxG.Content.Load<Texture2D>("initials/vampire_ss_14x19");
 
             loadGraphic(ImgVampire, true, false, 14, 19);

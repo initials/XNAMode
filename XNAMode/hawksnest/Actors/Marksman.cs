@@ -16,7 +16,8 @@ namespace XNAMode
         public Marksman(int xPos, int yPos, List<FlxObject> Bullets)
             : base(xPos, yPos)
         {
-            actorName = "";
+            actorName = "Marqu";
+
             _bullets = Bullets;
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/marksman_ss_31x24"), true, false, 31, 24);

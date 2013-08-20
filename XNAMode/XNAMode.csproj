@@ -46,6 +46,8 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <PlatformTarget>x86</PlatformTarget>
     <XnaCompressContent>false</XnaCompressContent>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
@@ -58,6 +60,8 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <PlatformTarget>x86</PlatformTarget>
     <XnaCompressContent>true</XnaCompressContent>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
@@ -118,7 +122,6 @@
     <Compile Include="flixel\FlxCaveGenerator.cs" />
     <Compile Include="flixel\FlxOgmoLevel.cs" />
     <Compile Include="flixel\FlxOnlineStatCounter.cs" />
-    <Compile Include="flixel\FlxSaveData.cs" />
     <Compile Include="flixel\data\FlxAnim.cs" />
     <Compile Include="flixel\data\FlxConsole.cs" />
     <Compile Include="flixel\data\FlxFactory.cs" />

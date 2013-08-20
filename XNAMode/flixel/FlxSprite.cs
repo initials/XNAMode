@@ -43,6 +43,7 @@ namespace org.flixel
         /// Blending modes, just like Photoshop!
         /// E.g. "multiply", "screen", etc.
         /// @default null
+        /// Currently not working.!!!
         /// </summary>
 		public string blend;
 

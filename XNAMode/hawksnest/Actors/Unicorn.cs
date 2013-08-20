@@ -16,7 +16,7 @@ namespace XNAMode
         public Unicorn(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            actorName = "Fabulous";
+            actorName = "Fabulous Diamond Joe";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/unicorn_ss_20x25"), true, false, 20, 25);
 

@@ -13,11 +13,11 @@ namespace XNAMode
     {
         private Texture2D ImgWarlock;
 
-
         public Warlock(int xPos, int yPos, List<FlxObject> Bullets)
             : base(xPos, yPos)
         {
-            actorName = "";
+            actorName = "Terry";
+
             _bullets = Bullets;
 
             isPlayerControlled = false;

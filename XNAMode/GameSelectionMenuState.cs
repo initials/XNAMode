@@ -51,7 +51,6 @@ namespace XNAMode
 
 
 
-
             hasCheckedSave = false;
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
@@ -78,15 +77,10 @@ namespace XNAMode
 
             add(_nameEntry);
 
-
-            // e4b48a dda16d
-
             play = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 30, playGame, FlxButton.ControlPadA);
             play.loadGraphic((new FlxSprite()).createGraphic(100, 20, new Color(0xe4, 0xb4, 0x8a)), (new FlxSprite()).createGraphic(102, 22, new Color(0xdd, 0xa1, 0x6d)));
             play.loadText(new FlxText(2, 2, 100, "Play Game"), new FlxText(2, 2, 100, "WRECK HOMEZ"));
             add(play);
-
-
 
             FlxG.flash.start(Color.Black, 1.5f);
 
@@ -216,7 +210,9 @@ namespace XNAMode
             base.update();
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void playGame()
         {
             if (_nameEntry.text == "")
