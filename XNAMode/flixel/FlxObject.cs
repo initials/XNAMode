@@ -5,11 +5,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace org.flixel
 {
-	/**
-	 * This is the base class for most of the display objects (<code>FlxSprite</code>, <code>FlxText</code>, etc).
-	 * It includes some basic attributes about game objects, including retro-style flickering,
-	 * basic state information, sizes, scrolling, and basic physics & motion.
-	 */
+    /// <summary>
+    /// This is the base class for most of the display objects (<code>FlxSprite</code>, <code>FlxText</code>, etc).
+    /// It includes some basic attributes about game objects, including retro-style flickering,
+    /// basic state information, sizes, scrolling, and basic physics & motion.
+    /// </summary>
     public class FlxObject
     {
         /// <summary>

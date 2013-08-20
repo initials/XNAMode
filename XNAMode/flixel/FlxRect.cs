@@ -5,6 +5,9 @@ using System.Text;
 
 namespace org.flixel
 {
+    /// <summary>
+    /// A simple rectangle helper class.
+    /// </summary>
     public class FlxRect
     {
         public float x;

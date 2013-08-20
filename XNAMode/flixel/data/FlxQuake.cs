@@ -5,43 +5,43 @@ namespace org.flixel
 {
     public class FlxQuake
     {
-		/**
-		 * The game's level of zoom.
-		 */
+		/// <summary>
+        /// The game's level of zoom.
+		/// </summary>
 		protected int _zoom;
-		/**
-		 * The intensity of the quake effect: a percentage of the screen's size.
-		 */
+		/// <summary>
+        /// The intensity of the quake effect: a percentage of the screen's size.
+		/// </summary>
 		protected float _intensity;
-		/**
-		 * Set to countdown the quake time.
-		 */
+		/// <summary>
+        /// Set to countdown the quake time.
+		/// </summary>
 		protected float _timer;
 
-		/**
-		 * The amount of X distortion to apply to the screen.
-		 */
+		/// <summary>
+        /// The amount of X distortion to apply to the screen.
+		/// </summary>
 		public int x = 0;
-		/**
-		 * The amount of Y distortion to apply to the screen.
-		 */
+		/// <summary>
+        /// The amount of Y distortion to apply to the screen.
+		/// </summary>
 		public int y = 0;
 
-		/**
-		 * Constructor.
-		 */
+		/// <summary>
+        /// Constructor.
+		/// </summary>
+		/// <param name="Zoom"></param>
 		public FlxQuake(int Zoom)
 		{
 			_zoom = Zoom;
 			start(0, 0);
 		}
 
-		/**
-		 * Reset and trigger this special effect.
-		 * 
-		 * @param	Intensity	Percentage of screen size representing the maximum distance that the screen can move during the 'quake'.
-		 * @param	Duration	The length in seconds that the "quake" should last.
-		 */
+        /// <summary>
+        /// Reset and trigger this special effect.
+        /// </summary>
+        /// <param name="Intensity">Percentage of screen size representing the maximum distance that the screen can move during the 'quake'.</param>
+        /// <param name="Duration">The length in seconds that the "quake" should last.</param>
 		public void start(float Intensity, float Duration)
 		{
 			stop();
@@ -49,9 +49,9 @@ namespace org.flixel
 			_timer = Duration;
 		}
 
-		/**
-		 * Stops this screen effect.
-		 */
+		/// <summary>
+        /// Stops this screen effect.
+		/// </summary>
         public void stop()
 		{
 			x = 0;
@@ -60,9 +60,9 @@ namespace org.flixel
 			_timer = 0;
 		}
 
-		/**
-		 * Updates and/or animates this special effect.
-		 */
+		/// <summary>
+        /// Updates and/or animates this special effect.
+		/// </summary>
         public void update()
 		{
 			if(_timer > 0)

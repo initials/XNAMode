@@ -6,6 +6,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace org.flixel
 {
+    /// <summary>
+    /// Block point struct
+    /// </summary>
     public struct BlockPoint
     {
         /// <summary>

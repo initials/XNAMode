@@ -7,13 +7,13 @@ namespace org.flixel
 {
     public class FlxSound : FlxObject
     {
-		/**
-		 * Whether or not this sound should be automatically destroyed when you switch states.
-		 */
+		/// <summary>
+        /// Whether or not this sound should be automatically destroyed when you switch states.
+		/// </summary>
 		public bool survive;
-		/**
-		 * Whether the sound is currently playing or not.
-		 */
+		/// <summary>
+        /// Whether the sound is currently playing or not.
+		/// </summary>
 		public bool playing;
 
 		protected bool _init;
@@ -65,14 +65,12 @@ namespace org.flixel
 			playing = false;
 		}
 
-		/**
-		 * One of two main setup functions for sounds, this function loads a sound from an embedded MP3.
-		 * 
-		 * @param	EmbeddedSound	An embedded Class object representing an MP3 file.
-		 * @param	Looped			Whether or not this sound should loop endlessly.
-		 * 
-		 * @return	This <code>FlxSound</code> instance (nice for chaining stuff together, if you're into that).
-		 */
+        /// <summary>
+        /// One of two main setup functions for sounds, this function loads a sound from an embedded MP3.
+        /// </summary>
+        /// <param name="EmbeddedSound">An embedded Class object representing an MP3 file.</param>
+        /// <param name="Looped">Whether or not this sound should loop endlessly.</param>
+        /// <returns>This <code>FlxSound</code> instance (nice for chaining stuff together, if you're into that).</returns>
 		public FlxSound loadEmbedded(string EmbeddedSound, bool Looped)
 		{
 			stop();
@@ -85,21 +83,29 @@ namespace org.flixel
 			return this;
 		}
 
-		/**
-		 * Call this function if you want this sound's volume to change
-		 * based on distance from a particular FlxCore object.
-		 * 
-		 * @param	X		The X position of the sound.
-		 * @param	Y		The Y position of the sound.
-		 * @param	Core	The object you want to track.
-		 * @param	Radius	The maximum distance this sound can travel.
-		 * 
-		 * @return	This FlxSound instance (nice for chaining stuff together, if you're into that).
-		 */
+        /// <summary>
+        /// Call this function if you want this sound's volume to change
+        /// based on distance from a particular FlxCore object.
+        /// </summary>
+        /// <param name="X">The X position of the sound.</param>
+        /// <param name="Y">The Y position of the sound.</param>
+        /// <param name="Core">The object you want to track.</param>
+        /// <param name="Radius">The maximum distance this sound can travel.</param>
+        /// <returns>This FlxSound instance (nice for chaining stuff together, if you're into that).</returns>
         public FlxSound proximity(float X, float Y, FlxObject Core, float Radius)
         {
             return proximity(X,Y,Core,Radius,true);
         }
+        /// <summary>
+        /// Call this function if you want this sound's volume to change
+        /// based on distance from a particular FlxCore object.
+        /// </summary>
+        /// <param name="X">The X position of the sound.</param>
+        /// <param name="Y">The Y position of the sound.</param>
+        /// <param name="Core">The object you want to track.</param>
+        /// <param name="Radius">The maximum distance this sound can travel.</param>
+        /// <param name="Pan">Pan as a bool ???</param>
+        /// <returns>This FlxSound instance (nice for chaining stuff together, if you're into that).</returns>
         public FlxSound proximity(float X, float Y, FlxObject Core, float Radius, bool Pan)
         {
             x = X;
@@ -110,9 +116,9 @@ namespace org.flixel
 			return this;
 		}
 
-		/**
-		 * Call this function to play the sound.
-		 */
+		/// <summary>
+        /// Call this function to play the sound.
+		/// </summary>
         public void play()
         {
             if (_sound == null) return;
@@ -122,9 +128,9 @@ namespace org.flixel
             _position = 0;
         }
 
-		/**
-		 * Call this function to pause this sound.
-		 */
+		/// <summary>
+        /// Call this function to pause this sound.
+		/// </summary>
         public void pause()
 		{
             if (_sound == null) return;
@@ -132,9 +138,9 @@ namespace org.flixel
             playing = false;
 		}
 
-		/**
-		 * Call this function to stop this sound.
-		 */
+		/// <summary>
+        /// Call this function to stop this sound.
+		/// </summary>
         public void stop()
 		{
 			_position = 0;
@@ -144,16 +150,20 @@ namespace org.flixel
             _sound.Stop();
 		}
 
-		/**
-		 * Call this function to make this sound fade out over a certain time interval.
-		 * 
-		 * @param	Seconds			The amount of time the fade out operation should take.
-		 * @param	PauseInstead	Tells the sound to pause on fadeout, instead of stopping.
-		 */
+        /// <summary>
+        /// Call this function to make this sound fade out over a certain time interval.
+        /// </summary>
+        /// <param name="Seconds">The amount of time the fade out operation should take.</param>
         public void fadeOut(float Seconds)
         {
             fadeOut(Seconds, false);
         }
+
+        /// <summary>
+        /// Call this function to make this sound fade out over a certain time interval.
+        /// </summary>
+        /// <param name="Seconds">The amount of time the fade out operation should take.</param>
+        /// <param name="PauseInstead">Tells the sound to pause on fadeout, instead of stopping.</param>
 		public void fadeOut(float Seconds, bool PauseInstead)
 		{
 			_pauseOnFadeOut = PauseInstead;
@@ -162,12 +172,11 @@ namespace org.flixel
 			_fadeOutTotal = _fadeOutTimer;
 		}
 
-		/**
-		 * Call this function to make a sound fade in over a certain
-		 * time interval (calls <code>play()</code> automatically).
-		 * 
-		 * @param	Seconds		The amount of time the fade-in operation should take.
-		 */
+        /// <summary>
+        /// Call this function to make a sound fade in over a certain
+        /// time interval (calls <code>play()</code> automatically).
+        /// </summary>
+        /// <param name="Seconds">The amount of time the fade-in operation should take.</param>
 		public void fadeIn(float Seconds)
 		{
 			_fadeOutTimer = 0;
@@ -176,9 +185,9 @@ namespace org.flixel
 			play();
 		}
 
-        /**
-         * Set <code>volume</code> to a value between 0 and 1 to change how loud this sound is.
-         */
+        /// <summary>
+        /// Set <code>volume</code> to a value between 0 and 1 to change how loud this sound is.
+        /// </summary>
         public float volume
         {
             get { return _volume; }
@@ -193,10 +202,10 @@ namespace org.flixel
             }
         }
 
-		/**
-		 * Internal function that performs the actual logical updates to the sound object.
-		 * Doesn't do much except optional proximity and fade calculations.
-		 */
+        /// <summary>
+        /// Internal function that performs the actual logical updates to the sound object.
+        /// Doesn't do much except optional proximity and fade calculations.
+        /// </summary>
 		protected void updateSound()
 		{
 			if(_position != 0)
@@ -261,27 +270,27 @@ namespace org.flixel
 			updateTransform();
 		}
 
-		/**
-		 * The basic game loop update function.  Just calls <code>updateSound()</code>.
-		 */
+		/// <summary>
+        /// The basic game loop update function.  Just calls <code>updateSound()</code>.
+		/// </summary>
         override public void update()
 		{
 			base.update();
 			updateSound();
 		}
 
-		/**
-		 * The basic class destructor, stops the music and removes any leftover events.
-		 */
+		/// <summary>
+        /// The basic class destructor, stops the music and removes any leftover events.
+		/// </summary>
         override public void destroy()
 		{
 			if(active)
 				stop();
 		}
 
-		/**
-		 * An internal function used to help organize and change the volume of the sound.
-		 */
+		/// <summary>
+        /// An internal function used to help organize and change the volume of the sound.
+		/// </summary>
         internal void updateTransform()
 		{
             if (_sound == null)

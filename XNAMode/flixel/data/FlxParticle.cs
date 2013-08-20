@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework;
 
 namespace org.flixel
 {
+    /// <summary>
+    /// FlxParticle...
+    /// </summary>
     public class FlxParticle : FlxSprite
     {
 		protected float _bounce;

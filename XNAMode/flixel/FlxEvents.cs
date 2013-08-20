@@ -3,8 +3,19 @@ using Microsoft.Xna.Framework;
 
 namespace org.flixel
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    /// <returns></returns>
     public delegate bool SpriteCollisionEvent(object sender, FlxSpriteCollisionEvent e);
 
+    /// <summary>
+    /// Rumble = 0,
+    /// FadeOut = 1,
+    /// Flash = 2
+    /// </summary>
     public enum EffectType
     {
         Rumble = 0,
@@ -12,6 +23,10 @@ namespace org.flixel
         Flash = 2
     }
 
+    /// <summary>
+    /// MouseDown = 0,
+    /// MouseUp = 1
+    /// </summary>
     public enum MouseEventType
     {
         MouseDown = 0,

@@ -4,25 +4,25 @@ using System.Text;
 
 namespace org.flixel
 {
-    /**
-     * The world's smallest linked list class.
-     * Useful for optimizing time-critical or highly repetitive tasks!
-     * See <code>FlxQuadTree</code> for how to use it, IF YOU DARE.
-     */
+    /// <summary>
+    /// The world's smallest linked list class.
+    /// Useful for optimizing time-critical or highly repetitive tasks!
+    /// See <code>FlxQuadTree</code> for how to use it, IF YOU DARE.
+    /// </summary>
     public class FlxList
     {
-		/**
-		 * Stores a reference to a <code>FlxObject</code>.
-		 */
+		/// <summary>
+        /// Stores a reference to a <code>FlxObject</code>.
+		/// </summary>
 		public FlxObject @object;
-		/**
-		 * Stores a reference to the next link in the list.
-		 */
+		/// <summary>
+        /// Stores a reference to the next link in the list.
+		/// </summary>
         public FlxList next;
 		
-		/**
-		 * Creates a new link, and sets <code>object</code> and <code>next</code> to <code>null</null>.
-		 */
+		/// <summary>
+        /// Creates a new link, and sets <code>object</code> and <code>next</code> to <code>null</null>.
+		/// </summary>
 		public FlxList()
 		{
 			@object = null;

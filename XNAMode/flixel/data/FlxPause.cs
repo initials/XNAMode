@@ -6,8 +6,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace org.flixel
 {
-    //@desc pause overlay used for when the game is inactive or
-    // has been manually paused.
+
+    /// <summary>
+    /// pause overlay used for when the game is inactive or
+    /// has been manually paused.
+    /// </summary>
     public class FlxPause
     {
         private Rectangle _pauseRect = new Rectangle(0, 0, 180, 100);

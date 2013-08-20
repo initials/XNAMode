@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 namespace org.flixel
 {
     /// <summary>
-    /// 
+    /// FlxGame, the heart of the Flixel Game.
     /// </summary>
     public partial class FlxGame : DrawableGameComponent
     {

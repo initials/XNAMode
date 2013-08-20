@@ -5,6 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace org.flixel
 {
+    /// <summary>
+    /// Written by @initials_games
+    /// Replicates the Mario diamond transitions.
+    /// </summary>
     public class FlxTransition : FlxGroup
     {
 

@@ -8,10 +8,12 @@ namespace org.flixel
 {
     public delegate void FlxButtonClick();
 
-    /**
-     * A simple button class that calls a function when clicked by the mouse.
-     * Supports labels, highlight states, and parallax scrolling.
-     */
+    /// <summary>
+    /// A simple button class that calls a function when clicked by the mouse.
+    /// Supports labels, highlight states, and parallax scrolling.
+    /// 
+    /// Supports controller buttons A B X Y
+    /// </summary>
     public class FlxButton : FlxGroup
     {
 
@@ -31,31 +33,31 @@ namespace org.flixel
 
 
 
-        /**
-         * Set this to true if you want this button to function even while the game is paused.
-         */
+        /// <summary>
+        /// Set this to true if you want this button to function even while the game is paused.
+        /// </summary>
         public bool pauseProof;
 
-        /**
-         * Used for checkbox-style behavior.
-         */
+        /// <summary>
+        /// Used for checkbox-style behavior.
+        /// </summary>
         protected bool _onToggle;
 
-        /**
-         * Stores the 'off' or normal button state graphic.
-         */
+        /// <summary>
+        /// Stores the 'off' or normal button state graphic.
+        /// </summary>
         protected FlxSprite _off;
-        /**
-         * Stores the 'on' or highlighted button state graphic.
-         */
+        /// <summary>
+        /// Stores the 'on' or highlighted button state graphic.
+        /// </summary>
         protected FlxSprite _on;
-        /**
-         * Stores the 'off' or normal button state label.
-         */
+        /// <summary>
+        /// Stores the 'off' or normal button state label.
+        /// </summary>
         protected FlxText _offT;
-        /**
-         * Stores the 'on' or highlighted button state label.
-         */
+        /// <summary>
+        /// Stores the 'on' or highlighted button state label.
+        /// </summary>
         protected FlxText _onT;
 
         /// <summary>
@@ -67,31 +69,30 @@ namespace org.flixel
         /// Holds the controller button that can activate the button.
         /// </summary>
         protected int _controllerButtonIndex;
-        /**
-         * This function is called when the button is clicked.
-         */
+        /// <summary>
+        /// This function is called when the button is clicked.
+        /// </summary>
         protected FlxButtonClick _callback;
-        /**
-         * Tracks whether or not the button is currently pressed.
-         */
+        /// <summary>
+        /// Tracks whether or not the button is currently pressed.
+        /// </summary>
         protected bool _pressed;
-        /**
-         * Whether or not the button has initialized itself yet.
-         */
+        /// <summary>
+        /// Whether or not the button has initialized itself yet.
+        /// </summary>
         protected bool _initialized;
-        /**
-         * Helper variable for correcting its members' <code>scrollFactor</code> objects.
-         */
+        /// <summary>
+        /// Helper variable for correcting its members' <code>scrollFactor</code> objects.
+        /// </summary>
         protected Vector2 _sf;
 
-        /**
-         * Creates a new <code>FlxButton</code> object with a gray background
-         * and a callback function on the UI thread.
-         * 
-         * @param	X			The X position of the button.
-         * @param	Y			The Y position of the button.
-         * @param	Callback	The function to call whenever the button is clicked.
-         */
+        /// <summary>
+        /// Creates a new <code>FlxButton</code> object with a gray background
+        /// and a callback function on the UI thread.
+        /// </summary>
+        /// <param name="X">The X position of the button.</param>
+        /// <param name="Y">The Y position of the button.</param>
+        /// <param name="Callback">The function to call whenever the button is clicked.</param>
         public FlxButton(int X, int Y, FlxButtonClick Callback)
             : base()
         {
@@ -125,7 +126,15 @@ namespace org.flixel
 
         }
 
-
+        /// <summary>
+        /// Creates a new <code>FlxButton</code> object with a gray background
+        /// and a callback function on the UI thread.
+        /// Also appends a GamePad symbol to allow for using a gamepad to select the menu.
+        /// </summary>
+        /// <param name="X">The X position of the button.</param>
+        /// <param name="Y">The Y position of the button.</param>
+        /// <param name="Callback">The function to call whenever the button is clicked.</param>
+        /// <param name="Button">Button number. Uses FlxButton.ControlPad** to select a button</param>
         public FlxButton(int X, int Y, FlxButtonClick Callback, int Button)
             : base()
         {
@@ -161,15 +170,12 @@ namespace org.flixel
             add(_controllerButton, true);
         }
 
-
-        /**
-         * Set your own image as the button background.
-         * 
-         * @param	Image				A FlxSprite object to use for the button background.
-         * @param	ImageHighlight		A FlxSprite object to use for the button background when highlighted (optional).
-         * 
-         * @return	This FlxButton instance (nice for chaining stuff together, if you're into that).
-         */
+        /// <summary>
+        /// Set your own image as the button background.
+        /// </summary>
+        /// <param name="Image">A FlxSprite object to use for the button background.</param>
+        /// <param name="ImageHighlight">A FlxSprite object to use for the button background when highlighted (optional).</param>
+        /// <returns>This FlxButton instance (nice for chaining stuff together, if you're into that).</returns>
         public FlxButton loadGraphic(FlxSprite Image, FlxSprite ImageHighlight)
         {
             _off = replace(_off, Image) as FlxSprite;
@@ -190,14 +196,12 @@ namespace org.flixel
             return this;
         }
 
-        /**
-         * Add a text label to the button.
-         * 
-         * @param	Text				A FlxText object to use to display text on this button (optional).
-         * @param	TextHighlight		A FlxText object that is used when the button is highlighted (optional).
-         * 
-         * @return	This FlxButton instance (nice for chaining stuff together, if you're into that).
-         */
+        /// <summary>
+        /// Add a text label to the button.
+        /// </summary>
+        /// <param name="Text">A FlxText object to use to display text on this button (optional).</param>
+        /// <param name="TextHighlight">A FlxText object that is used when the button is highlighted (optional).</param>
+        /// <returns>This FlxButton instance (nice for chaining stuff together, if you're into that).</returns>
         public FlxButton loadText(FlxText Text, FlxText TextHighlight)
         {
             if (Text != null)
@@ -228,9 +232,9 @@ namespace org.flixel
         }
 
 
-        /**
-         * Called by the game loop automatically, handles mouseover and click detection.
-         */
+        /// <summary>
+        /// Called by the game loop automatically, handles mouseover and click detection.
+        /// </summary>
         override public void update()
         {
             if (!_initialized)
@@ -278,9 +282,9 @@ namespace org.flixel
             if (_onToggle) visibility(_off.visible);
         }
 
-        /**
-         * Use this to toggle checkbox-style behavior.
-         */
+        /// <summary>
+        /// Use this to toggle checkbox-style behavior.
+        /// </summary>
         public bool on
         {
             get
@@ -293,15 +297,19 @@ namespace org.flixel
             }
         }
 
-        /**
-         * Called by the game state when state is changed (if this object belongs to the state)
-         */
+        /// <summary>
+        /// Called by the game state when state is changed (if this object belongs to the state)
+        /// </summary>
         override public void destroy()
         {
             if (FlxG.mouse != null)
                 FlxG.mouse.removeMouseListener(onMouseUp);
         }
 
+        /// <summary>
+        /// Render
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         override public void render(SpriteBatch spriteBatch)
         {
             base.render(spriteBatch);
@@ -314,11 +322,10 @@ namespace org.flixel
             }
         }
 
-        /**
-         * Internal function for handling the visibility of the off and on graphics.
-         * 
-         * @param	On		Whether the button should be on or off.
-         */
+        /// <summary>
+        /// Internal function for handling the visibility of the off and on graphics.
+        /// </summary>
+        /// <param name="On">Whether the button should be on or off.</param>
         protected void visibility(bool On)
         {
             if (On)
@@ -337,9 +344,11 @@ namespace org.flixel
             }
         }
 
-        /**
-         * Internal function for handling the actual callback call (for UI thread dependent calls like <code>FlxU.openURL()</code>).
-         */
+        /// <summary>
+        /// Internal function for handling the actual callback call (for UI thread dependent calls like <code>FlxU.openURL()</code>).
+        /// </summary>
+        /// <param name="Sender">Sender</param>
+        /// <param name="MouseEvent">Mouse Event</param>
         private void onMouseUp(object Sender, FlxMouseEvent MouseEvent)
         {
 

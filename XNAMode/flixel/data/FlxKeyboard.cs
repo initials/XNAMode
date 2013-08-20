@@ -24,7 +24,7 @@ using System;
 namespace org.flixel
 {
     /// <summary>
-    /// 
+    /// FlxKeyboard for capturing keyboard events.
     /// </summary>
     public class FlxKeyboard
     {

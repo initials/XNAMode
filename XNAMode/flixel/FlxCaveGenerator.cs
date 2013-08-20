@@ -9,7 +9,10 @@ namespace org.flixel
 {
 
     /// <summary>
-    /// 
+    /// This class uses the cellular automata algorithm
+    /// to generate very sexy caves.
+    /// (Coded by Eddie Lee, October 16, 2010)
+    /// (Ported to C# by Shane Brouwer)
     /// </summary>
     public class FlxCaveGenerator
     {

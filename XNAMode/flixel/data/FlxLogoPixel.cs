@@ -5,6 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace org.flixel
 {
+    /// <summary>
+    /// Used for the opening Splash Screen: FlxSplash.
+    /// </summary>
     public class FlxLogoPixel : FlxSprite
     {
         private List<Color> _layers = new List<Color>();

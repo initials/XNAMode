@@ -9,18 +9,18 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace org.flixel
 {
-    /**
-     * A class to help automate and simplify save game functionality.
-     */
+    /// <summary>
+    /// A class to help automate and simplify save game functionality.
+    /// </summary>
     public class FlxSave : GameComponent
     {
         private bool _wantsDevice = false;
         private IAsyncResult _storageasync = null;
 
-        /**
-         * Allows you to directly access the data container in the local shared object.
-         * @default null
-         */
+        /// <summary>
+        /// Allows you to directly access the data container in the local shared object.
+        /// @default null
+        /// </summary>
         private StorageDevice _device;
         private const string _savefile = "flixelsavedata.dat";
         private FlxSaveData _savedata;
@@ -30,20 +30,20 @@ namespace org.flixel
             get { return _savedata; }
         }
 
-		/**
-		 * The name of the local shared object.
-		 * @default null
-		 */
+		/// <summary>
+        /// The name of the local shared object.
+        /// Default = null
+		/// </summary>
 		public string name;
-		/**
-		 * The local shared object itself.
-		 * @default null
-		 */
+		/// <summary>
+        /// The local shared object itself.
+        /// Default = null
+		/// </summary>
 		protected StorageContainer _so;
 		
-		/**
-		 * Blanks out the containers.
-		 */
+		/// <summary>
+        /// Blanks out the containers.
+		/// </summary>
         public FlxSave()
             : base(FlxG.Game)
         {
@@ -68,7 +68,9 @@ namespace org.flixel
             }
         }
 
-        // X-flixel only.
+        /// <summary>
+        /// X-flixel only.
+        /// </summary>
         public bool waitingOnDeviceSelector
         {
             get { return _wantsDevice; }
@@ -87,13 +89,11 @@ namespace org.flixel
             _wantsDevice = true;
         }
 
-		/**
-		 * Automatically creates or reconnects to locally saved data.
-		 * 
-		 * @param	Name	The name of the object (should be the same each time to access old data).
-		 * 
-		 * @return	Whether or not you successfully connected to the save data.
-		 */
+        /// <summary>
+        /// Automatically creates or reconnects to locally saved data.
+        /// </summary>
+        /// <param name="Name">The name of the object (should be the same each time to access old data).</param>
+        /// <returns>Whether or not you successfully connected to the save data.</returns>
 		public bool bind(string Name)
 		{
 
@@ -148,15 +148,13 @@ namespace org.flixel
 			return true;
 		}
 		
-		/**
-		 * If you don't like to access the data object directly, you can use this to write to it.
-		 * 
-		 * @param	FieldName		The name of the data field you want to create or overwrite.
-		 * @param	FieldValue		The data you want to store.
-		 * @param	MinFileSize		If you need X amount of space for your save, specify it here.
-		 * 
-		 * @return	Whether or not the write and flush were successful.
-		 */
+        /// <summary>
+        /// If you don't like to access the data object directly, you can use this to write to it.
+        /// </summary>
+        /// <param name="FieldName">The name of the data field you want to create or overwrite.</param>
+        /// <param name="FieldValue">The data you want to store.</param>
+        /// <param name="MinFileSize">If you need X amount of space for your save, specify it here.</param>
+        /// <returns>Whether or not the write and flush were successful.</returns>
 		public bool write(string FieldName, string FieldValue, uint MinFileSize)
 		{
 			if(_so == null)
@@ -168,13 +166,11 @@ namespace org.flixel
 			return forceSave(MinFileSize);
 		}
 		
-		/**
-		 * If you don't like to access the data object directly, you can use this to read from it.
-		 * 
-		 * @param	FieldName		The name of the data field you want to read
-		 * 
-		 * @return	The value of the data field you are reading (null if it doesn't exist).
-		 */
+        /// <summary>
+        /// If you don't like to access the data object directly, you can use this to read from it.
+        /// </summary>
+        /// <param name="FieldName">The name of the data field you want to read</param>
+        /// <returns>The value of the data field you are reading (null if it doesn't exist).</returns>
 		public string read(string FieldName)
 		{
 			if(_so == null)
@@ -185,13 +181,11 @@ namespace org.flixel
 			return data[FieldName];
 		}
 		
-		/**
-		 * Writes the local shared object to disk immediately.
-		 *
-		 * @param	MinFileSize		If you need X amount of space for your save, specify it here.
-		 *
-		 * @return	Whether or not the flush was successful.
-		 */
+        /// <summary>
+        /// Writes the local shared object to disk immediately.
+        /// </summary>
+        /// <param name="MinFileSize">If you need X amount of space for your save, specify it here.</param>
+        /// <returns>Whether or not the flush was successful.</returns>
 		public bool forceSave(uint MinFileSize)
 		{
 			if(_so == null)
@@ -232,13 +226,11 @@ namespace org.flixel
 			return true;
 		}
 		
-		/**
-		 * Erases everything stored in the local shared object.
-		 * 
-		 * @param	MinFileSize		If you need X amount of space for your save, specify it here.
-		 * 
-		 * @return	Whether or not the clear and flush was successful.
-		 */
+        /// <summary>
+        /// Erases everything stored in the local shared object.
+        /// </summary>
+        /// <param name="MinFileSize">If you need X amount of space for your save, specify it here.</param>
+        /// <returns>Whether or not the clear and flush was successful.</returns>
 		public bool erase(uint MinFileSize)
 		{
 			if(_so == null)
@@ -252,7 +244,10 @@ namespace org.flixel
             return true;
 		}
 
-        // X-flixel only.
+        /// <summary>
+        /// X-flixel only.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void  Update(GameTime gameTime)
         {
  	         base.Update(gameTime);
@@ -295,6 +290,9 @@ namespace org.flixel
         }
     }
 
+    /// <summary>
+    /// FlxSaveData
+    /// </summary>
     public class FlxSaveData
     {
         public FlxSaveData()

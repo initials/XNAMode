@@ -27,6 +27,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace org.flixel
 {
+    /// <summary>
+    /// FlxGamepad
+    /// </summary>
     public class FlxGamepad
     {
         private PlayerIndex pi;

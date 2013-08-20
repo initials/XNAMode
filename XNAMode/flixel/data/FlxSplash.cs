@@ -9,7 +9,11 @@ using XNATweener;
 
 namespace org.flixel
 {
-    //@benbaird X-flixel only. Moves all of the flixel logo screen stuff to a FlxState.
+    /// <summary>
+    /// @benbaird X-flixel only. Moves all of the flixel logo screen stuff to a FlxState.
+    /// 
+    /// @initials_games customised for initials releases.
+    /// </summary>
     public class FlxSplash : FlxState
     {
         //logo stuff
