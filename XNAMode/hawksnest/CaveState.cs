@@ -302,7 +302,9 @@ namespace XNAMode
 
                 (actors.members[x] as Actor).isPlayerControlled = true;
                 FlxG.follow(actors.members[x], FOLLOW_LERP);
-                FlxG.setHudText(1,actors.members[x].GetType().Name);
+                //FlxG.setHudText(1,actors.members[x].GetType().Name);
+
+                FlxG.setHudText(1, ((Actor)(actors.members[x])).actorName);
             }
 
             /*

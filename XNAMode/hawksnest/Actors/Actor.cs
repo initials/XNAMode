@@ -27,6 +27,12 @@ namespace XNAMode
         /// </summary>
         public float framesSinceLeftGround;
 
+        
+        /// <summary>
+        /// Character's name;
+        /// </summary>
+        public string actorName;
+
 
         public List<FlxObject> _bullets;
         public int _curBullet;

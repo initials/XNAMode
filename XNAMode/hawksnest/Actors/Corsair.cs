@@ -16,6 +16,7 @@ namespace XNAMode
         public Corsair(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            actorName = "Corsair";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/corsair_18x21"), true, false, 18, 21);
 

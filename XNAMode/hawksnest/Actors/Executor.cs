@@ -16,6 +16,7 @@ namespace XNAMode
         public Executor(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            actorName = "Executor";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/executor_ss_21x21"), true, false, 21, 21);
 

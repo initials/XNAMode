@@ -16,6 +16,8 @@ namespace XNAMode
             : base(xPos, yPos)
         {
 
+            actorName = "The Automaton";
+
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/automaton_ss_11x24"), true, false, 11, 24);
 
             addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6,7 }, 12);
