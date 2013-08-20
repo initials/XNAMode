@@ -21,6 +21,7 @@ namespace XNAMode
         public Vampire(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            actorName = "";
             ImgVampire = FlxG.Content.Load<Texture2D>("initials/vampire_ss_14x19");
 
             loadGraphic(ImgVampire, true, false, 14, 19);

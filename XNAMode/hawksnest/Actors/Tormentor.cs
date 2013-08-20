@@ -16,7 +16,7 @@ namespace XNAMode
         public Tormentor(int xPos, int yPos)
             : base(xPos, yPos)
         {
-
+            actorName = "";
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/tormentor_ss_13x24"), true, false, 13, 24);
 
             addAnimation("run", new int[] {6,7,8 }, 18);

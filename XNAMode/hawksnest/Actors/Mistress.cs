@@ -16,10 +16,7 @@ namespace XNAMode
         public Mistress(int xPos, int yPos)
             : base(xPos, yPos)
         {
-
-
-
-
+            actorName = "Linda Lee";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/mistress_ss_35x30"), true, false, 35, 22);
 

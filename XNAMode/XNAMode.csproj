@@ -107,6 +107,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="XNATweener\Back.cs" />
+    <Compile Include="XNATweener\Bounce.cs" />
+    <Compile Include="XNATweener\Circular.cs" />
+    <Compile Include="XNATweener\Cubic.cs" />
+    <Compile Include="XNATweener\Elastic.cs" />
+    <Compile Include="XNATweener\Exponential.cs" />
     <Compile Include="FlixelEntryPoint.cs" />
     <Compile Include="flixel\data\FlxHud.cs" />
     <Compile Include="flixel\FlxCaveGenerator.cs" />
@@ -169,6 +175,7 @@
     <Compile Include="hawksnest\Actors\Warlock.cs" />
     <Compile Include="hawksnest\Actors\Zombie.cs" />
     <Compile Include="hawksnest\Fireball.cs" />
+    <Compile Include="XNATweener\Linear.cs" />
     <Compile Include="mode\Bot.cs" />
     <Compile Include="mode\BotBullet.cs" />
     <Compile Include="mode\Bullet.cs" />
@@ -180,8 +187,13 @@
     <Compile Include="mode\VictoryState.cs" />
     <Compile Include="mode\XMLPlayState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XNATweener\Quadratic.cs" />
+    <Compile Include="XNATweener\Quartic.cs" />
+    <Compile Include="XNATweener\Quintic.cs" />
+    <Compile Include="XNATweener\Sinusoidal.cs" />
     <Compile Include="TemplateSprite.cs" />
     <Compile Include="TemplateState.cs" />
+    <Compile Include="XNATweener\Tweener.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using XNATweener;
+
 namespace org.flixel
 {
     //@benbaird X-flixel only. Moves all of the flixel logo screen stuff to a FlxState.
@@ -22,6 +24,8 @@ namespace org.flixel
         private const string SndTag = "initials/initials_empire_tagtone3";
 
         private FlxSprite _logo;
+
+        private Tweener _logoTweener;
 
 
         public FlxSplash()
@@ -44,6 +48,10 @@ namespace org.flixel
             _logo.y = FlxG.height / 2 - 24;
             add(_logo);
 
+            _logoTweener = new Tweener(-100, FlxG.height / 2 - 24, TimeSpan.FromSeconds(0.9f), Bounce.EaseOut);
+            //_logoTweener.PositionChanged += delegate (float newRotation) { _logo.y = newRotation } 
+            
+
             FlxG.play(SndTag,1.0f);
 
             FlxG.transition.startFadeIn(0.015f);
@@ -57,11 +65,15 @@ namespace org.flixel
 
         public override void update()
         {
+            _logoTweener.Update(FlxG.elapsedAsGameTime);
+            _logo.y = _logoTweener.Position;
 
             if (_f == null && _logoTimer > 2.5f)
             {
 
-                _logo.visible = false;
+                //_logo.visible = false;
+
+                _logoTweener.Reverse();
 
                 //FlxG.flash.start(FlxG.backColor, 1.0f, null, false);
 

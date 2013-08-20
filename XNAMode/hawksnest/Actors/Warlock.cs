@@ -17,7 +17,7 @@ namespace XNAMode
         public Warlock(int xPos, int yPos, List<FlxObject> Bullets)
             : base(xPos, yPos)
         {
-
+            actorName = "";
             _bullets = Bullets;
 
             isPlayerControlled = false;

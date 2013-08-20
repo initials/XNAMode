@@ -11,14 +11,28 @@ using Microsoft.Xna.Framework.Media;
 
 namespace org.flixel
 {
+    /// <summary>
+    /// Starts the game
+    /// </summary>
     public class FlxFactory : Microsoft.Xna.Framework.Game
     {
         //primary display buffer constants
 #if !WINDOWS_PHONE
-        private int resX = 1280; //DO NOT CHANGE THESE VALUES!!
-        private int resY = 720;  //your game should only be concerned with the
-                                 //resolution parameters used when you call
-                                 //initGame() in your FlxGame class.
+
+        /// <summary>
+        /// DO NOT CHANGE THESE VALUES!!
+        /// your game should only be concerned with the
+        /// resolution parameters used when you call
+        /// initGame() in your FlxGame class.
+        /// </summary>
+        private int resX = 1280;
+        /// <summary>
+        /// DO NOT CHANGE THESE VALUES!!
+        /// your game should only be concerned with the
+        /// resolution parameters used when you call
+        /// initGame() in your FlxGame class.
+        /// </summary>
+        private int resY = 720;  
 #else
         private int resX = 480; //DO NOT CHANGE THESE VALUES!!
         private int resY = 800;  //your game should only be concerned with the
@@ -78,7 +92,9 @@ namespace org.flixel
             Components.Add(new GamerServicesComponent(this));
 #endif
         }
-
+        /// <summary>
+        /// load up the master class, and away we go!
+        /// </summary>
         protected override void Initialize()
         {
             //load up the master class, and away we go!

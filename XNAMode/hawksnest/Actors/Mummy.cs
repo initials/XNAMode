@@ -16,6 +16,7 @@ namespace XNAMode
         public Mummy(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            actorName = "Elizabeth";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/mummy_ss_13x19"), true, false, 13, 19);
 

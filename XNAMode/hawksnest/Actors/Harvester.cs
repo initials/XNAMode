@@ -16,6 +16,7 @@ namespace XNAMode
         public Harvester(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            actorName = "Death";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/harvester_ss_14x27"), true, false, 14, 27);
 

@@ -16,6 +16,7 @@ namespace XNAMode
         public Nymph(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            actorName = "Indi Pranesh";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/nymph_ss_35x30"), true, false, 35, 30);
 

@@ -16,6 +16,7 @@ namespace XNAMode
         public Paladin(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            actorName = "Johnny Football Hero";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/paladin_ss_16x26"), true, false, 16, 26);
 

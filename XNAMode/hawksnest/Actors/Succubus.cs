@@ -16,7 +16,7 @@ namespace XNAMode
         public Succubus(int xPos, int yPos)
             : base(xPos, yPos)
         {
-
+            actorName = "";
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/succubus_ss_35x30"), true, false, 35, 20);
 
             addAnimation("run", new int[] { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }, 18);

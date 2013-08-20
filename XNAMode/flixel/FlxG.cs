@@ -71,6 +71,10 @@ namespace org.flixel
 		static public bool showBounds;
 
         /// <summary>
+        /// Elapsed as a gametime
+        /// </summary>
+        public static GameTime elapsedAsGameTime;
+        /// <summary>
         ///  Represents the amount of time in seconds that passed since last frame.
         /// </summary>
         public static float elapsed = 0f;

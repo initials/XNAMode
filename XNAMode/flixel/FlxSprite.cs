@@ -5,7 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace org.flixel
 {
-    //X-flixel only; Replaces the "facing" boolean member
+    /// <summary>
+    /// X-flixel only; Replaces the "facing" boolean member
+    /// </summary>
     public enum Flx2DFacing
     {
         NotUsed = -1,
@@ -15,56 +17,60 @@ namespace org.flixel
         Down = 3
     }
 
-    /**
-    * The main "game object" class, handles basic physics and animation.
-    */
+    /// <summary>
+    /// The main "game object" class, handles basic physics and animation.
+    /// </summary>
     public class FlxSprite : FlxObject
     {
         //@benbaird X-flixel only stuff
         protected Texture2D _tex;
         private bool _stretchToFit = false;
 
-        /**
-        * If you changed the size of your sprite object to shrink the bounding box,
-        * you might need to offset the new bounding box from the top-left corner of the sprite.
-        */
+        /// <summary>
+        /// If you changed the size of your sprite object to shrink the bounding box,
+        /// you might need to offset the new bounding box from the top-left corner of the sprite.
+        /// </summary>
         public Point offset = Point.Zero;
 
-        /**
-         * Change the size of your sprite's graphic.
-         * NOTE: Scale doesn't currently affect collisions automatically,
-         * you will need to adjust the width, height and offset manually.
-         */
+        /// <summary>
+        /// Change the size of your sprite's graphic.
+        /// NOTE: Scale doesn't currently affect collisions automatically,
+        /// you will need to adjust the width, height and offset manually.
+        /// </summary>
         public float scale = 1f;
-		/**
-		 * Blending modes, just like Photoshop!
-		 * E.g. "multiply", "screen", etc.
-		 * @default null
-		 */
+
+        /// <summary>
+        /// Blending modes, just like Photoshop!
+        /// E.g. "multiply", "screen", etc.
+        /// @default null
+        /// </summary>
 		public string blend;
-		/**
-		 * Controls whether the object is smoothed when rotated, affects performance.
-		 * @default false
-		 */
+
+        /// <summary>
+        /// Controls whether the object is smoothed when rotated, affects performance.
+        /// @default false
+        /// </summary>
 		public bool antialiasing;
 
-        /**
-         * Whether the current animation has finished its first (or only) loop.
-         */
+        /// <summary>
+        /// Whether the current animation has finished its first (or only) loop.
+        /// </summary>
         public bool finished;
-		/**
-		 * The width of the actual graphic or image being displayed (not necessarily the game object/bounding box).
-		 * NOTE: Edit at your own risk!!  This is intended to be read-only.
-		 */
+
+        /// <summary>
+        /// The width of the actual graphic or image being displayed (not necessarily the game object/bounding box).
+        /// NOTE: Edit at your own risk!!  This is intended to be read-only.
+        /// </summary>
 		public int frameWidth;
-		/**
-		 * The height of the actual graphic or image being displayed (not necessarily the game object/bounding box).
-		 * NOTE: Edit at your own risk!!  This is intended to be read-only.
-		 */
+
+        /// <summary>
+        /// The height of the actual graphic or image being displayed (not necessarily the game object/bounding box).
+        /// NOTE: Edit at your own risk!!  This is intended to be read-only.
+        /// </summary>
 		public int frameHeight;
-		/**
-		 * The total number of frames in this image (assumes each row is full).
-		 */
+		/// <summary>
+        /// The total number of frames in this image (assumes each row is full).
+		/// </summary>
 		public int frames;
 
         /// <summary>
@@ -107,31 +113,45 @@ namespace org.flixel
             get { return _animations; }
         }
 
-        /**
-         * Creates a white 8x8 square <code>FlxSprite</code> at the specified position.
-         * Optionally can load a simple, one-frame graphic instead.
-         * 
-         * @param	X				The initial X position of the sprite.
-         * @param	Y				The initial Y position of the sprite.
-         * @param	SimpleGraphic	The graphic you want to display (OPTIONAL - for simple stuff only, do NOT use for animated images!).
-         */
+        /// <summary>
+        /// Creates a white 8x8 square <code>FlxSprite</code> at the specified position.
+        /// Optionally can load a simple, one-frame graphic instead.
+        /// </summary>
         public FlxSprite()
         {
             // call our constructor
             constructor(0, 0, null);
         }
-
+        /// <summary>
+        /// Creates a white 8x8 square <code>FlxSprite</code> at the specified position.
+        /// Optionally can load a simple, one-frame graphic instead.
+        /// </summary>
+        /// <param name="X">The initial X position of the sprite.</param>
+        /// <param name="Y">The initial Y position of the sprite.</param>
         public FlxSprite(float X, float Y)
         {
             // call our constructor
             constructor(X, Y, null);
         }
+        /// <summary>
+        /// Creates a white 8x8 square <code>FlxSprite</code> at the specified position.
+        /// Optionally can load a simple, one-frame graphic instead.
+        /// </summary>
+        /// <param name="X">The initial X position of the sprite.</param>
+        /// <param name="Y">The initial Y position of the sprite.</param>
+        /// <param name="SimpleGraphic">The graphic you want to display (OPTIONAL - for simple stuff only, do NOT use for animated images!).</param>
         public FlxSprite(float X, float Y, Texture2D SimpleGraphic)
         {
             // call our constructor
             constructor(X, Y, SimpleGraphic);
         }
 
+        /// <summary>
+        /// FlxSprite private constructor
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="SimpleGraphic"></param>
         private void constructor(float X, float Y, Texture2D SimpleGraphic)
         {
             x = X;
@@ -172,29 +192,46 @@ namespace org.flixel
                 loadGraphic(SimpleGraphic);
         }
 
-		/**
-		 * Load an image from an embedded graphic file.
-		 * 
-		 * @param	Graphic		The image you want to use.
-		 * @param	Animated	Whether the Graphic parameter is a single sprite or a row of sprites.
-		 * @param	Reverse		Whether you need this class to generate horizontally flipped versions of the animation frames.
-		 * @param	Width		OPTIONAL - Specify the width of your sprite (helps FlxSprite figure out what to do with non-square sprites or sprite sheets).
-		 * @param	Height		OPTIONAL - Specify the height of your sprite (helps FlxSprite figure out what to do with non-square sprites or sprite sheets).
-		 * 
-		 * @return	This FlxSprite instance (nice for chaining stuff together, if you're into that).
-		 */
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Graphic"></param>
+        /// <returns></returns>
         public virtual FlxSprite loadGraphic(Texture2D Graphic)
         {
             return loadGraphic(Graphic, false, false, 0, 0);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Graphic"></param>
+        /// <param name="Animated"></param>
+        /// <returns></returns>
         public virtual FlxSprite loadGraphic(Texture2D Graphic, bool Animated)
         {
             return loadGraphic(Graphic, Animated, false, 0, 0);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Graphic"></param>
+        /// <param name="Animated"></param>
+        /// <param name="Reverse"></param>
+        /// <param name="Width"></param>
+        /// <returns></returns>
         public virtual FlxSprite loadGraphic(Texture2D Graphic, bool Animated, bool Reverse, int Width)
         {
             return loadGraphic(Graphic, Animated, Reverse, Width, 0);
         }
+        /// <summary>
+        /// Load an image from an embedded graphic file.
+        /// </summary>
+        /// <param name="Graphic">The image you want to use.</param>
+        /// <param name="Animated">Whether the Graphic parameter is a single sprite or a row of sprites.</param>
+        /// <param name="Reverse">Whether you need this class to generate horizontally flipped versions of the animation frames.</param>
+        /// <param name="Width">OPTIONAL - Specify the width of your sprite (helps FlxSprite figure out what to do with non-square sprites or sprite sheets).</param>
+        /// <param name="Height">OPTIONAL - Specify the height of your sprite (helps FlxSprite figure out what to do with non-square sprites or sprite sheets).</param>
+        /// <returns>This FlxSprite instance (nice for chaining stuff together, if you're into that).</returns>
         public virtual FlxSprite loadGraphic(Texture2D Graphic, bool Animated, bool Reverse, int Width, int Height)
 		{
             _stretchToFit = false;
@@ -225,15 +262,13 @@ namespace org.flixel
 			return this;
 		}
 
-		/**
-		 * This function creates a flat colored square image dynamically.
-		 * 
-		 * @param	Width		The width of the sprite you want to generate.
-		 * @param	Height		The height of the sprite you want to generate.
-		 * @param	Color		Specifies the color of the generated block.
-		 * 
-		 * @return	This FlxSprite instance (nice for chaining stuff together, if you're into that).
-		 */
+        /// <summary>
+        /// This function creates a flat colored square image dynamically.
+        /// </summary>
+        /// <param name="Width">The width of the sprite you want to generate.</param>
+        /// <param name="Height">The height of the sprite you want to generate.</param>
+        /// <param name="Color">Specifies the color of the generated block.</param>
+        /// <returns>This FlxSprite instance (nice for chaining stuff together, if you're into that).</returns>
 		public FlxSprite createGraphic(int Width, int Height, Color Color)
 		{
             _tex = FlxG.XnaSheet;
@@ -249,9 +284,9 @@ namespace org.flixel
 			return this;
 		}
 
-		/**
-		 * Resets some important variables for sprite optimization and rendering.
-		 */
+		/// <summary>
+        /// Resets some important variables for sprite optimization and rendering.
+		/// </summary>
         protected void resetHelpers()
 		{
 			_flashRect2.X = 0;
@@ -286,11 +321,11 @@ namespace org.flixel
 			refreshHulls();
 		}
 
-		/**
-		 * Internal function for updating the sprite's animation.
-		 * Useful for cases when you need to update this but are buried down in too many supers.
-		 * This function is called automatically by <code>FlxSprite.update()</code>.
-		 */
+        /// <summary>
+        /// Internal function for updating the sprite's animation.
+        /// Useful for cases when you need to update this but are buried down in too many supers.
+        /// This function is called automatically by <code>FlxSprite.update()</code>.
+        /// </summary>
 		protected void updateAnimation()
 		{
 			if((_curAnim != null) && (_curAnim.delay > 0) && (_curAnim.looped || !finished))
@@ -312,10 +347,10 @@ namespace org.flixel
 			}
 		}
 
-        /**
-         * Main game loop update function.  Override this to create your own sprite logic!
-         * Just don't forget to call super.update() or any of the helper functions.
-         */
+        /// <summary>
+        /// Main game loop update function.  Override this to create your own sprite logic!
+        /// Just don't forget to call super.update() or any of the helper functions.
+        /// </summary>
         public override void update()
         {
             updateMotion();
@@ -323,9 +358,10 @@ namespace org.flixel
             updateFlickering();
         }
 
-        /**
-         * Called by game loop, updates then blits or renders current frame of animation to the screen
-         */
+        /// <summary>
+        /// Called by game loop, updates then blits or renders current frame of animation to the screen
+        /// </summary>
+        /// <param name="spriteBatch">Sprite Batch</param>
         public override void render(SpriteBatch spriteBatch)
         {
             if (visible == false || exists == false)
@@ -393,15 +429,13 @@ namespace org.flixel
             }
         }
 
-		/**
-		 * Checks to see if a point in 2D space overlaps this FlxCore object.
-		 * 
-		 * @param	X			The X coordinate of the point.
-		 * @param	Y			The Y coordinate of the point.
-		 * @param	PerPixel	Whether or not to use per pixel collision checking.
-		 * 
-		 * @return	Whether or not the point overlaps this object.
-		 */
+        /// <summary>
+        /// Checks to see if a point in 2D space overlaps this FlxCore object.
+        /// </summary>
+        /// <param name="X">The X coordinate of the point.</param>
+        /// <param name="Y">The Y coordinate of the point.</param>
+        /// <param name="PerPixel">Whether or not to use per pixel collision checking.</param>
+        /// <returns>Whether or not the point overlaps this object.</returns>
         override public bool overlapsPoint(float X, float Y, bool PerPixel)
 		{
 			X = X + FlxU.floor(FlxG.scroll.X);
@@ -423,27 +457,37 @@ namespace org.flixel
 			return true;
 		}
 		
-		/**
-		 * Triggered whenever this sprite is launched by a <code>FlxEmitter</code>.
-		 */
+		/// <summary>
+        /// Triggered whenever this sprite is launched by a <code>FlxEmitter</code>.
+		/// </summary>
 		virtual public void onEmit() { }
 
-        /**
-         * Adds a new animation to the sprite.
-         * 
-         * @param	Name		What this animation should be called (e.g. "run").
-         * @param	Frames		An array of numbers indicating what frames to play in what order (e.g. 1, 2, 3).
-         * @param	FrameRate	The speed in frames per second that the animation should play at (e.g. 40 fps).
-         * @param	Looped		Whether or not the animation is looped or just plays once.
-         */
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="Frames"></param>
         public void addAnimation(string Name, int[] Frames)
         {
             _animations.Add(new FlxAnim(Name, Frames, 0, true));
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="Frames"></param>
+        /// <param name="FrameRate"></param>
         public void addAnimation(string Name, int[] Frames, int FrameRate)
         {
             _animations.Add(new FlxAnim(Name, Frames, FrameRate, true));
         }
+        /// <summary>
+        /// Adds a new animation to the sprite.
+        /// </summary>
+        /// <param name="Name">What this animation should be called (e.g. "run").</param>
+        /// <param name="Frames">An array of numbers indicating what frames to play in what order (e.g. 1, 2, 3).</param>
+        /// <param name="FrameRate">The speed in frames per second that the animation should play at (e.g. 40 fps).</param>
+        /// <param name="Looped">Whether or not the animation is looped or just plays once.</param>
         public void addAnimation(string Name, int[] Frames, int FrameRate, bool Looped)
 		{
 			_animations.Add(new FlxAnim(Name, Frames, FrameRate, Looped));
@@ -459,13 +503,12 @@ namespace org.flixel
             _callback = ac;
         }
 
-        /**
-         * Plays an existing animation (e.g. "run").
-         * If you call an animation that is already playing it will be ignored.
-         * 
-         * @param	AnimName	The string name of the animation you want to play.
-         * @param	Force		Whether to force the animation to restart.
-         */
+        /// <summary>
+        /// Plays an existing animation (e.g. "run").
+        /// If you call an animation that is already playing it will be ignored.
+        /// </summary>
+        /// <param name="AnimName">The string name of the animation you want to play.</param>
+        /// <param name="Force">Whether to force the animation to restart.</param>
         public void play(string AnimName, bool Force)
 		{
 			if(!Force && (_curAnim != null) && (AnimName == _curAnim.name)) return;
@@ -493,8 +536,10 @@ namespace org.flixel
             play(AnimName, false);
         }
 
-		//@desc		Tell the sprite which way to face (you can just set 'facing' but this function also updates the animation instantly)
-		//@param	In "normal" flixel, this is an int.
+        /// <summary>
+        /// Tell the sprite which way to face (you can just set 'facing' but this function also updates the animation instantly)
+        /// In "normal" flixel, this is an int.
+        /// </summary>
 		public Flx2DFacing facing
 		{
             get
@@ -509,10 +554,10 @@ namespace org.flixel
             }
 		}
 
-        /**
-         * Tell the sprite to change to a random frame of animation
-         * Useful for instantiating particles or other weird things.
-         */
+        /// <summary>
+        /// Tell the sprite to change to a random frame of animation
+        /// Useful for instantiating particles or other weird things.
+        /// </summary>
         public void randomFrame()
         {
 			_curAnim = null;
@@ -520,11 +565,11 @@ namespace org.flixel
 			calcFrame();
         }
 
-        /**
-         * Tell the sprite to change to a specific frame of animation.
-         * 
-         * @param	Frame	The frame you want to display.
-         */
+        /// <summary>
+        /// Tell the sprite to change to a specific frame of animation.
+        /// 
+        /// @param	Frame	The frame you want to display.
+        /// </summary>
         public int frame
         {
             get
@@ -539,13 +584,12 @@ namespace org.flixel
             }
         }
 
-        /**
-         * Call this function to figure out the on-screen position of the object.
-         * 
-         * @param	P	Takes a <code>Point</code> object and assigns the post-scrolled X and Y values of this object to it.
-         * 
-         * @return	The <code>Point</code> you passed in, or a new <code>Point</code> if you didn't pass one, containing the screen X and Y position of this object.
-         */
+        /// <summary>
+        /// Call this function to figure out the on-screen position of the object.
+        /// 
+        /// Takes a <code>Point</code> object and assigns the post-scrolled X and Y values of this object to it.
+        /// </summary>
+        /// <returns>The <code>Point</code> you passed in, or a new <code>Point</code> if you didn't pass one, containing the screen X and Y position of this object.</returns>
         override public Vector2 getScreenXY()
         {
             Vector2 Point = Vector2.Zero;
@@ -554,9 +598,9 @@ namespace org.flixel
             return Point;
         }
 
-        /**
-         * Internal function to update the current animation frame.
-         */
+        /// <summary>
+        /// Internal function to update the current animation frame.
+        /// </summary>
         protected void calcFrame()
 		{
             if (_stretchToFit)
@@ -586,6 +630,12 @@ namespace org.flixel
             if (_callback != null && _curAnim != null) _callback(_curAnim.name, (uint)_curFrame, _caf);
 		}
 
+        /// <summary>
+        /// Draws bounds
+        /// </summary>
+        /// <param name="spriteBatch">Sprite Batch</param>
+        /// <param name="X">X</param>
+        /// <param name="Y">Y</param>
         protected void drawBounds(SpriteBatch spriteBatch, int X, int Y)
         {
             spriteBatch.Draw(FlxG.XnaSheet,

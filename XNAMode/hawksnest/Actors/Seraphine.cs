@@ -16,6 +16,7 @@ namespace XNAMode
         public Seraphine(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            actorName = "Jennifer Twist";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/seraphine_ss_24x30"), true, false, 24, 30);
 

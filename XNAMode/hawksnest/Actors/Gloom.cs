@@ -16,7 +16,7 @@ namespace XNAMode
         public Gloom(int xPos, int yPos)
             : base(xPos, yPos)
         {
-
+            actorName = "Gloom";
             
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/gloom_spritesheet"), true, false, 13, 26);
 

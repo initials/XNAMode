@@ -6,7 +6,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace org.flixel
 {
-    //@desc		Contains all the logic for the developer console
+    /// <summary>
+    /// Contains all the logic for the developer console
+    /// </summary>
+	
     public class FlxConsole
     {
         private int MAX_CONSOLE_LINES = 256; // Not a const in X-flixel... we'll just base it on max lines visible on the console
@@ -49,9 +52,11 @@ namespace org.flixel
 
             MAX_CONSOLE_LINES = (FlxG.spriteBatch.GraphicsDevice.Viewport.Height / (int)(_consoleText.font.MeasureString("Qq").Y)) - 1;
         }
-
-        //@desc		Log data to the developer console
-        //@param	Data		The data (in string format) that you wanted to write to the console
+	
+        /// <summary>
+        /// Log data to the developer console
+        /// </summary>
+        /// <param name="Data">The data (in string format) that you wanted to write to the console</param>
         public void log(string Data)
         {
             if (Data == null)
@@ -71,7 +76,9 @@ namespace org.flixel
             //_consoleText.scrollV = _consoleText.height;
         }
 
-        //@desc		Shows/hides the console
+        /// <summary>
+        /// Shows/hides the console
+        /// </summary>
         public void toggle()
         {
             if (_consoleYT == FlxG.spriteBatch.GraphicsDevice.Viewport.Height)
@@ -83,7 +90,10 @@ namespace org.flixel
             }
         }
 
-        //@desc		Updates and/or animates the dev console
+        /// <summary>
+        /// Updates and/or animates the dev console
+        /// </summary>
+	
         public void update()
         {
             if (visible)
@@ -116,6 +126,10 @@ namespace org.flixel
             _consoleRect.Height = (int)Math.Floor(_consoleY);
         }
 
+        /// <summary>
+        /// Render
+        /// </summary>
+        /// <param name="spriteBatch">sb</param>
         public void render(SpriteBatch spriteBatch)
         {
             _FPS[_curFPS] = (int)(1f / FlxG.elapsed);

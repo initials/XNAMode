@@ -4,19 +4,40 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace org.flixel
 {
-    //@desc		Just a helper structure for the FlxSprite animation system
+    /// <summary>
+    /// Just a helper structure for the FlxSprite animation system
+    /// </summary>
+	
     public class FlxAnim
     {
+        /// <summary>
+        /// Name of the animation as a string.
+        /// </summary>
 		public string name;
+
+        /// <summary>
+        /// Frame rate.
+        /// </summary>
 		public float delay;
+
+        /// <summary>
+        /// Frame number sequence.
+        /// Usage: new int[] {0,1,2,3,4,5,6,7,8,9 }
+        /// </summary>
 		public int[] frames;
+
+        /// <summary>
+        /// Whether to loop or not.
+        /// </summary>
 		public bool looped;
 
-		//@desc		Constructor
-		//@param	Name		What this animation should be called (e.g. "run")
-		//@param	Frames		An array of numbers indicating what frames to play in what order (e.g. 1, 2, 3)
-		//@param	FrameRate	The speed in frames per second that the animation should play at (e.g. 40 fps)
-		//@param	Looped		Whether or not the animation is looped or just plays once
+        /// <summary>
+        /// FlxAnim stores an animation.
+        /// </summary>
+        /// <param name="Name">What this animation should be called (e.g. "run")</param>
+        /// <param name="Frames">An array of numbers indicating what frames to play in what order (e.g. 1, 2, 3)</param>
+        /// <param name="FrameRate">The speed in frames per second that the animation should play at (e.g. 40 fps)</param>
+        /// <param name="Looped">Whether or not the animation is looped or just plays once</param>
 		public FlxAnim(string Name, int[] Frames, int FrameRate, bool Looped)
 		{
 			name = Name;
@@ -24,7 +45,12 @@ namespace org.flixel
 			frames = Frames;
 			looped = Looped;
 		}
-        //@desc Constructor overloads
+        /// <summary>
+        /// Constructor overloads
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="Frames"></param>
+        /// <param name="FrameRate"></param>
         public FlxAnim(string Name, int[] Frames, int FrameRate)
         {
             name = Name;
@@ -32,6 +58,11 @@ namespace org.flixel
             frames = Frames;
             looped = true;
         }
+        /// <summary>
+        /// Constructor overloads
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="Frames"></param>
         public FlxAnim(string Name, int[] Frames)
         {
             name = Name;
