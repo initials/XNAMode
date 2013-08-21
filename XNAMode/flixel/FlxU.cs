@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace org.flixel
 {
@@ -974,6 +975,29 @@ namespace org.flixel
 
             return builder.ToString();
         }
+
+        /// <summary>
+        /// Get's a color from a texture.
+        /// </summary>
+        /// <param name="bitmapData">Texture to get the color from</param>
+        /// <param name="xPos">X position in pixels</param>
+        /// <param name="yPos">Y position in pixels</param>
+        /// <returns>Returns a uint of the color.</returns>
+        static public uint getColorFromBitmapAtPoint(Texture2D bitmapData, int xPos, int yPos)
+        {
+            uint p;
+            int w = bitmapData.Width;
+            int h = bitmapData.Height;
+            uint[] _bitData = new uint[1];
+
+            bitmapData.GetData<uint>(_bitData);
+
+            p = _bitData[(xPos * yPos)];
+
+            return p;
+        }
+
+
 
     }
 }
