@@ -311,8 +311,11 @@ namespace org.flixel
         /// <param name="Y">Y Position</param>
         public static void setHudGamepadButton(int Button, float X, float Y) { _game._hud.setHudGamepadButton(Button, X , Y); }
 
-
+        /// <summary>
+        /// Not working yet!
+        /// </summary>
         public static void takeScreenshot() { _game.takeScreenshot(); }
+
 
 
         /// <summary>

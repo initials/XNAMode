@@ -37,6 +37,7 @@ namespace XNAMode
 
             FlxTileblock bg = new FlxTileblock(0, FlxG.height - 256, 256 * 3, 256);
             bg.loadTiles(FlxG.Content.Load<Texture2D>("initials/Ambience"), 256, 256, 0);
+
             add(bg);
 
             hasCheckedSave = false;

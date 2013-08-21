@@ -33,9 +33,13 @@ namespace XNAMode
 
             foreach (XElement xEle in xelement.Descendants("level_1"))
             {
-                Console.WriteLine(xEle.Value.ToString());
+                Console.WriteLine(xEle.Value.ToString() + "\n");
 
             }
+
+            
+
+            
 
 
 

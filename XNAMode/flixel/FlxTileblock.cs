@@ -32,6 +32,8 @@ namespace org.flixel
 			createGraphic(Width,Height,Color.Black);		
 			@fixed = true;
             _autoTile = true;
+            _color = Color.White;
+
 		}
 
         /// <summary>
@@ -151,7 +153,7 @@ namespace org.flixel
             {
                 if (_rects[i] != Rectangle.Empty)
                 {
-                    spriteBatch.Draw(_tex, _p, _rects[i], Color.White);
+                    spriteBatch.Draw(_tex, _p, _rects[i], _color);
                 }
                 _p.X += _tileWidth;
                 if (_p.X >= opx + width)

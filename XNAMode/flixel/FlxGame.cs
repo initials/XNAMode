@@ -63,7 +63,13 @@ namespace org.flixel
         /// Constructor 
         /// </summary>
         /// <param name="game">Game</param>
-        public FlxGame(Game game) : base(game) { }	
+        public FlxGame(Game game) : base(game) { }
+
+
+        /// <summary>
+        /// Tint the entire game.
+        /// </summary>
+        public Color color;
 
         /// <summary>
         /// Constructor
@@ -429,7 +435,7 @@ namespace org.flixel
             FlxG.spriteBatch.Draw(backRender,
                 new Rectangle(targetLeft + _quakeOffset.X + FlxG.width, _quakeOffset.Y + FlxG.height, targetWidth, GraphicsDevice.Viewport.Height),
                 null,
-                Color.White,
+                color,
                 FlxG.angle,
                 new Vector2(FlxG.width / FlxG.zoom, FlxG.height / FlxG.zoom),
                 SpriteEffects.None,

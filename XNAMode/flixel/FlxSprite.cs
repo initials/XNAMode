@@ -99,6 +99,9 @@ namespace org.flixel
         protected Color _color = Color.White;
         private byte _bytealpha = 0xff;
 
+        /// <summary>
+        /// Used for color tinting.
+        /// </summary>
         public Color color
         {
             get { return _color; }

@@ -46,6 +46,10 @@ namespace XNAMode
         private FlxText p1CurrentActor;
         private FlxGroup actors;
 
+        FlxTileblock ti;
+        int timeOfDay;
+
+
         override public void create()
         {
 
@@ -61,7 +65,7 @@ namespace XNAMode
             FlxG.log("levelData: " + levelData);
 
             //bg
-            FlxTileblock ti = new FlxTileblock(0, 0, FlxG.width + 48, FlxG.height / 2);
+            ti= new FlxTileblock(0, 0, FlxG.width + 48, FlxG.height / 2);
             ti.loadTiles(FlxG.Content.Load<Texture2D>("initials/envir_dusk"), 48, 64, 0);
             ti.scrollFactor.X = 0.02f;
             ti.scrollFactor.Y = 0.02f;
@@ -205,11 +209,17 @@ namespace XNAMode
             p1CurrentActor.scrollFactor = Vector2.Zero;
             add(p1CurrentActor);
 
+            timeOfDay = 0;
+
 
         }
 
         override public void update()
         {
+
+            timeOfDay++;
+            ti.color = FlxU.getColorFromBitmapAtPoint(FlxG.Content.Load<Texture2D>("initials/palette"), timeOfDay % 70, timeOfDay / 70);
+
 
             FlxU.collide(actors, tiles);
 
@@ -277,6 +287,14 @@ namespace XNAMode
             }
              * 
              */
+            if (FlxG.keys.F5)
+            {
+                FlxG.angle += 2;
+            }
+            if (FlxG.keys.F6)
+            {
+                FlxG.angle = 0;
+            }
 
             if (FlxG.keys.F4)
             {
