@@ -976,6 +976,11 @@ namespace org.flixel
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Internal function to turn a texture into an array of colors
+        /// </summary>
+        /// <param name="texture">Texture to load</param>
+        /// <returns>Returns a multi array of colors (Color[,])</returns>
         static public Color[,] TextureTo2DArray(Texture2D texture)
         {
             Color[] colors1D = new Color[texture.Width * texture.Height];
@@ -1003,10 +1008,26 @@ namespace org.flixel
             Color colorAtPoint = cols[xPos, yPos];
 
             return colorAtPoint;
-
-
         }
 
+        static public int[] convertStringToIntegerArray(string StringToSplit)
+        {
+            string[] words = StringToSplit.Split(',');
+
+            int[] intArray = new int[words.Length];
+
+            int i = 0;
+
+            foreach (string word in words)
+            {
+                intArray[i] = Convert.ToInt32(word);
+                i++;
+
+            }
+
+            return intArray;
+
+        }
 
 
     }

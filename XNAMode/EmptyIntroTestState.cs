@@ -24,6 +24,21 @@ namespace XNAMode
 
             Console.WriteLine(xc);
 
+            string ints = "3,4,4,3,3,4,5,6,6,6,4,5,4,54,5";
+            int[] ar = FlxU.convertStringToIntegerArray(ints);
+            foreach (int ix in ar)
+                Console.WriteLine(ix.ToString());
+
+            XElement xelement = XElement.Load("levelDetails.xml");
+
+            foreach (XElement xEle in xelement.Descendants("level_1"))
+            {
+                Console.WriteLine(xEle.Value.ToString());
+
+            }
+
+
+
         }
 
         override public void update()
