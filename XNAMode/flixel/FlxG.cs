@@ -303,12 +303,17 @@ namespace org.flixel
         public static void resetHud() { _game._hud.reset(); }
 
         /// <summary>
-        /// 
+        /// Sets the gamepad hud (non scaled) graphic to a button, and X and Y values.
+        /// Use FlxButton.GamePad** to choose a button
         /// </summary>
-        /// <param name="Button"></param>
-        /// <param name="X"></param>
-        /// <param name="Y"></param>
+        /// <param name="Button">The button you'd like, use FlxButton.GamePad** to choose.</param>
+        /// <param name="X">X Position</param>
+        /// <param name="Y">Y Position</param>
         public static void setHudGamepadButton(int Button, float X, float Y) { _game._hud.setHudGamepadButton(Button, X , Y); }
+
+
+        public static void takeScreenshot() { _game.takeScreenshot(); }
+
 
         /// <summary>
         /// Set <code>pause</code> to true to pause the game, all sounds, and display the pause popup.

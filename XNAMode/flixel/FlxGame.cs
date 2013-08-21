@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.IO;
 
 namespace org.flixel
 {
@@ -446,6 +447,30 @@ namespace org.flixel
             }
 
             FlxG.spriteBatch.End();
+        }
+
+        public void takeScreenshot()
+        {
+
+            int w = GraphicsDevice.PresentationParameters.BackBufferWidth;
+            int h = GraphicsDevice.PresentationParameters.BackBufferHeight;
+
+            //pull the picture from the buffer 
+            int[] backBuffer = new int[w * h];
+            GraphicsDevice.GetBackBufferData(backBuffer);
+
+            //copy into a texture 
+            Texture2D texture = new Texture2D(GraphicsDevice, w, h, false, GraphicsDevice.PresentationParameters.BackBufferFormat);
+            texture.SetData(backBuffer);
+
+            //save to disk 
+            Stream stream = File.OpenWrite("screenie" + ".jpg");
+
+            texture.SaveAsJpeg(stream, w, h);
+            stream.Dispose();
+
+
+            texture.Dispose();
         }
 
 		/// <summary>

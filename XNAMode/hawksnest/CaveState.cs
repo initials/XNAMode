@@ -280,6 +280,8 @@ namespace XNAMode
 
             if (FlxG.keys.A)
             {
+                FlxG.takeScreenshot();
+
                 FlxG.transition.startFadeIn(0.025f);
 
                 FlxG.state = new CaveState();
