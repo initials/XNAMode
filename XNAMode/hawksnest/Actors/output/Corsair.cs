@@ -10,19 +10,19 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Automaton : Actor
+    class Corsair : Actor
     {
-        public Automaton(int xPos, int yPos)
+        public Corsair(int xPos, int yPos)
             : base(xPos, yPos)
         {
 
-            actorName = "The Automaton";
+            actorName = "The TemplateActor";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/automaton_ss_11x24"), true, false, 11, 24);
+            loadGraphic(FlxG.Content.Load<Texture2D>("initials/corsair_11x24"), true, false, 11, 24);
 
-            addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6,7 }, 12);
+            addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
-            addAnimation("attack", new int[] { 2,4 }, 18);
+            addAnimation("attack", new int[] { 2, 4 }, 18);
 
             //bounding box tweaks
             width = 7;
@@ -38,19 +38,11 @@ namespace XNAMode
             maxVelocity.Y = 1000;
 
             jumpPower = -140;
-
-
         }
 
         override public void update()
         {
-
-
-
             base.update();
-
         }
-
-
     }
 }

@@ -278,9 +278,14 @@ namespace XNAMode
              * 
              */
 
-            if (FlxG.keys.A)
+            if (FlxG.keys.F4)
             {
                 FlxG.takeScreenshot();
+            }
+
+            if (FlxG.keys.A)
+            {
+                
 
                 FlxG.transition.startFadeIn(0.025f);
 
