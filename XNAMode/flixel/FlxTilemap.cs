@@ -119,10 +119,24 @@ namespace org.flixel
         /// <summary>
         /// Rendering helper.
         /// </summary>
-        /// 
         protected Rectangle _flashRect;
+        /// <summary>
+        /// Rendering helper.
+        /// </summary>
         protected Rectangle _flashRect2;
 
+        /// <summary>
+        /// Stores the number of extra filler tiles in your tile sheet.
+        /// </summary>
+        protected int _extraMiddleTiles;
+        /// <summary>
+        /// Integer array of the data building the map.
+        /// The value corresponds to the texture's frame number.
+        /// 0 = empty block
+        /// 1 = block alone
+        /// ...
+        /// 16 is a solid block in the middle.
+        /// </summary>
         protected int[] _data;
         protected List<Rectangle> _rects;
         protected int _tileWidth;
@@ -197,6 +211,8 @@ namespace org.flixel
 
             _tileBitmap = TileGraphic;
 
+            
+
             //Figure out the map dimensions based on the data string
             string[] cols;
             string[] rows = MapData.Split('\n');
@@ -221,6 +237,15 @@ namespace org.flixel
                     _data[((r - 1) * widthInTiles) + c] = int.Parse(cols[c++]); //.push(uint(cols[c++]));
             }
 
+            //now that height and width have been determined, find how many extra 
+            //"filler tiles" are at the end of your map.
+
+            int standardLength = 16 * TileWidth;
+            int graphicWidth = _tileBitmap.Width;
+            _extraMiddleTiles = (graphicWidth - standardLength) / TileWidth;
+            Console.WriteLine("Extra middle tiles = " + _extraMiddleTiles);
+
+
             //Pre-process the map data if it's auto-tiled
             int i;
             totalTiles = widthInTiles * heightInTiles;
@@ -233,8 +258,6 @@ namespace org.flixel
             }
             if (auto == RANDOM)
             {
-                //Console.WriteLine("auto is == RANDOM");
-
                 collideIndex = startingIndex = drawIndex = 1;
                 i = 0;
                 while (i < totalTiles)
@@ -277,6 +300,12 @@ namespace org.flixel
             _flashRect.Y = 0;
             _flashRect.Width = (int)(FlxU.ceil((float)FlxG.width / (float)_tileWidth) + 1) * _tileWidth; ;
             _flashRect.Height = (int)(FlxU.ceil((float)FlxG.height / (float)_tileHeight) + 1) * _tileHeight;
+
+            //foreach(var item in _data)
+              //  Console.Write(item.ToString() + ",");
+
+
+
 
             return this;
         }
@@ -811,6 +840,11 @@ namespace org.flixel
                     _data[Index] = 8; 		//BOTTOM RIGHT OPEN
             }
             _data[Index] += 1;
+
+            if (_extraMiddleTiles >= 1 && _data[Index] == 16)
+            {
+                _data[Index] += (int)(FlxU.random() * (_extraMiddleTiles+1));
+            }
         }
 
         /// <summary>

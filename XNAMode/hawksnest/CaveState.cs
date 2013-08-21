@@ -85,7 +85,7 @@ namespace XNAMode
 
             tiles = new FlxTilemap();
             tiles.auto = FlxTilemap.AUTO;
-            tiles.loadMap(newMap, FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"));
+            tiles.loadMap(newMap, FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"),16,16);
             add(tiles);
 
 
