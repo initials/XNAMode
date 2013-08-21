@@ -317,6 +317,12 @@ namespace org.flixel
         public static void takeScreenshot() { _game.takeScreenshot(); }
 
 
+        /// <summary>
+        /// Tint the entire game
+        /// </summary>
+        /// <param name="co">To this color</param>
+        public static void color(Color co) { _game.color = co; }
+
 
         /// <summary>
         /// Set <code>pause</code> to true to pause the game, all sounds, and display the pause popup.

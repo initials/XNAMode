@@ -12,13 +12,21 @@ namespace XNAMode
 {
     public class EmptyIntroTestState : FlxState
     {
+        int timeOfDay;
 
         override public void create()
         {
+
+            FlxG.backColor = Color.Gray;
+
             base.create();
+
+            FlxG.backColor = Color.Gray;
+
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
+            timeOfDay = 0;
 
             Color xc = FlxU.getColorFromBitmapAtPoint(FlxG.Content.Load<Texture2D>("initials/envir_dusk"), 5, 5);
 
@@ -37,8 +45,8 @@ namespace XNAMode
 
             }
 
-            
 
+            FlxG.color(Color.Tomato);
             
 
 
@@ -48,7 +56,8 @@ namespace XNAMode
         override public void update()
         {
 
-
+            timeOfDay++;
+            FlxG.color(FlxU.getColorFromBitmapAtPoint(FlxG.Content.Load<Texture2D>("initials/palette"), timeOfDay % 70, timeOfDay / 70));
 
 
             base.update();

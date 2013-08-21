@@ -69,7 +69,16 @@ namespace org.flixel
         /// <summary>
         /// Tint the entire game.
         /// </summary>
-        public Color color;
+        protected Color _color = Color.White;
+
+        /// <summary>
+        /// Used for color tinting.
+        /// </summary>
+        public Color color
+        {
+            get { return _color; }
+            set { _color = new Color(value.R, value.G, value.B); }
+        }
 
         /// <summary>
         /// Constructor
@@ -86,6 +95,8 @@ namespace org.flixel
         {
             FlxG.backColor = BGColor;
             FlxG.setGameData(this, GameSizeX, GameSizeY);
+
+            _color = Color.White;
 
             _paused = false;
 
@@ -435,7 +446,7 @@ namespace org.flixel
             FlxG.spriteBatch.Draw(backRender,
                 new Rectangle(targetLeft + _quakeOffset.X + FlxG.width, _quakeOffset.Y + FlxG.height, targetWidth, GraphicsDevice.Viewport.Height),
                 null,
-                color,
+                _color,
                 FlxG.angle,
                 new Vector2(FlxG.width / FlxG.zoom, FlxG.height / FlxG.zoom),
                 SpriteEffects.None,
