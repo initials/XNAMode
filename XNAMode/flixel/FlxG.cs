@@ -23,7 +23,9 @@ namespace org.flixel
     /// </summary>
     public class FlxG
     {
-
+        /// <summary>
+        /// FlxG.bloom is a bloom effect across everything!
+        /// </summary>
         public static BloomComponent bloom;
 
         //@benbaird Global, XNA-specific stuff that any component should be able

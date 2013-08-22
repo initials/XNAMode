@@ -15,6 +15,7 @@ namespace XNAMode
     public class EmptyIntroTestState : FlxState
     {
         int timeOfDay;
+        public FlxTileblock bg;
 
         override public void create()
         {
@@ -24,7 +25,7 @@ namespace XNAMode
             base.create();
 
 
-            FlxTileblock bg = new FlxTileblock(0, FlxG.height - 256, 256 * 3, 256);
+            bg = new FlxTileblock(0, FlxG.height - 256, 256 * 3, 256);
             bg.loadTiles(FlxG.Content.Load<Texture2D>("initials/Ambience"), 256, 256, 0);
 
             add(bg);
@@ -91,7 +92,6 @@ namespace XNAMode
                 FlxG.bloom.Visible = !FlxG.bloom.Visible;
             }
 
-
             // Cycle through the intermediate buffer debug display modes?
             if  (FlxG.keys.justPressed(Keys.F4))
             {
@@ -102,16 +102,11 @@ namespace XNAMode
                     FlxG.bloom.ShowBuffer = 0;
             }
 
-
-            
-
         }
 
         public override void postProcess(SpriteBatch spriteBatch)
         {
             base.postProcess(spriteBatch);
-
-            //FlxG.bloom.BeginDraw();
 
         }
     }

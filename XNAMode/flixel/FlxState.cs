@@ -74,6 +74,9 @@ namespace org.flixel
         virtual public void preProcess(SpriteBatch spriteBatch)
 		{
             spriteBatch.GraphicsDevice.Clear(bgColor); //Default behavior - just overwrite buffer with background color
+
+            // Bloom effect
+            FlxG.bloom.BeginDraw();
 		}
 
         /// <summary>

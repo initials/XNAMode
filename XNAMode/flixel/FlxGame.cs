@@ -392,17 +392,10 @@ namespace org.flixel
             //Render the screen to our internal game-sized back buffer.
             GraphicsDevice.SetRenderTarget(backRender);
 
-            
-
             if (FlxG.state != null)
             {
-
-                
-                
                 FlxG.state.preProcess(FlxG.spriteBatch);
-
-                FlxG.bloom.BeginDraw();
-
+                
                 FlxG.state.render(FlxG.spriteBatch);
                 
                 FlxG.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
@@ -417,8 +410,6 @@ namespace org.flixel
                     FlxG.mouse.cursor.render(FlxG.spriteBatch);
 
                 FlxG.spriteBatch.End();
-
-                
 
                 FlxG.state.postProcess(FlxG.spriteBatch);
 

@@ -62,7 +62,5 @@ namespace XNAMode
             base.update();
 
         }
-
-
     }
 }
