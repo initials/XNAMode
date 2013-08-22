@@ -8,6 +8,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.IO;
 
+// ***
+using BloomPostprocess;
+
+
 namespace org.flixel
 {
     /// <summary>
@@ -15,6 +19,9 @@ namespace org.flixel
     /// </summary>
     public partial class FlxGame : DrawableGameComponent
     {
+        // ***
+        public BloomComponent bloom;
+
         private FlxState _firstScreen;
 
         private SoundEffect _sndBeep;
@@ -96,6 +103,8 @@ namespace org.flixel
             FlxG.backColor = BGColor;
             FlxG.setGameData(this, GameSizeX, GameSizeY);
 
+            
+
             _color = Color.White;
 
             _paused = false;
@@ -149,6 +158,8 @@ namespace org.flixel
 
             backRender = new RenderTarget2D(GraphicsDevice, FlxG.width, FlxG.height, false, SurfaceFormat.Color,
                 DepthFormat.None, 0, RenderTargetUsage.DiscardContents);
+
+            
         }
 
         /// <summary>
@@ -380,11 +391,20 @@ namespace org.flixel
         {
             //Render the screen to our internal game-sized back buffer.
             GraphicsDevice.SetRenderTarget(backRender);
+
+            
+
             if (FlxG.state != null)
             {
-                FlxG.state.preProcess(FlxG.spriteBatch);
-                FlxG.state.render(FlxG.spriteBatch);
 
+                
+                
+                FlxG.state.preProcess(FlxG.spriteBatch);
+
+                FlxG.bloom.BeginDraw();
+
+                FlxG.state.render(FlxG.spriteBatch);
+                
                 FlxG.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
                 if (FlxG.flash.exists)
                     FlxG.flash.render(FlxG.spriteBatch);
@@ -398,7 +418,10 @@ namespace org.flixel
 
                 FlxG.spriteBatch.End();
 
+                
+
                 FlxG.state.postProcess(FlxG.spriteBatch);
+
             }
             //Render sound tray if necessary
             if (_soundTrayVisible || _paused)
@@ -462,6 +485,8 @@ namespace org.flixel
             {
                 _hud.render(FlxG.spriteBatch);
             }
+
+            
 
             FlxG.spriteBatch.End();
         }

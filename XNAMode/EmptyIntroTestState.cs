@@ -8,6 +8,8 @@ using org.flixel;
 using System.Linq;
 using System.Xml.Linq;
 
+
+
 namespace XNAMode
 {
     public class EmptyIntroTestState : FlxState
@@ -17,11 +19,17 @@ namespace XNAMode
         override public void create()
         {
 
-            FlxG.backColor = Color.Gray;
+            //FlxG.backColor = Color.Gray;
 
             base.create();
 
-            FlxG.backColor = Color.Gray;
+
+            FlxTileblock bg = new FlxTileblock(0, FlxG.height - 256, 256 * 3, 256);
+            bg.loadTiles(FlxG.Content.Load<Texture2D>("initials/Ambience"), 256, 256, 0);
+
+            add(bg);
+
+            //FlxG.backColor = Color.Gray;
 
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
@@ -77,8 +85,34 @@ namespace XNAMode
             //FlxG.color(FlxU.getColorFromBitmapAtPoint(FlxG.Content.Load<Texture2D>("initials/palette"), timeOfDay % 70, timeOfDay / 70));
 
             base.update();
+
+            if (FlxG.keys.justPressed(Keys.F3))
+            {
+                FlxG.bloom.Visible = !FlxG.bloom.Visible;
+            }
+
+
+            // Cycle through the intermediate buffer debug display modes?
+            if  (FlxG.keys.justPressed(Keys.F4))
+            {
+                FlxG.bloom.Visible = true;
+                FlxG.bloom.ShowBuffer++;
+
+                if (FlxG.bloom.ShowBuffer > BloomPostprocess.BloomComponent.IntermediateBuffer.FinalResult)
+                    FlxG.bloom.ShowBuffer = 0;
+            }
+
+
+            
+
         }
 
+        public override void postProcess(SpriteBatch spriteBatch)
+        {
+            base.postProcess(spriteBatch);
 
+            //FlxG.bloom.BeginDraw();
+
+        }
     }
 }

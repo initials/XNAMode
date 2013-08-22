@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using BloomPostprocess;
 
 namespace org.flixel
 {
@@ -22,6 +23,9 @@ namespace org.flixel
     /// </summary>
     public class FlxG
     {
+
+        public static BloomComponent bloom;
+
         //@benbaird Global, XNA-specific stuff that any component should be able
         // to access from anywhere. (As read-only properties, generally.)
         public static Game Game;

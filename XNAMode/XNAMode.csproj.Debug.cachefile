@@ -83,6 +83,9 @@ Content\initials\executor_ss_21x21.xnb
 Content\initials\arrow_8x1.xnb
 Content\initials\colorss.xnb
 Content\initials\palette.xnb
+Content\BloomCombine.xnb
+Content\BloomExtract.xnb
+Content\GaussianBlur.xnb
 Content\mode\button.wma
 levelDetails.xml
 level1.oel

@@ -121,6 +121,11 @@ namespace org.flixel
         virtual public void postProcess(SpriteBatch spriteBatch)
 		{
 			//no fx by default
+
+            
+            
+            
+
 		}
 
         /// <summary>

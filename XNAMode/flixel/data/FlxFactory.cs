@@ -102,8 +102,11 @@ namespace org.flixel
             //_flixelgame = new FlxGame();
             _flixelgame = new XNAMode.FlixelEntryPoint(this);
 
+            FlxG.bloom = new BloomPostprocess.BloomComponent(this);
 
             Components.Add(_flixelgame);
+            Components.Add(FlxG.bloom);
+
             base.Initialize();
         }
 
