@@ -177,6 +177,7 @@
     <Compile Include="hawksnest\Actors\nonanimated\Wolf.cs" />
     <Compile Include="hawksnest\Actors\nonanimated\Zinger.cs" />
     <Compile Include="hawksnest\GameProgress.cs" />
+    <Compile Include="hawksnest\Levels\BasePlayState.cs" />
     <Compile Include="XNATweener\Back.cs" />
     <Compile Include="XNATweener\Bounce.cs" />
     <Compile Include="XNATweener\Circular.cs" />
@@ -269,6 +270,7 @@
     <Content Include="GameThumbnail.png" />
     <None Include="levelDetails.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -34,31 +34,47 @@ namespace XNAMode
 
             string ints = "3,4,4,3,3,4,5,6,6,6,4,5,4,54,5";
             int[] ar = FlxU.convertStringToIntegerArray(ints);
-            foreach (int ix in ar)
-                Console.WriteLine(ix.ToString());
+            //foreach (int ix in ar)
+              //  Console.WriteLine(ix.ToString());
+
+
+            Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
 
             XElement xelement = XElement.Load("levelDetails.xml");
 
-            foreach (XElement xEle in xelement.Descendants("level_1"))
+            foreach (XElement xEle in xelement.Descendants("level_1").Elements())
             {
-                Console.WriteLine(xEle.Value.ToString() + "\n");
+
+                if (xEle.Value.ToString() == "")
+                {
+                    levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
+                }
+                else
+                {
+                    levelAttrs.Add(xEle.Name.ToString(), xEle.Value.ToString());
+                }
+                //levelAttrs.Add(xEle.Name.ToString(), xEle.Value.ToString());
+
+                //Console.WriteLine("xelement ---->"+ xEle.Value.ToString() + "\n.." + xEle.Name.ToString());
+
 
             }
 
+            //Console.WriteLine(dictionary.ToString() + "\n");
 
-            FlxG.color(Color.Tomato);
-            
-
-
-
+            foreach (KeyValuePair<string, string> pair in levelAttrs)
+            {
+                Console.WriteLine("dict -----> {0}, {1}",
+                pair.Key,
+                pair.Value);
+            }
         }
 
         override public void update()
         {
 
             timeOfDay++;
-            FlxG.color(FlxU.getColorFromBitmapAtPoint(FlxG.Content.Load<Texture2D>("initials/palette"), timeOfDay % 70, timeOfDay / 70));
-
+            //FlxG.color(FlxU.getColorFromBitmapAtPoint(FlxG.Content.Load<Texture2D>("initials/palette"), timeOfDay % 70, timeOfDay / 70));
 
             base.update();
         }

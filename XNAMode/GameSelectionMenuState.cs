@@ -184,6 +184,8 @@ namespace XNAMode
         /// </summary>
         public void playGame()
         {
+            FlxG.level = 1;
+
             if (_nameEntry.text == "")
             {
                 _menuItems.text = "Name cannot be blank";

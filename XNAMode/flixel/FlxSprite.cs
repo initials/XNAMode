@@ -96,6 +96,9 @@ namespace org.flixel
 		protected Rectangle _flashRect2;
         protected Point _flashPointZero;
         protected float _alpha;
+        /// <summary>
+        /// internal color used for tinting.
+        /// </summary>
         protected Color _color = Color.White;
         private byte _bytealpha = 0xff;
 
@@ -108,12 +111,18 @@ namespace org.flixel
             set { _color = new Color(value.R, value.G, value.B, _bytealpha); }
         }
 
+        /// <summary>
+        /// Alpha of the sprite.
+        /// </summary>
         public float alpha
         {
             get { return _alpha; }
             set { _alpha = value; _bytealpha = (byte)(255f * _alpha); _color = new Color(_color.R, _color.G, _color.B, _bytealpha); }
         }
 
+        /// <summary>
+        /// Returns a list of FlxAnims.
+        /// </summary>
         public List<FlxAnim> animations
         {
             get { return _animations; }
@@ -199,32 +208,32 @@ namespace org.flixel
         }
 
         /// <summary>
-        /// 
+        /// Load an image from an embedded graphic file.
         /// </summary>
-        /// <param name="Graphic"></param>
-        /// <returns></returns>
+        /// <param name="Graphic">The image you want to use.</param>
+        /// <returns>This FlxSprite instance (nice for chaining stuff together, if you're into that).</returns>
         public virtual FlxSprite loadGraphic(Texture2D Graphic)
         {
             return loadGraphic(Graphic, false, false, 0, 0);
         }
         /// <summary>
-        /// 
+        /// Load an image from an embedded graphic file.
         /// </summary>
-        /// <param name="Graphic"></param>
-        /// <param name="Animated"></param>
-        /// <returns></returns>
+        /// <param name="Graphic">The image you want to use.</param>
+        /// <param name="Animated">Whether the Graphic parameter is a single sprite or a row of sprites.</param>
+        /// <returns>This FlxSprite instance (nice for chaining stuff together, if you're into that).</returns>
         public virtual FlxSprite loadGraphic(Texture2D Graphic, bool Animated)
         {
             return loadGraphic(Graphic, Animated, false, 0, 0);
         }
         /// <summary>
-        /// 
+        /// Load an image from an embedded graphic file.
         /// </summary>
-        /// <param name="Graphic"></param>
-        /// <param name="Animated"></param>
-        /// <param name="Reverse"></param>
-        /// <param name="Width"></param>
-        /// <returns></returns>
+        /// <param name="Graphic">The image you want to use.</param>
+        /// <param name="Animated">Whether the Graphic parameter is a single sprite or a row of sprites.</param>
+        /// <param name="Reverse">Whether you need this class to generate horizontally flipped versions of the animation frames.</param>
+        /// <param name="Width">OPTIONAL - Specify the width of your sprite (helps FlxSprite figure out what to do with non-square sprites or sprite sheets).</param>
+        /// <returns>This FlxSprite instance (nice for chaining stuff together, if you're into that).</returns>
         public virtual FlxSprite loadGraphic(Texture2D Graphic, bool Animated, bool Reverse, int Width)
         {
             return loadGraphic(Graphic, Animated, Reverse, Width, 0);

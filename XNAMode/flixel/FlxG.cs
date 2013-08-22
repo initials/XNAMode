@@ -319,6 +319,7 @@ namespace org.flixel
 
         /// <summary>
         /// Tint the entire game
+        /// <example>FlxG.color(Color.Tomato);</example>
         /// </summary>
         /// <param name="co">To this color</param>
         public static void color(Color co) { _game.color = co; }
