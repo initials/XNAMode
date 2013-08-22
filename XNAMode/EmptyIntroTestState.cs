@@ -16,6 +16,7 @@ namespace XNAMode
     {
         int timeOfDay;
         public FlxTileblock bg;
+        int bloomSettingsIndex = 0;
 
         override public void create()
         {
@@ -26,7 +27,7 @@ namespace XNAMode
 
 
             bg = new FlxTileblock(0, FlxG.height - 256, 256 * 3, 256);
-            bg.loadTiles(FlxG.Content.Load<Texture2D>("initials/Ambience"), 256, 256, 0);
+            bg.loadTiles(FlxG.Content.Load<Texture2D>("initials/texture_placement_small"), 256, 256, 0);
 
             add(bg);
 
@@ -99,7 +100,24 @@ namespace XNAMode
                 FlxG.bloom.ShowBuffer++;
 
                 if (FlxG.bloom.ShowBuffer > BloomPostprocess.BloomComponent.IntermediateBuffer.FinalResult)
+                {
                     FlxG.bloom.ShowBuffer = 0;
+                    
+
+                }
+
+                Console.WriteLine(FlxG.bloom.ShowBuffer.ToString());
+            }
+
+            if (FlxG.keys.justPressed(Keys.F5))
+            {
+                bloomSettingsIndex = (bloomSettingsIndex + 1) %
+                         BloomPostprocess.BloomSettings.PresetSettings.Length;
+
+                FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[bloomSettingsIndex];
+                FlxG.bloom.Visible = true;
+
+                Console.WriteLine(FlxG.bloom.Settings.ToString());
             }
 
         }
