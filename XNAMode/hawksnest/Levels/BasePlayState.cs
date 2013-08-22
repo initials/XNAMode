@@ -12,6 +12,19 @@ namespace XNAMode
 {
     public class BasePlayState : FlxState
     {
+        /// <summary>
+        /// The leading of the camera
+        /// </summary>
+        private const float FOLLOW_LERP = 3.0f;
+
+        /// <summary>
+        /// How many bullets to create for each actor.
+        /// </summary>
+        private const int BULLETS_PER_ACTOR = 100;
+
+        /// <summary>
+        /// A holder for all of the level data to generate a level from.
+        /// </summary>
         Dictionary<string, string> levelAttrs;
 
         /// <summary>
@@ -28,8 +41,63 @@ namespace XNAMode
         /// <summary>
         /// Decorations tile map
         /// </summary>
-        /// 
         private FlxTilemap decorationsTilemap;
+
+        /// <summary>
+        /// An array of the decorations map.
+        /// </summary>
+        private int[,] decorationsArray;
+
+        /// <summary>
+        /// A cave generator object that creates the level
+        /// </summary>
+        private FlxCaveGenerator cave;
+
+        // --- FlxGroups, for overlap collide.
+
+        /// <summary>
+        /// Fireballs for the warlock
+        /// </summary>
+        protected FlxGroup fireballs;
+
+        /// <summary>
+        /// Arrows for the Marksman
+        /// </summary>
+        protected FlxGroup arrows;
+
+        /// <summary>
+        /// Complete group of all the actors.
+        /// </summary>
+        private FlxGroup actors;
+
+        /// <summary>
+        /// Every single bullet in the scene.
+        /// </summary>
+        protected FlxGroup bullets;
+
+        private Automaton automaton;
+        private Corsair corsair;
+        private Executor executor;
+        private Gloom gloom;
+        private Harvester harvester;
+
+        /// <summary>
+        /// A Marksman player actor.
+        /// Can shoot arrows.
+        /// </summary>
+        private Marksman marksman;
+        private Medusa medusa;
+        private Mistress mistress;
+        private Mummy mummy;
+        private Nymph nymph;
+        private Paladin paladin;
+        private Seraphine seraphine;
+        private Succubus succubus;
+        private Tormentor tormentor;
+        private Unicorn unicorn;
+        private Warlock warlock;
+        private Vampire vampire;
+        private Zombie zombie;
 
         override public void create()
         {
@@ -40,6 +108,13 @@ namespace XNAMode
             FlxG.showHud();
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
+
+            // initialize a bunch of groups
+            actors = new FlxGroup();
+            fireballs = new FlxGroup();
+            bullets = new FlxGroup();
+            arrows = new FlxGroup();
+
 
             //First build a dictionary of levelAttrs
             //This will determine how the level is built.
@@ -74,14 +149,14 @@ namespace XNAMode
 
             // Generate the levels caves/tiles.
 
-            FlxCaveGenerator cav = new FlxCaveGenerator(Convert.ToInt32(levelAttrs["width"]), Convert.ToInt32(levelAttrs["height"]));
-            cav.initWallRatio = (float)Convert.ToDouble(levelAttrs["startCaveGenerateBias"]);
-            cav.numSmoothingIterations = 5;
-            cav.genInitMatrix(Convert.ToInt32(levelAttrs["width"]), Convert.ToInt32(levelAttrs["height"]));
+            cave = new FlxCaveGenerator(Convert.ToInt32(levelAttrs["width"]), Convert.ToInt32(levelAttrs["height"]));
+            cave.initWallRatio = (float)Convert.ToDouble(levelAttrs["startCaveGenerateBias"]);
+            cave.numSmoothingIterations = 5;
+            cave.genInitMatrix(Convert.ToInt32(levelAttrs["width"]), Convert.ToInt32(levelAttrs["height"]));
 
-            int[,] matr = cav.generateCaveLevel(3, 0, 2, 0, 1, 0, 1, 0);
+            int[,] matr = cave.generateCaveLevel(3, 0, 2, 0, 1, 0, 1, 0);
 
-            string newMap = cav.convertMultiArrayToString(matr);
+            string newMap = cave.convertMultiArrayToString(matr);
 
             mainTilemap = new FlxTilemap();
             mainTilemap.auto = FlxTilemap.AUTO;
@@ -90,8 +165,8 @@ namespace XNAMode
 
             // add the decorations tilemap.
 
-            int[,] decr = cav.createDecorationsMap(matr);
-            string newDec = cav.convertMultiArrayToString(decr);
+            decorationsArray = cave.createDecorationsMap(matr);
+            string newDec = cave.convertMultiArrayToString(decorationsArray);
             Texture2D DecorTex = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["decorationTiles"]);
 
             decorationsTilemap = new FlxTilemap();
@@ -108,13 +183,22 @@ namespace XNAMode
 
         override public void update()
         {
-
-
-
-
             base.update();
         }
 
+
+
+        public void buildMarksman()
+        {
+            
+            for (int i = 0; i < BULLETS_PER_ACTOR; i++)
+                arrows.add(new Arrow());
+            bullets.add(arrows);
+
+            int[] p = cave.findRandomSolid(decorationsArray);
+            marksman = new Marksman(p[1] * 16, p[0] * 16, arrows.members);
+            actors.add(marksman);
+        }
 
     }
 }
