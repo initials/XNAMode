@@ -12,6 +12,7 @@ namespace XNAMode
 {
     class Marksman : Actor
     {
+        public static int _curArrow;
 
         public Marksman(int xPos, int yPos, List<FlxObject> Bullets)
             : base(xPos, yPos)
@@ -54,9 +55,9 @@ namespace XNAMode
                 attacking = true;
                 float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
                 float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
-                ((Arrow)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 300), (int)(rightY *= -300));
-                if (++_curBullet >= _bullets.Count)
-                    _curBullet = 0;
+                ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 300), (int)(rightY *= -300));
+                if (++_curArrow >= _bullets.Count)
+                    _curArrow = 0;
             }
 
             base.update();

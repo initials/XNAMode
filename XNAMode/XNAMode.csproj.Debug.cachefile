@@ -87,12 +87,6 @@ Content\initials\texture_placement_small.xnb
 Content\fx\BloomCombine.xnb
 Content\fx\BloomExtract.xnb
 Content\fx\GaussianBlur.xnb
-Content\fx\AlphaTestEffect.xnb
-Content\fx\BasicEffect.xnb
-Content\fx\DualTextureEffect.xnb
-Content\fx\EnvironmentMapEffect.xnb
-Content\fx\SkinnedEffect.xnb
-Content\fx\SpriteEffect.xnb
 Content\mode\button.wma
 levelDetails.xml
 level1.oel

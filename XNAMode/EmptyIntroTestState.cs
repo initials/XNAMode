@@ -121,11 +121,5 @@ namespace XNAMode
             }
 
         }
-
-        public override void postProcess(SpriteBatch spriteBatch)
-        {
-            base.postProcess(spriteBatch);
-
-        }
     }
 }

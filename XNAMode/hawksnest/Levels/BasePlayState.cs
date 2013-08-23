@@ -179,6 +179,14 @@ namespace XNAMode
 
 
 
+            // build characters here
+
+
+            // build atmospheric effects here
+
+
+
+
         }
 
         override public void update()
@@ -190,16 +198,23 @@ namespace XNAMode
 
         public void buildActor(string ActorType, int NumberOfActors)
         {
+            #region Marksman
+
             if (ActorType == "Marksman")
             {
                 for (int i = 0; i < BULLETS_PER_ACTOR; i++)
                     arrows.add(new Arrow());
                 bullets.add(arrows);
 
-                int[] p = cave.findRandomSolid(decorationsArray);
-                marksman = new Marksman(p[1] * 16, p[0] * 16, arrows.members);
-                actors.add(marksman);
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    marksman = new Marksman(p[1] * 16, p[0] * 16, arrows.members);
+                    actors.add(marksman);
+                }
             }
+            #endregion
+
         }
 
     }
