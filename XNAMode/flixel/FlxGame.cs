@@ -415,7 +415,7 @@ namespace org.flixel
                 if (FlxG.mouse.cursor.visible)
                     FlxG.mouse.cursor.render(FlxG.spriteBatch);
 
-                //FlxG.spriteBatch.End();
+                FlxG.spriteBatch.End();
 
                 FlxG.state.postProcess(FlxG.spriteBatch);
 
