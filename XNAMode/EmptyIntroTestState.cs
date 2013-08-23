@@ -120,6 +120,32 @@ namespace XNAMode
                 Console.WriteLine(FlxG.bloom.Settings.ToString());
             }
 
+            if (FlxG.keys.justPressed(Keys.F6))
+            {
+                FlxG.bloom.usePresets = false;
+                FlxG.bloom.bloomIntensity += 0.05f;
+                FlxG.bloom.bloomSaturation += 0.05f;
+                FlxG.bloom.baseIntensity += 0.05f;
+                FlxG.bloom.baseSaturation += 0.05f;
+                FlxG.bloom.blurAmount += 0.05f;
+                FlxG.bloom.bloomThreshold += 0.05f;
+
+            }
+            if (FlxG.keys.justPressed(Keys.F7))
+            {
+                FlxG.bloom.usePresets = true;
+                FlxG.bloom.bloomIntensity = 0.0f;
+                FlxG.bloom.bloomSaturation = 0.0f;
+                FlxG.bloom.baseIntensity = 0.0f;
+                FlxG.bloom.baseSaturation = 0.0f;
+                FlxG.bloom.blurAmount = 0.0f;
+                FlxG.bloom.bloomThreshold = 0.0f;
+            }
+
+
+            
+
+
         }
     }
 }

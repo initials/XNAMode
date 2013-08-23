@@ -30,6 +30,15 @@ namespace BloomPostprocess
         RenderTarget2D renderTarget1;
         RenderTarget2D renderTarget2;
 
+        public bool usePresets = true;
+
+        public float bloomThreshold = 0.0f;
+        public float blurAmount = 0.0f;
+        public float bloomIntensity = 0.0f;
+        public float baseIntensity = 0.0f;
+        public float bloomSaturation = 0.0f;
+        public float baseSaturation = 0.0f;
+
 
         // Choose what display settings the bloom should use.
         public BloomSettings Settings
@@ -150,8 +159,12 @@ namespace BloomPostprocess
 
             // Pass 1: draw the scene into rendertarget 1, using a
             // shader that extracts only the brightest parts of the image.
-            bloomExtractEffect.Parameters["BloomThreshold"].SetValue(
+
+            if (usePresets)
+                bloomExtractEffect.Parameters["BloomThreshold"].SetValue(
                 Settings.BloomThreshold);
+            else
+                bloomExtractEffect.Parameters["BloomThreshold"].SetValue(bloomThreshold);
 
             DrawFullscreenQuad(sceneRenderTarget, renderTarget1,
                                bloomExtractEffect,
@@ -179,12 +192,20 @@ namespace BloomPostprocess
             GraphicsDevice.SetRenderTarget(null);
 
             EffectParameterCollection parameters = bloomCombineEffect.Parameters;
-
-            parameters["BloomIntensity"].SetValue(Settings.BloomIntensity);
-            parameters["BaseIntensity"].SetValue(Settings.BaseIntensity);
-            parameters["BloomSaturation"].SetValue(Settings.BloomSaturation);
-            parameters["BaseSaturation"].SetValue(Settings.BaseSaturation);
-
+            if (usePresets)
+            {
+                parameters["BloomIntensity"].SetValue(Settings.BloomIntensity);
+                parameters["BaseIntensity"].SetValue(Settings.BaseIntensity);
+                parameters["BloomSaturation"].SetValue(Settings.BloomSaturation);
+                parameters["BaseSaturation"].SetValue(Settings.BaseSaturation);
+            }
+            else 
+            {
+                parameters["BloomIntensity"].SetValue(bloomIntensity);
+                parameters["BaseIntensity"].SetValue(baseIntensity);
+                parameters["BloomSaturation"].SetValue(bloomSaturation);
+                parameters["BaseSaturation"].SetValue(baseSaturation);
+            }
             GraphicsDevice.Textures[1] = sceneRenderTarget;
 
             Viewport viewport = GraphicsDevice.Viewport;
