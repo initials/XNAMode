@@ -32,7 +32,7 @@ namespace XNAMode
         /// </summary>
         private FlxTileblock bgTiles;
 
-        
+
         /// <summary>
         /// The main tile map. Collisions etc happen on this.
         /// </summary>
@@ -75,29 +75,93 @@ namespace XNAMode
         /// </summary>
         protected FlxGroup bullets;
 
-        private Automaton automaton;
-        private Corsair corsair;
-        private Executor executor;
-        private Gloom gloom;
-        private Harvester harvester;
 
+
+        private Artist artist;
+        private Assassin assassin;
+        private Automaton automaton;
+        private Bat bat;
+        private Blight blight;
+        private Bloatedzombie bloatedzombie;
+        private Bogbeast bogbeast;
+        private Bombling bombling;
+        private Centaur centaur;
+        private Chicken chicken;
+        private Chimaera chimaera;
+        private Corsair corsair;
+        private Cow cow;
+        private Cyclops cyclops;
+        private Deathclaw deathclaw;
+        private Deer deer;
+        private Devil devil;
+        private Djinn djinn;
+        private Drone drone;
+        private Druid druid;
+        private Dwarf dwarf;
+        private Embersteed embersteed;
+        private Executor executor;
+        private Feline feline;
+        private Floatingeye floatingeye;
+        private Fungant fungant;
+        private Gelatine gelatine;
+        private Gloom gloom;
+        private Glutton glutton;
+        private Goblin goblin;
+        private Golem golem;
+        private Gorgon gorgon;
+        private Gourmet gourmet;
+        private Grimwarrior grimwarrior;
+        private Grizzly grizzly;
+        private Harvester harvester;
+        private Horse horse;
+        private Ifrit ifrit;
+        private Imp imp;
+        private Kerberos kerberos;
+        private Lich lich;
+        private Lion lion;
         /// <summary>
         /// A Marksman player actor.
         /// Can shoot arrows.
         /// </summary>
         private Marksman marksman;
-        private Medusa medusa;
-        private Mistress mistress;
+        private Mechanic mechanic;
+        private Mephisto mephisto;
+        private Merchant merchant;
+        private Mermaid mermaid;
+        private Mimick mimick;
+        private Monk monk;
         private Mummy mummy;
+        private Nightmare nightmare;
         private Nymph nymph;
+        private Ogre ogre;
         private Paladin paladin;
+        private Phantom phantom;
+        private Priest priest;
+        private Prism prism;
+        private Rat rat;
+        private Savage savage;
         private Seraphine seraphine;
+        private Sheep sheep;
+        private Skeleton skeleton;
+        private Snake snake;
+        private Soldier soldier;
+        private Sphinx sphinx;
+        private Spider spider;
         private Succubus succubus;
+        private Tauro tauro;
+        private Toad toad;
         private Tormentor tormentor;
+        private Treant treant;
+        private Troll troll;
         private Unicorn unicorn;
-        private Warlock warlock;
         private Vampire vampire;
+        private Warlock warlock;
+        private Willowisp willowisp;
+        private Wizard wizard;
+        private Wolf wolf;
+        private Zinger zinger;
         private Zombie zombie;
+
 
         override public void create()
         {
@@ -199,7 +263,6 @@ namespace XNAMode
         public void buildActor(string ActorType, int NumberOfActors)
         {
             #region Marksman
-
             if (ActorType == "Marksman")
             {
                 for (int i = 0; i < BULLETS_PER_ACTOR; i++)
@@ -214,6 +277,885 @@ namespace XNAMode
                 }
             }
             #endregion
+
+            #region Artist
+            if (ActorType == "Artist")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    artist = new Artist(p[1] * 16, p[0] * 16);
+                    actors.add(artist);
+                }
+            }
+            #endregion
+            #region Assassin
+            if (ActorType == "Assassin")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    assassin = new Assassin(p[1] * 16, p[0] * 16);
+                    actors.add(assassin);
+                }
+            }
+            #endregion
+            #region Automaton
+            if (ActorType == "Automaton")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    automaton = new Automaton(p[1] * 16, p[0] * 16);
+                    actors.add(automaton);
+                }
+            }
+            #endregion
+            #region Bat
+            if (ActorType == "Bat")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    bat = new Bat(p[1] * 16, p[0] * 16);
+                    actors.add(bat);
+                }
+            }
+            #endregion
+            #region Blight
+            if (ActorType == "Blight")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    blight = new Blight(p[1] * 16, p[0] * 16);
+                    actors.add(blight);
+                }
+            }
+            #endregion
+            #region Bloatedzombie
+            if (ActorType == "Bloatedzombie")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    bloatedzombie = new Bloatedzombie(p[1] * 16, p[0] * 16);
+                    actors.add(bloatedzombie);
+                }
+            }
+            #endregion
+            #region Bogbeast
+            if (ActorType == "Bogbeast")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    bogbeast = new Bogbeast(p[1] * 16, p[0] * 16);
+                    actors.add(bogbeast);
+                }
+            }
+            #endregion
+            #region Bombling
+            if (ActorType == "Bombling")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    bombling = new Bombling(p[1] * 16, p[0] * 16);
+                    actors.add(bombling);
+                }
+            }
+            #endregion
+            #region Centaur
+            if (ActorType == "Centaur")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    centaur = new Centaur(p[1] * 16, p[0] * 16);
+                    actors.add(centaur);
+                }
+            }
+            #endregion
+            #region Chicken
+            if (ActorType == "Chicken")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    chicken = new Chicken(p[1] * 16, p[0] * 16);
+                    actors.add(chicken);
+                }
+            }
+            #endregion
+            #region Chimaera
+            if (ActorType == "Chimaera")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    chimaera = new Chimaera(p[1] * 16, p[0] * 16);
+                    actors.add(chimaera);
+                }
+            }
+            #endregion
+            #region Corsair
+            if (ActorType == "Corsair")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    corsair = new Corsair(p[1] * 16, p[0] * 16);
+                    actors.add(corsair);
+                }
+            }
+            #endregion
+            #region Cow
+            if (ActorType == "Cow")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    cow = new Cow(p[1] * 16, p[0] * 16);
+                    actors.add(cow);
+                }
+            }
+            #endregion
+            #region Cyclops
+            if (ActorType == "Cyclops")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    cyclops = new Cyclops(p[1] * 16, p[0] * 16);
+                    actors.add(cyclops);
+                }
+            }
+            #endregion
+            #region Deathclaw
+            if (ActorType == "Deathclaw")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    deathclaw = new Deathclaw(p[1] * 16, p[0] * 16);
+                    actors.add(deathclaw);
+                }
+            }
+            #endregion
+            #region Deer
+            if (ActorType == "Deer")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    deer = new Deer(p[1] * 16, p[0] * 16);
+                    actors.add(deer);
+                }
+            }
+            #endregion
+            #region Devil
+            if (ActorType == "Devil")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    devil = new Devil(p[1] * 16, p[0] * 16);
+                    actors.add(devil);
+                }
+            }
+            #endregion
+            #region Djinn
+            if (ActorType == "Djinn")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    djinn = new Djinn(p[1] * 16, p[0] * 16);
+                    actors.add(djinn);
+                }
+            }
+            #endregion
+            #region Drone
+            if (ActorType == "Drone")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    drone = new Drone(p[1] * 16, p[0] * 16);
+                    actors.add(drone);
+                }
+            }
+            #endregion
+            #region Druid
+            if (ActorType == "Druid")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    druid = new Druid(p[1] * 16, p[0] * 16);
+                    actors.add(druid);
+                }
+            }
+            #endregion
+            #region Dwarf
+            if (ActorType == "Dwarf")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    dwarf = new Dwarf(p[1] * 16, p[0] * 16);
+                    actors.add(dwarf);
+                }
+            }
+            #endregion
+            #region Embersteed
+            if (ActorType == "Embersteed")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    embersteed = new Embersteed(p[1] * 16, p[0] * 16);
+                    actors.add(embersteed);
+                }
+            }
+            #endregion
+            #region Executor
+            if (ActorType == "Executor")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    executor = new Executor(p[1] * 16, p[0] * 16);
+                    actors.add(executor);
+                }
+            }
+            #endregion
+            #region Feline
+            if (ActorType == "Feline")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    feline = new Feline(p[1] * 16, p[0] * 16);
+                    actors.add(feline);
+                }
+            }
+            #endregion
+            #region Floatingeye
+            if (ActorType == "Floatingeye")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    floatingeye = new Floatingeye(p[1] * 16, p[0] * 16);
+                    actors.add(floatingeye);
+                }
+            }
+            #endregion
+            #region Fungant
+            if (ActorType == "Fungant")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    fungant = new Fungant(p[1] * 16, p[0] * 16);
+                    actors.add(fungant);
+                }
+            }
+            #endregion
+            #region Gelatine
+            if (ActorType == "Gelatine")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    gelatine = new Gelatine(p[1] * 16, p[0] * 16);
+                    actors.add(gelatine);
+                }
+            }
+            #endregion
+            #region Gloom
+            if (ActorType == "Gloom")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    gloom = new Gloom(p[1] * 16, p[0] * 16);
+                    actors.add(gloom);
+                }
+            }
+            #endregion
+            #region Glutton
+            if (ActorType == "Glutton")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    glutton = new Glutton(p[1] * 16, p[0] * 16);
+                    actors.add(glutton);
+                }
+            }
+            #endregion
+            #region Goblin
+            if (ActorType == "Goblin")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    goblin = new Goblin(p[1] * 16, p[0] * 16);
+                    actors.add(goblin);
+                }
+            }
+            #endregion
+            #region Golem
+            if (ActorType == "Golem")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    golem = new Golem(p[1] * 16, p[0] * 16);
+                    actors.add(golem);
+                }
+            }
+            #endregion
+            #region Gorgon
+            if (ActorType == "Gorgon")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    gorgon = new Gorgon(p[1] * 16, p[0] * 16);
+                    actors.add(gorgon);
+                }
+            }
+            #endregion
+            #region Gourmet
+            if (ActorType == "Gourmet")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    gourmet = new Gourmet(p[1] * 16, p[0] * 16);
+                    actors.add(gourmet);
+                }
+            }
+            #endregion
+            #region Grimwarrior
+            if (ActorType == "Grimwarrior")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    grimwarrior = new Grimwarrior(p[1] * 16, p[0] * 16);
+                    actors.add(grimwarrior);
+                }
+            }
+            #endregion
+            #region Grizzly
+            if (ActorType == "Grizzly")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    grizzly = new Grizzly(p[1] * 16, p[0] * 16);
+                    actors.add(grizzly);
+                }
+            }
+            #endregion
+            #region Harvester
+            if (ActorType == "Harvester")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    harvester = new Harvester(p[1] * 16, p[0] * 16);
+                    actors.add(harvester);
+                }
+            }
+            #endregion
+            #region Horse
+            if (ActorType == "Horse")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    horse = new Horse(p[1] * 16, p[0] * 16);
+                    actors.add(horse);
+                }
+            }
+            #endregion
+            #region Ifrit
+            if (ActorType == "Ifrit")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    ifrit = new Ifrit(p[1] * 16, p[0] * 16);
+                    actors.add(ifrit);
+                }
+            }
+            #endregion
+            #region Imp
+            if (ActorType == "Imp")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    imp = new Imp(p[1] * 16, p[0] * 16);
+                    actors.add(imp);
+                }
+            }
+            #endregion
+            #region Kerberos
+            if (ActorType == "Kerberos")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    kerberos = new Kerberos(p[1] * 16, p[0] * 16);
+                    actors.add(kerberos);
+                }
+            }
+            #endregion
+            #region Lich
+            if (ActorType == "Lich")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    lich = new Lich(p[1] * 16, p[0] * 16);
+                    actors.add(lich);
+                }
+            }
+            #endregion
+            #region Lion
+            if (ActorType == "Lion")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    lion = new Lion(p[1] * 16, p[0] * 16);
+                    actors.add(lion);
+                }
+            }
+            #endregion
+
+            // marksman was here.
+
+            #region Mechanic
+            if (ActorType == "Mechanic")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    mechanic = new Mechanic(p[1] * 16, p[0] * 16);
+                    actors.add(mechanic);
+                }
+            }
+            #endregion
+            #region Mephisto
+            if (ActorType == "Mephisto")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    mephisto = new Mephisto(p[1] * 16, p[0] * 16);
+                    actors.add(mephisto);
+                }
+            }
+            #endregion
+            #region Merchant
+            if (ActorType == "Merchant")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    merchant = new Merchant(p[1] * 16, p[0] * 16);
+                    actors.add(merchant);
+                }
+            }
+            #endregion
+            #region Mermaid
+            if (ActorType == "Mermaid")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    mermaid = new Mermaid(p[1] * 16, p[0] * 16);
+                    actors.add(mermaid);
+                }
+            }
+            #endregion
+            #region Mimick
+            if (ActorType == "Mimick")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    mimick = new Mimick(p[1] * 16, p[0] * 16);
+                    actors.add(mimick);
+                }
+            }
+            #endregion
+            #region Monk
+            if (ActorType == "Monk")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    monk = new Monk(p[1] * 16, p[0] * 16);
+                    actors.add(monk);
+                }
+            }
+            #endregion
+            #region Mummy
+            if (ActorType == "Mummy")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    mummy = new Mummy(p[1] * 16, p[0] * 16);
+                    actors.add(mummy);
+                }
+            }
+            #endregion
+            #region Nightmare
+            if (ActorType == "Nightmare")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    nightmare = new Nightmare(p[1] * 16, p[0] * 16);
+                    actors.add(nightmare);
+                }
+            }
+            #endregion
+            #region Nymph
+            if (ActorType == "Nymph")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    nymph = new Nymph(p[1] * 16, p[0] * 16);
+                    actors.add(nymph);
+                }
+            }
+            #endregion
+            #region Ogre
+            if (ActorType == "Ogre")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    ogre = new Ogre(p[1] * 16, p[0] * 16);
+                    actors.add(ogre);
+                }
+            }
+            #endregion
+            #region Paladin
+            if (ActorType == "Paladin")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    paladin = new Paladin(p[1] * 16, p[0] * 16);
+                    actors.add(paladin);
+                }
+            }
+            #endregion
+            #region Phantom
+            if (ActorType == "Phantom")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    phantom = new Phantom(p[1] * 16, p[0] * 16);
+                    actors.add(phantom);
+                }
+            }
+            #endregion
+            #region Priest
+            if (ActorType == "Priest")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    priest = new Priest(p[1] * 16, p[0] * 16);
+                    actors.add(priest);
+                }
+            }
+            #endregion
+            #region Prism
+            if (ActorType == "Prism")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    prism = new Prism(p[1] * 16, p[0] * 16);
+                    actors.add(prism);
+                }
+            }
+            #endregion
+            #region Rat
+            if (ActorType == "Rat")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    rat = new Rat(p[1] * 16, p[0] * 16);
+                    actors.add(rat);
+                }
+            }
+            #endregion
+            #region Savage
+            if (ActorType == "Savage")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    savage = new Savage(p[1] * 16, p[0] * 16);
+                    actors.add(savage);
+                }
+            }
+            #endregion
+            #region Seraphine
+            if (ActorType == "Seraphine")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    seraphine = new Seraphine(p[1] * 16, p[0] * 16);
+                    actors.add(seraphine);
+                }
+            }
+            #endregion
+            #region Sheep
+            if (ActorType == "Sheep")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    sheep = new Sheep(p[1] * 16, p[0] * 16);
+                    actors.add(sheep);
+                }
+            }
+            #endregion
+            #region Skeleton
+            if (ActorType == "Skeleton")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    skeleton = new Skeleton(p[1] * 16, p[0] * 16);
+                    actors.add(skeleton);
+                }
+            }
+            #endregion
+            #region Snake
+            if (ActorType == "Snake")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    snake = new Snake(p[1] * 16, p[0] * 16);
+                    actors.add(snake);
+                }
+            }
+            #endregion
+            #region Soldier
+            if (ActorType == "Soldier")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    soldier = new Soldier(p[1] * 16, p[0] * 16);
+                    actors.add(soldier);
+                }
+            }
+            #endregion
+            #region Sphinx
+            if (ActorType == "Sphinx")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    sphinx = new Sphinx(p[1] * 16, p[0] * 16);
+                    actors.add(sphinx);
+                }
+            }
+            #endregion
+            #region Spider
+            if (ActorType == "Spider")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    spider = new Spider(p[1] * 16, p[0] * 16);
+                    actors.add(spider);
+                }
+            }
+            #endregion
+            #region Succubus
+            if (ActorType == "Succubus")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    succubus = new Succubus(p[1] * 16, p[0] * 16);
+                    actors.add(succubus);
+                }
+            }
+            #endregion
+            #region Tauro
+            if (ActorType == "Tauro")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    tauro = new Tauro(p[1] * 16, p[0] * 16);
+                    actors.add(tauro);
+                }
+            }
+            #endregion
+            #region Toad
+            if (ActorType == "Toad")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    toad = new Toad(p[1] * 16, p[0] * 16);
+                    actors.add(toad);
+                }
+            }
+            #endregion
+            #region Tormentor
+            if (ActorType == "Tormentor")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    tormentor = new Tormentor(p[1] * 16, p[0] * 16);
+                    actors.add(tormentor);
+                }
+            }
+            #endregion
+            #region Treant
+            if (ActorType == "Treant")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    treant = new Treant(p[1] * 16, p[0] * 16);
+                    actors.add(treant);
+                }
+            }
+            #endregion
+            #region Troll
+            if (ActorType == "Troll")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    troll = new Troll(p[1] * 16, p[0] * 16);
+                    actors.add(troll);
+                }
+            }
+            #endregion
+            #region Unicorn
+            if (ActorType == "Unicorn")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    unicorn = new Unicorn(p[1] * 16, p[0] * 16);
+                    actors.add(unicorn);
+                }
+            }
+            #endregion
+            #region Vampire
+            if (ActorType == "Vampire")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    vampire = new Vampire(p[1] * 16, p[0] * 16);
+                    actors.add(vampire);
+                }
+            }
+            #endregion
+
+            /*
+            #region Warlock
+            if (ActorType == "Warlock")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    warlock = new Warlock(p[1] * 16, p[0] * 16);
+                    actors.add(warlock);
+                }
+            }
+            #endregion
+             */ 
+
+            #region Willowisp
+            if (ActorType == "Willowisp")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    willowisp = new Willowisp(p[1] * 16, p[0] * 16);
+                    actors.add(willowisp);
+                }
+            }
+            #endregion
+            #region Wizard
+            if (ActorType == "Wizard")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    wizard = new Wizard(p[1] * 16, p[0] * 16);
+                    actors.add(wizard);
+                }
+            }
+            #endregion
+            #region Wolf
+            if (ActorType == "Wolf")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    wolf = new Wolf(p[1] * 16, p[0] * 16);
+                    actors.add(wolf);
+                }
+            }
+            #endregion
+            #region Zinger
+            if (ActorType == "Zinger")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    zinger = new Zinger(p[1] * 16, p[0] * 16);
+                    actors.add(zinger);
+                }
+            }
+            #endregion
+            #region Zombie
+            if (ActorType == "Zombie")
+            {
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    zombie = new Zombie(p[1] * 16, p[0] * 16);
+                    actors.add(zombie);
+                }
+            }
+            #endregion
+
+
 
         }
 
