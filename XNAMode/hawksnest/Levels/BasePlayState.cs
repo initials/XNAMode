@@ -32,6 +32,25 @@ namespace XNAMode
         /// </summary>
         private FlxTileblock bgTiles;
 
+        /// <summary>
+        /// Tells you the time of day (between 0.0f and 24.99f)
+        /// </summary>
+        private float timeOfDay = 0.0f;
+
+        /// <summary>
+        /// Helper to keep track of the time of day.
+        /// </summary>
+        private float timeOfDayTotal = 0.0f;
+
+        /// <summary>
+        /// Helper to determine how fast time passes.
+        /// </summary>
+        private float timeScale = 0.1f;
+
+        /// <summary>
+        /// Helper to tint the game based on the time of day.
+        /// </summary>
+        private Texture2D paletteTexture;
 
         /// <summary>
         /// The main tile map. Collisions etc happen on this.
@@ -75,7 +94,7 @@ namespace XNAMode
         /// </summary>
         protected FlxGroup bullets;
 
-
+        
 
         private Artist artist;
         private Assassin assassin;
@@ -165,6 +184,9 @@ namespace XNAMode
 
         override public void create()
         {
+
+            FlxG.level = 1;
+
             base.create();
 
             //important to reset the hud to get the text, gamepad buttons out.
@@ -187,6 +209,7 @@ namespace XNAMode
 
             // get the level to parse using FlxG.level
             string levelname = "level_" + FlxG.level.ToString();
+            Console.WriteLine(levelname);
 
             XElement xelement = XElement.Load("levelDetails.xml");
 
@@ -201,6 +224,13 @@ namespace XNAMode
                     levelAttrs.Add(xEle.Name.ToString(), xEle.Value.ToString());
                 }
             }
+            
+            foreach (KeyValuePair<string, string> pair in levelAttrs)
+            {
+                Console.WriteLine("dict -----> {0}, {1}",
+                pair.Key,
+                pair.Value);
+            }
 
             // Large bg tile.
             bgTiles = new FlxTileblock(0, 0, FlxG.width + 48, FlxG.height / 2);
@@ -213,10 +243,10 @@ namespace XNAMode
 
             // Generate the levels caves/tiles.
 
-            cave = new FlxCaveGenerator(Convert.ToInt32(levelAttrs["width"]), Convert.ToInt32(levelAttrs["height"]));
+            cave = new FlxCaveGenerator(Convert.ToInt32(levelAttrs["levelWidth"]), Convert.ToInt32(levelAttrs["levelHeight"]));
             cave.initWallRatio = (float)Convert.ToDouble(levelAttrs["startCaveGenerateBias"]);
             cave.numSmoothingIterations = 5;
-            cave.genInitMatrix(Convert.ToInt32(levelAttrs["width"]), Convert.ToInt32(levelAttrs["height"]));
+            cave.genInitMatrix(Convert.ToInt32(levelAttrs["levelWidth"]), Convert.ToInt32(levelAttrs["levelHeight"]));
 
             int[,] matr = cave.generateCaveLevel(3, 0, 2, 0, 1, 0, 1, 0);
 
@@ -244,12 +274,22 @@ namespace XNAMode
 
             foreach (KeyValuePair<string, string> pair in levelAttrs)
             {
-                buildActor(pair.Key, Convert.ToInt32(pair.Value));
+                /// try-catch may be a dirty way of parsing out the characters.
+                try
+                {
+                    buildActor(pair.Key, Convert.ToInt32(pair.Value));
+                }
+                catch
+                {
+
+                }
+                
             }
 
 
             // build atmospheric effects here
 
+            paletteTexture = FlxG.Content.Load<Texture2D>("initials/palette");
 
 
 
@@ -257,6 +297,19 @@ namespace XNAMode
 
         override public void update()
         {
+            //calculate time of day.
+            timeOfDayTotal += FlxG.elapsed;
+            if (timeOfDayTotal > 24.99f) timeOfDayTotal = 0.0f;
+            timeOfDay = timeOfDayTotal / timeScale;
+
+            // color bg tiles
+            bgTiles.color = FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1);
+            
+            // color whole game.
+            FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1));
+
+            //Console.WriteLine((int)timeOfDay);
+
             base.update();
         }
 

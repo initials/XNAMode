@@ -454,6 +454,7 @@ namespace org.flixel
 
             //Copy the result to the screen, scaled to fit
             GraphicsDevice.Clear(FlxG.backColor);
+
             FlxG.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             //GraphicsDevice.SamplerStates[0].MagFilter = TextureFilter.Point;
             //GraphicsDevice.SamplerStates[0].MinFilter = TextureFilter.Point;

@@ -117,7 +117,7 @@
       <tiles default="autotiles_16x16"></tiles>
       <decorationTiles default="decorations_16x16"></decorationTiles>
       <prize default=""></prize>
-      <startCaveGenerateBias default="0.5"></startCaveGenerateBias>
+      <startCaveGenerateBias default="0.6"></startCaveGenerateBias>
       <solidColumns default=""></solidColumns>
       <solidRows default=""></solidRows>
       <emptyColumns default=""></emptyColumns>
