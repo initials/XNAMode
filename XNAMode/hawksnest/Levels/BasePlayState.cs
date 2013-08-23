@@ -188,16 +188,18 @@ namespace XNAMode
 
 
 
-        public void buildMarksman()
+        public void buildActor(string ActorType, int NumberOfActors)
         {
-            
-            for (int i = 0; i < BULLETS_PER_ACTOR; i++)
-                arrows.add(new Arrow());
-            bullets.add(arrows);
+            if (ActorType == "Marksman")
+            {
+                for (int i = 0; i < BULLETS_PER_ACTOR; i++)
+                    arrows.add(new Arrow());
+                bullets.add(arrows);
 
-            int[] p = cave.findRandomSolid(decorationsArray);
-            marksman = new Marksman(p[1] * 16, p[0] * 16, arrows.members);
-            actors.add(marksman);
+                int[] p = cave.findRandomSolid(decorationsArray);
+                marksman = new Marksman(p[1] * 16, p[0] * 16, arrows.members);
+                actors.add(marksman);
+            }
         }
 
     }
