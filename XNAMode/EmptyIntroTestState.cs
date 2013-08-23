@@ -25,6 +25,8 @@ namespace XNAMode
 
             base.create();
 
+            FlxG.showHud();
+
 
             bg = new FlxTileblock(0, FlxG.height - 256, 256 * 3, 256);
             bg.loadTiles(FlxG.Content.Load<Texture2D>("initials/texture_placement_small"), 256, 256, 0);

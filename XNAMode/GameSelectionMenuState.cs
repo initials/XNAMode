@@ -172,11 +172,18 @@ namespace XNAMode
 
             if (FlxG.transition.complete)
             {
-                FlxG.state = new CaveState();
+                FlxG.state = new BasePlayState();
             }
 
 
             base.update();
+
+            if (FlxG.keys.justPressed(Keys.F3))
+            {
+                FlxG.bloom.Visible = !FlxG.bloom.Visible;
+            }
+
+
         }
 
         /// <summary>

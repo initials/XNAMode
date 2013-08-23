@@ -12,6 +12,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using org.flixel;
 #endregion
 
 namespace BloomPostprocess
@@ -20,7 +21,7 @@ namespace BloomPostprocess
     {
         #region Fields
 
-        SpriteBatch spriteBatch;
+        //SpriteBatch spriteBatch;
 
         Effect bloomExtractEffect;
         Effect bloomCombineEffect;
@@ -80,6 +81,8 @@ namespace BloomPostprocess
         {
             if (game == null)
                 throw new ArgumentNullException("game");
+
+            Visible = false;
         }
 
 
@@ -88,7 +91,7 @@ namespace BloomPostprocess
         /// </summary>
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            //spriteBatch = new SpriteBatch(GraphicsDevice);
 
             bloomExtractEffect = Game.Content.Load<Effect>("fx/BloomExtract");
             bloomCombineEffect = Game.Content.Load<Effect>("fx/BloomCombine");
@@ -247,9 +250,9 @@ namespace BloomPostprocess
                 effect = null;
             }
 
-            spriteBatch.Begin(0, BlendState.Opaque, null, null, null, effect);
-            spriteBatch.Draw(texture, new Rectangle(0, 0, width, height), Color.White);
-            spriteBatch.End();
+            FlxG.spriteBatch.Begin(0, BlendState.Opaque, null, null, null, effect);
+            FlxG.spriteBatch.Draw(texture, new Rectangle(0, 0, width, height), Color.White);
+            FlxG.spriteBatch.End();
         }
 
 

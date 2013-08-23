@@ -30,7 +30,13 @@ namespace org.flixel
         /// basic display stuff
         /// </summary>
         internal FlxState _state;
+
+        /// <summary>
+        /// The main backRender renderTarget.
+        /// </summary>
         private RenderTarget2D backRender;
+
+
         internal int targetWidth = 0;
         internal int targetLeft = 0;
 
@@ -409,7 +415,7 @@ namespace org.flixel
                 if (FlxG.mouse.cursor.visible)
                     FlxG.mouse.cursor.render(FlxG.spriteBatch);
 
-                FlxG.spriteBatch.End();
+                //FlxG.spriteBatch.End();
 
                 FlxG.state.postProcess(FlxG.spriteBatch);
 
@@ -474,6 +480,8 @@ namespace org.flixel
 
             if (_hud.visible)
             {
+                //Console.WriteLine("Attempting to draw hud");
+                
                 _hud.render(FlxG.spriteBatch);
             }
 

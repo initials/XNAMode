@@ -240,10 +240,12 @@ namespace XNAMode
             decorationsTilemap.loadMap(newDec, DecorTex, 16, 16);
             add(decorationsTilemap);
 
-
-
-
             // build characters here
+
+            foreach (KeyValuePair<string, string> pair in levelAttrs)
+            {
+                buildActor(pair.Key, Convert.ToInt32(pair.Value));
+            }
 
 
             // build atmospheric effects here
@@ -1085,19 +1087,23 @@ namespace XNAMode
             }
             #endregion
 
-            /*
+            
             #region Warlock
             if (ActorType == "Warlock")
             {
+                int x = 0;
+                for (x = 0; x < BULLETS_PER_ACTOR; x++)
+                    fireballs.add(new Fireball());
+                bullets.add(fireballs);
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(decorationsArray);
-                    warlock = new Warlock(p[1] * 16, p[0] * 16);
+                    warlock = new Warlock(p[1] * 16, p[0] * 16, fireballs.members);
                     actors.add(warlock);
                 }
             }
             #endregion
-             */ 
+             
 
             #region Willowisp
             if (ActorType == "Willowisp")

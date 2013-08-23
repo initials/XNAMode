@@ -124,7 +124,7 @@
       <emptyRows default=""></emptyRows>
       <bridge default=""></bridge>
       <!--Utility classes for swapping out later if more attributes are needed-->
-      <bgGraphic default=""></bgGraphic>
+      <bgGraphic default="envir_dusk">envir_dusk</bgGraphic>
       <timeOfDayPalette default=""></timeOfDayPalette>
       <empty_utility_spare3 default=""></empty_utility_spare3>
       <!--Playable Characters-->

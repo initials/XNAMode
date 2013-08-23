@@ -125,7 +125,7 @@ namespace org.flixel
 		{
 			//no fx by default
 
-            
+           
             
             
 
