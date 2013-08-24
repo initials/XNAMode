@@ -137,7 +137,7 @@
       <warlock default="0"></warlock>
       <!--Non playable Characters.-->
       <automaton default="0">5</automaton>
-      <bat default="0"></bat>
+      <bat default="0">5</bat>
       <executor default="0"></executor>
       <gloom default="0"></gloom>
       <harvester default="0"></harvester>

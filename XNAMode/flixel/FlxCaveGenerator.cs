@@ -374,6 +374,11 @@ namespace org.flixel
             return count;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inMat"></param>
+        /// <returns></returns>
         public int[] findRandomSolid(int[,] inMat)
         {
             int numRows = inMat.GetLength(0);

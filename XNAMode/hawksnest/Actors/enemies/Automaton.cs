@@ -40,7 +40,7 @@ namespace XNAMode
 
             jumpPower = -140;
 
-            health = 10;
+            health = 2;
         }
         override public void hitSide(FlxObject Contact, float Velocity) 
         {

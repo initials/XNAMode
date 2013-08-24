@@ -10,39 +10,65 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Bat : Actor
+    class Bat : FlxSprite
     {
         public Bat(int xPos, int yPos)
             : base(xPos, yPos)
         {
 
-            actorName = "The TemplateActor";
+            //actorName = "Bat";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/bat_11x24"), true, false, 11, 24);
+            loadGraphic(FlxG.Content.Load<Texture2D>("initials/batParticles_12x12"), true, false, 12, 12);
 
-            addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 12);
+            addAnimation("fly", new int[] { 0, 1, 2 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 2, 4 }, 18);
 
             //bounding box tweaks
-            width = 7;
-            height = 20;
-            offset.X = 2;
-            offset.Y = 4;
+            //width = 7;
+            //height = 20;
+            //offset.X = 2;
+            //offset.Y = 4;
 
             //basic player physics
             int runSpeed = 30;
-            drag.X = runSpeed * 4;
-            acceleration.Y = 820;
+            //drag.X = runSpeed * 4;
+            acceleration.Y = 100;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
-            jumpPower = -140;
-        }
+            //jumpPower = -140;
 
+            velocity.X = 100;
+
+            play("fly");
+
+            health = 0;
+
+
+        }
+        override public void hitSide(FlxObject Contact, float Velocity)
+        {
+            velocity.X = velocity.X * -1;
+        }
         override public void update()
         {
+
+            if (FlxU.random() < 0.023) velocity.Y = -40;
             base.update();
+
+            if (velocity.X > 0)
+            {
+                facing = Flx2DFacing.Right;
+            }
+            else
+            {
+                facing = Flx2DFacing.Left;
+
+            }
+
+            if (x > 50*16) x = 0;
+            if (x < 0) x = 50 * 16;
         }
     }
 }

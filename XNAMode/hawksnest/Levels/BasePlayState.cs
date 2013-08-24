@@ -495,12 +495,12 @@ namespace XNAMode
             }
             #endregion
             #region Bat
-            if (ActorType == "Bat")
+            if (ActorType == "bat")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(decorationsArray);
-                    bat = new Bat(p[1] * 16, p[0] * 16);
+                    bat = new Bat(p[1] * 16, p[0] * 16 - 50);
                     actors.add(bat);
                 }
             }
