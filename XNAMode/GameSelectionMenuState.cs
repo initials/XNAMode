@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.GamerServices;
 using System.Linq;
 using System.Xml.Linq;
 
+using XNATweener;
+
 namespace XNAMode
 {
     public class GameSelectionMenuState : FlxState
@@ -25,6 +27,11 @@ namespace XNAMode
 
         FlxButton play;
 
+        FlxSprite bgSprite;
+
+        private Tweener tween;
+
+
 
         override public void create()
         {
@@ -35,10 +42,17 @@ namespace XNAMode
 
             FlxG.showHud();
 
-            FlxTileblock bg = new FlxTileblock(0, FlxG.height - 256, 256 * 3, 256);
-            bg.loadTiles(FlxG.Content.Load<Texture2D>("initials/Ambience"), 256, 256, 0);
+            //FlxTileblock bg = new FlxTileblock(0, FlxG.height - 256, 256 * 3, 256);
+            //bg.loadTiles(FlxG.Content.Load<Texture2D>("initials/Ambience"), 256, 256, 0);
+            //add(bg);
 
-            add(bg);
+
+            tween = new Tweener(0, -310 , TimeSpan.FromSeconds(3.9f), Quadratic.EaseOut);
+
+            // -350, -310
+            bgSprite = new FlxSprite(-350, 0, FlxG.Content.Load<Texture2D>("initials/Fear"));
+            add(bgSprite);
+
 
             hasCheckedSave = false;
 
@@ -69,6 +83,10 @@ namespace XNAMode
 
         override public void update()
         {
+            tween.Update(FlxG.elapsedAsGameTime);
+            bgSprite.y = tween.Position;
+
+
 
             if (FlxG.keys.F1)
             {
@@ -192,6 +210,8 @@ namespace XNAMode
         public void playGame()
         {
             FlxG.level = 1;
+            FlxG.hideHud();
+
 
             if (_nameEntry.text == "")
             {

@@ -32,6 +32,8 @@ namespace XNAMode
         /// </summary>
         private FlxTileblock bgTiles;
 
+        private FlxSprite bgSprite;
+
         /// <summary>
         /// Tells you the time of day (between 0.0f and 24.99f)
         /// </summary>
@@ -45,7 +47,7 @@ namespace XNAMode
         /// <summary>
         /// Helper to determine how fast time passes.
         /// </summary>
-        private float timeScale = 0.1f;
+        private float timeScale = 10.10f;
 
         /// <summary>
         /// Helper to tint the game based on the time of day.
@@ -225,21 +227,25 @@ namespace XNAMode
                 }
             }
             
-            foreach (KeyValuePair<string, string> pair in levelAttrs)
-            {
-                Console.WriteLine("dict -----> {0}, {1}",
-                pair.Key,
-                pair.Value);
-            }
-
             // Large bg tile.
-            bgTiles = new FlxTileblock(0, 0, FlxG.width + 48, FlxG.height / 2);
-            bgTiles.loadTiles(FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]), 48, 64, 0);
-            bgTiles.scrollFactor.X = 0.02f;
-            bgTiles.scrollFactor.Y = 0.02f;
-            bgTiles.boundingBoxOverride = false;
-            add(bgTiles);
+            //bgTiles = new FlxTileblock(0, 0, FlxG.width + 48, FlxG.height / 2);
+            //bgTiles.loadTiles(FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]), 48, 64, 0);
+            //bgTiles.scrollFactor.X = 0.02f;
+            //bgTiles.scrollFactor.Y = 0.02f;
+            //bgTiles.boundingBoxOverride = false;
+            //add(bgTiles);
 
+            Texture2D bgGraphic = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]);
+
+
+            bgSprite = new FlxSprite(0, 0, bgGraphic);
+
+            bgSprite.loadGraphic(bgGraphic);
+            //bgSprite.loadTiles(FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]), 48, 64, 0);
+            bgSprite.scrollFactor.X = 0.02f;
+            bgSprite.scrollFactor.Y = 0.02f;
+            bgSprite.boundingBoxOverride = false;
+            add(bgSprite);
 
             // Generate the levels caves/tiles.
 
@@ -274,23 +280,41 @@ namespace XNAMode
 
             foreach (KeyValuePair<string, string> pair in levelAttrs)
             {
-                /// try-catch may be a dirty way of parsing out the characters.
-                try
+                Console.WriteLine("dict -----> {0}, {1}",
+                pair.Key,
+                pair.Value);
+
+                if (pair.Value != null)
                 {
                     buildActor(pair.Key, Convert.ToInt32(pair.Value));
                 }
-                catch
-                {
 
-                }
-                
             }
+
+
+            //foreach (KeyValuePair<string, string> pair in levelAttrs)
+            //{
+            //    /// try-catch may be a dirty way of parsing out the characters.
+            //    try
+            //    {
+            //        buildActor(pair.Key, Convert.ToInt32(pair.Value));
+            //    }
+            //    catch
+            //    {
+            //        Console.WriteLine("Can't build" + pair.Key );
+            //    }
+                
+            //}
 
 
             // build atmospheric effects here
 
-            paletteTexture = FlxG.Content.Load<Texture2D>("initials/palette");
+            paletteTexture = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["timeOfDayPalette"]);
 
+
+            FlxG.follow(marksman, FOLLOW_LERP);
+            //FlxG.followAdjust(0.5f, 0.0f);
+            FlxG.followBounds(0, 0, 50 * 16, 40 * 16);
 
 
         }
@@ -298,17 +322,17 @@ namespace XNAMode
         override public void update()
         {
             //calculate time of day.
-            timeOfDayTotal += FlxG.elapsed;
+            timeOfDayTotal += FlxG.elapsed * timeScale;
             if (timeOfDayTotal > 24.99f) timeOfDayTotal = 0.0f;
-            timeOfDay = timeOfDayTotal / timeScale;
+            //timeOfDay = timeOfDayTotal / timeScale;
 
             // color bg tiles
-            bgTiles.color = FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1);
+            //bgTiles.color = FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1);
             
             // color whole game.
-            FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1));
+            FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDayTotal, 1));
 
-            //Console.WriteLine((int)timeOfDay);
+            //Console.WriteLine((int)timeOfDayTotal);
 
             base.update();
         }
@@ -320,12 +344,16 @@ namespace XNAMode
             #region Marksman
             if (ActorType == "Marksman")
             {
+                Console.WriteLine("Marksman being made " + NumberOfActors);
+
                 for (int i = 0; i < BULLETS_PER_ACTOR; i++)
                     arrows.add(new Arrow());
                 bullets.add(arrows);
 
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
+                    Console.WriteLine("Marksman being made " + NumberOfActors);
+
                     int[] p = cave.findRandomSolid(decorationsArray);
                     marksman = new Marksman(p[1] * 16, p[0] * 16, arrows.members);
                     actors.add(marksman);
