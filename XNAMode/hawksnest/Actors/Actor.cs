@@ -26,7 +26,7 @@ namespace XNAMode
         /// How many frames have passed since the character left the ground.
         /// </summary>
         public float framesSinceLeftGround;
-
+        public const float DEADZONE = 0.5f;
         
         /// <summary>
         /// Character's name;
@@ -87,11 +87,13 @@ namespace XNAMode
                 acceleration.X = 0;
                 if (FlxG.keys.LEFT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi))
                 {
+                    attacking = false;
                     facing = Flx2DFacing.Left;
                     acceleration.X -= drag.X;
                 }
                 else if (FlxG.keys.RIGHT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi))
                 {
+                    attacking = false;
                     facing = Flx2DFacing.Right;
                     acceleration.X += drag.X;
                 }
@@ -99,14 +101,33 @@ namespace XNAMode
                 // && velocity.Y == 0
                 if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi)) && framesSinceLeftGround < 10)
                 {
-
+                    attacking = false;
                     velocity.Y = jumpPower;
 
                 }
-                if ((FlxG.keys.justPressed(Keys.C) || FlxG.gamepads.isNewButtonPress(Buttons.X, FlxG.controllingPlayer, out pi)))
+                if ((FlxG.keys.justPressed(Keys.C) || FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder, FlxG.controllingPlayer, out pi)))
                 {
                     attacking = true;
+                }
+                if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X > DEADZONE ||
+                    GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y > DEADZONE ||
+                    GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X < DEADZONE * -1.0f ||
+                    GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y < DEADZONE * -1.0f)
+                {
+                    attacking = true;
+                }
+                else
+                {
+                    attacking = false;
+                }
 
+                if (FlxG.gamepads.isButtonDown(Buttons.RightThumbstickLeft, FlxG.controllingPlayer, out pi))
+                {
+                    facing = Flx2DFacing.Left;
+                }
+                if (FlxG.gamepads.isButtonDown(Buttons.RightThumbstickRight, FlxG.controllingPlayer, out pi))
+                {
+                    facing = Flx2DFacing.Right;
                 }
 
     //            if (!flickering() && 
@@ -151,8 +172,20 @@ namespace XNAMode
             {
                 play("run");
             }
+            else
+            {
+                play("idle");
+            }
 
             base.update();
+
+        }
+
+        public override void kill()
+        {
+            base.kill();
+            
+            //FlxG.bloom.Visible = true;
 
         }
 

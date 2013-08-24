@@ -111,13 +111,13 @@
     </level_template>
     <level_1>
       <name default="">The Horse</name>
-      <levelWidth default="50">24</levelWidth>
-      <levelHeight default="50">24</levelHeight>
+      <levelWidth default="50">50</levelWidth>
+      <levelHeight default="50">30</levelHeight>
       <type default="CaveState"></type>
       <tiles default="autotiles_16x16"></tiles>
       <decorationTiles default="decorations_16x16"></decorationTiles>
       <prize default=""></prize>
-      <startCaveGenerateBias default="0.6"></startCaveGenerateBias>
+      <startCaveGenerateBias default="0.5">0.4</startCaveGenerateBias>
       <solidColumns default=""></solidColumns>
       <solidRows default=""></solidRows>
       <emptyColumns default=""></emptyColumns>
@@ -136,7 +136,7 @@
       <unicorn default="0"></unicorn>
       <warlock default="0"></warlock>
       <!--Non playable Characters.-->
-      <automaton default="0"></automaton>
+      <automaton default="0">5</automaton>
       <bat default="0"></bat>
       <executor default="0"></executor>
       <gloom default="0"></gloom>

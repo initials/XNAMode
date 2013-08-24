@@ -237,7 +237,7 @@ namespace XNAMode
                 }
             }
 
-            FlxG.transition.startFadeOut();
+            FlxG.transition.startFadeOut(1.0f,0,120);
         }
 
     }

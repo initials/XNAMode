@@ -32,16 +32,32 @@ namespace XNAMode
 
             //basic player physics
             int runSpeed = 30;
-            drag.X = runSpeed * 4;
+            //drag.X = runSpeed * 4;
+            drag.X = 0;
             acceleration.Y = 820;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
             jumpPower = -140;
-        }
 
+            health = 10;
+        }
+        override public void hitSide(FlxObject Contact, float Velocity) 
+        {
+            velocity.X = velocity.X * -1;
+        }
         override public void update()
         {
+
+            if (velocity.X > 0)
+            {
+                facing = Flx2DFacing.Right;
+            }
+            else
+            {
+                facing = Flx2DFacing.Left;
+
+            }
             base.update();
         }
     }

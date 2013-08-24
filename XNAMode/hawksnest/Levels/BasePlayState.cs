@@ -96,7 +96,7 @@ namespace XNAMode
         /// </summary>
         protected FlxGroup bullets;
 
-        
+        private FlxEmitter blood;
 
         private Artist artist;
         private Assassin assassin;
@@ -195,7 +195,7 @@ namespace XNAMode
             FlxG.resetHud();
             FlxG.showHud();
 
-            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
+            //FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
             // initialize a bunch of groups
             actors = new FlxGroup();
@@ -219,10 +219,12 @@ namespace XNAMode
             {
                 if (xEle.Value.ToString() == "")
                 {
+                    //Console.WriteLine("xele == nothing " + xEle.Name.ToString() + " " + xEle.Attribute("default").Value.ToString());
                     levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
                 }
                 else
                 {
+                    //Console.WriteLine("xele has a value " + xEle.Name.ToString() + " " + xEle.Value.ToString());
                     levelAttrs.Add(xEle.Name.ToString(), xEle.Value.ToString());
                 }
             }
@@ -280,15 +282,23 @@ namespace XNAMode
 
             foreach (KeyValuePair<string, string> pair in levelAttrs)
             {
-                Console.WriteLine("dict -----> {0}, {1}",
-                pair.Key,
-                pair.Value);
+                //Console.WriteLine("dict -----> {0}, {1}",
+                //pair.Key,
+                //pair.Value);
+                
+                int noa = 0;
 
-                if (pair.Value != null)
+                try { noa = Convert.ToInt32(pair.Value); }
+                catch { noa = 0; }
+                if (pair.Value != "" && pair.Value != null && pair.Value != "0")
                 {
-                    buildActor(pair.Key, Convert.ToInt32(pair.Value));
-                }
+                    //Console.WriteLine("Ok we are building {0}, {1}, ", pair.Key, pair.Value);
 
+                    if (noa != 0)
+                    {
+                        buildActor(pair.Key, Convert.ToInt32(pair.Value));
+                    }
+                }
             }
 
 
@@ -311,16 +321,51 @@ namespace XNAMode
 
             paletteTexture = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["timeOfDayPalette"]);
 
-
+            marksman.isPlayerControlled = true;
             FlxG.follow(marksman, FOLLOW_LERP);
             //FlxG.followAdjust(0.5f, 0.0f);
-            FlxG.followBounds(0, 0, 50 * 16, 40 * 16);
+            FlxG.followBounds(0, 0, Convert.ToInt32(levelAttrs["levelWidth"]) * 16, Convert.ToInt32(levelAttrs["levelHeight"]) * 16);
 
+            add(actors);
+            add(bullets);
+
+            blood = new FlxEmitter();
+            blood.x = 0;
+            blood.y = 0;
+            blood.width = 2;
+            blood.height = 2;
+            blood.delay = 0.8f;
+            //blood.del
+            blood.setXSpeed(-22, 22);
+            blood.setYSpeed(-5, 5);
+            blood.setRotation(0, 0);
+            blood.gravity = 98;
+            blood.createSprites(FlxG.Content.Load<Texture2D>("initials/blood"), 1500, true, 1.0f, 1.0f);
+            
+
+            add(blood);
+
+            //FlxG.autoHandlePause = true;
 
         }
 
         override public void update()
         {
+
+            if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B) && FlxG.debug)
+                FlxG.showBounds = !FlxG.showBounds;
+
+            //Console.WriteLine("Paused? " + FlxG.pause);
+            // pause
+
+            //if (FlxG.keys.justPressed(Keys.P) || FlxG.gamepads.isNewButtonPress(Buttons.Start))
+            //{
+            //    Console.WriteLine("Paused");
+
+            //    if (FlxG.pause == true) FlxG.pause = false;
+            //    else if (FlxG.pause == false) FlxG.pause = true;
+            //}
+
             //calculate time of day.
             timeOfDayTotal += FlxG.elapsed * timeScale;
             if (timeOfDayTotal > 24.99f) timeOfDayTotal = 0.0f;
@@ -332,19 +377,72 @@ namespace XNAMode
             // color whole game.
             FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDayTotal, 1));
 
-            //Console.WriteLine((int)timeOfDayTotal);
+
+            //collides
+            FlxU.collide(actors, mainTilemap);
+
+            FlxU.overlap(actors, bullets, overlapped);
+            FlxU.collide(mainTilemap, bullets);
+
+            FlxU.collide(blood, mainTilemap);
+
+
+            if (FlxG.keys.A && FlxG.debug)
+            {
+                FlxG.transition.startFadeIn(0.025f);
+
+                FlxG.state = new BasePlayState();
+            }
 
             base.update();
         }
 
+        protected bool overlapped(object Sender, FlxSpriteCollisionEvent e)
+        {
+            /*
+            if ((e.Object1 is BotBullet) || (e.Object1 is Bullet))
+                e.Object1.kill();
+            e.Object2.hurt(1);
+            return true;
+             */
 
+            if ((e.Object1 is Warlock) && (e.Object2 is Fireball))
+            {
 
+            }
+            else if ((e.Object1 is Marksman) && (e.Object2 is Arrow))
+            {
+
+            }
+
+            else
+            {
+                e.Object1.velocity.X = e.Object2.velocity.X * 10;
+                e.Object1.hurt(1);
+
+                e.Object2.kill();
+
+                blood.at(e.Object1);
+                //blood.start(false, 0, 50);
+                //blood.emitParticle();
+                //blood.emitParticle();
+                //blood.emitParticle();
+                //blood.quantity = 20;
+
+                blood.start(true, 0, 10);
+                //blood.stop();
+
+            }
+
+            return true;
+
+        }
         public void buildActor(string ActorType, int NumberOfActors)
         {
             #region Marksman
-            if (ActorType == "Marksman")
+            if (ActorType == "marksman")
             {
-                Console.WriteLine("Marksman being made " + NumberOfActors);
+                //Console.WriteLine("Marksman being made " + NumberOfActors);
 
                 for (int i = 0; i < BULLETS_PER_ACTOR; i++)
                     arrows.add(new Arrow());
@@ -352,7 +450,7 @@ namespace XNAMode
 
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    Console.WriteLine("Marksman being made " + NumberOfActors);
+                    //Console.WriteLine("Marksman being made " + NumberOfActors);
 
                     int[] p = cave.findRandomSolid(decorationsArray);
                     marksman = new Marksman(p[1] * 16, p[0] * 16, arrows.members);
@@ -362,7 +460,7 @@ namespace XNAMode
             #endregion
 
             #region Artist
-            if (ActorType == "Artist")
+            if (ActorType == "artist")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -373,7 +471,7 @@ namespace XNAMode
             }
             #endregion
             #region Assassin
-            if (ActorType == "Assassin")
+            if (ActorType == "assassin")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -384,13 +482,15 @@ namespace XNAMode
             }
             #endregion
             #region Automaton
-            if (ActorType == "Automaton")
+            if (ActorType == "automaton")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(decorationsArray);
                     automaton = new Automaton(p[1] * 16, p[0] * 16);
                     actors.add(automaton);
+                    automaton.velocity.X = 50;
+
                 }
             }
             #endregion

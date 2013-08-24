@@ -41,6 +41,7 @@ namespace org.flixel
          *============================================*/
         public const int MaxInputs = 4;
         public readonly bool[] GamePadWasConnected;
+        
 
         /*==============================================
          * 

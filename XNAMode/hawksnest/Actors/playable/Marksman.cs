@@ -25,8 +25,9 @@ namespace XNAMode
 
             addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
-            addAnimation("attack", new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }, 30,false);
-            addAnimationCallback(stopAttacking);
+            addAnimation("attack", new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }, 30 ,true);
+            
+            //addAnimationCallback(stopAttacking);
 
             //bounding box tweaks
             width = 5;
@@ -48,17 +49,37 @@ namespace XNAMode
 
             PlayerIndex pi;
             //SHOOTING
-            if (!flickering() && (FlxG.keys.justPressed(Keys.C) ||
-                    FlxG.gamepads.isNewButtonPress(Buttons.RightTrigger, FlxG.controllingPlayer, out pi)) ||
-                    FlxG.gamepads.isButtonDown(Buttons.LeftTrigger, FlxG.controllingPlayer, out pi))
+            //if (!flickering() && (FlxG.keys.justPressed(Keys.C) ||
+            //        FlxG.gamepads.isNewButtonPress(Buttons.RightTrigger, FlxG.controllingPlayer, out pi)) ||
+            //        FlxG.gamepads.isButtonDown(Buttons.LeftTrigger, FlxG.controllingPlayer, out pi))
+            //{
+            //    //attacking = true;
+
+            
+
+            if ((_curFrame == 8 || _curFrame==9 || _curFrame==10) && attacking)
             {
-                attacking = true;
                 float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
                 float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
-                ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 300), (int)(rightY *= -300));
+                
+                ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 400), (int)(rightY *= -400));
+
+                if (rightX < 0)
+                {
+                    ((Arrow)(_bullets[_curArrow])).facing = Flx2DFacing.Left;
+                }
+                else
+                {
+                    ((Arrow)(_bullets[_curArrow])).facing = Flx2DFacing.Right;
+                }
+
                 if (++_curArrow >= _bullets.Count)
                     _curArrow = 0;
+                attacking = false;
+                _curFrame = 0;
+
             }
+            
 
             base.update();
 
