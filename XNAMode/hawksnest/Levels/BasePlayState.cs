@@ -244,10 +244,10 @@ namespace XNAMode
 
             bgSprite.loadGraphic(bgGraphic);
             //bgSprite.loadTiles(FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]), 48, 64, 0);
-            bgSprite.scrollFactor.X = 0.5f;
-            bgSprite.scrollFactor.Y = 0.5f;
-            bgSprite.x = -200;
-            bgSprite.y = -200;
+            bgSprite.scrollFactor.X = 0.4f;
+            bgSprite.scrollFactor.Y = 0.4f;
+            bgSprite.x = 0;
+            bgSprite.y = 0;
             bgSprite.color = Color.DarkGray;
 
             bgSprite.boundingBoxOverride = false;

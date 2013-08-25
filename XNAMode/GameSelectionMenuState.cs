@@ -47,7 +47,7 @@ namespace XNAMode
             //add(bg);
 
 
-            tween = new Tweener(0, -310 , TimeSpan.FromSeconds(3.9f), Quadratic.EaseOut);
+            tween = new Tweener(0, -240 , TimeSpan.FromSeconds(3.9f), Quadratic.EaseOut);
 
             // -350, -310
             bgSprite = new FlxSprite(-350, 0, FlxG.Content.Load<Texture2D>("initials/Fear"));
