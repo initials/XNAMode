@@ -469,7 +469,8 @@ namespace org.flixel
         static public bool overlap(FlxObject Object1, FlxObject Object2, SpriteCollisionEvent Callback)
         {
             if ((Object1 == null) || !Object1.exists ||
-                (Object2 == null) || !Object2.exists)
+                (Object2 == null) || !Object2.exists || 
+                Object1.dead == true || Object2.dead == true)
                 return false;
             quadTree = new FlxQuadTree(FlxQuadTree.bounds.x, FlxQuadTree.bounds.y, FlxQuadTree.bounds.width, FlxQuadTree.bounds.height, null);
             quadTree.add(Object1, FlxQuadTree.A_LIST);

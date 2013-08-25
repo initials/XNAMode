@@ -30,7 +30,7 @@ namespace XNAMode
 
             play("normal");
 
-            drag.X = 30;
+            drag.X = 500;
             acceleration.Y = 820;
             maxVelocity.X = 1000;
             maxVelocity.Y = 1000;
@@ -39,6 +39,29 @@ namespace XNAMode
 
         override public void update()
         {
+            if (velocity.X > 0)
+            {
+                double rot = Math.Atan2((float)velocity.Y, (float)velocity.X);
+                double degrees = rot * 180 / Math.PI;
+
+                angle = (float)degrees; 
+            }
+            // reversing not working.
+            else
+            {
+                double rot = Math.Atan2((float)velocity.Y, (float)velocity.X);
+                double degrees = rot * 180 / Math.PI ;
+
+                angle = (float)degrees; 
+            }
+
+
+            
+
+
+            Console.WriteLine(facing);
+
+
             if (dead && finished) exists = false;
             else base.update();
         }

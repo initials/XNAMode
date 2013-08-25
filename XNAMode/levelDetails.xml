@@ -128,7 +128,7 @@
       <timeOfDayPalette default="">skyPalette</timeOfDayPalette>
       <empty_utility_spare3 default=""></empty_utility_spare3>
       <!--Playable Characters-->
-      <corsair default="0"></corsair>
+      <corsair default="0">2</corsair>
       <marksman default="0">1</marksman>
       <mistress default="0"></mistress>
       <paladin default="0"></paladin>
@@ -137,7 +137,7 @@
       <warlock default="0"></warlock>
       <!--Non playable Characters.-->
       <automaton default="0">5</automaton>
-      <bat default="0">5</bat>
+      <bat default="0">15</bat>
       <executor default="0"></executor>
       <gloom default="0"></gloom>
       <harvester default="0"></harvester>

@@ -244,8 +244,10 @@ namespace XNAMode
 
             bgSprite.loadGraphic(bgGraphic);
             //bgSprite.loadTiles(FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]), 48, 64, 0);
-            bgSprite.scrollFactor.X = 0.02f;
-            bgSprite.scrollFactor.Y = 0.02f;
+            bgSprite.scrollFactor.X = 0.2f;
+            bgSprite.scrollFactor.Y = 0.2f;
+            bgSprite.x = -200;
+            bgSprite.y = -200;
             bgSprite.boundingBoxOverride = false;
             add(bgSprite);
 
@@ -415,7 +417,7 @@ namespace XNAMode
 
             }
 
-            else
+            else if (e.Object1.dead == false && e.Object2.dead == false)
             {
                 e.Object1.velocity.X = e.Object2.velocity.X * 10;
                 e.Object1.hurt(1);
@@ -423,15 +425,8 @@ namespace XNAMode
                 e.Object2.kill();
 
                 blood.at(e.Object1);
-                //blood.start(false, 0, 50);
-                //blood.emitParticle();
-                //blood.emitParticle();
-                //blood.emitParticle();
-                //blood.quantity = 20;
 
                 blood.start(true, 0, 10);
-                //blood.stop();
-
             }
 
             return true;
@@ -506,7 +501,7 @@ namespace XNAMode
             }
             #endregion
             #region Blight
-            if (ActorType == "Blight")
+            if (ActorType == "blight")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -517,7 +512,7 @@ namespace XNAMode
             }
             #endregion
             #region Bloatedzombie
-            if (ActorType == "Bloatedzombie")
+            if (ActorType == "bloatedzombie")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -528,7 +523,7 @@ namespace XNAMode
             }
             #endregion
             #region Bogbeast
-            if (ActorType == "Bogbeast")
+            if (ActorType == "bogbeast")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -539,7 +534,7 @@ namespace XNAMode
             }
             #endregion
             #region Bombling
-            if (ActorType == "Bombling")
+            if (ActorType == "bombling")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -550,7 +545,7 @@ namespace XNAMode
             }
             #endregion
             #region Centaur
-            if (ActorType == "Centaur")
+            if (ActorType == "centaur")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -561,7 +556,7 @@ namespace XNAMode
             }
             #endregion
             #region Chicken
-            if (ActorType == "Chicken")
+            if (ActorType == "chicken")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -572,7 +567,7 @@ namespace XNAMode
             }
             #endregion
             #region Chimaera
-            if (ActorType == "Chimaera")
+            if (ActorType == "chimaera")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -583,7 +578,7 @@ namespace XNAMode
             }
             #endregion
             #region Corsair
-            if (ActorType == "Corsair")
+            if (ActorType == "corsair")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -594,7 +589,7 @@ namespace XNAMode
             }
             #endregion
             #region Cow
-            if (ActorType == "Cow")
+            if (ActorType == "cow")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -605,7 +600,7 @@ namespace XNAMode
             }
             #endregion
             #region Cyclops
-            if (ActorType == "Cyclops")
+            if (ActorType == "cyclops")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -616,7 +611,7 @@ namespace XNAMode
             }
             #endregion
             #region Deathclaw
-            if (ActorType == "Deathclaw")
+            if (ActorType == "deathclaw")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -627,7 +622,7 @@ namespace XNAMode
             }
             #endregion
             #region Deer
-            if (ActorType == "Deer")
+            if (ActorType == "deer")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -638,7 +633,7 @@ namespace XNAMode
             }
             #endregion
             #region Devil
-            if (ActorType == "Devil")
+            if (ActorType == "devil")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -649,7 +644,7 @@ namespace XNAMode
             }
             #endregion
             #region Djinn
-            if (ActorType == "Djinn")
+            if (ActorType == "djinn")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -660,7 +655,7 @@ namespace XNAMode
             }
             #endregion
             #region Drone
-            if (ActorType == "Drone")
+            if (ActorType == "drone")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -671,7 +666,7 @@ namespace XNAMode
             }
             #endregion
             #region Druid
-            if (ActorType == "Druid")
+            if (ActorType == "druid")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -682,7 +677,7 @@ namespace XNAMode
             }
             #endregion
             #region Dwarf
-            if (ActorType == "Dwarf")
+            if (ActorType == "dwarf")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -693,7 +688,7 @@ namespace XNAMode
             }
             #endregion
             #region Embersteed
-            if (ActorType == "Embersteed")
+            if (ActorType == "embersteed")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -704,7 +699,7 @@ namespace XNAMode
             }
             #endregion
             #region Executor
-            if (ActorType == "Executor")
+            if (ActorType == "executor")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -715,7 +710,7 @@ namespace XNAMode
             }
             #endregion
             #region Feline
-            if (ActorType == "Feline")
+            if (ActorType == "feline")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -726,7 +721,7 @@ namespace XNAMode
             }
             #endregion
             #region Floatingeye
-            if (ActorType == "Floatingeye")
+            if (ActorType == "floatingeye")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -737,7 +732,7 @@ namespace XNAMode
             }
             #endregion
             #region Fungant
-            if (ActorType == "Fungant")
+            if (ActorType == "fungant")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -748,7 +743,7 @@ namespace XNAMode
             }
             #endregion
             #region Gelatine
-            if (ActorType == "Gelatine")
+            if (ActorType == "gelatine")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -759,7 +754,7 @@ namespace XNAMode
             }
             #endregion
             #region Gloom
-            if (ActorType == "Gloom")
+            if (ActorType == "gloom")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -770,7 +765,7 @@ namespace XNAMode
             }
             #endregion
             #region Glutton
-            if (ActorType == "Glutton")
+            if (ActorType == "glutton")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -781,7 +776,7 @@ namespace XNAMode
             }
             #endregion
             #region Goblin
-            if (ActorType == "Goblin")
+            if (ActorType == "goblin")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -792,7 +787,7 @@ namespace XNAMode
             }
             #endregion
             #region Golem
-            if (ActorType == "Golem")
+            if (ActorType == "golem")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -803,7 +798,7 @@ namespace XNAMode
             }
             #endregion
             #region Gorgon
-            if (ActorType == "Gorgon")
+            if (ActorType == "gorgon")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -814,7 +809,7 @@ namespace XNAMode
             }
             #endregion
             #region Gourmet
-            if (ActorType == "Gourmet")
+            if (ActorType == "gourmet")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -825,7 +820,7 @@ namespace XNAMode
             }
             #endregion
             #region Grimwarrior
-            if (ActorType == "Grimwarrior")
+            if (ActorType == "grimwarrior")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -836,7 +831,7 @@ namespace XNAMode
             }
             #endregion
             #region Grizzly
-            if (ActorType == "Grizzly")
+            if (ActorType == "grizzly")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -847,7 +842,7 @@ namespace XNAMode
             }
             #endregion
             #region Harvester
-            if (ActorType == "Harvester")
+            if (ActorType == "harvester")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -858,7 +853,7 @@ namespace XNAMode
             }
             #endregion
             #region Horse
-            if (ActorType == "Horse")
+            if (ActorType == "horse")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -869,7 +864,7 @@ namespace XNAMode
             }
             #endregion
             #region Ifrit
-            if (ActorType == "Ifrit")
+            if (ActorType == "ifrit")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -880,7 +875,7 @@ namespace XNAMode
             }
             #endregion
             #region Imp
-            if (ActorType == "Imp")
+            if (ActorType == "imp")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -891,7 +886,7 @@ namespace XNAMode
             }
             #endregion
             #region Kerberos
-            if (ActorType == "Kerberos")
+            if (ActorType == "kerberos")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -902,7 +897,7 @@ namespace XNAMode
             }
             #endregion
             #region Lich
-            if (ActorType == "Lich")
+            if (ActorType == "lich")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -913,7 +908,7 @@ namespace XNAMode
             }
             #endregion
             #region Lion
-            if (ActorType == "Lion")
+            if (ActorType == "lion")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -927,7 +922,7 @@ namespace XNAMode
             // marksman was here.
 
             #region Mechanic
-            if (ActorType == "Mechanic")
+            if (ActorType == "mechanic")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -938,7 +933,7 @@ namespace XNAMode
             }
             #endregion
             #region Mephisto
-            if (ActorType == "Mephisto")
+            if (ActorType == "mephisto")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -949,7 +944,7 @@ namespace XNAMode
             }
             #endregion
             #region Merchant
-            if (ActorType == "Merchant")
+            if (ActorType == "merchant")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -960,7 +955,7 @@ namespace XNAMode
             }
             #endregion
             #region Mermaid
-            if (ActorType == "Mermaid")
+            if (ActorType == "mermaid")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -971,7 +966,7 @@ namespace XNAMode
             }
             #endregion
             #region Mimick
-            if (ActorType == "Mimick")
+            if (ActorType == "mimick")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -982,7 +977,7 @@ namespace XNAMode
             }
             #endregion
             #region Monk
-            if (ActorType == "Monk")
+            if (ActorType == "monk")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -993,7 +988,7 @@ namespace XNAMode
             }
             #endregion
             #region Mummy
-            if (ActorType == "Mummy")
+            if (ActorType == "mummy")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1004,7 +999,7 @@ namespace XNAMode
             }
             #endregion
             #region Nightmare
-            if (ActorType == "Nightmare")
+            if (ActorType == "nightmare")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1015,7 +1010,7 @@ namespace XNAMode
             }
             #endregion
             #region Nymph
-            if (ActorType == "Nymph")
+            if (ActorType == "nymph")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1026,7 +1021,7 @@ namespace XNAMode
             }
             #endregion
             #region Ogre
-            if (ActorType == "Ogre")
+            if (ActorType == "ogre")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1037,7 +1032,7 @@ namespace XNAMode
             }
             #endregion
             #region Paladin
-            if (ActorType == "Paladin")
+            if (ActorType == "paladin")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1048,7 +1043,7 @@ namespace XNAMode
             }
             #endregion
             #region Phantom
-            if (ActorType == "Phantom")
+            if (ActorType == "phantom")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1059,7 +1054,7 @@ namespace XNAMode
             }
             #endregion
             #region Priest
-            if (ActorType == "Priest")
+            if (ActorType == "priest")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1070,7 +1065,7 @@ namespace XNAMode
             }
             #endregion
             #region Prism
-            if (ActorType == "Prism")
+            if (ActorType == "prism")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1081,7 +1076,7 @@ namespace XNAMode
             }
             #endregion
             #region Rat
-            if (ActorType == "Rat")
+            if (ActorType == "rat")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1092,7 +1087,7 @@ namespace XNAMode
             }
             #endregion
             #region Savage
-            if (ActorType == "Savage")
+            if (ActorType == "savage")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1103,7 +1098,7 @@ namespace XNAMode
             }
             #endregion
             #region Seraphine
-            if (ActorType == "Seraphine")
+            if (ActorType == "seraphine")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1114,7 +1109,7 @@ namespace XNAMode
             }
             #endregion
             #region Sheep
-            if (ActorType == "Sheep")
+            if (ActorType == "sheep")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1125,7 +1120,7 @@ namespace XNAMode
             }
             #endregion
             #region Skeleton
-            if (ActorType == "Skeleton")
+            if (ActorType == "skeleton")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1136,7 +1131,7 @@ namespace XNAMode
             }
             #endregion
             #region Snake
-            if (ActorType == "Snake")
+            if (ActorType == "snake")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1147,7 +1142,7 @@ namespace XNAMode
             }
             #endregion
             #region Soldier
-            if (ActorType == "Soldier")
+            if (ActorType == "soldier")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1158,7 +1153,7 @@ namespace XNAMode
             }
             #endregion
             #region Sphinx
-            if (ActorType == "Sphinx")
+            if (ActorType == "sphinx")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1169,7 +1164,7 @@ namespace XNAMode
             }
             #endregion
             #region Spider
-            if (ActorType == "Spider")
+            if (ActorType == "spider")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1180,7 +1175,7 @@ namespace XNAMode
             }
             #endregion
             #region Succubus
-            if (ActorType == "Succubus")
+            if (ActorType == "succubus")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1191,7 +1186,7 @@ namespace XNAMode
             }
             #endregion
             #region Tauro
-            if (ActorType == "Tauro")
+            if (ActorType == "tauro")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1202,7 +1197,7 @@ namespace XNAMode
             }
             #endregion
             #region Toad
-            if (ActorType == "Toad")
+            if (ActorType == "toad")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1213,7 +1208,7 @@ namespace XNAMode
             }
             #endregion
             #region Tormentor
-            if (ActorType == "Tormentor")
+            if (ActorType == "tormentor")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1224,7 +1219,7 @@ namespace XNAMode
             }
             #endregion
             #region Treant
-            if (ActorType == "Treant")
+            if (ActorType == "treant")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1235,7 +1230,7 @@ namespace XNAMode
             }
             #endregion
             #region Troll
-            if (ActorType == "Troll")
+            if (ActorType == "troll")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1246,7 +1241,7 @@ namespace XNAMode
             }
             #endregion
             #region Unicorn
-            if (ActorType == "Unicorn")
+            if (ActorType == "unicorn")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1257,7 +1252,7 @@ namespace XNAMode
             }
             #endregion
             #region Vampire
-            if (ActorType == "Vampire")
+            if (ActorType == "vampire")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1270,7 +1265,7 @@ namespace XNAMode
 
             
             #region Warlock
-            if (ActorType == "Warlock")
+            if (ActorType == "warlock")
             {
                 int x = 0;
                 for (x = 0; x < BULLETS_PER_ACTOR; x++)
@@ -1287,7 +1282,7 @@ namespace XNAMode
              
 
             #region Willowisp
-            if (ActorType == "Willowisp")
+            if (ActorType == "willowisp")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1298,7 +1293,7 @@ namespace XNAMode
             }
             #endregion
             #region Wizard
-            if (ActorType == "Wizard")
+            if (ActorType == "wizard")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1309,7 +1304,7 @@ namespace XNAMode
             }
             #endregion
             #region Wolf
-            if (ActorType == "Wolf")
+            if (ActorType == "wolf")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1320,7 +1315,7 @@ namespace XNAMode
             }
             #endregion
             #region Zinger
-            if (ActorType == "Zinger")
+            if (ActorType == "zinger")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
@@ -1331,7 +1326,7 @@ namespace XNAMode
             }
             #endregion
             #region Zombie
-            if (ActorType == "Zombie")
+            if (ActorType == "zombie")
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {

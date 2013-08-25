@@ -23,6 +23,8 @@ namespace XNAMode
             addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6,7 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 2,4 }, 18);
+            addAnimation("death", new int[] { 8,9 }, 12, false);
+
 
             //bounding box tweaks
             width = 7;
@@ -59,6 +61,15 @@ namespace XNAMode
 
             }
             base.update();
+        }
+        public override void kill()
+        {
+            play("death");
+            velocity.X = 0;
+            velocity.Y = 0;
+            dead = true;
+
+            //base.kill();
         }
     }
 }

@@ -23,6 +23,7 @@ namespace XNAMode
             addAnimation("fly", new int[] { 0, 1, 2 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 2, 4 }, 18);
+            addAnimation("death", new int[] { 1 }, 18);
 
             //bounding box tweaks
             //width = 7;
@@ -54,7 +55,7 @@ namespace XNAMode
         override public void update()
         {
 
-            if (FlxU.random() < 0.023) velocity.Y = -40;
+            if (FlxU.random() < 0.023 && dead==false) velocity.Y = -40;
             base.update();
 
             if (velocity.X > 0)
@@ -64,11 +65,24 @@ namespace XNAMode
             else
             {
                 facing = Flx2DFacing.Left;
-
             }
 
             if (x > 50*16) x = 0;
             if (x < 0) x = 50 * 16;
         }
+        public override void kill()
+        {
+            play("death");
+            //velocity.X = 0;
+            //velocity.Y = 0;
+            dead = true;
+            angularVelocity = 500;
+            angularDrag = 700;
+            drag.X = 1000;
+
+
+            //base.kill();
+        }
+
     }
 }

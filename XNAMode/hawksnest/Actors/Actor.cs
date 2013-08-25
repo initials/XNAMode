@@ -156,7 +156,11 @@ namespace XNAMode
 
 
             //ANIMATION
-            if (attacking)
+            if (dead)
+            {
+                play("death");
+            }
+            else if (attacking)
             {
                 play("attack");
             }
