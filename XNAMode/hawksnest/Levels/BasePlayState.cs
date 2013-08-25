@@ -248,6 +248,8 @@ namespace XNAMode
             bgSprite.scrollFactor.Y = 0.2f;
             bgSprite.x = -200;
             bgSprite.y = -200;
+            bgSprite.color = Color.DarkGray;
+
             bgSprite.boundingBoxOverride = false;
             add(bgSprite);
 
@@ -266,6 +268,7 @@ namespace XNAMode
             mainTilemap.auto = FlxTilemap.AUTO;
             mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["tiles"]), 16, 16);
             add(mainTilemap);
+            mainTilemap.boundingBoxOverride = true;
 
             // add the decorations tilemap.
 
@@ -276,6 +279,7 @@ namespace XNAMode
             decorationsTilemap = new FlxTilemap();
             decorationsTilemap.auto = FlxTilemap.RANDOM;
             decorationsTilemap.randomLimit = (int)DecorTex.Width / 16;
+            decorationsTilemap.boundingBoxOverride = false;
 
             decorationsTilemap.loadMap(newDec, DecorTex, 16, 16);
             add(decorationsTilemap);
@@ -349,10 +353,17 @@ namespace XNAMode
 
             //FlxG.autoHandlePause = true;
 
+            FlxG.resetHud();
+            FlxG.showHud();
+
+
         }
 
         override public void update()
         {
+
+            FlxG.setHudText(1, FlxG.score.ToString());
+
 
             if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B) && FlxG.debug)
                 FlxG.showBounds = !FlxG.showBounds;
@@ -383,10 +394,26 @@ namespace XNAMode
             //collides
             FlxU.collide(actors, mainTilemap);
 
+            //Console.WriteLine(mainTilemap.colli);
+
             FlxU.overlap(actors, bullets, overlapped);
             FlxU.collide(mainTilemap, bullets);
 
             FlxU.collide(blood, mainTilemap);
+
+
+            if (FlxG.mouse.pressedRightButton())
+            {
+                
+                mainTilemap.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 0, true);
+                
+                decorationsTilemap.setTile((int)FlxG.mouse.x / 16, ((int)FlxG.mouse.y / 16) - 1, 0, true);
+            }
+            if (FlxG.mouse.pressedLeftButton())
+            {
+                mainTilemap.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 1, true);
+            }
+
 
 
             if (FlxG.keys.A && FlxG.debug)
@@ -399,6 +426,7 @@ namespace XNAMode
             base.update();
         }
 
+        //actors, bullets
         protected bool overlapped(object Sender, FlxSpriteCollisionEvent e)
         {
             /*
@@ -419,7 +447,15 @@ namespace XNAMode
 
             else if (e.Object1.dead == false && e.Object2.dead == false)
             {
-                e.Object1.velocity.X = e.Object2.velocity.X * 10;
+                e.Object1.acceleration.Y = 820;
+                e.Object1.velocity.X = e.Object2.velocity.X ;
+                e.Object1.velocity.Y = e.Object2.velocity.Y ;
+                
+                
+                //e.Object1.velocity.X = e.Object2.velocity.X * 10;
+
+
+
                 e.Object1.hurt(1);
 
                 e.Object2.kill();

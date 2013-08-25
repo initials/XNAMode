@@ -12,9 +12,19 @@ namespace XNAMode
 {
     class Bat : FlxSprite
     {
+
+        /// <summary>
+        /// used for tracking the amount of time dead for restarts.
+        /// </summary>
+        public float timeDead;
+
+        public int score;
+
+
         public Bat(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            score = 100;
 
             //actorName = "Bat";
 
@@ -26,15 +36,15 @@ namespace XNAMode
             addAnimation("death", new int[] { 1 }, 18);
 
             //bounding box tweaks
-            //width = 7;
-            //height = 20;
-            //offset.X = 2;
-            //offset.Y = 4;
+            width = 10;
+            height = 9;
+            offset.X = 1;
+            offset.Y = 3;
 
             //basic player physics
             int runSpeed = 30;
             //drag.X = runSpeed * 4;
-            acceleration.Y = 100;
+            acceleration.Y = 50;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
@@ -54,6 +64,16 @@ namespace XNAMode
         }
         override public void update()
         {
+            if (dead) timeDead += FlxG.elapsed;
+            else timeDead = 0;
+            if (timeDead > 2)
+            {
+                flicker(1.0f);
+            }
+            if (timeDead > 3)
+            {
+                reset(originalPosition.X, originalPosition.Y);
+            }
 
             if (FlxU.random() < 0.023 && dead==false) velocity.Y = -40;
             base.update();
@@ -80,6 +100,8 @@ namespace XNAMode
             angularDrag = 700;
             drag.X = 1000;
 
+
+            FlxG.score += score;
 
             //base.kill();
         }

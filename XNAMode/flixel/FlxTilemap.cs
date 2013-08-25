@@ -354,11 +354,20 @@ namespace org.flixel
                             new Rectangle((ix * _tileWidth) + (int)Math.Floor(FlxG.scroll.X * scrollFactor.X), (iy * _tileHeight) + (int)Math.Floor(FlxG.scroll.Y * scrollFactor.Y), _tileWidth, _tileHeight),
                             _rects[iy * widthInTiles + ix],
                             Color.White);
+                        if (FlxG.showBounds && boundingBoxOverride==true)
+                        {
+                            spriteBatch.Draw(FlxG.XnaSheet,
+                            new Rectangle((ix * _tileWidth) + (int)Math.Floor(FlxG.scroll.X * scrollFactor.X), (iy * _tileHeight) + (int)Math.Floor(FlxG.scroll.Y * scrollFactor.Y), _tileWidth, _tileHeight),
+                            _rects[iy * widthInTiles + ix],
+                            getBoundingColor());
+                        }
+
                     }
                     cri++;
                 }
                 ri += widthInTiles;
             }
+
         }
 
         /// <summary>

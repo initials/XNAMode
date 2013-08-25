@@ -42,7 +42,7 @@ namespace XNAMode
 
             Color xc = FlxU.getColorFromBitmapAtPoint(FlxG.Content.Load<Texture2D>("initials/envir_dusk"), 5, 5);
 
-            Console.WriteLine(xc);
+            //Console.WriteLine(xc);
 
             string ints = "3,4,4,3,3,4,5,6,6,6,4,5,4,54,5";
             int[] ar = FlxU.convertStringToIntegerArray(ints);

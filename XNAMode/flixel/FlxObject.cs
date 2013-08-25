@@ -12,6 +12,15 @@ namespace org.flixel
     /// </summary>
     public class FlxObject
     {
+
+        /// <summary>
+        /// Override for drawing bounding box. Used to turn off bg sprites bounding boxes
+        /// <para>True = displays bounding box.</para>
+        /// <para>False = never will display bounding box.</para>
+        /// </summary>
+        public bool boundingBoxOverride;
+
+
         /// <summary>
         /// Kind of a global on/off switch for any objects descended from <code>FlxObject</code>.
         /// </summary>
@@ -153,6 +162,12 @@ namespace org.flixel
 		/// </summary>
 		protected Vector2 _flashPoint;
 
+
+        /// <summary>
+        /// Stores the first position in the level the object was placed.
+        /// </summary>
+        public Vector2 originalPosition;
+
         /// <summary>
         /// Set this to false if you want to skip the automatic motion/movement stuff (see <code>updateMotion()</code>).
         /// FlxObject and FlxSprite default to true.
@@ -239,6 +254,10 @@ namespace org.flixel
         {
             x = X;
             y = Y;
+
+            originalPosition.X = X;
+            originalPosition.Y = Y;
+
             width = Width;
             height = Height;
 

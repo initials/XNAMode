@@ -12,6 +12,9 @@ namespace XNAMode
 {
     class Actor : FlxSprite
     {
+
+        public int score = 50;
+
         /// <summary>
         /// Determines whether or not game inputs affect charactetr.
         /// </summary>
@@ -33,13 +36,18 @@ namespace XNAMode
         /// </summary>
         public string actorName;
 
+        public int runSpeed = 120;
+
 
         public List<FlxObject> _bullets;
         public int _curBullet;
 
         public bool attacking = false;
 
-
+        /// <summary>
+        /// used for tracking the amount of time dead for restarts.
+        /// </summary>
+        public float timeDead;
 
         public Actor(int xPos, int yPos)
             : base(xPos,yPos)
@@ -49,7 +57,7 @@ namespace XNAMode
 
 
             //basic player physics
-            int runSpeed = 120;
+            
             drag.X = runSpeed * 4;
             acceleration.Y = 820;
             maxVelocity.X = runSpeed;
@@ -66,6 +74,9 @@ namespace XNAMode
 
         override public void update()
         {
+            if (dead) timeDead += FlxG.elapsed;
+            else timeDead = 0;
+
 
             PlayerIndex pi;
 
@@ -84,18 +95,33 @@ namespace XNAMode
 
             if (isPlayerControlled)
             {
+
+                if (FlxG.gamepads.isButtonDown(Buttons.RightTrigger, FlxG.controllingPlayer, out pi))
+                {
+                    maxVelocity.X = runSpeed * 2;
+                }
+                else
+                {
+                    maxVelocity.X = runSpeed;
+                }
+
+
                 acceleration.X = 0;
                 if (FlxG.keys.LEFT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi))
                 {
                     attacking = false;
                     facing = Flx2DFacing.Left;
                     acceleration.X -= drag.X;
+
+
                 }
                 else if (FlxG.keys.RIGHT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi))
                 {
                     attacking = false;
                     facing = Flx2DFacing.Right;
                     acceleration.X += drag.X;
+
+
                 }
 
                 // && velocity.Y == 0
@@ -112,7 +138,9 @@ namespace XNAMode
                 if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X > DEADZONE ||
                     GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y > DEADZONE ||
                     GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X < DEADZONE * -1.0f ||
-                    GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y < DEADZONE * -1.0f)
+                    GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y < DEADZONE * -1.0f ||
+                    FlxG.gamepads.isButtonDown(Buttons.X, PlayerIndex.One, out pi) )
+
                 {
                     attacking = true;
                 }
@@ -166,6 +194,8 @@ namespace XNAMode
             }
             else if (velocity.Y != 0)
             {
+                Console.WriteLine("Jumping");
+
                 play("jump");
             }
             else if (velocity.X == 0)
@@ -188,6 +218,9 @@ namespace XNAMode
         public override void kill()
         {
             base.kill();
+
+            FlxG.score += score;
+            
             
             //FlxG.bloom.Visible = true;
 

@@ -409,8 +409,7 @@ namespace org.flixel
                     FlxG.flash.render(FlxG.spriteBatch);
                 if (FlxG.fade.exists)
                     FlxG.fade.render(FlxG.spriteBatch);
-                if (FlxG.transition.exists)
-                    FlxG.transition.render(FlxG.spriteBatch);
+
 
                 if (FlxG.mouse.cursor.visible)
                     FlxG.mouse.cursor.render(FlxG.spriteBatch);
@@ -485,7 +484,8 @@ namespace org.flixel
                 
                 _hud.render(FlxG.spriteBatch);
             }
-
+            if (FlxG.transition.exists)
+                FlxG.transition.render(FlxG.spriteBatch);
             
 
             FlxG.spriteBatch.End();

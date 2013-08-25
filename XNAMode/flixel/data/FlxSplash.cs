@@ -58,7 +58,7 @@ namespace org.flixel
 
             FlxG.play(SndTag,1.0f);
 
-            FlxG.transition.startFadeIn(0.015f);
+            FlxG.transition.startFadeIn(0.1f);
         }
 
         public static void setSplashInfo(Color flixelColor, FlxState nextScreen)

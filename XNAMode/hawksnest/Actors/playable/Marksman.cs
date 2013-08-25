@@ -25,8 +25,9 @@ namespace XNAMode
 
             addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
-            addAnimation("attack", new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }, 30 ,true);
-            
+            addAnimation("attack", new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }, 26 ,true);
+            addAnimation("jump", new int[] { 3, 4, 5, 6, 7, 8, 9 }, 3, true);
+
             //addAnimationCallback(stopAttacking);
 
             //bounding box tweaks
@@ -62,8 +63,19 @@ namespace XNAMode
                 float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
                 float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
                 
-                ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 600), (int)(rightY *= -600));
+                //Console.WriteLine(rightX + " " + rightY);
 
+                if (rightX ==0 && rightY ==0 )
+                {
+                    if (facing == Flx2DFacing.Right)
+                        ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), 600, -100);
+                    else
+                        ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), -600, -100);
+                }
+                else
+                {
+                    ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 600), (int)(rightY *= -600));
+                }
                 if (rightX < 0)
                 {
                     ((Arrow)(_bullets[_curArrow])).facing = Flx2DFacing.Left;

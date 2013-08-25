@@ -41,11 +41,13 @@ namespace org.flixel
             {
                 for (int _x = 0; _x < cols; _x++)
                 {
-                    s = new FlxSprite(width * _y, height * _x);
+                    s = new FlxSprite(width * _y * FlxG.zoom, height * _x * FlxG.zoom);
 
                     s.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/transition_30x30"),false,false,width,height);
 
                     //s.angle = 45;
+
+                    s.scale = FlxG.zoom;
 
                     //s.angularVelocity = 15;
                     //s.scrollFactor = Vector2.Zero;
@@ -92,7 +94,7 @@ namespace org.flixel
             {
                 for (int _x = 0; _x < cols; _x++)
                 {
-                    s = new FlxSprite(width * _y, height * _x);
+                    s = new FlxSprite(width * _y * FlxG.zoom, height * _x * FlxG.zoom);
 
                     if (Graphics==null)
                         s.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/transition_40x40"), false, false, width, height);
@@ -140,7 +142,7 @@ namespace org.flixel
             while (i < l)
             {
                 o = members[i++] as FlxSprite;
-                o.scale = 1.01f;
+                o.scale = FlxG.zoom;
 
             }
         }
@@ -158,9 +160,9 @@ namespace org.flixel
         /// <summary>
         /// Starts the fade out process, all sprites start at zero scale.
         /// </summary>
-        /// <param name="speed"></param>
-        /// <param name="Angle"></param>
-        /// <param name="AngularVelocity"></param>
+        /// <param name="speed">Speed is the amount that is added per cycle, finishing at 1.0f</param>
+        /// <param name="Angle">Starting angle of each tile.</param>
+        /// <param name="AngularVelocity">Angle spin.</param>
         public void startFadeOut(float speed, float Angle, float AngularVelocity)
         {
             _speed = speed;
@@ -193,7 +195,7 @@ namespace org.flixel
                 {
                     o.scale += _speed;
 
-                    if (o.scale > 1.25f)
+                    if (o.scale > FlxG.zoom + 0.2f)
                     {
                         complete = true;
                         transitionForward = false;
