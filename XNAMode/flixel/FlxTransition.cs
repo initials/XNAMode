@@ -195,7 +195,7 @@ namespace org.flixel
                 {
                     o.scale += _speed;
 
-                    if (o.scale > FlxG.zoom + 0.2f)
+                    if (o.scale > FlxG.zoom + 1.0f)
                     {
                         complete = true;
                         transitionForward = false;

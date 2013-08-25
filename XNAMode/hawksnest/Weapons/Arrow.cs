@@ -100,6 +100,8 @@ namespace XNAMode
         }
         override public void kill()
         {
+            visible = false;
+
             if (dead) return;
             velocity.X = 0;
             velocity.Y = 0;
@@ -112,6 +114,8 @@ namespace XNAMode
 
         public void shoot(int X, int Y, int VelocityX, int VelocityY)
         {
+            visible = true;
+
             play("normal");
             //FlxG.play(SndShoot);
             base.reset(X, Y);

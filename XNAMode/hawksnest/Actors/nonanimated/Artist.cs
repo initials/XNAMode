@@ -18,17 +18,18 @@ namespace XNAMode
 
             actorName = "Scott The Rocks";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/allActors"), true, false, 26, 26);
+            loadGraphic(FlxG.Content.Load<Texture2D>("initials/artist_ss_20x20"), true, false, 20, 20);
 
             //addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 12);
-            addAnimation("idle", new int[] { 14 }, 12);
+            addAnimation("idle", new int[] { 0, 1, 2, 3, 4 }, 12);
+            addAnimation("death", new int[] { 6 }, 0);
             //addAnimation("attack", new int[] { 2, 4 }, 18);
 
             //bounding box tweaks
             width = 16;
-            height = 20;
-            offset.X = 5;
-            offset.Y = 6;
+            height = 16;
+            offset.X = 2;
+            offset.Y = 4;
 
             //basic player physics
             int runSpeed = 30;

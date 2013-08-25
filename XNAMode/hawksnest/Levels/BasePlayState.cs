@@ -244,8 +244,8 @@ namespace XNAMode
 
             bgSprite.loadGraphic(bgGraphic);
             //bgSprite.loadTiles(FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]), 48, 64, 0);
-            bgSprite.scrollFactor.X = 0.2f;
-            bgSprite.scrollFactor.Y = 0.2f;
+            bgSprite.scrollFactor.X = 0.5f;
+            bgSprite.scrollFactor.Y = 0.5f;
             bgSprite.x = -200;
             bgSprite.y = -200;
             bgSprite.color = Color.DarkGray;
@@ -282,7 +282,7 @@ namespace XNAMode
             decorationsTilemap.boundingBoxOverride = false;
 
             decorationsTilemap.loadMap(newDec, DecorTex, 16, 16);
-            add(decorationsTilemap);
+            //add it after the actors.
 
             // build characters here
 
@@ -350,6 +350,8 @@ namespace XNAMode
             
 
             add(blood);
+
+            add(decorationsTilemap);
 
             //FlxG.autoHandlePause = true;
 

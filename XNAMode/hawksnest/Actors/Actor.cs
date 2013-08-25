@@ -194,7 +194,7 @@ namespace XNAMode
             }
             else if (velocity.Y != 0)
             {
-                Console.WriteLine("Jumping");
+                //Console.WriteLine("Jumping");
 
                 play("jump");
             }
@@ -217,7 +217,13 @@ namespace XNAMode
 
         public override void kill()
         {
-            base.kill();
+            //base.kill();
+
+            play("death");
+
+
+            dead = true;
+
 
             FlxG.score += score;
             
