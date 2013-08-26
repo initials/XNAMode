@@ -415,8 +415,8 @@
     <timeOfDayPalette default="skyPalette"></timeOfDayPalette>
     <!--Playable Characters-->
     <corsair default="0"></corsair>
-    <marksman default="1">
-      <l1></l1>
+    <marksman default="0">
+      <l1 playerControlled="1">1</l1>
       <l2></l2>
       <l3></l3>
       <l4></l4>

@@ -224,15 +224,33 @@ namespace XNAMode
                     if (firstSpecificChildElement.Value.ToString()=="") 
                     {
                         levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
+
+                        //Console.WriteLine(" empty string " + xEle.Name.ToString() + "  " +  xEle.Attribute("default").Value.ToString());
+                        XAttribute playerControlled = firstSpecificChildElement.Attribute("playerControlled");
+
+                        if (playerControlled != null)
+                        {
+                            levelAttrs.Add("playerControlled", xEle.Name.ToString());
+                        }
+
                     }
                     else 
                     {
                         levelAttrs.Add(xEle.Name.ToString(), firstSpecificChildElement.Value.ToString());
+                        
+                        XAttribute playerControlled = firstSpecificChildElement.Attribute("playerControlled");
+
+                        if (playerControlled != null)
+                        {
+                            levelAttrs.Add("playerControlled", xEle.Name.ToString());
+                        }
                     }
                 }
                 else
                 {
+
                     levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
+
                 }
             }
 
@@ -321,11 +339,13 @@ namespace XNAMode
                 int noa = 0;
 
                 try { noa = Convert.ToInt32(pair.Value); }
-                catch { noa = 0; }
+                catch 
+                { 
+                    noa = 0;
+                    //Console.WriteLine("Cannot convert number of actors to int");
+                }
                 if (pair.Value != "" && pair.Value != null && pair.Value != "0")
                 {
-                    //FlxG.write("Ok we are building {0}, {1}, ", pair.Key, pair.Value);
-
                     if (noa != 0)
                     {
                         buildActor(pair.Key, Convert.ToInt32(pair.Value));
@@ -333,28 +353,12 @@ namespace XNAMode
                 }
             }
 
-
-            //foreach (KeyValuePair<string, string> pair in levelAttrs)
-            //{
-            //    /// try-catch may be a dirty way of parsing out the characters.
-            //    try
-            //    {
-            //        buildActor(pair.Key, Convert.ToInt32(pair.Value));
-            //    }
-            //    catch
-            //    {
-            //        FlxG.write("Can't build" + pair.Key );
-            //    }
-                
-            //}
-
-
             // build atmospheric effects here
 
             paletteTexture = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["timeOfDayPalette"]);
 
-            marksman.isPlayerControlled = true;
-            FlxG.follow(marksman, FOLLOW_LERP);
+
+
             //FlxG.followAdjust(0.5f, 0.0f);
             FlxG.followBounds(0, 0, Convert.ToInt32(levelAttrs["levelWidth"]) * 16, Convert.ToInt32(levelAttrs["levelHeight"]) * 16);
 
@@ -501,8 +505,6 @@ namespace XNAMode
             #region Marksman
             if (ActorType == "marksman")
             {
-                //FlxG.write("Marksman being made " + NumberOfActors);
-
                 for (int i = 0; i < BULLETS_PER_ACTOR; i++)
                     arrows.add(new Arrow());
                 bullets.add(arrows);
@@ -514,6 +516,12 @@ namespace XNAMode
                     int[] p = cave.findRandomSolid(decorationsArray);
                     marksman = new Marksman(p[1] * 16, p[0] * 16, arrows.members);
                     actors.add(marksman);
+                }
+
+                if (levelAttrs["playerControlled"] == "marksman")
+                {
+                    marksman.isPlayerControlled = true;
+                    FlxG.follow(marksman, FOLLOW_LERP);
                 }
             }
             #endregion
