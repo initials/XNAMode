@@ -294,8 +294,10 @@ namespace XNAMode
 
             ladderTilemap = new FlxTilemap();
             //ladderTilemap.auto = FlxTilemap.AUTO;
-            ladderTilemap.loadMap(ladderMap, FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["tiles"]), 16, 16);
-            //ladderTilemap.boundingBoxOverride = true;
+            ladderTilemap.auto = FlxTilemap.RANDOM;
+            ladderTilemap.randomLimit = 2;
+            ladderTilemap.loadMap(ladderMap, FlxG.Content.Load<Texture2D>("initials/ladderTiles_16x16"), 16, 16);
+            ladderTilemap.boundingBoxOverride = true;
 
             add(ladderTilemap);
 
@@ -456,7 +458,25 @@ namespace XNAMode
 
             FlxU.collide(blood, mainTilemap);
 
-            FlxU.overlap(ladderTilemap, actors, overlapWithLadder);
+            if (FlxU.overlap(ladderTilemap, mistress, overlapWithLadder))
+            {
+                Console.WriteLine("yes mistress overlaps");
+                mistress.canClimbLadder = true;
+            }
+            else
+            {
+                Console.WriteLine("no mistress overlaps");
+                mistress.canClimbLadder = false;
+            }
+            if (FlxU.overlap(ladderTilemap, marksman, overlapWithLadder))
+            {
+                marksman.canClimbLadder = true;
+            }
+            else
+            {
+                marksman.canClimbLadder = false;
+            }
+
 
             if (FlxG.mouse.pressedRightButton())
             {
@@ -484,7 +504,7 @@ namespace XNAMode
 
         protected bool overlapWithLadder(object Sender, FlxSpriteCollisionEvent e)
         {
-            ((Actor)(e.Object2)).canClimbLadder = true;
+            //((Actor)(e.Object2)).canClimbLadder = true;
             return true;
         }
 

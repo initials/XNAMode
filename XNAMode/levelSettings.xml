@@ -357,7 +357,7 @@
       <l25></l25>
     </solidRowsAfterSmooth>
     <emptyColumnsAfterSmooth default="">
-      <l1></l1>
+      <l1>3,7,11,15,26</l1>
       <l2></l2>
       <l3></l3>
       <l4></l4>
@@ -469,7 +469,7 @@
     <!--Playable Characters-->
     <corsair default="0"></corsair>
     <marksman default="0">
-      <l1 >1</l1>
+      <l1  playerControlled="1">1</l1>
       <l2></l2>
       <l3></l3>
       <l4></l4>
@@ -496,7 +496,7 @@
       <l25></l25>
     </marksman>
     <mistress default="0">
-      <l1 playerControlled="1">1</l1>
+      <l1>1</l1>
       <l2></l2>
       <l3></l3>
       <l4></l4>
@@ -528,7 +528,9 @@
     <warlock default="0"></warlock>
     <!--Non playable Characters.-->
     <automaton default="0"></automaton>
-    <bat default="0"></bat>
+    <bat default="0">
+      <l1>10</l1>
+    </bat>
     <executor default="0"></executor>
     <gloom default="0"></gloom>
     <harvester default="0"></harvester>
@@ -540,7 +542,9 @@
     <vampire default="0"></vampire>
     <zombie default="0"></zombie>
     <!--Non Animated Characters-->
-    <artist default="0"></artist>
+    <artist default="0">
+      <l1>5</l1>
+    </artist>
     <assassin default="0"></assassin>
     <blight default="0"></blight>
     <bloatedzombie default="0"></bloatedzombie>

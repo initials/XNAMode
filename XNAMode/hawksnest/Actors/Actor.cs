@@ -175,6 +175,7 @@ namespace XNAMode
             if (dead) timeDead += FlxG.elapsed;
             else timeDead = 0;
 
+            //canClimbLadder = false;
 
             PlayerIndex pi;
 
@@ -225,10 +226,7 @@ namespace XNAMode
                 {
                     velocity.Y = -100;
                 }
-                else
-                {
-                    canClimbLadder = false;
-                }
+                
 
                 // && velocity.Y == 0
                 if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi)) && framesSinceLeftGround < 10)
@@ -320,7 +318,7 @@ namespace XNAMode
 
 
 
-            //canClimbLadder = false;
+            ///////canClimbLadder = false;
         }
 
         public override void kill()
