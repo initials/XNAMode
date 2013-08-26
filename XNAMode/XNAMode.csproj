@@ -113,6 +113,7 @@
   <ItemGroup>
     <Compile Include="fx\BloomComponent.cs" />
     <Compile Include="fx\BloomSettings.cs" />
+    <Compile Include="hawksnest\Actors\playable\WhipHitBox.cs" />
     <Compile Include="hawksnest\Levels\LevelBeginText.cs" />
     <Compile Include="EmptyIntroTestState.cs" />
     <Compile Include="hawksnest\Actors\nonanimated\Artist.cs" />

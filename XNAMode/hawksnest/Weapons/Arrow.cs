@@ -15,6 +15,7 @@ namespace XNAMode
 
         private bool hasTouched;
 
+        protected const string SndShoot = "sfx/arrowShoot";
 
         public Arrow()
         {
@@ -102,6 +103,7 @@ namespace XNAMode
         public void shoot(int X, int Y, int VelocityX, int VelocityY)
         {
             visible = true;
+            FlxG.play(SndShoot, 0.05f, false);
 
             play("normal");
             //FlxG.play(SndShoot);

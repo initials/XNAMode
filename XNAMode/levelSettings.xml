@@ -469,7 +469,7 @@
     <!--Playable Characters-->
     <corsair default="0"></corsair>
     <marksman default="0">
-      <l1>1</l1>
+      <l1 >1</l1>
       <l2></l2>
       <l3></l3>
       <l4></l4>

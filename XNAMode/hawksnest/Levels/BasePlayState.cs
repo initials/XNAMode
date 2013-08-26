@@ -447,17 +447,16 @@ namespace XNAMode
             // color whole game.
             FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDayTotal, 1));
 
-
             //collides
             FlxU.collide(actors, mainTilemap);
 
-            //FlxG.write(mainTilemap.colli);
-
             FlxU.overlap(actors, bullets, overlapped);
+            
             FlxU.collide(mainTilemap, bullets);
 
             FlxU.collide(blood, mainTilemap);
 
+            FlxU.overlap(ladderTilemap, actors, overlapWithLadder);
 
             if (FlxG.mouse.pressedRightButton())
             {
@@ -483,6 +482,12 @@ namespace XNAMode
             base.update();
         }
 
+        protected bool overlapWithLadder(object Sender, FlxSpriteCollisionEvent e)
+        {
+            ((Actor)(e.Object2)).canClimbLadder = true;
+            return true;
+        }
+
         //actors, bullets
         protected bool overlapped(object Sender, FlxSpriteCollisionEvent e)
         {
@@ -493,6 +498,7 @@ namespace XNAMode
             return true;
              */
 
+            // First make a list of the Actors and their bullets.
             if ((e.Object1 is Warlock) && (e.Object2 is Fireball))
             {
 
@@ -501,17 +507,16 @@ namespace XNAMode
             {
 
             }
+            else if ((e.Object1 is Mistress) && (e.Object2 is WhipHitBox))
+            {
 
+            }
+            // Now that it's a kill, spurt some blood and "hurt" both parties.
             else if (e.Object1.dead == false && e.Object2.dead == false)
             {
                 e.Object1.acceleration.Y = 820;
                 e.Object1.velocity.X = e.Object2.velocity.X ;
                 e.Object1.velocity.Y = e.Object2.velocity.Y ;
-                
-                
-                //e.Object1.velocity.X = e.Object2.velocity.X * 10;
-
-
 
                 e.Object1.hurt(1);
 
@@ -559,12 +564,35 @@ namespace XNAMode
                     int[] p = cave.findRandomSolid(decorationsArray);
                     mistress = new Mistress(p[1] * 16, p[0] * 16);
                     actors.add(mistress);
+                    bullets.add(mistress.whipHitBox);
+
                 }
 
                 if (levelAttrs["playerControlled"] == "mistress")
                 {
                     mistress.isPlayerControlled = true;
                     FlxG.follow(mistress, FOLLOW_LERP);
+                }
+            }
+            #endregion
+            
+            #region Warlock
+            if (ActorType == "warlock")
+            {
+                int x = 0;
+                for (x = 0; x < BULLETS_PER_ACTOR; x++)
+                    fireballs.add(new Fireball());
+                bullets.add(fireballs);
+                for (int i = 0; i <= NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    warlock = new Warlock(p[1] * 16, p[0] * 16, fireballs.members);
+                    actors.add(warlock);
+                }
+                if (levelAttrs["playerControlled"] == "warlock")
+                {
+                    warlock.isPlayerControlled = true;
+                    FlxG.follow(warlock, FOLLOW_LERP);
                 }
             }
             #endregion
@@ -1379,21 +1407,7 @@ namespace XNAMode
             #endregion
 
             
-            #region Warlock
-            if (ActorType == "warlock")
-            {
-                int x = 0;
-                for (x = 0; x < BULLETS_PER_ACTOR; x++)
-                    fireballs.add(new Fireball());
-                bullets.add(fireballs);
-                for (int i = 0; i <= NumberOfActors; i++)
-                {
-                    int[] p = cave.findRandomSolid(decorationsArray);
-                    warlock = new Warlock(p[1] * 16, p[0] * 16, fireballs.members);
-                    actors.add(warlock);
-                }
-            }
-            #endregion
+
              
 
             #region Willowisp

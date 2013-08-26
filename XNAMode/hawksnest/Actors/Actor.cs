@@ -106,7 +106,11 @@ namespace XNAMode
         public const int FR_chimera = 79;
 
 
+        public bool canClimbLadder = false;
 
+        /// <summary>
+        /// The score to recieve when killing this actor
+        /// </summary>
         public int score = 50;
 
         /// <summary>
@@ -217,6 +221,14 @@ namespace XNAMode
 
 
                 }
+                if ((FlxG.keys.UP || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, FlxG.controllingPlayer, out pi)) && canClimbLadder)
+                {
+                    velocity.Y = -100;
+                }
+                else
+                {
+                    canClimbLadder = false;
+                }
 
                 // && velocity.Y == 0
                 if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi)) && framesSinceLeftGround < 10)
@@ -233,7 +245,8 @@ namespace XNAMode
                     GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y > DEADZONE ||
                     GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X < DEADZONE * -1.0f ||
                     GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y < DEADZONE * -1.0f ||
-                    FlxG.gamepads.isButtonDown(Buttons.X, PlayerIndex.One, out pi) )
+                    FlxG.gamepads.isButtonDown(Buttons.X, PlayerIndex.One, out pi) ||
+                    FlxG.keys.C)
 
                 {
                     attacking = true;
@@ -305,6 +318,9 @@ namespace XNAMode
 
             base.update();
 
+
+
+            //canClimbLadder = false;
         }
 
         public override void kill()
