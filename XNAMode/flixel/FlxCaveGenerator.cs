@@ -224,11 +224,14 @@ namespace org.flixel
         }
 
 
-
         /// <summary>
         /// 
         /// </summary>
-        /// <returns>Returns a matrix of a cave!</returns>
+        /// <param name="solidRowsBeforeSmooth"></param>
+        /// <param name="solidColumnsBeforeSmooth"></param>
+        /// <param name="solidRowsAfterSmooth"></param>
+        /// <param name="solidColumnsAfterSmooth"></param>
+        /// <returns></returns>
         public int[,] generateCaveLevel(int[] solidRowsBeforeSmooth, int[] solidColumnsBeforeSmooth, int[] solidRowsAfterSmooth, int[] solidColumnsAfterSmooth)
         {
             // Initialize random array
@@ -308,6 +311,147 @@ namespace org.flixel
 
 
 
+        public int[,] generateCaveLevel(int[] solidRowsBeforeSmooth, 
+            int[] solidColumnsBeforeSmooth, 
+            int[] solidRowsAfterSmooth,
+            int[] solidColumnsAfterSmooth,
+            int[] emptyRowsBeforeSmooth,
+            int[] emptyColumnsBeforeSmooth,
+            int[] emptyRowsAfterSmooth,
+            int[] emptyColumnsAfterSmooth)
+        {
+            // Initialize random array
+
+            int[,] mat = new int[_numTilesRows, _numTilesCols];
+
+            mat = this.genInitMatrix(_numTilesRows, _numTilesCols);
+
+            for (int _y = 0; _y < _numTilesRows; _y++)
+            {
+                for (int _x = 0; _x < _numTilesCols; _x++)
+                {
+                    //Throw in a random assortment of ones and zeroes.
+                    if (FlxU.random() < initWallRatio)
+                    {
+                        mat[_y, _x] = 1;
+                    }
+                    else
+                    {
+                        mat[_y, _x] = 0;
+                    }
+
+                    if (emptyRowsBeforeSmooth != null)
+                    {
+                        foreach (int _yEmpty in emptyRowsBeforeSmooth)
+                        {
+                            for (int _i = 0; _i < _numTilesRows; ++_i)
+                            {
+                                mat[_yEmpty, _i] = 0;
+                            }
+                        }
+                    }
+                    if (emptyColumnsBeforeSmooth != null)
+                    {
+                        foreach (int _xEmpty in emptyColumnsBeforeSmooth)
+                        {
+                            for (int _i = 0; _i < _numTilesRows; ++_i)
+                            {
+                                mat[_i, _xEmpty] = 0;
+                            }
+                        }
+                    }
+
+
+
+                    if (solidRowsBeforeSmooth != null)
+                    {
+                        foreach (int _ySolid in solidRowsBeforeSmooth)
+                        {
+                            for (int _i = 0; _i < _numTilesRows; ++_i)
+                            {
+                                
+
+                                mat[_ySolid, _i] = 1;
+                            }
+                        }
+                    }
+                    if (solidColumnsBeforeSmooth != null)
+                    {
+                        foreach (int _xSolid in solidColumnsBeforeSmooth)
+                        {
+                            for (int _i = 0; _i < _numTilesRows; ++_i)
+                            {
+                                mat[_i, _xSolid] = 1;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            // Secondary buffer
+            int[,] mat2 = genInitMatrix(_numTilesRows, _numTilesCols);
+
+            // Run automata
+
+            for (int i = 0; i <= numSmoothingIterations; i++)
+            {
+
+                runCelluarAutomata(mat, mat2);
+
+                int[,] temp = new int[mat.GetLength(0), mat.GetLength(1)];
+                mat = mat2;
+                mat2 = temp;
+
+            }
+
+            if (emptyRowsAfterSmooth != null)
+            {
+                foreach (int _yEmpty in emptyRowsAfterSmooth)
+                {
+                    for (int _i = 0; _i < _numTilesRows; ++_i)
+                    {
+                        mat[_yEmpty, _i] = 0;
+                    }
+                }
+            }
+            if (emptyColumnsAfterSmooth != null)
+            {
+                foreach (int _xEmpty in emptyColumnsAfterSmooth)
+                {
+                    for (int _i = 0; _i < _numTilesRows; ++_i)
+                    {
+                        mat[_i, _xEmpty] = 0;
+                    }
+                }
+            }
+
+
+
+            foreach (int _ySolid in solidRowsAfterSmooth)
+            {
+                for (int _i = 0; _i < _numTilesRows; ++_i)
+                {
+                    mat[_ySolid, _i] = 1;
+                }
+            }
+            foreach (int _xSolid in solidColumnsAfterSmooth)
+            {
+                for (int _i = 0; _i < _numTilesRows; ++_i)
+                {
+                    mat[_i, _xSolid] = 1;
+                }
+            }
+
+
+
+            return mat;
+        }
+
+
+
+
+
         /// <summary>
         /// Runs 
         /// </summary>
@@ -317,8 +461,6 @@ namespace org.flixel
         {
             int numRows = inMat.GetLength(0);
             int numCols = inMat.GetLength(1);
-
-            //Console.WriteLine(numRows + "< r - c > " + numCols);
 
             for (int _y = 0; _y < numRows; _y++)
             {
@@ -394,16 +536,11 @@ namespace org.flixel
                 ry = (int)(FlxU.random() * numCols);
                 
                 if(inMat[rx,ry] == 1) {
-                    //Console.WriteLine(rx + "<-should be 1-> " + ry);
                     n=1;
-                    
                 }
-
             }
 
             return new int[] {rx, ry};
-
-
         }
 
         /// <summary>

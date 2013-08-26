@@ -58,10 +58,10 @@ namespace XNAMode
             /*
             XElement xelement = XElement.Load("level1.oel");
 
-            Console.WriteLine("List of all rects");
+            FlxG.write("List of all rects");
             foreach (XElement xEle in xelement.Descendants("rect"))
             {
-                Console.WriteLine("Rect: " + (string)xEle.Attribute("x") + " " + (string)xEle.Attribute("y") + " " + (string)xEle.Attribute("w") + " " + (string)xEle.Attribute("h"));
+                FlxG.write("Rect: " + (string)xEle.Attribute("x") + " " + (string)xEle.Attribute("y") + " " + (string)xEle.Attribute("w") + " " + (string)xEle.Attribute("h"));
                 int x = (int)xEle.Attribute("x");
                 int y = (int)xEle.Attribute("y");
                 int w = (int)xEle.Attribute("w");
@@ -123,7 +123,7 @@ namespace XNAMode
 
             string newMap = cav.convertMultiArrayToString(matr);
 
-            //Console.WriteLine(newMap);
+            //FlxG.write(newMap);
 
 
 
@@ -175,7 +175,7 @@ namespace XNAMode
 
             FlxU.collide(_player, tiles);
 
-            //Console.WriteLine(FlxG.gamepads.isNewThumbstickDown(FlxG.controllingPlayer));
+            //FlxG.write(FlxG.gamepads.isNewThumbstickDown(FlxG.controllingPlayer));
 
             float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
 
@@ -184,7 +184,7 @@ namespace XNAMode
             float rotation = (float)Math.Atan2(rightX, rightY);
             rotation = (rotation < 0) ? MathHelper.ToDegrees(rotation + MathHelper.TwoPi) : MathHelper.ToDegrees(rotation);
 
-            //Console.WriteLine(rotation);
+            //FlxG.write(rotation);
 
 
 
@@ -269,13 +269,13 @@ namespace XNAMode
             {
                 FlxOnlineStatCounter.sendStats("hawksnest", "marksman", 1);
 
-                Console.WriteLine(FlxOnlineStatCounter.lastRecievedStat);
+                FlxG.write(FlxOnlineStatCounter.lastRecievedStat);
             }
             if (FlxG.keys.justPressed(Keys.L))
             {
                 FlxOnlineStatCounter.getStatsForLevel("hawksnest", "marksman", 1);
 
-                Console.WriteLine(FlxOnlineStatCounter.lastRecievedStat);
+                FlxG.write(FlxOnlineStatCounter.lastRecievedStat);
 
             }
             if (FlxG.keys.justPressed(Keys.J))

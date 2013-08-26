@@ -286,6 +286,14 @@ namespace org.flixel
         /// <param name="Data">Anything you want to log to the console.</param>
         public static void log(string Data) { _game._console.log(Data); }
 
+        public static void write(string Data)
+        {
+            if (FlxG.debug)
+            {
+                Console.WriteLine(Data);
+            }
+        }
+
         /// <summary>
         /// public access to showing the hud
         /// </summary>

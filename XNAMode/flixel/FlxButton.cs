@@ -250,8 +250,6 @@ namespace org.flixel
 
                 if (FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi) && _controllerButtonIndex == 0)
                 {
-                    Console.WriteLine("Button A has been pressed");
-
                     _callback();
                 }
                 if (FlxG.gamepads.isNewButtonPress(Buttons.B, FlxG.controllingPlayer, out pi) && _controllerButtonIndex == 1)

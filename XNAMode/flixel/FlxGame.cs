@@ -480,8 +480,6 @@ namespace org.flixel
 
             if (_hud.visible)
             {
-                //Console.WriteLine("Attempting to draw hud");
-                
                 _hud.render(FlxG.spriteBatch);
             }
             if (FlxG.transition.exists)

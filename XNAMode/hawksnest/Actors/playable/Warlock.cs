@@ -55,10 +55,6 @@ namespace XNAMode
 
                 float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
 
-                //Console.WriteLine(rightX + " " + rightY);
-
-
-
                 ((Fireball)(_bullets[_curBullet])).shoot((int)x, (int)y, (int)(rightX * 300), (int)(rightY*=-300));
                 //((Fireball)(_bullets[_curBullet])).angularVelocity = 10;
                 if (++_curBullet >= _bullets.Count)

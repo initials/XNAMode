@@ -221,12 +221,10 @@ namespace XNAMode
             }
             if (save.waitingOnDeviceSelector)
             {
-                //Console.WriteLine("enter waitingOnDeviceSelector");
                 return;
             }
             else if (save.canSave)
             {
-                //Console.WriteLine("enter can save");
                 if (save.bind("Mode"))
                 {
                     save.data["player_name"] = _nameEntry.text;

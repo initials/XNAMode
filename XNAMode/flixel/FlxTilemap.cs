@@ -243,8 +243,6 @@ namespace org.flixel
             int standardLength = 16 * TileWidth;
             int graphicWidth = _tileBitmap.Width;
             _extraMiddleTiles = (graphicWidth - standardLength) / TileWidth;
-            //Console.WriteLine("Extra middle tiles = " + _extraMiddleTiles);
-
 
             //Pre-process the map data if it's auto-tiled
             int i;

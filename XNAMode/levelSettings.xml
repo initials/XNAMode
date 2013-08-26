@@ -1,0 +1,528 @@
+﻿<game name="">
+  <misc>
+    <openingtitles>
+      I'm made of metal\nMy circuits gleam\nI am perpetual\nI keep the country clean
+    </openingtitles>
+    <levels>
+      <l1></l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+      <l26></l26>
+      <l27></l27>
+      <l28></l28>
+      <l29></l29>
+      <l30></l30>
+      <l31></l31>
+      <l32></l32>
+      <l33></l33>
+      <l34></l34>
+      <l35></l35>
+      <l36></l36>
+      <l37></l37>
+      <l38></l38>
+      <l39></l39>
+      <l40></l40>
+      <l41></l41>
+      <l42></l42>
+      <l43></l43>
+      <l44></l44>
+      <l45></l45>
+      <l46></l46>
+      <l47></l47>
+      <l48></l48>
+      <l49></l49>
+    </levels>
+  </misc>
+  <settings>
+    <name default="Level Name">
+      <l1>The Horse</l1>
+      <l2>The Lion</l2>
+      <l3>The Lion</l3>
+      <l4>The Child</l4>
+      <l5>The Child</l5>
+      <l6>The Child</l6>
+      <l7>Death</l7>
+      <l8>Death</l8>
+      <l9>Death</l9>
+      <l10>Death</l10>
+      <l11>Pity</l11>
+      <l12>Compassion</l12>
+      <l13>Indulgence</l13>
+      <l14>Mercy</l14>
+      <l15>Recurrance</l15>
+      <l16>Recurrance</l16>
+      <l17>Recurrance</l17>
+      <l18>Recurrance</l18>
+      <l19>Recurrance</l19>
+      <l20>Recurrance</l20>
+      <l21>Recurrance</l21>
+      <l22>Recurrance</l22>
+      <l23>Recurrance</l23>
+      <l24>Rebirth</l24>
+      <l25>Legacy, Perpetuate</l25>
+    </name>
+    <levelWidth default="50">
+      <l1>30</l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+    </levelWidth>
+    <levelHeight default="50">
+      <l1>30</l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+    </levelHeight>
+    <type default="CaveState"></type>
+    <tiles default="autotiles_16x16"></tiles>
+    <decorationTiles default="decorations_16x16"></decorationTiles>
+    <prize default="">
+      <l1>The First Chamber of the Human Heart</l1>
+      <l2>The Second Chamber of the Human Heart</l2>
+      <l3>The Second Chamber of the Human Heart</l3>
+      <l4>The Third Chamber of the Human Heart</l4>
+      <l5>The Third Chamber of the Human Heart</l5>
+      <l6>The Third Chamber of the Human Heart</l6>
+      <l7>The Fourth Chamber of the Human Heart</l7>
+      <l8>The Fourth Chamber of the Human Heart</l8>
+      <l9>The Fourth Chamber of the Human Heart</l9>
+      <l10>The Fourth Chamber of the Human Heart</l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15>The First Chamber of the Human Soul</l15>
+      <l16>The Second Chamber of the Human Soul</l16>
+      <l17>The Third Chamber of the Human Soul</l17>
+      <l18>The Fourth Chamber of the Human Soul</l18>
+      <l19>The Fifth Chamber of the Human Soul</l19>
+      <l20>The Sixth Chamber of the Human Soul</l20>
+      <l21>The Seventh Chamber of the Human Soul</l21>
+      <l22>The Eighth Chamber of the Human Soul</l22>
+      <l23>The Nineth Chamber of the Human Soul</l23>
+      <l24>The Tenth Chamber of the Human Soul</l24>
+      <l25>The Hourglass of Space, Time and Being</l25>
+    </prize>
+    <startCaveGenerateBias default="0.5">
+      <l1>0.4</l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+    </startCaveGenerateBias>
+    <solidColumnsBeforeSmooth default="">
+      <l1>0,1,28,29</l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+    </solidColumnsBeforeSmooth>
+    <solidRowsBeforeSmooth default="">
+      <l1>0,1,28,29,10,20</l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+    </solidRowsBeforeSmooth>
+    <emptyColumnsBeforeSmooth default="">
+      <l1></l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+    </emptyColumnsBeforeSmooth>
+    <emptyRowsBeforeSmooth default="">
+      <l1></l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+    </emptyRowsBeforeSmooth>
+    <solidColumnsAfterSmooth default="">
+      <l1>0,1,28,29</l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+    </solidColumnsAfterSmooth>
+    <solidRowsAfterSmooth default="">
+      <l1>0,1,28,29</l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+    </solidRowsAfterSmooth>
+    <emptyColumnsAfterSmooth default="">
+      <l1></l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+    </emptyColumnsAfterSmooth>
+    <emptyRowsAfterSmooth default="">
+      <l1>15</l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+    </emptyRowsAfterSmooth>
+    <bridge default=""></bridge>
+    <bgGraphic default="envir_dusk"></bgGraphic>
+    <timeOfDayPalette default="skyPalette"></timeOfDayPalette>
+    <!--Playable Characters-->
+    <corsair default="0"></corsair>
+    <marksman default="1">
+      <l1></l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+    </marksman>
+    <mistress default="0"></mistress>
+    <paladin default="0"></paladin>
+    <seraphine default="0"></seraphine>
+    <unicorn default="0"></unicorn>
+    <warlock default="0"></warlock>
+    <!--Non playable Characters.-->
+    <automaton default="0"></automaton>
+    <bat default="0"></bat>
+    <executor default="0"></executor>
+    <gloom default="0"></gloom>
+    <harvester default="0"></harvester>
+    <medusa default="0"></medusa>
+    <mummy default="0"></mummy>
+    <nymph default="0"></nymph>
+    <succubus default="0"></succubus>
+    <tormentor default="0"></tormentor>
+    <vampire default="0"></vampire>
+    <zombie default="0"></zombie>
+    <!--Non Animated Characters-->
+    <artist default="0"></artist>
+    <assassin default="0"></assassin>
+    <blight default="0"></blight>
+    <bloatedzombie default="0"></bloatedzombie>
+    <bogbeast default="0"></bogbeast>
+    <bombling default="0"></bombling>
+    <centaur default="0"></centaur>
+    <chicken default="0"></chicken>
+    <chimaera default="0"></chimaera>
+    <cow default="0"></cow>
+    <cyclops default="0"></cyclops>
+    <deathclaw default="0"></deathclaw>
+    <deer default="0"></deer>
+    <devil default="0"></devil>
+    <djinn default="0"></djinn>
+    <drone default="0"></drone>
+    <druid default="0"></druid>
+    <dwarf default="0"></dwarf>
+    <embersteed default="0"></embersteed>
+    <feline default="0"></feline>
+    <floatingeye default="0"></floatingeye>
+    <fungant default="0"></fungant>
+    <gelatine default="0"></gelatine>
+    <glutton default="0"></glutton>
+    <goblin default="0"></goblin>
+    <golem default="0"></golem>
+    <gorgon default="0"></gorgon>
+    <gourmet default="0"></gourmet>
+    <grimwarrior default="0"></grimwarrior>
+    <grizzly default="0"></grizzly>
+    <horse default="0"></horse>
+    <ifrit default="0"></ifrit>
+    <imp default="0"></imp>
+    <kerberos default="0"></kerberos>
+    <lich default="0"></lich>
+    <lion default="0"></lion>
+    <mechanic default="0"></mechanic>
+    <mephisto default="0"></mephisto>
+    <merchant default="0"></merchant>
+    <mermaid default="0"></mermaid>
+    <mimick default="0"></mimick>
+    <monk default="0"></monk>
+    <nightmare default="0"></nightmare>
+    <ogre default="0"></ogre>
+    <phantom default="0"></phantom>
+    <priest default="0"></priest>
+    <prism default="0"></prism>
+    <rat default="0"></rat>
+    <savage default="0"></savage>
+    <sheep default="0"></sheep>
+    <skeleton default="0"></skeleton>
+    <snake default="0"></snake>
+    <soldier default="0"></soldier>
+    <sphinx default="0"></sphinx>
+    <spider default="0"></spider>
+    <tauro default="0"></tauro>
+    <toad default="0"></toad>
+    <treant default="0"></treant>
+    <troll default="0"></troll>
+    <willowisp default="0"></willowisp>
+    <wizard default="0"></wizard>
+    <wolf default="0"></wolf>
+    <zinger default="0"></zinger>
+  </settings>
+</game>

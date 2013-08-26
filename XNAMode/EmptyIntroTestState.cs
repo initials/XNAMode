@@ -25,16 +25,15 @@ namespace XNAMode
 
             base.create();
 
-            FlxG.showHud();
+            FlxG.level = 1;
+
+            FlxG.hideHud();
 
 
             bg = new FlxTileblock(0, FlxG.height - 256, 256 * 3, 256);
             bg.loadTiles(FlxG.Content.Load<Texture2D>("initials/texture_placement_small"), 256, 256, 0);
 
-            add(bg);
-
-            //FlxG.backColor = Color.Gray;
-
+            //add(bg);
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
@@ -42,44 +41,71 @@ namespace XNAMode
 
             Color xc = FlxU.getColorFromBitmapAtPoint(FlxG.Content.Load<Texture2D>("initials/envir_dusk"), 5, 5);
 
-            //Console.WriteLine(xc);
-
             string ints = "3,4,4,3,3,4,5,6,6,6,4,5,4,54,5";
             int[] ar = FlxU.convertStringToIntegerArray(ints);
-            //foreach (int ix in ar)
-              //  Console.WriteLine(ix.ToString());
 
+
+            // build level in dict
+
+            string currentLevel = "l" + FlxG.level.ToString();
 
             Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
 
-            XElement xelement = XElement.Load("levelDetails.xml");
+            XElement xelement = XElement.Load("levelSettings.xml");
 
-            foreach (XElement xEle in xelement.Descendants("level_1").Elements())
+            foreach (XElement xEle in xelement.Descendants("settings").Elements())
             {
-
-                if (xEle.Value.ToString() == "")
+                XElement firstSpecificChildElement = xEle.Element(currentLevel);
+                
+                if (firstSpecificChildElement != null)
                 {
-                    levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
+                    levelAttrs.Add(xEle.Name.ToString(), firstSpecificChildElement.Value.ToString());
                 }
                 else
                 {
-                    levelAttrs.Add(xEle.Name.ToString(), xEle.Value.ToString());
+                    levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
                 }
-                //levelAttrs.Add(xEle.Name.ToString(), xEle.Value.ToString());
-
-                //Console.WriteLine("xelement ---->"+ xEle.Value.ToString() + "\n.." + xEle.Name.ToString());
-
-
             }
-
-            //Console.WriteLine(dictionary.ToString() + "\n");
 
             foreach (KeyValuePair<string, string> pair in levelAttrs)
             {
-                Console.WriteLine("dict -----> {0}, {1}",
-                pair.Key,
-                pair.Value);
+                //Console.WriteLine("dict -----> {0}, {1}",
+                //pair.Key,
+                //pair.Value);
             }
+
+            int[] solidColumnsBeforeSmooth = FlxU.convertStringToIntegerArray(levelAttrs["solidColumnsBeforeSmooth"]);
+            int[] solidRowsBeforeSmooth = FlxU.convertStringToIntegerArray(levelAttrs["solidRowsBeforeSmooth"]);
+
+            int[] emptyColumnsBeforeSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyColumnsBeforeSmooth"]);
+            int[] emptyRowsBeforeSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyRowsBeforeSmooth"]);
+
+            int[] solidColumnsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["solidColumnsAfterSmooth"]);
+            int[] solidRowsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["solidRowsAfterSmooth"]);
+
+            int[] emptyColumnsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyColumnsAfterSmooth"]);
+            int[] emptyRowsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyRowsAfterSmooth"]);
+
+            /*
+             * solidColumnsBeforeSmooth
+             * solidRowsBeforeSmooth
+             * emptyColumnsBeforeSmooth
+             * emptyRowsBeforeSmooth
+             * 
+             * solidColumnsAfterSmooth
+             * solidRowsAfterSmooth
+             * emptyColumnsAfterSmooth
+             * emptyRowsAfterSmooth
+             */
+
+
+
+            Console.WriteLine(solidColumnsBeforeSmooth);
+
+
+
+
+
         }
 
         override public void update()
@@ -108,7 +134,7 @@ namespace XNAMode
 
                 }
 
-                Console.WriteLine(FlxG.bloom.ShowBuffer.ToString());
+                FlxG.write(FlxG.bloom.ShowBuffer.ToString());
             }
 
             if (FlxG.keys.justPressed(Keys.F5))
@@ -119,7 +145,7 @@ namespace XNAMode
                 FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[bloomSettingsIndex];
                 FlxG.bloom.Visible = true;
 
-                Console.WriteLine(FlxG.bloom.Settings.ToString());
+                FlxG.write(FlxG.bloom.Settings.ToString());
             }
 
             if (FlxG.keys.justPressed(Keys.F6))

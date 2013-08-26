@@ -48,7 +48,8 @@ namespace XNAMode
         override public void update()
         {
 
-            PlayerIndex pi;
+            //PlayerIndex pi;
+
             //SHOOTING
             //if (!flickering() && (FlxG.keys.justPressed(Keys.C) ||
             //        FlxG.gamepads.isNewButtonPress(Buttons.RightTrigger, FlxG.controllingPlayer, out pi)) ||
@@ -63,8 +64,6 @@ namespace XNAMode
                 float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
                 float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
                 
-                //Console.WriteLine(rightX + " " + rightY);
-
                 if (rightX ==0 && rightY ==0 )
                 {
                     if (facing == Flx2DFacing.Right)

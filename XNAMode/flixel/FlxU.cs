@@ -1013,21 +1013,28 @@ namespace org.flixel
 
         static public int[] convertStringToIntegerArray(string StringToSplit)
         {
-            string[] words = StringToSplit.Split(',');
 
-            int[] intArray = new int[words.Length];
+            if (StringToSplit == "") return null;
 
-            int i = 0;
-
-            foreach (string word in words)
+            if (StringToSplit != null)
             {
-                intArray[i] = Convert.ToInt32(word);
-                i++;
+                string[] words = StringToSplit.Split(',');
 
+                int[] intArray = new int[words.Length];
+
+                int i = 0;
+
+                foreach (string word in words)
+                {
+                    intArray[i] = Convert.ToInt32(word);
+                    i++;
+
+                }
+
+                return intArray;
             }
 
-            return intArray;
-
+            return null;
         }
 
 

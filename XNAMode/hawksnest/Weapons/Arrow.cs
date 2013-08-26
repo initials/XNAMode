@@ -64,19 +64,6 @@ namespace XNAMode
                 }
             }
 
-
-            //if (_curAnim.name == "explode" && _curFrame == 2)
-            //{
-            //    dead = true;
-            //    solid = false;
-            //    kill();
-
-            //}
-
-
-            //Console.WriteLine(facing);
-
-
             if (dead && finished) exists = false;
             else base.update();
         }

@@ -110,8 +110,6 @@ namespace org.flixel
 
             _logoTimer += FlxG.elapsed;
             
-            //Console.WriteLine(_logoTimer);
-
             base.update();
 
             if (_logoTimer > 5.5f || FlxG.keys.SPACE || FlxG.keys.ENTER || FlxG.gamepads.isButtonDown(Buttons.A))

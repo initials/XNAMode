@@ -370,13 +370,13 @@ namespace XNAMode
             {
                 FlxOnlineStatCounter.sendStats("hawksnest", "marksman", 1);
 
-                Console.WriteLine(FlxOnlineStatCounter.lastRecievedStat);
+                FlxG.write(FlxOnlineStatCounter.lastRecievedStat);
             }
             if (FlxG.keys.justPressed(Keys.L))
             {
                 FlxOnlineStatCounter.getStatsForLevel("hawksnest", "marksman", 1);
 
-                Console.WriteLine(FlxOnlineStatCounter.lastRecievedStat);
+                FlxG.write(FlxOnlineStatCounter.lastRecievedStat);
 
             }
             if (FlxG.keys.justPressed(Keys.J))

@@ -146,7 +146,7 @@
     <Compile Include="hawksnest\Actors\nonanimated\Gourmet.cs" />
     <Compile Include="hawksnest\Actors\nonanimated\Grimwarrior.cs" />
     <Compile Include="hawksnest\Actors\nonanimated\Grizzly.cs" />
-    <Compile Include="hawksnest\Actors\nonanimated\Horse.cs" />
+    <Compile Include="hawksnest\Actors\enemies\Horse.cs" />
     <Compile Include="hawksnest\Actors\nonanimated\Ifrit.cs" />
     <Compile Include="hawksnest\Actors\nonanimated\Imp.cs" />
     <Compile Include="hawksnest\Actors\nonanimated\Kerberos.cs" />
@@ -181,6 +181,7 @@
     <Compile Include="hawksnest\Actors\nonanimated\Zinger.cs" />
     <Compile Include="hawksnest\GameProgress.cs" />
     <Compile Include="hawksnest\Levels\BasePlayState.cs" />
+    <Compile Include="hawksnest\PowerUp.cs" />
     <Compile Include="XNATweener\Back.cs" />
     <Compile Include="XNATweener\Bounce.cs" />
     <Compile Include="XNATweener\Circular.cs" />
@@ -271,6 +272,9 @@
   <ItemGroup>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
+    <None Include="levelSettings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="levelDetails.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>

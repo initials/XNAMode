@@ -210,24 +210,33 @@ namespace XNAMode
             levelAttrs = new Dictionary<string, string>();
 
             // get the level to parse using FlxG.level
-            string levelname = "level_" + FlxG.level.ToString();
-            Console.WriteLine(levelname);
 
-            XElement xelement = XElement.Load("levelDetails.xml");
+            string currentLevel = "l" + FlxG.level.ToString();
 
-            foreach (XElement xEle in xelement.Descendants(levelname).Elements())
+            XElement xelement = XElement.Load("levelSettings.xml");
+
+            foreach (XElement xEle in xelement.Descendants("settings").Elements())
             {
-                if (xEle.Value.ToString() == "")
+                XElement firstSpecificChildElement = xEle.Element(currentLevel);
+
+                if (firstSpecificChildElement != null )
                 {
-                    //Console.WriteLine("xele == nothing " + xEle.Name.ToString() + " " + xEle.Attribute("default").Value.ToString());
-                    levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
+                    if (firstSpecificChildElement.Value.ToString()=="") 
+                    {
+                        levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
+                    }
+                    else 
+                    {
+                        levelAttrs.Add(xEle.Name.ToString(), firstSpecificChildElement.Value.ToString());
+                    }
                 }
                 else
                 {
-                    //Console.WriteLine("xele has a value " + xEle.Name.ToString() + " " + xEle.Value.ToString());
-                    levelAttrs.Add(xEle.Name.ToString(), xEle.Value.ToString());
+                    levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
                 }
             }
+
+
             
             // Large bg tile.
             //bgTiles = new FlxTileblock(0, 0, FlxG.width + 48, FlxG.height / 2);
@@ -260,7 +269,24 @@ namespace XNAMode
             cave.numSmoothingIterations = 5;
             cave.genInitMatrix(Convert.ToInt32(levelAttrs["levelWidth"]), Convert.ToInt32(levelAttrs["levelHeight"]));
 
-            int[,] matr = cave.generateCaveLevel(3, 0, 2, 0, 1, 0, 1, 0);
+            //int[,] matr = cave.generateCaveLevel(3, 0, 2, 0, 1, 0, 1, 0);
+
+
+            int[] solidColumnsBeforeSmooth = FlxU.convertStringToIntegerArray(levelAttrs["solidColumnsBeforeSmooth"]);
+            int[] solidRowsBeforeSmooth = FlxU.convertStringToIntegerArray(levelAttrs["solidRowsBeforeSmooth"]);
+
+            int[] emptyColumnsBeforeSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyColumnsBeforeSmooth"]);
+            int[] emptyRowsBeforeSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyRowsBeforeSmooth"]);
+
+            int[] solidColumnsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["solidColumnsAfterSmooth"]);
+            int[] solidRowsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["solidRowsAfterSmooth"]);
+
+            int[] emptyColumnsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyColumnsAfterSmooth"]);
+            int[] emptyRowsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyRowsAfterSmooth"]);
+
+
+            int[,] matr = cave.generateCaveLevel(solidRowsBeforeSmooth, solidColumnsBeforeSmooth, solidRowsAfterSmooth, solidColumnsAfterSmooth, emptyRowsBeforeSmooth, emptyColumnsBeforeSmooth, emptyRowsAfterSmooth, emptyColumnsAfterSmooth);
+
 
             string newMap = cave.convertMultiArrayToString(matr);
 
@@ -288,9 +314,9 @@ namespace XNAMode
 
             foreach (KeyValuePair<string, string> pair in levelAttrs)
             {
-                //Console.WriteLine("dict -----> {0}, {1}",
-                //pair.Key,
-                //pair.Value);
+                Console.WriteLine("dict -----> {0}, {1}",
+                pair.Key,
+                pair.Value);
                 
                 int noa = 0;
 
@@ -298,7 +324,7 @@ namespace XNAMode
                 catch { noa = 0; }
                 if (pair.Value != "" && pair.Value != null && pair.Value != "0")
                 {
-                    //Console.WriteLine("Ok we are building {0}, {1}, ", pair.Key, pair.Value);
+                    //FlxG.write("Ok we are building {0}, {1}, ", pair.Key, pair.Value);
 
                     if (noa != 0)
                     {
@@ -317,7 +343,7 @@ namespace XNAMode
             //    }
             //    catch
             //    {
-            //        Console.WriteLine("Can't build" + pair.Key );
+            //        FlxG.write("Can't build" + pair.Key );
             //    }
                 
             //}
@@ -370,12 +396,12 @@ namespace XNAMode
             if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B) && FlxG.debug)
                 FlxG.showBounds = !FlxG.showBounds;
 
-            //Console.WriteLine("Paused? " + FlxG.pause);
+            //FlxG.write("Paused? " + FlxG.pause);
             // pause
 
             //if (FlxG.keys.justPressed(Keys.P) || FlxG.gamepads.isNewButtonPress(Buttons.Start))
             //{
-            //    Console.WriteLine("Paused");
+            //    FlxG.write("Paused");
 
             //    if (FlxG.pause == true) FlxG.pause = false;
             //    else if (FlxG.pause == false) FlxG.pause = true;
@@ -396,7 +422,7 @@ namespace XNAMode
             //collides
             FlxU.collide(actors, mainTilemap);
 
-            //Console.WriteLine(mainTilemap.colli);
+            //FlxG.write(mainTilemap.colli);
 
             FlxU.overlap(actors, bullets, overlapped);
             FlxU.collide(mainTilemap, bullets);
@@ -475,7 +501,7 @@ namespace XNAMode
             #region Marksman
             if (ActorType == "marksman")
             {
-                //Console.WriteLine("Marksman being made " + NumberOfActors);
+                //FlxG.write("Marksman being made " + NumberOfActors);
 
                 for (int i = 0; i < BULLETS_PER_ACTOR; i++)
                     arrows.add(new Arrow());
@@ -483,7 +509,7 @@ namespace XNAMode
 
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    //Console.WriteLine("Marksman being made " + NumberOfActors);
+                    //FlxG.write("Marksman being made " + NumberOfActors);
 
                     int[] p = cave.findRandomSolid(decorationsArray);
                     marksman = new Marksman(p[1] * 16, p[0] * 16, arrows.members);
