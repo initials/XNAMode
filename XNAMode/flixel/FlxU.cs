@@ -106,6 +106,19 @@ namespace org.flixel
             }
             return (float)_rand.NextDouble();
         }
+
+        static public float random(double min, double max)
+        {
+            if (_rand == null)
+            {
+                int seed;
+                lock (_randglobal) seed = _randglobal.Next();
+                _rand = new Random(seed);
+            }
+
+            return (float)(_rand.NextDouble() * (max - min) + min);
+        }
+
         /// <summary>
         /// Generates a random number.  NOTE: To create a series of predictable
         /// random numbers, add the random number you generate each time

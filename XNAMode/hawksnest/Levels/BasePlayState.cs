@@ -65,6 +65,11 @@ namespace XNAMode
         private FlxTilemap decorationsTilemap;
 
         /// <summary>
+        /// A tile map of all the ladders.
+        /// </summary>
+        private FlxTilemap ladderTilemap;
+
+        /// <summary>
         /// An array of the decorations map.
         /// </summary>
         private int[,] decorationsArray;
@@ -150,6 +155,7 @@ namespace XNAMode
         private Merchant merchant;
         private Mermaid mermaid;
         private Mimick mimick;
+        private Mistress mistress;
         private Monk monk;
         private Mummy mummy;
         private Nightmare nightmare;
@@ -240,7 +246,7 @@ namespace XNAMode
                         
                         XAttribute playerControlled = firstSpecificChildElement.Attribute("playerControlled");
 
-                        if (playerControlled != null)
+                        if (playerControlled != null )
                         {
                             levelAttrs.Add("playerControlled", xEle.Name.ToString());
                         }
@@ -280,6 +286,21 @@ namespace XNAMode
             bgSprite.boundingBoxOverride = false;
             add(bgSprite);
 
+            // Generate some ladders
+
+            FlxCaveGenerator ladderCave = new FlxCaveGenerator(Convert.ToInt32(levelAttrs["levelWidth"]), Convert.ToInt32(levelAttrs["levelHeight"]));
+            int[,] ladderMatr = ladderCave.generateLadderLevel( (Convert.ToInt32(levelAttrs["ladders"])), 2, 10);
+            string ladderMap = ladderCave.convertMultiArrayToString(ladderMatr);
+
+            ladderTilemap = new FlxTilemap();
+            //ladderTilemap.auto = FlxTilemap.AUTO;
+            ladderTilemap.loadMap(ladderMap, FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["tiles"]), 16, 16);
+            //ladderTilemap.boundingBoxOverride = true;
+
+            add(ladderTilemap);
+
+
+
             // Generate the levels caves/tiles.
 
             cave = new FlxCaveGenerator(Convert.ToInt32(levelAttrs["levelWidth"]), Convert.ToInt32(levelAttrs["levelHeight"]));
@@ -311,8 +332,10 @@ namespace XNAMode
             mainTilemap = new FlxTilemap();
             mainTilemap.auto = FlxTilemap.AUTO;
             mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["tiles"]), 16, 16);
-            add(mainTilemap);
             mainTilemap.boundingBoxOverride = true;
+
+            add(mainTilemap);
+            
 
             // add the decorations tilemap.
 
@@ -324,31 +347,33 @@ namespace XNAMode
             decorationsTilemap.auto = FlxTilemap.RANDOM;
             decorationsTilemap.randomLimit = (int)DecorTex.Width / 16;
             decorationsTilemap.boundingBoxOverride = false;
-
             decorationsTilemap.loadMap(newDec, DecorTex, 16, 16);
             //add it after the actors.
 
             // build characters here
 
+            /// Looks through the level dictionary and builds neccessary actors.
             foreach (KeyValuePair<string, string> pair in levelAttrs)
             {
-                Console.WriteLine("dict -----> {0}, {1}",
-                pair.Key,
-                pair.Value);
-                
                 int noa = 0;
-
-                try { noa = Convert.ToInt32(pair.Value); }
-                catch 
-                { 
-                    noa = 0;
-                    //Console.WriteLine("Cannot convert number of actors to int");
-                }
-                if (pair.Value != "" && pair.Value != null && pair.Value != "0")
+                if (pair.Value != null && pair.Value != "")
                 {
-                    if (noa != 0)
+                    int number;
+                    bool result = Int32.TryParse(pair.Value.ToString(), out number);
+                    if (result)
                     {
-                        buildActor(pair.Key, Convert.ToInt32(pair.Value));
+                        noa = number;
+                    }
+                    else
+                    {
+                        noa = 0;
+                    }
+                    if (pair.Value != "" && pair.Value != null && pair.Value != "0")
+                    {
+                        if (noa != 0)
+                        {
+                            buildActor(pair.Key, Convert.ToInt32(pair.Value));
+                        }
                     }
                 }
             }
@@ -522,6 +547,24 @@ namespace XNAMode
                 {
                     marksman.isPlayerControlled = true;
                     FlxG.follow(marksman, FOLLOW_LERP);
+                }
+            }
+            #endregion
+
+            #region Mistress
+            if (ActorType == "mistress")
+            {
+                for (int i = 0; i < NumberOfActors; i++)
+                {
+                    int[] p = cave.findRandomSolid(decorationsArray);
+                    mistress = new Mistress(p[1] * 16, p[0] * 16);
+                    actors.add(mistress);
+                }
+
+                if (levelAttrs["playerControlled"] == "mistress")
+                {
+                    mistress.isPlayerControlled = true;
+                    FlxG.follow(mistress, FOLLOW_LERP);
                 }
             }
             #endregion

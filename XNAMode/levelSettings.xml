@@ -410,13 +410,66 @@
       <l24></l24>
       <l25></l25>
     </emptyRowsAfterSmooth>
-    <bridge default=""></bridge>
+    <bridges default="0">
+      <l1>10</l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+    </bridges>
+    <ladders default="0">
+      <l1>10</l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+    </ladders>
     <bgGraphic default="envir_dusk"></bgGraphic>
     <timeOfDayPalette default="skyPalette"></timeOfDayPalette>
     <!--Playable Characters-->
     <corsair default="0"></corsair>
     <marksman default="0">
-      <l1 playerControlled="1">1</l1>
+      <l1>1</l1>
       <l2></l2>
       <l3></l3>
       <l4></l4>
@@ -442,7 +495,33 @@
       <l24></l24>
       <l25></l25>
     </marksman>
-    <mistress default="0"></mistress>
+    <mistress default="0">
+      <l1 playerControlled="1">1</l1>
+      <l2></l2>
+      <l3></l3>
+      <l4></l4>
+      <l5></l5>
+      <l6></l6>
+      <l7></l7>
+      <l8></l8>
+      <l9></l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
+    </mistress>
     <paladin default="0"></paladin>
     <seraphine default="0"></seraphine>
     <unicorn default="0"></unicorn>

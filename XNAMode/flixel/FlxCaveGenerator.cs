@@ -66,7 +66,7 @@ namespace org.flixel
         }
 
         /// <summary>
-        /// 
+        /// Generates a completely random set of 1s and 0s.
         /// </summary>
         /// <returns>Returns a matrix of a cave!</returns>
 	    public int[,] generateCaveLevel()
@@ -115,9 +115,17 @@ namespace org.flixel
         }
 
         /// <summary>
-        /// 
+        /// Generates a cave level. <para> use a different method with int arrays for more control.</para>
         /// </summary>
-        /// <returns>Returns a matrix of a cave!</returns>
+        /// <param name="floor">levels of rows on the floor before smoothing</param>
+        /// <param name="ceiling">levels of rows on the ceiling before smoothing</param>
+        /// <param name="leftWall">left walls before smoothing</param>
+        /// <param name="rightWall">right walls before smoothing</param>
+        /// <param name="floorPermanent">floors after smoothing</param>
+        /// <param name="ceilingPermanent">ceiling rows after smoothing</param>
+        /// <param name="leftWallPermanent">left walls after smoothing</param>
+        /// <param name="rightWallPermanent">right walls after smoothing</param>
+        /// <returns></returns>
         public int[,] generateCaveLevel(int floor, int ceiling, int leftWall, int rightWall, int floorPermanent, int ceilingPermanent, int leftWallPermanent, int rightWallPermanent)
         {
             // Initialize random array
@@ -225,12 +233,12 @@ namespace org.flixel
 
 
         /// <summary>
-        /// 
+        /// Generates a cave level.
         /// </summary>
-        /// <param name="solidRowsBeforeSmooth"></param>
-        /// <param name="solidColumnsBeforeSmooth"></param>
-        /// <param name="solidRowsAfterSmooth"></param>
-        /// <param name="solidColumnsAfterSmooth"></param>
+        /// <param name="solidRowsBeforeSmooth">int[] array = fill in these rows as solid before the smooth.</param>
+        /// <param name="solidColumnsBeforeSmooth">int[] array = fill in these rows as solid before the smooth.</param>
+        /// <param name="solidRowsAfterSmooth">int[] array = fill in these rows as solid before the smooth.</param>
+        /// <param name="solidColumnsAfterSmooth">int[] array = fill in these rows as solid before the smooth.</param>
         /// <returns></returns>
         public int[,] generateCaveLevel(int[] solidRowsBeforeSmooth, int[] solidColumnsBeforeSmooth, int[] solidRowsAfterSmooth, int[] solidColumnsAfterSmooth)
         {
@@ -310,7 +318,18 @@ namespace org.flixel
 
 
 
-
+        /// <summary>
+        /// Generates a cave level
+        /// </summary>
+        /// <param name="solidRowsBeforeSmooth">int[] array = fill in these rows as solid before the smooth.</param>
+        /// <param name="solidColumnsBeforeSmooth">int[] array = fill in these rows as solid before the smooth.</param>
+        /// <param name="solidRowsAfterSmooth">int[] array = fill in these rows as solid before the smooth.</param>
+        /// <param name="solidColumnsAfterSmooth">int[] array = fill in these rows as solid before the smooth.</param>
+        /// <param name="emptyRowsBeforeSmooth">int[] array = fill in these rows as empty before the smooth.</param>
+        /// <param name="emptyColumnsBeforeSmooth">int[] array = fill in these rows as empty before the smooth.</param>
+        /// <param name="emptyRowsAfterSmooth">int[] array = fill in these rows as empty before the smooth.</param>
+        /// <param name="emptyColumnsAfterSmooth">int[] array = fill in these rows as empty before the smooth.</param>
+        /// <returns></returns>
         public int[,] generateCaveLevel(int[] solidRowsBeforeSmooth, 
             int[] solidColumnsBeforeSmooth, 
             int[] solidRowsAfterSmooth,
@@ -453,10 +472,10 @@ namespace org.flixel
 
 
         /// <summary>
-        /// Runs 
+        /// Runs the cellular automata algo.
         /// </summary>
-        /// <param name="inMat"></param>
-        /// <param name="outMat"></param>
+        /// <param name="inMat">Matrix going in</param>
+        /// <param name="outMat">Matrix to edit</param>
         public void runCelluarAutomata(int[,] inMat, int[,] outMat)
         {
             int numRows = inMat.GetLength(0);
@@ -484,11 +503,11 @@ namespace org.flixel
         /// <summary>
         /// Counts number of walls around neighbours
         /// </summary>
-        /// <param name="mat"></param>
-        /// <param name="xPos"></param>
-        /// <param name="yPos"></param>
-        /// <param name="dist"></param>
-        /// <returns></returns>
+        /// <param name="mat">Matrix</param>
+        /// <param name="xPos">Position in X</param>
+        /// <param name="yPos">Position in Y</param>
+        /// <param name="dist">Distance to count between</param>
+        /// <returns>Integer of the number of walls surrounding.</returns>
         public int countNumWallsNeighbors(int[,] mat, int xPos, int yPos, int dist)
         {
             int count = 0;
@@ -517,10 +536,10 @@ namespace org.flixel
         }
 
         /// <summary>
-        /// 
+        /// Finds a random solid piece in a Matrix
         /// </summary>
-        /// <param name="inMat"></param>
-        /// <returns></returns>
+        /// <param name="inMat">Matrix to search</param>
+        /// <returns>int[] array {rx, ry} of a solid</returns>
         public int[] findRandomSolid(int[,] inMat)
         {
             int numRows = inMat.GetLength(0);
@@ -541,6 +560,34 @@ namespace org.flixel
             }
 
             return new int[] {rx, ry};
+        }
+
+        /// <summary>
+        /// Finds a random empty spot
+        /// </summary>
+        /// <param name="inMat">Matrix to search</param>
+        /// <returns>int[] array {rx, ry} of a empty spot</returns>
+        public int[] findRandomEmpty(int[,] inMat)
+        {
+            int numRows = inMat.GetLength(0);
+            int numCols = inMat.GetLength(1);
+
+            int n = 0;
+            int rx = 0;
+            int ry = 0;
+
+            while (n != 1)
+            {
+                rx = (int)(FlxU.random() * numRows);
+                ry = (int)(FlxU.random() * numCols);
+
+                if (inMat[rx, ry] == 0)
+                {
+                    n = 1;
+                }
+            }
+
+            return new int[] { rx, ry };
         }
 
         /// <summary>
@@ -580,7 +627,11 @@ namespace org.flixel
 
 
 
-
+        /// <summary>
+        /// Looks for ground tiles.
+        /// </summary>
+        /// <param name="inMat"></param>
+        /// <returns></returns>
         public int[,] createHangingDecorationsMap(int[,] inMat)
         {
             int numRows = inMat.GetLength(0);
@@ -635,6 +686,55 @@ namespace org.flixel
             }
             return newMap;
 
+        }
+
+        /// <summary>
+        /// Generates a set of ladders going vertically.
+        /// </summary>
+        /// <returns>Returns a matrix of a ladder level</returns>
+        public int[,] generateLadderLevel(int NumberOfLadders, int MinLength, int MaxLength)
+        {
+            // Initialize random array
+
+            int[,] mat = new int[_numTilesRows, _numTilesCols];
+
+            mat = this.genInitMatrix(_numTilesRows, _numTilesCols);
+
+            for (int i = 0; i < NumberOfLadders; i++)
+            {
+                int length = (int)(FlxU.random(MinLength, MaxLength));
+                int _x = (int)(FlxU.random(0, _numTilesRows));
+                int _y = (int)(FlxU.random(0, _numTilesCols - length));
+
+                for (int j = 0; j < length; j++)
+                {
+                    mat[_y + j, _x] = 1;
+                }
+            }
+            return mat;
+        }
+
+
+        public int[,] generateBridgeLevel(int NumberOfLadders, int MinLength, int MaxLength)
+        {
+            // Initialize random array
+
+            int[,] mat = new int[_numTilesRows, _numTilesCols];
+
+            mat = this.genInitMatrix(_numTilesRows, _numTilesCols);
+
+            for (int i = 0; i < NumberOfLadders; i++)
+            {
+                int length = (int)(FlxU.random(MinLength, MaxLength));
+                int _x = (int)(FlxU.random(0, _numTilesRows));
+                int _y = (int)(FlxU.random(0, _numTilesCols - length));
+
+                for (int j = 0; j < length; j++)
+                {
+                    mat[_y + j, _x] = 1;
+                }
+            }
+            return mat;
         }
 
 
