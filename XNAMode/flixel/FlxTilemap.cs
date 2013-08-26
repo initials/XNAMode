@@ -99,7 +99,7 @@ namespace org.flixel
         public bool refresh;
 
         /// <summary>
-        /// 
+        /// Use this when using FlxTilemap.RANDOM to set the limit of tiles in the image.
         /// </summary>
         public int randomLimit;
 
