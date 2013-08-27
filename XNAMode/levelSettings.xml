@@ -3,6 +3,15 @@
     <openingtitles>
       I'm made of metal\nMy circuits gleam\nI am perpetual\nI keep the country clean
     </openingtitles>
+    <script>
+      <l1>Mar-que and Linda Lee are two professional cosplay models who are fed up with being ogled, harassed and touched.</l1>
+      <l2>To make ends meet they pick up work as pest control.</l2>
+      <l3>The boss is a pervert and pays them double to do it in their most popular cosplay outfits.</l3>
+      <l4>Is there any way to escape the demeaning work?</l4>
+      <l5>Is violence an option?</l5>
+      <l6>Is it moral to kill a fruit bat if it poops on your brand new Lexus?</l6>
+    </script>
+    <!-- template for all levels -->
     <levels>
       <l1></l1>
       <l2></l2>
@@ -85,39 +94,39 @@
     </name>
     <levelWidth default="50">
       <l1>30</l1>
-      <l2></l2>
-      <l3></l3>
-      <l4></l4>
-      <l5></l5>
-      <l6></l6>
-      <l7></l7>
-      <l8></l8>
-      <l9></l9>
-      <l10></l10>
-      <l11></l11>
-      <l12></l12>
-      <l13></l13>
-      <l14></l14>
-      <l15></l15>
-      <l16></l16>
-      <l17></l17>
-      <l18></l18>
-      <l19></l19>
-      <l20></l20>
-      <l21></l21>
-      <l22></l22>
-      <l23></l23>
-      <l24></l24>
-      <l25></l25>
+      <l2>32</l2>
+      <l3>32</l3>
+      <l4>32</l4>
+      <l5>40</l5>
+      <l6>50</l6>
+      <l7>60</l7>
+      <l8>70</l8>
+      <l9>70</l9>
+      <l10>70</l10>
+      <l11>80</l11>
+      <l12>80</l12>
+      <l13>80</l13>
+      <l14>90</l14>
+      <l15>90</l15>
+      <l16>90</l16>
+      <l17>90</l17>
+      <l18>100</l18>
+      <l19>110</l19>
+      <l20>110</l20>
+      <l21>120</l21>
+      <l22>125</l22>
+      <l23>140</l23>
+      <l24>150</l24>
+      <l25>200</l25>
     </levelWidth>
     <levelHeight default="50">
       <l1>30</l1>
-      <l2></l2>
-      <l3></l3>
-      <l4></l4>
-      <l5></l5>
-      <l6></l6>
-      <l7></l7>
+      <l2>40</l2>
+      <l3>50</l3>
+      <l4>60</l4>
+      <l5>70</l5>
+      <l6>80</l6>
+      <l7>100</l7>
       <l8></l8>
       <l9></l9>
       <l10></l10>
