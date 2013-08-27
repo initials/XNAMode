@@ -275,6 +275,7 @@
     <Content Include="GameThumbnail.png" />
     <None Include="levelSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="levelDetails.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
