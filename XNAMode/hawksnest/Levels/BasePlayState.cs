@@ -75,6 +75,11 @@ namespace XNAMode
         private int[,] decorationsArray;
 
         /// <summary>
+        /// An array of the main level
+        /// </summary>
+        private int[,] mainTilemapArray;
+
+        /// <summary>
         /// A cave generator object that creates the level
         /// </summary>
         private FlxCaveGenerator cave;
@@ -192,8 +197,6 @@ namespace XNAMode
 
         override public void create()
         {
-
-            FlxG.level = 1;
 
             base.create();
 
@@ -326,10 +329,10 @@ namespace XNAMode
             int[] emptyRowsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyRowsAfterSmooth"]);
 
 
-            int[,] matr = cave.generateCaveLevel(solidRowsBeforeSmooth, solidColumnsBeforeSmooth, solidRowsAfterSmooth, solidColumnsAfterSmooth, emptyRowsBeforeSmooth, emptyColumnsBeforeSmooth, emptyRowsAfterSmooth, emptyColumnsAfterSmooth);
+            mainTilemapArray = cave.generateCaveLevel(solidRowsBeforeSmooth, solidColumnsBeforeSmooth, solidRowsAfterSmooth, solidColumnsAfterSmooth, emptyRowsBeforeSmooth, emptyColumnsBeforeSmooth, emptyRowsAfterSmooth, emptyColumnsAfterSmooth);
 
 
-            string newMap = cave.convertMultiArrayToString(matr);
+            string newMap = cave.convertMultiArrayToString(mainTilemapArray);
 
             mainTilemap = new FlxTilemap();
             mainTilemap.auto = FlxTilemap.AUTO;
@@ -341,7 +344,7 @@ namespace XNAMode
 
             // add the decorations tilemap.
 
-            decorationsArray = cave.createDecorationsMap(matr);
+            decorationsArray = cave.createDecorationsMap(mainTilemapArray);
             string newDec = cave.convertMultiArrayToString(decorationsArray);
             Texture2D DecorTex = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["decorationTiles"]);
 
@@ -494,7 +497,13 @@ namespace XNAMode
 
             if (FlxG.keys.A && FlxG.debug)
             {
-                FlxG.transition.startFadeIn(0.025f);
+
+
+                FlxG.level++;
+                if (FlxG.level > 25) FlxG.level = 1;
+
+
+                FlxG.transition.startFadeIn(0.1f);
 
                 FlxG.state = new BasePlayState();
             }
@@ -518,7 +527,7 @@ namespace XNAMode
             return true;
              */
 
-            // First make a list of the Actors and their bullets.
+            // First reject Actors and their bullets.
             if ((e.Object1 is Warlock) && (e.Object2 is Fireball))
             {
 
@@ -657,7 +666,7 @@ namespace XNAMode
             {
                 for (int i = 0; i <= NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(mainTilemapArray );
                     bat = new Bat(p[1] * 16, p[0] * 16 - 50);
                     actors.add(bat);
                 }

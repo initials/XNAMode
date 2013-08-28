@@ -16,7 +16,7 @@ namespace XNAMode
             : base(xPos, yPos)
         {
 
-            actorName = "The TemplateActor";
+            actorName = "Fast Eddie";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/horse_11x24"), true, false, 11, 24);
 

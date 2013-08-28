@@ -60,22 +60,26 @@ namespace XNAMode
                     switch (_curFrame)
                     {
                         case 4:
+                            dead = false;
                             whipHitBox.x = x + 14;
                             whipHitBox.y = y ;
                             break;
                         case 5:
+                            dead = false;
                             whipHitBox.x = x + 16;
                             whipHitBox.y = y + 2;
                             break;
                         case 6:
+                            dead = false;
                             whipHitBox.width = 7;
                             whipHitBox.height = 7;
                             whipHitBox.x = x + 18;
                             whipHitBox.y = y + 3;
                             break;
                         default:
-                            whipHitBox.width = 0;
-                            whipHitBox.height = 0;
+                            dead = true;
+                            whipHitBox.width = 10;
+                            whipHitBox.height = 10;
                             whipHitBox.x = x;
                             whipHitBox.y = y;
                             break;
