@@ -16,7 +16,7 @@ namespace XNAMode
         public WhipHitBox(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            //alpha = 0.0f;
+            alpha = 0.0f;
 
             if (FlxG.debug)
             {

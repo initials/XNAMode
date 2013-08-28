@@ -27,9 +27,9 @@ namespace XNAMode
 
             //bounding box tweaks
             width = 9;
-            height = 18;
+            height = 16;
             offset.X = 13;
-            offset.Y = 4;
+            offset.Y = 6;
 
             //basic player physics
             int runSpeed = 120;
@@ -60,24 +60,24 @@ namespace XNAMode
                     switch (_curFrame)
                     {
                         case 4:
-                            dead = false;
+                            whipHitBox.dead = false;
                             whipHitBox.x = x + 14;
                             whipHitBox.y = y ;
                             break;
                         case 5:
-                            dead = false;
+                            whipHitBox.dead = false;
                             whipHitBox.x = x + 16;
                             whipHitBox.y = y + 2;
                             break;
                         case 6:
-                            dead = false;
+                            whipHitBox.dead = false;
                             whipHitBox.width = 7;
                             whipHitBox.height = 7;
                             whipHitBox.x = x + 18;
                             whipHitBox.y = y + 3;
                             break;
                         default:
-                            dead = true;
+                            whipHitBox.dead = true;
                             whipHitBox.width = 10;
                             whipHitBox.height = 10;
                             whipHitBox.x = x;
@@ -90,22 +90,26 @@ namespace XNAMode
                     switch (_curFrame)
                     {
                         case 4:
+                            whipHitBox.dead = false;
                             whipHitBox.x = x - 10;
                             whipHitBox.y = y ;
                             break;
                         case 5:
+                            whipHitBox.dead = false;
                             whipHitBox.x = x - 12;
                             whipHitBox.y = y + 2;
                             break;
                         case 6:
+                            whipHitBox.dead = false;
                             whipHitBox.width = 7;
                             whipHitBox.height = 7;
                             whipHitBox.x = x - 14;
                             whipHitBox.y = y + 3;
                             break;
                         default:
-                            whipHitBox.width = 0;
-                            whipHitBox.height = 0;
+                            whipHitBox.dead = true;
+                            whipHitBox.width = 10;
+                            whipHitBox.height = 10;
                             whipHitBox.x = x;
                             whipHitBox.y = y;
                             break;
@@ -114,6 +118,7 @@ namespace XNAMode
             }
             else
             {
+                whipHitBox.dead = true;
                 whipHitBox.x = x;
                 whipHitBox.y = y;
                 whipHitBox.width = 0;

@@ -37,7 +37,7 @@ namespace XNAMode
 
             play("normal");
 
-            drag.X = 500;
+            drag.X = 200;
             acceleration.Y = 820;
             maxVelocity.X = 1000;
             maxVelocity.Y = 1000;

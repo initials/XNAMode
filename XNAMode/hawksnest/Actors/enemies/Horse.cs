@@ -18,26 +18,24 @@ namespace XNAMode
 
             actorName = "Fast Eddie";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/horse_11x24"), true, false, 11, 24);
+            loadGraphic(FlxG.Content.Load<Texture2D>("initials/horse_ss_20x25"), true, false, 20, 25);
 
-            addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 12);
+            addAnimation("run", new int[] { 2, 3, 4, 5, 6, 7, 8, 9 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
-            addAnimation("attack", new int[] { 2, 4 }, 18);
+            addAnimation("attack", new int[] { 0 }, 12);
 
             //bounding box tweaks
-            width = 7;
+            width = 10;
             height = 20;
-            offset.X = 2;
-            offset.Y = 4;
+            offset.X = 5;
+            offset.Y = 5;
 
             //basic player physics
-            int runSpeed = 30;
+            int runSpeed = 120;
             drag.X = runSpeed * 4;
             acceleration.Y = 820;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
-
-            jumpPower = -140;
         }
 
         override public void update()

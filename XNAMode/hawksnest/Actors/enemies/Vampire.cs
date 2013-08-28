@@ -40,7 +40,7 @@ namespace XNAMode
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0, 1, 2 }, 12);
 
-            isPlayerControlled = true;
+            
 
 
         }

@@ -36,7 +36,7 @@ namespace XNAMode
             //animations
             addAnimation("run", new int[] { 5, 6, 7, 8, 9 }, 12);
             addAnimation("idle", new int[] { 0, 1, 2, 3 }, 12);
-            addAnimation("attack", new int[] { 11, 12 }, 12);
+            addAnimation("attack", new int[] { 11, 11,11,11,11,11,12 }, 30);
 
 
 
@@ -47,18 +47,36 @@ namespace XNAMode
 
             PlayerIndex pi;
             //SHOOTING
-            if (!flickering() && (FlxG.keys.justPressed(Keys.C) ||
-                    FlxG.gamepads.isNewButtonPress(Buttons.RightTrigger, FlxG.controllingPlayer, out pi)) || 
-                    FlxG.gamepads.isButtonDown(Buttons.LeftTrigger, FlxG.controllingPlayer, out pi))
+            if ((_curFrame == 6 ) && attacking)
             {
                 float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
-
                 float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
 
-                ((Fireball)(_bullets[_curBullet])).shoot((int)x, (int)y, (int)(rightX * 300), (int)(rightY*=-300));
-                //((Fireball)(_bullets[_curBullet])).angularVelocity = 10;
+                if (rightX == 0 && rightY == 0)
+                {
+                    if (facing == Flx2DFacing.Right)
+                        ((Fireball)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 2)), 600, -100);
+                    else
+                        ((Fireball)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 2)), -600, -100);
+                }
+                else
+                {
+                    ((Fireball)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 600), (int)(rightY *= -600));
+                }
+                if (rightX < 0)
+                {
+                    ((Fireball)(_bullets[_curBullet])).facing = Flx2DFacing.Left;
+                }
+                else
+                {
+                    ((Fireball)(_bullets[_curBullet])).facing = Flx2DFacing.Right;
+                }
+
                 if (++_curBullet >= _bullets.Count)
                     _curBullet = 0;
+                attacking = false;
+                _curFrame = 0;
+
             }
 
 

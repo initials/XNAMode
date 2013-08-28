@@ -358,53 +358,55 @@ namespace org.flixel
                     {
                         mat[_y, _x] = 0;
                     }
-
-                    if (emptyRowsBeforeSmooth != null)
+                }
+            }
+            if (emptyRowsBeforeSmooth != null)
+            {
+                foreach (int _yEmpty in emptyRowsBeforeSmooth)
+                {
+                    for (int _i = 0; _i < _numTilesCols; ++_i)
                     {
-                        foreach (int _yEmpty in emptyRowsBeforeSmooth)
-                        {
-                            for (int _i = 0; _i < _numTilesRows; ++_i)
-                            {
-                                mat[_yEmpty, _i] = 0;
-                            }
-                        }
+                        //Console.WriteLine(_i + " " + _yEmpty);
+
+                        mat[_yEmpty, _i] = 0;
                     }
-                    if (emptyColumnsBeforeSmooth != null)
+                }
+            }
+            if (emptyColumnsBeforeSmooth != null)
+            {
+                foreach (int _xEmpty in emptyColumnsBeforeSmooth)
+                {
+                    for (int _i = 0; _i < _numTilesRows; ++_i)
                     {
-                        foreach (int _xEmpty in emptyColumnsBeforeSmooth)
-                        {
-                            for (int _i = 0; _i < _numTilesRows; ++_i)
-                            {
-                                mat[_i, _xEmpty] = 0;
-                            }
-                        }
+                        mat[_i, _xEmpty] = 0;
                     }
+                }
+            }
 
+            if (solidRowsBeforeSmooth != null)
+            {
+                
+                foreach (int _ySolid in solidRowsBeforeSmooth)
+                {
+                    //Console.WriteLine("y solid {0} ", _ySolid);
 
-
-                    if (solidRowsBeforeSmooth != null)
+                    for (int _i = 0; _i < _numTilesCols; ++_i)
                     {
-                        foreach (int _ySolid in solidRowsBeforeSmooth)
-                        {
-                            for (int _i = 0; _i < _numTilesRows; ++_i)
-                            {
-                                
 
-                                mat[_ySolid, _i] = 1;
-                            }
-                        }
+                        //Console.WriteLine("{0}, {1}, {2}", _i, _ySolid, _numTilesCols);
+
+                        mat[_ySolid, _i] = 1;
                     }
-                    if (solidColumnsBeforeSmooth != null)
+                }
+            }
+            if (solidColumnsBeforeSmooth != null)
+            {
+                foreach (int _xSolid in solidColumnsBeforeSmooth)
+                {
+                    for (int _i = 0; _i < _numTilesRows; ++_i)
                     {
-                        foreach (int _xSolid in solidColumnsBeforeSmooth)
-                        {
-                            for (int _i = 0; _i < _numTilesRows; ++_i)
-                            {
-                                mat[_i, _xSolid] = 1;
-                            }
-                        }
+                        mat[_i, _xSolid] = 1;
                     }
-
                 }
             }
 
@@ -428,7 +430,7 @@ namespace org.flixel
             {
                 foreach (int _yEmpty in emptyRowsAfterSmooth)
                 {
-                    for (int _i = 0; _i < _numTilesRows; ++_i)
+                    for (int _i = 0; _i < _numTilesCols; ++_i)
                     {
                         mat[_yEmpty, _i] = 0;
                     }
@@ -446,19 +448,24 @@ namespace org.flixel
             }
 
 
-
-            foreach (int _ySolid in solidRowsAfterSmooth)
+            if (solidRowsAfterSmooth != null) 
             {
-                for (int _i = 0; _i < _numTilesRows; ++_i)
+                foreach (int _ySolid in solidRowsAfterSmooth)
                 {
-                    mat[_ySolid, _i] = 1;
+                    for (int _i = 0; _i < _numTilesCols; ++_i)
+                    {
+                        mat[_ySolid, _i] = 1;
+                    }
                 }
             }
-            foreach (int _xSolid in solidColumnsAfterSmooth)
+            if (solidColumnsAfterSmooth != null)
             {
-                for (int _i = 0; _i < _numTilesRows; ++_i)
+                foreach (int _xSolid in solidColumnsAfterSmooth)
                 {
-                    mat[_i, _xSolid] = 1;
+                    for (int _i = 0; _i < _numTilesRows; ++_i)
+                    {
+                        mat[_i, _xSolid] = 1;
+                    }
                 }
             }
 

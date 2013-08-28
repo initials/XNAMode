@@ -32,9 +32,9 @@ namespace XNAMode
 
             //bounding box tweaks
             width = 5;
-            height = 20;
+            height = 16;
             offset.X = 13;
-            offset.Y = 4;
+            offset.Y = 8;
 
             //basic player physics
             int runSpeed = 120;

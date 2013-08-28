@@ -40,11 +40,6 @@ namespace XNAMode
         private float timeOfDay = 0.0f;
 
         /// <summary>
-        /// Helper to keep track of the time of day.
-        /// </summary>
-        private float timeOfDayTotal = 0.0f;
-
-        /// <summary>
         /// Helper to determine how fast time passes.
         /// </summary>
         private float timeScale = 10.10f;
@@ -423,6 +418,42 @@ namespace XNAMode
 
         override public void update()
         {
+            if (FlxG.keys.justPressed(Keys.F9) && FlxG.debug && timeOfDay > 2.0f)
+            {
+                FlxG.level++;
+                if (FlxG.level > 25) FlxG.level = 1;
+
+                FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
+
+
+                FlxG.transition.startFadeIn(0.2f);
+
+                FlxG.state = new BasePlayState();
+
+                return;
+            }
+            else if (FlxG.keys.justPressed(Keys.F7) && FlxG.debug && timeOfDay > 2.0f)
+            {
+                FlxG.level--;
+                if (FlxG.level < 1) FlxG.level = 25;
+
+                FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
+                
+                FlxG.transition.startFadeIn(0.2f);
+
+                FlxG.state = new BasePlayState();
+
+                return;
+            }
+            else if (FlxG.keys.justPressed(Keys.F8) && FlxG.debug && timeOfDay > 2.0f)
+            {
+                FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
+                FlxG.transition.startFadeIn(0.2f);
+                FlxG.state = new BasePlayState();
+                return;
+            }
+
+
 
             FlxG.setHudText(1, FlxG.score.ToString());
 
@@ -442,15 +473,15 @@ namespace XNAMode
             //}
 
             //calculate time of day.
-            timeOfDayTotal += FlxG.elapsed * timeScale;
-            if (timeOfDayTotal > 24.99f) timeOfDayTotal = 0.0f;
+            timeOfDay += FlxG.elapsed * timeScale;
+            if (timeOfDay > 24.99f) timeOfDay = 0.0f;
             //timeOfDay = timeOfDayTotal / timeScale;
 
             // color bg tiles
             //bgTiles.color = FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1);
             
             // color whole game.
-            FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDayTotal, 1));
+            FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1));
 
             //collides
             FlxU.collide(actors, mainTilemap);
@@ -461,24 +492,7 @@ namespace XNAMode
 
             FlxU.collide(blood, mainTilemap);
 
-            if (FlxU.overlap(ladderTilemap, mistress, overlapWithLadder))
-            {
-                Console.WriteLine("yes mistress overlaps");
-                mistress.canClimbLadder = true;
-            }
-            else
-            {
-                Console.WriteLine("no mistress overlaps");
-                mistress.canClimbLadder = false;
-            }
-            if (FlxU.overlap(ladderTilemap, marksman, overlapWithLadder))
-            {
-                marksman.canClimbLadder = true;
-            }
-            else
-            {
-                marksman.canClimbLadder = false;
-            }
+
 
 
             if (FlxG.mouse.pressedRightButton())
@@ -495,20 +509,12 @@ namespace XNAMode
 
 
 
-            if (FlxG.keys.A && FlxG.debug)
-            {
 
-
-                FlxG.level++;
-                if (FlxG.level > 25) FlxG.level = 1;
-
-
-                FlxG.transition.startFadeIn(0.1f);
-
-                FlxG.state = new BasePlayState();
-            }
 
             base.update();
+
+
+
         }
 
         protected bool overlapWithLadder(object Sender, FlxSpriteCollisionEvent e)

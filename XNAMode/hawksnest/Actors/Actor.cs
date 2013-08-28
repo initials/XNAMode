@@ -150,10 +150,6 @@ namespace XNAMode
         public Actor(int xPos, int yPos)
             : base(xPos,yPos)
 		{
-
-            isPlayerControlled = false;
-
-
             //basic player physics
             
             drag.X = runSpeed * 4;
@@ -162,6 +158,8 @@ namespace XNAMode
             maxVelocity.Y = 1000;
 
             jumpPower = -305;
+
+            isPlayerControlled = false;
 
         }
 
@@ -332,6 +330,12 @@ namespace XNAMode
 
 
             FlxG.score += score;
+
+
+            // -
+            flicker(10);
+
+            //angle = 90;
             
             
             //FlxG.bloom.Visible = true;
