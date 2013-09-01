@@ -219,9 +219,24 @@ namespace org.flixel
 
         // X-flixel only: Positioning variables to compensate for the fact that in
         // standard flixel, FlxObject inherits from FlxRect.
+
+        /// <summary>
+        /// X Position
+        /// </summary>
         public float x;
+
+        /// <summary>
+        /// Y position
+        /// </summary>
         public float y;
+        /// <summary>
+        /// Width
+        /// </summary>
         public float width;
+
+        /// <summary>
+        /// Height
+        /// </summary>
         public float height;
 
 

@@ -18,10 +18,10 @@ namespace org.flixel
         private Rectangle _consoleRect;
         private Color _consoleColor;
 
-        private FlxText p1HudText;
-        private FlxText p2HudText;
-        private FlxText p3HudText;
-        private FlxText p4HudText;
+        public FlxText p1HudText;
+        public FlxText p2HudText;
+        public FlxText p3HudText;
+        public FlxText p4HudText;
 
         /// <summary>
         /// used to display a game pad button at regular resolution.
@@ -149,18 +149,23 @@ namespace org.flixel
             p1HudText.text = "";
             p1HudText.x = p1OriginalPosition.X;
             p1HudText.y = p1OriginalPosition.Y;
+            p1HudText.scale = 1;
 
             p2HudText.text = "";
             p2HudText.x = p2OriginalPosition.X;
             p2HudText.y = p2OriginalPosition.Y;
+            p2HudText.scale = 1;
 
             p3HudText.text = "";
             p3HudText.x = p3OriginalPosition.X;
             p3HudText.y = p3OriginalPosition.Y;
-            
+            p3HudText.scale = 1;
+
             p4HudText.text = "";
             p4HudText.x = p4OriginalPosition.X;
             p4HudText.y = p4OriginalPosition.Y;
+            p4HudText.scale = 1;
+
 
             _gamePadButton.visible = false;
         }

@@ -294,6 +294,53 @@ namespace org.flixel
             }
         }
 
+        public static void setHudTextPosition(int Button, float X, float Y)
+        {
+            if (Button == 1)
+            {
+                _game._hud.p1HudText.x = X * FlxG.zoom;
+                _game._hud.p1HudText.y = Y * FlxG.zoom;
+            }
+            if (Button == 2)
+            {
+                _game._hud.p2HudText.x = X * FlxG.zoom;
+                _game._hud.p2HudText.y = Y * FlxG.zoom;
+            }
+            if (Button == 3)
+            {
+                _game._hud.p3HudText.x = X * FlxG.zoom;
+                _game._hud.p3HudText.y = Y * FlxG.zoom;
+            }
+            if (Button == 4)
+            {
+                _game._hud.p4HudText.x = X * FlxG.zoom;
+                _game._hud.p4HudText.y = Y * FlxG.zoom;
+            }
+
+        }
+
+        public static void setHudTextScale(int Button, int Scale)
+        {
+            if (Button == 1)
+            {
+                _game._hud.p1HudText.scale = Scale;
+            }
+            if (Button == 2)
+            {
+                _game._hud.p2HudText.scale = Scale;
+            }
+            if (Button == 3)
+            {
+                _game._hud.p3HudText.scale = Scale;
+            }
+            if (Button == 4)
+            {
+                _game._hud.p4HudText.scale = Scale;
+            }
+
+        }
+
+
         /// <summary>
         /// public access to showing the hud
         /// </summary>
@@ -324,6 +371,9 @@ namespace org.flixel
         /// <param name="X">X Position</param>
         /// <param name="Y">Y Position</param>
         public static void setHudGamepadButton(int Button, float X, float Y) { _game._hud.setHudGamepadButton(Button, X , Y); }
+
+
+
 
         /// <summary>
         /// Not working yet!

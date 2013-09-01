@@ -28,9 +28,9 @@ namespace XNAMode
 
             //bounding box tweaks
             width = 7;
-            height = 20;
+            height = 16;
             offset.X = 11;
-            offset.Y = 9;
+            offset.Y = 13;
 
 
             //animations
@@ -47,7 +47,7 @@ namespace XNAMode
 
             PlayerIndex pi;
             //SHOOTING
-            if ((_curFrame == 6 ) && attacking)
+            if ((_curFrame == 6 ) && attackingJoystick)
             {
                 float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
                 float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
@@ -74,7 +74,9 @@ namespace XNAMode
 
                 if (++_curBullet >= _bullets.Count)
                     _curBullet = 0;
-                attacking = false;
+
+                attackingJoystick = false;
+                attackingMouse = false;
                 _curFrame = 0;
 
             }

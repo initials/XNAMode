@@ -49,7 +49,7 @@ namespace XNAMode
 
         override public void update()
         {
-            if (attacking)
+            if (attackingJoystick || attackingMouse)
             {
                 whipHitBox.width = 5;
                 whipHitBox.height = 5;

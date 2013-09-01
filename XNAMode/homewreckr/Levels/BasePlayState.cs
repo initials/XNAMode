@@ -413,6 +413,9 @@ namespace XNAMode
             FlxG.resetHud();
             FlxG.showHud();
 
+            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
+
+
 
         }
 
@@ -495,21 +498,27 @@ namespace XNAMode
 
 
 
-            if (FlxG.mouse.pressedRightButton())
+            //if (FlxG.mouse.pressedRightButton())
+            //{
+            //    mainTilemap.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 0, true);
+            //    decorationsTilemap.setTile((int)FlxG.mouse.x / 16, ((int)FlxG.mouse.y / 16) - 1, 0, true);
+            //}
+            //if (FlxG.mouse.pressedLeftButton())
+            //{
+            //    mainTilemap.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 1, true);
+            //}
+
+
+
+
+
+
+            // exit.
+            if (FlxG.keys.ESCAPE)
             {
-                
-                mainTilemap.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 0, true);
-                
-                decorationsTilemap.setTile((int)FlxG.mouse.x / 16, ((int)FlxG.mouse.y / 16) - 1, 0, true);
+                FlxG.state = new GameSelectionMenuState();
+                return;
             }
-            if (FlxG.mouse.pressedLeftButton())
-            {
-                mainTilemap.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 1, true);
-            }
-
-
-
-
 
             base.update();
 

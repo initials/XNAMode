@@ -40,6 +40,7 @@ namespace XNAMode
 
             base.create();
 
+            FlxG.resetHud();
             FlxG.showHud();
 
             //FlxTileblock bg = new FlxTileblock(0, FlxG.height - 256, 256 * 3, 256);
@@ -101,7 +102,7 @@ namespace XNAMode
 
             if (FlxG.keys.F3)
             {
-                //FlxG.state = new CharacterTestState();
+                FlxG.state = new Cutscene();
 
             }
 
