@@ -12,6 +12,12 @@
       <l5>Is violence an option?</l5>
       <l6>Is it moral to kill a fruit bat if it poops on your brand new Lexus?</l6>
     </script>
+
+    <l1script>
+      <v1 actor=""></v1>
+      
+    </l1script>
+    
     <!-- template for all levels -->
     <levels>
       <l1></l1>

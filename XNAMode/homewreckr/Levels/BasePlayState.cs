@@ -253,29 +253,14 @@ namespace XNAMode
                 }
             }
 
-
-            
-            // Large bg tile.
-            //bgTiles = new FlxTileblock(0, 0, FlxG.width + 48, FlxG.height / 2);
-            //bgTiles.loadTiles(FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]), 48, 64, 0);
-            //bgTiles.scrollFactor.X = 0.02f;
-            //bgTiles.scrollFactor.Y = 0.02f;
-            //bgTiles.boundingBoxOverride = false;
-            //add(bgTiles);
-
             Texture2D bgGraphic = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]);
-
-
             bgSprite = new FlxSprite(0, 0, bgGraphic);
-
             bgSprite.loadGraphic(bgGraphic);
-            //bgSprite.loadTiles(FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]), 48, 64, 0);
             bgSprite.scrollFactor.X = 0.4f;
             bgSprite.scrollFactor.Y = 0.4f;
             bgSprite.x = 0;
             bgSprite.y = 0;
             bgSprite.color = Color.DarkGray;
-
             bgSprite.boundingBoxOverride = false;
             add(bgSprite);
 
@@ -294,17 +279,12 @@ namespace XNAMode
 
             add(ladderTilemap);
 
-
-
             // Generate the levels caves/tiles.
 
             cave = new FlxCaveGenerator(Convert.ToInt32(levelAttrs["levelWidth"]), Convert.ToInt32(levelAttrs["levelHeight"]));
             cave.initWallRatio = (float)Convert.ToDouble(levelAttrs["startCaveGenerateBias"]);
             cave.numSmoothingIterations = 5;
             cave.genInitMatrix(Convert.ToInt32(levelAttrs["levelWidth"]), Convert.ToInt32(levelAttrs["levelHeight"]));
-
-            //int[,] matr = cave.generateCaveLevel(3, 0, 2, 0, 1, 0, 1, 0);
-
 
             int[] solidColumnsBeforeSmooth = FlxU.convertStringToIntegerArray(levelAttrs["solidColumnsBeforeSmooth"]);
             int[] solidRowsBeforeSmooth = FlxU.convertStringToIntegerArray(levelAttrs["solidRowsBeforeSmooth"]);
@@ -318,9 +298,7 @@ namespace XNAMode
             int[] emptyColumnsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyColumnsAfterSmooth"]);
             int[] emptyRowsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyRowsAfterSmooth"]);
 
-
             mainTilemapArray = cave.generateCaveLevel(solidRowsBeforeSmooth, solidColumnsBeforeSmooth, solidRowsAfterSmooth, solidColumnsAfterSmooth, emptyRowsBeforeSmooth, emptyColumnsBeforeSmooth, emptyRowsAfterSmooth, emptyColumnsAfterSmooth);
-
 
             string newMap = cave.convertMultiArrayToString(mainTilemapArray);
 

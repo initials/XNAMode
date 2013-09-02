@@ -63,6 +63,61 @@ namespace XNAMode
             warlock = new Warlock(150, 95,null);
             warlock.isPlayerControlled = false;
             add(warlock);
+
+
+            /*
+
+            // Build a list of the script
+
+            levelAttrs = new Dictionary<string, string>();
+
+            // get the level to parse using FlxG.level
+
+            string currentLevel = "l" + FlxG.level.ToString();
+
+            XElement xelement = XElement.Load("levelSettings.xml");
+
+            foreach (XElement xEle in xelement.Descendants("settings").Elements())
+            {
+                XElement firstSpecificChildElement = xEle.Element(currentLevel);
+
+                if (firstSpecificChildElement != null)
+                {
+                    if (firstSpecificChildElement.Value.ToString() == "")
+                    {
+                        levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
+
+                        //Console.WriteLine(" empty string " + xEle.Name.ToString() + "  " +  xEle.Attribute("default").Value.ToString());
+                        XAttribute playerControlled = firstSpecificChildElement.Attribute("playerControlled");
+
+                        if (playerControlled != null)
+                        {
+                            levelAttrs.Add("playerControlled", xEle.Name.ToString());
+                        }
+
+                    }
+                    else
+                    {
+                        levelAttrs.Add(xEle.Name.ToString(), firstSpecificChildElement.Value.ToString());
+
+                        XAttribute playerControlled = firstSpecificChildElement.Attribute("playerControlled");
+
+                        if (playerControlled != null)
+                        {
+                            levelAttrs.Add("playerControlled", xEle.Name.ToString());
+                        }
+                    }
+                }
+                else
+                {
+
+                    levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
+
+                }
+            }
+            */
+
+
         }
 
         override public void update()
