@@ -72,6 +72,7 @@ namespace XNAMode
                     else
                         ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), -600, -100);
                 }
+                // use the right stick to fire a weapon
                 else
                 {
                     ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 600), (int)(rightY *= -600));
@@ -93,7 +94,7 @@ namespace XNAMode
 
             }
 
-
+            // use the mouse position to fire a bullet.
             if ((_curFrame == 8 || _curFrame == 9 || _curFrame == 10) && (attackingMouse))
             {
                 float rightX1 = FlxG.mouse.x;

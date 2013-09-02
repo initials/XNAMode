@@ -7,13 +7,15 @@ using Microsoft.Xna.Framework;
 
 namespace XNAMode
 {
+    /// <summary>
+    /// Flixel enters here.
+    /// <code>FlxFactory</code> refers to it as the "masterclass".
+    /// </summary>
     public class FlixelEntryPoint : FlxGame
     {
         public FlixelEntryPoint(Game game)
             : base(game)
         {
-            
-
             int w = 320;
             int h = 180;
             

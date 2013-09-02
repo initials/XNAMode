@@ -217,28 +217,21 @@ namespace XNAMode
             foreach (XElement xEle in xelement.Descendants("settings").Elements())
             {
                 XElement firstSpecificChildElement = xEle.Element(currentLevel);
-
                 if (firstSpecificChildElement != null )
                 {
                     if (firstSpecificChildElement.Value.ToString()=="") 
                     {
                         levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
-
-                        //Console.WriteLine(" empty string " + xEle.Name.ToString() + "  " +  xEle.Attribute("default").Value.ToString());
                         XAttribute playerControlled = firstSpecificChildElement.Attribute("playerControlled");
-
                         if (playerControlled != null)
                         {
                             levelAttrs.Add("playerControlled", xEle.Name.ToString());
                         }
-
                     }
                     else 
                     {
                         levelAttrs.Add(xEle.Name.ToString(), firstSpecificChildElement.Value.ToString());
-                        
                         XAttribute playerControlled = firstSpecificChildElement.Attribute("playerControlled");
-
                         if (playerControlled != null )
                         {
                             levelAttrs.Add("playerControlled", xEle.Name.ToString());
@@ -247,9 +240,7 @@ namespace XNAMode
                 }
                 else
                 {
-
                     levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
-
                 }
             }
 
@@ -401,7 +392,6 @@ namespace XNAMode
 
                 FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
 
-
                 FlxG.transition.startFadeIn(0.2f);
 
                 FlxG.state = new BasePlayState();
@@ -429,10 +419,7 @@ namespace XNAMode
                 return;
             }
 
-
-
             FlxG.setHudText(1, FlxG.score.ToString());
-
 
             if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B) && FlxG.debug)
                 FlxG.showBounds = !FlxG.showBounds;

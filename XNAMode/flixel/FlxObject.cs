@@ -19,8 +19,6 @@ namespace org.flixel
         /// <para>False = never will display bounding box.</para>
         /// </summary>
         public bool boundingBoxOverride;
-
-
         /// <summary>
         /// Kind of a global on/off switch for any objects descended from <code>FlxObject</code>.
         /// </summary>
