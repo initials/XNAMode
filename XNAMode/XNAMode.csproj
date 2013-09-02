@@ -114,7 +114,7 @@
     <Compile Include="fx\BloomComponent.cs" />
     <Compile Include="fx\BloomSettings.cs" />
     <Compile Include="homewreckr\Actors\playable\WhipHitBox.cs" />
-    <Compile Include="homewreckr\Cutscenes\Cutscene.cs" />
+    <Compile Include="homewreckr\Cutscenes\CutsceneState.cs" />
     <Compile Include="homewreckr\Levels\LevelBeginText.cs" />
     <Compile Include="EmptyIntroTestState.cs" />
     <Compile Include="homewreckr\Actors\nonanimated\Artist.cs" />

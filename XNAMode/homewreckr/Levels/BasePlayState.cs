@@ -27,11 +27,6 @@ namespace XNAMode
         /// </summary>
         Dictionary<string, string> levelAttrs;
 
-        /// <summary>
-        /// Holds the back clouds, gradient etc.
-        /// </summary>
-        private FlxTileblock bgTiles;
-
         private FlxSprite bgSprite;
 
         /// <summary>

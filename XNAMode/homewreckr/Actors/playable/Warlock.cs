@@ -45,7 +45,8 @@ namespace XNAMode
         override public void update()
         {
 
-            PlayerIndex pi;
+            //PlayerIndex pi;
+            
             //SHOOTING
             if ((_curFrame == 6 ) && attackingJoystick)
             {

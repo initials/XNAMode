@@ -102,7 +102,7 @@ namespace XNAMode
 
             if (FlxG.keys.F3)
             {
-                FlxG.state = new Cutscene();
+                FlxG.state = new CutsceneState();
 
             }
 

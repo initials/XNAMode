@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace XNAMode
 {
-    public class Cutscene : FlxState
+    public class CutsceneState : FlxState
     {
 
         private FlxSprite bgSprite;

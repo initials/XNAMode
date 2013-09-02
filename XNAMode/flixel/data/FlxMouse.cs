@@ -60,16 +60,36 @@ namespace org.flixel
 
 		/// <summary>
         /// Current X position of the mouse pointer on the screen.
+        /// I don't believe this works and returns 0 always.
 		/// </summary>
 		public int screenX;
 		/// <summary>
         /// Current Y position of the mouse pointer on the screen.
+        /// I don't believe this works and returns 0 always.
 		/// </summary>
 		public int screenY;
 		/// <summary>
         /// Graphical representation of the mouse pointer.
 		/// </summary>
 		public FlxSprite cursor;
+
+
+        /// <summary>
+        /// Allows the mouse cursor to disappear after being inactive
+        /// for the amount of time specified
+        /// </summary>
+        public float hideAfterInactiveTime = 0.0f;
+
+        /// <summary>
+        /// counter for hiding time.
+        /// </summary>
+        private float timeElapsed;
+
+        /// <summary>
+        /// holds the last position of the cursor.
+        /// </summary>
+        private Vector2 lastPosition;
+
 
 
 		/// <summary>
@@ -180,6 +200,29 @@ namespace org.flixel
                     _mouseEvent(this, new FlxMouseEvent(MouseEventType.MouseUp));
                 }
             }
+
+
+
+            if (hideAfterInactiveTime > 0.0f)
+            {
+                Vector2 thisPosition = new Vector2(x, y);
+
+                if (thisPosition == lastPosition)
+                {
+                    timeElapsed += FlxG.elapsed;
+
+                    if (timeElapsed > hideAfterInactiveTime)
+                    {
+                        cursor.visible = false;
+                    }
+                }
+                else
+                {
+                    cursor.visible = true;
+                }
+            }
+
+            lastPosition = new Vector2(x, y);
         }
 
         /// <summary>
