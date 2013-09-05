@@ -261,7 +261,7 @@
     <Compile Include="mode\PlayStateTiles.cs" />
     <Compile Include="mode\Spawner.cs" />
     <Compile Include="mode\VictoryState.cs" />
-    <Compile Include="mode\XMLPlayState.cs" />
+    <Compile Include="homewreckr\Tests\XMLPlayState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XNATweener\Quadratic.cs" />
     <Compile Include="XNATweener\Quartic.cs" />
