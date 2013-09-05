@@ -47,6 +47,11 @@ namespace org.flixel
             get { return _consoleColor; }
         }
 
+        /// <summary>
+        /// FlxHud
+        /// </summary>
+        /// <param name="targetLeft"></param>
+        /// <param name="targetWidth"></param>
         public FlxHud(int targetLeft, int targetWidth)
         {
             _consoleRect = new Rectangle(0, 0, FlxG.spriteBatch.GraphicsDevice.Viewport.Width, FlxG.spriteBatch.GraphicsDevice.Viewport.Height);
@@ -81,7 +86,7 @@ namespace org.flixel
         }
 
         /// <summary>
-        /// 
+        /// Sets the hud text
         /// </summary>
         /// <param name="player"></param>
         /// <param name="Data"></param>

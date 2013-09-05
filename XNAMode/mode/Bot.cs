@@ -6,6 +6,9 @@ using org.flixel;
 
 namespace XNAMode
 {
+    /// <summary>
+    /// The Bot is a flying spaceship
+    /// </summary>
     public class Bot : FlxSprite
     {
 		protected Texture2D ImgBot;
@@ -52,6 +55,9 @@ namespace XNAMode
 			reset(x,y);
 		}
 		
+        /// <summary>
+        /// Update Loop
+        /// </summary>
 		override public void update()
 		{			
 			float ot = _timer;
@@ -111,6 +117,11 @@ namespace XNAMode
 			base.update();
 		}
 		
+        /// <summary>
+        /// Render is required to render both the jet particles and the main spaceship sprite.
+        /// Note that _jets is rendered first to be under the main spaceship
+        /// </summary>
+        /// <param name="spriteBatch"></param>
 		override public void render(SpriteBatch spriteBatch)
 		{
 			_jets.render(spriteBatch);
@@ -149,7 +160,9 @@ namespace XNAMode
 			_timer = 0;
 			_shotClock = 0;
 		}
-		
+		/// <summary>
+		/// Shoots a bullet
+		/// </summary>
 		protected void shoot()
 		{
 			Vector2 ba = FlxU.rotatePoint(-120,0,0,0,angle);

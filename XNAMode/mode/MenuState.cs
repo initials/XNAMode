@@ -11,7 +11,7 @@ using org.flixel;
 namespace XNAMode
 {
     /// <summary>
-    /// 
+    /// The main menu for the game Mode.
     /// </summary>
     public class MenuState : FlxState
     {

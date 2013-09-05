@@ -7,6 +7,9 @@ using org.flixel;
 
 namespace XNAMode
 {
+    /// <summary>
+    /// The main player class.
+    /// </summary>
     public class Player : FlxSprite
     {
 		private Texture2D ImgSpaceman;

@@ -8,7 +8,7 @@ using org.flixel;
 namespace XNAMode
 {
     /// <summary>
-    /// 
+    /// The main play state.
     /// </summary>
     public class PlayState : FlxState
     {
@@ -346,11 +346,22 @@ namespace XNAMode
 			FlxG.state = new VictoryState();
 		}
 		
-		//Just plops down a spawner and some blocks - haphazard and crappy atm but functional!
+		/// <summary>
+        /// Just plops down a spawner and some blocks - haphazard and crappy atm but functional!
+		/// </summary>
+		/// <param name="RX">The room to build in X</param>
+        /// <param name="RY">The room to build in Y</param>
         protected void buildRoom(int RX, int RY)
         {
             buildRoom(RX, RY, false);
         }
+
+        /// <summary>
+        /// Just plops down a spawner and some blocks - haphazard and crappy atm but functional!
+        /// </summary>
+        /// <param name="RX"></param>
+        /// <param name="RY"></param>
+        /// <param name="Spawners">Whether or not to include a Spawner.</param>
 		protected void buildRoom(int RX, int RY, bool Spawners)
 		{
 			//first place the spawn point (if necessary)

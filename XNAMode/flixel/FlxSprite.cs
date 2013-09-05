@@ -473,20 +473,20 @@ namespace org.flixel
 		virtual public void onEmit() { }
 
         /// <summary>
-        /// 
+        /// Adds a new animation to the sprite.
         /// </summary>
-        /// <param name="Name"></param>
-        /// <param name="Frames"></param>
+        /// <param name="Name">What this animation should be called (e.g. "run").</param>
+        /// <param name="Frames">An array of numbers indicating what frames to play in what order <code>new int [] {1, 2, 3, 0}</code>.</param>
         public void addAnimation(string Name, int[] Frames)
         {
             _animations.Add(new FlxAnim(Name, Frames, 0, true));
         }
         /// <summary>
-        /// 
+        /// Adds a new animation to the sprite.
         /// </summary>
-        /// <param name="Name"></param>
-        /// <param name="Frames"></param>
-        /// <param name="FrameRate"></param>
+        /// <param name="Name">What this animation should be called (e.g. "run").</param>
+        /// <param name="Frames">An array of numbers indicating what frames to play in what order <code>new int [] {1, 2, 3, 0}</code>.</param>
+        /// <param name="FrameRate">The speed in frames per second that the animation should play at (e.g. 40 fps).</param>
         public void addAnimation(string Name, int[] Frames, int FrameRate)
         {
             _animations.Add(new FlxAnim(Name, Frames, FrameRate, true));
@@ -495,7 +495,7 @@ namespace org.flixel
         /// Adds a new animation to the sprite.
         /// </summary>
         /// <param name="Name">What this animation should be called (e.g. "run").</param>
-        /// <param name="Frames">An array of numbers indicating what frames to play in what order (e.g. 1, 2, 3).</param>
+        /// <param name="Frames">An array of numbers indicating what frames to play in what order <code>new int [] {1, 2, 3, 0}</code>.</param>
         /// <param name="FrameRate">The speed in frames per second that the animation should play at (e.g. 40 fps).</param>
         /// <param name="Looped">Whether or not the animation is looped or just plays once.</param>
         public void addAnimation(string Name, int[] Frames, int FrameRate, bool Looped)

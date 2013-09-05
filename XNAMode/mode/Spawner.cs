@@ -6,6 +6,9 @@ using org.flixel;
 
 namespace XNAMode
 {
+    /// <summary>
+    /// Spawner.
+    /// </summary>
     public class Spawner : FlxSprite
     {
 		private Texture2D ImgSpawner;

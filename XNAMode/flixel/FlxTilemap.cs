@@ -461,7 +461,6 @@ namespace org.flixel
         /// <code>FlxU.collide()</code> (and thus <code>FlxObject.collide()</code>) call
         /// this function each time two objects are compared to see if they collide.
         /// It doesn't necessarily mean these objects WILL collide, however.
-        /// 
         /// </summary>
         /// <param name="Object">The <code>FlxObject</code> you're about to run into.</param>
         override public void preCollide(FlxObject Object)
@@ -866,7 +865,6 @@ namespace org.flixel
 
         /// <summary>
         /// Internal function used in setTileByIndex() and the constructor to update the map.
-        /// 
         /// </summary>
         /// <param name="Index">The index of the tile you want to update.</param>
         protected void updateTile(int Index)

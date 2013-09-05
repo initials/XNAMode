@@ -168,6 +168,10 @@ namespace org.flixel
         /// @benbaird X-flixel only. Returns the scale of the screen size in comparison to the actual game size.
         /// </summary>
         private static float _scale = 0;
+
+        /// <summary>
+        /// Scale of the game.
+        /// </summary>
         public static float scale
         {
             get { return _scale; }
@@ -286,6 +290,10 @@ namespace org.flixel
         /// <param name="Data">Anything you want to log to the console.</param>
         public static void log(string Data) { _game._console.log(Data); }
 
+        /// <summary>
+        /// Writes to the console only if FlxG.debug == true;
+        /// </summary>
+        /// <param name="Data"></param>
         public static void write(string Data)
         {
             if (FlxG.debug)
@@ -294,24 +302,30 @@ namespace org.flixel
             }
         }
 
-        public static void setHudTextPosition(int Button, float X, float Y)
+        /// <summary>
+        /// Move the Hud text around for players 1-4
+        /// </summary>
+        /// <param name="Player">The player of the text box to move</param>
+        /// <param name="X">X Position</param>
+        /// <param name="Y">Y Position</param>
+        public static void setHudTextPosition(int Player, float X, float Y)
         {
-            if (Button == 1)
+            if (Player == 1)
             {
                 _game._hud.p1HudText.x = X * FlxG.zoom;
                 _game._hud.p1HudText.y = Y * FlxG.zoom;
             }
-            if (Button == 2)
+            if (Player == 2)
             {
                 _game._hud.p2HudText.x = X * FlxG.zoom;
                 _game._hud.p2HudText.y = Y * FlxG.zoom;
             }
-            if (Button == 3)
+            if (Player == 3)
             {
                 _game._hud.p3HudText.x = X * FlxG.zoom;
                 _game._hud.p3HudText.y = Y * FlxG.zoom;
             }
-            if (Button == 4)
+            if (Player == 4)
             {
                 _game._hud.p4HudText.x = X * FlxG.zoom;
                 _game._hud.p4HudText.y = Y * FlxG.zoom;
@@ -319,21 +333,26 @@ namespace org.flixel
 
         }
 
-        public static void setHudTextScale(int Button, int Scale)
+        /// <summary>
+        /// Set the scale of the HUD text
+        /// </summary>
+        /// <param name="Player">The player of the text box to move</param>
+        /// <param name="Scale">Scale value. <value>1 is default.</value></param>
+        public static void setHudTextScale(int Player, int Scale)
         {
-            if (Button == 1)
+            if (Player == 1)
             {
                 _game._hud.p1HudText.scale = Scale;
             }
-            if (Button == 2)
+            if (Player == 2)
             {
                 _game._hud.p2HudText.scale = Scale;
             }
-            if (Button == 3)
+            if (Player == 3)
             {
                 _game._hud.p3HudText.scale = Scale;
             }
-            if (Button == 4)
+            if (Player == 4)
             {
                 _game._hud.p4HudText.scale = Scale;
             }

@@ -7,13 +7,11 @@ using org.flixel;
 namespace XNAMode
 {
     /// <summary>
-    /// 
+    /// The bullet for the Player.
     /// </summary>
     public class Bullet : FlxSprite
     {
-        //[Embed(source="../../../data/bullet.png")] private var ImgBullet:Class;
-        //[Embed(source="../../../data/jump.mp3")] private var SndHit:Class;
-        //[Embed(source="../../../data/shoot.mp3")] private var SndShoot:Class;
+
         private Texture2D ImgBullet;
         private const string SndHit = "Mode/jump";
         private const string SndShoot = "Mode/shoot";

@@ -30,6 +30,7 @@ namespace org.flixel
 
         /// <summary>
         /// Opens a web page in a new tab or window.
+        /// Empty!
         /// </summary>
         /// <param name="URL">The address of the web page.</param>
         static public void openURL(string URL)

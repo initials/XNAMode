@@ -35,7 +35,7 @@ namespace org.flixel
         /// FlxAnim stores an animation.
         /// </summary>
         /// <param name="Name">What this animation should be called (e.g. "run")</param>
-        /// <param name="Frames">An array of numbers indicating what frames to play in what order (e.g. 1, 2, 3)</param>
+        /// <param name="Frames">An array of numbers indicating what frames to play in what order new int [] {1, 2, 3, 0}</param>
         /// <param name="FrameRate">The speed in frames per second that the animation should play at (e.g. 40 fps)</param>
         /// <param name="Looped">Whether or not the animation is looped or just plays once</param>
 		public FlxAnim(string Name, int[] Frames, int FrameRate, bool Looped)
@@ -46,11 +46,11 @@ namespace org.flixel
 			looped = Looped;
 		}
         /// <summary>
-        /// Constructor overloads
+        /// FlxAnim stores an animation.
         /// </summary>
-        /// <param name="Name"></param>
-        /// <param name="Frames"></param>
-        /// <param name="FrameRate"></param>
+        /// <param name="Name">What this animation should be called (e.g. "run")</param>
+        /// <param name="Frames">An array of numbers indicating what frames to play in what order new int [] {1, 2, 3, 0}</param>
+        /// <param name="FrameRate">The speed in frames per second that the animation should play at (e.g. 40 fps)</param>
         public FlxAnim(string Name, int[] Frames, int FrameRate)
         {
             name = Name;
@@ -61,8 +61,8 @@ namespace org.flixel
         /// <summary>
         /// Constructor overloads
         /// </summary>
-        /// <param name="Name"></param>
-        /// <param name="Frames"></param>
+        /// <param name="Name">What this animation should be called (e.g. "run")</param>
+        /// <param name="Frames">An array of numbers indicating what frames to play in what order new int [] {1, 2, 3, 0}</param>
         public FlxAnim(string Name, int[] Frames)
         {
             name = Name;
