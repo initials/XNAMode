@@ -405,12 +405,13 @@ namespace org.flixel
                 FlxG.state.render(FlxG.spriteBatch);
                 
                 FlxG.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+                
                 if (FlxG.flash.exists)
                     FlxG.flash.render(FlxG.spriteBatch);
+                
                 if (FlxG.fade.exists)
                     FlxG.fade.render(FlxG.spriteBatch);
-
-
+                
                 if (FlxG.mouse.cursor.visible)
                     FlxG.mouse.cursor.render(FlxG.spriteBatch);
 
@@ -459,10 +460,12 @@ namespace org.flixel
             //GraphicsDevice.SamplerStates[0].MinFilter = TextureFilter.Point;
             //GraphicsDevice.SamplerStates[0].MipFilter = TextureFilter.Point;
 
+            // This was the original spritebatch.Draw
             //FlxG.spriteBatch.Draw(backRender,
             //    new Rectangle(targetLeft + _quakeOffset.X, _quakeOffset.Y, targetWidth, GraphicsDevice.Viewport.Height),
             //    Color.White);
 
+            // This is the new SpriteBatch.Draw the draws with the FlxG.angle
             FlxG.spriteBatch.Draw(backRender,
                 new Rectangle(targetLeft + _quakeOffset.X + FlxG.width, _quakeOffset.Y + FlxG.height, targetWidth, GraphicsDevice.Viewport.Height),
                 null,
@@ -478,10 +481,12 @@ namespace org.flixel
                 _console.render(FlxG.spriteBatch);
             }
 
+            // Render hud if neccessary.
             if (_hud.visible)
             {
                 _hud.render(FlxG.spriteBatch);
             }
+            // Render transition if neccessary, and render on this layer above everything.
             if (FlxG.transition.exists)
                 FlxG.transition.render(FlxG.spriteBatch);
             
@@ -489,6 +494,9 @@ namespace org.flixel
             FlxG.spriteBatch.End();
         }
 
+        /// <summary>
+        /// Not working.
+        /// </summary>
         public void takeScreenshot()
         {
 
@@ -508,7 +516,6 @@ namespace org.flixel
 
             texture.SaveAsJpeg(stream, w, h);
             stream.Dispose();
-
 
             texture.Dispose();
         }
