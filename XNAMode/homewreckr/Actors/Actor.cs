@@ -40,7 +40,7 @@ namespace XNAMode
         public const int FR_sheep = 20;
         public const int FR_cow = 21;
         public const int FR_horse = 22;
-        public const int FR_dear = 23;
+        public const int FR_deer = 23;
         // Row:  3
         public const int FR_snake = 24;
         public const int FR_bat = 25;
