@@ -1025,6 +1025,11 @@ namespace org.flixel
             return colorAtPoint;
         }
 
+        /// <summary>
+        /// Takes a string that is formatted 0,1,1,0,0,0
+        /// </summary>
+        /// <param name="StringToSplit">The string to split with commas and \n splits</param>
+        /// <returns>an integer array (int[])</returns>
         static public int[] convertStringToIntegerArray(string StringToSplit)
         {
 

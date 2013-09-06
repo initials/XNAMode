@@ -29,14 +29,21 @@ namespace org.flixel
 
         }
 
+        /// <summary>
+        /// Creates the sprites you need for a Transition.
+        /// </summary>
+        /// <param name="Graphics">A graphic to use for the transition.</param>
+        /// <param name="color">The color to use if you're not using a texture</param>
+        /// <param name="rows">Rows</param>
+        /// <param name="cols">Columns</param>
+        /// <param name="width">Width</param>
+        /// <param name="height">Height</param>
+        /// <returns>A FlxTransition</returns>
         public FlxTransition createSprites(Texture2D Graphics, Color color, int rows, int cols, int width, int height)
         {
             members = new List<FlxObject>();
 
             FlxSprite s;
-
-
-
             for (int _y = 0; _y < rows; _y++)
             {
                 for (int _x = 0; _x < cols; _x++)
@@ -88,8 +95,6 @@ namespace org.flixel
 
             _speed = speed;
 
-
-
             for (int _y = 0; _y < rows; _y++)
             {
                 for (int _x = 0; _x < cols; _x++)
@@ -123,13 +128,18 @@ namespace org.flixel
             return this;
         }
 
-
-
-
+        /// <summary>
+        /// Starts The Fade in
+        /// </summary>
         public void startFadeIn() 
         {
             startFadeIn(_speed);
         }
+        
+        /// <summary>
+        /// Start fade in with speed
+        /// </summary>
+        /// <param name="speed">The speed with which to fade in 0.001 is slow, 1 is fast.</param>
         public void startFadeIn(float speed)
         {
             _speed = speed;
@@ -147,11 +157,18 @@ namespace org.flixel
             }
         }
         
+        /// <summary>
+        /// Start fade out.
+        /// </summary>
         public void startFadeOut()
         {
             startFadeOut(_speed);
         }
 
+        /// <summary>
+        /// Start the fade out.
+        /// </summary>
+        /// <param name="speed">The speed with which to fade in 0.001 is slow, 1 is fast.</param>
         public void startFadeOut(float speed)
         {
             startFadeOut(speed, 0, 0);
@@ -181,7 +198,9 @@ namespace org.flixel
             }
         }
 
-
+        /// <summary>
+        /// Helper for updating the transition.
+        /// </summary>
         public void updateTransition()
         {
             FlxSprite o;
@@ -216,6 +235,9 @@ namespace org.flixel
             }
         }
 
+        /// <summary>
+        /// Regular update code.
+        /// </summary>
         override public void update()
         {
 
@@ -227,8 +249,5 @@ namespace org.flixel
             base.update();
             
         }
-
-
-
     }
 }

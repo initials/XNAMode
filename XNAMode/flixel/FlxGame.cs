@@ -390,7 +390,9 @@ namespace org.flixel
 
 
         /// <summary>
-        /// Rendering
+        /// The Main Rendering part.
+        /// Uses two different SpriteBatches,
+        /// To Do: Have Bloom effect both spritebatches.
         /// </summary>
         /// <param name="gameTime">Game time.</param>
         public override void Draw(GameTime gameTime)
