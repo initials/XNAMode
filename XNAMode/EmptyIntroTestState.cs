@@ -130,8 +130,6 @@ namespace XNAMode
                 if (FlxG.bloom.ShowBuffer > BloomPostprocess.BloomComponent.IntermediateBuffer.FinalResult)
                 {
                     FlxG.bloom.ShowBuffer = 0;
-                    
-
                 }
 
                 FlxG.write(FlxG.bloom.ShowBuffer.ToString());
@@ -151,12 +149,12 @@ namespace XNAMode
             if (FlxG.keys.justPressed(Keys.F6))
             {
                 FlxG.bloom.usePresets = false;
-                FlxG.bloom.bloomIntensity += 0.05f;
-                FlxG.bloom.bloomSaturation += 0.05f;
-                FlxG.bloom.baseIntensity += 0.05f;
-                FlxG.bloom.baseSaturation += 0.05f;
-                FlxG.bloom.blurAmount += 0.05f;
-                FlxG.bloom.bloomThreshold += 0.05f;
+                FlxG.bloom.bloomIntensity += 0.01f;
+                FlxG.bloom.bloomSaturation += 0.01f;
+                FlxG.bloom.baseIntensity += 0.01f;
+                FlxG.bloom.baseSaturation += 0.01f;
+                FlxG.bloom.blurAmount += 0.01f;
+                FlxG.bloom.bloomThreshold += 0.01f;
 
             }
             if (FlxG.keys.justPressed(Keys.F7))
@@ -170,9 +168,18 @@ namespace XNAMode
                 FlxG.bloom.bloomThreshold = 0.0f;
             }
 
-
-            
-
+            if (FlxG.keys.justPressed(Keys.Z)) FlxG.bloom.bloomIntensity += 0.01f;
+            if (FlxG.keys.justPressed(Keys.A)) FlxG.bloom.bloomIntensity -= 0.01f;
+            if (FlxG.keys.justPressed(Keys.X)) FlxG.bloom.bloomSaturation += 0.01f;
+            if (FlxG.keys.justPressed(Keys.S)) FlxG.bloom.bloomSaturation -= 0.01f;
+            if (FlxG.keys.justPressed(Keys.C)) FlxG.bloom.baseIntensity += 0.01f;
+            if (FlxG.keys.justPressed(Keys.D)) FlxG.bloom.baseIntensity -= 0.01f;
+            if (FlxG.keys.justPressed(Keys.V)) FlxG.bloom.baseSaturation += 0.01f;
+            if (FlxG.keys.justPressed(Keys.F)) FlxG.bloom.baseSaturation -= 0.01f;
+            if (FlxG.keys.justPressed(Keys.B)) FlxG.bloom.blurAmount += 0.01f;
+            if (FlxG.keys.justPressed(Keys.G)) FlxG.bloom.blurAmount -= 0.01f;
+            if (FlxG.keys.justPressed(Keys.N)) FlxG.bloom.bloomThreshold += 0.01f;
+            if (FlxG.keys.justPressed(Keys.H)) FlxG.bloom.bloomThreshold -= 0.01f;
 
         }
     }
