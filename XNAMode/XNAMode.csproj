@@ -113,13 +113,15 @@
   <ItemGroup>
     <Compile Include="fx\BloomComponent.cs" />
     <Compile Include="fx\BloomSettings.cs" />
+    <Compile Include="homewreckr\Actors\flyingenemies\FlyingEnemy.cs" />
     <Compile Include="homewreckr\Actors\playable\WhipHitBox.cs" />
     <Compile Include="homewreckr\Cutscenes\CutsceneState.cs" />
+    <Compile Include="homewreckr\Levels\FallAwayBridgeBlock.cs" />
     <Compile Include="homewreckr\Levels\LevelBeginText.cs" />
     <Compile Include="EmptyIntroTestState.cs" />
-    <Compile Include="homewreckr\Actors\nonanimated\Artist.cs" />
+    <Compile Include="homewreckr\Actors\enemies\Artist.cs" />
     <Compile Include="homewreckr\Actors\nonanimated\Assassin.cs" />
-    <Compile Include="homewreckr\Actors\enemies\Bat.cs" />
+    <Compile Include="homewreckr\Actors\flyingenemies\Bat.cs" />
     <Compile Include="homewreckr\Actors\nonanimated\Blight.cs" />
     <Compile Include="homewreckr\Actors\nonanimated\Bloatedzombie.cs" />
     <Compile Include="homewreckr\Actors\nonanimated\Bogbeast.cs" />
@@ -133,7 +135,7 @@
     <Compile Include="homewreckr\Actors\nonanimated\Deer.cs" />
     <Compile Include="homewreckr\Actors\nonanimated\Devil.cs" />
     <Compile Include="homewreckr\Actors\nonanimated\Djinn.cs" />
-    <Compile Include="homewreckr\Actors\nonanimated\Drone.cs" />
+    <Compile Include="homewreckr\Actors\flyingenemies\Drone.cs" />
     <Compile Include="homewreckr\Actors\nonanimated\Druid.cs" />
     <Compile Include="homewreckr\Actors\nonanimated\Dwarf.cs" />
     <Compile Include="homewreckr\Actors\nonanimated\Embersteed.cs" />
@@ -180,9 +182,10 @@
     <Compile Include="homewreckr\Actors\nonanimated\Willowisp.cs" />
     <Compile Include="homewreckr\Actors\nonanimated\Wizard.cs" />
     <Compile Include="homewreckr\Actors\nonanimated\Wolf.cs" />
-    <Compile Include="homewreckr\Actors\nonanimated\Zinger.cs" />
+    <Compile Include="homewreckr\Actors\flyingenemies\Zinger.cs" />
     <Compile Include="homewreckr\GameProgress.cs" />
     <Compile Include="homewreckr\Levels\BasePlayState.cs" />
+    <Compile Include="homewreckr\PointBurst.cs" />
     <Compile Include="homewreckr\PowerUp.cs" />
     <Compile Include="XNATweener\Back.cs" />
     <Compile Include="XNATweener\Bounce.cs" />

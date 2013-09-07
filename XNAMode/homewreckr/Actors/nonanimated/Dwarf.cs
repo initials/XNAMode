@@ -37,7 +37,6 @@ namespace XNAMode
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
-            jumpPower = -140;
         }
 
         override public void update()

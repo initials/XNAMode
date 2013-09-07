@@ -558,10 +558,11 @@ namespace org.flixel
 
             while (n != 1)
             {
-                rx = (int)(FlxU.random() * numRows);
-                ry = (int)(FlxU.random() * numCols);
+                rx = (int)(FlxU.random() * (numRows-1));
+                ry = (int)(FlxU.random() * (numCols-1));
                 
-                if(inMat[rx,ry] == 1) {
+                if(inMat[rx,ry] == 1) 
+                {
                     n=1;
                 }
             }
@@ -585,12 +586,13 @@ namespace org.flixel
 
             while (n != 1)
             {
-                rx = (int)(FlxU.random() * numRows);
-                ry = (int)(FlxU.random() * numCols);
+                rx = (int)(FlxU.random() * (numRows-1));
+                ry = (int)(FlxU.random() * (numCols-1));
 
                 if (inMat[rx, ry] == 0)
                 {
                     n = 1;
+                    //Console.WriteLine("X:" + rx + "Y:" + ry);
                 }
             }
 
@@ -606,8 +608,9 @@ namespace org.flixel
         /// 0000
         /// </summary>
         /// <param name="inMat">multi array to analyse</param>
+        /// <param name="ratio">0-1 how much chance of returning a solid block</param>
         /// <returns>multi array that has decorations only</returns>
-        public int[,] createDecorationsMap(int[,] inMat)
+        public int[,] createDecorationsMap(int[,] inMat, float ratio)
         {
             int numRows = inMat.GetLength(0);
             int numCols = inMat.GetLength(1);
@@ -621,7 +624,8 @@ namespace org.flixel
                     // test for flat surface with empty above 
                     if (inMat[_y, _x] == 0 && inMat[_y + 1, _x] == 1 && inMat[_y + 1, _x - 1] == 1 && inMat[_y + 1, _x + 1] == 1)
                     {
-                        outMat[_y, _x] = 1;
+                        if (FlxU.random() < ratio) outMat[_y, _x] = 1;
+                        else outMat[_y, _x] = 0;
                     }
                     else
                     {
@@ -638,8 +642,9 @@ namespace org.flixel
         /// Looks for ground tiles.
         /// </summary>
         /// <param name="inMat"></param>
+        /// <param name="ratio">ratio</param>
         /// <returns></returns>
-        public int[,] createHangingDecorationsMap(int[,] inMat)
+        public int[,] createHangingDecorationsMap(int[,] inMat, float ratio)
         {
             int numRows = inMat.GetLength(0);
             int numCols = inMat.GetLength(1);
@@ -653,7 +658,8 @@ namespace org.flixel
                     // test for flat surface with empty above 
                     if (inMat[_y, _x] == 0 && inMat[_y - 1, _x] == 1 && inMat[_y + 1, _x - 1] == 1 && inMat[_y + 1, _x + 1] == 1)
                     {
-                        outMat[_y, _x] = 1;
+                        if (FlxU.random() < ratio) outMat[_y, _x] = 1;
+                        else outMat[_y, _x] = 0;
                     }
                     else
                     {

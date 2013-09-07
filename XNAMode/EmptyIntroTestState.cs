@@ -15,9 +15,22 @@ namespace XNAMode
     public class EmptyIntroTestState : FlxState
     {
         int timeOfDay;
-        public FlxTileblock bg;
+        public FlxSprite bg;
         int bloomSettingsIndex = 0;
+        override public void create()
+        {
+            base.create();
 
+            bg = new FlxSprite(0, 0);
+            bg.loadGraphic(FlxG.Content.Load<Texture2D>("initials/texture_placement_small"), true, false, 32, 32);
+            bg.addAnimation("first", new int[] { 0,1,2,0,1,2,0,1,2}, 2);
+            bg.addAnimation("second", new int[] { 0, 11, 12, 0, 1, 12, 0, 1, 12 }, 2);
+            bg.play("first");
+
+            add(bg);
+
+        }
+        /*
         override public void create()
         {
 
@@ -33,7 +46,7 @@ namespace XNAMode
             bg = new FlxTileblock(0, FlxG.height - 256, 256 * 3, 256);
             bg.loadTiles(FlxG.Content.Load<Texture2D>("initials/texture_placement_small"), 256, 256, 0);
 
-            //add(bg);
+            add(bg);
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
@@ -86,20 +99,6 @@ namespace XNAMode
             int[] emptyColumnsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyColumnsAfterSmooth"]);
             int[] emptyRowsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyRowsAfterSmooth"]);
 
-            /*
-             * solidColumnsBeforeSmooth
-             * solidRowsBeforeSmooth
-             * emptyColumnsBeforeSmooth
-             * emptyRowsBeforeSmooth
-             * 
-             * solidColumnsAfterSmooth
-             * solidRowsAfterSmooth
-             * emptyColumnsAfterSmooth
-             * emptyRowsAfterSmooth
-             */
-
-
-
             Console.WriteLine(solidColumnsBeforeSmooth);
 
 
@@ -107,9 +106,24 @@ namespace XNAMode
 
 
         }
+        */
 
         override public void update()
         {
+
+
+            if (FlxG.keys.M)
+            {
+                bg.play("first");
+            }
+            if (FlxG.keys.K)
+            {
+                bg.play("second");
+
+            }
+            Console.WriteLine(bg.frame);
+
+
 
             timeOfDay++;
             //FlxG.color(FlxU.getColorFromBitmapAtPoint(FlxG.Content.Load<Texture2D>("initials/palette"), timeOfDay % 70, timeOfDay / 70));
@@ -143,7 +157,7 @@ namespace XNAMode
                 FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[bloomSettingsIndex];
                 FlxG.bloom.Visible = true;
 
-                FlxG.write(FlxG.bloom.Settings.ToString());
+                FlxG.write(FlxG.bloom.Settings.Name.ToString());
             }
 
             if (FlxG.keys.justPressed(Keys.F6))
@@ -168,18 +182,25 @@ namespace XNAMode
                 FlxG.bloom.bloomThreshold = 0.0f;
             }
 
-            if (FlxG.keys.justPressed(Keys.Z)) FlxG.bloom.bloomIntensity += 0.01f;
-            if (FlxG.keys.justPressed(Keys.A)) FlxG.bloom.bloomIntensity -= 0.01f;
-            if (FlxG.keys.justPressed(Keys.X)) FlxG.bloom.bloomSaturation += 0.01f;
-            if (FlxG.keys.justPressed(Keys.S)) FlxG.bloom.bloomSaturation -= 0.01f;
-            if (FlxG.keys.justPressed(Keys.C)) FlxG.bloom.baseIntensity += 0.01f;
-            if (FlxG.keys.justPressed(Keys.D)) FlxG.bloom.baseIntensity -= 0.01f;
-            if (FlxG.keys.justPressed(Keys.V)) FlxG.bloom.baseSaturation += 0.01f;
-            if (FlxG.keys.justPressed(Keys.F)) FlxG.bloom.baseSaturation -= 0.01f;
-            if (FlxG.keys.justPressed(Keys.B)) FlxG.bloom.blurAmount += 0.01f;
-            if (FlxG.keys.justPressed(Keys.G)) FlxG.bloom.blurAmount -= 0.01f;
-            if (FlxG.keys.justPressed(Keys.N)) FlxG.bloom.bloomThreshold += 0.01f;
-            if (FlxG.keys.justPressed(Keys.H)) FlxG.bloom.bloomThreshold -= 0.01f;
+            if (FlxG.keys.Z) FlxG.bloom.bloomIntensity += 0.1f;
+            if (FlxG.keys.A) FlxG.bloom.bloomIntensity -= 0.1f;
+            if (FlxG.keys.X) FlxG.bloom.bloomSaturation += 0.1f;
+            if (FlxG.keys.S) FlxG.bloom.bloomSaturation -= 0.1f;
+            if (FlxG.keys.C) FlxG.bloom.baseIntensity += 0.1f;
+            if (FlxG.keys.D) FlxG.bloom.baseIntensity -= 0.1f;
+            if (FlxG.keys.V) FlxG.bloom.baseSaturation += 0.1f;
+            if (FlxG.keys.F) FlxG.bloom.baseSaturation -= 0.1f;
+            if (FlxG.keys.B) FlxG.bloom.blurAmount += 0.1f;
+            if (FlxG.keys.G) FlxG.bloom.blurAmount -= 0.1f;
+            if (FlxG.keys.N) FlxG.bloom.bloomThreshold += 0.1f;
+            if (FlxG.keys.H) FlxG.bloom.bloomThreshold -= 0.1f;
+
+            // exit.
+            if (FlxG.keys.justPressed(Keys.Escape))
+            {
+                FlxG.state = new GameSelectionMenuState();
+                return;
+            }
 
         }
     }

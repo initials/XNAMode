@@ -27,6 +27,8 @@ namespace XNAMode
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }, 26 ,true);
             addAnimation("jump", new int[] { 3, 4, 5, 6, 7, 8, 9 }, 3, true);
+            addAnimation("climb", new int[] { 20, 21 }, 6, true);
+
 
             //addAnimationCallback(stopAttacking);
 
@@ -111,7 +113,7 @@ namespace XNAMode
                 double velocity_y = Math.Sin((float)radians);
 
                 //angle = (float)degrees;
-                Console.WriteLine(" x {0} y {1} x {2} y {3} vx {4} vy {5} rot {6} degrees {7}", x, y, rightX1, rightY1, velocity_x, velocity_y, radians, degrees);
+                //Console.WriteLine(" x {0} y {1} x {2} y {3} vx {4} vy {5} rot {6} degrees {7}", x, y, rightX1, rightY1, velocity_x, velocity_y, radians, degrees);
 
             
                 ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(velocity_x *= -600 ), (int)(velocity_y *= -600 ));

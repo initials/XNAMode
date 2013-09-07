@@ -24,9 +24,9 @@ namespace XNAMode
 
             //bounding box tweaks
             width = 6;
-            height = 14;
+            height = 18;
             offset.X = 4;
-            offset.Y = 5;
+            offset.Y = 1;
 
             //basic player physics
             int runSpeed = 35;

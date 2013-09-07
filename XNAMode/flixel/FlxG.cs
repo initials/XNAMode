@@ -128,6 +128,16 @@ namespace org.flixel
         public static int height = 720;
 
         /// <summary>
+        /// A global holder for the level width. Don't forget to set this at the start of each level.
+        /// </summary>
+        public static int levelWidth;
+
+        /// <summary>
+        /// A global holder for the level width. Don't forget to set this at the start of each level.
+        /// </summary>
+        public static int levelHeight;
+
+        /// <summary>
         /// BG color
         /// </summary>
         public static Color backColor = Color.Black;

@@ -55,14 +55,25 @@ namespace XNAMode
         private FlxTilemap decorationsTilemap;
 
         /// <summary>
-        /// A tile map of all the ladders.
+        /// Rear Decorations
         /// </summary>
-        private FlxTilemap ladderTilemap;
+        private FlxTilemap decorationsRearTilemap;
+
+        private FlxGroup ladders;
+
+        private FlxGroup allLevelTiles;
+
+        private FlxTileblock ladder;
 
         /// <summary>
-        /// An array of the decorations map.
+        /// An array of the positions that a character can spawn.
         /// </summary>
-        private int[,] decorationsArray;
+        private int[,] characterSpawnPositionsArray;
+
+        private int[,] decorationsFGArray;
+
+        private int[,] decorationsBGArray;
+
 
         /// <summary>
         /// An array of the main level
@@ -91,6 +102,10 @@ namespace XNAMode
         /// </summary>
         private FlxGroup actors;
 
+        private FlxGroup playerControlledActors;
+
+        private FlxGroup enemyActors;
+
         /// <summary>
         /// Every single bullet in the scene.
         /// </summary>
@@ -98,6 +113,7 @@ namespace XNAMode
 
         private FlxEmitter blood;
 
+        #region Actors
         private Artist artist;
         private Assassin assassin;
         private Automaton automaton;
@@ -183,7 +199,7 @@ namespace XNAMode
         private Wolf wolf;
         private Zinger zinger;
         private Zombie zombie;
-
+        #endregion
 
         override public void create()
         {
@@ -201,6 +217,9 @@ namespace XNAMode
             fireballs = new FlxGroup();
             bullets = new FlxGroup();
             arrows = new FlxGroup();
+            ladders = new FlxGroup();
+            allLevelTiles = new FlxGroup();
+            playerControlledActors = new FlxGroup();
 
 
             //First build a dictionary of levelAttrs
@@ -244,6 +263,9 @@ namespace XNAMode
                 }
             }
 
+            FlxG.levelWidth = Convert.ToInt32(levelAttrs["levelWidth"]) * 16;
+            FlxG.levelHeight = Convert.ToInt32(levelAttrs["levelHeight"]) * 16;
+
             Texture2D bgGraphic = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]);
             bgSprite = new FlxSprite(0, 0, bgGraphic);
             bgSprite.loadGraphic(bgGraphic);
@@ -257,18 +279,31 @@ namespace XNAMode
 
             // Generate some ladders
 
-            FlxCaveGenerator ladderCave = new FlxCaveGenerator(Convert.ToInt32(levelAttrs["levelWidth"]), Convert.ToInt32(levelAttrs["levelHeight"]));
-            int[,] ladderMatr = ladderCave.generateLadderLevel( (Convert.ToInt32(levelAttrs["ladders"])), 2, 10);
-            string ladderMap = ladderCave.convertMultiArrayToString(ladderMatr);
+            for (int i = 0; i < 25; i++)
+            {
+                ladder = new FlxTileblock((int)(FlxU.random() * FlxG.levelWidth),(int)( FlxU.random() * FlxG.levelHeight), 16, 160);
+                ladder.loadTiles(FlxG.Content.Load<Texture2D>("initials/ladderTiles_16x16"), 16, 16, 0);
+                ladders.add(ladder);
+            }
+            add(ladders);
 
-            ladderTilemap = new FlxTilemap();
-            //ladderTilemap.auto = FlxTilemap.AUTO;
-            ladderTilemap.auto = FlxTilemap.RANDOM;
-            ladderTilemap.randomLimit = 2;
-            ladderTilemap.loadMap(ladderMap, FlxG.Content.Load<Texture2D>("initials/ladderTiles_16x16"), 16, 16);
-            ladderTilemap.boundingBoxOverride = true;
 
-            add(ladderTilemap);
+            for (int i = 0; i < 25; i++)
+            {
+
+                int rx = (int)(FlxU.random() * FlxG.levelWidth);
+                int ry = (int)(FlxU.random() * FlxG.levelHeight);
+
+                for (int j = 0; j < 10; j++)
+                {
+                    FallAwayBridgeBlock f = new FallAwayBridgeBlock(rx + (j * 16), ry);
+                    allLevelTiles.add(f);
+
+                }
+            }
+            
+
+
 
             // Generate the levels caves/tiles.
 
@@ -298,13 +333,20 @@ namespace XNAMode
             mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["tiles"]), 16, 16);
             mainTilemap.boundingBoxOverride = true;
 
-            add(mainTilemap);
-            
+
+            allLevelTiles.add(mainTilemap);
+
+            add(allLevelTiles);
+
 
             // add the decorations tilemap.
 
-            decorationsArray = cave.createDecorationsMap(mainTilemapArray);
-            string newDec = cave.convertMultiArrayToString(decorationsArray);
+            characterSpawnPositionsArray = cave.createDecorationsMap(mainTilemapArray, 1.0f);
+
+            decorationsFGArray = cave.createDecorationsMap(mainTilemapArray, 0.5f);
+
+            string newDec = cave.convertMultiArrayToString(decorationsFGArray);
+
             Texture2D DecorTex = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["decorationTiles"]);
 
             decorationsTilemap = new FlxTilemap();
@@ -313,6 +355,18 @@ namespace XNAMode
             decorationsTilemap.boundingBoxOverride = false;
             decorationsTilemap.loadMap(newDec, DecorTex, 16, 16);
             //add it after the actors.
+
+            decorationsBGArray = cave.createDecorationsMap(mainTilemapArray, 0.2f);
+
+            string newDec2 = cave.convertMultiArrayToString(decorationsBGArray);
+
+            Texture2D DecorTexRear = FlxG.Content.Load<Texture2D>("initials/decorationsBack_16x16");
+            decorationsRearTilemap = new FlxTilemap();
+            decorationsRearTilemap.auto = FlxTilemap.RANDOM;
+            decorationsRearTilemap.randomLimit = (int)DecorTex.Width / 16;
+            decorationsRearTilemap.boundingBoxOverride = false;
+            decorationsRearTilemap.loadMap(newDec2, DecorTexRear, 16, 16);
+            add(decorationsRearTilemap);
 
             // build characters here
 
@@ -357,20 +411,25 @@ namespace XNAMode
             blood = new FlxEmitter();
             blood.x = 0;
             blood.y = 0;
-            blood.width = 2;
-            blood.height = 2;
+            blood.width = 6;
+            blood.height = 6;
             blood.delay = 0.8f;
+            
             //blood.del
-            blood.setXSpeed(-22, 22);
-            blood.setYSpeed(-5, 5);
+            blood.setXSpeed(-152, 152);
+            blood.setYSpeed(-250, -50);
             blood.setRotation(0, 0);
-            blood.gravity = 98;
-            blood.createSprites(FlxG.Content.Load<Texture2D>("initials/blood"), 1500, true, 1.0f, 1.0f);
+            blood.gravity = Actor.GRAVITY;
+            blood.createSprites(FlxG.Content.Load<Texture2D>("initials/blood"), 1500, true, 1.0f, 0.1f);
             
 
             add(blood);
 
             add(decorationsTilemap);
+
+            //pointBurst = new PointBurst(0, 0);
+            //add(pointBurst);
+            
 
             //FlxG.autoHandlePause = true;
 
@@ -447,14 +506,17 @@ namespace XNAMode
             FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1));
 
             //collides
-            FlxU.collide(actors, mainTilemap);
+            FlxU.collide(actors, allLevelTiles);
 
             FlxU.overlap(actors, bullets, overlapped);
+
+            FlxU.overlap(actors, ladders, overlapWithLadder);
             
             FlxU.collide(mainTilemap, bullets);
 
             FlxU.collide(blood, mainTilemap);
 
+            FlxU.overlap(actors, playerControlledActors, actorOverlap);
 
 
 
@@ -473,25 +535,44 @@ namespace XNAMode
 
 
 
-            // exit.
-            if (FlxG.keys.ESCAPE)
-            {
-                FlxG.state = new GameSelectionMenuState();
-                return;
-            }
+
 
             base.update();
 
+            // exit.
+            if (FlxG.keys.justPressed(Keys.Escape) || marksman.dead == true)
+            {
+                Console.WriteLine("Just pressed Escape");
+
+                FlxG.state = new GameSelectionMenuState();
+                //return;
+            }
 
 
         }
 
         protected bool overlapWithLadder(object Sender, FlxSpriteCollisionEvent e)
         {
-            //((Actor)(e.Object2)).canClimbLadder = true;
+            if (e.Object1 is Actor) 
+            {
+                //((Actor)(e.Object1)).x = e.Object2.x;
+                //((Actor)(e.Object1)).y = e.Object2.y;
+                ((Actor)(e.Object1)).canClimbLadder = true;
+            }
             return true;
         }
 
+
+        protected bool actorOverlap(object Sender, FlxSpriteCollisionEvent e)
+        {
+            if (e.Object1.dead == false && e.Object2.dead == false) 
+            {
+                e.Object2.hurt(1);
+                e.Object1.hurt(1);
+            }
+
+            return true;
+        }
         //actors, bullets
         protected bool overlapped(object Sender, FlxSpriteCollisionEvent e)
         {
@@ -518,15 +599,28 @@ namespace XNAMode
             // Now that it's a kill, spurt some blood and "hurt" both parties.
             else if (e.Object1.dead == false && e.Object2.dead == false)
             {
-                e.Object1.acceleration.Y = 820;
+                //pointBurst.x = e.Object1.x;
+                //pointBurst.y = e.Object1.y;
+                //pointBurst.alpha = 1;
+
+                //e.Object1.acceleration.Y = 820;
+
                 e.Object1.velocity.X = e.Object2.velocity.X ;
                 e.Object1.velocity.Y = e.Object2.velocity.Y ;
 
                 e.Object1.hurt(1);
 
+                e.Object2.x = -1000;
+                e.Object2.y = -1000;
                 e.Object2.kill();
 
+                //blood.height = e.Object1.height;
+                //blood.width = e.Object1.width;
+
                 blood.at(e.Object1);
+
+
+
 
                 blood.start(true, 0, 10);
             }
@@ -547,9 +641,11 @@ namespace XNAMode
                 {
                     //FlxG.write("Marksman being made " + NumberOfActors);
 
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     marksman = new Marksman(p[1] * 16, p[0] * 16, arrows.members);
                     actors.add(marksman);
+                    playerControlledActors.add(marksman);
+
                 }
 
                 if (levelAttrs["playerControlled"] == "marksman")
@@ -565,9 +661,10 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     mistress = new Mistress(p[1] * 16, p[0] * 16);
                     actors.add(mistress);
+                    playerControlledActors.add(mistress);
                     bullets.add(mistress.whipHitBox);
 
                 }
@@ -587,11 +684,12 @@ namespace XNAMode
                 for (x = 0; x < BULLETS_PER_ACTOR; x++)
                     fireballs.add(new Fireball());
                 bullets.add(fireballs);
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     warlock = new Warlock(p[1] * 16, p[0] * 16, fireballs.members);
                     actors.add(warlock);
+                    playerControlledActors.add(warlock);
                 }
                 if (levelAttrs["playerControlled"] == "warlock")
                 {
@@ -604,9 +702,9 @@ namespace XNAMode
             #region Artist
             if (ActorType == "artist")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     artist = new Artist(p[1] * 16, p[0] * 16);
                     actors.add(artist);
                 }
@@ -615,9 +713,9 @@ namespace XNAMode
             #region Assassin
             if (ActorType == "assassin")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     assassin = new Assassin(p[1] * 16, p[0] * 16);
                     actors.add(assassin);
                 }
@@ -626,9 +724,9 @@ namespace XNAMode
             #region Automaton
             if (ActorType == "automaton")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     automaton = new Automaton(p[1] * 16, p[0] * 16);
                     actors.add(automaton);
                     automaton.velocity.X = 50;
@@ -639,20 +737,27 @@ namespace XNAMode
             #region Bat
             if (ActorType == "bat")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(mainTilemapArray );
-                    bat = new Bat(p[1] * 16, p[0] * 16 - 50);
+                    
+
+                    int[] p = cave.findRandomEmpty(mainTilemapArray );
+                    bat = new Bat(p[1] * 16, p[0] * 16);
                     actors.add(bat);
+
+                    //Console.WriteLine("Making bat at : " + p[1] + " "+ p[0]);
+                    //Console.WriteLine("Checking p[] in MainTilemap" + mainTilemapArray[p[0]/16,p[1]/16]);
+
+
                 }
             }
             #endregion
             #region Blight
             if (ActorType == "blight")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     blight = new Blight(p[1] * 16, p[0] * 16);
                     actors.add(blight);
                 }
@@ -661,9 +766,9 @@ namespace XNAMode
             #region Bloatedzombie
             if (ActorType == "bloatedzombie")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     bloatedzombie = new Bloatedzombie(p[1] * 16, p[0] * 16);
                     actors.add(bloatedzombie);
                 }
@@ -672,9 +777,9 @@ namespace XNAMode
             #region Bogbeast
             if (ActorType == "bogbeast")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     bogbeast = new Bogbeast(p[1] * 16, p[0] * 16);
                     actors.add(bogbeast);
                 }
@@ -683,9 +788,9 @@ namespace XNAMode
             #region Bombling
             if (ActorType == "bombling")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     bombling = new Bombling(p[1] * 16, p[0] * 16);
                     actors.add(bombling);
                 }
@@ -694,9 +799,9 @@ namespace XNAMode
             #region Centaur
             if (ActorType == "centaur")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     centaur = new Centaur(p[1] * 16, p[0] * 16);
                     actors.add(centaur);
                 }
@@ -705,9 +810,9 @@ namespace XNAMode
             #region Chicken
             if (ActorType == "chicken")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     chicken = new Chicken(p[1] * 16, p[0] * 16);
                     actors.add(chicken);
                 }
@@ -716,9 +821,9 @@ namespace XNAMode
             #region Chimaera
             if (ActorType == "chimaera")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     chimaera = new Chimaera(p[1] * 16, p[0] * 16);
                     actors.add(chimaera);
                 }
@@ -727,9 +832,9 @@ namespace XNAMode
             #region Corsair
             if (ActorType == "corsair")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     corsair = new Corsair(p[1] * 16, p[0] * 16);
                     actors.add(corsair);
                 }
@@ -738,9 +843,9 @@ namespace XNAMode
             #region Cow
             if (ActorType == "cow")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     cow = new Cow(p[1] * 16, p[0] * 16);
                     actors.add(cow);
                 }
@@ -749,9 +854,9 @@ namespace XNAMode
             #region Cyclops
             if (ActorType == "cyclops")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     cyclops = new Cyclops(p[1] * 16, p[0] * 16);
                     actors.add(cyclops);
                 }
@@ -760,9 +865,9 @@ namespace XNAMode
             #region Deathclaw
             if (ActorType == "deathclaw")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     deathclaw = new Deathclaw(p[1] * 16, p[0] * 16);
                     actors.add(deathclaw);
                 }
@@ -771,9 +876,9 @@ namespace XNAMode
             #region Deer
             if (ActorType == "deer")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     deer = new Deer(p[1] * 16, p[0] * 16);
                     actors.add(deer);
                 }
@@ -782,9 +887,9 @@ namespace XNAMode
             #region Devil
             if (ActorType == "devil")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     devil = new Devil(p[1] * 16, p[0] * 16);
                     actors.add(devil);
                 }
@@ -793,9 +898,9 @@ namespace XNAMode
             #region Djinn
             if (ActorType == "djinn")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     djinn = new Djinn(p[1] * 16, p[0] * 16);
                     actors.add(djinn);
                 }
@@ -804,9 +909,9 @@ namespace XNAMode
             #region Drone
             if (ActorType == "drone")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomEmpty(mainTilemapArray);
                     drone = new Drone(p[1] * 16, p[0] * 16);
                     actors.add(drone);
                 }
@@ -815,9 +920,9 @@ namespace XNAMode
             #region Druid
             if (ActorType == "druid")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     druid = new Druid(p[1] * 16, p[0] * 16);
                     actors.add(druid);
                 }
@@ -826,9 +931,9 @@ namespace XNAMode
             #region Dwarf
             if (ActorType == "dwarf")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     dwarf = new Dwarf(p[1] * 16, p[0] * 16);
                     actors.add(dwarf);
                 }
@@ -837,9 +942,9 @@ namespace XNAMode
             #region Embersteed
             if (ActorType == "embersteed")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     embersteed = new Embersteed(p[1] * 16, p[0] * 16);
                     actors.add(embersteed);
                 }
@@ -848,9 +953,9 @@ namespace XNAMode
             #region Executor
             if (ActorType == "executor")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     executor = new Executor(p[1] * 16, p[0] * 16);
                     actors.add(executor);
                 }
@@ -859,9 +964,9 @@ namespace XNAMode
             #region Feline
             if (ActorType == "feline")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     feline = new Feline(p[1] * 16, p[0] * 16);
                     actors.add(feline);
                 }
@@ -870,9 +975,9 @@ namespace XNAMode
             #region Floatingeye
             if (ActorType == "floatingeye")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     floatingeye = new Floatingeye(p[1] * 16, p[0] * 16);
                     actors.add(floatingeye);
                 }
@@ -881,9 +986,9 @@ namespace XNAMode
             #region Fungant
             if (ActorType == "fungant")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     fungant = new Fungant(p[1] * 16, p[0] * 16);
                     actors.add(fungant);
                 }
@@ -892,9 +997,9 @@ namespace XNAMode
             #region Gelatine
             if (ActorType == "gelatine")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     gelatine = new Gelatine(p[1] * 16, p[0] * 16);
                     actors.add(gelatine);
                 }
@@ -903,9 +1008,9 @@ namespace XNAMode
             #region Gloom
             if (ActorType == "gloom")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     gloom = new Gloom(p[1] * 16, p[0] * 16);
                     actors.add(gloom);
                 }
@@ -914,9 +1019,9 @@ namespace XNAMode
             #region Glutton
             if (ActorType == "glutton")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     glutton = new Glutton(p[1] * 16, p[0] * 16);
                     actors.add(glutton);
                 }
@@ -925,9 +1030,9 @@ namespace XNAMode
             #region Goblin
             if (ActorType == "goblin")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     goblin = new Goblin(p[1] * 16, p[0] * 16);
                     actors.add(goblin);
                 }
@@ -936,9 +1041,9 @@ namespace XNAMode
             #region Golem
             if (ActorType == "golem")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     golem = new Golem(p[1] * 16, p[0] * 16);
                     actors.add(golem);
                 }
@@ -947,9 +1052,9 @@ namespace XNAMode
             #region Gorgon
             if (ActorType == "gorgon")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     gorgon = new Gorgon(p[1] * 16, p[0] * 16);
                     actors.add(gorgon);
                 }
@@ -958,9 +1063,9 @@ namespace XNAMode
             #region Gourmet
             if (ActorType == "gourmet")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     gourmet = new Gourmet(p[1] * 16, p[0] * 16);
                     actors.add(gourmet);
                 }
@@ -969,9 +1074,9 @@ namespace XNAMode
             #region Grimwarrior
             if (ActorType == "grimwarrior")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     grimwarrior = new Grimwarrior(p[1] * 16, p[0] * 16);
                     actors.add(grimwarrior);
                 }
@@ -980,9 +1085,9 @@ namespace XNAMode
             #region Grizzly
             if (ActorType == "grizzly")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     grizzly = new Grizzly(p[1] * 16, p[0] * 16);
                     actors.add(grizzly);
                 }
@@ -991,9 +1096,9 @@ namespace XNAMode
             #region Harvester
             if (ActorType == "harvester")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     harvester = new Harvester(p[1] * 16, p[0] * 16);
                     actors.add(harvester);
                 }
@@ -1002,9 +1107,9 @@ namespace XNAMode
             #region Horse
             if (ActorType == "horse")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     horse = new Horse(p[1] * 16, p[0] * 16);
                     actors.add(horse);
                 }
@@ -1013,9 +1118,9 @@ namespace XNAMode
             #region Ifrit
             if (ActorType == "ifrit")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     ifrit = new Ifrit(p[1] * 16, p[0] * 16);
                     actors.add(ifrit);
                 }
@@ -1024,9 +1129,9 @@ namespace XNAMode
             #region Imp
             if (ActorType == "imp")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     imp = new Imp(p[1] * 16, p[0] * 16);
                     actors.add(imp);
                 }
@@ -1035,9 +1140,9 @@ namespace XNAMode
             #region Kerberos
             if (ActorType == "kerberos")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     kerberos = new Kerberos(p[1] * 16, p[0] * 16);
                     actors.add(kerberos);
                 }
@@ -1046,9 +1151,9 @@ namespace XNAMode
             #region Lich
             if (ActorType == "lich")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     lich = new Lich(p[1] * 16, p[0] * 16);
                     actors.add(lich);
                 }
@@ -1057,9 +1162,9 @@ namespace XNAMode
             #region Lion
             if (ActorType == "lion")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     lion = new Lion(p[1] * 16, p[0] * 16);
                     actors.add(lion);
                 }
@@ -1071,9 +1176,9 @@ namespace XNAMode
             #region Mechanic
             if (ActorType == "mechanic")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     mechanic = new Mechanic(p[1] * 16, p[0] * 16);
                     actors.add(mechanic);
                 }
@@ -1082,9 +1187,9 @@ namespace XNAMode
             #region Mephisto
             if (ActorType == "mephisto")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     mephisto = new Mephisto(p[1] * 16, p[0] * 16);
                     actors.add(mephisto);
                 }
@@ -1093,9 +1198,9 @@ namespace XNAMode
             #region Merchant
             if (ActorType == "merchant")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     merchant = new Merchant(p[1] * 16, p[0] * 16);
                     actors.add(merchant);
                 }
@@ -1104,9 +1209,9 @@ namespace XNAMode
             #region Mermaid
             if (ActorType == "mermaid")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     mermaid = new Mermaid(p[1] * 16, p[0] * 16);
                     actors.add(mermaid);
                 }
@@ -1115,9 +1220,9 @@ namespace XNAMode
             #region Mimick
             if (ActorType == "mimick")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     mimick = new Mimick(p[1] * 16, p[0] * 16);
                     actors.add(mimick);
                 }
@@ -1126,9 +1231,9 @@ namespace XNAMode
             #region Monk
             if (ActorType == "monk")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     monk = new Monk(p[1] * 16, p[0] * 16);
                     actors.add(monk);
                 }
@@ -1137,9 +1242,9 @@ namespace XNAMode
             #region Mummy
             if (ActorType == "mummy")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     mummy = new Mummy(p[1] * 16, p[0] * 16);
                     actors.add(mummy);
                 }
@@ -1148,9 +1253,9 @@ namespace XNAMode
             #region Nightmare
             if (ActorType == "nightmare")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     nightmare = new Nightmare(p[1] * 16, p[0] * 16);
                     actors.add(nightmare);
                 }
@@ -1159,9 +1264,9 @@ namespace XNAMode
             #region Nymph
             if (ActorType == "nymph")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     nymph = new Nymph(p[1] * 16, p[0] * 16);
                     actors.add(nymph);
                 }
@@ -1170,9 +1275,9 @@ namespace XNAMode
             #region Ogre
             if (ActorType == "ogre")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     ogre = new Ogre(p[1] * 16, p[0] * 16);
                     actors.add(ogre);
                 }
@@ -1181,9 +1286,9 @@ namespace XNAMode
             #region Paladin
             if (ActorType == "paladin")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     paladin = new Paladin(p[1] * 16, p[0] * 16);
                     actors.add(paladin);
                 }
@@ -1192,9 +1297,9 @@ namespace XNAMode
             #region Phantom
             if (ActorType == "phantom")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     phantom = new Phantom(p[1] * 16, p[0] * 16);
                     actors.add(phantom);
                 }
@@ -1203,9 +1308,9 @@ namespace XNAMode
             #region Priest
             if (ActorType == "priest")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     priest = new Priest(p[1] * 16, p[0] * 16);
                     actors.add(priest);
                 }
@@ -1214,9 +1319,9 @@ namespace XNAMode
             #region Prism
             if (ActorType == "prism")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     prism = new Prism(p[1] * 16, p[0] * 16);
                     actors.add(prism);
                 }
@@ -1225,9 +1330,9 @@ namespace XNAMode
             #region Rat
             if (ActorType == "rat")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     rat = new Rat(p[1] * 16, p[0] * 16);
                     actors.add(rat);
                 }
@@ -1236,9 +1341,9 @@ namespace XNAMode
             #region Savage
             if (ActorType == "savage")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     savage = new Savage(p[1] * 16, p[0] * 16);
                     actors.add(savage);
                 }
@@ -1247,9 +1352,9 @@ namespace XNAMode
             #region Seraphine
             if (ActorType == "seraphine")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     seraphine = new Seraphine(p[1] * 16, p[0] * 16);
                     actors.add(seraphine);
                 }
@@ -1258,9 +1363,9 @@ namespace XNAMode
             #region Sheep
             if (ActorType == "sheep")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     sheep = new Sheep(p[1] * 16, p[0] * 16);
                     actors.add(sheep);
                 }
@@ -1269,9 +1374,9 @@ namespace XNAMode
             #region Skeleton
             if (ActorType == "skeleton")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     skeleton = new Skeleton(p[1] * 16, p[0] * 16);
                     actors.add(skeleton);
                 }
@@ -1280,9 +1385,9 @@ namespace XNAMode
             #region Snake
             if (ActorType == "snake")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     snake = new Snake(p[1] * 16, p[0] * 16);
                     actors.add(snake);
                 }
@@ -1291,9 +1396,9 @@ namespace XNAMode
             #region Soldier
             if (ActorType == "soldier")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     soldier = new Soldier(p[1] * 16, p[0] * 16);
                     actors.add(soldier);
                 }
@@ -1302,9 +1407,9 @@ namespace XNAMode
             #region Sphinx
             if (ActorType == "sphinx")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     sphinx = new Sphinx(p[1] * 16, p[0] * 16);
                     actors.add(sphinx);
                 }
@@ -1313,9 +1418,9 @@ namespace XNAMode
             #region Spider
             if (ActorType == "spider")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     spider = new Spider(p[1] * 16, p[0] * 16);
                     actors.add(spider);
                 }
@@ -1324,9 +1429,9 @@ namespace XNAMode
             #region Succubus
             if (ActorType == "succubus")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     succubus = new Succubus(p[1] * 16, p[0] * 16);
                     actors.add(succubus);
                 }
@@ -1335,9 +1440,9 @@ namespace XNAMode
             #region Tauro
             if (ActorType == "tauro")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     tauro = new Tauro(p[1] * 16, p[0] * 16);
                     actors.add(tauro);
                 }
@@ -1346,9 +1451,9 @@ namespace XNAMode
             #region Toad
             if (ActorType == "toad")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     toad = new Toad(p[1] * 16, p[0] * 16);
                     actors.add(toad);
                 }
@@ -1357,9 +1462,9 @@ namespace XNAMode
             #region Tormentor
             if (ActorType == "tormentor")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     tormentor = new Tormentor(p[1] * 16, p[0] * 16);
                     actors.add(tormentor);
                 }
@@ -1368,9 +1473,9 @@ namespace XNAMode
             #region Treant
             if (ActorType == "treant")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     treant = new Treant(p[1] * 16, p[0] * 16);
                     actors.add(treant);
                 }
@@ -1379,9 +1484,9 @@ namespace XNAMode
             #region Troll
             if (ActorType == "troll")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     troll = new Troll(p[1] * 16, p[0] * 16);
                     actors.add(troll);
                 }
@@ -1390,9 +1495,9 @@ namespace XNAMode
             #region Unicorn
             if (ActorType == "unicorn")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     unicorn = new Unicorn(p[1] * 16, p[0] * 16);
                     actors.add(unicorn);
                 }
@@ -1401,9 +1506,9 @@ namespace XNAMode
             #region Vampire
             if (ActorType == "vampire")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     vampire = new Vampire(p[1] * 16, p[0] * 16);
                     actors.add(vampire);
                 }
@@ -1417,9 +1522,9 @@ namespace XNAMode
             #region Willowisp
             if (ActorType == "willowisp")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     willowisp = new Willowisp(p[1] * 16, p[0] * 16);
                     actors.add(willowisp);
                 }
@@ -1428,9 +1533,9 @@ namespace XNAMode
             #region Wizard
             if (ActorType == "wizard")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     wizard = new Wizard(p[1] * 16, p[0] * 16);
                     actors.add(wizard);
                 }
@@ -1439,9 +1544,9 @@ namespace XNAMode
             #region Wolf
             if (ActorType == "wolf")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     wolf = new Wolf(p[1] * 16, p[0] * 16);
                     actors.add(wolf);
                 }
@@ -1450,9 +1555,9 @@ namespace XNAMode
             #region Zinger
             if (ActorType == "zinger")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomEmpty(mainTilemapArray);
                     zinger = new Zinger(p[1] * 16, p[0] * 16);
                     actors.add(zinger);
                 }
@@ -1461,9 +1566,9 @@ namespace XNAMode
             #region Zombie
             if (ActorType == "zombie")
             {
-                for (int i = 0; i <= NumberOfActors; i++)
+                for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(decorationsArray);
+                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     zombie = new Zombie(p[1] * 16, p[0] * 16);
                     actors.add(zombie);
                 }

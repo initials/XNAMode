@@ -14,6 +14,7 @@ namespace XNAMode
     {
         // A bunch of helpers for the allActors sprite sheet.
 
+        #region Constants for frame numbers
         // Row:  0
         public const int FR_soldier = 0;
         public const int FR_paladin = 1;
@@ -104,9 +105,11 @@ namespace XNAMode
         public const int FR_djinn = 77;
         public const int FR_sphinx = 78;
         public const int FR_chimera = 79;
+        #endregion
 
 
         public bool canClimbLadder = false;
+        private bool isClimbingLadder = false;
 
         /// <summary>
         /// The score to recieve when killing this actor
@@ -118,10 +121,7 @@ namespace XNAMode
         /// </summary>
         public bool isPlayerControlled;
 
-        /// <summary>
-        /// How high the character will jump.
-        /// </summary>
-        public float jumpPower;
+
 
         /// <summary>
         /// How many frames have passed since the character left the ground.
@@ -160,6 +160,22 @@ namespace XNAMode
         /// </summary>
         public float timeDead;
 
+        /// <summary>
+        /// holds the amount of time character has been jumping.
+        /// </summary>
+        private float _jump = 0.0f;
+        /// <summary>
+        /// How high the character will jump.
+        /// </summary>
+        private float _jumpPower = -180.0f;
+
+        private float _jumpInitialPower = -140.0f;
+
+        private float _jumpMaxTime = 0.25f;
+
+        private float _jumpInitialTime = 0.065f;
+
+
         public Actor(int xPos, int yPos)
             : base(xPos,yPos)
 		{
@@ -169,8 +185,6 @@ namespace XNAMode
             acceleration.Y = GRAVITY;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
-
-            jumpPower = -305;
 
             isPlayerControlled = false;
 
@@ -192,13 +206,13 @@ namespace XNAMode
 
             // Calculate how many frames since the player left the ground
 
-            if (velocity.Y == 0) framesSinceLeftGround = 0;
-
+            if (onFloor)
+            {
+                framesSinceLeftGround = 0;
+            }
             else
             {
                 framesSinceLeftGround++;
-
-
             }
 
             //MOVEMENT
@@ -219,7 +233,7 @@ namespace XNAMode
 
                 acceleration.X = 0;
 
-                if (FlxG.keys.A || FlxG.keys.LEFT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi))
+                if (FlxG.keys.A || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi))
                 {
                     attackingJoystick = false;
                     attackingMouse = false;
@@ -228,7 +242,7 @@ namespace XNAMode
 
 
                 }
-                else if (FlxG.keys.D || FlxG.keys.RIGHT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi))
+                else if (FlxG.keys.D  || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi))
                 {
                     attackingJoystick = false;
                     attackingMouse = false;
@@ -237,20 +251,57 @@ namespace XNAMode
 
 
                 }
-                if ((FlxG.keys.UP || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, FlxG.controllingPlayer, out pi)) && canClimbLadder)
+
+                // ladders
+                if ((FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, FlxG.controllingPlayer, out pi)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
                 {
                     velocity.Y = -100;
+                    //int newX = (int)(x / 16 ) * 16;
+                    //x = newX;
+                    isClimbingLadder = true;
+                }
+                if ((FlxG.keys.S || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, FlxG.controllingPlayer, out pi)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
+                {
+                    velocity.Y = 100;
+                    //int newX = (int)(x / 16) * 16;
+                    //x = newX;
+                    isClimbingLadder = true;
                 }
 
 
-                // && velocity.Y == 0
-                if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi)) && framesSinceLeftGround < 10)
+                // Jumping.
+                
+                if ((_jump >= 0 || framesSinceLeftGround < 10 || canClimbLadder) && (FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))) 
                 {
+                    if (framesSinceLeftGround < 10)
+                    {
+                        _jump = 0.0f;
+                        framesSinceLeftGround = 10000;
+                    }
+                    if (canClimbLadder)
+                    {
+                        _jump = 0.0f;
+                    }
+
                     attackingJoystick = false;
                     attackingMouse = false;
-                    velocity.Y = jumpPower;
 
+                    _jump += FlxG.elapsed;
+                    if (_jump > _jumpMaxTime) _jump = -1; 
                 }
+                else
+                {
+                    _jump = -1;
+                }
+                if (_jump > 0)
+                {
+                    if (_jump < _jumpInitialTime)
+                        velocity.Y = _jumpInitialPower; 
+                    else
+                        velocity.Y = _jumpPower ; 
+                }
+
+
                 if (FlxG.keys.justPressed(Keys.C))
                 {
                     attackingMouse = true;
@@ -336,6 +387,10 @@ namespace XNAMode
             {
                 play("death");
             }
+            else if (isClimbingLadder)
+            {
+                play("climb");
+            }
             else if (attackingMouse || attackingJoystick)
             {
                 play("attack");
@@ -352,6 +407,7 @@ namespace XNAMode
             {
                 play("run");
             }
+
             else
             {
                 play("idle");
@@ -360,8 +416,16 @@ namespace XNAMode
             base.update();
 
 
+            canClimbLadder = false;
+            isClimbingLadder = false;
 
-            ///////canClimbLadder = false;
+        }
+
+        public override void hitBottom(FlxObject Contact, float Velocity)
+        {
+            _jump = 0.0f;
+
+            base.hitBottom(Contact, Velocity);
         }
 
         public override void kill()
@@ -376,9 +440,13 @@ namespace XNAMode
 
             FlxG.score += score;
 
+            Console.WriteLine(actorName + " is dead");
+
+            base.kill();
+
 
             // -
-            flicker(10);
+            //flicker(10);
 
             //angle = 90;
             

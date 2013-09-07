@@ -37,6 +37,9 @@ namespace XNAMode
 
 		override public void create()
 		{
+
+            FlxG.backColor = Color.Black;
+
             base.create();
 
             ImgGibs = FlxG.Content.Load<Texture2D>("Mode/spawner_gibs");
@@ -214,6 +217,13 @@ namespace XNAMode
             }
 
 			base.update();
+
+            // exit.
+            if (FlxG.keys.justPressed(Keys.Escape))
+            {
+                FlxG.state = new GameSelectionMenuState();
+                return;
+            }
 		}
 
 		private void onFlixel()

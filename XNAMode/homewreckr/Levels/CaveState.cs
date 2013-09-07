@@ -93,7 +93,7 @@ namespace XNAMode
             add(tiles);
 
 
-            int[,] decr = cav.createDecorationsMap(matr);
+            int[,] decr = cav.createDecorationsMap(matr, 0.8f);
             string newDec = cav.convertMultiArrayToString(decr);
             DecorTex = FlxG.Content.Load<Texture2D>("initials/decorations_16x16");
 

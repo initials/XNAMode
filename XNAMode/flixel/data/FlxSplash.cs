@@ -99,10 +99,10 @@ namespace org.flixel
                 add(new FlxLogoPixel(left, top + (pixelsize * 3), pixelsize, 4, _fc));
 
                 FlxSprite pwr = new FlxSprite((FlxG.width - (int)((float)_poweredBy.Width * pwrscale)) / 2, top + (pixelsize * 4) + 16, _poweredBy);
-                pwr.loadGraphic(_poweredBy, false, false, (int)((float)_poweredBy.Width * pwrscale), (int)((float)_poweredBy.Height * pwrscale));
+                pwr.loadGraphic(_poweredBy, false, false, 64);
 
                 //pwr.color = _fc;
-                pwr.scale = pwrscale;
+                //pwr.scale = pwrscale;
                 add(pwr);
 
                 _fSound.Play(FlxG.volume, 0f, 0f);

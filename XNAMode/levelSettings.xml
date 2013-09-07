@@ -100,13 +100,13 @@
       <l25>Legacy, Perpetuate</l25>
     </name>
     <levelWidth default="50">
-      <l1>30</l1>
-      <l2>32</l2>
-      <l3>32</l3>
+      <l1>60</l1>
+      <l2>80</l2>
+      <l3>75</l3>
       <l4>32</l4>
       <l5>40</l5>
       <l6>50</l6>
-      <l7>60</l7>
+      <l7>20</l7>
       <l8>70</l8>
       <l9>70</l9>
       <l10>70</l10>
@@ -127,13 +127,13 @@
       <l25>122</l25>
     </levelWidth>
     <levelHeight default="50">
-      <l1>30</l1>
-      <l2>40</l2>
-      <l3>50</l3>
+      <l1>60</l1>
+      <l2>20</l2>
+      <l3>40</l3>
       <l4>60</l4>
       <l5>70</l5>
       <l6>80</l6>
-      <l7>100</l7>
+      <l7>20</l7>
       <l8>110</l8>
       <l9>120</l9>
       <l10>130</l10>
@@ -155,7 +155,7 @@
     </levelHeight>
     <type default="CaveState"></type>
     <tiles default="autotiles_16x16"></tiles>
-    <decorationTiles default="decorations_16x16"></decorationTiles>
+    <decorationTiles default="decorationsFront_16x16"></decorationTiles>
     <prize default="">
       <l1>The First Chamber of the Human Heart</l1>
       <l2>The Second Chamber of the Human Heart</l2>
@@ -240,11 +240,11 @@
     <solidRowsBeforeSmooth default="">
       <l1>0,1,28,29,10,20</l1>
       <l2>10,11,12</l2>
-      <l3>48,49</l3>
+      <l3></l3>
       <l4>55,56,57</l4>
       <l5>67,68</l5>
       <l6>66</l6>
-      <l7>66</l7>
+      <l7></l7>
       <l8>66</l8>
       <l9>66</l9>
       <l10>66</l10>
@@ -266,7 +266,7 @@
     </solidRowsBeforeSmooth>
     <emptyColumnsBeforeSmooth default="">
       <l1>3,4,5,6,7,8,11,15</l1>
-      <l2>3,4,5,6,7,8,11,15</l2>
+      <l2></l2>
       <l3></l3>
       <l4></l4>
       <l5></l5>
@@ -293,7 +293,7 @@
     </emptyColumnsBeforeSmooth>
     <emptyRowsBeforeSmooth default="">
       <l1>5,9,12,17,21,22</l1>
-      <l2>3,4,5,6,7,8,11,15,35,36,34</l2>
+      <l2></l2>
       <l3></l3>
       <l4></l4>
       <l5></l5>
@@ -320,7 +320,7 @@
     </emptyRowsBeforeSmooth>
     <solidColumnsAfterSmooth default="">
       <l1>1,2,28,29</l1>
-      <l2>1,2,3,30,31</l2>
+      <l2></l2>
       <l3></l3>
       <l4></l4>
       <l5></l5>
@@ -347,8 +347,8 @@
     </solidColumnsAfterSmooth>
     <solidRowsAfterSmooth default="">
       <l1>0,1,28,29</l1>
-      <l2>0,1,37,38,39</l2>
-      <l3>0,1</l3>
+      <l2></l2>
+      <l3>39</l3>
       <l4>0,1</l4>
       <l5></l5>
       <l6></l6>
@@ -374,7 +374,7 @@
     </solidRowsAfterSmooth>
     <emptyColumnsAfterSmooth default="">
       <l1>3,7,11,15,26</l1>
-      <l2>3,4,5,6,7,8,11,15</l2>
+      <l2></l2>
       <l3></l3>
       <l4></l4>
       <l5></l5>
@@ -401,7 +401,7 @@
     </emptyColumnsAfterSmooth>
     <emptyRowsAfterSmooth default="">
       <l1>4,8,12,17,18,22,26,28</l1>
-      <l2>3,4,5,6,7,8,11,15</l2>
+      <l2></l2>
       <l3></l3>
       <l4></l4>
       <l5></l5>
@@ -485,9 +485,9 @@
     <!--Playable Characters-->
     <corsair default="0"></corsair>
     <marksman default="0">
-      <l1></l1>
+      <l1 playerControlled="1">1</l1>
       <l2 playerControlled="1">1</l2>
-      <l3></l3>
+      <l3 playerControlled="1">1</l3>
       <l4></l4>
       <l5 playerControlled="1">1</l5>
       <l6></l6>
@@ -512,7 +512,7 @@
       <l25 playerControlled="1">1</l25>
     </marksman>
     <mistress default="0">
-      <l1 playerControlled="1">1</l1>
+      <l1></l1>
       <l2></l2>
       <l3></l3>
       <l4 playerControlled="1">1</l4>
@@ -544,7 +544,7 @@
     <warlock default="0">
       <l1></l1>
       <l2></l2>
-      <l3 playerControlled="1">1</l3>
+      <l3></l3>
       <l4></l4>
       <l5></l5>
       <l6 playerControlled="1">1</l6>
@@ -572,9 +572,9 @@
     <automaton default="0"></automaton>
     <bat default="0">
       <l1>10</l1>
-      <l2>60</l2>
-      <l3>55</l3>
-      <l4>12</l4>
+      <l2>20</l2>
+      <l3>20</l3>
+      <l4>1</l4>
       <l5></l5>
       <l6>22</l6>
       <l7>14</l7>
@@ -1204,8 +1204,8 @@
     </djinn>
     <drone default="0">
       <l1>1</l1>
-      <l2></l2>
-      <l3></l3>
+      <l2>10</l2>
+      <l3>10</l3>
       <l4></l4>
       <l5></l5>
       <l6></l6>
@@ -1776,7 +1776,7 @@
       <l4></l4>
       <l5></l5>
       <l6></l6>
-      <l7></l7>
+      <l7>20</l7>
       <l8></l8>
       <l9></l9>
       <l10></l10>
@@ -2159,6 +2159,9 @@
     <willowisp default="0"></willowisp>
     <wizard default="0"></wizard>
     <wolf default="0"></wolf>
-    <zinger default="0"></zinger>
+    <zinger default="0">
+      <l2>10</l2>
+      <l3>10</l3>
+    </zinger>
   </settings>
 </game>

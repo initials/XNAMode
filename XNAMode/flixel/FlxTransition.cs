@@ -228,7 +228,7 @@ namespace org.flixel
                     if (o.scale <= 0.0f)
                     {
                         o.scale = 0;
-                        //complete = true;
+                        complete = false;
                     }
 
                 }
@@ -247,6 +247,10 @@ namespace org.flixel
             }
 
             base.update();
+
+
+
+            
             
         }
     }

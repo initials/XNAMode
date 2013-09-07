@@ -49,8 +49,8 @@ namespace org.flixel
         /// Fills the block with a randomly arranged selection of graphics from the image provided.
         /// </summary>
         /// <param name="TileGraphic">The graphic class that contains the tiles that should fill this block.</param>
-        /// <param name="TileWidth"></param>
-        /// <param name="TileHeight"></param>
+        /// <param name="TileWidth">Width of the tiles.</param>
+        /// <param name="TileHeight">Height of the tiles.</param>
         /// <param name="Empties">The number of "empty" tiles to add to the auto-fill algorithm (e.g. 8 tiles + 4 empties = 1/3 of block will be open holes).</param>
         /// <returns></returns>
         public FlxTileblock loadTiles(Texture2D TileGraphic, int TileWidth, int TileHeight, int Empties)
@@ -95,6 +95,9 @@ namespace org.flixel
                     if (_autoTile)
                     {
 
+                        _rects[i] = new Rectangle(_tileWidth * (int)(FlxU.random() * numGraphics), 0, _tileWidth, _tileHeight);
+
+                        /*
                         switch (i)
                         {
                             case 0:
@@ -105,6 +108,7 @@ namespace org.flixel
                                 break;
 
                         }
+                         */ 
                     }
                     else
                     {

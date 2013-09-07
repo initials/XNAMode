@@ -79,6 +79,8 @@ namespace org.flixel
             _gamePadButton.play("frame");
             _gamePadButton.solid = false;
             _gamePadButton.visible = true;
+            _gamePadButton.scrollFactor.X = 0;
+            _gamePadButton.scrollFactor.Y = 0;
             _gamePadButton.boundingBoxOverride = false;
 
             //add(_gamePadButton, true);
@@ -117,6 +119,7 @@ namespace org.flixel
             _gamePadButton.frame = Button;
             _gamePadButton.x = X * FlxG.zoom ;
             _gamePadButton.y = Y * FlxG.zoom ;
+            _gamePadButton.visible = true;
         }
 
         /// <summary>
@@ -125,7 +128,7 @@ namespace org.flixel
         public void showHud()
         {
             visible = true;
-
+            //_gamePadButton.visible = true;
         }
 
         /// <summary>

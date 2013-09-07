@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Bat : FlxSprite
+    class FlyingEnemy : FlxSprite
     {
 
         /// <summary>
@@ -18,44 +18,25 @@ namespace XNAMode
         /// </summary>
         public float timeDead;
 
-        public int score;
+        //public int score;
+
+        protected float chanceOfWingFlap = 0.023f;
+
+        protected float speedOfWingFlapVelocity = -40;
 
 
-        public Bat(int xPos, int yPos)
+
+        public FlyingEnemy(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            score = 100;
+            originalPosition.X = xPos;
+            originalPosition.Y = yPos;
 
-            //actorName = "Bat";
-
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/batParticles_12x12"), true, false, 12, 12);
-
-            addAnimation("fly", new int[] { 0, 1, 2 }, 12);
-            addAnimation("idle", new int[] { 0 }, 12);
-            addAnimation("attack", new int[] { 2, 4 }, 18);
-            addAnimation("death", new int[] { 1 }, 18);
-
-            //bounding box tweaks
-            width = 10;
-            height = 9;
-            offset.X = 1;
-            offset.Y = 3;
-
-            //basic player physics
             int runSpeed = 30;
-            //drag.X = runSpeed * 4;
             acceleration.Y = 50;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
-
-            //jumpPower = -140;
-
             velocity.X = 100;
-
-            play("fly");
-
-            health = 0;
-
 
         }
         override public void hitSide(FlxObject Contact, float Velocity)
@@ -64,8 +45,17 @@ namespace XNAMode
         }
         override public void update()
         {
-            if (dead) timeDead += FlxG.elapsed;
-            else timeDead = 0;
+
+            if (dead)
+            {
+                timeDead += FlxG.elapsed;
+                acceleration.Y = Actor.GRAVITY;
+            }
+            else
+            {
+                timeDead = 0;
+                acceleration.Y = 50;
+            }
             if (timeDead > 2)
             {
                 flicker(1.0f);
@@ -73,9 +63,29 @@ namespace XNAMode
             if (timeDead > 3)
             {
                 reset(originalPosition.X, originalPosition.Y);
+                dead = false;
+                angle = 0;
+                flicker(-0.001f);
+                angularVelocity = 0;
+                angularDrag = 700;
+                drag.X = 0;
+                timeDead = 0;
+                play("fly");
+                velocity.X = 100;
             }
 
-            if (FlxU.random() < 0.023 && dead==false) velocity.Y = -40;
+            if (dead == false)
+            {
+                //if (FlxG.level==4) Console.WriteLine("Y vals Acc {0} Vel {1} ", acceleration.Y, velocity.Y);
+
+                if (FlxU.random() < chanceOfWingFlap)
+                {
+                    //Console.WriteLine("Just flapped ");
+
+                    velocity.Y = speedOfWingFlapVelocity;
+                }
+            }
+
             base.update();
 
             if (velocity.X > 0)
@@ -87,8 +97,9 @@ namespace XNAMode
                 facing = Flx2DFacing.Left;
             }
 
-            if (x > 50*16) x = 0;
-            if (x < 0) x = 50 * 16;
+            if (x > FlxG.levelWidth) x = 1;
+            if (x < 0) x = FlxG.levelWidth - 1;
+
         }
         public override void kill()
         {
@@ -101,7 +112,7 @@ namespace XNAMode
             drag.X = 1000;
 
 
-            FlxG.score += score;
+            //FlxG.score += score;
 
             //base.kill();
         }

@@ -577,7 +577,7 @@ namespace org.flixel
 
         /// <summary>
         /// Tell the sprite to change to a specific frame of animation.
-        /// 
+        /// Can also be used to get the frame which is being displayed.
         /// @param	Frame	The frame you want to display.
         /// </summary>
         public int frame

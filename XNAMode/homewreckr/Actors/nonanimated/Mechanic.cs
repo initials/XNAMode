@@ -10,18 +10,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Mechanic : Actor
+    class Mechanic : FlxSprite
     {
         public Mechanic(int xPos, int yPos)
             : base(xPos, yPos)
         {
 
-            actorName = "Mechanic";
+            //actorName = "Mechanic";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/allActors"), true, false, 26, 26);
 
             //addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 12);
-            addAnimation("idle", new int[] { FR_mechanic }, 0);
+            addAnimation("idle", new int[] { Actor.FR_mechanic }, 0);
             //addAnimation("attack", new int[] { 2, 4 }, 18);
 
             //bounding box tweaks
@@ -37,11 +37,15 @@ namespace XNAMode
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
-            jumpPower = -140;
+            //jumpPower = -140;
+
+            play("idle");
+
         }
 
         override public void update()
         {
+            //Console.WriteLine(width + "  " + height + "  " + offset.X + "   " + offset.Y);
             base.update();
         }
     }

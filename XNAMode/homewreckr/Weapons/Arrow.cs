@@ -96,7 +96,7 @@ namespace XNAMode
             //if (onScreen()) FlxG.play(SndHit);
             
             play("explode");
-
+            dead = true;
             
         }
 
@@ -112,6 +112,7 @@ namespace XNAMode
             velocity.X = VelocityX;
             velocity.Y = VelocityY;
             hasTouched = false;
+            dead = false;
         }
 
     }

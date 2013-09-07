@@ -106,6 +106,12 @@ namespace XNAMode
 
             }
 
+            if (FlxG.keys.F4)
+            {
+                FlxG.state = new EmptyIntroTestState();
+
+            }
+
             PlayerIndex pi;
             bool shift = FlxG.keys.SHIFT;
 
