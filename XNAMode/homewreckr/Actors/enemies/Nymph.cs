@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Nymph : Actor
+    class Nymph : EnemyActor
     {
 
         public Nymph(int xPos, int yPos)
@@ -37,7 +37,7 @@ namespace XNAMode
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
-
+            velocity.X = FlxU.random(30, 50);
 
         }
 

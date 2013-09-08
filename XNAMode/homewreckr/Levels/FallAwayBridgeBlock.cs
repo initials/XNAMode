@@ -51,6 +51,9 @@ namespace XNAMode
             {
                 @fixed = false;
                 acceleration.Y = Actor.GRAVITY;
+                if (alpha >= 0)
+                    alpha -= 0.05f;
+
             }
 
             base.update();
@@ -61,7 +64,8 @@ namespace XNAMode
         {
             base.hitTop(Contact, Velocity);
             
-            amountOfTimePlayerHasHitTop += FlxG.elapsed;
+            if (Contact is Actor)
+                amountOfTimePlayerHasHitTop += FlxG.elapsed;
 
             //@fixed = false;
 

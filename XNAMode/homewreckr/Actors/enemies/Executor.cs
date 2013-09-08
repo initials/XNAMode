@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Executor : Actor
+    class Executor : EnemyActor
     {
 
         public Executor(int xPos, int yPos)
@@ -36,6 +36,8 @@ namespace XNAMode
             acceleration.Y = 820;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
+
+            velocity.X = FlxU.random(12, 22);
 
         }
 

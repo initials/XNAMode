@@ -36,8 +36,7 @@ namespace XNAMode
             //animations
             addAnimation("run", new int[] { 5, 6, 7, 8, 9 }, 12);
             addAnimation("idle", new int[] { 0, 1, 2, 3 }, 12);
-            addAnimation("attack", new int[] { 11, 11,11,11,11,11,12 }, 30);
-
+            addAnimation("attack", new int[] { 11,12,13,14,15,16 }, 14);
 
 
         }
@@ -48,7 +47,7 @@ namespace XNAMode
             //PlayerIndex pi;
             
             //SHOOTING
-            if ((_curFrame == 6 ) && attackingJoystick)
+            if ((frame == 16 ) && attackingJoystick)
             {
                 float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
                 float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
@@ -56,13 +55,13 @@ namespace XNAMode
                 if (rightX == 0 && rightY == 0)
                 {
                     if (facing == Flx2DFacing.Right)
-                        ((Fireball)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 2)), 600, -100);
+                        ((Fireball)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 12)), 600, -100);
                     else
-                        ((Fireball)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 2)), -600, -100);
+                        ((Fireball)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 12)), -600, -100);
                 }
                 else
                 {
-                    ((Fireball)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 600), (int)(rightY *= -600));
+                    ((Fireball)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 12)), (int)(rightX * 600), (int)(rightY *= -600));
                 }
                 if (rightX < 0)
                 {
@@ -78,7 +77,7 @@ namespace XNAMode
 
                 attackingJoystick = false;
                 attackingMouse = false;
-                _curFrame = 0;
+                frame = 0;
 
             }
 

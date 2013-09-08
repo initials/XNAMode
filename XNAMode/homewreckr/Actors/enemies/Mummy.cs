@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Mummy : Actor
+    class Mummy : EnemyActor
     {
 
         public Mummy(int xPos, int yPos)
@@ -39,7 +39,7 @@ namespace XNAMode
 
 
 
-
+            velocity.X = FlxU.random(5, 10);
 
         }
 

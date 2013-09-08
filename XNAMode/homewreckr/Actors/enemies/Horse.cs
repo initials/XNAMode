@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Horse : Actor
+    class Horse : EnemyActor
     {
         public Horse(int xPos, int yPos)
             : base(xPos, yPos)
@@ -36,6 +36,9 @@ namespace XNAMode
             acceleration.Y = 820;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
+
+            velocity.X = FlxU.random(30, 50);
+
         }
 
         override public void update()

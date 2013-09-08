@@ -113,6 +113,7 @@
   <ItemGroup>
     <Compile Include="fx\BloomComponent.cs" />
     <Compile Include="fx\BloomSettings.cs" />
+    <Compile Include="homewreckr\Actors\EnemyActor.cs" />
     <Compile Include="homewreckr\Actors\flyingenemies\FlyingEnemy.cs" />
     <Compile Include="homewreckr\Actors\playable\WhipHitBox.cs" />
     <Compile Include="homewreckr\Cutscenes\CutsceneState.cs" />

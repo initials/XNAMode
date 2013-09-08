@@ -379,6 +379,7 @@ namespace XNAMode
             {
                 acceleration.Y = 0;
 
+
             }
 
 
@@ -427,6 +428,15 @@ namespace XNAMode
 
             base.hitBottom(Contact, Velocity);
         }
+
+        override public void hitSide(FlxObject Contact, float Velocity)
+        {
+            if (!isPlayerControlled)
+                velocity.X = velocity.X * -1;
+
+            base.hitSide( Contact,  Velocity);
+        }
+
 
         public override void kill()
         {

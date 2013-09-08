@@ -9,7 +9,7 @@ using org.flixel;
 
 namespace XNAMode
 {
-    class Vampire : Actor
+    class Vampire : EnemyActor
     {
         private Texture2D ImgVampire;
 
@@ -30,17 +30,20 @@ namespace XNAMode
 
             //basic player physics
             int runSpeed = 35;
-            drag.X = runSpeed * 4;
-            acceleration.Y = 820;
-            maxVelocity.X = runSpeed;
+            //drag.X = runSpeed * 4;
+            acceleration.Y = Actor.GRAVITY;
+            //maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
             //animations
-            addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6 }, 12);
-            addAnimation("idle", new int[] { 0 }, 12);
-            addAnimation("attack", new int[] { 0, 1, 2 }, 12);
 
-            
+            int frameRate = (int)FlxU.random(10, 14);
+
+            addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6 }, frameRate);
+            addAnimation("idle", new int[] { 0 }, frameRate);
+            addAnimation("attack", new int[] { 0, 1, 2 }, frameRate);
+
+            velocity.X = FlxU.random(30, 50) ;
 
 
         }

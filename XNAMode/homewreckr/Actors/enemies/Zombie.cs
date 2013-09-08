@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Zombie : Actor
+    class Zombie : EnemyActor
     {
 
         public Zombie(int xPos, int yPos)
@@ -37,12 +37,11 @@ namespace XNAMode
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
+            velocity.X = FlxU.random(30, 50);
         }
 
         override public void update()
         {
-
-
 
             base.update();
 

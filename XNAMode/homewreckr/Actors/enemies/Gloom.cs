@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Gloom : Actor
+    class Gloom : EnemyActor
     {
 
         public Gloom(int xPos, int yPos)
@@ -37,21 +37,13 @@ namespace XNAMode
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
+            velocity.X = FlxU.random(30, 50);
 
         }
 
         override public void update()
         {
 
-            if (isPlayerControlled)
-            {
-                PlayerIndex pi;
-                if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi)))
-                {
-                    velocity.Y = -80;
-
-                }
-            }
 
 
 

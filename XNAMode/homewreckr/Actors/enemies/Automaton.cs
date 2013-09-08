@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Automaton : Actor
+    class Automaton : EnemyActor
     {
         public Automaton(int xPos, int yPos)
             : base(xPos, yPos)
@@ -41,34 +41,19 @@ namespace XNAMode
             maxVelocity.Y = 1000;
 
 
-            health = 2;
+            health = 1;
+
+            velocity.X = FlxU.random(30, 50);
+
         }
-        override public void hitSide(FlxObject Contact, float Velocity) 
-        {
-            velocity.X = velocity.X * -1;
-        }
+
         override public void update()
         {
 
-            if (velocity.X > 0)
-            {
-                facing = Flx2DFacing.Right;
-            }
-            else
-            {
-                facing = Flx2DFacing.Left;
 
-            }
+
             base.update();
         }
-        public override void kill()
-        {
-            play("death");
-            velocity.X = 0;
-            velocity.Y = 0;
-            dead = true;
 
-            //base.kill();
-        }
     }
 }

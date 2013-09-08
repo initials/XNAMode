@@ -104,7 +104,7 @@ namespace XNAMode
 
         private FlxGroup playerControlledActors;
 
-        private FlxGroup enemyActors;
+        //private FlxGroup enemyActors;
 
         /// <summary>
         /// Every single bullet in the scene.
@@ -208,7 +208,7 @@ namespace XNAMode
 
             //important to reset the hud to get the text, gamepad buttons out.
             FlxG.resetHud();
-            FlxG.showHud();
+            //FlxG.showHud();
 
             //FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
@@ -277,30 +277,7 @@ namespace XNAMode
             bgSprite.boundingBoxOverride = false;
             add(bgSprite);
 
-            // Generate some ladders
 
-            for (int i = 0; i < 25; i++)
-            {
-                ladder = new FlxTileblock((int)(FlxU.random() * FlxG.levelWidth),(int)( FlxU.random() * FlxG.levelHeight), 16, 160);
-                ladder.loadTiles(FlxG.Content.Load<Texture2D>("initials/ladderTiles_16x16"), 16, 16, 0);
-                ladders.add(ladder);
-            }
-            add(ladders);
-
-
-            for (int i = 0; i < 25; i++)
-            {
-
-                int rx = (int)(FlxU.random() * FlxG.levelWidth);
-                int ry = (int)(FlxU.random() * FlxG.levelHeight);
-
-                for (int j = 0; j < 10; j++)
-                {
-                    FallAwayBridgeBlock f = new FallAwayBridgeBlock(rx + (j * 16), ry);
-                    allLevelTiles.add(f);
-
-                }
-            }
             
 
 
@@ -337,6 +314,48 @@ namespace XNAMode
             allLevelTiles.add(mainTilemap);
 
             add(allLevelTiles);
+
+
+            // Generate some random ladders
+
+            for (int i = 0; i < 3; i++)
+            {
+                int rx = (int)(FlxU.random() * (FlxG.levelWidth / 16));
+                int ry = (int)(FlxU.random() * (FlxG.levelHeight / 16));
+
+                ladder = new FlxTileblock(rx * 16, ry * 16, 16, 160);
+                ladder.loadTiles(FlxG.Content.Load<Texture2D>("initials/ladderTiles_16x16"), 16, 16, 0);
+                ladders.add(ladder);
+            }
+            //generate some ladders in the empty columns
+
+            if (emptyColumnsAfterSmooth != null)
+            {
+                foreach (var item in emptyColumnsAfterSmooth)
+                {
+                    ladder = new FlxTileblock(item * 16, 0, 16, FlxG.levelHeight);
+                    ladder.loadTiles(FlxG.Content.Load<Texture2D>("initials/ladderTiles_16x16"), 16, 16, 0);
+                    ladders.add(ladder);
+                }
+            }
+            add(ladders);
+
+
+            for (int i = 0; i < 4; i++)
+            {
+
+                int rx = (int)(FlxU.random() * (FlxG.levelWidth / 16));
+                int ry = (int)(FlxU.random() * (FlxG.levelHeight / 16));
+
+                for (int j = 0; j < 10; j++)
+                {
+                    FallAwayBridgeBlock f = new FallAwayBridgeBlock((rx * 16) + (j * 16), ry * 16);
+                    allLevelTiles.add(f);
+
+                }
+            }
+
+
 
 
             // add the decorations tilemap.
@@ -433,9 +452,6 @@ namespace XNAMode
 
             //FlxG.autoHandlePause = true;
 
-            FlxG.resetHud();
-            FlxG.showHud();
-
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
 
 
@@ -478,7 +494,7 @@ namespace XNAMode
                 return;
             }
 
-            FlxG.setHudText(1, FlxG.score.ToString());
+            //FlxG.setHudText(1, FlxG.score.ToString());
 
             if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B) && FlxG.debug)
                 FlxG.showBounds = !FlxG.showBounds;
@@ -540,7 +556,7 @@ namespace XNAMode
             base.update();
 
             // exit.
-            if (FlxG.keys.justPressed(Keys.Escape) || marksman.dead == true)
+            if (FlxG.keys.justPressed(Keys.Escape) || playerControlledActors.getFirstAlive() == null )
             {
                 Console.WriteLine("Just pressed Escape");
 
@@ -565,7 +581,7 @@ namespace XNAMode
 
         protected bool actorOverlap(object Sender, FlxSpriteCollisionEvent e)
         {
-            if (e.Object1.dead == false && e.Object2.dead == false) 
+            if (e.Object1.dead == false && e.Object2.dead == false && e.Object1.flickering() == false && e.Object2.flickering() == false) 
             {
                 e.Object2.hurt(1);
                 e.Object1.hurt(1);
@@ -643,6 +659,7 @@ namespace XNAMode
 
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     marksman = new Marksman(p[1] * 16, p[0] * 16, arrows.members);
+                    marksman.flicker(2);
                     actors.add(marksman);
                     playerControlledActors.add(marksman);
 
@@ -664,6 +681,7 @@ namespace XNAMode
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     mistress = new Mistress(p[1] * 16, p[0] * 16);
                     actors.add(mistress);
+                    mistress.flicker(2);
                     playerControlledActors.add(mistress);
                     bullets.add(mistress.whipHitBox);
 
@@ -689,6 +707,7 @@ namespace XNAMode
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     warlock = new Warlock(p[1] * 16, p[0] * 16, fireballs.members);
                     actors.add(warlock);
+                    warlock.flicker(2);
                     playerControlledActors.add(warlock);
                 }
                 if (levelAttrs["playerControlled"] == "warlock")
@@ -729,7 +748,7 @@ namespace XNAMode
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     automaton = new Automaton(p[1] * 16, p[0] * 16);
                     actors.add(automaton);
-                    automaton.velocity.X = 50;
+                    
 
                 }
             }
