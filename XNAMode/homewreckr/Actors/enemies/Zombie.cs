@@ -32,7 +32,7 @@ namespace XNAMode
 
             //basic player physics
             int runSpeed = 60;
-            drag.X = runSpeed * 4;
+            //drag.X = runSpeed * 4;
             acceleration.Y = 820;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;

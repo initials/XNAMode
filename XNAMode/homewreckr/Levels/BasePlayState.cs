@@ -313,7 +313,7 @@ namespace XNAMode
 
             allLevelTiles.add(mainTilemap);
 
-            add(allLevelTiles);
+            
 
 
             // Generate some random ladders
@@ -339,7 +339,7 @@ namespace XNAMode
                 }
             }
             add(ladders);
-
+            add(allLevelTiles);
 
             for (int i = 0; i < 4; i++)
             {
