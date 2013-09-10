@@ -50,7 +50,7 @@ namespace XNAMode
             if (delayCounter > delay)
             {
                 @fixed = false;
-                acceleration.Y = Actor.GRAVITY;
+                acceleration.Y = Homewreckr_Globals.GRAVITY;
                 if (alpha >= 0)
                     alpha -= 0.05f;
 

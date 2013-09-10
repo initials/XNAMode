@@ -128,7 +128,9 @@ namespace XNAMode
         /// </summary>
         public float framesSinceLeftGround;
 
-        public const float GRAVITY = 820.0f;
+        /// <summary>
+        /// Deadzone for the joystick on this character.
+        /// </summary>
         public const float DEADZONE = 0.5f;
         
         /// <summary>
@@ -182,7 +184,7 @@ namespace XNAMode
             //basic player physics
             
             drag.X = runSpeed * 4;
-            acceleration.Y = GRAVITY;
+            acceleration.Y = Homewreckr_Globals.GRAVITY;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
@@ -193,197 +195,143 @@ namespace XNAMode
         public void stopAttacking(string Name, uint Frame, int FrameIndex)
         {
             //attacking = false;
-        }   
+        }
 
-        override public void update()
+        public void updateInputs()
         {
-            if (dead) timeDead += FlxG.elapsed;
-            else timeDead = 0;
-
-            //canClimbLadder = false;
-
             PlayerIndex pi;
 
-            // Calculate how many frames since the player left the ground
-
-            if (onFloor)
+            
+            // Running pushes walk speed higher.
+            if (FlxG.gamepads.isButtonDown(Buttons.RightTrigger, FlxG.controllingPlayer, out pi))
             {
-                framesSinceLeftGround = 0;
+                maxVelocity.X = runSpeed * 2;
             }
             else
             {
-                framesSinceLeftGround++;
+                maxVelocity.X = runSpeed;
             }
 
-            //MOVEMENT
+            //
+            acceleration.X = 0;
 
-            if (isPlayerControlled)
+            // Walking left.
+            if (FlxG.keys.A || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi))
             {
-                acceleration.Y = GRAVITY;
-
-                if (FlxG.gamepads.isButtonDown(Buttons.RightTrigger, FlxG.controllingPlayer, out pi))
-                {
-                    maxVelocity.X = runSpeed * 2;
-                }
-                else
-                {
-                    maxVelocity.X = runSpeed;
-                }
-
-
-                acceleration.X = 0;
-
-                if (FlxG.keys.A || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi))
-                {
-                    attackingJoystick = false;
-                    attackingMouse = false;
-                    facing = Flx2DFacing.Left;
-                    acceleration.X -= drag.X;
-
-
-                }
-                else if (FlxG.keys.D  || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi))
-                {
-                    attackingJoystick = false;
-                    attackingMouse = false;
-                    facing = Flx2DFacing.Right;
-                    acceleration.X += drag.X;
-
-
-                }
-
-                // ladders
-                if ((FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, FlxG.controllingPlayer, out pi)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
-                {
-                    velocity.Y = -100;
-                    //int newX = (int)(x / 16 ) * 16;
-                    //x = newX;
-                    isClimbingLadder = true;
-                }
-                if ((FlxG.keys.S || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, FlxG.controllingPlayer, out pi)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
-                {
-                    velocity.Y = 100;
-                    //int newX = (int)(x / 16) * 16;
-                    //x = newX;
-                    isClimbingLadder = true;
-                }
-
-
-                // Jumping.
-                
-                if ((_jump >= 0 || framesSinceLeftGround < 10 || canClimbLadder) && (FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))) 
-                {
-                    if (framesSinceLeftGround < 10)
-                    {
-                        _jump = 0.0f;
-                        framesSinceLeftGround = 10000;
-                    }
-                    if (canClimbLadder)
-                    {
-                        _jump = 0.0f;
-                    }
-
-                    attackingJoystick = false;
-                    attackingMouse = false;
-
-                    _jump += FlxG.elapsed;
-                    if (_jump > _jumpMaxTime) _jump = -1; 
-                }
-                else
-                {
-                    _jump = -1;
-                }
-                if (_jump > 0)
-                {
-                    if (_jump < _jumpInitialTime)
-                        velocity.Y = _jumpInitialPower; 
-                    else
-                        velocity.Y = _jumpPower ; 
-                }
-
-
-                if (FlxG.keys.justPressed(Keys.C))
-                {
-                    attackingMouse = true;
-                }
-                if (FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder, FlxG.controllingPlayer, out pi))
-                {
-                    attackingJoystick = true;
-                }
-
-
-
-
-                if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X > DEADZONE ||
-                    GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y > DEADZONE ||
-                    GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X < DEADZONE * -1.0f ||
-                    GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y < DEADZONE * -1.0f ||
-                    FlxG.gamepads.isButtonDown(Buttons.X, PlayerIndex.One, out pi)
-                    )
-                {
-                    attackingJoystick = true;
-                }
-                else
-                {
-                    attackingJoystick = false;
-                }
-
-
-                if (FlxG.mouse.pressedLeftButton())
-                {
-                    attackingMouse = true;
-                }
-                else
-                {
-                    attackingMouse = false;
-                }
-
-
-                if (FlxG.keys.C) {
-                    attackingMouse = true;
-                }
-
-                if (FlxG.gamepads.isButtonDown(Buttons.RightThumbstickLeft, FlxG.controllingPlayer, out pi))
-                {
-                    facing = Flx2DFacing.Left;
-                }
-                if (FlxG.gamepads.isButtonDown(Buttons.RightThumbstickRight, FlxG.controllingPlayer, out pi))
-                {
-                    facing = Flx2DFacing.Right;
-                }
-
-                //            if (!flickering() && 
-                //    (FlxG.gamepads.isButtonDown(Buttons.RightThumbstickDown, FlxG.controllingPlayer, out pi) ||
-                //FlxG.gamepads.isButtonDown(Buttons.RightThumbstickLeft, FlxG.controllingPlayer, out pi) ||
-                //FlxG.gamepads.isButtonDown(Buttons.RightThumbstickRight, FlxG.controllingPlayer, out pi) ||
-                //FlxG.gamepads.isButtonDown(Buttons.RightThumbstickUp, FlxG.controllingPlayer, out pi)))
-                //            {
-
-                //                float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
-
-                //                float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
-
-                //                if (rightY < -0.75)
-                //                {
-                //                    velocity.Y -= 36;
-                //                }
-
-                //                float rotation = (float)Math.Atan2(rightX, rightY);
-                //                rotation = (rotation < 0) ? MathHelper.ToDegrees(rotation + MathHelper.TwoPi) : MathHelper.ToDegrees(rotation);
-
-
-
-                //            }
+                attackingJoystick = false;
+                attackingMouse = false;
+                facing = Flx2DFacing.Left;
+                acceleration.X -= drag.X;
             }
-            else // is not player controlled.
+            //Walking right.
+            else if (FlxG.keys.D || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi))
             {
-                acceleration.Y = 0;
+                attackingJoystick = false;
+                attackingMouse = false;
+                facing = Flx2DFacing.Right;
+                acceleration.X += drag.X;
+            }
 
+            // ladders
+            if ((FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, FlxG.controllingPlayer, out pi)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
+            {
+                velocity.Y = -100;
+                isClimbingLadder = true;
 
+                // on a ladder, snap to nearest 16
+            }
+            if ((FlxG.keys.S || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, FlxG.controllingPlayer, out pi)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
+            {
+                velocity.Y = 100;
+                isClimbingLadder = true;
+            }
+
+            // Jumping.
+
+            if ((_jump >= 0 || framesSinceLeftGround < 10 || canClimbLadder) && (FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi)))
+            {
+                if (framesSinceLeftGround < 10)
+                {
+                    _jump = 0.0f;
+                    framesSinceLeftGround = 10000;
+                }
+                if (canClimbLadder)
+                {
+                    _jump = 0.0f;
+                }
+
+                attackingJoystick = false;
+                attackingMouse = false;
+
+                _jump += FlxG.elapsed;
+                if (_jump > _jumpMaxTime) _jump = -1;
+            }
+            else
+            {
+                _jump = -1;
+            }
+            if (_jump > 0)
+            {
+                if (_jump < _jumpInitialTime)
+                    velocity.Y = _jumpInitialPower;
+                else
+                    velocity.Y = _jumpPower;
+            }
+
+            // Attacking
+            if (FlxG.keys.justPressed(Keys.C))
+            {
+                attackingMouse = true;
+            }
+            if (FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder, FlxG.controllingPlayer, out pi))
+            {
+                attackingJoystick = true;
+            }
+            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X > DEADZONE ||
+                GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y > DEADZONE ||
+                GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X < DEADZONE * -1.0f ||
+                GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y < DEADZONE * -1.0f ||
+                FlxG.gamepads.isButtonDown(Buttons.X, PlayerIndex.One, out pi)
+                )
+            {
+                attackingJoystick = true;
+            }
+            else
+            {
+                attackingJoystick = false;
+            }
+
+            // Attacking using mouse.
+            if (FlxG.mouse.pressedLeftButton())
+            {
+                attackingMouse = true;
+            }
+            else
+            {
+                attackingMouse = false;
             }
 
 
-            //ANIMATION
+            if (FlxG.keys.C)
+            {
+                attackingMouse = true;
+            }
+
+            // update direction based on attacking direction.
+            if (FlxG.gamepads.isButtonDown(Buttons.RightThumbstickLeft, FlxG.controllingPlayer, out pi))
+            {
+                facing = Flx2DFacing.Left;
+            }
+            if (FlxG.gamepads.isButtonDown(Buttons.RightThumbstickRight, FlxG.controllingPlayer, out pi))
+            {
+                facing = Flx2DFacing.Right;
+            }
+            // TO DO: Same above for mouse.
+
+        }
+
+        public void updateAnims()
+        {
             if (dead)
             {
                 play("death");
@@ -408,14 +356,45 @@ namespace XNAMode
             {
                 play("run");
             }
-
             else
             {
                 play("idle");
             }
+        }
+
+        override public void update()
+        {
+            if (dead) timeDead += FlxG.elapsed;
+            else timeDead = 0;
+
+            // Calculate how many frames since the player left the ground
+
+            if (onFloor)
+            {
+                framesSinceLeftGround = 0;
+            }
+            else
+            {
+                framesSinceLeftGround++;
+            }
+
+            acceleration.Y = Homewreckr_Globals.GRAVITY;
+
+            //MOVEMENT
+
+            if (isPlayerControlled)
+            {
+                updateInputs();
+            }
+            else // is not player controlled.
+            {
+                acceleration.Y = 0;
+            }
+
+            //ANIMATION
+            updateAnims();
 
             base.update();
-
 
             canClimbLadder = false;
             isClimbingLadder = false;
@@ -440,28 +419,15 @@ namespace XNAMode
 
         public override void kill()
         {
-            //base.kill();
-
             play("death");
-
 
             dead = true;
 
-
             FlxG.score += score;
 
-            Console.WriteLine(actorName + " is dead");
+            FlxG.write(actorName + " is dead");
 
             base.kill();
-
-
-            // -
-            //flicker(10);
-
-            //angle = 90;
-            
-            
-            //FlxG.bloom.Visible = true;
 
         }
 

@@ -152,6 +152,10 @@ namespace org.flixel
         /// global variables that can be used for various cross-state stuff.
         /// </summary>
         static public List<int> levels = new List<int>();
+
+        /// <summary>
+        /// Global variable for holding the level you are on.
+        /// </summary>
         static public int level;
 
         /// <summary>
@@ -159,6 +163,10 @@ namespace org.flixel
         /// global variables that can be used for various cross-state stuff.
         /// </summary>
         static public List<int> scores = new List<int>();
+
+        /// <summary>
+        /// Global variable for holding the score.
+        /// </summary>
         static public int score;
 
         /// <summary>
@@ -170,7 +178,15 @@ namespace org.flixel
 		 * FlxSaves so you can access them whenever you want.
 		 */
 #if !WINDOWS_PHONE
+
+        /// <summary>
+        /// Global save file.
+        /// </summary>
         static public List<FlxSave> saves = new List<FlxSave>(); 
+        
+        /// <summary>
+        /// Global save file.
+        /// </summary>
         static public int save;
 #endif
 
@@ -806,7 +822,6 @@ namespace org.flixel
 #endif
             FlxU.setWorldBounds(0, 0, FlxG.width, FlxG.height);
         }
-
 
         /// <summary>
         /// Internal function that updates the camera and parallax scrolling.

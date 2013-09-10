@@ -74,7 +74,17 @@ namespace org.flixel
             set { _angle = value; _radians = MathHelper.ToRadians(_angle); }
         }
         //@benbaird We keep some private angle-related members in X-flixel due to XNA rotation differences
+
+        /// <summary>
+        /// @benbaird We keep some private angle-related members in X-flixel due to XNA rotation differences
+        /// Note, test!
+        /// </summary>
         protected float _angle = 0f;
+        
+        /// <summary>
+        /// @benbaird We keep some private angle-related members in X-flixel due to XNA rotation differences
+        /// Note, test!
+        /// </summary>
         protected float _radians = 0f;
 
         /// <summary>

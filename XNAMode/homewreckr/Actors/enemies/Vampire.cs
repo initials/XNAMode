@@ -29,9 +29,9 @@ namespace XNAMode
             offset.Y = 1;
 
             //basic player physics
-            int runSpeed = 35;
+            //int runSpeed = 35;
             //drag.X = runSpeed * 4;
-            acceleration.Y = Actor.GRAVITY;
+            acceleration.Y = Homewreckr_Globals.GRAVITY;
             //maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 

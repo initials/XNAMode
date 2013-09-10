@@ -49,7 +49,7 @@ namespace XNAMode
             if (dead)
             {
                 timeDead += FlxG.elapsed;
-                acceleration.Y = Actor.GRAVITY;
+                acceleration.Y = Homewreckr_Globals.GRAVITY;
             }
             else
             {

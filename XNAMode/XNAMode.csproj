@@ -111,6 +111,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="flixel\data\FlxGlobal.cs" />
     <Compile Include="fx\BloomComponent.cs" />
     <Compile Include="fx\BloomSettings.cs" />
     <Compile Include="homewreckr\Actors\EnemyActor.cs" />
@@ -197,7 +198,7 @@
     <Compile Include="FlixelEntryPoint.cs" />
     <Compile Include="flixel\data\FlxHud.cs" />
     <Compile Include="flixel\FlxCaveGenerator.cs" />
-    <Compile Include="flixel\FlxOgmoLevel.cs" />
+    <Compile Include="flixel\FlxXMLReader.cs" />
     <Compile Include="flixel\FlxOnlineStatCounter.cs" />
     <Compile Include="flixel\data\FlxAnim.cs" />
     <Compile Include="flixel\data\FlxConsole.cs" />
@@ -282,10 +283,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="levelDetails.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XNAModeContent\XNAModeContent.contentproj">
@@ -319,11 +316,6 @@
       <ProductName>Microsoft XNA Framework Redistributable 4.0</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="level1.oel">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

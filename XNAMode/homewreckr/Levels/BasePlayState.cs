@@ -229,39 +229,46 @@ namespace XNAMode
 
             // get the level to parse using FlxG.level
 
-            string currentLevel = "l" + FlxG.level.ToString();
+            levelAttrs = FlxXMLReader.readCustomXMLLevelsAttrs("levelSettings.xml");
 
-            XElement xelement = XElement.Load("levelSettings.xml");
+            #region old level atts load.
 
-            foreach (XElement xEle in xelement.Descendants("settings").Elements())
-            {
-                XElement firstSpecificChildElement = xEle.Element(currentLevel);
-                if (firstSpecificChildElement != null )
-                {
-                    if (firstSpecificChildElement.Value.ToString()=="") 
-                    {
-                        levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
-                        XAttribute playerControlled = firstSpecificChildElement.Attribute("playerControlled");
-                        if (playerControlled != null)
-                        {
-                            levelAttrs.Add("playerControlled", xEle.Name.ToString());
-                        }
-                    }
-                    else 
-                    {
-                        levelAttrs.Add(xEle.Name.ToString(), firstSpecificChildElement.Value.ToString());
-                        XAttribute playerControlled = firstSpecificChildElement.Attribute("playerControlled");
-                        if (playerControlled != null )
-                        {
-                            levelAttrs.Add("playerControlled", xEle.Name.ToString());
-                        }
-                    }
-                }
-                else
-                {
-                    levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
-                }
-            }
+            //string currentLevel = "l" + FlxG.level.ToString();
+
+            //XElement xelement = XElement.Load("levelSettings.xml");
+
+            //foreach (XElement xEle in xelement.Descendants("settings").Elements())
+            //{
+            //    XElement firstSpecificChildElement = xEle.Element(currentLevel);
+            //    if (firstSpecificChildElement != null )
+            //    {
+            //        if (firstSpecificChildElement.Value.ToString()=="") 
+            //        {
+            //            levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
+            //            XAttribute playerControlled = firstSpecificChildElement.Attribute("playerControlled");
+            //            if (playerControlled != null)
+            //            {
+            //                levelAttrs.Add("playerControlled", xEle.Name.ToString());
+            //            }
+            //        }
+            //        else 
+            //        {
+            //            levelAttrs.Add(xEle.Name.ToString(), firstSpecificChildElement.Value.ToString());
+            //            XAttribute playerControlled = firstSpecificChildElement.Attribute("playerControlled");
+            //            if (playerControlled != null )
+            //            {
+            //                levelAttrs.Add("playerControlled", xEle.Name.ToString());
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
+            //    }
+            //}
+
+            #endregion
+
 
             FlxG.levelWidth = Convert.ToInt32(levelAttrs["levelWidth"]) * 16;
             FlxG.levelHeight = Convert.ToInt32(levelAttrs["levelHeight"]) * 16;
@@ -276,11 +283,6 @@ namespace XNAMode
             bgSprite.color = Color.DarkGray;
             bgSprite.boundingBoxOverride = false;
             add(bgSprite);
-
-
-            
-
-
 
             // Generate the levels caves/tiles.
 
@@ -422,7 +424,7 @@ namespace XNAMode
 
 
             //FlxG.followAdjust(0.5f, 0.0f);
-            FlxG.followBounds(0, 0, Convert.ToInt32(levelAttrs["levelWidth"]) * 16, Convert.ToInt32(levelAttrs["levelHeight"]) * 16);
+            FlxG.followBounds(0, 0, Convert.ToInt32(levelAttrs["levelWidth"]) * Homewreckr_Globals.TILE_SIZE_X, Convert.ToInt32(levelAttrs["levelHeight"]) * Homewreckr_Globals.TILE_SIZE_Y);
 
             add(actors);
             add(bullets);
@@ -438,24 +440,15 @@ namespace XNAMode
             blood.setXSpeed(-152, 152);
             blood.setYSpeed(-250, -50);
             blood.setRotation(0, 0);
-            blood.gravity = Actor.GRAVITY;
+            blood.gravity = Homewreckr_Globals.GRAVITY;
             blood.createSprites(FlxG.Content.Load<Texture2D>("initials/blood"), 1500, true, 1.0f, 0.1f);
-            
-
             add(blood);
 
             add(decorationsTilemap);
 
-            //pointBurst = new PointBurst(0, 0);
-            //add(pointBurst);
-            
-
             //FlxG.autoHandlePause = true;
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
-
-
-
         }
 
         override public void update()
@@ -535,23 +528,16 @@ namespace XNAMode
             FlxU.overlap(actors, playerControlledActors, actorOverlap);
 
 
-
-            //if (FlxG.mouse.pressedRightButton())
-            //{
-            //    mainTilemap.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 0, true);
-            //    decorationsTilemap.setTile((int)FlxG.mouse.x / 16, ((int)FlxG.mouse.y / 16) - 1, 0, true);
-            //}
-            //if (FlxG.mouse.pressedLeftButton())
-            //{
-            //    mainTilemap.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 1, true);
-            //}
-
-
-
-
-
-
-
+            // Allow editing of terrain if SHIFT + Mouse is pressed.
+            if (FlxG.mouse.pressedRightButton() && FlxG.keys.SHIFT)
+            {
+                mainTilemap.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 0, true);
+                decorationsTilemap.setTile((int)FlxG.mouse.x / 16, ((int)FlxG.mouse.y / 16) - 1, 0, true);
+            }
+            if (FlxG.mouse.pressedLeftButton() && FlxG.keys.SHIFT)
+            {
+                mainTilemap.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 1, true);
+            }
 
             base.update();
 
@@ -559,26 +545,33 @@ namespace XNAMode
             if (FlxG.keys.justPressed(Keys.Escape) || playerControlledActors.getFirstAlive() == null )
             {
                 Console.WriteLine("Just pressed Escape");
-
                 FlxG.state = new GameSelectionMenuState();
-                //return;
             }
 
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         protected bool overlapWithLadder(object Sender, FlxSpriteCollisionEvent e)
         {
             if (e.Object1 is Actor) 
             {
-                //((Actor)(e.Object1)).x = e.Object2.x;
-                //((Actor)(e.Object1)).y = e.Object2.y;
                 ((Actor)(e.Object1)).canClimbLadder = true;
             }
             return true;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         protected bool actorOverlap(object Sender, FlxSpriteCollisionEvent e)
         {
             if (e.Object1.dead == false && e.Object2.dead == false && e.Object1.flickering() == false && e.Object2.flickering() == false) 
@@ -589,16 +582,16 @@ namespace XNAMode
 
             return true;
         }
-        //actors, bullets
+
+        /// <summary>
+        /// e1=actors,
+        /// e2=bullets
+        /// </summary>
+        /// <param name="Sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         protected bool overlapped(object Sender, FlxSpriteCollisionEvent e)
         {
-            /*
-            if ((e.Object1 is BotBullet) || (e.Object1 is Bullet))
-                e.Object1.kill();
-            e.Object2.hurt(1);
-            return true;
-             */
-
             // First reject Actors and their bullets.
             if ((e.Object1 is Warlock) && (e.Object2 is Fireball))
             {
@@ -630,13 +623,7 @@ namespace XNAMode
                 e.Object2.y = -1000;
                 e.Object2.kill();
 
-                //blood.height = e.Object1.height;
-                //blood.width = e.Object1.width;
-
                 blood.at(e.Object1);
-
-
-
 
                 blood.start(true, 0, 10);
             }
@@ -672,7 +659,6 @@ namespace XNAMode
                 }
             }
             #endregion
-
             #region Mistress
             if (ActorType == "mistress")
             {
@@ -694,7 +680,6 @@ namespace XNAMode
                 }
             }
             #endregion
-            
             #region Warlock
             if (ActorType == "warlock")
             {
@@ -717,7 +702,6 @@ namespace XNAMode
                 }
             }
             #endregion
-
             #region Artist
             if (ActorType == "artist")
             {
@@ -1533,11 +1517,6 @@ namespace XNAMode
                 }
             }
             #endregion
-
-            
-
-             
-
             #region Willowisp
             if (ActorType == "willowisp")
             {
@@ -1594,9 +1573,6 @@ namespace XNAMode
             }
             #endregion
 
-
-
         }
-
     }
 }

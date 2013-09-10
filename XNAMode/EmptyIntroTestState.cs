@@ -17,6 +17,8 @@ namespace XNAMode
         int timeOfDay;
         public FlxSprite bg;
         int bloomSettingsIndex = 0;
+
+
         override public void create()
         {
             base.create();
@@ -27,7 +29,8 @@ namespace XNAMode
             bg.addAnimation("second", new int[] { 0, 11, 12, 0, 1, 12, 0, 1, 12 }, 2);
             bg.play("first");
 
-            add(bg);
+            //add(bg);
+            FlxG.autoHandlePause = true;
 
         }
         /*
@@ -112,16 +115,20 @@ namespace XNAMode
         {
 
 
+            
+
             if (FlxG.keys.M)
             {
-                bg.play("first");
+                //bg.play("first");
+                FlxG.pause = true;
             }
             if (FlxG.keys.K)
             {
-                bg.play("second");
-
+                //bg.play("second");
+                FlxG.pause = false;
             }
-            Console.WriteLine(bg.frame);
+
+            Console.WriteLine(FlxG.pause);
 
 
 
