@@ -529,6 +529,7 @@ namespace org.flixel
 
                 _curKeyboard[i] = Keyboard.GetState((PlayerIndex)i);
             }
+
         }
 
 
@@ -744,8 +745,21 @@ namespace org.flixel
         {
             PlayerIndex playerIndex;
 
-            return isNewKeyPress(Keys.P, controllingPlayer, out playerIndex) ||
-                isNewKeyPress(Keys.Pause, controllingPlayer, out playerIndex);
+            //_previousPauseStatePerUpdate = FlxG.pause;
+
+            //if ((isNewKeyPress(Keys.P, controllingPlayer, out playerIndex) ||
+            //    isNewKeyPress(Keys.Pause, controllingPlayer, out playerIndex)) == true)
+            //{
+            //    Console.WriteLine(" isPauseGame returning true " + _previousPauseStatePerUpdate);
+                
+            //}
+
+
+
+            
+
+            return (isNewKeyPress(Keys.P, controllingPlayer, out playerIndex) ||
+                isNewKeyPress(Keys.Pause, controllingPlayer, out playerIndex) );
         }
 
     }

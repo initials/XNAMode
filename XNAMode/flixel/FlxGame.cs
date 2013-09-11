@@ -277,6 +277,9 @@ namespace org.flixel
 		/// </summary>
         internal void unpauseGame()
 		{
+
+            Console.WriteLine("Unpausing game from FlxGame");
+
 			//if(!FlxG.panel.visible) flash.ui.Mouse.hide();
 			FlxG.resetInput();
 			_paused = false;
@@ -288,6 +291,8 @@ namespace org.flixel
 		/// </summary>
         internal void pauseGame()
 		{
+            Console.WriteLine("Pausing game from FlxGame");
+
             //if((x != 0) || (y != 0))
             //{
             //    x = 0;
@@ -362,7 +367,19 @@ namespace org.flixel
             }
             else if (FlxG.autoHandlePause && (FlxG.keys.isPauseGame(FlxG.controllingPlayer) || FlxG.gamepads.isPauseGame(FlxG.controllingPlayer)))
             {
-                FlxG.pause = !FlxG.pause;
+                //Previously, causing a double up of pause.
+                //FlxG.pause = !FlxG.pause;
+
+                _paused = !_paused;
+
+                if (_paused == true)
+                {
+                    FlxG.pauseSounds();
+                }
+                else if (_paused == false)
+                {
+                    FlxG.playSounds();
+                }
             }
 
             if (_paused)

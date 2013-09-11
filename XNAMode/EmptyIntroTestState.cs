@@ -28,10 +28,11 @@ namespace XNAMode
             bg.addAnimation("first", new int[] { 0,1,2,0,1,2,0,1,2}, 2);
             bg.addAnimation("second", new int[] { 0, 11, 12, 0, 1, 12, 0, 1, 12 }, 2);
             bg.play("first");
-
-            //add(bg);
+            bg.velocity.Y = 20;
+            add(bg);
             FlxG.autoHandlePause = true;
 
+            FlxG.playMusic("music/goat");
         }
         /*
         override public void create()
@@ -115,7 +116,8 @@ namespace XNAMode
         {
 
 
-            
+            //FlxG.autoHandlePause = true;
+
 
             if (FlxG.keys.M)
             {
@@ -128,7 +130,7 @@ namespace XNAMode
                 FlxG.pause = false;
             }
 
-            Console.WriteLine(FlxG.pause);
+            //Console.WriteLine(FlxG.pause);
 
 
 
@@ -208,6 +210,13 @@ namespace XNAMode
                 FlxG.state = new GameSelectionMenuState();
                 return;
             }
+            if (FlxG.keys.justPressed(Keys.F9))
+            {
+                FlxG.state = new CutsceneState();
+                return;
+            }
+
+
 
         }
     }

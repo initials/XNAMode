@@ -36,8 +36,20 @@ namespace org.flixel
         /// Content Manager
         /// </summary>
         private static ContentManager _content;
+
+        /// <summary>
+        /// Reference to the base xna tiles
+        /// </summary>
         private static Texture2D _xnatiles;
+
+        /// <summary>
+        /// reference to the default font
+        /// </summary>
         private static SpriteFont _font;
+
+        /// <summary>
+        /// reference to the main sprite batch.
+        /// </summary>
         private static SpriteBatch _spriteBatch;
 
         /// <summary>
@@ -441,14 +453,23 @@ namespace org.flixel
             {
                 if (_pause != value)
                 {
+                    Console.WriteLine("_pause/value " + _pause + " " + value);
+
                     _pause = value;
+
+                    Console.WriteLine("_pause/value " + _pause + " " + value);
+
                     if (_pause)
                     {
+                        Console.WriteLine("_pause == true");
+
                         _game.pauseGame();
                         pauseSounds();
                     }
                     else
                     {
+                        Console.WriteLine("_pause == false");
+
                         _game.unpauseGame();
                         playSounds();
                     }
@@ -684,7 +705,7 @@ namespace org.flixel
 		/// <summary>
         /// Internal helper, pauses all game sounds.
 		/// </summary>
-		static protected void pauseSounds()
+		static public void pauseSounds()
 		{
 			if((music != null) && music.active)
 				music.pause();
@@ -702,9 +723,12 @@ namespace org.flixel
 		/// <summary>
         /// Internal helper, pauses all game sounds.
 		/// </summary>
-		static protected void playSounds()
+		static public void playSounds()
 		{
-			if((music != null) && music.active)
+            // had to change this from if((music != null) && music.active) 
+            // so that the music would resume.
+
+			if((music != null) && !music.active)
 				music.play();
 			int i = 0;
             FlxSound s;

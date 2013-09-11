@@ -1,23 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <game name="">
+  <script>
+    <!--
+      <dialog actor="Linda Lee"></dialog>
+      -->
+    <l1>
+      <dialog actor="">Mar-que and Linda Lee are two professional cosplay models who are fed up with being ogled, harassed and touched.</dialog>
+      <dialog actor="">To make ends meet they pick up work as pest control.</dialog>
+      <dialog actor="">The boss is a pervert and pays them double to do it in their most popular cosplay outfits.</dialog>
+      <dialog actor="">Is there any way to escape the demeaning work?</dialog>
+      <dialog actor="">Is violence an option?</dialog>
+      <dialog actor="">Is it moral to kill a fruit bat if it poops on your brand new Lexus?</dialog>
+      <dialog actor="Linda Lee">This is so fucking gross.</dialog>
+      <dialog actor="Marqu">I've figured it out. Our way out.</dialog>
+      <dialog actor="Marqu">We kill the wasps. We take their honey and sell it.</dialog>
+      <dialog actor="Linda Lee">Wasps don't make honey Marqu you fucking idiot.</dialog>
+    </l1>
+  </script>
   <misc>
     <openingtitles>
       I'm made of metal\nMy circuits gleam\nI am perpetual\nI keep the country clean
     </openingtitles>
-    <script>
-      <l1>Mar-que and Linda Lee are two professional cosplay models who are fed up with being ogled, harassed and touched.</l1>
-      <l2>To make ends meet they pick up work as pest control.</l2>
-      <l3>The boss is a pervert and pays them double to do it in their most popular cosplay outfits.</l3>
-      <l4>Is there any way to escape the demeaning work?</l4>
-      <l5>Is violence an option?</l5>
-      <l6>Is it moral to kill a fruit bat if it poops on your brand new Lexus?</l6>
-    </script>
-
-    <l1script>
-      <v1 actor=""></v1>
-      
-    </l1script>
-    
     <!-- template for all levels -->
     <levels>
       <l1></l1>

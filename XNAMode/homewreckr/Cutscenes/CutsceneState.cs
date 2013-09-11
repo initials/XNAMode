@@ -8,6 +8,8 @@ using org.flixel;
 using System.Linq;
 using System.Xml.Linq;
 
+using System.Reflection;
+
 namespace XNAMode
 {
     public class CutsceneState : FlxState
@@ -18,6 +20,13 @@ namespace XNAMode
         private Marksman marksman;
         private Mistress mistress;
         private Warlock warlock;
+
+        private List<Dictionary<string, string>> scriptList;
+
+        private int totalScriptTexts;
+
+        private int currentScriptText;
+
 
         /// <summary>
         /// Creates the scene.
@@ -32,14 +41,14 @@ namespace XNAMode
             // HUD - use P1 for the character name.
             // P2 for the text.
             FlxG.resetHud();
-
+            FlxG.showHud();
             FlxG.setHudText(1, "Linda Lee");
             FlxG.setHudText(3, "Hey hey hey");
 
             FlxG.setHudTextPosition(1, 80, 140);
             FlxG.setHudTextScale(1, 2);
             FlxG.setHudTextPosition(3, 80, 150);
-            FlxG.setHudTextScale(3, 2);
+            FlxG.setHudTextScale(3,1);
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
@@ -64,65 +73,62 @@ namespace XNAMode
             warlock.isPlayerControlled = false;
             add(warlock);
 
+            scriptList = FlxXMLReader.readCustomXML("script", "levelSettings.xml");
 
-            /*
+            totalScriptTexts = scriptList.Count();
 
-            // Build a list of the script
+            //Console.WriteLine("------------------------------------------------------" + x[0]);
 
-            levelAttrs = new Dictionary<string, string>();
+            
+            setForScriptContents();
 
-            // get the level to parse using FlxG.level
 
-            string currentLevel = "l" + FlxG.level.ToString();
 
-            XElement xelement = XElement.Load("levelSettings.xml");
+        }
 
-            foreach (XElement xEle in xelement.Descendants("settings").Elements())
+
+
+        private void setForScriptContents()
+        {
+            // First find the actor
+
+            string actor = scriptList[currentScriptText]["actor"];
+
+            // Next find the text 
+
+            string text = scriptList[currentScriptText]["text"];
+            
+            FlxG.setHudText(1, actor);
+            FlxG.setHudText(3, text);
+
+            foreach (var item in scriptList[currentScriptText])
             {
-                XElement firstSpecificChildElement = xEle.Element(currentLevel);
+                Console.WriteLine(item.ToString());
+                
 
-                if (firstSpecificChildElement != null)
-                {
-                    if (firstSpecificChildElement.Value.ToString() == "")
-                    {
-                        levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
-
-                        //Console.WriteLine(" empty string " + xEle.Name.ToString() + "  " +  xEle.Attribute("default").Value.ToString());
-                        XAttribute playerControlled = firstSpecificChildElement.Attribute("playerControlled");
-
-                        if (playerControlled != null)
-                        {
-                            levelAttrs.Add("playerControlled", xEle.Name.ToString());
-                        }
-
-                    }
-                    else
-                    {
-                        levelAttrs.Add(xEle.Name.ToString(), firstSpecificChildElement.Value.ToString());
-
-                        XAttribute playerControlled = firstSpecificChildElement.Attribute("playerControlled");
-
-                        if (playerControlled != null)
-                        {
-                            levelAttrs.Add("playerControlled", xEle.Name.ToString());
-                        }
-                    }
-                }
-                else
-                {
-
-                    levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
-
-                }
             }
-            */
-
-
         }
 
         override public void update()
         {
 
+            PlayerIndex pi;
+
+            if (FlxG.keys.justPressed(Keys.Enter) || (FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi)))
+            {
+                if (currentScriptText < totalScriptTexts - 1) {
+                    currentScriptText ++;
+                    setForScriptContents();
+
+                }
+                else 
+                {
+                    FlxG.fade.start(Color.Black);
+                    FlxG.setHudText(1, "");
+                    FlxG.setHudText(3, "");
+                    FlxG.transition.startFadeOut(0.1f, 0, 120);
+                }
+            }
 
             // exit.
             if (FlxG.keys.ESCAPE)
@@ -131,9 +137,17 @@ namespace XNAMode
                 return;
             }
 
+
+            if (FlxG.transition.complete)
+            {
+                FlxG.state = new BasePlayState();
+            }
+
             base.update();
         }
 
+
+        
 
     }
 }
