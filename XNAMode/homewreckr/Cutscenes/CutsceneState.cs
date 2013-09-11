@@ -88,7 +88,6 @@ namespace XNAMode
             setForScriptContents();
 
 
-
         }
 
 
@@ -102,13 +101,14 @@ namespace XNAMode
             // Next find the text 
 
             string text = scriptList[currentScriptText]["text"];
+            text = text.Replace("\n", Environment.NewLine);
             
             FlxG.setHudText(1, actor);
             FlxG.setHudText(3, text);
 
             foreach (var item in scriptList[currentScriptText])
             {
-                Console.WriteLine(item.ToString());
+                //Console.WriteLine(item.ToString());
                 
 
             }
