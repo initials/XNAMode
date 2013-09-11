@@ -39,7 +39,7 @@ namespace XNAMode
 
             
             // HUD - use P1 for the character name.
-            // P2 for the text.
+            // P3 for the text.
             FlxG.resetHud();
             FlxG.showHud();
             FlxG.setHudText(1, "Linda Lee");
@@ -49,6 +49,11 @@ namespace XNAMode
             FlxG.setHudTextScale(1, 2);
             FlxG.setHudTextPosition(3, 80, 150);
             FlxG.setHudTextScale(3,1);
+
+            FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width - 30, 160);
+
+
+
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 

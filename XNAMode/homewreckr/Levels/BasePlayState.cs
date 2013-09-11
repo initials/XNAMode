@@ -270,8 +270,8 @@ namespace XNAMode
             #endregion
 
 
-            FlxG.levelWidth = Convert.ToInt32(levelAttrs["levelWidth"]) * 16;
-            FlxG.levelHeight = Convert.ToInt32(levelAttrs["levelHeight"]) * 16;
+            FlxG.levelWidth = Convert.ToInt32(levelAttrs["levelWidth"]) * Homewreckr_Globals.TILE_SIZE_X;
+            FlxG.levelHeight = Convert.ToInt32(levelAttrs["levelHeight"]) * Homewreckr_Globals.TILE_SIZE_Y;
 
             Texture2D bgGraphic = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]);
             bgSprite = new FlxSprite(0, 0, bgGraphic);
@@ -309,7 +309,7 @@ namespace XNAMode
 
             mainTilemap = new FlxTilemap();
             mainTilemap.auto = FlxTilemap.AUTO;
-            mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["tiles"]), 16, 16);
+            mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["tiles"]), Homewreckr_Globals.TILE_SIZE_X, Homewreckr_Globals.TILE_SIZE_Y);
             mainTilemap.boundingBoxOverride = true;
 
 
@@ -322,11 +322,11 @@ namespace XNAMode
 
             for (int i = 0; i < 3; i++)
             {
-                int rx = (int)(FlxU.random() * (FlxG.levelWidth / 16));
-                int ry = (int)(FlxU.random() * (FlxG.levelHeight / 16));
+                int rx = (int)(FlxU.random() * (FlxG.levelWidth / Homewreckr_Globals.TILE_SIZE_X));
+                int ry = (int)(FlxU.random() * (FlxG.levelHeight / Homewreckr_Globals.TILE_SIZE_Y));
 
-                ladder = new FlxTileblock(rx * 16, ry * 16, 16, 160);
-                ladder.loadTiles(FlxG.Content.Load<Texture2D>("initials/ladderTiles_16x16"), 16, 16, 0);
+                ladder = new FlxTileblock(rx * Homewreckr_Globals.TILE_SIZE_X, ry * Homewreckr_Globals.TILE_SIZE_Y, Homewreckr_Globals.TILE_SIZE_X, Homewreckr_Globals.TILE_SIZE_X * 10);
+                ladder.loadTiles(FlxG.Content.Load<Texture2D>("initials/ladderTiles_16x16"), Homewreckr_Globals.TILE_SIZE_X, Homewreckr_Globals.TILE_SIZE_Y, 0);
                 ladders.add(ladder);
             }
             //generate some ladders in the empty columns
@@ -335,8 +335,8 @@ namespace XNAMode
             {
                 foreach (var item in emptyColumnsAfterSmooth)
                 {
-                    ladder = new FlxTileblock(item * 16, 0, 16, FlxG.levelHeight);
-                    ladder.loadTiles(FlxG.Content.Load<Texture2D>("initials/ladderTiles_16x16"), 16, 16, 0);
+                    ladder = new FlxTileblock(item * Homewreckr_Globals.TILE_SIZE_X, 0, Homewreckr_Globals.TILE_SIZE_X, FlxG.levelHeight);
+                    ladder.loadTiles(FlxG.Content.Load<Texture2D>("initials/ladderTiles_16x16"), Homewreckr_Globals.TILE_SIZE_X, Homewreckr_Globals.TILE_SIZE_Y, 0);
                     ladders.add(ladder);
                 }
             }
@@ -346,12 +346,12 @@ namespace XNAMode
             for (int i = 0; i < 4; i++)
             {
 
-                int rx = (int)(FlxU.random() * (FlxG.levelWidth / 16));
-                int ry = (int)(FlxU.random() * (FlxG.levelHeight / 16));
+                int rx = (int)(FlxU.random() * (FlxG.levelWidth / Homewreckr_Globals.TILE_SIZE_X));
+                int ry = (int)(FlxU.random() * (FlxG.levelHeight / Homewreckr_Globals.TILE_SIZE_Y));
 
                 for (int j = 0; j < 10; j++)
                 {
-                    FallAwayBridgeBlock f = new FallAwayBridgeBlock((rx * 16) + (j * 16), ry * 16);
+                    FallAwayBridgeBlock f = new FallAwayBridgeBlock((rx * Homewreckr_Globals.TILE_SIZE_X) + (j * Homewreckr_Globals.TILE_SIZE_X), ry * Homewreckr_Globals.TILE_SIZE_Y);
                     allLevelTiles.add(f);
 
                 }
@@ -372,9 +372,9 @@ namespace XNAMode
 
             decorationsTilemap = new FlxTilemap();
             decorationsTilemap.auto = FlxTilemap.RANDOM;
-            decorationsTilemap.randomLimit = (int)DecorTex.Width / 16;
+            decorationsTilemap.randomLimit = (int)DecorTex.Width / Homewreckr_Globals.TILE_SIZE_X;
             decorationsTilemap.boundingBoxOverride = false;
-            decorationsTilemap.loadMap(newDec, DecorTex, 16, 16);
+            decorationsTilemap.loadMap(newDec, DecorTex, Homewreckr_Globals.TILE_SIZE_X, Homewreckr_Globals.TILE_SIZE_Y);
             //add it after the actors.
 
             decorationsBGArray = cave.createDecorationsMap(mainTilemapArray, 0.2f);
@@ -384,9 +384,9 @@ namespace XNAMode
             Texture2D DecorTexRear = FlxG.Content.Load<Texture2D>("initials/decorationsBack_16x16");
             decorationsRearTilemap = new FlxTilemap();
             decorationsRearTilemap.auto = FlxTilemap.RANDOM;
-            decorationsRearTilemap.randomLimit = (int)DecorTex.Width / 16;
+            decorationsRearTilemap.randomLimit = (int)DecorTex.Width / Homewreckr_Globals.TILE_SIZE_X;
             decorationsRearTilemap.boundingBoxOverride = false;
-            decorationsRearTilemap.loadMap(newDec2, DecorTexRear, 16, 16);
+            decorationsRearTilemap.loadMap(newDec2, DecorTexRear, Homewreckr_Globals.TILE_SIZE_X, Homewreckr_Globals.TILE_SIZE_Y);
             add(decorationsRearTilemap);
 
             // build characters here
@@ -531,12 +531,12 @@ namespace XNAMode
             // Allow editing of terrain if SHIFT + Mouse is pressed.
             if (FlxG.mouse.pressedRightButton() && FlxG.keys.SHIFT)
             {
-                mainTilemap.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 0, true);
-                decorationsTilemap.setTile((int)FlxG.mouse.x / 16, ((int)FlxG.mouse.y / 16) - 1, 0, true);
+                mainTilemap.setTile((int)FlxG.mouse.x / Homewreckr_Globals.TILE_SIZE_X, (int)FlxG.mouse.y / Homewreckr_Globals.TILE_SIZE_Y, 0, true);
+                decorationsTilemap.setTile((int)FlxG.mouse.x / Homewreckr_Globals.TILE_SIZE_X, ((int)FlxG.mouse.y / Homewreckr_Globals.TILE_SIZE_Y) - 1, 0, true);
             }
             if (FlxG.mouse.pressedLeftButton() && FlxG.keys.SHIFT)
             {
-                mainTilemap.setTile((int)FlxG.mouse.x / 16, (int)FlxG.mouse.y / 16, 1, true);
+                mainTilemap.setTile((int)FlxG.mouse.x / Homewreckr_Globals.TILE_SIZE_X, (int)FlxG.mouse.y / Homewreckr_Globals.TILE_SIZE_Y, 1, true);
             }
 
             base.update();
@@ -645,7 +645,7 @@ namespace XNAMode
                     //FlxG.write("Marksman being made " + NumberOfActors);
 
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    marksman = new Marksman(p[1] * 16, p[0] * 16, arrows.members);
+                    marksman = new Marksman(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X, arrows.members);
                     marksman.flicker(2);
                     actors.add(marksman);
                     playerControlledActors.add(marksman);
@@ -665,7 +665,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    mistress = new Mistress(p[1] * 16, p[0] * 16);
+                    mistress = new Mistress(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(mistress);
                     mistress.flicker(2);
                     playerControlledActors.add(mistress);
@@ -690,7 +690,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    warlock = new Warlock(p[1] * 16, p[0] * 16, fireballs.members);
+                    warlock = new Warlock(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X, fireballs.members);
                     actors.add(warlock);
                     warlock.flicker(2);
                     playerControlledActors.add(warlock);
@@ -708,7 +708,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    artist = new Artist(p[1] * 16, p[0] * 16);
+                    artist = new Artist(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(artist);
                 }
             }
@@ -719,7 +719,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    assassin = new Assassin(p[1] * 16, p[0] * 16);
+                    assassin = new Assassin(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(assassin);
                 }
             }
@@ -730,7 +730,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    automaton = new Automaton(p[1] * 16, p[0] * 16);
+                    automaton = new Automaton(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(automaton);
                     
 
@@ -742,16 +742,9 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    
-
                     int[] p = cave.findRandomEmpty(mainTilemapArray );
-                    bat = new Bat(p[1] * 16, p[0] * 16);
+                    bat = new Bat(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(bat);
-
-                    //Console.WriteLine("Making bat at : " + p[1] + " "+ p[0]);
-                    //Console.WriteLine("Checking p[] in MainTilemap" + mainTilemapArray[p[0]/16,p[1]/16]);
-
-
                 }
             }
             #endregion
@@ -761,7 +754,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    blight = new Blight(p[1] * 16, p[0] * 16);
+                    blight = new Blight(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(blight);
                 }
             }
@@ -772,7 +765,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    bloatedzombie = new Bloatedzombie(p[1] * 16, p[0] * 16);
+                    bloatedzombie = new Bloatedzombie(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(bloatedzombie);
                 }
             }
@@ -783,7 +776,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    bogbeast = new Bogbeast(p[1] * 16, p[0] * 16);
+                    bogbeast = new Bogbeast(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(bogbeast);
                 }
             }
@@ -794,7 +787,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    bombling = new Bombling(p[1] * 16, p[0] * 16);
+                    bombling = new Bombling(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(bombling);
                 }
             }
@@ -805,7 +798,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    centaur = new Centaur(p[1] * 16, p[0] * 16);
+                    centaur = new Centaur(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(centaur);
                 }
             }
@@ -816,7 +809,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    chicken = new Chicken(p[1] * 16, p[0] * 16);
+                    chicken = new Chicken(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(chicken);
                 }
             }
@@ -827,7 +820,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    chimaera = new Chimaera(p[1] * 16, p[0] * 16);
+                    chimaera = new Chimaera(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(chimaera);
                 }
             }
@@ -838,7 +831,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    corsair = new Corsair(p[1] * 16, p[0] * 16);
+                    corsair = new Corsair(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(corsair);
                 }
             }
@@ -849,7 +842,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    cow = new Cow(p[1] * 16, p[0] * 16);
+                    cow = new Cow(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(cow);
                 }
             }
@@ -860,7 +853,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    cyclops = new Cyclops(p[1] * 16, p[0] * 16);
+                    cyclops = new Cyclops(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(cyclops);
                 }
             }
@@ -871,7 +864,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    deathclaw = new Deathclaw(p[1] * 16, p[0] * 16);
+                    deathclaw = new Deathclaw(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(deathclaw);
                 }
             }
@@ -882,7 +875,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    deer = new Deer(p[1] * 16, p[0] * 16);
+                    deer = new Deer(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(deer);
                 }
             }
@@ -893,7 +886,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    devil = new Devil(p[1] * 16, p[0] * 16);
+                    devil = new Devil(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(devil);
                 }
             }
@@ -904,7 +897,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    djinn = new Djinn(p[1] * 16, p[0] * 16);
+                    djinn = new Djinn(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(djinn);
                 }
             }
@@ -915,7 +908,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomEmpty(mainTilemapArray);
-                    drone = new Drone(p[1] * 16, p[0] * 16);
+                    drone = new Drone(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(drone);
                 }
             }
@@ -926,7 +919,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    druid = new Druid(p[1] * 16, p[0] * 16);
+                    druid = new Druid(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(druid);
                 }
             }
@@ -937,7 +930,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    dwarf = new Dwarf(p[1] * 16, p[0] * 16);
+                    dwarf = new Dwarf(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(dwarf);
                 }
             }
@@ -948,7 +941,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    embersteed = new Embersteed(p[1] * 16, p[0] * 16);
+                    embersteed = new Embersteed(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(embersteed);
                 }
             }
@@ -959,7 +952,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    executor = new Executor(p[1] * 16, p[0] * 16);
+                    executor = new Executor(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(executor);
                 }
             }
@@ -970,7 +963,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    feline = new Feline(p[1] * 16, p[0] * 16);
+                    feline = new Feline(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(feline);
                 }
             }
@@ -981,7 +974,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    floatingeye = new Floatingeye(p[1] * 16, p[0] * 16);
+                    floatingeye = new Floatingeye(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(floatingeye);
                 }
             }
@@ -992,7 +985,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    fungant = new Fungant(p[1] * 16, p[0] * 16);
+                    fungant = new Fungant(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(fungant);
                 }
             }
@@ -1003,7 +996,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    gelatine = new Gelatine(p[1] * 16, p[0] * 16);
+                    gelatine = new Gelatine(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(gelatine);
                 }
             }
@@ -1014,7 +1007,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    gloom = new Gloom(p[1] * 16, p[0] * 16);
+                    gloom = new Gloom(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(gloom);
                 }
             }
@@ -1025,7 +1018,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    glutton = new Glutton(p[1] * 16, p[0] * 16);
+                    glutton = new Glutton(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(glutton);
                 }
             }
@@ -1036,7 +1029,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    goblin = new Goblin(p[1] * 16, p[0] * 16);
+                    goblin = new Goblin(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(goblin);
                 }
             }
@@ -1047,7 +1040,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    golem = new Golem(p[1] * 16, p[0] * 16);
+                    golem = new Golem(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(golem);
                 }
             }
@@ -1058,7 +1051,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    gorgon = new Gorgon(p[1] * 16, p[0] * 16);
+                    gorgon = new Gorgon(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(gorgon);
                 }
             }
@@ -1069,7 +1062,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    gourmet = new Gourmet(p[1] * 16, p[0] * 16);
+                    gourmet = new Gourmet(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(gourmet);
                 }
             }
@@ -1080,7 +1073,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    grimwarrior = new Grimwarrior(p[1] * 16, p[0] * 16);
+                    grimwarrior = new Grimwarrior(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(grimwarrior);
                 }
             }
@@ -1091,7 +1084,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    grizzly = new Grizzly(p[1] * 16, p[0] * 16);
+                    grizzly = new Grizzly(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(grizzly);
                 }
             }
@@ -1102,7 +1095,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    harvester = new Harvester(p[1] * 16, p[0] * 16);
+                    harvester = new Harvester(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(harvester);
                 }
             }
@@ -1113,7 +1106,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    horse = new Horse(p[1] * 16, p[0] * 16);
+                    horse = new Horse(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(horse);
                 }
             }
@@ -1124,7 +1117,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    ifrit = new Ifrit(p[1] * 16, p[0] * 16);
+                    ifrit = new Ifrit(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(ifrit);
                 }
             }
@@ -1135,7 +1128,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    imp = new Imp(p[1] * 16, p[0] * 16);
+                    imp = new Imp(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(imp);
                 }
             }
@@ -1146,7 +1139,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    kerberos = new Kerberos(p[1] * 16, p[0] * 16);
+                    kerberos = new Kerberos(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(kerberos);
                 }
             }
@@ -1157,7 +1150,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    lich = new Lich(p[1] * 16, p[0] * 16);
+                    lich = new Lich(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(lich);
                 }
             }
@@ -1168,7 +1161,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    lion = new Lion(p[1] * 16, p[0] * 16);
+                    lion = new Lion(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(lion);
                 }
             }
@@ -1182,7 +1175,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    mechanic = new Mechanic(p[1] * 16, p[0] * 16);
+                    mechanic = new Mechanic(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(mechanic);
                 }
             }
@@ -1193,7 +1186,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    mephisto = new Mephisto(p[1] * 16, p[0] * 16);
+                    mephisto = new Mephisto(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(mephisto);
                 }
             }
@@ -1204,7 +1197,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    merchant = new Merchant(p[1] * 16, p[0] * 16);
+                    merchant = new Merchant(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(merchant);
                 }
             }
@@ -1215,7 +1208,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    mermaid = new Mermaid(p[1] * 16, p[0] * 16);
+                    mermaid = new Mermaid(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(mermaid);
                 }
             }
@@ -1226,7 +1219,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    mimick = new Mimick(p[1] * 16, p[0] * 16);
+                    mimick = new Mimick(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(mimick);
                 }
             }
@@ -1237,7 +1230,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    monk = new Monk(p[1] * 16, p[0] * 16);
+                    monk = new Monk(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(monk);
                 }
             }
@@ -1248,7 +1241,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    mummy = new Mummy(p[1] * 16, p[0] * 16);
+                    mummy = new Mummy(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(mummy);
                 }
             }
@@ -1259,7 +1252,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    nightmare = new Nightmare(p[1] * 16, p[0] * 16);
+                    nightmare = new Nightmare(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(nightmare);
                 }
             }
@@ -1270,7 +1263,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    nymph = new Nymph(p[1] * 16, p[0] * 16);
+                    nymph = new Nymph(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(nymph);
                 }
             }
@@ -1281,7 +1274,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    ogre = new Ogre(p[1] * 16, p[0] * 16);
+                    ogre = new Ogre(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(ogre);
                 }
             }
@@ -1292,7 +1285,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    paladin = new Paladin(p[1] * 16, p[0] * 16);
+                    paladin = new Paladin(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(paladin);
                 }
             }
@@ -1303,7 +1296,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    phantom = new Phantom(p[1] * 16, p[0] * 16);
+                    phantom = new Phantom(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(phantom);
                 }
             }
@@ -1314,7 +1307,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    priest = new Priest(p[1] * 16, p[0] * 16);
+                    priest = new Priest(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(priest);
                 }
             }
@@ -1325,7 +1318,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    prism = new Prism(p[1] * 16, p[0] * 16);
+                    prism = new Prism(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(prism);
                 }
             }
@@ -1336,7 +1329,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    rat = new Rat(p[1] * 16, p[0] * 16);
+                    rat = new Rat(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(rat);
                 }
             }
@@ -1347,7 +1340,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    savage = new Savage(p[1] * 16, p[0] * 16);
+                    savage = new Savage(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(savage);
                 }
             }
@@ -1358,7 +1351,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    seraphine = new Seraphine(p[1] * 16, p[0] * 16);
+                    seraphine = new Seraphine(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(seraphine);
                 }
             }
@@ -1369,7 +1362,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    sheep = new Sheep(p[1] * 16, p[0] * 16);
+                    sheep = new Sheep(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(sheep);
                 }
             }
@@ -1380,7 +1373,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    skeleton = new Skeleton(p[1] * 16, p[0] * 16);
+                    skeleton = new Skeleton(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(skeleton);
                 }
             }
@@ -1391,7 +1384,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    snake = new Snake(p[1] * 16, p[0] * 16);
+                    snake = new Snake(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(snake);
                 }
             }
@@ -1402,7 +1395,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    soldier = new Soldier(p[1] * 16, p[0] * 16);
+                    soldier = new Soldier(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(soldier);
                 }
             }
@@ -1413,7 +1406,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    sphinx = new Sphinx(p[1] * 16, p[0] * 16);
+                    sphinx = new Sphinx(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(sphinx);
                 }
             }
@@ -1424,7 +1417,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    spider = new Spider(p[1] * 16, p[0] * 16);
+                    spider = new Spider(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(spider);
                 }
             }
@@ -1435,7 +1428,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    succubus = new Succubus(p[1] * 16, p[0] * 16);
+                    succubus = new Succubus(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(succubus);
                 }
             }
@@ -1446,7 +1439,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    tauro = new Tauro(p[1] * 16, p[0] * 16);
+                    tauro = new Tauro(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(tauro);
                 }
             }
@@ -1457,7 +1450,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    toad = new Toad(p[1] * 16, p[0] * 16);
+                    toad = new Toad(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(toad);
                 }
             }
@@ -1468,7 +1461,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    tormentor = new Tormentor(p[1] * 16, p[0] * 16);
+                    tormentor = new Tormentor(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(tormentor);
                 }
             }
@@ -1479,7 +1472,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    treant = new Treant(p[1] * 16, p[0] * 16);
+                    treant = new Treant(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(treant);
                 }
             }
@@ -1490,7 +1483,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    troll = new Troll(p[1] * 16, p[0] * 16);
+                    troll = new Troll(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(troll);
                 }
             }
@@ -1501,7 +1494,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    unicorn = new Unicorn(p[1] * 16, p[0] * 16);
+                    unicorn = new Unicorn(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(unicorn);
                 }
             }
@@ -1512,7 +1505,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    vampire = new Vampire(p[1] * 16, p[0] * 16);
+                    vampire = new Vampire(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(vampire);
                 }
             }
@@ -1523,7 +1516,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    willowisp = new Willowisp(p[1] * 16, p[0] * 16);
+                    willowisp = new Willowisp(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(willowisp);
                 }
             }
@@ -1534,7 +1527,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    wizard = new Wizard(p[1] * 16, p[0] * 16);
+                    wizard = new Wizard(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(wizard);
                 }
             }
@@ -1545,7 +1538,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    wolf = new Wolf(p[1] * 16, p[0] * 16);
+                    wolf = new Wolf(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(wolf);
                 }
             }
@@ -1556,7 +1549,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomEmpty(mainTilemapArray);
-                    zinger = new Zinger(p[1] * 16, p[0] * 16);
+                    zinger = new Zinger(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(zinger);
                 }
             }
@@ -1567,7 +1560,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    zombie = new Zombie(p[1] * 16, p[0] * 16);
+                    zombie = new Zombie(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
                     actors.add(zombie);
                 }
             }

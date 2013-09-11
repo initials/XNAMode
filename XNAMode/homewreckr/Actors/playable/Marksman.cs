@@ -49,18 +49,7 @@ namespace XNAMode
 
         override public void update()
         {
-
-            //PlayerIndex pi;
-
-            //SHOOTING
-            //if (!flickering() && (FlxG.keys.justPressed(Keys.C) ||
-            //        FlxG.gamepads.isNewButtonPress(Buttons.RightTrigger, FlxG.controllingPlayer, out pi)) ||
-            //        FlxG.gamepads.isButtonDown(Buttons.LeftTrigger, FlxG.controllingPlayer, out pi))
-            //{
-            //    //attacking = true;
-
             
-
             if ((_curFrame == 8 || _curFrame==9 || _curFrame==10) && attackingJoystick )
             {
                 float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
@@ -112,10 +101,6 @@ namespace XNAMode
                 double velocity_x = Math.Cos((float)radians);
                 double velocity_y = Math.Sin((float)radians);
 
-                //angle = (float)degrees;
-                //Console.WriteLine(" x {0} y {1} x {2} y {3} vx {4} vy {5} rot {6} degrees {7}", x, y, rightX1, rightY1, velocity_x, velocity_y, radians, degrees);
-
-            
                 ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(velocity_x *= -600 ), (int)(velocity_y *= -600 ));
 
                 if (++_curArrow >= _bullets.Count)
@@ -125,9 +110,6 @@ namespace XNAMode
                 _curFrame = 0;
 
             }
-
-
-            
 
             base.update();
 
