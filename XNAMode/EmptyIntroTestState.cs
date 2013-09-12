@@ -33,6 +33,10 @@ namespace XNAMode
             FlxG.autoHandlePause = true;
 
             FlxG.playMusic("music/goat");
+
+
+            FlxXMLReader.readOgmoV2Level("ogmoLevels/testlevel2.oel");
+
         }
         /*
         override public void create()
