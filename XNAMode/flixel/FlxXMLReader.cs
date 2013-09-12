@@ -15,6 +15,44 @@ namespace org.flixel
     /// </summary>
     public class FlxXMLReader
     {
+
+        public static List<Dictionary<string, string>> readOgmoV2Level(string filename)
+        {
+            List<Dictionary<string, string>> completeSet = new List<Dictionary<string, string>>();
+
+            string currentLevel = "l" + FlxG.level.ToString();
+
+            XDocument xdoc = XDocument.Load(filename);
+
+            // Load level main stats.
+            XElement xelement = XElement.Load(filename);
+            IEnumerable<XAttribute> attList =
+            from at in xelement.Attributes()
+            select at;
+
+            foreach (XAttribute xAttr in attList)
+            {
+                Console.WriteLine(xAttr.Name.ToString() + "  " + xAttr.Value.ToString());
+                //levelAttrs.Add(xAttr.Name.ToString(), xAttr.Value.ToString());
+
+            }
+
+
+
+            foreach (XElement xEle in xdoc.Descendants("level").Elements())
+            {
+                Console.WriteLine(xEle.Name.ToString());
+
+
+
+                
+            }
+            return completeSet;
+        }
+
+
+
+
         /// <summary>
         /// Reads a custom XML document
         /// FlxXMLReader.readCustomXMLLevelsAttrs("levelSettings.xml");
