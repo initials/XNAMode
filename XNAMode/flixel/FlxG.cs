@@ -408,6 +408,9 @@ namespace org.flixel
         /// </summary>
         public static void hideHud() { _game._hud.hideHud(); }
 
+        public static void showHudGraphic() { _game._hud.showHudGraphic(); }
+        public static void hideHudGraphic() { _game._hud.hideHudGraphic(); }
+
         /// <summary>
         /// Set's the hud text to, for the player number
         /// </summary>

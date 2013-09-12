@@ -208,7 +208,8 @@ namespace XNAMode
 
             //important to reset the hud to get the text, gamepad buttons out.
             FlxG.resetHud();
-            //FlxG.showHud();
+            FlxG.showHud();
+            FlxG.showHudGraphic();
 
             //FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
@@ -561,6 +562,7 @@ namespace XNAMode
         {
             if (e.Object1 is Actor) 
             {
+                ((Actor)(e.Object1)).ladderPosX = e.Object2.x;
                 ((Actor)(e.Object1)).canClimbLadder = true;
             }
             return true;

@@ -28,7 +28,7 @@ namespace XNAMode
             addAnimation("attack", new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }, 26 ,true);
             addAnimation("jump", new int[] { 3, 4, 5, 6, 7, 8, 9 }, 3, true);
             addAnimation("climb", new int[] { 20, 21 }, 6, true);
-
+            addAnimation("climbidle", new int[] { 20 }, 0, true);
 
             //addAnimationCallback(stopAttacking);
 

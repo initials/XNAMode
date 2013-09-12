@@ -23,6 +23,8 @@ namespace org.flixel
         public FlxText p3HudText;
         public FlxText p4HudText;
 
+        public FlxSprite hudGraphic;
+
         /// <summary>
         /// used to display a game pad button at regular resolution.
         /// </summary>
@@ -58,6 +60,13 @@ namespace org.flixel
             _consoleColor = new Color(0, 0, 0, 0x00);
 
             visible = false;
+
+            hudGraphic = new FlxSprite(targetLeft+76, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 36, FlxG.Content.Load<Texture2D>("initials/hudElements"));
+            hudGraphic.visible = false;
+            hudGraphic.scrollFactor.X = 0;
+            hudGraphic.scrollFactor.Y = 0;
+            hudGraphic.scale = 2;
+
 
             p1OriginalPosition = new Vector2(targetLeft, 0);
             p2OriginalPosition = new Vector2(targetLeft, 0);
@@ -178,17 +187,29 @@ namespace org.flixel
             _gamePadButton.visible = false;
         }
 
+        public void showHudGraphic()
+        {
+            hudGraphic.visible = true;
+        }
+        public void hideHudGraphic()
+        {
+            hudGraphic.visible = false;
+        }
+
+
         public void render(SpriteBatch spriteBatch)
         {
 
             spriteBatch.Draw(FlxG.XnaSheet, _consoleRect, _srcRect, _consoleColor);
-
+            hudGraphic.render(spriteBatch);
             p1HudText.render(spriteBatch);
             p2HudText.render(spriteBatch);
             p3HudText.render(spriteBatch);
             p4HudText.render(spriteBatch);
 
             _gamePadButton.render(spriteBatch);
+            
+
 
         }
 

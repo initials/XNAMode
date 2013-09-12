@@ -177,6 +177,7 @@ namespace XNAMode
 
         private float _jumpInitialTime = 0.065f;
 
+        public float ladderPosX = 0;
 
         public Actor(int xPos, int yPos)
             : base(xPos,yPos)
@@ -184,6 +185,7 @@ namespace XNAMode
             //basic player physics
             
             drag.X = runSpeed * 4;
+            drag.Y = runSpeed * 4;
             acceleration.Y = Homewreckr_Globals.GRAVITY;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
@@ -216,7 +218,7 @@ namespace XNAMode
             acceleration.X = 0;
 
             // Walking left.
-            if (FlxG.keys.A || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi))
+            if ((FlxG.keys.A || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi)) && !isClimbingLadder)
             {
                 attackingJoystick = false;
                 attackingMouse = false;
@@ -224,7 +226,7 @@ namespace XNAMode
                 acceleration.X -= drag.X;
             }
             //Walking right.
-            else if (FlxG.keys.D || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi))
+            else if ((FlxG.keys.D || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi)) && !isClimbingLadder)
             {
                 attackingJoystick = false;
                 attackingMouse = false;
@@ -235,18 +237,29 @@ namespace XNAMode
             // ladders
             if ((FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, FlxG.controllingPlayer, out pi)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
             {
+                x = ladderPosX + width;
+
                 velocity.Y = -100;
                 isClimbingLadder = true;
 
                 // on a ladder, snap to nearest 16
             }
-            if ((FlxG.keys.S || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, FlxG.controllingPlayer, out pi)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
+            else if ((FlxG.keys.S || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, FlxG.controllingPlayer, out pi)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
             {
+                x = ladderPosX + width;
+
                 velocity.Y = 100;
                 isClimbingLadder = true;
             }
+            else
+            {
+                //isClimbingLadder = false;
+            }
 
             // Jumping.
+
+            
+
 
             if ((_jump >= 0 || framesSinceLeftGround < 10 || isClimbingLadder) && (FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi)))
             {
@@ -255,9 +268,10 @@ namespace XNAMode
                     _jump = 0.0f;
                     framesSinceLeftGround = 10000;
                 }
-                if (canClimbLadder)
+                if (isClimbingLadder)
                 {
                     _jump = 0.0f;
+                    isClimbingLadder = false;
                 }
 
                 attackingJoystick = false;
@@ -277,6 +291,8 @@ namespace XNAMode
                 else
                     velocity.Y = _jumpPower;
             }
+            
+            Console.WriteLine("jump= " + _jump + " " + canClimbLadder);
 
             // Attacking
             if (FlxG.keys.justPressed(Keys.C))
@@ -338,7 +354,14 @@ namespace XNAMode
             }
             else if (isClimbingLadder)
             {
-                play("climb");
+                if (velocity.Y == 0)
+                {
+                    play("climbidle");
+                }
+                else
+                {
+                    play("climb");
+                }
             }
             else if (attackingMouse || attackingJoystick)
             {
@@ -378,7 +401,14 @@ namespace XNAMode
                 framesSinceLeftGround++;
             }
 
-            acceleration.Y = Homewreckr_Globals.GRAVITY;
+            if (isClimbingLadder)
+            {
+                acceleration.Y = 0;
+            }
+            else
+            {
+                acceleration.Y = Homewreckr_Globals.GRAVITY;
+            }
 
             //MOVEMENT
 
@@ -395,16 +425,16 @@ namespace XNAMode
             updateAnims();
 
             base.update();
-
+            if (canClimbLadder == false) isClimbingLadder = false;
             canClimbLadder = false;
-            isClimbingLadder = false;
+            //isClimbingLadder = false;
 
         }
 
         public override void hitBottom(FlxObject Contact, float Velocity)
         {
             _jump = 0.0f;
-
+            isClimbingLadder = false;
             base.hitBottom(Contact, Velocity);
         }
 
