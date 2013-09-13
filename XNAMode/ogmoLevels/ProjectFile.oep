@@ -5,7 +5,7 @@
   <BackgroundColor A="255" R="125" G="160" B="255" />
   <GridColor A="255" R="255" G="240" B="90" />
   <LevelDefaultSize>
-    <Width>640</Width>
+    <Width>800</Width>
     <Height>640</Height>
   </LevelDefaultSize>
   <LevelMinimumSize>
