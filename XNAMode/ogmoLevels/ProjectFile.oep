@@ -5,12 +5,12 @@
   <BackgroundColor A="255" R="125" G="160" B="255" />
   <GridColor A="255" R="255" G="240" B="90" />
   <LevelDefaultSize>
-    <Width>1280</Width>
-    <Height>1280</Height>
+    <Width>640</Width>
+    <Height>640</Height>
   </LevelDefaultSize>
   <LevelMinimumSize>
-    <Width>1280</Width>
-    <Height>720</Height>
+    <Width>640</Width>
+    <Height>640</Height>
   </LevelMinimumSize>
   <LevelMaximumSize>
     <Width>10000</Width>
@@ -69,6 +69,15 @@
     <Tileset>
       <Name>WorldTiles</Name>
       <FilePath>..\..\XNAModeContent\initials\autotiles_16x16.png</FilePath>
+      <TileSize>
+        <Width>16</Width>
+        <Height>16</Height>
+      </TileSize>
+      <TileSep>0</TileSep>
+    </Tileset>
+    <Tileset>
+      <Name>AltTiles</Name>
+      <FilePath>..\..\XNAModeContent\initials\autotiles_alt.png</FilePath>
       <TileSize>
         <Width>16</Width>
         <Height>16</Height>
