@@ -74,6 +74,7 @@ namespace XNAMode
 
         private int[,] decorationsBGArray;
 
+        private int[,] hangingArray;
 
         /// <summary>
         /// An array of the main level
@@ -201,6 +202,9 @@ namespace XNAMode
         private Zombie zombie;
         #endregion
 
+        private ZingerNest ZingerNest;
+        private FlxGroup zingers;
+
         override public void create()
         {
 
@@ -221,7 +225,7 @@ namespace XNAMode
             ladders = new FlxGroup();
             allLevelTiles = new FlxGroup();
             playerControlledActors = new FlxGroup();
-
+            zingers = new FlxGroup();
 
             //First build a dictionary of levelAttrs
             //This will determine how the level is built.
@@ -365,6 +369,8 @@ namespace XNAMode
 
             characterSpawnPositionsArray = cave.createDecorationsMap(mainTilemapArray, 1.0f);
 
+            hangingArray = cave.createHangingDecorationsMap(mainTilemapArray, 1.0f);
+
             decorationsFGArray = cave.createDecorationsMap(mainTilemapArray, 0.5f);
 
             string newDec = cave.convertMultiArrayToString(decorationsFGArray);
@@ -417,6 +423,22 @@ namespace XNAMode
                     }
                 }
             }
+
+            for (int i = 0; i < 30; i++)
+            {
+                int[] p = cave.findRandomSolid(hangingArray);
+                ZingerNest = new ZingerNest(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y, zingers);
+                actors.add(ZingerNest);
+
+                zinger = new Zinger(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
+                zingers.add(zinger);
+                actors.add(zinger);
+                zinger.dead = true;
+                zinger.visible = false;
+
+            }
+
+
 
             // build atmospheric effects here
 
@@ -605,6 +627,31 @@ namespace XNAMode
             }
             else if ((e.Object1 is Mistress) && (e.Object2 is WhipHitBox))
             {
+
+            }
+            else if ((e.Object1 is ZingerNest) && (e.Object2 is Arrow))
+            {
+                blood.at(e.Object1);
+
+                blood.start(true, 0, 10);
+                FlxObject z = zingers.getFirstDead();
+                if (z != null)
+                {
+                    z.dead = false;
+                    z.exists = true;
+                    z.x = e.Object1.x;
+                    z.y = e.Object2.y;
+                    z.flicker(0.001f);
+                    z.velocity.X = 50;
+                    z.velocity.Y = FlxU.random(-200, 200);
+                    z.angle = 0;
+                    z.visible = true;
+                }
+
+                e.Object2.x = -1000;
+                e.Object2.y = -1000;
+                e.Object2.kill();
+                e.Object1.kill();
 
             }
             // Now that it's a kill, spurt some blood and "hurt" both parties.
@@ -1552,6 +1599,7 @@ namespace XNAMode
                 {
                     int[] p = cave.findRandomEmpty(mainTilemapArray);
                     zinger = new Zinger(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
+                    zingers.add(zinger);
                     actors.add(zinger);
                 }
             }

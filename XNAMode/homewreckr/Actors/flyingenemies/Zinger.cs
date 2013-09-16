@@ -10,8 +10,15 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class Zinger : FlyingEnemy
+    class Zinger : FlxSprite
     {
+        protected float chanceOfWingFlap = 0.023f;
+
+        protected float speedOfWingFlapVelocity = -40;
+
+
+
+
         public Zinger(int xPos, int yPos)
             : base(xPos, yPos)
         {
@@ -31,13 +38,53 @@ namespace XNAMode
 
             chanceOfWingFlap += FlxU.random(0.005, 0.009);
             speedOfWingFlapVelocity += FlxU.random(0,3);
-            
+
+            originalPosition.X = xPos;
+            originalPosition.Y = yPos;
+
+            int runSpeed = 30;
+            acceleration.Y = 50;
+            maxVelocity.X = runSpeed;
+            maxVelocity.Y = 1000;
+            velocity.X = 100;
 
         }
 
         override public void update()
         {
+
+            if (dead == false)
+            {
+                if (FlxU.random() < chanceOfWingFlap)
+                {
+                    velocity.Y = speedOfWingFlapVelocity;
+                }
+            }
+
             base.update();
+
+            if (velocity.X > 0)
+            {
+                facing = Flx2DFacing.Right;
+            }
+            else
+            {
+                facing = Flx2DFacing.Left;
+            }
+
+            if (x > FlxG.levelWidth) x = 1;
+            if (x < 0) x = FlxG.levelWidth - 1;
+
+        }
+        public override void kill()
+        {
+            play("death");
+            dead = true;
+            base.kill();
+        }
+        override public void hitSide(FlxObject Contact, float Velocity)
+        {
+            velocity.X = velocity.X * -1;
         }
     }
 }
