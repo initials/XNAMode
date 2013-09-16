@@ -38,6 +38,14 @@ namespace XNAMode
 
             //FlxXMLReader.readOgmoV2Level("ogmoLevels/testlevel2.oel");
 
+            /*
+            // Load our level using the game's content manager.  The project specified in the content processor
+            // properties for this level, along with all the texture assets, will be built and loaded.
+            level = new Level(this.Content.Load<OgmoLevel>(@"levels\demo\demoLevel"));
+            // Load the level's font so we can show off how many coins we have gathered.
+            level.Load(this.Content);
+             */ 
+
         }
         /*
         override public void create()
