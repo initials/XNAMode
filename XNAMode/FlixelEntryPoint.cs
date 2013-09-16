@@ -21,9 +21,9 @@ namespace XNAMode
             
             //initGame(w, h, new GameSelectionMenuState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
 
-            //initGame(w, h, new EmptyIntroTestState(), new Color(15, 15, 15), false, new Color(5, 5, 5));
+            initGame(w, h, new EmptyIntroTestState(), new Color(15, 15, 15), false, new Color(5, 5, 5));
 
-            initGame(w, h, new BasePlayState(), new Color(15, 15, 15), false, new Color(5, 5, 5));
+            //initGame(w, h, new BasePlayState(), new Color(15, 15, 15), false, new Color(5, 5, 5));
 
             FlxG.debug = true;
             FlxG.zoom = 1280 / w;

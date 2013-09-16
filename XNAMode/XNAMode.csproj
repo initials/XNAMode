@@ -189,6 +189,40 @@
     <Compile Include="homewreckr\Levels\BasePlayState.cs" />
     <Compile Include="homewreckr\PointBurst.cs" />
     <Compile Include="homewreckr\PowerUp.cs" />
+    <Compile Include="Ogmo\Layers\OgmoGridLayer.cs" />
+    <Compile Include="Ogmo\Layers\OgmoLayer.cs" />
+    <Compile Include="Ogmo\Layers\OgmoLayerReader.cs" />
+    <Compile Include="Ogmo\Layers\OgmoObjectLayer.cs" />
+    <Compile Include="Ogmo\Layers\OgmoTile.cs" />
+    <Compile Include="Ogmo\Layers\OgmoTileLayer.cs" />
+    <Compile Include="Ogmo\Layers\Settings\OgmoGridLayerSettings.cs" />
+    <Compile Include="Ogmo\Layers\Settings\OgmoLayerSettings.cs" />
+    <Compile Include="Ogmo\Layers\Settings\OgmoLayerSettingsReader.cs" />
+    <Compile Include="Ogmo\Layers\Settings\OgmoObjectLayerSettings.cs" />
+    <Compile Include="Ogmo\Layers\Settings\OgmoTileLayerSettings.cs" />
+    <Compile Include="Ogmo\OgmoLevel.cs" />
+    <Compile Include="Ogmo\OgmoLevelReader.cs" />
+    <Compile Include="Ogmo\OgmoNode.cs" />
+    <Compile Include="Ogmo\OgmoObject.cs" />
+    <Compile Include="Ogmo\OgmoObjectTemplate.cs" />
+    <Compile Include="Ogmo\OgmoProject.cs" />
+    <Compile Include="Ogmo\OgmoProjectReader.cs" />
+    <Compile Include="Ogmo\OgmoProjectSettings.cs" />
+    <Compile Include="Ogmo\OgmoTileset.cs" />
+    <Compile Include="Ogmo\Values\OgmoBooleanValue.cs" />
+    <Compile Include="Ogmo\Values\OgmoBooleanValueTemplate.cs" />
+    <Compile Include="Ogmo\Values\OgmoIntegerValue.cs" />
+    <Compile Include="Ogmo\Values\OgmoIntegerValueTemplate.cs" />
+    <Compile Include="Ogmo\Values\OgmoNumberValue.cs" />
+    <Compile Include="Ogmo\Values\OgmoNumberValueTemplate.cs" />
+    <Compile Include="Ogmo\Values\OgmoStringValue.cs" />
+    <Compile Include="Ogmo\Values\OgmoStringValueTemplate.cs" />
+    <Compile Include="Ogmo\Values\OgmoValue.cs" />
+    <Compile Include="Ogmo\Values\OgmoValueOfT.cs" />
+    <Compile Include="Ogmo\Values\OgmoValueReader.cs" />
+    <Compile Include="Ogmo\Values\OgmoValueTemplate.cs" />
+    <Compile Include="Ogmo\Values\OgmoValueTemplateOfT.cs" />
+    <Compile Include="Ogmo\Values\OgmoValueTemplateReader.cs" />
     <Compile Include="XNATweener\Back.cs" />
     <Compile Include="XNATweener\Bounce.cs" />
     <Compile Include="XNATweener\Circular.cs" />
@@ -280,6 +314,10 @@
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
     <None Include="levelSettings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ogmoLevels\ProjectFile.oep">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>

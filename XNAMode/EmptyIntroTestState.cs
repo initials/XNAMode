@@ -8,7 +8,7 @@ using org.flixel;
 using System.Linq;
 using System.Xml.Linq;
 
-
+using OgmoXNA;
 
 namespace XNAMode
 {
@@ -34,8 +34,9 @@ namespace XNAMode
 
             FlxG.playMusic("music/goat");
 
+            FlxXMLReader.readOgmoProjectAndLevel("ogmoLevels/ProjectFile.oep", "ogmoLevels/testlevel2.oel");
 
-            FlxXMLReader.readOgmoV2Level("ogmoLevels/testlevel2.oel");
+            //FlxXMLReader.readOgmoV2Level("ogmoLevels/testlevel2.oel");
 
         }
         /*
