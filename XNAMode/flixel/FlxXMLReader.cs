@@ -16,6 +16,18 @@ namespace org.flixel
     public class FlxXMLReader
     {
 
+
+        public static void readOgmoProjectAndLevel(string projectFilename, string levelFilename)
+        {
+            XDocument project = XDocument.Load(projectFilename);
+            foreach (XElement xEle in project.Descendants("LayerDefinitions").Elements("LayerDefinition"))
+            {
+                Console.WriteLine(xEle.Descendants("Name").ToString() );
+            }
+
+
+        }
+
         public static List<Dictionary<string, string>> readOgmoV2Level(string filename)
         {
             List<Dictionary<string, string>> completeSet = new List<Dictionary<string, string>>();
