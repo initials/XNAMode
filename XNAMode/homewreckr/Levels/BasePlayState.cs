@@ -204,6 +204,8 @@ namespace XNAMode
 
         private ZingerNest ZingerNest;
         private FlxGroup zingers;
+        private FlxGroup powerUps;
+        private PowerUp powerUp;
 
         override public void create()
         {
@@ -226,6 +228,9 @@ namespace XNAMode
             allLevelTiles = new FlxGroup();
             playerControlledActors = new FlxGroup();
             zingers = new FlxGroup();
+            powerUps = new FlxGroup();
+
+
 
             //First build a dictionary of levelAttrs
             //This will determine how the level is built.
@@ -236,7 +241,7 @@ namespace XNAMode
 
             levelAttrs = FlxXMLReader.readCustomXMLLevelsAttrs("levelSettings.xml");
 
-            #region old level atts load.
+            #region old level attrs load.
 
             //string currentLevel = "l" + FlxG.level.ToString();
 
@@ -424,7 +429,7 @@ namespace XNAMode
                 }
             }
 
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 12; i++)
             {
                 int[] p = cave.findRandomSolid(hangingArray);
                 ZingerNest = new ZingerNest(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y, zingers);
@@ -435,6 +440,13 @@ namespace XNAMode
                 actors.add(zinger);
                 zinger.dead = true;
                 zinger.visible = false;
+
+                powerUp = new PowerUp(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_X);
+                powerUp.dead = true;
+                powerUp.visible = false;
+                powerUps.add(powerUp);
+
+
 
             }
 
@@ -451,6 +463,7 @@ namespace XNAMode
 
             add(actors);
             add(bullets);
+            add(powerUps);
 
             blood = new FlxEmitter();
             blood.x = 0;
@@ -539,16 +552,18 @@ namespace XNAMode
 
             //collides
             FlxU.collide(actors, allLevelTiles);
+            FlxU.collide(powerUps, allLevelTiles);
+
 
             FlxU.overlap(actors, bullets, overlapped);
-
             FlxU.overlap(actors, ladders, overlapWithLadder);
             
             FlxU.collide(mainTilemap, bullets);
-
             FlxU.collide(blood, mainTilemap);
 
             FlxU.overlap(actors, playerControlledActors, actorOverlap);
+
+            FlxU.overlap(powerUps, playerControlledActors, getPowerUp);
 
 
             // Allow editing of terrain if SHIFT + Mouse is pressed.
@@ -589,6 +604,14 @@ namespace XNAMode
             }
             return true;
         }
+
+        protected bool getPowerUp(object Sender, FlxSpriteCollisionEvent e)
+        {
+            e.Object2.kill();
+
+            return true;
+        }
+
 
         /// <summary>
         /// 
@@ -646,6 +669,17 @@ namespace XNAMode
                     z.velocity.Y = FlxU.random(-200, 200);
                     z.angle = 0;
                     z.visible = true;
+                }
+                FlxObject p = powerUps.getFirstDead();
+                if (p != null)
+                {
+                    p.dead = false;
+                    p.exists = true;
+                    p.x = e.Object1.x;
+                    p.y = e.Object2.y;
+                    p.flicker(0.001f);
+                    p.angle = 0;
+                    p.visible = true;
                 }
 
                 e.Object2.x = -1000;

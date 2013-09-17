@@ -25,11 +25,14 @@ namespace XNAMode
 
             bg = new FlxSprite(0, 0);
             bg.loadGraphic(FlxG.Content.Load<Texture2D>("initials/texture_placement_small"), true, false, 32, 32);
-            bg.addAnimation("first", new int[] { 0,1,2,0,1,2,0,1,2}, 2);
-            bg.addAnimation("second", new int[] { 0, 11, 12, 0, 1, 12, 0, 1, 12 }, 2);
+            bg.addAnimation("first", new int[] { 0,1,2,0,1,2,0,1,2}, 3);
+            bg.addAnimation("second", new int[] { 0, 11, 12, 0, 1, 12, 0, 1, 12 }, 3);
             bg.play("first");
             bg.velocity.Y = 20;
             add(bg);
+
+            bg.addAnimationCallback(pr);
+
             FlxG.autoHandlePause = true;
 
             FlxG.playMusic("music/goat");
@@ -44,7 +47,7 @@ namespace XNAMode
             level = new Level(this.Content.Load<OgmoLevel>(@"levels\demo\demoLevel"));
             // Load the level's font so we can show off how many coins we have gathered.
             level.Load(this.Content);
-             */ 
+             */
 
         }
         /*
@@ -124,6 +127,11 @@ namespace XNAMode
 
         }
         */
+        public void pr(string Name, uint Frame, int FrameIndex)
+        {
+            Console.WriteLine("Changed animation {0} {1} {2}", Name, Frame, FrameIndex);
+
+        }
 
         override public void update()
         {
@@ -134,13 +142,13 @@ namespace XNAMode
 
             if (FlxG.keys.M)
             {
-                //bg.play("first");
-                FlxG.pause = true;
+                bg.play("first");
+                //FlxG.pause = true;
             }
             if (FlxG.keys.K)
             {
-                //bg.play("second");
-                FlxG.pause = false;
+                bg.play("second");
+                //FlxG.pause = false;
             }
 
             //Console.WriteLine(FlxG.pause);

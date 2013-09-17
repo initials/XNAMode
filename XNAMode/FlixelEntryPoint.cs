@@ -28,6 +28,10 @@ namespace XNAMode
             FlxG.debug = true;
             FlxG.zoom = 1280 / w;
             FlxG.level = 1;
+
+            Homewreckr_Globals.BUILD_TYPE = Homewreckr_Globals.BUILD_TYPE_PRESS;
+
+
         }
     }
 }

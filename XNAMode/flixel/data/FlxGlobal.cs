@@ -23,6 +23,10 @@ namespace org.flixel
         public const float GRAVITY = 820.0f;
 
 
+        public static int BUILD_TYPE = 0;
+
+        public const int BUILD_TYPE_RELEASE = 0;
+        public const int BUILD_TYPE_PRESS = 1;
 
     }
 }

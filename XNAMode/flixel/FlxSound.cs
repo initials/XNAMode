@@ -299,10 +299,21 @@ namespace org.flixel
 		}
     }
 
+    /// <summary>
+    /// Flixels Sound Manager.
+    /// </summary>
     public static class FlxSoundManager
     {
+        /// <summary>
+        /// Sound List.
+        /// </summary>
         private static List<SoundEffect> _sounds = new List<SoundEffect>();
 
+        /// <summary>
+        /// Sound Effect Instance.
+        /// </summary>
+        /// <param name="EmbeddedSound"></param>
+        /// <returns></returns>
         public static SoundEffectInstance getSound(string EmbeddedSound)
         {
             for (int i = 0; i < _sounds.Count; i++)

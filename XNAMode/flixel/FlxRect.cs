@@ -10,8 +10,19 @@ namespace org.flixel
     /// </summary>
     public class FlxRect
     {
+        /// <summary>
+        /// X value.
+        /// </summary>
         public float x;
+
+        /// <summary>
+        /// Y value.
+        /// </summary>
         public float y;
+        
+        /// <summary>
+        /// Width.
+        /// </summary>
         public float width
         {
             get
@@ -23,6 +34,9 @@ namespace org.flixel
                 _width = value;
             }
         }
+        /// <summary>
+        /// Height.
+        /// </summary>
         public float height
         {
             get
@@ -38,6 +52,13 @@ namespace org.flixel
         private float _width;
         private float _height;
 
+        /// <summary>
+        /// Creates a FlxRect.
+        /// </summary>
+        /// <param name="X">X</param>
+        /// <param name="Y">Y</param>
+        /// <param name="Width">Width</param>
+        /// <param name="Height">Height</param>
         public FlxRect(float X, float Y, float Width, float Height)
         {
             x = X;
@@ -46,6 +67,9 @@ namespace org.flixel
             _height = Height;
         }
 
+        /// <summary>
+        /// Creates a FlxRect of dimensions 0,0,0,0
+        /// </summary>
         static public FlxRect Empty
         {
             get { return new FlxRect(0, 0, 0, 0); }

@@ -73,17 +73,36 @@ namespace org.flixel
         /// The total number of frames in this image (assumes each row is full).
 		/// </summary>
 		public int frames;
-
         
-
         //Animation helpers
         private List<FlxAnim> _animations;
 		private uint _flipped;
+
+        /// <summary>
+        /// _curAnim is the current playing animation.
+        /// <para>Use _curAnim.name to get the name of the currently playing.</para>
+        /// </summary>
 		protected FlxAnim _curAnim;
+
+        /// <summary>
+        /// _curFrame is the sequential frame.
+        /// Eg. Regardless of what frame order you are using, _curFrame will always return 0,1,2,3,4,5,6,7...
+        /// <para>Known as Frame in the animation callback.</para>
+        /// </summary>
 		protected int _curFrame;
+        
+        /// <summary>
+        /// _caf returns the frame number on the spritesheet.
+        /// <para>Also known as Frame Index.</para>
+        /// </summary>
         protected int _caf;
+
         private float _frameTimer;
-		private FlxAnimationCallback _callback;
+		
+        /// <summary>
+        /// The function to call if you set an Animation Callback.
+        /// </summary>
+        private FlxAnimationCallback _callback;
         private Flx2DFacing _facing2d = Flx2DFacing.NotUsed;
 
         //Various rendering helpers
@@ -505,9 +524,11 @@ namespace org.flixel
 
 
         /// <summary>
-        /// Pass in a function to be called whenever this sprite's animation changes.
+        /// Pass in a function to be called on each frame change or animation change.
         /// </summary>
-        /// <param name="ac">A function that has 3 parameters: a string name, a uint frame number, and a uint frame index.</param>
+        /// <param name="ac">A function that has 3 parameters: a string name, a uint frame number, and a uint frame index.
+        /// <para>Should look like this.</para>
+        /// <para>public void pr(string Name, uint Frame, int FrameIndex)</para></param>
         public void addAnimationCallback(FlxAnimationCallback ac)
         {
             _callback = ac;
@@ -541,6 +562,11 @@ namespace org.flixel
 			}
 		}
 
+        /// <summary>
+        /// Plays an existing animation (e.g. "run").
+        /// If you call an animation that is already playing it will be ignored.
+        /// </summary>
+        /// <param name="AnimName">The string name of the animation you want to play.</param>
         public void play(string AnimName)
         {
             play(AnimName, false);
