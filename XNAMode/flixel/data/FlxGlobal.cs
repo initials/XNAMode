@@ -28,5 +28,12 @@ namespace org.flixel
         public const int BUILD_TYPE_RELEASE = 0;
         public const int BUILD_TYPE_PRESS = 1;
 
+
+        public static int PLAYER_ACTOR = 1;
+
+        public const int PLAYER_ARCHER = 1;
+        public const int PLAYER_MISTRESS = 2;
+        public const int PLAYER_WARLOCK = 3;
+
     }
 }
