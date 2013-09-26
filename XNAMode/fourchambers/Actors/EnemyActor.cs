@@ -17,7 +17,10 @@ namespace XNAMode
         /// </summary>
         public string actorName;
 
-
+        /// <summary>
+        /// The score to recieve when killing this actor
+        /// </summary>
+        public int score = 50;
 
         public EnemyActor(int xPos, int yPos)
             : base(xPos, yPos)
@@ -73,6 +76,8 @@ namespace XNAMode
 
         public override void kill()
         {
+            FlxG.score += score;
+
             play("death");
             velocity.X = 0;
             velocity.Y = 0;

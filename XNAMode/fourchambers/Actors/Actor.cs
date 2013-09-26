@@ -292,7 +292,7 @@ namespace XNAMode
                     velocity.Y = _jumpPower;
             }
             
-            Console.WriteLine("jump= " + _jump + " " + canClimbLadder);
+            //Console.WriteLine("jump= " + _jump + " " + canClimbLadder);
 
             // Attacking
             if (FlxG.keys.justPressed(Keys.C))

@@ -523,7 +523,7 @@ namespace XNAMode
                 return;
             }
 
-            //FlxG.setHudText(1, FlxG.score.ToString());
+            FlxG.setHudText(1, FlxG.score.ToString());
 
             if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B) && FlxG.debug)
                 FlxG.showBounds = !FlxG.showBounds;
