@@ -112,7 +112,7 @@ namespace XNAMode
 
             //Vampire
             int[] p = cav.findRandomSolid(decr);
-            vampire = new Vampire(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            vampire = new Vampire(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(vampire);
 
             // Warlock
@@ -122,31 +122,31 @@ namespace XNAMode
             _bulletsAll.add(_bullets);
 
             p = cav.findRandomSolid(decr);
-            warlock = new Warlock(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y, _bullets.members);
+            warlock = new Warlock(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y, _bullets.members);
             actors.add(warlock);
 
             p = cav.findRandomSolid(decr);
-            zombie = new Zombie(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            zombie = new Zombie(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(zombie);
 
             p = cav.findRandomSolid(decr);
-            automaton = new Automaton(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            automaton = new Automaton(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(automaton);
 
             p = cav.findRandomSolid(decr);
-            corsair = new Corsair(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            corsair = new Corsair(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(corsair);
 
             p = cav.findRandomSolid(decr);
-            executor = new Executor(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            executor = new Executor(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(executor);
 
             p = cav.findRandomSolid(decr);
-            gloom = new Gloom(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            gloom = new Gloom(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(gloom);
 
             p = cav.findRandomSolid(decr);
-            harvester = new Harvester(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            harvester = new Harvester(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(harvester);
 
             // Marksman
@@ -155,43 +155,43 @@ namespace XNAMode
             _bulletsAll.add(_arrows);
 
             p = cav.findRandomSolid(decr);
-            marksman = new Marksman(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y, _arrows.members);
+            marksman = new Marksman(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y, _arrows.members);
             actors.add(marksman);
 
             p = cav.findRandomSolid(decr);
-            mistress = new Mistress(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            mistress = new Mistress(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(mistress);
 
             p = cav.findRandomSolid(decr);
-            medusa = new Medusa(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            medusa = new Medusa(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(medusa);
 
             p = cav.findRandomSolid(decr);
-            mummy = new Mummy(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            mummy = new Mummy(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(mummy);
 
             p = cav.findRandomSolid(decr);
-            nymph = new Nymph(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            nymph = new Nymph(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(nymph);
 
             p = cav.findRandomSolid(decr);
-            paladin = new Paladin(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            paladin = new Paladin(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(paladin);
 
             p = cav.findRandomSolid(decr);
-            seraphine = new Seraphine(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            seraphine = new Seraphine(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(seraphine);
 
             p = cav.findRandomSolid(decr);
-            succubus = new Succubus(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            succubus = new Succubus(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(succubus);
 
             p = cav.findRandomSolid(decr);
-            tormentor = new Tormentor(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            tormentor = new Tormentor(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(tormentor);
 
             p = cav.findRandomSolid(decr);
-            unicorn = new Unicorn(p[1] * Homewreckr_Globals.TILE_SIZE_X, p[0] * Homewreckr_Globals.TILE_SIZE_Y);
+            unicorn = new Unicorn(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y);
             actors.add(unicorn);
 
             add(actors);

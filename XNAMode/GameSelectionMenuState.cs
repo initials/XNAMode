@@ -61,7 +61,7 @@ namespace XNAMode
             
             _menuItems = new FlxText(10, 10, FlxG.width);
             _menuItems.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
-            _menuItems.text = "Homewreckr\n\nEnter name, use @ symbol to specify Twitter handle.\nPress enter when complete.";
+            _menuItems.text = "Four Chambers\n\nEnter name, use @ symbol to specify Twitter handle.\nPress enter when complete.";
             add(_menuItems);
 
 
@@ -74,7 +74,7 @@ namespace XNAMode
 
             play = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 30, playGame, FlxButton.ControlPadA);
             play.loadGraphic((new FlxSprite()).createGraphic(100, 20, new Color(0xe4, 0xb4, 0x8a)), (new FlxSprite()).createGraphic(102, 22, new Color(0xdd, 0xa1, 0x6d)));
-            play.loadText(new FlxText(2, 2, 100, "Play Game"), new FlxText(2, 2, 100, "WRECK HOMEZ"));
+            play.loadText(new FlxText(2, 2, 100, "Play Game"), new FlxText(2, 2, 100, "Play Game!"));
             add(play);
 
             FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54 , FlxG.height - 27);
