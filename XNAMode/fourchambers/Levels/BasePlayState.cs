@@ -582,6 +582,8 @@ namespace XNAMode
             // exit.
             if (FlxG.keys.justPressed(Keys.Escape) || playerControlledActors.getFirstAlive() == null )
             {
+                FlxOnlineStatCounter.sendStats("fourchambers", "marksman", FlxG.score);
+
                 Console.WriteLine("Just pressed Escape");
                 FlxG.state = new GameSelectionMenuState();
             }
