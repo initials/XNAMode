@@ -186,7 +186,7 @@ namespace XNAMode
             
             drag.X = runSpeed * 4;
             drag.Y = runSpeed * 4;
-            acceleration.Y = Homewreckr_Globals.GRAVITY;
+            acceleration.Y = FourChambers_Globals.GRAVITY;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
@@ -407,7 +407,7 @@ namespace XNAMode
             }
             else
             {
-                acceleration.Y = Homewreckr_Globals.GRAVITY;
+                acceleration.Y = FourChambers_Globals.GRAVITY;
             }
 
             //MOVEMENT

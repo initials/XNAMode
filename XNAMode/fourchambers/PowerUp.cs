@@ -460,7 +460,7 @@ namespace XNAMode
         public PowerUp(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            velocity.Y = Homewreckr_Globals.GRAVITY;
+            velocity.Y = FourChambers_Globals.GRAVITY;
 
 
 
@@ -479,11 +479,11 @@ namespace XNAMode
 
         public void powerUpType(int setToType)
         {
-            if (Homewreckr_Globals.BUILD_TYPE == Homewreckr_Globals.BUILD_TYPE_PRESS)
+            if (FourChambers_Globals.BUILD_TYPE == FourChambers_Globals.BUILD_TYPE_PRESS)
             {
 
             }
-            else if (Homewreckr_Globals.BUILD_TYPE == Homewreckr_Globals.BUILD_TYPE_RELEASE)
+            else if (FourChambers_Globals.BUILD_TYPE == FourChambers_Globals.BUILD_TYPE_RELEASE)
             {
 
             }

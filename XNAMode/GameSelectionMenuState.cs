@@ -35,6 +35,7 @@ namespace XNAMode
 
         override public void create()
         {
+            
 
             FlxG.backColor = new Color(0xc2, 0x88, 0x83);
 
@@ -59,9 +60,11 @@ namespace XNAMode
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
             
-            _menuItems = new FlxText(10, 10, FlxG.width);
-            _menuItems.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
-            _menuItems.text = "Homewreckr\n\nEnter name, use @ symbol to specify Twitter handle.\nPress enter when complete.";
+            _menuItems = new FlxText(0, 30, FlxG.width);
+            _menuItems.setFormat(null, 2, Color.White, FlxJustification.Center, Color.White);
+            //_menuItems.text = "Four Chambers\n\nEnter name, use @ symbol to specify Twitter handle.\nPress enter when complete.";
+            _menuItems.text = "Four Chambers";
+            _menuItems.shadow = Color.Black;
             add(_menuItems);
 
 
@@ -72,9 +75,14 @@ namespace XNAMode
             _nameEntry.text = "";
             add(_nameEntry);
 
+            FlxG.showHud();
+            FlxG.setHudText(1, "Enter name, use @ symbol to specify Twitter handle.\nPress enter when complete.");
+            FlxG.setHudTextPosition(1, 10, 90);
+
+
             play = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 30, playGame, FlxButton.ControlPadA);
             play.loadGraphic((new FlxSprite()).createGraphic(100, 20, new Color(0xe4, 0xb4, 0x8a)), (new FlxSprite()).createGraphic(102, 22, new Color(0xdd, 0xa1, 0x6d)));
-            play.loadText(new FlxText(2, 2, 100, "Play Game"), new FlxText(2, 2, 100, "WRECK HOMEZ"));
+            play.loadText(new FlxText(2, 2, 100, "Play Game"), new FlxText(2, 2, 100, "Play Game!"));
             add(play);
 
             FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54 , FlxG.height - 27);
@@ -197,6 +205,8 @@ namespace XNAMode
 
             if (FlxG.transition.complete)
             {
+                //FlxOnlineStatCounter.sendStats("fourchambers", "marksman", 670);
+                
                 FlxG.state = new BasePlayState();
             }
 

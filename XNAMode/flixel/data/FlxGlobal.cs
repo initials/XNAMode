@@ -15,7 +15,7 @@ namespace org.flixel
     }
 
 
-    class Homewreckr_Globals
+    class FourChambers_Globals
     {
         public const int TILE_SIZE_X = 16;
         public const int TILE_SIZE_Y = 16;
