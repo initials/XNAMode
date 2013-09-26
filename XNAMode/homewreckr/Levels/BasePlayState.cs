@@ -607,7 +607,7 @@ namespace XNAMode
 
         protected bool getPowerUp(object Sender, FlxSpriteCollisionEvent e)
         {
-            e.Object2.kill();
+            e.Object1.kill();
 
             return true;
         }
