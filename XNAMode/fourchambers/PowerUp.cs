@@ -460,10 +460,17 @@ namespace XNAMode
         public PowerUp(int xPos, int yPos)
             : base(xPos, yPos)
         {
+
+            width = 16;
+            height = 16;
+
             velocity.Y = FourChambers_Globals.GRAVITY;
 
+            Texture2D Img = FlxG.Content.Load<Texture2D>("initials/powerup_16x16");
 
+            loadGraphic(Img, false, false, 16, 16);
 
+            
 
         }
 
@@ -471,7 +478,7 @@ namespace XNAMode
         {
 
 
-            _curFrame = 1;
+            //_curFrame = 1;
 
             base.update();
 
