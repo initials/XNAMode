@@ -37,7 +37,9 @@ namespace XNAMode
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
-            velocity.X = FlxU.random(30, 50);
+            velocity.X = FlxU.random(30, 80);
+
+            score = 225;
 
         }
 

@@ -25,7 +25,9 @@ namespace XNAMode
 
             initGame(w, h, new BasePlayState(), new Color(15, 15, 15), false, new Color(5, 5, 5));
 
-            FlxG.debug = true;
+            FlxG.debug = false;
+
+
             FlxG.zoom = 1280 / w;
             FlxG.level = 1;
 

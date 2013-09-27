@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="flixel\data\FlxGlobal.cs" />
+    <Compile Include="fourchambers\Levels\Door.cs" />
     <Compile Include="fx\BloomComponent.cs" />
     <Compile Include="fx\BloomSettings.cs" />
     <Compile Include="fourchambers\Actors\EnemyActor.cs" />

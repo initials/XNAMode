@@ -49,6 +49,7 @@ namespace XNAMode
 
             health = 0;
 
+            score = 60;
 
         }
        

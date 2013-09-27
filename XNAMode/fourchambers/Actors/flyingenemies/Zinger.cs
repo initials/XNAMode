@@ -16,7 +16,10 @@ namespace XNAMode
 
         protected float speedOfWingFlapVelocity = -40;
 
-
+        /// <summary>
+        /// The score to recieve when killing this actor
+        /// </summary>
+        public int score = 50;
 
 
         public Zinger(int xPos, int yPos)
@@ -78,6 +81,8 @@ namespace XNAMode
         }
         public override void kill()
         {
+            FlxG.score += score;
+
             play("death");
             dead = true;
             base.kill();

@@ -24,6 +24,10 @@ namespace XNAMode
 
         protected float speedOfWingFlapVelocity = -40;
 
+        /// <summary>
+        /// The score to recieve when killing this actor
+        /// </summary>
+        public int score = 50;
 
 
         public FlyingEnemy(int xPos, int yPos)
@@ -112,7 +116,7 @@ namespace XNAMode
             drag.X = 1000;
 
 
-            //FlxG.score += score;
+            FlxG.score += score;
 
             //base.kill();
         }

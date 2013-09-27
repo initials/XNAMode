@@ -34,7 +34,7 @@ namespace XNAMode
 
             speedOfWingFlapVelocity = FlxU.random(-30.0f, -20.0f);
 
-
+            score = 25;
         }
 
         override public void update()

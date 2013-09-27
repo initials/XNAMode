@@ -206,6 +206,7 @@ namespace XNAMode
         private FlxGroup zingers;
         private FlxGroup powerUps;
         private PowerUp powerUp;
+        private Door door;
 
         override public void create()
         {
@@ -449,8 +450,9 @@ namespace XNAMode
 
 
             }
-
-
+            int[] p1 = cave.findRandomSolid(characterSpawnPositionsArray);
+            door = new Door(p1[1] * FourChambers_Globals.TILE_SIZE_X, p1[0] * FourChambers_Globals.TILE_SIZE_X);
+            add(door);
 
             // build atmospheric effects here
 
@@ -489,6 +491,7 @@ namespace XNAMode
 
         override public void update()
         {
+            #region debugLevelSkip
             if (FlxG.keys.justPressed(Keys.F9) && FlxG.debug && timeOfDay > 2.0f)
             {
                 FlxG.level++;
@@ -523,21 +526,25 @@ namespace XNAMode
                 return;
             }
 
-            FlxG.setHudText(1, FlxG.score.ToString());
+            // Allow editing of terrain if SHIFT + Mouse is pressed.
+            if (FlxG.mouse.pressedRightButton() && FlxG.keys.SHIFT)
+            {
+                mainTilemap.setTile((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X, (int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y, 0, true);
+                decorationsTilemap.setTile((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X, ((int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y) - 1, 0, true);
+            }
+            if (FlxG.mouse.pressedLeftButton() && FlxG.keys.SHIFT)
+            {
+                mainTilemap.setTile((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X, (int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y, 1, true);
+            }
 
             if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B) && FlxG.debug)
                 FlxG.showBounds = !FlxG.showBounds;
 
-            //FlxG.write("Paused? " + FlxG.pause);
-            // pause
+            #endregion
 
-            //if (FlxG.keys.justPressed(Keys.P) || FlxG.gamepads.isNewButtonPress(Buttons.Start))
-            //{
-            //    FlxG.write("Paused");
+            FlxG.setHudText(1, FlxG.score.ToString());
 
-            //    if (FlxG.pause == true) FlxG.pause = false;
-            //    else if (FlxG.pause == false) FlxG.pause = true;
-            //}
+
 
             //calculate time of day.
             timeOfDay += FlxG.elapsed * timeScale;
@@ -553,12 +560,14 @@ namespace XNAMode
             //collides
             FlxU.collide(actors, allLevelTiles);
             FlxU.collide(powerUps, allLevelTiles);
-
+            FlxU.overlap(actors, door, goToNextLevel);
 
             FlxU.overlap(actors, bullets, overlapped);
             FlxU.overlap(actors, ladders, overlapWithLadder);
             
             FlxU.collide(mainTilemap, bullets);
+            
+            
             FlxU.collide(blood, mainTilemap);
 
             FlxU.overlap(actors, playerControlledActors, actorOverlap);
@@ -566,29 +575,38 @@ namespace XNAMode
             FlxU.overlap(powerUps, playerControlledActors, getPowerUp);
 
 
-            // Allow editing of terrain if SHIFT + Mouse is pressed.
-            if (FlxG.mouse.pressedRightButton() && FlxG.keys.SHIFT)
-            {
-                mainTilemap.setTile((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X, (int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y, 0, true);
-                decorationsTilemap.setTile((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X, ((int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y) - 1, 0, true);
-            }
-            if (FlxG.mouse.pressedLeftButton() && FlxG.keys.SHIFT)
-            {
-                mainTilemap.setTile((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X, (int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y, 1, true);
-            }
 
             base.update();
 
             // exit.
             if (FlxG.keys.justPressed(Keys.Escape) || playerControlledActors.getFirstAlive() == null )
             {
+
                 FlxOnlineStatCounter.sendStats("fourchambers", "marksman", FlxG.score);
 
                 Console.WriteLine("Just pressed Escape");
+                
                 FlxG.state = new GameSelectionMenuState();
             }
 
 
+        }
+
+
+
+
+        protected bool goToNextLevel(object Sender, FlxSpriteCollisionEvent e)
+        {
+            FlxG.level++;
+            if (FlxG.level > 25) FlxG.level = 1;
+
+            FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
+
+            FlxG.transition.startFadeIn(0.2f);
+
+            FlxG.state = new BasePlayState();
+
+            return true;
         }
 
         /// <summary>
@@ -672,6 +690,7 @@ namespace XNAMode
                     z.angle = 0;
                     z.visible = true;
                 }
+                // throw out a power up.
                 FlxObject p = powerUps.getFirstDead();
                 if (p != null)
                 {

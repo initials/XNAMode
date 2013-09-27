@@ -39,6 +39,8 @@ namespace XNAMode
 
             velocity.X = FlxU.random(12, 22);
 
+            score = 150;
+
         }
 
         override public void update()
