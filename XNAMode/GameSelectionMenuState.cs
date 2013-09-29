@@ -205,8 +205,6 @@ namespace XNAMode
 
             if (FlxG.transition.complete)
             {
-                //FlxOnlineStatCounter.sendStats("fourchambers", "marksman", 670);
-                
                 FlxG.state = new BasePlayState();
             }
 
