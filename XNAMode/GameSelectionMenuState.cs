@@ -212,6 +212,9 @@ namespace XNAMode
                 FlxG.level = 1;
                 FlxG.score = 0;
 
+<<<<<<< HEAD
+>>>>>>> 0232cf7f4c1e543013eebc64c47154547472c3ff
+=======
 >>>>>>> 0232cf7f4c1e543013eebc64c47154547472c3ff
                 FlxG.state = new BasePlayState();
                 return;
