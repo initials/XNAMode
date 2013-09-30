@@ -30,6 +30,7 @@ namespace XNAMode
             FlxG.level = 1;
 
             FourChambers_Globals.BUILD_TYPE = FourChambers_Globals.BUILD_TYPE_PRESS;
+            FourChambers_Globals.DEMO_VERSION = true;
 
 
         }
