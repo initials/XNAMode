@@ -205,7 +205,16 @@ namespace XNAMode
 
             if (FlxG.transition.complete)
             {
+<<<<<<< HEAD
+=======
+                //FlxOnlineStatCounter.sendStats("fourchambers", "marksman", 670);
+
+                FlxG.level = 1;
+                FlxG.score = 0;
+
+>>>>>>> 0232cf7f4c1e543013eebc64c47154547472c3ff
                 FlxG.state = new BasePlayState();
+                return;
             }
 
 

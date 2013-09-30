@@ -487,10 +487,18 @@ namespace XNAMode
             //FlxG.autoHandlePause = true;
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
+
+
+
+            Console.WriteLine("Starting at: " + FlxG.level);
+
         }
 
         override public void update()
         {
+
+
+
             #region debugLevelSkip
             if (FlxG.keys.justPressed(Keys.F9) && FlxG.debug && timeOfDay > 2.0f)
             {
@@ -560,7 +568,7 @@ namespace XNAMode
             //collides
             FlxU.collide(actors, allLevelTiles);
             FlxU.collide(powerUps, allLevelTiles);
-            FlxU.overlap(actors, door, goToNextLevel);
+            FlxU.overlap(playerControlledActors, door, goToNextLevel);
 
             FlxU.overlap(actors, bullets, overlapped);
             FlxU.overlap(actors, ladders, overlapWithLadder);
@@ -659,6 +667,9 @@ namespace XNAMode
         /// <returns></returns>
         protected bool overlapped(object Sender, FlxSpriteCollisionEvent e)
         {
+
+            // Console.WriteLine("Overlapped.");
+
             // First reject Actors and their bullets.
             if ((e.Object1 is Warlock) && (e.Object2 is Fireball))
             {
