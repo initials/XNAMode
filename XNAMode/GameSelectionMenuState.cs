@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using org.flixel;
-//using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.GamerServices;
 
 using System.Linq;
 using System.Xml.Linq;

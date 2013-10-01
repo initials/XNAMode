@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 #if !WINDOWS_PHONE
-//using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.GamerServices;
 #endif
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -89,7 +89,7 @@ namespace org.flixel
 
             FlxG.Game = this;
 #if !WINDOWS_PHONE
-            //Components.Add(new GamerServicesComponent(this));
+            Components.Add(new GamerServicesComponent(this));
 #endif
         }
         /// <summary>
