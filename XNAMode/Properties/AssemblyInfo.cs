@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("The Four Chambers Of The Human Heart")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("Initials Video Games")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
+[assembly: AssemblyCopyright("Copyright © Initials")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
