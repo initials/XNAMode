@@ -1,0 +1,217 @@
+﻿<game>
+  <levels>
+    <misc>
+      <openingtitles>
+        I'm made of metal\nMy circuits gleam\nI am perpetual\nI keep the country clean
+      </openingtitles>
+    </misc>
+    <level_template>
+      <name default=""></name>
+      <levelWidth default="50"></levelWidth>
+      <levelHeight default="50"></levelHeight>
+      <type default="CaveState"></type>
+      <tiles default="autotiles_16x16"></tiles>
+      <decorationTiles default="decorations_16x16"></decorationTiles>
+      <prize default=""></prize>
+      <startCaveGenerateBias default="0.5"></startCaveGenerateBias>
+      <solidColumns default=""></solidColumns>
+      <solidRows default=""></solidRows>
+      <emptyColumns default=""></emptyColumns>
+      <emptyRows default=""></emptyRows>
+      <bridge default=""></bridge>
+      <!--Utility classes for swapping out later if more attributes are needed-->
+      <bgGraphic default="envir_dusk"></bgGraphic>
+      <timeOfDayPalette default="palette"></timeOfDayPalette>
+      <empty_utility_spare3 default=""></empty_utility_spare3>
+      <!--Playable Characters-->
+      <corsair default="0"></corsair>
+      <marksman default="0"></marksman>
+      <mistress default="0"></mistress>
+      <paladin default="0"></paladin>
+      <seraphine default="0"></seraphine>
+      <unicorn default="0"></unicorn>
+      <warlock default="0"></warlock>
+      <!--Non playable Characters.-->
+      <automaton default="0"></automaton>
+      <bat default="0"></bat>
+      <executor default="0"></executor>
+      <gloom default="0"></gloom>
+      <harvester default="0"></harvester>
+      <medusa default="0"></medusa>
+      <mummy default="0"></mummy>
+      <nymph default="0"></nymph>
+      <succubus default="0"></succubus>
+      <tormentor default="0"></tormentor>
+      <vampire default="0"></vampire>
+      <zombie default="0"></zombie>
+      <!--Non Animated Characters-->
+      <artist default="0"></artist>
+      <assassin default="0"></assassin>
+      <blight default="0"></blight>
+      <bloatedzombie default="0"></bloatedzombie>
+      <bogbeast default="0"></bogbeast>
+      <bombling default="0"></bombling>
+      <centaur default="0"></centaur>
+      <chicken default="0"></chicken>
+      <chimaera default="0"></chimaera>
+      <cow default="0"></cow>
+      <cyclops default="0"></cyclops>
+      <deathclaw default="0"></deathclaw>
+      <deer default="0"></deer>
+      <devil default="0"></devil>
+      <djinn default="0"></djinn>
+      <drone default="0"></drone>
+      <druid default="0"></druid>
+      <dwarf default="0"></dwarf>
+      <embersteed default="0"></embersteed>
+      <feline default="0"></feline>
+      <floatingeye default="0"></floatingeye>
+      <fungant default="0"></fungant>
+      <gelatine default="0"></gelatine>
+      <glutton default="0"></glutton>
+      <goblin default="0"></goblin>
+      <golem default="0"></golem>
+      <gorgon default="0"></gorgon>
+      <gourmet default="0"></gourmet>
+      <grimwarrior default="0"></grimwarrior>
+      <grizzly default="0"></grizzly>
+      <horse default="0"></horse>
+      <ifrit default="0"></ifrit>
+      <imp default="0"></imp>
+      <kerberos default="0"></kerberos>
+      <lich default="0"></lich>
+      <lion default="0"></lion>
+      <mechanic default="0"></mechanic>
+      <mephisto default="0"></mephisto>
+      <merchant default="0"></merchant>
+      <mermaid default="0"></mermaid>
+      <mimick default="0"></mimick>
+      <monk default="0"></monk>
+      <nightmare default="0"></nightmare>
+      <ogre default="0"></ogre>
+      <phantom default="0"></phantom>
+      <priest default="0"></priest>
+      <prism default="0"></prism>
+      <rat default="0"></rat>
+      <savage default="0"></savage>
+      <sheep default="0"></sheep>
+      <skeleton default="0"></skeleton>
+      <snake default="0"></snake>
+      <soldier default="0"></soldier>
+      <sphinx default="0"></sphinx>
+      <spider default="0"></spider>
+      <tauro default="0"></tauro>
+      <toad default="0"></toad>
+      <treant default="0"></treant>
+      <troll default="0"></troll>
+      <willowisp default="0"></willowisp>
+      <wizard default="0"></wizard>
+      <wolf default="0"></wolf>
+      <zinger default="0"></zinger>
+    </level_template>
+    <level_1>
+      <name default="">The Horse</name>
+      <levelWidth default="50">50</levelWidth>
+      <levelHeight default="50">30</levelHeight>
+      <type default="CaveState"></type>
+      <tiles default="autotiles_16x16"></tiles>
+      <decorationTiles default="decorations_16x16"></decorationTiles>
+      <prize default=""></prize>
+      <startCaveGenerateBias default="0.5">0.4</startCaveGenerateBias>
+      <solidColumns default=""></solidColumns>
+      <solidRows default=""></solidRows>
+      <emptyColumns default=""></emptyColumns>
+      <emptyRows default=""></emptyRows>
+      <bridge default=""></bridge>
+      <!--Utility classes for swapping out later if more attributes are needed-->
+      <bgGraphic default="envir_dusk">Fear</bgGraphic>
+      <timeOfDayPalette default="">skyPalette</timeOfDayPalette>
+      <empty_utility_spare3 default=""></empty_utility_spare3>
+      <!--Playable Characters-->
+      <corsair default="0"></corsair>
+      <marksman default="0">1</marksman>
+      <mistress default="0"></mistress>
+      <paladin default="0"></paladin>
+      <seraphine default="0"></seraphine>
+      <unicorn default="0"></unicorn>
+      <warlock default="0"></warlock>
+      <!--Non playable Characters.-->
+      <automaton default="0">5</automaton>
+      <bat default="0">15</bat>
+      <executor default="0"></executor>
+      <gloom default="0"></gloom>
+      <harvester default="0"></harvester>
+      <medusa default="0"></medusa>
+      <mummy default="0"></mummy>
+      <nymph default="0"></nymph>
+      <succubus default="0"></succubus>
+      <tormentor default="0"></tormentor>
+      <vampire default="0"></vampire>
+      <zombie default="0"></zombie>
+      <!--Non Animated Characters-->
+      <artist default="0">4</artist>
+      <assassin default="0"></assassin>
+      <blight default="0"></blight>
+      <bloatedzombie default="0"></bloatedzombie>
+      <bogbeast default="0"></bogbeast>
+      <bombling default="0"></bombling>
+      <centaur default="0"></centaur>
+      <chicken default="0"></chicken>
+      <chimaera default="0"></chimaera>
+      <cow default="0"></cow>
+      <cyclops default="0"></cyclops>
+      <deathclaw default="0"></deathclaw>
+      <deer default="0"></deer>
+      <devil default="0"></devil>
+      <djinn default="0"></djinn>
+      <drone default="0"></drone>
+      <druid default="0"></druid>
+      <dwarf default="0"></dwarf>
+      <embersteed default="0"></embersteed>
+      <feline default="0"></feline>
+      <floatingeye default="0"></floatingeye>
+      <fungant default="0"></fungant>
+      <gelatine default="0"></gelatine>
+      <glutton default="0"></glutton>
+      <goblin default="0"></goblin>
+      <golem default="0"></golem>
+      <gorgon default="0"></gorgon>
+      <gourmet default="0"></gourmet>
+      <grimwarrior default="0"></grimwarrior>
+      <grizzly default="0"></grizzly>
+      <horse default="0"></horse>
+      <ifrit default="0"></ifrit>
+      <imp default="0"></imp>
+      <kerberos default="0"></kerberos>
+      <lich default="0"></lich>
+      <lion default="0"></lion>
+      <mechanic default="0"></mechanic>
+      <mephisto default="0"></mephisto>
+      <merchant default="0"></merchant>
+      <mermaid default="0"></mermaid>
+      <mimick default="0"></mimick>
+      <monk default="0"></monk>
+      <nightmare default="0"></nightmare>
+      <ogre default="0"></ogre>
+      <phantom default="0"></phantom>
+      <priest default="0"></priest>
+      <prism default="0"></prism>
+      <rat default="0"></rat>
+      <savage default="0"></savage>
+      <sheep default="0"></sheep>
+      <skeleton default="0"></skeleton>
+      <snake default="0"></snake>
+      <soldier default="0"></soldier>
+      <sphinx default="0"></sphinx>
+      <spider default="0"></spider>
+      <tauro default="0"></tauro>
+      <toad default="0"></toad>
+      <treant default="0"></treant>
+      <troll default="0"></troll>
+      <willowisp default="0"></willowisp>
+      <wizard default="0"></wizard>
+      <wolf default="0"></wolf>
+      <zinger default="0"></zinger>
+    </level_1>
+  </levels>
+</game>

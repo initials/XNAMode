@@ -63,6 +63,10 @@ namespace XNAMode
 
             FlxG.flash.start(Color.Black, 1.5f);
 
+
+            FlxXMLReader.readCustomXMLLevelsAttrs("levelDetails.xml");
+
+
         }
 
         public void SaveToDevice()
