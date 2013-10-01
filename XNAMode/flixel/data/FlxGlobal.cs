@@ -28,7 +28,7 @@ namespace org.flixel
         public const int BUILD_TYPE_RELEASE = 0;
         public const int BUILD_TYPE_PRESS = 1;
 
-        public const bool DEMO_VERSION = false;
+        public static bool DEMO_VERSION = false;
 
         public static int PLAYER_ACTOR = 1;
 

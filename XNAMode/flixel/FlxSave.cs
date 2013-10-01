@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.GamerServices;
+//using Microsoft.Xna.Framework.GamerServices;
 #if !WINDOWS_PHONE
 using Microsoft.Xna.Framework.Storage;
 
@@ -256,19 +256,23 @@ namespace org.flixel
              {
                  if (_storageasync == null)
                  {
-                     if (!Guide.IsVisible)
-                     {
-                         try
-                         {
-                             _storageasync = StorageDevice.BeginShowSelector(null, null);
-                         }
-                         catch
-                         {
-                             // silent fail.
-                             _storageasync = null;
-                             _wantsDevice = false;
-                         }
-                     }
+                     // Commenting out for GamerServices.
+
+                     //if (!Guide.IsVisible)
+                     //{
+                     //    try
+                     //    {
+                     //        _storageasync = StorageDevice.BeginShowSelector(null, null);
+                     //    }
+                     //    catch
+                     //    {
+                     //        // silent fail.
+                     //        _storageasync = null;
+                     //        _wantsDevice = false;
+                     //    }
+                     //}
+
+                     // end of GamerServices comments
                  }
                  else if (_storageasync.IsCompleted)
                  {
