@@ -328,6 +328,7 @@
     <Content Include="GameThumbnail.png" />
     <None Include="levelSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="ogmoLevels\ProjectFile.oep">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
