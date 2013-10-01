@@ -123,6 +123,7 @@
   <ItemGroup>
     <Compile Include="DataEntryState.cs" />
     <Compile Include="flixel\data\FlxGlobal.cs" />
+    <Compile Include="fourchambers\Hud\PlayHud.cs" />
     <Compile Include="fourchambers\Levels\Door.cs" />
     <Compile Include="fx\BloomComponent.cs" />
     <Compile Include="fx\BloomSettings.cs" />
@@ -328,6 +329,7 @@
     <Content Include="GameThumbnail.png" />
     <None Include="levelSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="ogmoLevels\ProjectFile.oep">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

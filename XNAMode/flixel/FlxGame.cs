@@ -59,7 +59,7 @@ namespace org.flixel
         /// <summary>
         /// A hud for having non scaled text. Important for nice clean text if you're working at 2x or 3x
         /// </summary>
-        internal FlxHud _hud;
+        public FlxHud hud;
 
 
 		/// <summary>
@@ -174,7 +174,7 @@ namespace org.flixel
         private void initConsole()
         {
 
-            _hud = new FlxHud(targetLeft, targetWidth);
+            hud = new FlxHud(targetLeft, targetWidth);
 
 
             //initialize the debug console
@@ -322,7 +322,7 @@ namespace org.flixel
             //Animate flixel HUD elements
             _console.update();
 
-            _hud.update();
+            hud.update();
 
 			if(_soundTrayTimer > 0)
 				_soundTrayTimer -= FlxG.elapsed;
@@ -501,9 +501,9 @@ namespace org.flixel
             }
 
             // Render hud if neccessary.
-            if (_hud.visible)
+            if (hud.visible)
             {
-                _hud.render(FlxG.spriteBatch);
+                hud.render(FlxG.spriteBatch);
             }
             // Render transition if neccessary, and render on this layer above everything.
             if (FlxG.transition.exists)

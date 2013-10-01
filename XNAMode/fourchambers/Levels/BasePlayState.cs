@@ -213,6 +213,11 @@ namespace XNAMode
 
             base.create();
 
+            //assign a Hud Group to the hud.
+
+            FlxG._game.hud.hudGroup = bullets;
+
+
             //important to reset the hud to get the text, gamepad buttons out.
             FlxG.resetHud();
             FlxG.showHud();
