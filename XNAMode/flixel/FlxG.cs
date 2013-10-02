@@ -350,23 +350,23 @@ namespace org.flixel
         {
             if (Player == 1)
             {
-                _game._hud.p1HudText.x = X * FlxG.zoom;
-                _game._hud.p1HudText.y = Y * FlxG.zoom;
+                _game.hud.p1HudText.x = X * FlxG.zoom;
+                _game.hud.p1HudText.y = Y * FlxG.zoom;
             }
             if (Player == 2)
             {
-                _game._hud.p2HudText.x = X * FlxG.zoom;
-                _game._hud.p2HudText.y = Y * FlxG.zoom;
+                _game.hud.p2HudText.x = X * FlxG.zoom;
+                _game.hud.p2HudText.y = Y * FlxG.zoom;
             }
             if (Player == 3)
             {
-                _game._hud.p3HudText.x = X * FlxG.zoom;
-                _game._hud.p3HudText.y = Y * FlxG.zoom;
+                _game.hud.p3HudText.x = X * FlxG.zoom;
+                _game.hud.p3HudText.y = Y * FlxG.zoom;
             }
             if (Player == 4)
             {
-                _game._hud.p4HudText.x = X * FlxG.zoom;
-                _game._hud.p4HudText.y = Y * FlxG.zoom;
+                _game.hud.p4HudText.x = X * FlxG.zoom;
+                _game.hud.p4HudText.y = Y * FlxG.zoom;
             }
 
         }
@@ -380,19 +380,19 @@ namespace org.flixel
         {
             if (Player == 1)
             {
-                _game._hud.p1HudText.scale = Scale;
+                _game.hud.p1HudText.scale = Scale;
             }
             if (Player == 2)
             {
-                _game._hud.p2HudText.scale = Scale;
+                _game.hud.p2HudText.scale = Scale;
             }
             if (Player == 3)
             {
-                _game._hud.p3HudText.scale = Scale;
+                _game.hud.p3HudText.scale = Scale;
             }
             if (Player == 4)
             {
-                _game._hud.p4HudText.scale = Scale;
+                _game.hud.p4HudText.scale = Scale;
             }
 
         }
@@ -401,27 +401,27 @@ namespace org.flixel
         /// <summary>
         /// public access to showing the hud
         /// </summary>
-        public static void showHud() { _game._hud.showHud(); }
+        public static void showHud() { _game.hud.showHud(); }
 
         /// <summary>
         /// public access to hiding the hud
         /// </summary>
-        public static void hideHud() { _game._hud.hideHud(); }
+        public static void hideHud() { _game.hud.hideHud(); }
 
-        public static void showHudGraphic() { _game._hud.showHudGraphic(); }
-        public static void hideHudGraphic() { _game._hud.hideHudGraphic(); }
+        public static void showHudGraphic() { _game.hud.showHudGraphic(); }
+        public static void hideHudGraphic() { _game.hud.hideHudGraphic(); }
 
         /// <summary>
         /// Set's the hud text to, for the player number
         /// </summary>
         /// <param name="Player">Number of the player you want the hud text to be.</param>
         /// <param name="Data">String to enter.</param>
-        public static void setHudText(int Player, string Data) { _game._hud.setHudText(Player, Data); }
+        public static void setHudText(int Player, string Data) { _game.hud.setHudText(Player, Data); }
 
         /// <summary>
         /// resets strings to "" and positions to zero
         /// </summary>
-        public static void resetHud() { _game._hud.reset(); }
+        public static void resetHud() { _game.hud.reset(); }
 
         /// <summary>
         /// Sets the gamepad hud (non scaled) graphic to a button, and X and Y values.
@@ -430,7 +430,7 @@ namespace org.flixel
         /// <param name="Button">The button you'd like, use FlxButton.GamePad** to choose.</param>
         /// <param name="X">X Position</param>
         /// <param name="Y">Y Position</param>
-        public static void setHudGamepadButton(int Button, float X, float Y) { _game._hud.setHudGamepadButton(Button, X , Y); }
+        public static void setHudGamepadButton(int Button, float X, float Y) { _game.hud.setHudGamepadButton(Button, X , Y); }
 
         /// <summary>
         /// Not working yet!

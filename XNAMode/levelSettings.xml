@@ -103,7 +103,7 @@
       <l25>Legacy, Perpetuate</l25>
     </name>
     <levelWidth default="50">
-      <l1>30</l1>
+      <l1>50</l1>
       <l2>80</l2>
       <l3>75</l3>
       <l4>60</l4>
@@ -130,7 +130,7 @@
       <l25>122</l25>
     </levelWidth>
     <levelHeight default="50">
-      <l1>20</l1>
+      <l1>50</l1>
       <l2>60</l2>
       <l3>60</l3>
       <l4>60</l4>
@@ -187,7 +187,7 @@
       <l25>The Hourglass of Space, Time and Being</l25>
     </prize>
     <startCaveGenerateBias default="0.5">
-      <l1>0.5</l1>
+      <l1>0.475</l1>
       <l2>0.5</l2>
       <l3>0.495</l3>
       <l4>0.475</l4>
@@ -214,7 +214,7 @@
       <l25>0.4834</l25>
     </startCaveGenerateBias>
     <solidColumnsBeforeSmooth default="">
-      <l1>0,1,28,29</l1>
+      <l1>0,1,48,49</l1>
       <l2></l2>
       <l3></l3>
       <l4></l4>
@@ -322,7 +322,7 @@
       <l25></l25>
     </emptyRowsBeforeSmooth>
     <solidColumnsAfterSmooth default="">
-      <l1>1,2,18,19</l1>
+      <l1>1,2,48,49</l1>
       <l2></l2>
       <l3></l3>
       <l4></l4>
@@ -349,7 +349,7 @@
       <l25></l25>
     </solidColumnsAfterSmooth>
     <solidRowsAfterSmooth default="">
-      <l1>0,1,18,19</l1>
+      <l1>0,1,48,49</l1>
       <l2>58,59</l2>
       <l3>58,59</l3>
       <l4>0,1,58,59</l4>
@@ -489,8 +489,8 @@
     <corsair default="0"></corsair>
     <marksman default="0">
       <l1 playerControlled="1">1</l1>
-      <l2 playerControlled="1">1</l2>
-      <l3 playerControlled="1">1</l3>
+      <l2></l2>
+      <l3></l3>
       <l4></l4>
       <l5 playerControlled="1">1</l5>
       <l6></l6>
@@ -516,7 +516,7 @@
     </marksman>
     <mistress default="0">
       <l1></l1>
-      <l2></l2>
+      <l2 playerControlled="1">1</l2>
       <l3></l3>
       <l4 playerControlled="1">1</l4>
       <l5></l5>
@@ -547,7 +547,7 @@
     <warlock default="0">
       <l1></l1>
       <l2></l2>
-      <l3></l3>
+      <l3 playerControlled="1">1</l3>
       <l4></l4>
       <l5></l5>
       <l6 playerControlled="1">1</l6>

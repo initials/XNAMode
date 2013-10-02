@@ -23,8 +23,6 @@ namespace org.flixel
         public FlxText p3HudText;
         public FlxText p4HudText;
 
-        public FlxSprite hudGraphic;
-
         public FlxGroup hudGroup;
 
 
@@ -66,11 +64,11 @@ namespace org.flixel
             visible = false;
 
             //hudGraphic = new FlxSprite(targetLeft+76, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 36, FlxG.Content.Load<Texture2D>("initials/hudElements"));
-            hudGraphic = new FlxSprite();
-            hudGraphic.visible = false;
-            hudGraphic.scrollFactor.X = 0;
-            hudGraphic.scrollFactor.Y = 0;
-            hudGraphic.scale = 2;
+            //hudGraphic = new FlxSprite();
+            //hudGraphic.visible = false;
+            //hudGraphic.scrollFactor.X = 0;
+            //hudGraphic.scrollFactor.Y = 0;
+            //hudGraphic.scale = 2;
 
             hudGroup = new FlxGroup();
             hudGroup.scrollFactor.X = 0;
@@ -163,10 +161,14 @@ namespace org.flixel
         /// </summary>
         public void update()
         {
+            
+            
             if (visible)
             {
-
+                hudGroup.update();
             }
+
+            
 
         }
 
@@ -198,11 +200,11 @@ namespace org.flixel
 
         public void showHudGraphic()
         {
-            hudGraphic.visible = true;
+            //hudGraphic.visible = true;
         }
         public void hideHudGraphic()
         {
-            hudGraphic.visible = false;
+            //hudGraphic.visible = false;
         }
 
 
@@ -210,8 +212,6 @@ namespace org.flixel
         {
 
             spriteBatch.Draw(FlxG.XnaSheet, _consoleRect, _srcRect, _consoleColor);
-            
-            hudGraphic.render(spriteBatch);
 
             hudGroup.render(spriteBatch);
             

@@ -35,6 +35,8 @@ namespace XNATweener
             }
         }
 
+
+
         private float _from;
         protected float from
         {
@@ -83,11 +85,37 @@ namespace XNATweener
             }
         }
 
+        private float _elapsedDelay = 0.0f;
+        protected float elapsedDelay
+        {
+            get
+            {
+                return _elapsedDelay;
+            }
+            set
+            {
+                _elapsedDelay = value;
+            }
+        }
+
         private bool _running = true;
         public bool Running
         {
             get { return _running; }
             protected set { _running = value; }
+        }
+
+        public float _delay = 0.0f;
+        public float Delay
+        {
+            get
+            {
+                return _delay;
+            }
+            set
+            {
+                _delay = value;
+            }
         }
 
         private TweeningFunction _tweeningFunction;
@@ -110,8 +138,19 @@ namespace XNATweener
             {
                 return;
             }
+
+            elapsedDelay += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (_elapsedDelay < _delay)
+            {
+                return;
+            }
+
             Position = tweeningFunction(elapsed, from, change, duration);
             elapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+
+
             if (elapsed >= duration)
             {
                 elapsed = duration;
