@@ -19,6 +19,8 @@ namespace XNAMode
         /// </summary>
         public int arrowsRemaining = 0;
 
+        
+
         public Marksman(int xPos, int yPos, List<FlxObject> Bullets)
             : base(xPos, yPos)
         {

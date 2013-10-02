@@ -12,7 +12,100 @@ namespace XNAMode
 {
     class PowerUp : FlxSprite
     {
-        // Row:  0
+        
+
+        public int typeOfPowerUp = 0;
+
+        public PowerUp(int xPos, int yPos)
+            : base(xPos, yPos)
+        {
+
+            width = 16;
+            height = 16;
+
+            //acceleration.Y = FourChambers_Globals.GRAVITY;
+            dead = true;
+            drag.X = 50;
+            drag.Y = 50;
+            Texture2D Img = FlxG.Content.Load<Texture2D>("initials/pickups_16x16");
+
+            loadGraphic(Img, false, false, 16, 16);
+
+            //22x14
+
+            if (FourChambers_Globals.BUILD_TYPE == FourChambers_Globals.BUILD_TYPE_PRESS)
+            {
+                if (FlxU.random() > 0.5)
+                {
+                    typeOfPowerUp = 154;
+                }
+                else if (FlxU.random() > 0.4)
+                {
+                    typeOfPowerUp = 155;
+                }
+                else if (FlxU.random() > 0.3)
+                {
+                    typeOfPowerUp = 156;
+                }
+                else if (FlxU.random() > 0.2)
+                {
+                    typeOfPowerUp = 157;
+                }
+                else if (FlxU.random() > 0.1)
+                {
+                    typeOfPowerUp = 158;
+                }
+                else
+                {
+                    typeOfPowerUp = (int)FlxU.random(0, 22 * 14);
+                }
+            }
+            else if (FourChambers_Globals.BUILD_TYPE == FourChambers_Globals.BUILD_TYPE_RELEASE)
+            {
+                if (FlxU.random() > 0.1)
+                {
+                    typeOfPowerUp = 154;
+                }
+                else
+                {
+                    typeOfPowerUp = (int)FlxU.random(0, 22 * 14);
+                }
+            }
+            
+            addAnimation("item", new int[] { typeOfPowerUp });
+            play("item");
+            
+        }
+
+        override public void update()
+        {
+
+
+            //_curFrame = 1;
+
+            base.update();
+
+        }
+
+        public void powerUpType(int setToType)
+        {
+            if (FourChambers_Globals.BUILD_TYPE == FourChambers_Globals.BUILD_TYPE_PRESS)
+            {
+
+            }
+            else if (FourChambers_Globals.BUILD_TYPE == FourChambers_Globals.BUILD_TYPE_RELEASE)
+            {
+
+            }
+        }
+
+    }
+}
+
+
+/*
+
+// Row:  0
         //public const int FR_ = 0;
         //public const int FR_ = 1;
         //public const int FR_ = 2;
@@ -455,76 +548,4 @@ namespace XNAMode
         //public const int FR_ = 414;
         //public const int FR_ = 415;
 
-        public int typeOfPowerUp = 0;
-
-        public PowerUp(int xPos, int yPos)
-            : base(xPos, yPos)
-        {
-
-            width = 16;
-            height = 16;
-
-            velocity.Y = FourChambers_Globals.GRAVITY;
-
-            Texture2D Img = FlxG.Content.Load<Texture2D>("initials/pickups_16x16");
-
-            loadGraphic(Img, false, false, 16, 16);
-
-            //22x14
-
-            if (FourChambers_Globals.BUILD_TYPE == FourChambers_Globals.BUILD_TYPE_PRESS)
-            {
-                if (FlxU.random() > 0.1)
-                {
-                    typeOfPowerUp = 66;
-                }
-                else
-                {
-                    typeOfPowerUp = (int)FlxU.random(0, 22 * 14);
-                }
-            }
-            else if (FourChambers_Globals.BUILD_TYPE == FourChambers_Globals.BUILD_TYPE_RELEASE)
-            {
-                if (FlxU.random() > 0.1)
-                {
-                    typeOfPowerUp = 154;
-                }
-                else
-                {
-                    typeOfPowerUp = (int)FlxU.random(0, 22 * 14);
-                }
-            }
-
-
-
-            addAnimation("item", new int[] { typeOfPowerUp });
-            play("item");
-
-
-
-        }
-
-        override public void update()
-        {
-
-
-            //_curFrame = 1;
-
-            base.update();
-
-        }
-
-        public void powerUpType(int setToType)
-        {
-            if (FourChambers_Globals.BUILD_TYPE == FourChambers_Globals.BUILD_TYPE_PRESS)
-            {
-
-            }
-            else if (FourChambers_Globals.BUILD_TYPE == FourChambers_Globals.BUILD_TYPE_RELEASE)
-            {
-
-            }
-        }
-
-    }
-}
+*/

@@ -555,17 +555,25 @@ namespace org.flixel
             int numCols = inMat.GetLength(1);
 
             int n = 0;
-            int rx = 0;
-            int ry = 0;
-
-            while (n != 1)
+            int rx = (int)(FlxU.random() * (numRows - 1));
+            int ry = (int)(FlxU.random() * (numCols - 1));
+            if (inMat[rx, ry] == 1)
             {
-                rx = (int)(FlxU.random() * (numRows-1));
-                ry = (int)(FlxU.random() * (numCols-1));
-                
-                if(inMat[rx,ry] == 1) 
+                return new int[] { rx, ry };
+            }
+            else
+            {
+                while (n != 1)
                 {
-                    n=1;
+                    rx ++;
+                    ry ++;
+                    if (rx > numRows - 1) rx = (int)(FlxU.random() * (numRows - 1));
+                    if (ry > numRows - 1) ry = (int)(FlxU.random() * (numCols - 1));
+
+                    if (inMat[rx, ry] == 1)
+                    {
+                        n = 1;
+                    }
                 }
             }
 
@@ -664,11 +672,17 @@ namespace org.flixel
                 for (int _x = 1; _x < numCols - 1; _x++)
                 {
                     // test for flat surface with empty above 
-                    if (inMat[_y, _x] == 0 && inMat[_y - 1, _x] == 1 && inMat[_y + 1, _x - 1] == 1 && inMat[_y + 1, _x + 1] == 1)
+                    //if (inMat[_y, _x] == 1)
+                    //{
+                    //    outMat[_y, _x] = 5;
+                    //}
+                  //if (inMat[_y, _x] == 0 && inMat[_y + 1, _x] == 1 && inMat[_y + 1, _x - 1] == 1 && inMat[_y + 1, _x + 1] == 1)
+                    if (inMat[_y, _x] == 0 && inMat[_y - 1, _x] == 1) //&& inMat[_y + 1, _x - 1] == 1 && inMat[_y + 1, _x + 1] == 1
                     {
                         if (FlxU.random() < ratio) outMat[_y, _x] = 1;
                         else outMat[_y, _x] = 0;
                     }
+                    
                     else
                     {
                         outMat[_y, _x] = 0;

@@ -187,7 +187,7 @@
       <l25>The Hourglass of Space, Time and Being</l25>
     </prize>
     <startCaveGenerateBias default="0.5">
-      <l1>0.475</l1>
+      <l1>0.5</l1>
       <l2>0.5</l2>
       <l3>0.495</l3>
       <l4>0.475</l4>
@@ -214,7 +214,7 @@
       <l25>0.4834</l25>
     </startCaveGenerateBias>
     <solidColumnsBeforeSmooth default="">
-      <l1>0,1,48,49</l1>
+      <l1>0,1,22,27,48,49</l1>
       <l2></l2>
       <l3></l3>
       <l4></l4>
@@ -241,7 +241,7 @@
       <l25></l25>
     </solidColumnsBeforeSmooth>
     <solidRowsBeforeSmooth default="">
-      <l1>0,1</l1>
+      <l1>0,1,20,30,40,45</l1>
       <l2>10,11,12</l2>
       <l3></l3>
       <l4>55,56,57</l4>
@@ -268,7 +268,7 @@
       <l25>15</l25>
     </solidRowsBeforeSmooth>
     <emptyColumnsBeforeSmooth default="">
-      <l1>3,4,5,6,7,8,11,15</l1>
+      <l1>25,26,27,28</l1>
       <l2></l2>
       <l3></l3>
       <l4></l4>
@@ -295,7 +295,7 @@
       <l25></l25>
     </emptyColumnsBeforeSmooth>
     <emptyRowsBeforeSmooth default="">
-      <l1>5,9,12,17</l1>
+      <l1>5,9,12,17,40,41,42,43,44</l1>
       <l2></l2>
       <l3></l3>
       <l4></l4>

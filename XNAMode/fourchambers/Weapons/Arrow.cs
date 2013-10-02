@@ -16,9 +16,15 @@ namespace XNAMode
         private bool hasTouched;
 
         protected const string SndShoot = "sfx/arrowShoot";
+        public FlxSprite _ex;
 
-        public Arrow()
+        public Arrow(int xPos, int yPos, FlxSprite exp)
+            : base(xPos, yPos)
         {
+
+
+            _ex = exp;
+            
             ImgBullet = FlxG.Content.Load<Texture2D>("initials/arrow_8x1");
 
             loadGraphic(ImgBullet, false, false, 8,1);
@@ -70,12 +76,20 @@ namespace XNAMode
         }
 
         override public void hitSide(FlxObject Contact, float Velocity) 
-        { 
+        {
+            _ex.x = x- _ex.width/2;
+            _ex.y = y-_ex.height/2;
+            _ex.play("explode", true);
+
             hasTouched= true;
             kill(); 
         }
         override public void hitBottom(FlxObject Contact, float Velocity) 
         {
+            _ex.x = x - _ex.width / 2;
+            _ex.y = y - _ex.height / 2;
+            _ex.play("explode", true);
+
             hasTouched = true;
             dead = true;
             solid = false;
@@ -83,6 +97,10 @@ namespace XNAMode
         }
         override public void hitTop(FlxObject Contact, float Velocity) 
         {
+            _ex.x = x - _ex.width / 2;
+            _ex.y = y - _ex.height / 2;
+            _ex.play("explode", true);
+
             hasTouched = true;
             kill(); 
         }
@@ -97,6 +115,8 @@ namespace XNAMode
             
             play("explode");
             dead = true;
+
+            //base.kill();
             
         }
 

@@ -47,7 +47,7 @@ namespace XNAMode
             _menuItems = new FlxText(0, 30, FlxG.width);
             _menuItems.setFormat(null, 2, Color.White, FlxJustification.Center, Color.White);
             //_menuItems.text = "Four Chambers\n\nEnter name, use @ symbol to specify Twitter handle.\nPress enter when complete.";
-            _menuItems.text = "Four Chambers";
+            _menuItems.text = "The Four Chambers\nOf The Human Heart";
             _menuItems.shadow = Color.Black;
             add(_menuItems);
 

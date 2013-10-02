@@ -213,6 +213,10 @@ namespace XNAMode
         private FlxGroup powerUps;
         private PowerUp powerUp;
         private Door door;
+        
+        public Arrow arrow;
+        private BigExplosion bigEx;
+
 
         override public void create()
         {
@@ -240,6 +244,7 @@ namespace XNAMode
             zingers = new FlxGroup();
             powerUps = new FlxGroup();
 
+            bigEx = new BigExplosion(-1000, -1000);
 
 
             //First build a dictionary of levelAttrs
@@ -365,7 +370,7 @@ namespace XNAMode
             add(ladders);
             add(allLevelTiles);
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 2; i++)
             {
 
                 int rx = (int)(FlxU.random() * (FlxG.levelWidth / FourChambers_Globals.TILE_SIZE_X));
@@ -441,6 +446,16 @@ namespace XNAMode
                 }
             }
 
+            //for (int i = 0; i < hangingArray.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < hangingArray.GetLength(1); j++)
+            //    {
+            //        Console.Write(hangingArray[i, j]);
+            //    }
+
+            //    Console.WriteLine();
+            //}
+
             for (int i = 0; i < 12; i++)
             {
                 int[] p = cave.findRandomSolid(hangingArray);
@@ -494,6 +509,9 @@ namespace XNAMode
             blood.gravity = FourChambers_Globals.GRAVITY;
             blood.createSprites(FlxG.Content.Load<Texture2D>("initials/blood"), 1500, true, 1.0f, 0.1f);
             add(blood);
+
+            
+            add(bigEx);
 
             add(decorationsTilemap);
 
@@ -552,6 +570,8 @@ namespace XNAMode
             // Allow editing of terrain if SHIFT + Mouse is pressed.
             if (FlxG.mouse.pressedRightButton() && FlxG.keys.SHIFT)
             {
+                //Console.WriteLine((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X + " " + (int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y);
+
                 mainTilemap.setTile((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X, (int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y, 0, true);
                 decorationsTilemap.setTile((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X, ((int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y) - 1, 0, true);
             }
@@ -582,22 +602,37 @@ namespace XNAMode
 
             //collides
             FlxU.collide(actors, allLevelTiles);
+
             FlxU.collide(powerUps, allLevelTiles);
             FlxU.overlap(playerControlledActors, door, goToNextLevel);
 
             FlxU.overlap(actors, bullets, overlapped);
             FlxU.overlap(actors, ladders, overlapWithLadder);
+
+            
             
             FlxU.collide(mainTilemap, bullets);
             
-            
             FlxU.collide(blood, mainTilemap);
+
 
             FlxU.overlap(actors, playerControlledActors, actorOverlap);
 
             FlxU.overlap(powerUps, playerControlledActors, getPowerUp);
 
+            try
+            {
+                int xtile = (int)((bigEx.x + 16) / FourChambers_Globals.TILE_SIZE_X);
+                int ytile = (int)((bigEx.y + 16) / FourChambers_Globals.TILE_SIZE_Y);
+                //Console.WriteLine(xtile + " " + ytile);
 
+                mainTilemap.setTile(xtile, ytile , 0, true);
+                mainTilemap.setTile(xtile-1, ytile, 0, true);
+                mainTilemap.setTile(xtile+1, ytile, 0, true);
+
+                //decorationsTilemap.setTile((int)bigEx.x - 16 / FourChambers_Globals.TILE_SIZE_X, ((int)bigEx.y - 16 / FourChambers_Globals.TILE_SIZE_Y) - 1, 0, true);
+            }
+            catch { }
 
             base.update();
 
@@ -619,18 +654,12 @@ namespace XNAMode
 
             if (playerControlledActors.getFirstAlive() == null)
             {
-
                 if (FlxG.gamepads.isButtonDown(Buttons.X) || FlxG.mouse.pressed() )
                 {
                     FlxOnlineStatCounter.sendStats("fourchambers", "marksman", FlxG.score);
                     goToMenu();
                 }
-
-                
-
-                
             }
-
         }
 
 
@@ -669,10 +698,12 @@ namespace XNAMode
             return true;
         }
 
+
+
         protected bool getPowerUp(object Sender, FlxSpriteCollisionEvent e)
         {
             int x = ((PowerUp)e.Object1).typeOfPowerUp;
-            if (x == 154)
+            if (x == 154 || x == 155 || x == 156 || x == 157)
             {
                 if (marksman != null)
                     marksman.arrowsRemaining += 20;
@@ -772,6 +803,8 @@ namespace XNAMode
                 if (p != null)
                 {
                     p.dead = false;
+                    p.acceleration.Y = FourChambers_Globals.GRAVITY;
+                    p.velocity.X = FlxU.random(-5, 5);
                     p.exists = true;
                     p.x = e.Object1.x+8;
                     p.y = e.Object2.y-8;
@@ -789,8 +822,10 @@ namespace XNAMode
             // Now that it's a kill, spurt some blood and "hurt" both parties.
             else if (e.Object1.dead == false && e.Object2.dead == false)
             {
-                //pointBurst.x = e.Object1.x;
-                //pointBurst.y = e.Object1.y;
+                bigEx.x = e.Object1.x;
+                bigEx.y = e.Object1.y;
+                bigEx.play("explode", true);
+
                 //pointBurst.alpha = 1;
 
                 //e.Object1.acceleration.Y = 820;
@@ -818,7 +853,10 @@ namespace XNAMode
             if (ActorType == "marksman")
             {
                 for (int i = 0; i < BULLETS_PER_ACTOR; i++)
-                    arrows.add(new Arrow());
+                {
+                    arrow = new Arrow(-1000, 1000, bigEx);
+                    arrows.add(arrow);
+                }
                 bullets.add(arrows);
 
                 for (int i = 0; i < NumberOfActors; i++)
