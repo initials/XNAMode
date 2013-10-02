@@ -150,9 +150,9 @@ namespace XNAMode
             actors.add(harvester);
 
             // Marksman
-            for (i = 0; i < BULLETS_PER_ACTOR; i++)
-                _arrows.add(new Arrow());
-            _bulletsAll.add(_arrows);
+            //for (i = 0; i < BULLETS_PER_ACTOR; i++)
+              //  _arrows.add(new Arrow(-1000,1000));
+            //_bulletsAll.add(_arrows);
 
             p = cav.findRandomSolid(decr);
             marksman = new Marksman(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y, _arrows.members);
