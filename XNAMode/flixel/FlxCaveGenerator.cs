@@ -549,6 +549,8 @@ namespace org.flixel
         /// <returns>int[] array {rx, ry} of a solid</returns>
         public int[] findRandomSolid(int[,] inMat)
         {
+            Console.WriteLine("Find Random Solid");
+
             int numRows = inMat.GetLength(0);
             int numCols = inMat.GetLength(1);
 
@@ -577,6 +579,8 @@ namespace org.flixel
         /// <returns>int[] array {rx, ry} of a empty spot</returns>
         public int[] findRandomEmpty(int[,] inMat)
         {
+            Console.WriteLine("Find Random Empty");
+
             int numRows = inMat.GetLength(0);
             int numCols = inMat.GetLength(1);
 
@@ -612,6 +616,8 @@ namespace org.flixel
         /// <returns>multi array that has decorations only</returns>
         public int[,] createDecorationsMap(int[,] inMat, float ratio)
         {
+            Console.WriteLine("Create Decorations map");
+
             int numRows = inMat.GetLength(0);
             int numCols = inMat.GetLength(1);
 
@@ -646,6 +652,8 @@ namespace org.flixel
         /// <returns></returns>
         public int[,] createHangingDecorationsMap(int[,] inMat, float ratio)
         {
+            Console.WriteLine("hanging decorations");
+
             int numRows = inMat.GetLength(0);
             int numCols = inMat.GetLength(1);
 
@@ -707,6 +715,8 @@ namespace org.flixel
         /// <returns>Returns a matrix of a ladder level</returns>
         public int[,] generateLadderLevel(int NumberOfLadders, int MinLength, int MaxLength)
         {
+            Console.WriteLine("generateLadderLevel");
+
             // Initialize random array
 
             int[,] mat = new int[_numTilesRows, _numTilesCols];
@@ -730,6 +740,7 @@ namespace org.flixel
 
         public int[,] generateBridgeLevel(int NumberOfLadders, int MinLength, int MaxLength)
         {
+            Console.WriteLine("generateBridgeLevel");
             // Initialize random array
 
             int[,] mat = new int[_numTilesRows, _numTilesCols];
