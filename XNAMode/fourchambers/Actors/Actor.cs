@@ -261,7 +261,7 @@ namespace XNAMode
             
 
 
-            if ((_jump >= 0 || framesSinceLeftGround < 10 || isClimbingLadder) && (FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi)))
+            if ((_jump >= 0 || framesSinceLeftGround < 10 || isClimbingLadder) && (FlxG.keys.SPACE || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi)))
             {
                 if (framesSinceLeftGround < 10)
                 {

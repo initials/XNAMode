@@ -13,6 +13,12 @@ namespace XNAMode
     public class BasePlayState : FlxState
     {
         /// <summary>
+        /// The Hud!
+        /// Adjust your score here.
+        /// </summary>
+        private PlayHud localHud;
+
+        /// <summary>
         /// The leading of the camera
         /// </summary>
         private const float FOLLOW_LERP = 3.0f;
@@ -213,10 +219,8 @@ namespace XNAMode
 
             base.create();
 
-            //assign a Hud Group to the hud.
 
-            FlxG._game.hud.hudGroup = bullets;
-
+            Console.WriteLine("Loading BasePlayState Level");
 
             //important to reset the hud to get the text, gamepad buttons out.
             FlxG.resetHud();
@@ -299,6 +303,8 @@ namespace XNAMode
             bgSprite.color = Color.DarkGray;
             bgSprite.boundingBoxOverride = false;
             add(bgSprite);
+
+            Console.WriteLine("Generate the levels caves/tiles.");
 
             // Generate the levels caves/tiles.
 
@@ -459,6 +465,8 @@ namespace XNAMode
             door = new Door(p1[1] * FourChambers_Globals.TILE_SIZE_X, p1[0] * FourChambers_Globals.TILE_SIZE_X);
             add(door);
 
+            Console.WriteLine("Done generating levels");
+
             // build atmospheric effects here
 
             paletteTexture = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["timeOfDayPalette"]);
@@ -491,18 +499,20 @@ namespace XNAMode
 
             //FlxG.autoHandlePause = true;
 
-            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
 
+            if (FlxG.joystickBeingUsed) FlxG.mouse.hide();
+            else FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
 
+            localHud = new PlayHud();
+            FlxG._game.hud.hudGroup = localHud;
 
             Console.WriteLine("Starting at: " + FlxG.level);
+
 
         }
 
         override public void update()
         {
-
-
 
             #region debugLevelSkip
             if (FlxG.keys.justPressed(Keys.F9) && FlxG.debug && timeOfDay > 2.0f)
@@ -555,10 +565,10 @@ namespace XNAMode
 
             #endregion
 
-            FlxG.setHudText(1, FlxG.score.ToString());
-
-
-
+            localHud.score.text = FlxG.score.ToString();
+            if( marksman != null) {
+                localHud.setArrowsRemaining(marksman.arrowsRemaining);
+            }
             //calculate time of day.
             timeOfDay += FlxG.elapsed * timeScale;
             if (timeOfDay > 24.99f) timeOfDay = 0.0f;
@@ -592,21 +602,42 @@ namespace XNAMode
             base.update();
 
             // exit.
-            if (FlxG.keys.justPressed(Keys.Escape) || playerControlledActors.getFirstAlive() == null )
+            if (FlxG.keys.justPressed(Keys.Escape) )
             {
+                int i = 0;
+                int l = playerControlledActors.members.Count;
+                while (i < l)
+                {
+                    (actors.members[i] as FlxSprite).dead = true;
+                    i++;
+                }
 
-                FlxOnlineStatCounter.sendStats("fourchambers", "marksman", FlxG.score);
-
-                Console.WriteLine("Just pressed Escape");
+                Console.WriteLine("Just pressed Escape and killed all player characters.");
                 
-                FlxG.state = new GameSelectionMenuState();
+
             }
 
+            if (playerControlledActors.getFirstAlive() == null)
+            {
+
+                if (FlxG.gamepads.isButtonDown(Buttons.X) || FlxG.mouse.pressed() )
+                {
+                    FlxOnlineStatCounter.sendStats("fourchambers", "marksman", FlxG.score);
+                    goToMenu();
+                }
+
+                
+
+                
+            }
 
         }
 
 
-
+        private void goToMenu()
+        {
+            FlxG.state = new GameSelectionMenuState();
+        }
 
         protected bool goToNextLevel(object Sender, FlxSpriteCollisionEvent e)
         {
@@ -640,6 +671,36 @@ namespace XNAMode
 
         protected bool getPowerUp(object Sender, FlxSpriteCollisionEvent e)
         {
+            int x = ((PowerUp)e.Object1).typeOfPowerUp;
+            if (x == 154)
+            {
+                if (marksman != null)
+                    marksman.arrowsRemaining += 20;
+
+            }
+            else if (x == 66 )
+            {
+                localHud.collectTreasure(1);
+            }
+            else if (x == 67)
+            {
+                localHud.collectTreasure(2);
+            }
+            else if (x == 68)
+            {
+                localHud.collectTreasure(3);
+            }
+            else if (x == 69)
+            {
+                localHud.collectTreasure(4);
+            }
+            else
+            {
+                FlxG.score += 1000;
+                
+
+            }
+
             e.Object1.kill();
 
             return true;
@@ -712,8 +773,8 @@ namespace XNAMode
                 {
                     p.dead = false;
                     p.exists = true;
-                    p.x = e.Object1.x;
-                    p.y = e.Object2.y;
+                    p.x = e.Object1.x+8;
+                    p.y = e.Object2.y-8;
                     p.flicker(0.001f);
                     p.angle = 0;
                     p.visible = true;

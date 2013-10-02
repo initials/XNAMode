@@ -15,9 +15,14 @@ namespace XNAMode
 {
     class PlayHud : FlxGroup
     {
-        //public bool complete;
-
+        /// <summary>
+        /// use setArrowsRemaining(Member)
+        /// </summary>
         public FlxText arrowsRemaining;
+
+        /// <summary>
+        /// Use score.text = "" to set the score.
+        /// </summary>
         public FlxText score;
         
         private Tweener tweenPos;
@@ -40,10 +45,10 @@ namespace XNAMode
             hudGraphic.y = ypos - hudGraphic.height /2;
 
             // these are treasures.
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 11; i++)
             {
                 hudGraphic = new FlxSprite(100 + ((i * 16) + 1), ypos, null);
-                hudGraphic.loadGraphic(FlxG.Content.Load<Texture2D>("initials/icons16x16"), true, false, 16, 16);
+                hudGraphic.loadGraphic(FlxG.Content.Load<Texture2D>("initials/treasures_16x16"), true, false, 16, 16);
                 hudGraphic.width = 16;
                 hudGraphic.height = 16;
                 hudGraphic.addAnimation("off", new int[] { i*2 });
@@ -84,6 +89,10 @@ namespace XNAMode
             base.update();
         }
 
+        /// <summary>
+        /// Use this to activate a member of the treasures.
+        /// </summary>
+        /// <param name="Member"></param>
         public void collectTreasure (int Member)
         {
             ((FlxSprite)this.members[Member]).play("on");

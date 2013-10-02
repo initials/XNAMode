@@ -455,7 +455,7 @@ namespace XNAMode
         //public const int FR_ = 414;
         //public const int FR_ = 415;
 
-
+        public int typeOfPowerUp = 0;
 
         public PowerUp(int xPos, int yPos)
             : base(xPos, yPos)
@@ -466,11 +466,41 @@ namespace XNAMode
 
             velocity.Y = FourChambers_Globals.GRAVITY;
 
-            Texture2D Img = FlxG.Content.Load<Texture2D>("initials/powerup_16x16");
+            Texture2D Img = FlxG.Content.Load<Texture2D>("initials/pickups_16x16");
 
             loadGraphic(Img, false, false, 16, 16);
 
-            
+            //22x14
+
+            if (FourChambers_Globals.BUILD_TYPE == FourChambers_Globals.BUILD_TYPE_PRESS)
+            {
+                if (FlxU.random() > 0.1)
+                {
+                    typeOfPowerUp = 66;
+                }
+                else
+                {
+                    typeOfPowerUp = (int)FlxU.random(0, 22 * 14);
+                }
+            }
+            else if (FourChambers_Globals.BUILD_TYPE == FourChambers_Globals.BUILD_TYPE_RELEASE)
+            {
+                if (FlxU.random() > 0.1)
+                {
+                    typeOfPowerUp = 154;
+                }
+                else
+                {
+                    typeOfPowerUp = (int)FlxU.random(0, 22 * 14);
+                }
+            }
+
+
+
+            addAnimation("item", new int[] { typeOfPowerUp });
+            play("item");
+
+
 
         }
 

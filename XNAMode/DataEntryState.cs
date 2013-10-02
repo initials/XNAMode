@@ -20,7 +20,7 @@ namespace XNAMode
         FlxText _nameEntry;
         FlxButton play;
 
-        PlayHud localHud;
+        //PlayHud localHud;
 
         override public void create()
         {
@@ -68,10 +68,11 @@ namespace XNAMode
 
             //FlxXMLReader.readCustomXMLLevelsAttrs("levelDetails.xml");
 
-            FlxG.showHud();
+            //FlxG.showHud();
 
-            localHud = new PlayHud();
-            FlxG._game.hud.hudGroup = localHud;
+            //localHud = new PlayHud();
+            //FlxG._game.hud.hudGroup = localHud;
+
 
 
         }
@@ -102,14 +103,20 @@ namespace XNAMode
 
         override public void update()
         {
-            if (FlxG.mouse.pressed())
+            PlayerIndex pi;
+            if (FlxG.gamepads.isNewButtonPress(Buttons.X, FlxG.controllingPlayer, out pi))
             {
-                localHud.setArrowsRemaining((int)FlxU.random(1, 15));
-                localHud.score.text = FlxU.random(1, 100000).ToString();
-
-                localHud.collectTreasure(3);
-
+                FlxG.joystickBeingUsed = true;
             }
+
+            //if (FlxG.mouse.pressed())
+            //{
+            //    localHud.setArrowsRemaining((int)FlxU.random(1, 15));
+            //    localHud.score.text = FlxU.random(1, 100000).ToString();
+
+            //    localHud.collectTreasure(3);
+
+            //}
 
             keyboardEntry();
 

@@ -64,10 +64,21 @@ namespace XNAMode
             FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54 , FlxG.height - 27);
 
             FlxG.flash.start(Color.Black, 1.5f);
+
+            FlxG.color(Color.White);
+
         }
 
         override public void update()
         {
+
+            PlayerIndex pi;
+            if (FlxG.gamepads.isNewButtonPress(Buttons.X, FlxG.controllingPlayer, out pi))
+            {
+                FlxG.joystickBeingUsed = true;
+            }
+
+
             tween.Update(FlxG.elapsedAsGameTime);
             bgSprite.y = tween.Position;
 
@@ -111,6 +122,9 @@ namespace XNAMode
         /// </summary>
         public void playGame()
         {
+
+            Console.WriteLine("Just pressed Enter");
+
             FlxG.level = 1;
             FlxG.score = 0;
             FlxG.hideHud();

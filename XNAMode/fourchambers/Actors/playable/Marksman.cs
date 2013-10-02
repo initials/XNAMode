@@ -14,6 +14,11 @@ namespace XNAMode
     {
         public static int _curArrow;
 
+        /// <summary>
+        /// arrows left
+        /// </summary>
+        public int arrowsRemaining = 0;
+
         public Marksman(int xPos, int yPos, List<FlxObject> Bullets)
             : base(xPos, yPos)
         {
@@ -45,6 +50,8 @@ namespace XNAMode
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
+            arrowsRemaining = 20;
+
         }
 
         override public void update()
@@ -56,25 +63,30 @@ namespace XNAMode
                 float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
                 
                 // No Right Stick so do a generic shoot.
-                if (rightX ==0 && rightY ==0 )
+                if (arrowsRemaining >= 1)
                 {
-                    if (facing == Flx2DFacing.Right)
-                        ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), 600, -100);
+                    if (rightX == 0 && rightY == 0)
+                    {
+                        if (facing == Flx2DFacing.Right)
+                            ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), 600, -100);
+                        else
+                            ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), -600, -100);
+                    }
+                    // use the right stick to fire a weapon
                     else
-                        ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), -600, -100);
-                }
-                // use the right stick to fire a weapon
-                else
-                {
-                    ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 600), (int)(rightY *= -600));
-                }
-                if (rightX < 0)
-                {
-                    ((Arrow)(_bullets[_curArrow])).facing = Flx2DFacing.Left;
-                }
-                else
-                {
-                    ((Arrow)(_bullets[_curArrow])).facing = Flx2DFacing.Right;
+                    {
+                        ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 600), (int)(rightY *= -600));
+                    }
+                    if (rightX < 0)
+                    {
+                        ((Arrow)(_bullets[_curArrow])).facing = Flx2DFacing.Left;
+                    }
+                    else
+                    {
+                        ((Arrow)(_bullets[_curArrow])).facing = Flx2DFacing.Right;
+                    }
+                    arrowsRemaining--;
+
                 }
 
                 if (++_curArrow >= _bullets.Count)
@@ -100,9 +112,11 @@ namespace XNAMode
 
                 double velocity_x = Math.Cos((float)radians);
                 double velocity_y = Math.Sin((float)radians);
-
-                ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(velocity_x *= -600 ), (int)(velocity_y *= -600 ));
-
+                if (arrowsRemaining >= 1)
+                {
+                    ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(velocity_x *= -600), (int)(velocity_y *= -600));
+                    arrowsRemaining--;
+                }
                 if (++_curArrow >= _bullets.Count)
                     _curArrow = 0;
                 attackingJoystick = false;

@@ -114,6 +114,7 @@ namespace org.flixel
         /// </summary>
         static public int zoom;
 
+        static public bool joystickBeingUsed = false;
 
         /// <summary>
         /// A reference or pointer to the current FlxState object being used by the game

@@ -573,14 +573,14 @@
     </warlock>
     <!--Non playable Characters.-->
     <automaton default="0">
-      <l1>5</l1>
+      <l1>2</l1>
       <l2>5</l2>
       <l3>5</l3>
       <l4>5</l4>
       <l5>55</l5>
     </automaton>
     <bat default="0">
-      <l1>10</l1>
+      <l1>2</l1>
       <l2>20</l2>
       <l3>20</l3>
       <l4>1</l4>
@@ -791,7 +791,7 @@
       <l26></l26>
     </tormentor>
     <vampire default="0">
-      <l1>3</l1>
+      <l1></l1>
       <l2>3</l2>
       <l3>3</l3>
       <l4>3</l4>
@@ -2210,9 +2210,31 @@
     <wizard default="0"></wizard>
     <wolf default="0"></wolf>
     <zinger default="0">
-      <l1>10</l1>
+      <l1>20</l1>
       <l2>5</l2>
       <l3>5</l3>
+      <l4>2</l4>
+      <l5>3</l5>
+      <l6>4</l6>
+      <l7>2</l7>
+      <l8>3</l8>
+      <l9>6</l9>
+      <l10></l10>
+      <l11></l11>
+      <l12></l12>
+      <l13></l13>
+      <l14></l14>
+      <l15></l15>
+      <l16></l16>
+      <l17></l17>
+      <l18></l18>
+      <l19></l19>
+      <l20></l20>
+      <l21></l21>
+      <l22></l22>
+      <l23></l23>
+      <l24></l24>
+      <l25></l25>
     </zinger>
   </settings>
 </game>

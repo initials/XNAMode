@@ -36,5 +36,7 @@ namespace org.flixel
         public const int PLAYER_MISTRESS = 2;
         public const int PLAYER_WARLOCK = 3;
 
+        
+
     }
 }
