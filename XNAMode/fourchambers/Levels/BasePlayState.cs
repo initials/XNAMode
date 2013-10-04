@@ -446,7 +446,7 @@ namespace XNAMode
                 }
             }
 
-            buildActor("marksman",1);
+            buildActor("marksman",1,true);
 
             for (int i = 0; i < 12; i++)
             {
@@ -839,7 +839,12 @@ namespace XNAMode
             return true;
 
         }
+
         public void buildActor(string ActorType, int NumberOfActors)
+        {
+            buildActor(ActorType, NumberOfActors, false);
+        }
+        public void buildActor(string ActorType, int NumberOfActors, bool playerControlled = false)
         {
             #region Marksman
             if (ActorType == "marksman")
@@ -863,7 +868,7 @@ namespace XNAMode
 
                 }
 
-                if (levelAttrs["playerControlled"] == "marksman")
+                if (levelAttrs["playerControlled"] == "marksman" || playerControlled==true)
                 {
                     marksman.isPlayerControlled = true;
                     FlxG.follow(marksman, FOLLOW_LERP);
