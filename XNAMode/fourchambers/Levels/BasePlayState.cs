@@ -446,15 +446,7 @@ namespace XNAMode
                 }
             }
 
-            //for (int i = 0; i < hangingArray.GetLength(0); i++)
-            //{
-            //    for (int j = 0; j < hangingArray.GetLength(1); j++)
-            //    {
-            //        Console.Write(hangingArray[i, j]);
-            //    }
-
-            //    Console.WriteLine();
-            //}
+            buildActor("marksman",1);
 
             for (int i = 0; i < 12; i++)
             {
