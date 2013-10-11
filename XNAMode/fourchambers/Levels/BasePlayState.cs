@@ -774,6 +774,11 @@ namespace XNAMode
             }
             else if ((e.Object1 is ZingerNest) && (e.Object2 is Arrow))
             {
+                bigEx.x = e.Object1.x;
+                bigEx.y = e.Object1.y;
+                bigEx.play("explode", true);
+
+
                 blood.at(e.Object1);
 
                 blood.start(true, 0, 10);
@@ -814,10 +819,6 @@ namespace XNAMode
             // Now that it's a kill, spurt some blood and "hurt" both parties.
             else if (e.Object1.dead == false && e.Object2.dead == false)
             {
-                bigEx.x = e.Object1.x;
-                bigEx.y = e.Object1.y;
-                bigEx.play("explode", true);
-
                 //pointBurst.alpha = 1;
 
                 //e.Object1.acceleration.Y = 820;
@@ -868,7 +869,7 @@ namespace XNAMode
 
                 }
 
-                if (levelAttrs["playerControlled"] == "marksman" || playerControlled==true)
+                if (playerControlled == true) //levelAttrs["playerControlled"] == "marksman" ||
                 {
                     marksman.isPlayerControlled = true;
                     FlxG.follow(marksman, FOLLOW_LERP);
