@@ -41,10 +41,9 @@ namespace XNAMode
         private FlxButton btnpaladin;
         private FlxButton btnunicorn;
 
+        private FlxGroup buttonsGrp;
 
-        private List<Dictionary<string, string>> scriptList;
-        private int totalScriptTexts;
-        private int currentScriptText;
+
 
         /// <summary>
         /// Creates the scene.
@@ -54,6 +53,8 @@ namespace XNAMode
             FlxG.backColor = Color.Black;
 
             base.create();
+
+            buttonsGrp = new FlxGroup();
 
 
             // HUD - use P1 for the character name.
@@ -95,9 +96,15 @@ namespace XNAMode
             corsairOn.addAnimation("run", new int[] { 1, 2, 3, 4, 5}, 12);
             corsairOn.play("run");
 
-            btncorsair = new FlxButton(85, 90, onCorsair);
+            btncorsair = new FlxButton(85, 90, onCorsair,FlxButton.ControlPadA);
             btncorsair.loadGraphic(corsairOff, corsairOn);
-            add(btncorsair);
+            buttonsGrp.add(btncorsair);
+
+            btncorsair.on = true;
+
+            FlxG.setHudGamepadButton(FlxButton.ControlPadA, btncorsair.x,(btncorsair.y+corsairOff.height*1.5f));
+
+
 
             
             //Marksma
@@ -112,11 +119,12 @@ namespace XNAMode
 
             btnmarksman = new FlxButton(100, 90, onMarksman);
             btnmarksman.loadGraphic(marksmanOff, marksmanOn);
-            add(btnmarksman);
+            buttonsGrp.add(btnmarksman); 
+            btnmarksman.on = false;
 
-            scriptList = FlxXMLReader.readCustomXML("script", "levelSettings.xml");
 
-            totalScriptTexts = scriptList.Count();
+            add(buttonsGrp);
+
 
         }
 

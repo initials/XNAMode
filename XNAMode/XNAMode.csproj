@@ -132,7 +132,7 @@
     <Compile Include="fourchambers\Actors\EnemyActor.cs" />
     <Compile Include="fourchambers\Actors\flyingenemies\ZingerNest.cs" />
     <Compile Include="fourchambers\Actors\flyingenemies\FlyingEnemy.cs" />
-    <Compile Include="fourchambers\Actors\playable\WhipHitBox.cs" />
+    <Compile Include="fourchambers\Actors\playable\MeleeHitBox.cs" />
     <Compile Include="fourchambers\Cutscenes\CutsceneState.cs" />
     <Compile Include="fourchambers\Levels\FallAwayBridgeBlock.cs" />
     <Compile Include="fourchambers\Levels\LevelBeginText.cs" />

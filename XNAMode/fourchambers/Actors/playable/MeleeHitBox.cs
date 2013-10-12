@@ -10,13 +10,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    class WhipHitBox : FlxSprite
+    class MeleeHitBox : FlxSprite
     {
 
-        public WhipHitBox(int xPos, int yPos)
+        public MeleeHitBox(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            alpha = 0.0f;
+            //alpha = 0.0f;
 
             if (FlxG.debug)
             {
@@ -24,7 +24,7 @@ namespace XNAMode
             }
             else
             {
-                visible = false;
+                visible = true;
             }
 
 

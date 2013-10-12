@@ -157,6 +157,8 @@ namespace XNAMode
         public bool attackingJoystick = false;
 
 
+        public bool attackingMelee = false;
+
         /// <summary>
         /// used for tracking the amount of time dead for restarts.
         /// </summary>
@@ -208,10 +210,12 @@ namespace XNAMode
             if (FlxG.gamepads.isButtonDown(Buttons.RightTrigger, FlxG.controllingPlayer, out pi))
             {
                 maxVelocity.X = runSpeed * 2;
+                attackingMelee = false;
             }
             else
             {
                 maxVelocity.X = runSpeed;
+                
             }
 
             //
@@ -224,6 +228,7 @@ namespace XNAMode
                 attackingMouse = false;
                 facing = Flx2DFacing.Left;
                 acceleration.X -= drag.X;
+                attackingMelee = false;
             }
             //Walking right.
             else if ((FlxG.keys.D || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi)) && !isClimbingLadder)
@@ -232,6 +237,7 @@ namespace XNAMode
                 attackingMouse = false;
                 facing = Flx2DFacing.Right;
                 acceleration.X += drag.X;
+                attackingMelee = false;
             }
 
             // ladders
@@ -241,6 +247,7 @@ namespace XNAMode
 
                 velocity.Y = -100;
                 isClimbingLadder = true;
+                attackingMelee = false;
 
                 // on a ladder, snap to nearest 16
             }
@@ -250,6 +257,7 @@ namespace XNAMode
 
                 velocity.Y = 100;
                 isClimbingLadder = true;
+                attackingMelee = false;
             }
             else
             {
@@ -276,6 +284,7 @@ namespace XNAMode
 
                 attackingJoystick = false;
                 attackingMouse = false;
+                attackingMelee = false;
 
                 _jump += FlxG.elapsed;
                 if (_jump > _jumpMaxTime) _jump = -1;
@@ -298,10 +307,12 @@ namespace XNAMode
             if (FlxG.keys.justPressed(Keys.C))
             {
                 attackingMouse = true;
+                attackingMelee = false;
             }
             if (FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder, FlxG.controllingPlayer, out pi))
             {
                 attackingJoystick = true;
+                attackingMelee = false;
             }
             if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X > DEADZONE ||
                 GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y > DEADZONE ||
@@ -311,6 +322,7 @@ namespace XNAMode
                 )
             {
                 attackingJoystick = true;
+                attackingMelee = false;
             }
             else
             {
@@ -321,16 +333,23 @@ namespace XNAMode
             if (FlxG.mouse.pressedLeftButton())
             {
                 attackingMouse = true;
+                attackingMelee = false;
             }
             else
             {
                 attackingMouse = false;
             }
 
+            if (FlxG.keys.P || FlxG.gamepads.isButtonDown(Buttons.Y, FlxG.controllingPlayer, out pi))
+            {
+                attackingMelee = true;
+            }
+
 
             if (FlxG.keys.C)
             {
                 attackingMouse = true;
+                attackingMelee = false;
             }
 
             // update direction based on attacking direction.
@@ -366,6 +385,11 @@ namespace XNAMode
             else if (attackingMouse || attackingJoystick)
             {
                 play("attack");
+            }
+            else if (attackingMelee)
+            {
+                play("attackMelee");
+
             }
             else if (velocity.Y != 0)
             {

@@ -38,7 +38,7 @@ namespace XNAMode
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
-            whipHitBox = new WhipHitBox(xPos, yPos);
+            whipHitBox = new MeleeHitBox(xPos, yPos);
             whipHitBox.width = 5;
             whipHitBox.height = 5;
 

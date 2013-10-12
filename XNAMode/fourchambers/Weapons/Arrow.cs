@@ -18,6 +18,8 @@ namespace XNAMode
         protected const string SndShoot = "sfx/arrowShoot";
         public FlxSprite _ex;
 
+        public bool explodesOnImpact = false;
+
         public Arrow(int xPos, int yPos, FlxSprite exp)
             : base(xPos, yPos)
         {
@@ -77,18 +79,24 @@ namespace XNAMode
 
         override public void hitSide(FlxObject Contact, float Velocity) 
         {
-            _ex.x = x- _ex.width/2;
-            _ex.y = y-_ex.height/2;
-            _ex.play("explode", true);
+            if (explodesOnImpact)
+            {
+                _ex.x = x - _ex.width / 2;
+                _ex.y = y - _ex.height / 2;
+                _ex.play("explode", true);
+            }
 
             hasTouched= true;
             kill(); 
         }
         override public void hitBottom(FlxObject Contact, float Velocity) 
         {
-            _ex.x = x - _ex.width / 2;
-            _ex.y = y - _ex.height / 2;
-            _ex.play("explode", true);
+            if (explodesOnImpact)
+            {
+                _ex.x = x - _ex.width / 2;
+                _ex.y = y - _ex.height / 2;
+                _ex.play("explode", true);
+            }
 
             hasTouched = true;
             dead = true;
@@ -97,9 +105,12 @@ namespace XNAMode
         }
         override public void hitTop(FlxObject Contact, float Velocity) 
         {
-            _ex.x = x - _ex.width / 2;
-            _ex.y = y - _ex.height / 2;
-            _ex.play("explode", true);
+            if (explodesOnImpact)
+            {
+                _ex.x = x - _ex.width / 2;
+                _ex.y = y - _ex.height / 2;
+                _ex.play("explode", true);
+            }
 
             hasTouched = true;
             kill(); 

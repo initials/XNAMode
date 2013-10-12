@@ -612,19 +612,20 @@ namespace XNAMode
 
             FlxU.overlap(powerUps, playerControlledActors, getPowerUp);
 
-            try
-            {
-                int xtile = (int)((bigEx.x + 16) / FourChambers_Globals.TILE_SIZE_X);
-                int ytile = (int)((bigEx.y + 16) / FourChambers_Globals.TILE_SIZE_Y);
-                //Console.WriteLine(xtile + " " + ytile);
+            // removing tile from the explosion.
+            //try
+            //{
+            //    int xtile = (int)((bigEx.x + 16) / FourChambers_Globals.TILE_SIZE_X);
+            //    int ytile = (int)((bigEx.y + 16) / FourChambers_Globals.TILE_SIZE_Y);
+            //    //Console.WriteLine(xtile + " " + ytile);
 
-                mainTilemap.setTile(xtile, ytile , 0, true);
-                mainTilemap.setTile(xtile-1, ytile, 0, true);
-                mainTilemap.setTile(xtile+1, ytile, 0, true);
+            //    mainTilemap.setTile(xtile, ytile , 0, true);
+            //    mainTilemap.setTile(xtile-1, ytile, 0, true);
+            //    mainTilemap.setTile(xtile+1, ytile, 0, true);
 
-                //decorationsTilemap.setTile((int)bigEx.x - 16 / FourChambers_Globals.TILE_SIZE_X, ((int)bigEx.y - 16 / FourChambers_Globals.TILE_SIZE_Y) - 1, 0, true);
-            }
-            catch { }
+            //    //decorationsTilemap.setTile((int)bigEx.x - 16 / FourChambers_Globals.TILE_SIZE_X, ((int)bigEx.y - 16 / FourChambers_Globals.TILE_SIZE_Y) - 1, 0, true);
+            //}
+            //catch { }
 
             base.update();
 
@@ -646,15 +647,37 @@ namespace XNAMode
 
             if (playerControlledActors.getFirstAlive() == null)
             {
+
+                //FlxG.setHudText(1, "Press X to go to Menu \n Press Y to restart.");
+
+                FlxG._game.hud.p1HudText.alignment = FlxJustification.Center;
+                FlxG._game.hud.p1HudText.text = "Press X to go to Menu \n Press Y to restart.";
+                FlxG.setHudTextScale(1, 2);
+                FlxG.setHudTextPosition(1, 0, FlxG.height / 2);
+
+
                 if (FlxG.gamepads.isButtonDown(Buttons.X) || FlxG.mouse.pressed() )
                 {
                     FlxOnlineStatCounter.sendStats("fourchambers", "marksman", FlxG.score);
                     goToMenu();
                 }
+
+                if (FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.mouse.pressed())
+                {
+                    FlxOnlineStatCounter.sendStats("fourchambers", "marksman", FlxG.score);
+                    restart();
+                }
+
+
             }
         }
 
-
+        private void restart()
+        {
+            FlxG.level = 1;
+            FlxG.score = 0;
+            FlxG.state = new BasePlayState();
+        }
         private void goToMenu()
         {
             FlxG.state = new GameSelectionMenuState();
@@ -768,7 +791,8 @@ namespace XNAMode
             {
 
             }
-            else if ((e.Object1 is Mistress) && (e.Object2 is WhipHitBox))
+            else if ((e.Object1 is Marksman) && (e.Object2 is MeleeHitBox)) { } 
+            else if ((e.Object1 is Mistress) && (e.Object2 is MeleeHitBox))
             {
 
             }
@@ -803,8 +827,8 @@ namespace XNAMode
                     p.acceleration.Y = FourChambers_Globals.GRAVITY;
                     p.velocity.X = FlxU.random(-5, 5);
                     p.exists = true;
-                    p.x = e.Object1.x+8;
-                    p.y = e.Object2.y-8;
+                    p.x = e.Object1.x + 8;
+                    p.y = e.Object2.y - 8;
                     p.flicker(0.001f);
                     p.angle = 0;
                     p.visible = true;
@@ -823,8 +847,8 @@ namespace XNAMode
 
                 //e.Object1.acceleration.Y = 820;
 
-                e.Object1.velocity.X = e.Object2.velocity.X ;
-                e.Object1.velocity.Y = e.Object2.velocity.Y ;
+                e.Object1.velocity.X = e.Object2.velocity.X;
+                e.Object1.velocity.Y = e.Object2.velocity.Y;
 
                 e.Object1.hurt(1);
 
@@ -865,6 +889,7 @@ namespace XNAMode
                     marksman = new Marksman(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X, arrows.members);
                     marksman.flicker(2);
                     actors.add(marksman);
+                    bullets.add(marksman.meleeHitBox);
                     playerControlledActors.add(marksman);
 
                 }
