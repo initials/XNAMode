@@ -44,20 +44,20 @@ namespace XNAMode
             hudGraphic.x = hudGraphic.width / 2;
             hudGraphic.y = ypos - hudGraphic.height /2;
 
-            // these are treasures.
-            for (int i = 0; i < 11; i++)
-            {
-                hudGraphic = new FlxSprite(100 + ((i * 16) + 1), ypos, null);
-                hudGraphic.loadGraphic(FlxG.Content.Load<Texture2D>("initials/treasures_16x16"), true, false, 16, 16);
-                hudGraphic.width = 16;
-                hudGraphic.height = 16;
-                hudGraphic.addAnimation("off", new int[] { i*2 });
-                hudGraphic.addAnimation("on", new int[] { i*2+1 });
-                hudGraphic.play("off");
-                hudGraphic.scrollFactor.X = 0;
-                hudGraphic.scrollFactor.Y = 0;
-                add(hudGraphic);
-            }
+            //// these are treasures.
+            //for (int i = 0; i < 11; i++)
+            //{
+            //    hudGraphic = new FlxSprite(100 + ((i * 16) + 1), ypos, null);
+            //    hudGraphic.loadGraphic(FlxG.Content.Load<Texture2D>("initials/treasures_16x16"), true, false, 16, 16);
+            //    hudGraphic.width = 16;
+            //    hudGraphic.height = 16;
+            //    hudGraphic.addAnimation("off", new int[] { i*2 });
+            //    hudGraphic.addAnimation("on", new int[] { i*2+1 });
+            //    hudGraphic.play("off");
+            //    hudGraphic.scrollFactor.X = 0;
+            //    hudGraphic.scrollFactor.Y = 0;
+            //    add(hudGraphic);
+            //}
 
             arrowsRemaining = new FlxText(65, ypos-5, 100);
             arrowsRemaining.setFormat(null, 2, Color.White, FlxJustification.Left, Color.Black);
@@ -89,22 +89,22 @@ namespace XNAMode
             base.update();
         }
 
-        /// <summary>
-        /// Use this to activate a member of the treasures.
-        /// </summary>
-        /// <param name="Member"></param>
-        public void collectTreasure (int Member)
-        {
-            ((FlxSprite)this.members[Member]).play("on");
-            currentAnimatedObj = ((FlxSprite)members[Member]);
+        ///// <summary>
+        ///// Use this to activate a member of the treasures.
+        ///// </summary>
+        ///// <param name="Member"></param>
+        //public void collectTreasure (int Member)
+        //{
+        //    ((FlxSprite)this.members[Member]).play("on");
+        //    currentAnimatedObj = ((FlxSprite)members[Member]);
 
-            tweenScale = new Tweener(10, 1, TimeSpan.FromSeconds(1.0f), Linear.EaseOut);
-            //tweenScale.Ended += StartDrop;
-            tweenScale.Delay = 1.0f;
+        //    tweenScale = new Tweener(10, 1, TimeSpan.FromSeconds(1.0f), Linear.EaseOut);
+        //    //tweenScale.Ended += StartDrop;
+        //    tweenScale.Delay = 1.0f;
 
-            tweenPos = new Tweener(100, ypos, TimeSpan.FromSeconds(2.0f), Bounce.EaseOut);
-            tweenPos.Delay = 2.0f;
-        }
+        //    tweenPos = new Tweener(100, ypos, TimeSpan.FromSeconds(2.0f), Bounce.EaseOut);
+        //    tweenPos.Delay = 2.0f;
+        //}
 
         public void setArrowsRemaining(int ArrowsRemaining)
         {

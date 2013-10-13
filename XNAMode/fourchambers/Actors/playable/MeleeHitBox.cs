@@ -21,6 +21,7 @@ namespace XNAMode
             if (FlxG.debug)
             {
                 visible = true;
+                alpha = 0.1f;
             }
             else
             {
