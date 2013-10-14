@@ -39,6 +39,21 @@ namespace XNAMode
 
         override public void update()
         {
+            if (timeDead > 2.5)
+            {
+                //reset(originalPosition.X, originalPosition.Y);
+                dead = false;
+                angle = 0;
+                flicker(-0.001f);
+                angularVelocity = 0;
+                angularDrag = 700;
+                drag.X = 0;
+                timeDead = 0;
+                play("fly");
+                velocity.X = 100;
+                velocity.Y = -50;
+            }
+
 
             if (dead == false)
             {

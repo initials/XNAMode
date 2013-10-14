@@ -549,7 +549,7 @@ namespace org.flixel
         /// <returns>int[] array {rx, ry} of a solid</returns>
         public int[] findRandomSolid(int[,] inMat)
         {
-            Console.WriteLine("Find Random Solid");
+            //Console.WriteLine("Find Random Solid");
 
             int numRows = inMat.GetLength(0);
             int numCols = inMat.GetLength(1);
@@ -587,7 +587,7 @@ namespace org.flixel
         /// <returns>int[] array {rx, ry} of a empty spot</returns>
         public int[] findRandomEmpty(int[,] inMat)
         {
-            Console.WriteLine("Find Random Empty");
+            //Console.WriteLine("Find Random Empty");
 
             int numRows = inMat.GetLength(0);
             int numCols = inMat.GetLength(1);

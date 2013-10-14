@@ -16,14 +16,23 @@ namespace XNAMode
     {
         private FlxSprite bgSprite;
 
-        private Marksman marksmanOn;
-        private Marksman marksmanOff;
+        private FlxSprite marksmanOn;
+        private FlxSprite marksmanOff;
 
-        private Mistress mistress;
-        private Warlock warlock;
-        private Corsair corsair;
-        private Paladin paladin;
-        private Unicorn unicorn;
+        private FlxSprite mistressOn;
+        private FlxSprite mistressOff;
+
+        private FlxSprite warlockOn;
+        private FlxSprite warlockOff;
+
+        private FlxSprite corsairOn;
+        private FlxSprite corsairOff;
+
+        private FlxSprite paladinOn;
+        private FlxSprite paladinOff;
+        
+        private FlxSprite unicornOn;
+        private FlxSprite unicornOff;
 
         private FlxButton btnmarksman;
         private FlxButton btnmistress;
@@ -32,10 +41,9 @@ namespace XNAMode
         private FlxButton btnpaladin;
         private FlxButton btnunicorn;
 
+        private FlxGroup buttonsGrp;
 
-        private List<Dictionary<string, string>> scriptList;
-        private int totalScriptTexts;
-        private int currentScriptText;
+
 
         /// <summary>
         /// Creates the scene.
@@ -46,18 +54,20 @@ namespace XNAMode
 
             base.create();
 
+            buttonsGrp = new FlxGroup();
+
 
             // HUD - use P1 for the character name.
             // P3 for the text.
             FlxG.resetHud();
             FlxG.showHud();
-            FlxG.setHudText(1, "x");
-            FlxG.setHudText(3, "y");
+            FlxG.setHudText(1, "Choose A Real Human Being");
+            FlxG.setHudText(3, "");
 
-            FlxG.setHudTextPosition(1, 80, 140);
+            FlxG.setHudTextPosition(1, 80, 30);
             FlxG.setHudTextScale(1, 2);
             FlxG.setHudTextPosition(3, 80, 150);
-            FlxG.setHudTextScale(3, 1);
+            FlxG.setHudTextScale(3, 2);
 
             FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width - 30, 160);
 
@@ -75,42 +85,63 @@ namespace XNAMode
             add(bgSprite);
             bgSprite.color = Color.DimGray;
 
-            marksmanOff = new Marksman(110, 95, null);
-            marksmanOff.isPlayerControlled = false;
 
-            marksmanOn = new Marksman(110, 95, null);
-            marksmanOn.isPlayerControlled = false;
+
+            corsairOff = new FlxSprite(0, 0, null);
+            corsairOff.loadGraphic(FlxG.Content.Load<Texture2D>("initials/corsair_18x21"), true, false, 18, 21);
+            corsairOff.addAnimation("idle", new int[] { 0 }, 12);
+
+            corsairOn = new FlxSprite(0, 0, null);
+            corsairOn.loadGraphic(FlxG.Content.Load<Texture2D>("initials/corsair_18x21"), true, false, 18, 21);
+            corsairOn.addAnimation("run", new int[] { 1, 2, 3, 4, 5}, 12);
+            corsairOn.play("run");
+
+            btncorsair = new FlxButton(85, 90, onCorsair,FlxButton.ControlPadA);
+            btncorsair.loadGraphic(corsairOff, corsairOn);
+            buttonsGrp.add(btncorsair);
+
+            btncorsair.on = true;
+
+            FlxG.setHudGamepadButton(FlxButton.ControlPadA, btncorsair.x,(btncorsair.y+corsairOff.height*1.5f));
+
+
+
+            
+            //Marksma
+            marksmanOff = new FlxSprite(0, 0, null);
+            marksmanOff.loadGraphic(FlxG.Content.Load<Texture2D>("initials/marksman_ss_31x24"), true, false, 31, 24);
+            marksmanOff.addAnimation("idle", new int[] { 0 }, 12);
+
+            marksmanOn = new FlxSprite(0, 0, null);
+            marksmanOn.loadGraphic(FlxG.Content.Load<Texture2D>("initials/marksman_ss_31x24"), true, false, 31, 24);
+            marksmanOn.addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 12);
             marksmanOn.play("run");
 
-            //add(marksman);
-
-            //mistress = new Mistress(130, 95);
-            //mistress.isPlayerControlled = false;
-            //add(mistress);
-
-            //warlock = new Warlock(150, 95, null);
-            //warlock.isPlayerControlled = false;
-            //add(warlock);
-
-            btncorsair = new FlxButton(70, 95, onCorsair);
-            btncorsair.loadGraphic((new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("initials/corsair_18x21"), false, false, 18, 21)), (new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("initials/corsair_18x21"), false, false, 18, 21)));
-            add(btncorsair);
-
-            btnmarksman = new FlxButton(100, 95, onCorsair);
+            btnmarksman = new FlxButton(100, 90, onMarksman);
             btnmarksman.loadGraphic(marksmanOff, marksmanOn);
-            add(btnmarksman);
+            buttonsGrp.add(btnmarksman); 
+            btnmarksman.on = false;
 
-            scriptList = FlxXMLReader.readCustomXML("script", "levelSettings.xml");
 
-            totalScriptTexts = scriptList.Count();
+            add(buttonsGrp);
+
 
         }
 
 
+        private void onMarksman()
+        {
+            Console.WriteLine("On Marksman");
+            FlxG.setHudText(3, "Marksman");
+            FlxG.transition.startFadeOut(0.05f);
+
+        }
 
         private void onCorsair()
         {
-            
+            Console.WriteLine("On Corsair");
+            FlxG.setHudText(3, "Corsair");
+            FlxG.transition.startFadeOut(0.05f);
         }
 
         override public void update()

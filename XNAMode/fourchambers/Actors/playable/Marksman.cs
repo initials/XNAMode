@@ -19,6 +19,7 @@ namespace XNAMode
         /// </summary>
         public int arrowsRemaining = 0;
 
+        public FlxSprite meleeHitBox;
         
 
         public Marksman(int xPos, int yPos, List<FlxObject> Bullets)
@@ -33,6 +34,8 @@ namespace XNAMode
             addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }, 26 ,true);
+            addAnimation("attackMelee", new int[] { 15, 16, 17, 18, 11,13,13,13,13 }, 26, true);
+            
             addAnimation("jump", new int[] { 3, 4, 5, 6, 7, 8, 9 }, 3, true);
             addAnimation("climb", new int[] { 20, 21 }, 6, true);
             addAnimation("climbidle", new int[] { 20 }, 0, true);
@@ -54,10 +57,103 @@ namespace XNAMode
 
             arrowsRemaining = 20;
 
+            meleeHitBox = new MeleeHitBox(xPos, yPos);
+            meleeHitBox.width = 5;
+            meleeHitBox.height = 5;
+
+
+        }
+
+        public void adjustMeleeBox()
+        {
+            if (attackingMelee)
+            {
+                meleeHitBox.width = 5;
+                meleeHitBox.height = 5;
+                // position the hit box of the whip.
+
+                if (facing == Flx2DFacing.Right)
+                {
+                    switch (_curFrame)
+                    {
+                        case 4:
+                            meleeHitBox.dead = false;
+                            meleeHitBox.x = x + 14;
+                            meleeHitBox.y = y;
+                            break;
+                        case 5:
+                            meleeHitBox.dead = false;
+                            meleeHitBox.x = x + 16;
+                            meleeHitBox.y = y + 2;
+                            break;
+                        case 6:
+                            meleeHitBox.dead = false;
+                            meleeHitBox.width = 7;
+                            meleeHitBox.height = 7;
+                            meleeHitBox.x = x + 18;
+                            meleeHitBox.y = y + 3;
+                            break;
+                        case 7:
+                            attackingMelee = false;
+                            break;
+                        default:
+                            meleeHitBox.dead = true;
+                            meleeHitBox.width = 10;
+                            meleeHitBox.height = 10;
+                            meleeHitBox.x = x;
+                            meleeHitBox.y = y;
+                            break;
+                    }
+                }
+                if (facing == Flx2DFacing.Left)
+                {
+                    switch (_curFrame)
+                    {
+                        case 4:
+                            meleeHitBox.dead = false;
+                            meleeHitBox.x = x - 10;
+                            meleeHitBox.y = y;
+                            break;
+                        case 5:
+                            meleeHitBox.dead = false;
+                            meleeHitBox.x = x - 12;
+                            meleeHitBox.y = y + 2;
+                            break;
+                        case 6:
+                            meleeHitBox.dead = false;
+                            meleeHitBox.width = 7;
+                            meleeHitBox.height = 7;
+                            meleeHitBox.x = x - 14;
+                            meleeHitBox.y = y + 3;
+                            break;
+                        case 7:
+                            attackingMelee = false;
+                            break;
+
+                        default:
+                            meleeHitBox.dead = true;
+                            meleeHitBox.width = 10;
+                            meleeHitBox.height = 10;
+                            meleeHitBox.x = x;
+                            meleeHitBox.y = y;
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                meleeHitBox.dead = true;
+                meleeHitBox.x = x;
+                meleeHitBox.y = y;
+                meleeHitBox.width = 0;
+                meleeHitBox.height = 0;
+            }
         }
 
         override public void update()
         {
+
+            adjustMeleeBox();
             
             if ((_curFrame == 8 || _curFrame==9 || _curFrame==10) && attackingJoystick )
             {
@@ -129,6 +225,13 @@ namespace XNAMode
 
             base.update();
 
+        }
+
+        public override void render(SpriteBatch spriteBatch)
+        {
+            
+            base.render(spriteBatch);
+            meleeHitBox.render(spriteBatch);
         }
     }
 }

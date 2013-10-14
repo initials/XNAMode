@@ -20,7 +20,7 @@ namespace XNAMode
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/corsair_18x21"), true, false, 18, 21);
 
-            addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5}, 12);
+            addAnimation("run", new int[] { 1, 2, 3, 4, 5}, 12);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("jump", new int[] { 1, 1, 1, 2, 3 }, 6, false);
             addAnimation("attack", new int[] { 0,1,2}, 12);
