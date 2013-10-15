@@ -722,29 +722,10 @@ namespace XNAMode
             {
                 if (marksman != null)
                     marksman.arrowsRemaining += 20;
-
-            }
-            else if (x == 66 )
-            {
-                localHud.collectTreasure(1);
-            }
-            else if (x == 67)
-            {
-                localHud.collectTreasure(2);
-            }
-            else if (x == 68)
-            {
-                localHud.collectTreasure(3);
-            }
-            else if (x == 69)
-            {
-                localHud.collectTreasure(4);
             }
             else
             {
                 FlxG.score += 1000;
-                
-
             }
 
             e.Object1.kill();

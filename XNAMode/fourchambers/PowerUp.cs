@@ -39,19 +39,19 @@ namespace XNAMode
                 {
                     typeOfPowerUp = 154;
                 }
-                else if (FlxU.random() > 0.4)
+                else if (FlxU.random() > 0.48)
                 {
                     typeOfPowerUp = 155;
                 }
-                else if (FlxU.random() > 0.3)
+                else if (FlxU.random() > 0.47)
                 {
                     typeOfPowerUp = 156;
                 }
-                else if (FlxU.random() > 0.2)
+                else if (FlxU.random() > 0.46)
                 {
                     typeOfPowerUp = 157;
                 }
-                else if (FlxU.random() > 0.1)
+                else if (FlxU.random() > 0.45)
                 {
                     typeOfPowerUp = 158;
                 }
