@@ -10,7 +10,7 @@ namespace org.flixel
 
     /// <summary>
     /// This class uses the cellular automata algorithm
-    /// to generate very sexy caves.
+    /// to generate very nice caves.
     /// (Coded by Eddie Lee, October 16, 2010)
     /// (Ported to C# by Shane Brouwer)
     /// </summary>
@@ -310,13 +310,90 @@ namespace org.flixel
                     mat[_i, _xSolid] = 1;
                 }
             }
-
-
-
+            
             return mat;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inMat"></param>
+        /// <param name="startX"></param>
+        /// <param name="startY"></param>
+        /// <param name="endX"></param>
+        /// <param name="endY"></param>
+        /// <param name="fillWith">number to fill path with.</param>
+        /// <returns></returns>
+        public int[,] drawPath(int[,] inMat, int startX, int startY, int endX, int endY, int fillWith)
+        {
+            int currentX = startX;
+            int currentY = startY;
 
+            int height = endY - startY;
+  
+            while (currentX != endX || currentY != endY)
+            {
+                inMat[ currentY , currentX ] = fillWith;
+
+                if (endX < currentX) currentX--;
+                if (endX > currentX) currentX++;
+                
+                if (endY < currentY) currentY--;
+                if (endY > currentY) currentY++;
+
+            }
+
+            int[,] mat2 = genInitMatrix(_numTilesRows, _numTilesCols);
+            for (int i = 0; i <= numSmoothingIterations; i++)
+            {
+                runCelluarAutomata(inMat, mat2);
+                int[,] temp = new int[inMat.GetLength(0), inMat.GetLength(1)];
+                inMat = mat2;
+                mat2 = temp;
+            }
+
+            return inMat;
+        }
+
+        public int[,] addChunks(int[,] inMat, int number, int minSize, int maxSize, int fillWith)
+        {
+            //int[,] mat = new int[_numTilesRows, _numTilesCols];
+
+            for (int i=0; i<number;i++) 
+            {
+                int ysize = (int)FlxU.random(minSize, maxSize);
+                int xsize = (int)FlxU.random(minSize, maxSize);
+
+                int offsetx = (int)FlxU.random(0, _numTilesCols - xsize);
+                int offsety = (int)FlxU.random(0, _numTilesRows - ysize);
+
+                for (int _y = offsety; _y < ysize + offsety; _y++)
+                {
+                    for (int _x = offsetx; _x < xsize + offsetx; _x++)
+                    {
+                        if (offsetx < _numTilesCols && offsety < _numTilesRows)
+                            inMat[_y , _x ] = fillWith;
+                    }
+                }
+            }
+
+            int[,] mat2 = genInitMatrix(_numTilesRows, _numTilesCols);
+
+            // Run automata
+            for (int i = 0; i <= numSmoothingIterations; i++)
+            {
+
+                runCelluarAutomata(inMat, mat2);
+
+                int[,] temp = new int[inMat.GetLength(0), inMat.GetLength(1)];
+                inMat = mat2;
+                mat2 = temp;
+
+            }
+
+
+            return inMat;
+        }
 
         /// <summary>
         /// Generates a cave level
@@ -339,6 +416,8 @@ namespace org.flixel
             int[] emptyRowsAfterSmooth,
             int[] emptyColumnsAfterSmooth)
         {
+            Console.WriteLine("x/y {0}, {1}", _numTilesCols, _numTilesRows);
+
             // Initialize random array
 
             int[,] mat = new int[_numTilesRows, _numTilesCols];
@@ -366,9 +445,8 @@ namespace org.flixel
                 {
                     for (int _i = 0; _i < _numTilesCols; ++_i)
                     {
-                        //Console.WriteLine(_i + " " + _yEmpty);
-
-                        mat[_yEmpty, _i] = 0;
+                        if (_yEmpty < _numTilesRows)
+                            mat[_yEmpty, _i] = 0;
                     }
                 }
             }
@@ -378,24 +456,20 @@ namespace org.flixel
                 {
                     for (int _i = 0; _i < _numTilesRows; ++_i)
                     {
-                        mat[_i, _xEmpty] = 0;
+                        if (_xEmpty < _numTilesCols)
+                            mat[_i, _xEmpty] = 0;
                     }
                 }
             }
 
             if (solidRowsBeforeSmooth != null)
             {
-                
                 foreach (int _ySolid in solidRowsBeforeSmooth)
                 {
-                    //Console.WriteLine("y solid {0} ", _ySolid);
-
                     for (int _i = 0; _i < _numTilesCols; ++_i)
                     {
-
-                        //Console.WriteLine("{0}, {1}, {2}", _i, _ySolid, _numTilesCols);
-
-                        mat[_ySolid, _i] = 1;
+                        if (_ySolid < _numTilesRows)
+                            mat[_ySolid, _i] = 1;
                     }
                 }
             }
@@ -405,7 +479,8 @@ namespace org.flixel
                 {
                     for (int _i = 0; _i < _numTilesRows; ++_i)
                     {
-                        mat[_i, _xSolid] = 1;
+                        if (_xSolid < _numTilesCols)
+                            mat[_i, _xSolid] = 1;
                     }
                 }
             }
@@ -414,7 +489,6 @@ namespace org.flixel
             int[,] mat2 = genInitMatrix(_numTilesRows, _numTilesCols);
 
             // Run automata
-
             for (int i = 0; i <= numSmoothingIterations; i++)
             {
 
@@ -432,7 +506,8 @@ namespace org.flixel
                 {
                     for (int _i = 0; _i < _numTilesCols; ++_i)
                     {
-                        mat[_yEmpty, _i] = 0;
+                        if (_yEmpty < _numTilesRows)
+                            mat[_yEmpty, _i] = 0;
                     }
                 }
             }
@@ -442,19 +517,19 @@ namespace org.flixel
                 {
                     for (int _i = 0; _i < _numTilesRows; ++_i)
                     {
-                        mat[_i, _xEmpty] = 0;
+                        if (_xEmpty < _numTilesCols)
+                            mat[_i, _xEmpty] = 0;
                     }
                 }
             }
-
-
             if (solidRowsAfterSmooth != null) 
             {
                 foreach (int _ySolid in solidRowsAfterSmooth)
                 {
                     for (int _i = 0; _i < _numTilesCols; ++_i)
                     {
-                        mat[_ySolid, _i] = 1;
+                        if (_ySolid < _numTilesRows)
+                            mat[_ySolid, _i] = 1;
                     }
                 }
             }
@@ -464,13 +539,12 @@ namespace org.flixel
                 {
                     for (int _i = 0; _i < _numTilesRows; ++_i)
                     {
-                        mat[_i, _xSolid] = 1;
+                        if (_xSolid < _numTilesCols)
+                            mat[_i, _xSolid] = 1;
                     }
                 }
             }
-
-
-
+            
             return mat;
         }
 

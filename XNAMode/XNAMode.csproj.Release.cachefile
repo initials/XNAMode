@@ -109,6 +109,7 @@ Content\fx\GaussianBlur.xnb
 Content\initials\pickups_16x16.xnb
 Content\initials\treasures_16x16.xnb
 Content\initials\explosion_32x32.xnb
+Content\diagnostic\testpalette.xnb
 Content\mode\button.wma
 levelSettings.xml
 ogmoLevels\ProjectFile.oep

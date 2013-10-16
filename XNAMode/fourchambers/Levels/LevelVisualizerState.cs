@@ -16,25 +16,41 @@ namespace XNAMode
         private int[,] mainTilemapArray;
         private FlxTilemap mainTilemap;
 
-        private int size = 100;
+        private int sizex = 10;
+        private int sizey = 40;
 
+        private FlxCaveGeneratorExt caveExt;
+        private string[,] tiles;
+        
         override public void create()
         {
             base.create();
             
-            cave = new FlxCaveGenerator(size, size);
+            //cave = new FlxCaveGenerator(sizex, sizey);
 
-            mainTilemap = new FlxTilemap();
-            mainTilemap.auto = FlxTilemap.AUTO;
+            //mainTilemap = new FlxTilemap();
+            //mainTilemap.auto = FlxTilemap.AUTO;
             
-            mainTilemap.boundingBoxOverride = true;
-            add(mainTilemap);
+            //mainTilemap.boundingBoxOverride = true;
+            //add(mainTilemap);
 
+            //regenCave();
 
+            caveExt = new FlxCaveGeneratorExt(sizex, sizey);
 
+            tiles = caveExt.generateCaveLevel();
 
-            regenCave();
+            //for (int i = 0; i < tiles.GetLength(1); i++)
+            //{
+            //    for (int y = 0; y < tiles.GetLength(0); y++)
+            //    {
+            //        Console.Write(tiles[y, i]);
+            //    }
 
+            //    Console.WriteLine();
+            //}
+
+            caveExt.printCave(tiles);
 
 
         }
@@ -44,24 +60,31 @@ namespace XNAMode
             
             cave.initWallRatio = 0.5f;
             cave.numSmoothingIterations = 5;
-            cave.genInitMatrix(size, size);
+            cave.genInitMatrix(sizex, sizey);
 
-            int[] solidColumnsBeforeSmooth = new int[] { 0, 1, size - 1, size - 2 };
-            int[] solidRowsBeforeSmooth = new int[] { 0, 1, size - 1, size - 2 };
+            int[] solidColumnsBeforeSmooth = new int[] { 0, 1, sizex - 1, sizex - 2, 1000 };
+            int[] solidRowsBeforeSmooth = new int[] { 0, 1, sizey - 1, sizey - 2, sizey - 4, sizey - 5, sizey - 6,  1000 };
 
-            int[] emptyColumnsBeforeSmooth = new int[] { 10, 20, 30 };
-            int[] emptyRowsBeforeSmooth = new int[] { 10, 20, 30 };
+            int[] emptyColumnsBeforeSmooth = new int[] { 10, 20, 30, 1000 };
+            int[] emptyRowsBeforeSmooth = new int[] { 10, 20, 30, 1000 };
 
-            int[] solidColumnsAfterSmooth = new int[] { 0, 1, size - 1, size - 2 };
-            int[] solidRowsAfterSmooth = new int[] { 0, 1, size - 1, size - 2 };
+            int[] solidColumnsAfterSmooth = new int[] { 0, 1, sizex - 1, sizex - 2, sizex - 3, sizex - 4, sizex - 5, 1000 };
+            int[] solidRowsAfterSmooth = new int[] { 0, 1, sizey - 1, sizey - 2, sizey - 3, sizey - 4, sizey - 5, sizey - 6, 1000 };
 
-            int[] emptyColumnsAfterSmooth = new int[] { 10, 20, 30 };
-            int[] emptyRowsAfterSmooth = new int[] { 10, 20, 30 };
+            int[] emptyColumnsAfterSmooth = new int[] { 10, 20, 30, 1000 };
+            int[] emptyRowsAfterSmooth = new int[] { 10, 20, 30, 1000 };
 
             mainTilemapArray = cave.generateCaveLevel(solidRowsBeforeSmooth, solidColumnsBeforeSmooth, solidRowsAfterSmooth, solidColumnsAfterSmooth, emptyRowsBeforeSmooth, emptyColumnsBeforeSmooth, emptyRowsAfterSmooth, emptyColumnsAfterSmooth);
+            
+            mainTilemapArray = cave.addChunks(mainTilemapArray, 10, 10, 30, 1);
+
+            mainTilemapArray = cave.addChunks(mainTilemapArray, 10, 10, 30, 0);
+
+            mainTilemapArray = cave.drawPath(mainTilemapArray, sizex - 5, 5, 5, sizey - 15, 0);
+
             string newMap = cave.convertMultiArrayToString(mainTilemapArray);
 
-            mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("initials/palette"), 1, 1);
+            mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("diagnostic/testpalette"), 1, 1);
         
         }
 
@@ -69,9 +92,17 @@ namespace XNAMode
         {
 
 
-            if (FlxG.mouse.pressed())
+            if (FlxG.mouse.justPressed() )
             {
-                regenCave();
+                //regenCave();
+
+                caveExt.initWallRatio = 0.5f;
+                caveExt.numSmoothingIterations = 5;
+                caveExt.genInitMatrix(sizex, sizey);
+                tiles = caveExt.generateCaveLevel();
+                
+                caveExt.printCave(tiles);
+
 
             }
 

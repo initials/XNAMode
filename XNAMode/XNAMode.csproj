@@ -123,6 +123,7 @@
   <ItemGroup>
     <Compile Include="DataEntryState.cs" />
     <Compile Include="flixel\data\FlxGlobal.cs" />
+    <Compile Include="flixel\FlxCaveGeneratorExt.cs" />
     <Compile Include="fourchambers\CharacterSelectionState.cs" />
     <Compile Include="fourchambers\Hud\PlayHud.cs" />
     <Compile Include="fourchambers\Levels\Door.cs" />
