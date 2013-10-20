@@ -64,7 +64,7 @@ namespace XNAMode
             arrowsRemaining.text = "00";
             add(arrowsRemaining);
 
-            score = new FlxText(300, ypos - 5, 100);
+            score = new FlxText(310, ypos - 5, 100);
             score.setFormat(null, 2, Color.White, FlxJustification.Left, Color.Black);
             score.text = "000000";
             add(score);
