@@ -33,13 +33,13 @@ namespace XNAMode
 
             addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
-            addAnimation("attack", new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }, 26 ,true);
-            addAnimation("attackMelee", new int[] { 15, 16, 17, 18, 11,13,13,13,13 }, 26, true);
+            addAnimation("attack", new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }, 60 ,true);
+            addAnimation("attackMelee", new int[] { 0,24,24,25,26,26,26,26,26,26,26,26,26 }, 60, true);
             
             addAnimation("jump", new int[] { 3, 4, 5, 6, 7, 8, 9 }, 3, true);
             addAnimation("climb", new int[] { 20, 21 }, 6, true);
             addAnimation("climbidle", new int[] { 20 }, 0, true);
-
+            addAnimation("death", new int[] { 22,23 }, 15, true);
             //addAnimationCallback(stopAttacking);
 
             //bounding box tweaks
@@ -210,11 +210,26 @@ namespace XNAMode
 
                 double velocity_x = Math.Cos((float)radians);
                 double velocity_y = Math.Sin((float)radians);
+
                 if (arrowsRemaining >= 1)
                 {
                     ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(velocity_x *= -600), (int)(velocity_y *= -600));
                     arrowsRemaining--;
                 }
+
+                if (rightX1 - x < 0)
+                {
+                    facing = Flx2DFacing.Left;
+
+                    //Console.WriteLine("Left");
+                }
+                else
+                {
+                    facing = Flx2DFacing.Right;
+
+                    //Console.WriteLine("Right");
+                }
+
                 if (++_curArrow >= _bullets.Count)
                     _curArrow = 0;
                 attackingJoystick = false;

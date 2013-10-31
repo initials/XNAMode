@@ -419,6 +419,8 @@ namespace XNAMode
             add(decorationsRearTilemap);
 
             // build characters here
+            
+            buildActor("marksman", 1, true);
 
             /// Looks through the level dictionary and builds neccessary actors.
             foreach (KeyValuePair<string, string> pair in levelAttrs)
@@ -446,7 +448,7 @@ namespace XNAMode
                 }
             }
 
-            buildActor("marksman",1,true);
+            
 
             for (int i = 0; i < 12; i++)
             {
@@ -1775,6 +1777,14 @@ namespace XNAMode
                     zinger = new Zinger(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
                     zingers.add(zinger);
                     actors.add(zinger);
+
+
+                    ZingerHoming z = new ZingerHoming(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X, marksman);
+                    zingers.add(z);
+                    actors.add(z);
+
+
+
                 }
             }
             #endregion

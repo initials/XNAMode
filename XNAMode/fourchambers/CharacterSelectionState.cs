@@ -133,7 +133,7 @@ namespace XNAMode
         {
             Console.WriteLine("On Marksman");
             FlxG.setHudText(3, "Marksman");
-            FlxG.transition.startFadeOut(0.05f);
+            FlxG.transition.startFadeOut(0.25f);
 
         }
 

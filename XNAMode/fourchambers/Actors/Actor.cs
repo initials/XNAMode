@@ -335,10 +335,18 @@ namespace XNAMode
                 attackingMouse = true;
                 attackingMelee = false;
             }
-            else
+
+            // Attacking using mouse.
+            if (FlxG.mouse.pressedRightButton())
             {
                 attackingMouse = false;
+                attackingMelee = true;
             }
+
+            //else
+            //{
+            //    attackingMouse = false;
+            //}
 
             if (FlxG.keys.P || FlxG.gamepads.isButtonDown(Buttons.Y, FlxG.controllingPlayer, out pi))
             {
@@ -481,7 +489,14 @@ namespace XNAMode
 
             FlxG.write(actorName + " is dead");
 
-            base.kill();
+            flicker(1.5f);
+
+            isPlayerControlled = false;
+
+            velocity.X = 0;
+            acceleration.X = 0;
+
+            //base.kill();
 
         }
 

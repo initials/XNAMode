@@ -171,7 +171,8 @@ namespace org.flixel
         /// <param name="speed">The speed with which to fade in 0.001 is slow, 1 is fast.</param>
         public void startFadeOut(float speed)
         {
-            startFadeOut(speed, 0, 0);
+            if (!transitionBackward && !transitionForward)
+                startFadeOut(speed, 0, 0);
         }
 
         /// <summary>
@@ -229,6 +230,7 @@ namespace org.flixel
                     {
                         o.scale = 0;
                         complete = false;
+                        transitionBackward = false;
                     }
 
                 }
@@ -245,7 +247,19 @@ namespace org.flixel
             {
                 updateTransition();
             }
+            else 
+            {
+                FlxSprite o;
+                int i = 0;
+                int l = members.Count;
+                while (i < l)
+                {
+                    o = members[i++] as FlxSprite;
+                    o.scale = 0.0f;
+                 
+                }
 
+            }
             base.update();
 
 
