@@ -106,6 +106,11 @@ namespace XNAMode
 
             }
 
+            if (FlxG.keys.SPACE)
+            {
+                FlxG.state = new BasePlayState();
+            }
+
             base.update();
         }
 
