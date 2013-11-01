@@ -32,7 +32,6 @@ namespace XNAMode
 
             //mainTilemap = new FlxTilemap();
             //mainTilemap.auto = FlxTilemap.AUTO;
-            
             //mainTilemap.boundingBoxOverride = true;
             //add(mainTilemap);
 
@@ -65,33 +64,40 @@ namespace XNAMode
 
             Console.WriteLine("----------------------------------" + levelAttrs);
 
-            foreach (KeyValuePair<string, string> kvp in levelAttrs)
-            {
-                Console.WriteLine("Key = {0}, Value = {1}",
-                    kvp.Key, kvp.Value);
-            }
+            //foreach (KeyValuePair<string, string> kvp in levelAttrs)
+            //{
+            //    Console.WriteLine("Key = {0}, Value = {1}",
+            //        kvp.Key, kvp.Value);
+            //}
 
             List<Dictionary<string,string>> levelNodes = FlxXMLReader.readNodesFromOelFile("ogmoLevels/level1.oel", "level/ActorsLayer");
 
-            foreach (Dictionary<string,string> nodes in levelNodes)
-            {
-                foreach (KeyValuePair<string, string> kvp in nodes)
-                {
-                    Console.Write("Key = {0}, Value = {1}, ",
-                        kvp.Key, kvp.Value);
-                }
-                Console.Write("\r\n");
-            }
+            //foreach (Dictionary<string,string> nodes in levelNodes)
+            //{
+            //    foreach (KeyValuePair<string, string> kvp in nodes)
+            //    {
+            //        Console.Write("Key = {0}, Value = {1}, ",
+            //            kvp.Key, kvp.Value);
+            //    }
+            //    Console.Write("\r\n");
+            //}
 
             levelAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/level1.oel", "level/TilesLayer");
 
-            Console.WriteLine("----------------------------------" + levelAttrs);
+            //Console.WriteLine("----------------------------------" + levelAttrs);
 
-            foreach (KeyValuePair<string, string> kvp in levelAttrs)
-            {
-                Console.WriteLine("Key = {0}, Value = {1}",
-                    kvp.Key, kvp.Value);
-            }
+            //foreach (KeyValuePair<string, string> kvp in levelAttrs)
+            //{
+            //    Console.WriteLine("Key = {0}, Value = {1}",
+            //        kvp.Key, kvp.Value);
+            //}
+
+            mainTilemap = new FlxTilemap();
+            mainTilemap.auto = FlxTilemap.STRING;
+            mainTilemap.loadMap(levelAttrs["innerText"], FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"), 16, 16);
+            mainTilemap.boundingBoxOverride = true;
+            add(mainTilemap);
+
 
         }
 

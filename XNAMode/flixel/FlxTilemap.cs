@@ -65,12 +65,15 @@ namespace org.flixel
         /// </summary>
         public const int ALT = 2;
 
-
         /// <summary>
         /// Random pick from tilesheet
         /// </summary>
         public const int RANDOM = 3;
 
+        /// <summary>
+        /// Uses a string to choose tiles.
+        /// </summary>
+        public const int STRING = 4;
 
         /// <summary>
         /// What tile index will you start colliding with (default: 1).
@@ -237,6 +240,10 @@ namespace org.flixel
                     _data[((r - 1) * widthInTiles) + c] = int.Parse(cols[c++]); //.push(uint(cols[c++]));
             }
 
+            //foreach (var item in _data)
+            //    Console.Write(item.ToString() + ",");
+            //Console.WriteLine("\n");
+
             //now that height and width have been determined, find how many extra 
             //"filler tiles" are at the end of your map.
 
@@ -247,7 +254,7 @@ namespace org.flixel
             //Pre-process the map data if it's auto-tiled
             int i;
             totalTiles = widthInTiles * heightInTiles;
-            if (auto > OFF)
+            if (auto == AUTO || auto == ALT)
             {
                 collideIndex = startingIndex = drawIndex = 1;
                 i = 0;
@@ -260,6 +267,14 @@ namespace org.flixel
                 i = 0;
                 while (i < totalTiles)
                     randomTile(i++);
+            }
+
+            if (auto == STRING)
+            {
+                collideIndex = startingIndex = drawIndex = 1;
+                i = 0;
+                while (i < totalTiles)
+                    stringTile(i++);
             }
 
             //Figure out the size of the tiles
@@ -299,11 +314,9 @@ namespace org.flixel
             _flashRect.Width = (int)(FlxU.ceil((float)FlxG.width / (float)_tileWidth) + 1) * _tileWidth; ;
             _flashRect.Height = (int)(FlxU.ceil((float)FlxG.height / (float)_tileHeight) + 1) * _tileHeight;
 
-            //foreach(var item in _data)
-              //  Console.Write(item.ToString() + ",");
-
-
-
+            //foreach (var item in _data)
+            //    Console.Write(item.ToString() + ",");
+            //Console.WriteLine("\n");
 
             return this;
         }
@@ -861,6 +874,21 @@ namespace org.flixel
         {
             if (_data[Index] == 0) return;
             _data[Index] = (int)(FlxU.random() * randomLimit);
+        }
+
+        /// <summary>
+        /// An internal function used by the binary auto-tilers.
+        /// </summary>
+        /// <param name="Index">The index of the tile you want to analyze.</param>
+        protected void stringTile(int Index)
+        {
+            if (_data[Index] <= 0) 
+            {
+                _data[Index] = 0;
+                return;
+            }
+            
+            _data[Index] += 1;
         }
 
         /// <summary>
