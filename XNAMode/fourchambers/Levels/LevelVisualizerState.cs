@@ -12,17 +12,13 @@ namespace XNAMode
 {
     public class LevelVisualizerState : FlxState
     {
-
-        private int[,] mainTilemapArray;
         private FlxTilemap mainTilemap;
 
-        private int sizex = 110;
-        private int sizey = 40;
+        private int sizex = 200;
+        private int sizey = 100;
 
         private FlxCaveGeneratorExt caveExt;
         private string[,] tiles;
-        Dictionary<string, string> levelAttrs;
-
 
         override public void create()
         {
@@ -40,9 +36,6 @@ namespace XNAMode
             mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("diagnostic/testpalette"), 1, 1);
             mainTilemap.boundingBoxOverride = true;
             add(mainTilemap);
-
-            //regenCave();
-
 
         }
 

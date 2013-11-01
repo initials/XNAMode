@@ -144,7 +144,6 @@ namespace org.flixel
                 }
             }
 
-
             // Secondary buffer
             string[,] mat2 = genInitMatrix(_numTilesRows, _numTilesCols);
 
@@ -152,7 +151,6 @@ namespace org.flixel
 
             for (int i = 0; i <= numSmoothingIterations; i++)
             {
-
                 runCelluarAutomata(mat, mat2);
 
                 string[,] temp = new string[mat.GetLength(0), mat.GetLength(1)];
