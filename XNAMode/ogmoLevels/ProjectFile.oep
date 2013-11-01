@@ -2,7 +2,7 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <OgmoVersion>1.0</OgmoVersion>
   <Name>FourChambers</Name>
-  <BackgroundColor A="255" R="128" G="117" B="74" />
+  <BackgroundColor A="255" R="64" G="0" B="0" />
   <GridColor A="255" R="255" G="240" B="90" />
   <LevelDefaultSize>
     <Width>800</Width>
@@ -26,6 +26,7 @@
   <ExportCameraPosition>true</ExportCameraPosition>
   <LevelValueDefinitions>
     <ValueDefinition xsi:type="StringValueDefinition" Name="worldType" Default="default" MaxChars="-1" MultiLine="false" />
+    <ValueDefinition xsi:type="IntValueDefinition" Name="other" Default="0" Min="0" Max="100" ShowSlider="false" />
   </LevelValueDefinitions>
   <LayerDefinitions>
     <LayerDefinition xsi:type="GridLayerDefinition">

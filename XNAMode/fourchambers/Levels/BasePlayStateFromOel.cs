@@ -16,7 +16,7 @@ namespace XNAMode
     /// levelAttrs = FlxXMLReader.readCustomXMLLevelsAttrs("levelSettings.xml");
     /// 
     /// </summary>
-    public class BasePlayState : FlxState
+    public class BasePlayStateFromOel : FlxState
     {
         /// <summary>
         /// The Hud!
@@ -219,7 +219,7 @@ namespace XNAMode
         private FlxGroup powerUps;
         private PowerUp powerUp;
         private Door door;
-        
+
         public Arrow arrow;
         private BigExplosion bigEx;
 
@@ -260,7 +260,7 @@ namespace XNAMode
 
             // get the level to parse using FlxG.level
 
-            levelAttrs = FlxXMLReader.readCustomXMLLevelsAttrs("levelSettings.xml");
+            levelAttrs = FlxXMLReader.readCustomXMLLevelsAttrs("level1.oel");
 
             #region old level attrs load.
 
@@ -348,7 +348,7 @@ namespace XNAMode
 
             allLevelTiles.add(mainTilemap);
 
-            
+
 
 
             // Generate some random ladders
@@ -425,7 +425,7 @@ namespace XNAMode
             add(decorationsRearTilemap);
 
             // build characters here
-            
+
             buildActor("marksman", 1, true);
 
             /// Looks through the level dictionary and builds neccessary actors.
@@ -454,7 +454,7 @@ namespace XNAMode
                 }
             }
 
-            
+
 
             for (int i = 0; i < 12; i++)
             {
@@ -501,7 +501,7 @@ namespace XNAMode
             blood.width = 6;
             blood.height = 6;
             blood.delay = 0.8f;
-            
+
             //blood.del
             blood.setXSpeed(-152, 152);
             blood.setYSpeed(-250, -50);
@@ -510,7 +510,7 @@ namespace XNAMode
             blood.createSprites(FlxG.Content.Load<Texture2D>("initials/blood"), 1500, true, 1.0f, 0.1f);
             add(blood);
 
-            
+
             add(bigEx);
 
             add(decorationsTilemap);
@@ -552,7 +552,7 @@ namespace XNAMode
                 if (FlxG.level < 1) FlxG.level = 25;
 
                 FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
-                
+
                 FlxG.transition.startFadeIn(0.2f);
 
                 FlxG.state = new BasePlayState();
@@ -586,7 +586,8 @@ namespace XNAMode
             #endregion
 
             localHud.score.text = FlxG.score.ToString();
-            if( marksman != null) {
+            if (marksman != null)
+            {
                 localHud.setArrowsRemaining(marksman.arrowsRemaining);
             }
             //calculate time of day.
@@ -596,7 +597,7 @@ namespace XNAMode
 
             // color bg tiles
             //bgTiles.color = FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1);
-            
+
             // color whole game.
             FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1));
 
@@ -609,10 +610,10 @@ namespace XNAMode
             FlxU.overlap(actors, bullets, overlapped);
             FlxU.overlap(actors, ladders, overlapWithLadder);
 
-            
-            
+
+
             FlxU.collide(mainTilemap, bullets);
-            
+
             FlxU.collide(blood, mainTilemap);
 
 
@@ -638,7 +639,7 @@ namespace XNAMode
             base.update();
 
             // exit.
-            if (FlxG.keys.justPressed(Keys.Escape) )
+            if (FlxG.keys.justPressed(Keys.Escape))
             {
                 int i = 0;
                 int l = playerControlledActors.members.Count;
@@ -649,7 +650,7 @@ namespace XNAMode
                 }
 
                 Console.WriteLine("Just pressed Escape and killed all player characters.");
-                
+
 
             }
 
@@ -664,7 +665,7 @@ namespace XNAMode
                 FlxG.setHudTextPosition(1, 0, FlxG.height / 2);
 
 
-                if (FlxG.gamepads.isButtonDown(Buttons.X) || FlxG.mouse.pressed() )
+                if (FlxG.gamepads.isButtonDown(Buttons.X) || FlxG.mouse.pressed())
                 {
                     FlxOnlineStatCounter.sendStats("fourchambers", "marksman", FlxG.score);
                     goToMenu();
@@ -713,7 +714,7 @@ namespace XNAMode
         /// <returns></returns>
         protected bool overlapWithLadder(object Sender, FlxSpriteCollisionEvent e)
         {
-            if (e.Object1 is Actor) 
+            if (e.Object1 is Actor)
             {
                 ((Actor)(e.Object1)).ladderPosX = e.Object2.x;
                 ((Actor)(e.Object1)).canClimbLadder = true;
@@ -750,7 +751,7 @@ namespace XNAMode
         /// <returns></returns>
         protected bool actorOverlap(object Sender, FlxSpriteCollisionEvent e)
         {
-            if (e.Object1.dead == false && e.Object2.dead == false && e.Object1.flickering() == false && e.Object2.flickering() == false) 
+            if (e.Object1.dead == false && e.Object2.dead == false && e.Object1.flickering() == false && e.Object2.flickering() == false)
             {
                 e.Object2.hurt(1);
                 e.Object1.hurt(1);
@@ -780,7 +781,7 @@ namespace XNAMode
             {
 
             }
-            else if ((e.Object1 is Marksman) && (e.Object2 is MeleeHitBox)) { } 
+            else if ((e.Object1 is Marksman) && (e.Object2 is MeleeHitBox)) { }
             else if ((e.Object1 is Mistress) && (e.Object2 is MeleeHitBox))
             {
 
@@ -963,7 +964,7 @@ namespace XNAMode
                     int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
                     automaton = new Automaton(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
                     actors.add(automaton);
-                    
+
 
                 }
             }
@@ -973,7 +974,7 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomEmpty(mainTilemapArray );
+                    int[] p = cave.findRandomEmpty(mainTilemapArray);
                     bat = new Bat(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
                     actors.add(bat);
                 }

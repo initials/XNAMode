@@ -21,7 +21,9 @@ namespace XNAMode
 
         private FlxCaveGeneratorExt caveExt;
         private string[,] tiles;
-        
+        Dictionary<string, string> levelAttrs;
+
+
         override public void create()
         {
             base.create();
@@ -52,6 +54,44 @@ namespace XNAMode
 
             caveExt.printCave(tiles);
 
+            //First build a dictionary of levelAttrs
+            //This will determine how the level is built.
+
+            levelAttrs = new Dictionary<string, string>();
+
+            // get the level to parse using FlxG.level
+
+            levelAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/level1.oel", "level");
+
+            Console.WriteLine("----------------------------------" + levelAttrs);
+
+            foreach (KeyValuePair<string, string> kvp in levelAttrs)
+            {
+                Console.WriteLine("Key = {0}, Value = {1}",
+                    kvp.Key, kvp.Value);
+            }
+
+            List<Dictionary<string,string>> levelNodes = FlxXMLReader.readNodesFromOelFile("ogmoLevels/level1.oel", "level/ActorsLayer");
+
+            foreach (Dictionary<string,string> nodes in levelNodes)
+            {
+                foreach (KeyValuePair<string, string> kvp in nodes)
+                {
+                    Console.Write("Key = {0}, Value = {1}, ",
+                        kvp.Key, kvp.Value);
+                }
+                Console.Write("\r\n");
+            }
+
+            levelAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/level1.oel", "level/TilesLayer");
+
+            Console.WriteLine("----------------------------------" + levelAttrs);
+
+            foreach (KeyValuePair<string, string> kvp in levelAttrs)
+            {
+                Console.WriteLine("Key = {0}, Value = {1}",
+                    kvp.Key, kvp.Value);
+            }
 
         }
 
@@ -85,6 +125,12 @@ namespace XNAMode
             string newMap = cave.convertMultiArrayToString(mainTilemapArray);
 
             mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("diagnostic/testpalette"), 1, 1);
+
+
+
+
+
+
         
         }
 
@@ -92,7 +138,7 @@ namespace XNAMode
         {
 
 
-            if (FlxG.mouse.justPressed() )
+            if (FlxG.keys.R )
             {
                 //regenCave();
 

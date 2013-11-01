@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using System.Linq;
 using System.Xml.Linq;
+using System.Xml;
 
 namespace org.flixel
 {
@@ -113,6 +114,90 @@ namespace org.flixel
             return levelAttrs;
         }
 
+        /// <summary>
+        /// Returns the attributes on the node/element specified.
+        /// </summary>
+        /// <param name="filename">Filename, example: "ogmoLevels/level1.oel"</param>
+        /// <param name="element">Element from XML file, example: "level/ActorsLayer" or "level"</param>
+        /// <returns></returns>
+        public static Dictionary<string, string> readAttributesFromOelFile(string filename, string element)
+        {
+
+            Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
+
+            XmlDocument xml = new XmlDocument();
+            xml.Load(filename);
+            //Console.WriteLine("Node Name: {0} ", element);
+            XmlNodeList xnList = xml.SelectNodes(element);
+            foreach (XmlNode xn in xnList)
+            {
+                levelAttrs.Add("innerText", xn.InnerText.ToString() );
+
+                //Console.WriteLine("Name: {0} -- {1}", xn.Name.ToString(), xn.Attributes.ToString());
+                
+                foreach (XmlAttribute item in xn.Attributes)
+                {
+                    //Console.WriteLine("attr: {0}", item.Name.ToString());
+                    levelAttrs.Add(item.Name.ToString(), item.Value.ToString() );
+                }
+            }
+            return levelAttrs;
+        }
+
+        public static List<Dictionary<string, string>> readNodesFromOelFile(string filename, string element)
+        {
+            List<Dictionary<string, string>> nodeList = new List<Dictionary<string, string>>();
+            
+            XmlDocument xml = new XmlDocument();
+            xml.Load(filename);
+            
+            XmlNodeList xnList = xml.SelectNodes(element);
+            
+            foreach (XmlNode xn in xnList)
+            {
+                // cycle through characters.
+
+                foreach (XmlNode xn2 in xn) {
+
+                    Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
+                    Console.WriteLine("xn2 Name: {0} -- {1}", xn2.Name.ToString(), xn2.Attributes.ToString());
+
+                    //add characters name
+                    levelAttrs.Add("Name", xn2.Name.ToString());
+
+                    //cycle attributes.
+                    foreach (XmlAttribute item in xn2.Attributes)
+                    {
+                        //Console.WriteLine("attr: {0}", item.Name.ToString());
+                        levelAttrs.Add(item.Name.ToString(), item.Value.ToString());
+
+                    }
+                    // character may have path nodes:
+                    
+                    string point = "";
+
+                    foreach (XmlNode pathnode in xn2)
+                    {
+                        foreach (XmlAttribute item in pathnode.Attributes)
+                        {
+                            if (item.Name.ToString() == "x")
+                            {
+                                point += item.Value.ToString()+",";
+                            }
+                            else if (item.Name.ToString() == "y")
+                            {
+                                point += item.Value.ToString() + ",";
+                            }
+                        }
+                    }
+
+                    levelAttrs.Add("pathNodes", point);
+
+                    nodeList.Add(levelAttrs);
+                }
+            }
+            return nodeList;
+        }
 
         /// <summary>
         /// 
