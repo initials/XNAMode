@@ -14,8 +14,8 @@ namespace XNAMode
     {
         private FlxTilemap mainTilemap;
 
-        private int sizex = 200;
-        private int sizey = 100;
+        private int sizex = 50;
+        private int sizey = 20;
 
         private FlxCaveGeneratorExt caveExt;
         private string[,] tiles;
@@ -51,12 +51,9 @@ namespace XNAMode
 
         override public void update()
         {
-
-
             if (FlxG.keys.R)
             {
                 regenCave();
-
             }
 
             if (FlxG.keys.SPACE)

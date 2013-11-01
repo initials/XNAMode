@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -43,8 +43,6 @@ namespace XNAMode
 
         private FlxGroup buttonsGrp;
 
-
-
         /// <summary>
         /// Creates the scene.
         /// </summary>
@@ -55,7 +53,6 @@ namespace XNAMode
             base.create();
 
             buttonsGrp = new FlxGroup();
-
 
             // HUD - use P1 for the character name.
             // P3 for the text.
@@ -70,10 +67,7 @@ namespace XNAMode
             FlxG.setHudTextScale(3, 2);
 
             FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width - 30, 160);
-
-
-
-
+            
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
             Texture2D bgGraphic = FlxG.Content.Load<Texture2D>("initials/room");
@@ -84,8 +78,6 @@ namespace XNAMode
             bgSprite.boundingBoxOverride = false;
             add(bgSprite);
             bgSprite.color = Color.DimGray;
-
-
 
             corsairOff = new FlxSprite(0, 0, null);
             corsairOff.loadGraphic(FlxG.Content.Load<Texture2D>("initials/corsair_18x21"), true, false, 18, 21);
@@ -103,11 +95,8 @@ namespace XNAMode
             btncorsair.on = true;
 
             FlxG.setHudGamepadButton(FlxButton.ControlPadA, btncorsair.x,(btncorsair.y+corsairOff.height*1.5f));
-
-
-
             
-            //Marksma
+            //Marksman
             marksmanOff = new FlxSprite(0, 0, null);
             marksmanOff.loadGraphic(FlxG.Content.Load<Texture2D>("initials/marksman_ss_31x24"), true, false, 31, 24);
             marksmanOff.addAnimation("idle", new int[] { 0 }, 12);
