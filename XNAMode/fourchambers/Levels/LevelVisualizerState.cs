@@ -29,6 +29,8 @@ namespace XNAMode
             base.create();
 
             caveExt = new FlxCaveGeneratorExt(sizex, sizey);
+            caveExt.numSmoothingIterations = 5;
+            caveExt.initWallRatio = 0.5f;
             tiles = caveExt.generateCaveLevel();
             //caveExt.printCave(tiles);
             string newMap = caveExt.convertMultiArrayStringToString(tiles);

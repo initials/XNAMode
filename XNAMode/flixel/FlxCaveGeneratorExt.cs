@@ -34,6 +34,17 @@ namespace org.flixel
         /// </summary>
         public float initWallRatio = 0.5f;
 
+        public int generateMethod = 0;
+
+        /// <summary>
+        /// Method for generating first set of random cave.
+        /// </summary>
+        public const int RANDOM = 0;
+
+        /// <summary>
+        /// Method for generating first set of random cave.
+        /// </summary>
+        public const int GROW_FROM = 1;
 
         /// <summary>
         /// Extra decoration tiles.
@@ -79,8 +90,11 @@ namespace org.flixel
             return mat;
         }
 
+
+
+
         /// <summary>
-        /// Generates a completely random set of 1s and 0s.
+        /// Returns an auto tiled cave.
         /// </summary>
         /// <returns>Returns a matrix of a cave!</returns>
         public string[,] generateCaveLevel()
@@ -93,21 +107,43 @@ namespace org.flixel
 
             int floor = _numTilesRows - 2;
 
-            for (int _y = 0; _y < _numTilesRows; _y++)
+            if (generateMethod==RANDOM)
             {
-                for (int _x = 0; _x < _numTilesCols; _x++)
+                for (int _y = 0; _y < _numTilesRows; _y++)
                 {
-                    //Throw in a random assortment of ones and zeroes.
-                    if (FlxU.random() < initWallRatio)
+                    for (int _x = 0; _x < _numTilesCols; _x++)
                     {
-                        mat[_y, _x] = "1";
-                    }
-                    else
-                    {
-                        mat[_y, _x] = "0";
+                        //Throw in a random assortment of ones and zeroes.
+                        if (FlxU.random() < initWallRatio)
+                        {
+                            mat[_y, _x] = "1";
+                        }
+                        else
+                        {
+                            mat[_y, _x] = "0";
+                        }
                     }
                 }
             }
+            else if (generateMethod == GROW_FROM)
+            {
+                for (int _y = 0; _y < _numTilesRows; _y++)
+                {
+                    for (int _x = 0; _x < _numTilesCols; _x++)
+                    {
+                        //Throw in a random assortment of ones and zeroes.
+                        if (FlxU.random() < initWallRatio)
+                        {
+                            mat[_y, _x] = "1";
+                        }
+                        else
+                        {
+                            mat[_y, _x] = "0";
+                        }
+                    }
+                }
+            }
+
 
             // Secondary buffer
             string[,] mat2 = genInitMatrix(_numTilesRows, _numTilesCols);
