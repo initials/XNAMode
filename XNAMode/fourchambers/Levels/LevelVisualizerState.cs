@@ -54,6 +54,10 @@ namespace XNAMode
             if (FlxG.keys.R)
             {
                 regenCave();
+
+                FlxG.quake.start(0.2f, 2.0f);
+
+
             }
 
             if (FlxG.keys.SPACE)

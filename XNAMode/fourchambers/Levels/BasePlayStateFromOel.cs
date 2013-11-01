@@ -230,7 +230,7 @@ namespace XNAMode
             base.create();
 
 
-            Console.WriteLine("Loading BasePlayState Level");
+            Console.WriteLine("Loading BasePlayStateFromOel Level");
 
             //important to reset the hud to get the text, gamepad buttons out.
             FlxG.resetHud();
@@ -261,45 +261,6 @@ namespace XNAMode
             // get the level to parse using FlxG.level
 
             levelAttrs = FlxXMLReader.readCustomXMLLevelsAttrs("level1.oel");
-
-            #region old level attrs load.
-
-            //string currentLevel = "l" + FlxG.level.ToString();
-
-            //XElement xelement = XElement.Load("levelSettings.xml");
-
-            //foreach (XElement xEle in xelement.Descendants("settings").Elements())
-            //{
-            //    XElement firstSpecificChildElement = xEle.Element(currentLevel);
-            //    if (firstSpecificChildElement != null )
-            //    {
-            //        if (firstSpecificChildElement.Value.ToString()=="") 
-            //        {
-            //            levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
-            //            XAttribute playerControlled = firstSpecificChildElement.Attribute("playerControlled");
-            //            if (playerControlled != null)
-            //            {
-            //                levelAttrs.Add("playerControlled", xEle.Name.ToString());
-            //            }
-            //        }
-            //        else 
-            //        {
-            //            levelAttrs.Add(xEle.Name.ToString(), firstSpecificChildElement.Value.ToString());
-            //            XAttribute playerControlled = firstSpecificChildElement.Attribute("playerControlled");
-            //            if (playerControlled != null )
-            //            {
-            //                levelAttrs.Add("playerControlled", xEle.Name.ToString());
-            //            }
-            //        }
-            //    }
-            //    else
-            //    {
-            //        levelAttrs.Add(xEle.Name.ToString(), xEle.Attribute("default").Value.ToString());
-            //    }
-            //}
-
-            #endregion
-
 
             FlxG.levelWidth = Convert.ToInt32(levelAttrs["levelWidth"]) * FourChambers_Globals.TILE_SIZE_X;
             FlxG.levelHeight = Convert.ToInt32(levelAttrs["levelHeight"]) * FourChambers_Globals.TILE_SIZE_Y;
@@ -472,8 +433,6 @@ namespace XNAMode
                 powerUp.dead = true;
                 powerUp.visible = false;
                 powerUps.add(powerUp);
-
-
 
             }
             int[] p1 = cave.findRandomSolid(characterSpawnPositionsArray);
