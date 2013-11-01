@@ -19,27 +19,27 @@ namespace XNAMode
         private FlxSprite marksmanOn;
         private FlxSprite marksmanOff;
 
-        private FlxSprite mistressOn;
-        private FlxSprite mistressOff;
+        //private FlxSprite mistressOn;
+        //private FlxSprite mistressOff;
 
-        private FlxSprite warlockOn;
-        private FlxSprite warlockOff;
+        //private FlxSprite warlockOn;
+        //private FlxSprite warlockOff;
 
         private FlxSprite corsairOn;
         private FlxSprite corsairOff;
 
-        private FlxSprite paladinOn;
-        private FlxSprite paladinOff;
+        //private FlxSprite paladinOn;
+        //private FlxSprite paladinOff;
         
-        private FlxSprite unicornOn;
-        private FlxSprite unicornOff;
+        //private FlxSprite unicornOn;
+        //private FlxSprite unicornOff;
 
         private FlxButton btnmarksman;
-        private FlxButton btnmistress;
-        private FlxButton btnwarlock;
+        //private FlxButton btnmistress;
+        //private FlxButton btnwarlock;
         private FlxButton btncorsair;
-        private FlxButton btnpaladin;
-        private FlxButton btnunicorn;
+        //private FlxButton btnpaladin;
+        //private FlxButton btnunicorn;
 
         private FlxGroup buttonsGrp;
 

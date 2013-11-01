@@ -34,6 +34,9 @@ namespace XNAMode
 
         public PlayHud()
         {
+
+            currentAnimatedObj = new FlxSprite();
+
             ypos = FlxG.height * FlxG.zoom-30;
 
             FlxSprite hudGraphic = new FlxSprite(0,0, FlxG.Content.Load<Texture2D>("initials/hudElements"));

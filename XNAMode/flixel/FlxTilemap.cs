@@ -192,7 +192,7 @@ namespace org.flixel
         /// <summary>
         /// Load the tilemap with string data and a tile graphic.
         /// </summary>
-        /// <param name="MapData">A string of comma and line-return delineated indices indicating what order the tiles should go in.</param>
+        /// <param name="MapData">A string of comma and line-return delineated indices indicating what order the tiles should go in. <para>If you want to use 0,1,0,1... use FlxTilemap.OFF, FlxTilemap.AUTO or FlxTilemap.ALT</para><para>If you are using tile ids such as 0,23,12,4,1... use FlxTilemap.STRING</para></param>
         /// <param name="TileGraphic">All the tiles you want to use, arranged in a strip corresponding to the numbers in MapData.</param>
         /// <returns>A pointer this instance of FlxTilemap, for chaining as usual :)</returns>
         public FlxTilemap loadMap(string MapData, Texture2D TileGraphic)
@@ -203,7 +203,7 @@ namespace org.flixel
         /// <summary>
         /// Load the tilemap with string data and a tile graphic.
         /// </summary>
-        /// <param name="MapData">A string of comma and line-return delineated indices indicating what order the tiles should go in.</param>
+        /// <param name="MapData">A string of comma and line-return delineated indices indicating what order the tiles should go in. <para>If you want to use 0,1,0,1... use FlxTilemap.OFF, FlxTilemap.AUTO or FlxTilemap.ALT</para><para>If you are using tile ids such as 0,23,12,4,1... use FlxTilemap.STRING</para></param>
         /// <param name="TileGraphic">All the tiles you want to use, arranged in a strip corresponding to the numbers in MapData.</param>
         /// <param name="TileWidth">The width of your tiles (e.g. 8) - defaults to height of the tile graphic if unspecified.</param>
         /// <param name="TileHeight">The height of your tiles (e.g. 8) - defaults to width if unspecified.</param>

@@ -160,7 +160,7 @@ namespace org.flixel
                 foreach (XmlNode xn2 in xn) {
 
                     Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
-                    Console.WriteLine("xn2 Name: {0} -- {1}", xn2.Name.ToString(), xn2.Attributes.ToString());
+                    //Console.WriteLine("xn2 Name: {0} -- {1}", xn2.Name.ToString(), xn2.Attributes.ToString());
 
                     //add characters name
                     levelAttrs.Add("Name", xn2.Name.ToString());

@@ -35,6 +35,20 @@ namespace org.flixel
         public float initWallRatio = 0.5f;
 
 
+        /// <summary>
+        /// Extra decoration tiles.
+        /// </summary>
+        private const string TOP_DECORATION = "17";
+        private const string RIGHT_DECORATION = "18";
+        private const string LEFT_DECORATION = "19";
+        private const string UNDER_DECORATION = "20";
+
+        private const string TOP_RIGHT_DECORATION = "21";
+        private const string TOP_LEFT_DECORATION = "22";
+        private const string UNDER_RIGHT_DECORATION = "23";
+        private const string UNDER_LEFT_DECORATION = "24";
+
+
         public FlxCaveGeneratorExt(int nCols, int nRows)
         {
 
@@ -364,27 +378,27 @@ namespace org.flixel
 
                     if (value == "8" && coordIsInMatrix(mat, x - 1, y))
                     {
-                        mat[y, x - 1] = "|";
+                        mat[y, x - 1] = TOP_DECORATION;
                     }
                     if (value == "14" && coordIsInMatrix(mat, x + 1, y))
                     {
-                        mat[y, x + 1] = "J";
+                        mat[y, x + 1] = UNDER_DECORATION;
                     }
                     if (value == "13" && coordIsInMatrix(mat, x + 1, y))
                     {
-                        mat[y, x + 1] = "/";
+                        mat[y, x + 1] = TOP_RIGHT_DECORATION;
                     }
                     if (value == "10" && coordIsInMatrix(mat, x + 1, y))
                     {
-                        mat[y, x + 1] = "\\";
+                        mat[y, x + 1] = UNDER_LEFT_DECORATION;
                     }
                     if (value == "7" && coordIsInMatrix(mat, x - 1, y))
                     {
-                        mat[y, x - 1] = "\\\\";
+                        mat[y, x - 1] = TOP_LEFT_DECORATION;
                     }
                     if (value == "4" && coordIsInMatrix(mat, x - 1, y))
                     {
-                        mat[y, x - 1] = "//";
+                        mat[y, x - 1] = UNDER_RIGHT_DECORATION;
                     }
                 }
 
@@ -463,6 +477,35 @@ namespace org.flixel
             return newMap;
 
         }
+
+        /// <summary>
+        /// Returns a string that is comma separated for use with FlxTilemap
+        /// </summary>
+        /// <param name="multiArray"></param>
+        /// <returns></returns>
+        public string convertMultiArrayStringToString(string[,] multiArray)
+        {
+            string newMap = "";
+
+            for (int i = 0; i < multiArray.GetLength(0); i++)
+            {
+                for (int j = 0; j < multiArray.GetLength(1); j++)
+                {
+                    string s = multiArray[i, j].ToString();
+
+                    newMap += s;
+                    if (j != multiArray.GetLength(1) - 1)
+                    {
+                        newMap += ",";
+                    }
+
+                }
+                newMap += "\n";
+            }
+            return newMap;
+
+        }
+
 
         public int[] convertMultiArrayStringToIntArray(string[,] multiArray)
         {

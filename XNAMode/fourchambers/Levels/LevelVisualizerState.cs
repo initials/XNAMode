@@ -12,7 +12,95 @@ namespace XNAMode
 {
     public class LevelVisualizerState : FlxState
     {
+
+        private int[,] mainTilemapArray;
+        private FlxTilemap mainTilemap;
+
+        private int sizex = 110;
+        private int sizey = 40;
+
+        private FlxCaveGeneratorExt caveExt;
+        private string[,] tiles;
+        Dictionary<string, string> levelAttrs;
+
+
+        override public void create()
+        {
+            base.create();
+
+            caveExt = new FlxCaveGeneratorExt(sizex, sizey);
+            tiles = caveExt.generateCaveLevel();
+            //caveExt.printCave(tiles);
+            string newMap = caveExt.convertMultiArrayStringToString(tiles);
+
+            mainTilemap = new FlxTilemap();
+            mainTilemap.auto = FlxTilemap.STRING;
+            mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("diagnostic/testpalette"), 1, 1);
+            mainTilemap.boundingBoxOverride = true;
+            add(mainTilemap);
+
+            //regenCave();
+
+
+        }
+
+        public void regenCave()
+        {
+            caveExt = new FlxCaveGeneratorExt(sizex, sizey);
+            tiles = caveExt.generateCaveLevel();
+            //caveExt.printCave(tiles);
+            string newMap = caveExt.convertMultiArrayStringToString(tiles);
+            mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("diagnostic/testpalette"), 1, 1);
+
+        }
+
+        override public void update()
+        {
+
+
+            if (FlxG.keys.R)
+            {
+                regenCave();
+
+            }
+
+            if (FlxG.keys.SPACE)
+            {
+                FlxG.state = new BasePlayState();
+            }
+
+            base.update();
+        }
+
+
+    }
+}
+
+
+
+
+
+
+
+
+
+/*
+using System;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using org.flixel;
+
+using System.Linq;
+using System.Xml.Linq;
+
+namespace XNAMode
+{
+    public class LevelVisualizerState : FlxState
+    {
         private FlxCaveGenerator cave;
+
         private int[,] mainTilemapArray;
         private FlxTilemap mainTilemap;
 
@@ -28,9 +116,9 @@ namespace XNAMode
         {
             base.create();
             
-            //cave = new FlxCaveGenerator(sizex, sizey);
+            cave = new FlxCaveGenerator(sizex, sizey);
 
-            //mainTilemap = new FlxTilemap();
+            mainTilemap = new FlxTilemap();
             //mainTilemap.auto = FlxTilemap.AUTO;
             //mainTilemap.boundingBoxOverride = true;
             //add(mainTilemap);
@@ -94,16 +182,14 @@ namespace XNAMode
 
             mainTilemap = new FlxTilemap();
             mainTilemap.auto = FlxTilemap.STRING;
-            mainTilemap.loadMap(levelAttrs["innerText"], FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"), 16, 16);
+            mainTilemap.loadMap(cave.dataAsString, FlxG.Content.Load<Texture2D>("diagnostic/testpalette"), 1, 1);
             mainTilemap.boundingBoxOverride = true;
             add(mainTilemap);
-
 
         }
 
         public void regenCave()
         {
-            
             cave.initWallRatio = 0.5f;
             cave.numSmoothingIterations = 5;
             cave.genInitMatrix(sizex, sizey);
@@ -131,12 +217,6 @@ namespace XNAMode
             string newMap = cave.convertMultiArrayToString(mainTilemapArray);
 
             mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("diagnostic/testpalette"), 1, 1);
-
-
-
-
-
-
         
         }
 
@@ -154,8 +234,6 @@ namespace XNAMode
                 tiles = caveExt.generateCaveLevel();
                 
                 caveExt.printCave(tiles);
-
-
             }
 
             if (FlxG.keys.SPACE)
@@ -169,3 +247,4 @@ namespace XNAMode
 
     }
 }
+*/
