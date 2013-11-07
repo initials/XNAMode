@@ -131,7 +131,7 @@ namespace org.flixel
             XmlNodeList xnList = xml.SelectNodes(element);
             foreach (XmlNode xn in xnList)
             {
-                levelAttrs.Add("innerText", xn.InnerText.ToString() );
+                levelAttrs.Add(xn.Name.ToString(), xn.InnerText.ToString() );
 
                 //Console.WriteLine("Name: {0} -- {1}", xn.Name.ToString(), xn.Attributes.ToString());
                 

@@ -476,5 +476,23 @@ namespace org.flixel
 			on = false;
 		}
 
+        /// <summary>
+        /// Internal function that actually goes through and updates all the group members.
+        /// Overridden here to remove the position update code normally used by a FlxGroup.
+        /// </summary>
+        public void setScale(float Scale)
+        {
+            FlxSprite o;
+            int i = 0;
+            int l = members.Count;
+            while (i < l)
+            {
+                o = members[i++] as FlxSprite;
+                //if ((o != null) && o.exists && o.active)
+                o.scale = Scale; 
+            }
+        }
+
+
     }
 }

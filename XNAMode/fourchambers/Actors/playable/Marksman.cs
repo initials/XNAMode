@@ -154,6 +154,25 @@ namespace XNAMode
         {
 
             adjustMeleeBox();
+
+            float rightX11 = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
+            float rightY11 = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
+            if (rightX11 != 0 || rightY11 != 0)
+            {
+                
+                float xDiff = 0 - rightX11;
+                float yDiff = 0 - rightY11;
+
+                double degrees = Math.Atan2(yDiff, xDiff) * 180.0 / Math.PI;
+
+                double radians = Math.PI / 180 * degrees;
+
+                Vector2 rotpoint = FlxU.rotatePoint(x-50, y, x, y, (float)degrees*-1);
+                FlxG.mouse.cursor.x = rotpoint.X;
+                FlxG.mouse.cursor.y = rotpoint.Y;
+
+            }
+            
             
             if ((_curFrame == 8 || _curFrame==9 || _curFrame==10) && attackingJoystick )
             {

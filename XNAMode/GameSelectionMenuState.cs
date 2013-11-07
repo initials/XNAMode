@@ -131,7 +131,7 @@ namespace XNAMode
 
             //FlxG.transition.startFadeOut(0.1f,0,120);
 
-            FlxG.state = new CharacterSelectionState();
+            FlxG.state = new BasePlayStateFromOel();
 
         }
 

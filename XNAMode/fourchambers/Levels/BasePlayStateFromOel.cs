@@ -27,7 +27,7 @@ namespace XNAMode
         /// <summary>
         /// The leading of the camera
         /// </summary>
-        private const float FOLLOW_LERP = 3.0f;
+        private const float FOLLOW_LERP = 7.0f;
 
         /// <summary>
         /// How many bullets to create for each actor.
@@ -38,6 +38,12 @@ namespace XNAMode
         /// A holder for all of the level data to generate a level from.
         /// </summary>
         Dictionary<string, string> levelAttrs;
+
+        Dictionary<string, string> destructableAttrs;
+        Dictionary<string, string> indestructableAttrs;
+
+        List<Dictionary<string, string>> eventsAttrs;
+        List<Dictionary<string, string>> actorsAttrs;
 
         private FlxSprite bgSprite;
 
@@ -59,17 +65,8 @@ namespace XNAMode
         /// <summary>
         /// The main tile map. Collisions etc happen on this.
         /// </summary>
-        private FlxTilemap mainTilemap;
-
-        /// <summary>
-        /// Decorations tile map
-        /// </summary>
-        private FlxTilemap decorationsTilemap;
-
-        /// <summary>
-        /// Rear Decorations
-        /// </summary>
-        private FlxTilemap decorationsRearTilemap;
+        private FlxTilemap destructableTilemap;
+        private FlxTilemap indestructableTilemap;
 
         private FlxGroup ladders;
 
@@ -117,6 +114,8 @@ namespace XNAMode
 
         private FlxGroup playerControlledActors;
 
+        private FlxGroup eventSprites;
+
         //private FlxGroup enemyActors;
 
         /// <summary>
@@ -125,6 +124,8 @@ namespace XNAMode
         protected FlxGroup bullets;
 
         private FlxEmitter blood;
+
+        private FlxEmitter tilesExplode;
 
         #region Actors
         private Artist artist;
@@ -223,12 +224,53 @@ namespace XNAMode
         public Arrow arrow;
         private BigExplosion bigEx;
 
+        public void test()
+        {
+            levelAttrs = new Dictionary<string, string>();
+
+            // get the level to parse using FlxG.level
+
+            levelAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/level1.oel", "level");
+
+            Console.WriteLine("----------------------------------" + levelAttrs);
+
+            foreach (KeyValuePair<string, string> kvp in levelAttrs)
+            {
+                Console.WriteLine("Key = {0}, Value = {1}",
+                    kvp.Key, kvp.Value);
+            }
+
+            List<Dictionary<string, string>> levelNodes = FlxXMLReader.readNodesFromOelFile("ogmoLevels/level1.oel", "level/ActorsLayer");
+
+            foreach (Dictionary<string, string> nodes in levelNodes)
+            {
+                foreach (KeyValuePair<string, string> kvp in nodes)
+                {
+                    Console.Write("Key = {0}, Value = {1}, ",
+                        kvp.Key, kvp.Value);
+                }
+                Console.Write("\r\n");
+            }
+
+            levelAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/level1.oel", "level/TilesLayer");
+
+            Console.WriteLine("----------------------------------" + levelAttrs);
+
+            foreach (KeyValuePair<string, string> kvp in levelAttrs)
+            {
+                Console.WriteLine("Key = {0}, Value = {1}",
+                    kvp.Key, kvp.Value);
+            }
+        }
 
         override public void create()
         {
+            
+
 
             base.create();
 
+            //this.test();
 
             Console.WriteLine("Loading BasePlayStateFromOel Level");
 
@@ -249,6 +291,7 @@ namespace XNAMode
             playerControlledActors = new FlxGroup();
             zingers = new FlxGroup();
             powerUps = new FlxGroup();
+            eventSprites = new FlxGroup();
 
             bigEx = new BigExplosion(-1000, -1000);
 
@@ -260,10 +303,19 @@ namespace XNAMode
 
             // get the level to parse using FlxG.level
 
-            levelAttrs = FlxXMLReader.readCustomXMLLevelsAttrs("level1.oel");
+            levelAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/level1.oel", "level");
 
-            FlxG.levelWidth = Convert.ToInt32(levelAttrs["levelWidth"]) * FourChambers_Globals.TILE_SIZE_X;
-            FlxG.levelHeight = Convert.ToInt32(levelAttrs["levelHeight"]) * FourChambers_Globals.TILE_SIZE_Y;
+            //Console.WriteLine("----------------------------------" + levelAttrs);
+
+            //foreach (KeyValuePair<string, string> kvp in levelAttrs)
+            //{
+            //    Console.WriteLine("Key = {0}, Value = {1}",
+            //        kvp.Key, kvp.Value);
+            //}
+
+
+            FlxG.levelWidth = Convert.ToInt32(levelAttrs["width"]) * FourChambers_Globals.TILE_SIZE_X;
+            FlxG.levelHeight = Convert.ToInt32(levelAttrs["height"]) * FourChambers_Globals.TILE_SIZE_Y;
 
             Texture2D bgGraphic = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]);
             bgSprite = new FlxSprite(0, 0, bgGraphic);
@@ -278,166 +330,75 @@ namespace XNAMode
 
             Console.WriteLine("Generate the levels caves/tiles.");
 
-            // Generate the levels caves/tiles.
+            destructableAttrs = new Dictionary<string, string>();
+            destructableAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/level1.oel", "level/DestructableTerrain");
 
-            cave = new FlxCaveGenerator(Convert.ToInt32(levelAttrs["levelWidth"]), Convert.ToInt32(levelAttrs["levelHeight"]));
-            cave.initWallRatio = (float)Convert.ToDouble(levelAttrs["startCaveGenerateBias"]);
-            cave.numSmoothingIterations = 5;
-            cave.genInitMatrix(Convert.ToInt32(levelAttrs["levelWidth"]), Convert.ToInt32(levelAttrs["levelHeight"]));
-
-            int[] solidColumnsBeforeSmooth = FlxU.convertStringToIntegerArray(levelAttrs["solidColumnsBeforeSmooth"]);
-            int[] solidRowsBeforeSmooth = FlxU.convertStringToIntegerArray(levelAttrs["solidRowsBeforeSmooth"]);
-
-            int[] emptyColumnsBeforeSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyColumnsBeforeSmooth"]);
-            int[] emptyRowsBeforeSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyRowsBeforeSmooth"]);
-
-            int[] solidColumnsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["solidColumnsAfterSmooth"]);
-            int[] solidRowsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["solidRowsAfterSmooth"]);
-
-            int[] emptyColumnsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyColumnsAfterSmooth"]);
-            int[] emptyRowsAfterSmooth = FlxU.convertStringToIntegerArray(levelAttrs["emptyRowsAfterSmooth"]);
-
-            mainTilemapArray = cave.generateCaveLevel(solidRowsBeforeSmooth, solidColumnsBeforeSmooth, solidRowsAfterSmooth, solidColumnsAfterSmooth, emptyRowsBeforeSmooth, emptyColumnsBeforeSmooth, emptyRowsAfterSmooth, emptyColumnsAfterSmooth);
-
-            string newMap = cave.convertMultiArrayToString(mainTilemapArray);
-
-            mainTilemap = new FlxTilemap();
-            mainTilemap.auto = FlxTilemap.AUTO;
-            mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["tiles"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
-            mainTilemap.boundingBoxOverride = true;
+            destructableTilemap = new FlxTilemap();
+            destructableTilemap.auto = FlxTilemap.STRING;
+            destructableTilemap.loadMap(destructableAttrs["DestructableTerrain"], FlxG.Content.Load<Texture2D>("initials/" + destructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
+            destructableTilemap.boundingBoxOverride = true;
+            allLevelTiles.add(destructableTilemap);
 
 
-            allLevelTiles.add(mainTilemap);
+            indestructableAttrs = new Dictionary<string, string>();
+            indestructableAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/level1.oel", "level/IndestructableTerrain");
+
+            indestructableTilemap = new FlxTilemap();
+            indestructableTilemap.auto = FlxTilemap.STRING;
+            indestructableTilemap.loadMap(indestructableAttrs["IndestructableTerrain"], FlxG.Content.Load<Texture2D>("initials/" + indestructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
+            indestructableTilemap.boundingBoxOverride = true;
+            allLevelTiles.add(indestructableTilemap);
 
 
 
+            actorsAttrs = new List<Dictionary<string, string>>();
+            actorsAttrs = FlxXMLReader.readNodesFromOelFile("ogmoLevels/level1.oel", "level/ActorsLayer");
 
-            // Generate some random ladders
-
-            for (int i = 0; i < 3; i++)
+            foreach (Dictionary<string, string> nodes in actorsAttrs)
             {
-                int rx = (int)(FlxU.random() * (FlxG.levelWidth / FourChambers_Globals.TILE_SIZE_X));
-                int ry = (int)(FlxU.random() * (FlxG.levelHeight / FourChambers_Globals.TILE_SIZE_Y));
+                bool pc = false;
 
-                ladder = new FlxTileblock(rx * FourChambers_Globals.TILE_SIZE_X, ry * FourChambers_Globals.TILE_SIZE_Y, FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_X * 10);
-                ladder.loadTiles(FlxG.Content.Load<Texture2D>("initials/ladderTiles_16x16"), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y, 0);
-                ladders.add(ladder);
-            }
-            //generate some ladders in the empty columns
-
-            if (emptyColumnsAfterSmooth != null)
-            {
-                foreach (var item in emptyColumnsAfterSmooth)
+                if (nodes.ContainsKey("isPlayerControlled"))
                 {
-                    ladder = new FlxTileblock(item * FourChambers_Globals.TILE_SIZE_X, 0, FourChambers_Globals.TILE_SIZE_X, FlxG.levelHeight);
-                    ladder.loadTiles(FlxG.Content.Load<Texture2D>("initials/ladderTiles_16x16"), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y, 0);
-                    ladders.add(ladder);
+                    pc = Convert.ToBoolean(nodes["isPlayerControlled"]);
                 }
-            }
-            add(ladders);
-            add(allLevelTiles);
 
-            for (int i = 0; i < 2; i++)
-            {
 
-                int rx = (int)(FlxU.random() * (FlxG.levelWidth / FourChambers_Globals.TILE_SIZE_X));
-                int ry = (int)(FlxU.random() * (FlxG.levelHeight / FourChambers_Globals.TILE_SIZE_Y));
+                buildActor(nodes["Name"], 1, pc , Convert.ToInt32(nodes["x"]),Convert.ToInt32(nodes["y"]));
 
-                for (int j = 0; j < 10; j++)
+                foreach (KeyValuePair<string, string> kvp in nodes)
                 {
-                    FallAwayBridgeBlock f = new FallAwayBridgeBlock((rx * FourChambers_Globals.TILE_SIZE_X) + (j * FourChambers_Globals.TILE_SIZE_X), ry * FourChambers_Globals.TILE_SIZE_Y);
-                    allLevelTiles.add(f);
+                    Console.Write("Key = {0}, Value = {1}, ",
+                        kvp.Key, kvp.Value);
+
 
                 }
+                Console.Write("\r\n");
             }
 
+            eventsAttrs = new List<Dictionary<string, string>>();
+            eventsAttrs = FlxXMLReader.readNodesFromOelFile("ogmoLevels/level1.oel", "level/Events");
 
-
-
-            // add the decorations tilemap.
-
-            characterSpawnPositionsArray = cave.createDecorationsMap(mainTilemapArray, 1.0f);
-
-            hangingArray = cave.createHangingDecorationsMap(mainTilemapArray, 1.0f);
-
-            decorationsFGArray = cave.createDecorationsMap(mainTilemapArray, 0.5f);
-
-            string newDec = cave.convertMultiArrayToString(decorationsFGArray);
-
-            Texture2D DecorTex = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["decorationTiles"]);
-
-            decorationsTilemap = new FlxTilemap();
-            decorationsTilemap.auto = FlxTilemap.RANDOM;
-            decorationsTilemap.randomLimit = (int)DecorTex.Width / FourChambers_Globals.TILE_SIZE_X;
-            decorationsTilemap.boundingBoxOverride = false;
-            decorationsTilemap.loadMap(newDec, DecorTex, FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
-            //add it after the actors.
-
-            decorationsBGArray = cave.createDecorationsMap(mainTilemapArray, 0.2f);
-
-            string newDec2 = cave.convertMultiArrayToString(decorationsBGArray);
-
-            Texture2D DecorTexRear = FlxG.Content.Load<Texture2D>("initials/decorationsBack_16x16");
-            decorationsRearTilemap = new FlxTilemap();
-            decorationsRearTilemap.auto = FlxTilemap.RANDOM;
-            decorationsRearTilemap.randomLimit = (int)DecorTex.Width / FourChambers_Globals.TILE_SIZE_X;
-            decorationsRearTilemap.boundingBoxOverride = false;
-            decorationsRearTilemap.loadMap(newDec2, DecorTexRear, FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
-            add(decorationsRearTilemap);
-
-            // build characters here
-
-            buildActor("marksman", 1, true);
-
-            /// Looks through the level dictionary and builds neccessary actors.
-            foreach (KeyValuePair<string, string> pair in levelAttrs)
+            foreach (Dictionary<string, string> nodes in eventsAttrs)
             {
-                int noa = 0;
-                if (pair.Value != null && pair.Value != "")
+                EventSprite s2 = new EventSprite(Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]), eventSpriteRun, Convert.ToInt32(nodes["repeat"]));
+                s2.createGraphic(Convert.ToInt32(nodes["width"]), Convert.ToInt32(nodes["height"]), Color.Red);
+                
+                eventSprites.add(s2);
+
+                foreach (KeyValuePair<string, string> kvp in nodes)
                 {
-                    int number;
-                    bool result = Int32.TryParse(pair.Value.ToString(), out number);
-                    if (result)
-                    {
-                        noa = number;
-                    }
-                    else
-                    {
-                        noa = 0;
-                    }
-                    if (pair.Value != "" && pair.Value != null && pair.Value != "0")
-                    {
-                        if (noa != 0)
-                        {
-                            buildActor(pair.Key, Convert.ToInt32(pair.Value));
-                        }
-                    }
+                    Console.Write("Key = {0}, Value = {1}, ",
+                        kvp.Key, kvp.Value);
+
+
                 }
+                Console.Write("\r\n");
+
+                
             }
 
-
-
-            for (int i = 0; i < 12; i++)
-            {
-                int[] p = cave.findRandomSolid(hangingArray);
-                ZingerNest = new ZingerNest(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_Y, zingers);
-                actors.add(ZingerNest);
-
-                zinger = new Zinger(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
-                zingers.add(zinger);
-                actors.add(zinger);
-                zinger.dead = true;
-                zinger.visible = false;
-
-                powerUp = new PowerUp(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
-                powerUp.dead = true;
-                powerUp.visible = false;
-                powerUps.add(powerUp);
-
-            }
-            int[] p1 = cave.findRandomSolid(characterSpawnPositionsArray);
-            door = new Door(p1[1] * FourChambers_Globals.TILE_SIZE_X, p1[0] * FourChambers_Globals.TILE_SIZE_X);
-            add(door);
+            add(eventSprites);
 
             Console.WriteLine("Done generating levels");
 
@@ -448,10 +409,13 @@ namespace XNAMode
 
 
             //FlxG.followAdjust(0.5f, 0.0f);
-            FlxG.followBounds(0, 0, Convert.ToInt32(levelAttrs["levelWidth"]) * FourChambers_Globals.TILE_SIZE_X, Convert.ToInt32(levelAttrs["levelHeight"]) * FourChambers_Globals.TILE_SIZE_Y);
+            FlxG.followBounds(0, 0, Convert.ToInt32(levelAttrs["width"]) , Convert.ToInt32(levelAttrs["height"]) );
 
-            add(actors);
+            
             add(bullets);
+            
+            add(allLevelTiles);
+            add(actors);
             add(powerUps);
 
             blood = new FlxEmitter();
@@ -460,8 +424,6 @@ namespace XNAMode
             blood.width = 6;
             blood.height = 6;
             blood.delay = 0.8f;
-
-            //blood.del
             blood.setXSpeed(-152, 152);
             blood.setYSpeed(-250, -50);
             blood.setRotation(0, 0);
@@ -470,16 +432,27 @@ namespace XNAMode
             add(blood);
 
 
+            tilesExplode = new FlxEmitter();
+            tilesExplode.x = 0;
+            tilesExplode.y = 0;
+            tilesExplode.width = 16;
+            tilesExplode.height = 16;
+            tilesExplode.delay = 0.8f;
+            tilesExplode.setXSpeed(-50, 50);
+            tilesExplode.setYSpeed(-150, -50);
+            tilesExplode.setRotation(0, 0);
+            tilesExplode.gravity = FourChambers_Globals.GRAVITY;
+            tilesExplode.createSprites(FlxG.Content.Load<Texture2D>("initials/" + destructableAttrs["tileset"]), 100, true, 1.0f, 0.1f);
+            add(tilesExplode);
+            tilesExplode.setScale(0.5f);
+
+
+
             add(bigEx);
 
-            add(decorationsTilemap);
-
-            //FlxG.autoHandlePause = true;
-
-
-            if (FlxG.joystickBeingUsed) FlxG.mouse.hide();
-            else FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
-
+            //if (FlxG.joystickBeingUsed) FlxG.mouse.hide();
+            //else FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
+            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
             localHud = new PlayHud();
             FlxG._game.hud.hudGroup = localHud;
 
@@ -501,7 +474,7 @@ namespace XNAMode
 
                 FlxG.transition.startFadeIn(0.2f);
 
-                FlxG.state = new BasePlayState();
+                FlxG.state = new BasePlayStateFromOel();
 
                 return;
             }
@@ -514,7 +487,7 @@ namespace XNAMode
 
                 FlxG.transition.startFadeIn(0.2f);
 
-                FlxG.state = new BasePlayState();
+                FlxG.state = new BasePlayStateFromOel();
 
                 return;
             }
@@ -522,7 +495,7 @@ namespace XNAMode
             {
                 FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
                 FlxG.transition.startFadeIn(0.2f);
-                FlxG.state = new BasePlayState();
+                FlxG.state = new BasePlayStateFromOel();
                 return;
             }
 
@@ -531,12 +504,12 @@ namespace XNAMode
             {
                 //Console.WriteLine((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X + " " + (int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y);
 
-                mainTilemap.setTile((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X, (int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y, 0, true);
-                decorationsTilemap.setTile((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X, ((int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y) - 1, 0, true);
+                destructableTilemap.setTile((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X, (int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y, 0, true);
+                //decorationsTilemap.setTile((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X, ((int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y) - 1, 0, true);
             }
             if (FlxG.mouse.pressedLeftButton() && FlxG.keys.SHIFT)
             {
-                mainTilemap.setTile((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X, (int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y, 1, true);
+                destructableTilemap.setTile((int)FlxG.mouse.x / FourChambers_Globals.TILE_SIZE_X, (int)FlxG.mouse.y / FourChambers_Globals.TILE_SIZE_Y, 1, true);
             }
 
             if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B) && FlxG.debug)
@@ -565,20 +538,22 @@ namespace XNAMode
 
             FlxU.collide(powerUps, allLevelTiles);
             FlxU.overlap(playerControlledActors, door, goToNextLevel);
-
+            FlxU.overlap(playerControlledActors, eventSprites, eventCallback);
             FlxU.overlap(actors, bullets, overlapped);
             FlxU.overlap(actors, ladders, overlapWithLadder);
 
+            FlxU.overlap(marksman.meleeHitBox, destructableTilemap, destroyTileAtMelee);
 
 
-            FlxU.collide(mainTilemap, bullets);
+            FlxU.collide(destructableTilemap, bullets);
 
-            FlxU.collide(blood, mainTilemap);
+            FlxU.collide(blood, destructableTilemap);
 
 
             FlxU.overlap(actors, playerControlledActors, actorOverlap);
 
             FlxU.overlap(powerUps, playerControlledActors, getPowerUp);
+
 
             // removing tile from the explosion.
             //try
@@ -644,7 +619,7 @@ namespace XNAMode
         {
             FlxG.level = 1;
             FlxG.score = 0;
-            FlxG.state = new BasePlayState();
+            FlxG.state = new BasePlayStateFromOel();
         }
         private void goToMenu()
         {
@@ -682,6 +657,18 @@ namespace XNAMode
         }
 
 
+        protected bool destroyTileAtMelee(object Sender, FlxSpriteCollisionEvent e)
+        {
+            if (destructableTilemap.getTile((int)marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X, (int)marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y) != 0)
+            {
+                destructableTilemap.setTile((int)marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X, (int)marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y, 0, true);
+
+                tilesExplode.x = (int)marksman.meleeHitBox.x;
+                tilesExplode.y = (int)marksman.meleeHitBox.y;
+                tilesExplode.start(true, 0, 4);
+            }
+            return true;
+        }
 
         protected bool getPowerUp(object Sender, FlxSpriteCollisionEvent e)
         {
@@ -745,7 +732,7 @@ namespace XNAMode
             {
 
             }
-            else if ((e.Object1 is ZingerNest) && (e.Object2 is Arrow))
+            else if (e.Object1 is ZingerNest)
             {
                 bigEx.x = e.Object1.x;
                 bigEx.y = e.Object1.y;
@@ -814,11 +801,27 @@ namespace XNAMode
 
         }
 
+        protected bool eventCallback(object Sender, FlxSpriteCollisionEvent e)
+        {
+
+            ((EventSprite)e.Object2).runCallback();
+
+            return true;
+
+        }
+
+
+        public void eventSpriteRun()
+        {
+            //Console.WriteLine("test1");
+
+        }
+
         public void buildActor(string ActorType, int NumberOfActors)
         {
-            buildActor(ActorType, NumberOfActors, false);
+            buildActor(ActorType, NumberOfActors, false, 0, 0);
         }
-        public void buildActor(string ActorType, int NumberOfActors, bool playerControlled = false)
+        public void buildActor(string ActorType, int NumberOfActors, bool playerControlled = false, int x=0, int y=0)
         {
             #region Marksman
             if (ActorType == "marksman")
@@ -832,10 +835,7 @@ namespace XNAMode
 
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    //FlxG.write("Marksman being made " + NumberOfActors);
-
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    marksman = new Marksman(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X, arrows.members);
+                    marksman = new Marksman(x, y, arrows.members);
                     marksman.flicker(2);
                     actors.add(marksman);
                     bullets.add(marksman.meleeHitBox);
@@ -855,8 +855,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    mistress = new Mistress(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    mistress = new Mistress(x, y );
                     actors.add(mistress);
                     mistress.flicker(2);
                     playerControlledActors.add(mistress);
@@ -874,14 +874,14 @@ namespace XNAMode
             #region Warlock
             if (ActorType == "warlock")
             {
-                int x = 0;
-                for (x = 0; x < BULLETS_PER_ACTOR; x++)
+                int j = 0;
+                for (j = 0; j < BULLETS_PER_ACTOR;j++)
                     fireballs.add(new Fireball());
                 bullets.add(fireballs);
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    warlock = new Warlock(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X, fireballs.members);
+                    
+                    warlock = new Warlock(x, y , fireballs.members);
                     actors.add(warlock);
                     warlock.flicker(2);
                     playerControlledActors.add(warlock);
@@ -898,8 +898,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    artist = new Artist(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    artist = new Artist(x, y);
                     actors.add(artist);
                 }
             }
@@ -909,8 +909,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    assassin = new Assassin(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    assassin = new Assassin(x, y);
                     actors.add(assassin);
                 }
             }
@@ -920,8 +920,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    automaton = new Automaton(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    automaton = new Automaton(x, y);
                     actors.add(automaton);
 
 
@@ -933,8 +933,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomEmpty(mainTilemapArray);
-                    bat = new Bat(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    bat = new Bat(x, y);
                     actors.add(bat);
                 }
             }
@@ -944,8 +944,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    blight = new Blight(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    blight = new Blight(x, y);
                     actors.add(blight);
                 }
             }
@@ -955,8 +955,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    bloatedzombie = new Bloatedzombie(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    bloatedzombie = new Bloatedzombie(x, y);
                     actors.add(bloatedzombie);
                 }
             }
@@ -966,8 +966,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    bogbeast = new Bogbeast(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    bogbeast = new Bogbeast(x, y);
                     actors.add(bogbeast);
                 }
             }
@@ -977,8 +977,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    bombling = new Bombling(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    bombling = new Bombling(x, y);
                     actors.add(bombling);
                 }
             }
@@ -988,8 +988,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    centaur = new Centaur(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    centaur = new Centaur(x, y);
                     actors.add(centaur);
                 }
             }
@@ -999,8 +999,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    chicken = new Chicken(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    chicken = new Chicken(x, y);
                     actors.add(chicken);
                 }
             }
@@ -1010,8 +1010,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    chimaera = new Chimaera(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    chimaera = new Chimaera(x, y);
                     actors.add(chimaera);
                 }
             }
@@ -1021,8 +1021,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    corsair = new Corsair(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    corsair = new Corsair(x, y);
                     actors.add(corsair);
                 }
             }
@@ -1032,8 +1032,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    cow = new Cow(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    cow = new Cow(x, y);
                     actors.add(cow);
                 }
             }
@@ -1043,8 +1043,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    cyclops = new Cyclops(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    cyclops = new Cyclops(x, y);
                     actors.add(cyclops);
                 }
             }
@@ -1054,8 +1054,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    deathclaw = new Deathclaw(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    deathclaw = new Deathclaw(x, y);
                     actors.add(deathclaw);
                 }
             }
@@ -1065,8 +1065,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    deer = new Deer(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    deer = new Deer(x, y);
                     actors.add(deer);
                 }
             }
@@ -1076,8 +1076,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    devil = new Devil(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    devil = new Devil(x, y);
                     actors.add(devil);
                 }
             }
@@ -1087,8 +1087,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    djinn = new Djinn(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    djinn = new Djinn(x, y);
                     actors.add(djinn);
                 }
             }
@@ -1098,8 +1098,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomEmpty(mainTilemapArray);
-                    drone = new Drone(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    drone = new Drone(x, y);
                     actors.add(drone);
                 }
             }
@@ -1109,8 +1109,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    druid = new Druid(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    druid = new Druid(x, y);
                     actors.add(druid);
                 }
             }
@@ -1120,8 +1120,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    dwarf = new Dwarf(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    dwarf = new Dwarf(x, y);
                     actors.add(dwarf);
                 }
             }
@@ -1131,8 +1131,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    embersteed = new Embersteed(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    embersteed = new Embersteed(x, y);
                     actors.add(embersteed);
                 }
             }
@@ -1142,8 +1142,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    executor = new Executor(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    executor = new Executor(x, y);
                     actors.add(executor);
                 }
             }
@@ -1153,8 +1153,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    feline = new Feline(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    feline = new Feline(x, y);
                     actors.add(feline);
                 }
             }
@@ -1164,8 +1164,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    floatingeye = new Floatingeye(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    floatingeye = new Floatingeye(x, y);
                     actors.add(floatingeye);
                 }
             }
@@ -1175,8 +1175,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    fungant = new Fungant(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    fungant = new Fungant(x, y);
                     actors.add(fungant);
                 }
             }
@@ -1186,8 +1186,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    gelatine = new Gelatine(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    gelatine = new Gelatine(x, y);
                     actors.add(gelatine);
                 }
             }
@@ -1197,8 +1197,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    gloom = new Gloom(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    gloom = new Gloom(x, y);
                     actors.add(gloom);
                 }
             }
@@ -1208,8 +1208,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    glutton = new Glutton(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    glutton = new Glutton(x, y);
                     actors.add(glutton);
                 }
             }
@@ -1219,8 +1219,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    goblin = new Goblin(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    goblin = new Goblin(x, y);
                     actors.add(goblin);
                 }
             }
@@ -1230,8 +1230,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    golem = new Golem(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    golem = new Golem(x, y);
                     actors.add(golem);
                 }
             }
@@ -1241,8 +1241,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    gorgon = new Gorgon(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    gorgon = new Gorgon(x, y);
                     actors.add(gorgon);
                 }
             }
@@ -1252,8 +1252,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    gourmet = new Gourmet(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    gourmet = new Gourmet(x, y);
                     actors.add(gourmet);
                 }
             }
@@ -1263,8 +1263,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    grimwarrior = new Grimwarrior(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    grimwarrior = new Grimwarrior(x, y);
                     actors.add(grimwarrior);
                 }
             }
@@ -1274,8 +1274,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    grizzly = new Grizzly(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    grizzly = new Grizzly(x, y);
                     actors.add(grizzly);
                 }
             }
@@ -1285,8 +1285,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    harvester = new Harvester(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    harvester = new Harvester(x, y);
                     actors.add(harvester);
                 }
             }
@@ -1296,8 +1296,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    horse = new Horse(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    horse = new Horse(x, y);
                     actors.add(horse);
                 }
             }
@@ -1307,8 +1307,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    ifrit = new Ifrit(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    ifrit = new Ifrit(x, y);
                     actors.add(ifrit);
                 }
             }
@@ -1318,8 +1318,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    imp = new Imp(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    imp = new Imp(x, y);
                     actors.add(imp);
                 }
             }
@@ -1329,8 +1329,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    kerberos = new Kerberos(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    kerberos = new Kerberos(x, y);
                     actors.add(kerberos);
                 }
             }
@@ -1340,8 +1340,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    lich = new Lich(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    lich = new Lich(x, y);
                     actors.add(lich);
                 }
             }
@@ -1351,8 +1351,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    lion = new Lion(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    lion = new Lion(x, y);
                     actors.add(lion);
                 }
             }
@@ -1365,8 +1365,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    mechanic = new Mechanic(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    mechanic = new Mechanic(x, y);
                     actors.add(mechanic);
                 }
             }
@@ -1376,8 +1376,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    mephisto = new Mephisto(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    mephisto = new Mephisto(x, y);
                     actors.add(mephisto);
                 }
             }
@@ -1387,8 +1387,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    merchant = new Merchant(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    merchant = new Merchant(x, y);
                     actors.add(merchant);
                 }
             }
@@ -1398,8 +1398,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    mermaid = new Mermaid(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    mermaid = new Mermaid(x, y);
                     actors.add(mermaid);
                 }
             }
@@ -1409,8 +1409,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    mimick = new Mimick(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    mimick = new Mimick(x, y);
                     actors.add(mimick);
                 }
             }
@@ -1420,8 +1420,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    monk = new Monk(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    monk = new Monk(x, y);
                     actors.add(monk);
                 }
             }
@@ -1431,8 +1431,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    mummy = new Mummy(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    mummy = new Mummy(x, y);
                     actors.add(mummy);
                 }
             }
@@ -1442,8 +1442,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    nightmare = new Nightmare(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    nightmare = new Nightmare(x, y);
                     actors.add(nightmare);
                 }
             }
@@ -1453,8 +1453,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    nymph = new Nymph(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    nymph = new Nymph(x, y);
                     actors.add(nymph);
                 }
             }
@@ -1464,8 +1464,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    ogre = new Ogre(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    ogre = new Ogre(x, y);
                     actors.add(ogre);
                 }
             }
@@ -1475,8 +1475,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    paladin = new Paladin(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    paladin = new Paladin(x, y);
                     actors.add(paladin);
                 }
             }
@@ -1486,8 +1486,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    phantom = new Phantom(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    phantom = new Phantom(x, y);
                     actors.add(phantom);
                 }
             }
@@ -1497,8 +1497,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    priest = new Priest(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    priest = new Priest(x, y);
                     actors.add(priest);
                 }
             }
@@ -1508,8 +1508,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    prism = new Prism(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    prism = new Prism(x, y);
                     actors.add(prism);
                 }
             }
@@ -1519,8 +1519,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    rat = new Rat(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    rat = new Rat(x, y);
                     actors.add(rat);
                 }
             }
@@ -1530,8 +1530,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    savage = new Savage(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    savage = new Savage(x, y);
                     actors.add(savage);
                 }
             }
@@ -1541,8 +1541,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    seraphine = new Seraphine(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    seraphine = new Seraphine(x, y);
                     actors.add(seraphine);
                 }
             }
@@ -1552,8 +1552,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    sheep = new Sheep(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    sheep = new Sheep(x, y);
                     actors.add(sheep);
                 }
             }
@@ -1563,8 +1563,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    skeleton = new Skeleton(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    skeleton = new Skeleton(x, y);
                     actors.add(skeleton);
                 }
             }
@@ -1574,8 +1574,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    snake = new Snake(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    snake = new Snake(x, y);
                     actors.add(snake);
                 }
             }
@@ -1585,8 +1585,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    soldier = new Soldier(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    soldier = new Soldier(x, y);
                     actors.add(soldier);
                 }
             }
@@ -1596,8 +1596,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    sphinx = new Sphinx(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    sphinx = new Sphinx(x, y);
                     actors.add(sphinx);
                 }
             }
@@ -1607,8 +1607,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    spider = new Spider(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    spider = new Spider(x, y);
                     actors.add(spider);
                 }
             }
@@ -1618,8 +1618,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    succubus = new Succubus(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    succubus = new Succubus(x, y);
                     actors.add(succubus);
                 }
             }
@@ -1629,8 +1629,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    tauro = new Tauro(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    tauro = new Tauro(x, y);
                     actors.add(tauro);
                 }
             }
@@ -1640,8 +1640,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    toad = new Toad(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    toad = new Toad(x, y);
                     actors.add(toad);
                 }
             }
@@ -1651,8 +1651,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    tormentor = new Tormentor(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    tormentor = new Tormentor(x, y);
                     actors.add(tormentor);
                 }
             }
@@ -1662,8 +1662,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    treant = new Treant(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    treant = new Treant(x, y);
                     actors.add(treant);
                 }
             }
@@ -1673,8 +1673,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    troll = new Troll(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    troll = new Troll(x, y);
                     actors.add(troll);
                 }
             }
@@ -1684,8 +1684,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    unicorn = new Unicorn(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    unicorn = new Unicorn(x, y);
                     actors.add(unicorn);
                 }
             }
@@ -1695,8 +1695,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    vampire = new Vampire(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    vampire = new Vampire(x, y);
                     actors.add(vampire);
                 }
             }
@@ -1706,8 +1706,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    willowisp = new Willowisp(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    willowisp = new Willowisp(x, y);
                     actors.add(willowisp);
                 }
             }
@@ -1717,8 +1717,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    wizard = new Wizard(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    wizard = new Wizard(x, y);
                     actors.add(wizard);
                 }
             }
@@ -1728,8 +1728,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    wolf = new Wolf(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    wolf = new Wolf(x, y);
                     actors.add(wolf);
                 }
             }
@@ -1739,15 +1739,17 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomEmpty(mainTilemapArray);
-                    zinger = new Zinger(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    zinger = new Zinger(x, y);
                     zingers.add(zinger);
                     actors.add(zinger);
 
-
-                    ZingerHoming z = new ZingerHoming(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X, marksman);
-                    zingers.add(z);
-                    actors.add(z);
+                    if (FourChambers_Globals.PIRATE_COPY)
+                    {
+                        ZingerHoming z = new ZingerHoming(x, y, marksman);
+                        zingers.add(z);
+                        actors.add(z);
+                    }
 
 
 
@@ -1759,11 +1761,33 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    int[] p = cave.findRandomSolid(characterSpawnPositionsArray);
-                    zombie = new Zombie(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X);
+                    
+                    zombie = new Zombie(x * FourChambers_Globals.TILE_SIZE_X, y * FourChambers_Globals.TILE_SIZE_X);
                     actors.add(zombie);
                 }
             }
+            #endregion
+            #region ZingerNest
+            if (ActorType == "zingernest")
+            {
+                for (int i = 0; i < NumberOfActors; i++)
+                {
+                    ZingerNest = new ZingerNest(x,y, zingers);
+                    actors.add(ZingerNest);
+
+                    zinger = new Zinger(x,y);
+                    zingers.add(zinger);
+                    actors.add(zinger);
+                    zinger.dead = true;
+                    zinger.visible = false;
+
+                    powerUp = new PowerUp(x,y);
+                    powerUp.dead = true;
+                    powerUp.visible = false;
+                    powerUps.add(powerUp);
+                }
+            }
+
             #endregion
 
         }

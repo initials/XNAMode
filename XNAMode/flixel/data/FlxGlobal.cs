@@ -36,6 +36,7 @@ namespace org.flixel
         public const int PLAYER_MISTRESS = 2;
         public const int PLAYER_WARLOCK = 3;
 
+        public static bool PIRATE_COPY = false;
         
 
     }

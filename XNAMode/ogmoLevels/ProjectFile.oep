@@ -2,21 +2,21 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <OgmoVersion>1.0</OgmoVersion>
   <Name>FourChambers</Name>
-  <BackgroundColor A="255" R="64" G="0" B="0" />
+  <BackgroundColor A="255" R="128" G="128" B="255" />
   <GridColor A="255" R="255" G="240" B="90" />
   <LevelDefaultSize>
     <Width>800</Width>
-    <Height>640</Height>
+    <Height>800</Height>
   </LevelDefaultSize>
   <LevelMinimumSize>
     <Width>640</Width>
     <Height>640</Height>
   </LevelMinimumSize>
   <LevelMaximumSize>
-    <Width>10000</Width>
-    <Height>10000</Height>
+    <Width>3200</Width>
+    <Height>3200</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\User\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
+  <Filename>C:\Users\Shane\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>true</CameraEnabled>
   <CameraSize>
@@ -25,12 +25,13 @@
   </CameraSize>
   <ExportCameraPosition>true</ExportCameraPosition>
   <LevelValueDefinitions>
-    <ValueDefinition xsi:type="StringValueDefinition" Name="worldType" Default="default" MaxChars="-1" MultiLine="false" />
-    <ValueDefinition xsi:type="IntValueDefinition" Name="other" Default="0" Min="0" Max="100" ShowSlider="false" />
+    <ValueDefinition xsi:type="StringValueDefinition" Name="levelName" Default="" MaxChars="-1" MultiLine="false" />
+    <ValueDefinition xsi:type="StringValueDefinition" Name="bgGraphic" Default="Fear" MaxChars="-1" MultiLine="false" />
+    <ValueDefinition xsi:type="StringValueDefinition" Name="timeOfDayPalette" Default="skyPalette" MaxChars="-1" MultiLine="false" />
   </LevelValueDefinitions>
   <LayerDefinitions>
-    <LayerDefinition xsi:type="GridLayerDefinition">
-      <Name>GridLayer</Name>
+    <LayerDefinition xsi:type="TileLayerDefinition">
+      <Name>DestructableTerrain</Name>
       <Grid>
         <Width>16</Width>
         <Height>16</Height>
@@ -39,7 +40,18 @@
         <X>1</X>
         <Y>1</Y>
       </ScrollFactor>
-      <Color A="255" R="0" G="0" B="0" />
+      <ExportMode>CSV</ExportMode>
+    </LayerDefinition>
+    <LayerDefinition xsi:type="TileLayerDefinition">
+      <Name>IndestructableTerrain</Name>
+      <Grid>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Grid>
+      <ScrollFactor>
+        <X>1</X>
+        <Y>1</Y>
+      </ScrollFactor>
       <ExportMode>CSV</ExportMode>
     </LayerDefinition>
     <LayerDefinition xsi:type="EntityLayerDefinition">
@@ -53,8 +65,8 @@
         <Y>1</Y>
       </ScrollFactor>
     </LayerDefinition>
-    <LayerDefinition xsi:type="TileLayerDefinition">
-      <Name>TilesLayer</Name>
+    <LayerDefinition xsi:type="EntityLayerDefinition">
+      <Name>Events</Name>
       <Grid>
         <Width>16</Width>
         <Height>16</Height>
@@ -63,12 +75,11 @@
         <X>1</X>
         <Y>1</Y>
       </ScrollFactor>
-      <ExportMode>CSV</ExportMode>
     </LayerDefinition>
   </LayerDefinitions>
   <Tilesets>
     <Tileset>
-      <Name>WorldTiles</Name>
+      <Name>autotiles_16x16</Name>
       <FilePath>..\..\XNAModeContent\initials\autotiles_16x16.png</FilePath>
       <TileSize>
         <Width>16</Width>
@@ -77,7 +88,7 @@
       <TileSep>0</TileSep>
     </Tileset>
     <Tileset>
-      <Name>AltTiles</Name>
+      <Name>autotiles_alt</Name>
       <FilePath>..\..\XNAModeContent\initials\autotiles_alt.png</FilePath>
       <TileSize>
         <Width>16</Width>
@@ -86,7 +97,7 @@
       <TileSep>0</TileSep>
     </Tileset>
     <Tileset>
-      <Name>PlainTiles</Name>
+      <Name>autotiles</Name>
       <FilePath>..\..\XNAModeContent\initials\autotiles.png</FilePath>
       <TileSize>
         <Width>16</Width>
@@ -96,6 +107,26 @@
     </Tileset>
   </Tilesets>
   <EntityDefinitions>
+    <EntityDefinition Name="_event" Limit="-1" ResizableX="true" ResizableY="true" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Rectangle" ImagePath="" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="event" Default="" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="FloatValueDefinition" Name="value1" Default="0" Min="0" Max="100" Round="0.1" />
+        <ValueDefinition xsi:type="FloatValueDefinition" Name="value2" Default="0" Min="0" Max="100" Round="0.1" />
+        <ValueDefinition xsi:type="IntValueDefinition" Name="repeat" Default="1" Min="0" Max="100" ShowSlider="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
     <EntityDefinition Name="artist" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>16</Width>
@@ -824,6 +855,7 @@
       </ImageDefinition>
       <ValueDefinitions>
         <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="isPlayerControlled" Default="true" />
       </ValueDefinitions>
       <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
     </EntityDefinition>
@@ -1438,6 +1470,21 @@
         <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
       </ValueDefinitions>
       <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="zingernest" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\zingernest.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
     <EntityDefinition Name="zombie" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>

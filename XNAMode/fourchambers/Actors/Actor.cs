@@ -314,20 +314,26 @@ namespace XNAMode
                 attackingJoystick = true;
                 attackingMelee = false;
             }
-            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X > DEADZONE ||
+
+
+            //FlxG.gamepads.isButtonDown(Buttons.X, PlayerIndex.One, out pi)
+
+            if ((GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X > DEADZONE ||
                 GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y > DEADZONE ||
                 GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X < DEADZONE * -1.0f ||
-                GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y < DEADZONE * -1.0f ||
-                FlxG.gamepads.isButtonDown(Buttons.X, PlayerIndex.One, out pi)
+                GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y < DEADZONE * -1.0f) &&
+                
+                FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder)
+
                 )
             {
                 attackingJoystick = true;
                 attackingMelee = false;
             }
-            else
-            {
-                attackingJoystick = false;
-            }
+            //else
+            //{
+            //    attackingJoystick = false;
+            //}
 
             // Attacking using mouse.
             if (FlxG.mouse.pressedLeftButton())
@@ -348,7 +354,7 @@ namespace XNAMode
             //    attackingMouse = false;
             //}
 
-            if (FlxG.keys.P || FlxG.gamepads.isButtonDown(Buttons.Y, FlxG.controllingPlayer, out pi))
+            if (FlxG.keys.P || FlxG.gamepads.isButtonDown(Buttons.B, FlxG.controllingPlayer, out pi))
             {
                 attackingMelee = true;
             }
