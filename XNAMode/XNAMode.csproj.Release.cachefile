@@ -110,7 +110,10 @@ Content\initials\pickups_16x16.xnb
 Content\initials\treasures_16x16.xnb
 Content\initials\explosion_32x32.xnb
 Content\diagnostic\testpalette.xnb
+Content\initials\fallAwayBridgeTiles_16x32.xnb
+Content\initials\exitBlocker.xnb
 Content\mode\button.wma
 levelSettings.xml
 ogmoLevels\level1.oel
+ogmoLevels\level2.oel
 ogmoLevels\ProjectFile.oep

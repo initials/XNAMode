@@ -25,11 +25,13 @@ namespace XNAMode
             : base(xPos, yPos)
         {
 
+
+
+            loadGraphic(FlxG.Content.Load<Texture2D>("initials/fallAwayBridgeTiles_16x32"), false, false, 16,32);
             width = 16;
             height = 16;
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/fallAwayBridgeTiles_16x16"), false, false, 16,16);
-
+            offset.Y = 16;
             @fixed = true;
 
 

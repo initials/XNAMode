@@ -24,6 +24,8 @@ namespace XNAMode
         /// Use score.text = "" to set the score.
         /// </summary>
         public FlxText score;
+
+        public FlxText nestsRemaining;
         
         private Tweener tweenPos;
         private Tweener tweenScale;
@@ -67,10 +69,15 @@ namespace XNAMode
             arrowsRemaining.text = "00";
             add(arrowsRemaining);
 
-            score = new FlxText(310, ypos - 5, 100);
+            score = new FlxText(320, ypos - 10, 100);
             score.setFormat(null, 2, Color.White, FlxJustification.Left, Color.Black);
             score.text = "000000";
             add(score);
+
+            nestsRemaining = new FlxText(10, ypos - 10, 100);
+            nestsRemaining.setFormat(null, 2, Color.White, FlxJustification.Left, Color.Black);
+            nestsRemaining.text = "00";
+            add(nestsRemaining);
 
             tweenScale = new Tweener(10, 1, TimeSpan.FromSeconds(1.0f), Linear.EaseOut);
             
@@ -88,6 +95,30 @@ namespace XNAMode
                 currentAnimatedObj.scale = tweenScale.Position;
                 currentAnimatedObj.y = tweenPos.Position;
             }
+
+            int i2 = 0;
+            int l2 = this.members.Count;
+            
+            while (i2 < l2)
+            {
+                if (this.members[i2].GetType().ToString() == "org.flixel.FlxText")
+                {
+                    if ((this.members[i2] as FlxText).scale > 2)
+                    {
+                        (this.members[i2] as FlxText).scale -= 0.1f;
+                    }
+                    else if ((this.members[i2] as FlxText).scale < 2)
+                    {
+                        (this.members[i2] as FlxText).scale = 2;
+                    }
+                }
+
+                i2++;
+            }
+
+
+
+
 
             base.update();
         }

@@ -181,6 +181,9 @@ namespace XNAMode
 
         public float ladderPosX = 0;
 
+        public string lastAttack = "range";
+
+
         public Actor(int xPos, int yPos)
             : base(xPos,yPos)
 		{
@@ -209,6 +212,7 @@ namespace XNAMode
             // Running pushes walk speed higher.
             if (FlxG.gamepads.isButtonDown(Buttons.RightTrigger, FlxG.controllingPlayer, out pi))
             {
+                lastAttack = "range";
                 maxVelocity.X = runSpeed * 2;
                 attackingMelee = false;
             }
@@ -224,6 +228,7 @@ namespace XNAMode
             // Walking left.
             if ((FlxG.keys.A || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi)) && !isClimbingLadder)
             {
+                lastAttack = "range";
                 attackingJoystick = false;
                 attackingMouse = false;
                 facing = Flx2DFacing.Left;
@@ -233,6 +238,7 @@ namespace XNAMode
             //Walking right.
             else if ((FlxG.keys.D || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi)) && !isClimbingLadder)
             {
+                lastAttack = "range";
                 attackingJoystick = false;
                 attackingMouse = false;
                 facing = Flx2DFacing.Right;
@@ -243,6 +249,7 @@ namespace XNAMode
             // ladders
             if ((FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, FlxG.controllingPlayer, out pi)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
             {
+                lastAttack = "range";
                 x = ladderPosX + width;
 
                 velocity.Y = -100;
@@ -253,6 +260,7 @@ namespace XNAMode
             }
             else if ((FlxG.keys.S || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, FlxG.controllingPlayer, out pi)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
             {
+                lastAttack = "range";
                 x = ladderPosX + width;
 
                 velocity.Y = 100;
@@ -271,6 +279,7 @@ namespace XNAMode
 
             if ((_jump >= 0 || framesSinceLeftGround < 10 || isClimbingLadder) && (FlxG.keys.SPACE || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi)))
             {
+                lastAttack = "range";
                 if (framesSinceLeftGround < 10)
                 {
                     _jump = 0.0f;
@@ -306,11 +315,15 @@ namespace XNAMode
             // Attacking
             if (FlxG.keys.justPressed(Keys.C))
             {
+                lastAttack = "range";
+
                 attackingMouse = true;
                 attackingMelee = false;
             }
             if (FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder, FlxG.controllingPlayer, out pi))
             {
+                lastAttack = "range";
+
                 attackingJoystick = true;
                 attackingMelee = false;
             }
@@ -327,6 +340,7 @@ namespace XNAMode
 
                 )
             {
+                lastAttack = "range";
                 attackingJoystick = true;
                 attackingMelee = false;
             }
@@ -338,6 +352,7 @@ namespace XNAMode
             // Attacking using mouse.
             if (FlxG.mouse.pressedLeftButton())
             {
+                lastAttack = "range";
                 attackingMouse = true;
                 attackingMelee = false;
             }
@@ -345,6 +360,7 @@ namespace XNAMode
             // Attacking using mouse.
             if (FlxG.mouse.pressedRightButton())
             {
+                lastAttack = "melee";
                 attackingMouse = false;
                 attackingMelee = true;
             }
@@ -356,12 +372,14 @@ namespace XNAMode
 
             if (FlxG.keys.P || FlxG.gamepads.isButtonDown(Buttons.B, FlxG.controllingPlayer, out pi))
             {
+                lastAttack = "melee";
                 attackingMelee = true;
             }
 
 
             if (FlxG.keys.C)
             {
+                lastAttack = "range";
                 attackingMouse = true;
                 attackingMelee = false;
             }
@@ -411,7 +429,8 @@ namespace XNAMode
             }
             else if (velocity.X == 0)
             {
-                play("idle");
+                if (lastAttack == "melee") play("idleMelee");
+                else play("idle");
             }
             else if (FlxU.abs(velocity.X) > 1)
             {
@@ -419,7 +438,8 @@ namespace XNAMode
             }
             else
             {
-                play("idle");
+                if (lastAttack == "melee") play("idleMelee");
+                else play("idle");
             }
         }
 

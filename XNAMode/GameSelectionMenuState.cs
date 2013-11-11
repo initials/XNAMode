@@ -33,6 +33,8 @@ namespace XNAMode
 
             base.create();
 
+            FlxG._game.hud.hudGroup = new FlxGroup();
+
             FlxG.resetHud();
             FlxG.showHud();
 

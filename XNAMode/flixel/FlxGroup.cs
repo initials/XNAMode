@@ -255,6 +255,38 @@ namespace org.flixel
 			return count;
 		}
 
+        public int countLivingOfType(string typeToUse)
+        {
+            int count = -1;
+            int i = 0;
+            FlxObject o;
+            int ml = members.Count;
+            while (i < ml)
+
+            {
+                o = members[i++] as FlxObject;
+                if (o != null)
+                {
+                    if (count < 0)
+                        count = 0;
+                    if (o.exists && !o.dead)
+                    {
+                        var a = o.GetType().ToString();
+
+                        //Console.WriteLine("a " + a + " type to Use " + typeToUse);
+
+
+                        if (a == typeToUse)
+                        {
+                            count++;
+                        }
+
+                        
+                    }
+                }
+            }
+            return count;
+        }
         /// <summary>
         /// Call this function to find out how many members of the group are dead.
         /// </summary>

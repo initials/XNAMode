@@ -25,7 +25,7 @@ namespace XNAMode
             }
             else
             {
-                visible = true;
+                visible = false;
             }
 
 

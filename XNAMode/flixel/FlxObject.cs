@@ -6,9 +6,9 @@ using Microsoft.Xna.Framework.Graphics;
 namespace org.flixel
 {
     /// <summary>
-    /// This is the base class for most of the display objects (<code>FlxSprite</code>, <code>FlxText</code>, etc).
-    /// It includes some basic attributes about game objects, including retro-style flickering,
-    /// basic state information, sizes, scrolling, and basic physics & motion.
+    /// <para> is the base class for most of the display objects (<code>FlxSprite</code>, <code>FlxText</code>, etc). </para>
+    /// <para> It includes some basic attributes about game objects, including retro-style flickering,</para>
+    /// <para> basic state information, sizes, scrolling, and basic physics & motion.</para>
     /// </summary>
     public class FlxObject
     {

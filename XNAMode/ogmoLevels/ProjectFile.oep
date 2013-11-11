@@ -66,7 +66,7 @@
       </ScrollFactor>
     </LayerDefinition>
     <LayerDefinition xsi:type="EntityLayerDefinition">
-      <Name>Events</Name>
+      <Name>EventsLayer</Name>
       <Grid>
         <Width>16</Width>
         <Height>16</Height>
@@ -81,6 +81,24 @@
     <Tileset>
       <Name>autotiles_16x16</Name>
       <FilePath>..\..\XNAModeContent\initials\autotiles_16x16.png</FilePath>
+      <TileSize>
+        <Width>16</Width>
+        <Height>16</Height>
+      </TileSize>
+      <TileSep>0</TileSep>
+    </Tileset>
+    <Tileset>
+      <Name>autotiles_ice_16x16</Name>
+      <FilePath>..\..\XNAModeContent\initials\autotiles_ice_16x16.png</FilePath>
+      <TileSize>
+        <Width>16</Width>
+        <Height>16</Height>
+      </TileSize>
+      <TileSep>0</TileSep>
+    </Tileset>
+    <Tileset>
+      <Name>extraGameplayPieces</Name>
+      <FilePath>..\..\XNAModeContent\initials\extraGameplayPieces.png</FilePath>
       <TileSize>
         <Width>16</Width>
         <Height>16</Height>
@@ -125,6 +143,36 @@
         <ValueDefinition xsi:type="FloatValueDefinition" Name="value2" Default="0" Min="0" Max="100" Round="0.1" />
         <ValueDefinition xsi:type="IntValueDefinition" Name="repeat" Default="1" Min="0" Max="100" ShowSlider="true" />
       </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="ladder" Limit="-1" ResizableX="false" ResizableY="true" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\..\XNAModeContent\initials\ladderTiles_16x16.png" Tiled="true">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="fallAwayBridge" Limit="-1" ResizableX="true" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>32</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\..\XNAModeContent\initials\fallAwayBridgeTiles_16x32.png" Tiled="true">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions />
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
     <EntityDefinition Name="artist" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">

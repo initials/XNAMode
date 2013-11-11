@@ -10,22 +10,32 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNAMode
 {
-    public delegate void EventCallback();
+    public delegate void EventCallback(string value);
 
     class EventSprite : FlxSprite
     {
         private EventCallback _callback;
         private int _repeats;
+        public string command;
 
 
-        public EventSprite(int xPos, int yPos, EventCallback Callback, int Repeats)
+        public EventSprite(int xPos, int yPos, EventCallback Callback, int Repeats, string Command)
             : base(xPos, yPos)
         {
             _callback = Callback;
             _repeats = Repeats;
+            health = Repeats;
+            command = Command;
 
-
-
+            if (FlxG.debug)
+            {
+                visible = true;
+                alpha = 0.1f;
+            }
+            else
+            {
+                visible = false;
+            }
 
 
         }
@@ -41,7 +51,7 @@ namespace XNAMode
 
         public void runCallback()
         {
-            _callback();
+            _callback(command);
 
         }
 

@@ -74,27 +74,6 @@ namespace XNAMode
 
         private FlxTileblock ladder;
 
-        /// <summary>
-        /// An array of the positions that a character can spawn.
-        /// </summary>
-        private int[,] characterSpawnPositionsArray;
-
-        private int[,] decorationsFGArray;
-
-        private int[,] decorationsBGArray;
-
-        private int[,] hangingArray;
-
-        /// <summary>
-        /// An array of the main level
-        /// </summary>
-        private int[,] mainTilemapArray;
-
-        /// <summary>
-        /// A cave generator object that creates the level
-        /// </summary>
-        private FlxCaveGenerator cave;
-
         // --- FlxGroups, for overlap collide.
 
         /// <summary>
@@ -219,10 +198,12 @@ namespace XNAMode
         private FlxGroup zingers;
         private FlxGroup powerUps;
         private PowerUp powerUp;
-        private Door door;
 
         public Arrow arrow;
         private BigExplosion bigEx;
+
+        private FlxSprite leftExitBlockerWall;
+        private FlxSprite rightExitBlockerWall;
 
         public void test()
         {
@@ -230,7 +211,9 @@ namespace XNAMode
 
             // get the level to parse using FlxG.level
 
-            levelAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/level1.oel", "level");
+            string levelFile = "ogmoLevels/level" + FlxG.level.ToString() + ".oel";
+
+            levelAttrs = FlxXMLReader.readAttributesFromOelFile(levelFile, "level");
 
             Console.WriteLine("----------------------------------" + levelAttrs);
 
@@ -240,7 +223,7 @@ namespace XNAMode
                     kvp.Key, kvp.Value);
             }
 
-            List<Dictionary<string, string>> levelNodes = FlxXMLReader.readNodesFromOelFile("ogmoLevels/level1.oel", "level/ActorsLayer");
+            List<Dictionary<string, string>> levelNodes = FlxXMLReader.readNodesFromOelFile(levelFile, "level/ActorsLayer");
 
             foreach (Dictionary<string, string> nodes in levelNodes)
             {
@@ -252,7 +235,7 @@ namespace XNAMode
                 Console.Write("\r\n");
             }
 
-            levelAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/level1.oel", "level/TilesLayer");
+            levelAttrs = FlxXMLReader.readAttributesFromOelFile(levelFile, "level/TilesLayer");
 
             Console.WriteLine("----------------------------------" + levelAttrs);
 
@@ -270,9 +253,11 @@ namespace XNAMode
 
             base.create();
 
+            string levelFile = "ogmoLevels/level" + FlxG.level.ToString() + ".oel";
+
             //this.test();
 
-            Console.WriteLine("Loading BasePlayStateFromOel Level");
+            Console.WriteLine("Loading BasePlayStateFromOel Level: " + levelFile);
 
             //important to reset the hud to get the text, gamepad buttons out.
             FlxG.resetHud();
@@ -303,7 +288,7 @@ namespace XNAMode
 
             // get the level to parse using FlxG.level
 
-            levelAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/level1.oel", "level");
+            levelAttrs = FlxXMLReader.readAttributesFromOelFile(levelFile, "level");
 
             //Console.WriteLine("----------------------------------" + levelAttrs);
 
@@ -314,8 +299,11 @@ namespace XNAMode
             //}
 
 
-            FlxG.levelWidth = Convert.ToInt32(levelAttrs["width"]) * FourChambers_Globals.TILE_SIZE_X;
-            FlxG.levelHeight = Convert.ToInt32(levelAttrs["height"]) * FourChambers_Globals.TILE_SIZE_Y;
+            FlxG.levelWidth = Convert.ToInt32(levelAttrs["width"]) ;
+            FlxG.levelHeight = Convert.ToInt32(levelAttrs["height"]) ;
+
+            Console.WriteLine("Level Width: " + FlxG.levelWidth + " Level Height: " + FlxG.levelHeight);
+
 
             Texture2D bgGraphic = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]);
             bgSprite = new FlxSprite(0, 0, bgGraphic);
@@ -328,10 +316,15 @@ namespace XNAMode
             bgSprite.boundingBoxOverride = false;
             add(bgSprite);
 
+
+
+
+
+
             Console.WriteLine("Generate the levels caves/tiles.");
 
             destructableAttrs = new Dictionary<string, string>();
-            destructableAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/level1.oel", "level/DestructableTerrain");
+            destructableAttrs = FlxXMLReader.readAttributesFromOelFile(levelFile, "level/DestructableTerrain");
 
             destructableTilemap = new FlxTilemap();
             destructableTilemap.auto = FlxTilemap.STRING;
@@ -341,7 +334,25 @@ namespace XNAMode
 
 
             indestructableAttrs = new Dictionary<string, string>();
-            indestructableAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/level1.oel", "level/IndestructableTerrain");
+            indestructableAttrs = FlxXMLReader.readAttributesFromOelFile(levelFile, "level/IndestructableTerrain");
+
+            //leftExitBlockerWall = new FlxTileblock(0, FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FourChambers_Globals.TILE_SIZE_X * 2, FourChambers_Globals.TILE_SIZE_Y * 3);
+            //leftExitBlockerWall.@fixed = false;
+            //leftExitBlockerWall.loadTiles(FlxG.Content.Load<Texture2D>("initials/" + indestructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y, 0);
+            //leftExitBlockerWall.velocity.X = -2000;
+
+            leftExitBlockerWall = new FlxSprite(0, FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FlxG.Content.Load<Texture2D>("initials/exitBlocker"));
+            leftExitBlockerWall.@fixed = true;
+            allLevelTiles.add(leftExitBlockerWall);
+
+            //rightExitBlockerWall = new FlxTileblock(FlxG.levelWidth - (FourChambers_Globals.TILE_SIZE_X * 2), FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FourChambers_Globals.TILE_SIZE_X * 2, FourChambers_Globals.TILE_SIZE_Y * 3);
+            //rightExitBlockerWall.loadTiles(FlxG.Content.Load<Texture2D>("initials/" + indestructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y, 0);
+
+            //rightExitBlockerWall.add(rightExitBlockerWall);
+
+            rightExitBlockerWall = new FlxSprite(FlxG.levelWidth - (FourChambers_Globals.TILE_SIZE_X * 2), FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FlxG.Content.Load<Texture2D>("initials/exitBlocker"));
+            rightExitBlockerWall.@fixed = true;
+            allLevelTiles.add(rightExitBlockerWall);
 
             indestructableTilemap = new FlxTilemap();
             indestructableTilemap.auto = FlxTilemap.STRING;
@@ -352,48 +363,57 @@ namespace XNAMode
 
 
             actorsAttrs = new List<Dictionary<string, string>>();
-            actorsAttrs = FlxXMLReader.readNodesFromOelFile("ogmoLevels/level1.oel", "level/ActorsLayer");
+            actorsAttrs = FlxXMLReader.readNodesFromOelFile(levelFile, "level/ActorsLayer");
 
             foreach (Dictionary<string, string> nodes in actorsAttrs)
             {
                 bool pc = false;
+                int localWidth = 0;
+                int localHeight = 0;
 
                 if (nodes.ContainsKey("isPlayerControlled"))
                 {
                     pc = Convert.ToBoolean(nodes["isPlayerControlled"]);
                 }
+                if (nodes.ContainsKey("width"))
+                {
+                    localWidth = Convert.ToInt32(nodes["width"]);
+                }
+                if (nodes.ContainsKey("height"))
+                {
+                    localHeight = Convert.ToInt32(nodes["height"]);
+                }
 
-
-                buildActor(nodes["Name"], 1, pc , Convert.ToInt32(nodes["x"]),Convert.ToInt32(nodes["y"]));
+                buildActor(nodes["Name"], 1, pc , Convert.ToInt32(nodes["x"]),Convert.ToInt32(nodes["y"]), localWidth, localHeight);
 
                 foreach (KeyValuePair<string, string> kvp in nodes)
                 {
-                    Console.Write("Key = {0}, Value = {1}, ",
-                        kvp.Key, kvp.Value);
+                    //Console.Write("Key = {0}, Value = {1}, ",
+                    //    kvp.Key, kvp.Value);
 
 
                 }
-                Console.Write("\r\n");
+                //Console.Write("\r\n");
             }
 
             eventsAttrs = new List<Dictionary<string, string>>();
-            eventsAttrs = FlxXMLReader.readNodesFromOelFile("ogmoLevels/level1.oel", "level/Events");
+            eventsAttrs = FlxXMLReader.readNodesFromOelFile(levelFile, "level/EventsLayer");
 
             foreach (Dictionary<string, string> nodes in eventsAttrs)
             {
-                EventSprite s2 = new EventSprite(Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]), eventSpriteRun, Convert.ToInt32(nodes["repeat"]));
+                EventSprite s2 = new EventSprite(Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]), eventSpriteRun, Convert.ToInt32(nodes["repeat"]), nodes["event"] );
                 s2.createGraphic(Convert.ToInt32(nodes["width"]), Convert.ToInt32(nodes["height"]), Color.Red);
                 
                 eventSprites.add(s2);
 
                 foreach (KeyValuePair<string, string> kvp in nodes)
                 {
-                    Console.Write("Key = {0}, Value = {1}, ",
-                        kvp.Key, kvp.Value);
+                    //Console.Write("Key = {0}, Value = {1}, ",
+                    //    kvp.Key, kvp.Value);
 
 
                 }
-                Console.Write("\r\n");
+                //Console.Write("\r\n");
 
                 
             }
@@ -415,8 +435,11 @@ namespace XNAMode
             add(bullets);
             
             add(allLevelTiles);
+            add(ladders);
             add(actors);
             add(powerUps);
+            
+
 
             blood = new FlxEmitter();
             blood.x = 0;
@@ -521,7 +544,23 @@ namespace XNAMode
             if (marksman != null)
             {
                 localHud.setArrowsRemaining(marksman.arrowsRemaining);
+
+                localHud.nestsRemaining.text = actors.countLivingOfType("XNAMode.ZingerNest").ToString();
             }
+            if (actors.countLivingOfType("XNAMode.ZingerNest") <= 0)
+            {
+
+                if (leftExitBlockerWall.velocity.Y == 0)
+                {
+                    FlxG.quake.start(0.005f, 0.5f);
+                }
+
+                leftExitBlockerWall.velocity.Y = -50;
+                rightExitBlockerWall.velocity.Y = -50;
+
+            }
+
+
             //calculate time of day.
             timeOfDay += FlxG.elapsed * timeScale;
             if (timeOfDay > 24.99f) timeOfDay = 0.0f;
@@ -537,7 +576,7 @@ namespace XNAMode
             FlxU.collide(actors, allLevelTiles);
 
             FlxU.collide(powerUps, allLevelTiles);
-            FlxU.overlap(playerControlledActors, door, goToNextLevel);
+            
             FlxU.overlap(playerControlledActors, eventSprites, eventCallback);
             FlxU.overlap(actors, bullets, overlapped);
             FlxU.overlap(actors, ladders, overlapWithLadder);
@@ -553,22 +592,6 @@ namespace XNAMode
             FlxU.overlap(actors, playerControlledActors, actorOverlap);
 
             FlxU.overlap(powerUps, playerControlledActors, getPowerUp);
-
-
-            // removing tile from the explosion.
-            //try
-            //{
-            //    int xtile = (int)((bigEx.x + 16) / FourChambers_Globals.TILE_SIZE_X);
-            //    int ytile = (int)((bigEx.y + 16) / FourChambers_Globals.TILE_SIZE_Y);
-            //    //Console.WriteLine(xtile + " " + ytile);
-
-            //    mainTilemap.setTile(xtile, ytile , 0, true);
-            //    mainTilemap.setTile(xtile-1, ytile, 0, true);
-            //    mainTilemap.setTile(xtile+1, ytile, 0, true);
-
-            //    //decorationsTilemap.setTile((int)bigEx.x - 16 / FourChambers_Globals.TILE_SIZE_X, ((int)bigEx.y - 16 / FourChambers_Globals.TILE_SIZE_Y) - 1, 0, true);
-            //}
-            //catch { }
 
             base.update();
 
@@ -586,6 +609,25 @@ namespace XNAMode
                 Console.WriteLine("Just pressed Escape and killed all player characters.");
 
 
+            }
+
+            int i2 = 0;
+            int l2 = playerControlledActors.members.Count;
+            while (i2 < l2)
+            {
+
+                //Console.WriteLine((playerControlledActors.members[i2] as FlxSprite).x + "    " + FlxG.levelWidth + "  " + playerControlledActors.members[i2]);
+
+                if ((playerControlledActors.members[i2] as FlxSprite).x < 0)
+                {
+                    goToLevel(--FlxG.level);
+                }
+                if ((playerControlledActors.members[i2] as FlxSprite).x > FlxG.levelWidth)
+                {
+                    goToLevel(++FlxG.level);
+                }
+
+                i2++;
             }
 
             if (playerControlledActors.getFirstAlive() == null)
@@ -639,6 +681,24 @@ namespace XNAMode
 
             return true;
         }
+
+
+        protected bool goToLevel(int Level)
+        {
+            FlxG.level = Level;
+
+            if (FlxG.level > 25) FlxG.level = 1;
+
+            FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
+
+            FlxG.transition.startFadeIn(0.2f);
+
+            FlxG.state = new BasePlayStateFromOel();
+
+            return true;
+        }
+
+
 
         /// <summary>
         /// 
@@ -745,13 +805,15 @@ namespace XNAMode
                 FlxObject z = zingers.getFirstDead();
                 if (z != null)
                 {
+                    localHud.nestsRemaining.scale = 4;
+
                     z.dead = false;
                     z.exists = true;
                     z.x = e.Object1.x;
                     z.y = e.Object2.y;
                     z.flicker(0.001f);
                     z.velocity.X = 50;
-                    z.velocity.Y = FlxU.random(-200, 200);
+                    z.velocity.Y = FlxU.random(-20, 20);
                     z.angle = 0;
                     z.visible = true;
                 }
@@ -761,14 +823,20 @@ namespace XNAMode
                 {
                     p.dead = false;
                     p.acceleration.Y = FourChambers_Globals.GRAVITY;
-                    p.velocity.X = FlxU.random(-5, 5);
+                    p.velocity.X = 0;
                     p.exists = true;
-                    p.x = e.Object1.x + 8;
-                    p.y = e.Object2.y - 8;
+                    p.x = e.Object1.x;
+                    p.y = e.Object1.y;
                     p.flicker(0.001f);
                     p.angle = 0;
                     p.visible = true;
                 }
+                else
+                {
+                    
+                }
+                
+                //localHud.score.scale = 4;
 
                 e.Object2.x = -1000;
                 e.Object2.y = -1000;
@@ -805,23 +873,32 @@ namespace XNAMode
         {
 
             ((EventSprite)e.Object2).runCallback();
+            ((EventSprite)e.Object2).hurt(1);
+
 
             return true;
 
         }
 
 
-        public void eventSpriteRun()
+        public void eventSpriteRun(string command)
         {
-            //Console.WriteLine("test1");
+            Console.WriteLine("command is: " + command);
+
+            if (command == "quake")
+            {
+                FlxG.quake.start(0.01f, 1.0f);
+                
+            }
+
 
         }
 
         public void buildActor(string ActorType, int NumberOfActors)
         {
-            buildActor(ActorType, NumberOfActors, false, 0, 0);
+            buildActor(ActorType, NumberOfActors, false, 0, 0,0,0);
         }
-        public void buildActor(string ActorType, int NumberOfActors, bool playerControlled = false, int x=0, int y=0)
+        public void buildActor(string ActorType, int NumberOfActors, bool playerControlled = false, int x=0, int y=0, int width=0, int height=0)
         {
             #region Marksman
             if (ActorType == "marksman")
@@ -1785,6 +1862,45 @@ namespace XNAMode
                     powerUp.dead = true;
                     powerUp.visible = false;
                     powerUps.add(powerUp);
+                }
+            }
+            #endregion
+
+
+
+            #region ladder
+            if (ActorType == "ladder")
+            {
+                for (int i = 0; i < NumberOfActors; i++)
+                {
+                    ladder = new FlxTileblock(x,y,16, height );
+                    ladder.loadTiles(FlxG.Content.Load<Texture2D>("initials/ladderTiles_16x16"), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y, 0);
+                    ladders.add(ladder);
+                }
+            }
+            
+            #endregion
+
+            #region fallAwayBridge
+            if (ActorType == "fallAwayBridge")
+            {
+                for (int i = 0; i < NumberOfActors; i++)
+                {
+                    FallAwayBridgeBlock f;
+                    if (width == 16) {
+                        f = new FallAwayBridgeBlock(x,y);
+                        allLevelTiles.add(f);
+                    }
+                    else
+                    {
+                        for (int e = 0; e < width / FourChambers_Globals.TILE_SIZE_X; e++)
+                        {
+                            f = new FallAwayBridgeBlock(x + e * FourChambers_Globals.TILE_SIZE_X, y + FourChambers_Globals.TILE_SIZE_Y);
+                            allLevelTiles.add(f);
+                        }
+                    }
+
+                    
                 }
             }
 
