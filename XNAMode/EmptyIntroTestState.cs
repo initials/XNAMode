@@ -187,7 +187,7 @@ namespace XNAMode
                 FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[bloomSettingsIndex];
                 FlxG.bloom.Visible = true;
 
-                FlxG.write(FlxG.bloom.Settings.Name.ToString());
+                FlxG.write(FlxG.bloom.Settings.Name.ToString() + "   " + bloomSettingsIndex);
             }
 
             if (FlxG.keys.justPressed(Keys.F6))

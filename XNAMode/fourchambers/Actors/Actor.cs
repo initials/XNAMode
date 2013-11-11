@@ -350,7 +350,7 @@ namespace XNAMode
             //}
 
             // Attacking using mouse.
-            if (FlxG.mouse.pressedLeftButton())
+            if (FlxG.mouse.justPressedLeftButton())
             {
                 lastAttack = "range";
                 attackingMouse = true;
@@ -358,7 +358,7 @@ namespace XNAMode
             }
 
             // Attacking using mouse.
-            if (FlxG.mouse.pressedRightButton())
+            if (FlxG.mouse.justPressedRightButton())
             {
                 lastAttack = "melee";
                 attackingMouse = false;
@@ -370,7 +370,7 @@ namespace XNAMode
             //    attackingMouse = false;
             //}
 
-            if (FlxG.keys.P || FlxG.gamepads.isButtonDown(Buttons.B, FlxG.controllingPlayer, out pi))
+            if (FlxG.keys.P || FlxG.gamepads.isButtonDown(Buttons.X, FlxG.controllingPlayer, out pi))
             {
                 lastAttack = "melee";
                 attackingMelee = true;

@@ -35,7 +35,7 @@ namespace XNAMode
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("idleMelee", new int[] { 28 }, 12);
             addAnimation("attack", new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }, 60 ,true);
-            addAnimation("attackMelee", new int[] { 0,24,24,25,26,27,26,26,26,26,26,26,26 }, 60, true);
+            addAnimation("attackMelee", new int[] { 0, 24, 24, 25, 26, 27, 27, 26, 26, 26, 26, 26, 26 }, 60, true);
             
             addAnimation("jump", new int[] { 3, 4, 5, 6, 7, 8, 9 }, 3, true);
             addAnimation("climb", new int[] { 20, 21 }, 6, true);
@@ -257,6 +257,22 @@ namespace XNAMode
                 _curFrame = 0;
 
             }
+
+
+            if (FlxG.gamepads.isButtonDown(Buttons.Y))
+            {
+                velocity.Y = -100;
+                FlxG.bloom.Visible = true;
+
+            }
+            else
+            {
+                //velocity.Y = FourChambers_Globals.GRAVITY;
+                FlxG.bloom.Visible = false;
+
+            }
+
+
 
             base.update();
 

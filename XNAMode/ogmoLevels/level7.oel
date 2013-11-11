@@ -102,6 +102,15 @@
 15,17,16,16,15,15,15,15,15,19,16,17,16,17,19,20,15,17,20,15,18,19,19,19,16,16,19,19,17,16,15,20,17,19,15,20,16,16,15,17,17,20,20,19,16,17,16,18,17,16</IndestructableTerrain>
   <ActorsLayer>
     <marksman id="0" x="64" y="736" flip="False" isPlayerControlled="True" />
+    <zingernest id="1" x="112" y="368" />
+    <zingernest id="2" x="160" y="576" />
+    <zingernest id="3" x="240" y="704" />
+    <zingernest id="4" x="448" y="704" />
+    <zingernest id="5" x="512" y="496" />
+    <zingernest id="6" x="656" y="432" />
+    <zingernest id="7" x="608" y="288" />
+    <zingernest id="8" x="560" y="80" />
+    <zingernest id="9" x="496" y="96" />
   </ActorsLayer>
   <EventsLayer />
 </level>

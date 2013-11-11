@@ -27,7 +27,8 @@ namespace XNAMode
 
         override public void create()
         {
-            
+
+            FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[6];
 
             FlxG.backColor = new Color(0xc2, 0x88, 0x83);
 
@@ -44,7 +45,7 @@ namespace XNAMode
             bgSprite = new FlxSprite(-350, 0, FlxG.Content.Load<Texture2D>("initials/Fear"));
             add(bgSprite);
 
-            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
+            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
             
             _menuItems = new FlxText(0, 30, FlxG.width);
             _menuItems.setFormat(null, 2, Color.White, FlxJustification.Center, Color.White);
@@ -59,7 +60,7 @@ namespace XNAMode
             add(_nameEntry);
 
             play = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 30, playGame, FlxButton.ControlPadA);
-            play.loadGraphic((new FlxSprite()).createGraphic(100, 20, new Color(0xe4, 0xb4, 0x8a)), (new FlxSprite()).createGraphic(102, 22, new Color(0xdd, 0xa1, 0x6d)));
+            play.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButtonPressed"), false,false,100,20));
             play.loadText(new FlxText(2, 2, 100, "Play Game"), new FlxText(2, 2, 100, "Play Game!"));
             add(play);
 

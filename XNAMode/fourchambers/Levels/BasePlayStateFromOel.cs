@@ -420,6 +420,11 @@ namespace XNAMode
 
             add(eventSprites);
 
+
+
+
+
+
             Console.WriteLine("Done generating levels");
 
             // build atmospheric effects here
@@ -438,7 +443,10 @@ namespace XNAMode
             add(ladders);
             add(actors);
             add(powerUps);
-            
+
+            seraphine = new Seraphine(0, 0);
+            seraphine.play("fly");
+            add(seraphine);
 
 
             blood = new FlxEmitter();
@@ -560,6 +568,18 @@ namespace XNAMode
 
             }
 
+            if (FlxG.gamepads.isButtonDown(Buttons.Y))
+            {
+                seraphine.velocity.Y = 0;
+                seraphine.x = marksman.x - marksman.width / 2;
+                seraphine.y = marksman.y - marksman.height;
+
+            }
+            else
+            {
+                seraphine.velocity.Y = -50;
+
+            }
 
             //calculate time of day.
             timeOfDay += FlxG.elapsed * timeScale;
@@ -687,8 +707,8 @@ namespace XNAMode
         {
             FlxG.level = Level;
 
-            if (FlxG.level > 25) FlxG.level = 1;
-
+            if (FlxG.level > 11) FlxG.level = 1;
+            else if (FlxG.level < 1) FlxG.level = 10;
             FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
 
             FlxG.transition.startFadeIn(0.2f);
@@ -883,7 +903,7 @@ namespace XNAMode
 
         public void eventSpriteRun(string command)
         {
-            Console.WriteLine("command is: " + command);
+            //Console.WriteLine("command is: " + command);
 
             if (command == "quake")
             {
