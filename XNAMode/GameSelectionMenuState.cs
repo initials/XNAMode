@@ -9,19 +9,20 @@ using System.Linq;
 using System.Xml.Linq;
 
 using XNATweener;
+using System.IO;
 
 namespace XNAMode
 {
     public class GameSelectionMenuState : FlxState
     {
 
-        FlxText _menuItems;
+        private FlxText _menuItems;
 
-        FlxText _nameEntry;
+        private FlxButton play;
+        private FlxButton playProcedural;
+        private FlxButton editName;
 
-        FlxButton play;
-
-        FlxSprite bgSprite;
+        private FlxSprite bgSprite;
 
         private Tweener tween;
 
@@ -47,33 +48,145 @@ namespace XNAMode
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
             
-            _menuItems = new FlxText(0, 30, FlxG.width);
+            _menuItems = new FlxText(0, 10, FlxG.width);
             _menuItems.setFormat(null, 2, Color.White, FlxJustification.Center, Color.White);
             //_menuItems.text = "Four Chambers\n\nEnter name, use @ symbol to specify Twitter handle.\nPress enter when complete.";
             _menuItems.text = "The Four Chambers\nOf The Human Heart";
             _menuItems.shadow = Color.Black;
             add(_menuItems);
 
-            _nameEntry = new FlxText(10, 100, FlxG.width);
-            _nameEntry.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
-            _nameEntry.text = "";
-            add(_nameEntry);
+            //_nameEntry = new FlxText(10, FlxG.height, FlxG.width);
+            //_nameEntry.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
+            //_nameEntry.text = "Username";
+            //add(_nameEntry);
 
-            play = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 30, playGame, FlxButton.ControlPadA);
+            play = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 80, playGame, FlxButton.ControlPadA);
             play.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButtonPressed"), false,false,100,20));
             play.loadText(new FlxText(2, 2, 100, "Play Game"), new FlxText(2, 2, 100, "Play Game!"));
             add(play);
+            play.on = true;
+            play.debugName = "playGame";
 
-            FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54 , FlxG.height - 27);
+            playProcedural = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 55, playGameProcedural, FlxButton.ControlPadA);
+            playProcedural.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButtonPressed"), false, false, 100, 20));
+            playProcedural.loadText(new FlxText(2, 2, 100, "Random Gen"), new FlxText(2, 2, 100, "Random Gen"));
+            add(playProcedural);
+            playProcedural.debugName = "playGameProcedural";
+
+            editName = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 30, goToDataEntryState, FlxButton.ControlPadA);
+            editName.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButtonPressed"), false, false, 100, 20));
+            editName.loadText(new FlxText(2, 2, 100, "Edit Name"), new FlxText(2, 2, 100, "Edit Name"));
+            add(editName);
+            editName.debugName = "editName";
+
+
+
+            FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54 , FlxG.height - 80);
 
             FlxG.flash.start(Color.Black, 1.5f);
 
             FlxG.color(Color.White);
 
+            try
+            {
+                FlxG.username = LoadFromDevice();
+            }
+            catch
+            {
+                Console.WriteLine("Cannot load name from file");
+            }
+
+            if (FlxG.username != "")
+            {
+                //_nameEntry.text = FlxG.username;
+                FlxG.setHudText(3, "Username:\n"+FlxG.username);
+                FlxG.setHudTextPosition(3, 50, FlxG.height - 30);
+                FlxG.setHudTextScale(3, 2);
+
+
+
+            }
+
+        }
+
+        public string LoadFromDevice()
+        {
+            string value1 = File.ReadAllText("nameinfo.txt");
+            return value1.Substring(0, value1.Length - 1);
+        }
+
+        public void setAllButtonsToOff()
+        {
+            play.on = false;
+            playProcedural.on = false;
+            editName.on = false;
         }
 
         override public void update()
         {
+
+
+            if (FlxG.gamepads.isNewButtonPress(Buttons.DPadUp) || FlxG.gamepads.isNewButtonPress(Buttons.LeftThumbstickUp ))
+            {
+
+                if (play.on)
+                {
+                    setAllButtonsToOff();
+                    editName.on = true;
+                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 27);
+                }
+                else if (playProcedural.on)
+                {
+                    setAllButtonsToOff();
+                    play.on = true;
+                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 80);
+                }
+                else if (editName.on)
+                {
+                    setAllButtonsToOff();
+                    playProcedural.on = true;
+                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 53);
+                }
+            }
+            if (FlxG.gamepads.isNewButtonPress(Buttons.DPadDown) || FlxG.gamepads.isNewButtonPress(Buttons.LeftThumbstickDown))
+            {
+
+                if (play.on)
+                {
+                    setAllButtonsToOff();
+                    playProcedural.on = true;
+                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 53);
+                }
+                else if (playProcedural.on)
+                {
+                    setAllButtonsToOff();
+                    editName.on = true;
+                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 27);
+                }
+                else if (editName.on)
+                {
+                    setAllButtonsToOff();
+                    play.on = true;
+                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 80);
+                }
+            }
+            if (FlxG.gamepads.isNewButtonRelease(Buttons.A) && play._counter > 0.5f)
+            {
+
+                if (play.on)
+                {
+                    playGame();
+                }
+                else if (playProcedural.on)
+                {
+                    playGameProcedural();
+                }
+                else if (editName.on)
+                {
+                    goToDataEntryState();
+                }
+            }
+
 
             PlayerIndex pi;
             if (FlxG.gamepads.isNewButtonPress(Buttons.X, FlxG.controllingPlayer, out pi))
@@ -117,6 +230,10 @@ namespace XNAMode
                 FlxG.bloom.Visible = !FlxG.bloom.Visible;
             }
 
+            if (FlxG.username == "" || FlxG.username==null)
+            {
+                FlxG.state = new DataEntryState();
+            }
 
         }
 
@@ -125,8 +242,7 @@ namespace XNAMode
         /// </summary>
         public void playGame()
         {
-
-            Console.WriteLine("Just pressed Enter");
+            Console.WriteLine("Play Game");
 
             FlxG.level = 1;
             FlxG.score = 0;
@@ -134,10 +250,31 @@ namespace XNAMode
 
             //FlxG.transition.startFadeOut(0.1f,0,120);
 
+            play = null;
+
+
             FlxG.state = new BasePlayStateFromOel();
+            return;
 
         }
+        public void playGameProcedural()
+        {
+            Console.WriteLine("Play Game Proc");
 
+            FlxG.level = 1;
+            FlxG.score = 0;
+            FlxG.hideHud();
+
+            //FlxG.transition.startFadeOut(0.1f,0,120);
+
+            FlxG.state = new BasePlayState();
+
+        }
+        public void goToDataEntryState()
+        {
+            FlxG.transition.resetAndStop();
+            FlxG.state = new DataEntryState();
+        }
     }
         
 }

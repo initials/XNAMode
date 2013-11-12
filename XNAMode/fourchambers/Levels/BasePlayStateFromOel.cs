@@ -489,7 +489,7 @@ namespace XNAMode
 
             Console.WriteLine("Starting at: " + FlxG.level);
 
-
+            FlxG.playMusic("music/goat");
         }
 
         override public void update()
@@ -622,7 +622,7 @@ namespace XNAMode
                 int l = playerControlledActors.members.Count;
                 while (i < l)
                 {
-                    (actors.members[i] as FlxSprite).dead = true;
+                    (playerControlledActors.members[i] as FlxSprite).dead = true;
                     i++;
                 }
 

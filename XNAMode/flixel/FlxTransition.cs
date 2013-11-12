@@ -237,6 +237,22 @@ namespace org.flixel
             }
         }
 
+        public void resetAndStop()
+        {
+            transitionBackward = false;
+            transitionForward = false;
+            complete = false;
+            FlxSprite o;
+            int i = 0;
+            int l = members.Count;
+            while (i < l)
+            {
+                o = members[i++] as FlxSprite;
+                o.scale = 0.0f;
+
+            }
+        }
+
         /// <summary>
         /// Regular update code.
         /// </summary>

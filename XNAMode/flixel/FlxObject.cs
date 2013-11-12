@@ -247,6 +247,10 @@ namespace org.flixel
         /// </summary>
         public float height;
 
+        /// <summary>
+        /// Helper for debugging.
+        /// </summary>
+        public string debugName;
 
         /// <summary>
         /// Creates a new <code>FlxObject</code>.

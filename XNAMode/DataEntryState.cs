@@ -24,9 +24,11 @@ namespace XNAMode
 
         override public void create()
         {
+            FlxG.backColor = Color.Black;
+
             base.create();
 
-            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
+            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
             
             //FlxG.backColor = new Color(0xc2, 0x88, 0x83);
 
@@ -35,7 +37,7 @@ namespace XNAMode
             FlxG.resetHud();
             FlxG.showHud();
 
-            _nameEntry = new FlxText(10, 30, FlxG.width);
+            _nameEntry = new FlxText(30, 60, FlxG.width);
             _nameEntry.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
             _nameEntry.text = "";
             add(_nameEntry);
@@ -53,27 +55,20 @@ namespace XNAMode
             FlxG.setHudText(1, "Enter name, use @ symbol to specify Twitter handle.\nPress enter when complete.");
             FlxG.setHudTextScale(1, 2);
             FlxG.setHudTextScale(3, 2);
-            FlxG.setHudTextPosition(1, 10, 10);
+            FlxG.setHudTextPosition(1, 30, 40);
             FlxG.setHudTextPosition(3, 10, 20);
 
-            play = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 30, advanceToNextState, FlxButton.ControlPadA);
-            play.loadGraphic((new FlxSprite()).createGraphic(100, 20, new Color(0xe4, 0xb4, 0x8a)), (new FlxSprite()).createGraphic(102, 22, new Color(0xdd, 0xa1, 0x6d)));
-            play.loadText(new FlxText(2, 2, 100, "Enter"), new FlxText(2, 2, 100, "Enter"));
+            play = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 30, advanceToNextState , FlxButton.ControlPadA);
+            //play = new FlxButton(0, FlxG.height - 30, advanceToNextState, FlxButton.ControlPadA);
+
+            play.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButtonPressed"), false, false, 100, 20));
+            
+            play.loadText(new FlxText(2, 2, 100, "Enter"), new FlxText(2, 2, 100, "ENTER"));
             add(play);
 
             FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 27);
 
             FlxG.flash.start(Color.Black, 1.5f);
-
-
-            //FlxXMLReader.readCustomXMLLevelsAttrs("levelDetails.xml");
-
-            //FlxG.showHud();
-
-            //localHud = new PlayHud();
-            //FlxG._game.hud.hudGroup = localHud;
-
-
 
         }
 
@@ -93,10 +88,10 @@ namespace XNAMode
         {
             string value1 = File.ReadAllText("nameinfo.txt");
 
-            Console.WriteLine("--- Contents of file.txt: ---");
-            Console.WriteLine(value1);
+            //Console.WriteLine("--- Contents of file.txt: ---");
+            //Console.WriteLine(value1);
 
-            return value1;
+            return value1.Substring(0, value1.Length - 1) ;
 
 
         }
@@ -109,31 +104,22 @@ namespace XNAMode
                 FlxG.joystickBeingUsed = true;
             }
 
-            //if (FlxG.mouse.pressed())
-            //{
-            //    localHud.setArrowsRemaining((int)FlxU.random(1, 15));
-            //    localHud.score.text = FlxU.random(1, 100000).ToString();
-
-            //    localHud.collectTreasure(3);
-
-            //}
-
             keyboardEntry();
 
-            //move along if transition complete
-            if (FlxG.transition.complete)
-            {
-                FlxG.level = 1;
-                FlxG.score = 0;
-                FlxG.state = new GameSelectionMenuState();
-                return;
-            }
+            
 
             base.update();
         }
 
+        public void advanceToNextState2()
+        {
+            Console.WriteLine("Advance to next state");
+        }
+
         public void advanceToNextState()
         {
+            Console.WriteLine("Advance to next state");
+
             if (_nameEntry.text == "")
             {
                 FlxG.setHudText(2, "Name cannot be blank");
@@ -149,7 +135,9 @@ namespace XNAMode
             FlxG.level = 1;
             FlxG.score = 0;
             FlxG.hideHud();
-            FlxG.transition.startFadeOut(0.1f, 0, 120);
+
+            FlxG.state = new GameSelectionMenuState();
+            return;
         }
 
 

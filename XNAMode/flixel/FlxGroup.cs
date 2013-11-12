@@ -387,6 +387,9 @@ namespace org.flixel
 			int i = 0;
 			FlxObject o;
 			int ml = members.Count;
+            
+            //Console.WriteLine("Group members count is: " + members.Count +  "   "  + debugName );
+
 			while(i < ml)
 			{
 				o = members[i++] as FlxObject;

@@ -87,6 +87,13 @@ namespace org.flixel
         protected Vector2 _sf;
 
         /// <summary>
+        /// Counts the time the button has been alive for. Callbacks will only work after button has been alive for specified time, to avoid accidental clicks in new states.
+        /// </summary>
+        public float _counter;
+
+        
+
+        /// <summary>
         /// Creates a new <code>FlxButton</code> object with a gray background
         /// and a callback function on the UI thread.
         /// </summary>
@@ -237,6 +244,8 @@ namespace org.flixel
         /// </summary>
         override public void update()
         {
+            _counter += FlxG.elapsed;
+
             if (!_initialized)
             {
                 if (FlxG.state == null) return;
@@ -244,29 +253,41 @@ namespace org.flixel
                 _initialized = true;
             }
 
-            if (_controllerButtonIndex != -1)
-            {
-                PlayerIndex pi;
 
-                if (FlxG.gamepads.isNewButtonPress(Buttons.A, FlxG.controllingPlayer, out pi) && _controllerButtonIndex == 0)
-                {
-                    _callback();
-                }
-                if (FlxG.gamepads.isNewButtonPress(Buttons.B, FlxG.controllingPlayer, out pi) && _controllerButtonIndex == 1)
-                {
-                    _callback();
-                }
-                if (FlxG.gamepads.isNewButtonPress(Buttons.X, FlxG.controllingPlayer, out pi) && _controllerButtonIndex == 2)
-                {
-                    _callback();
-                }
-                if (FlxG.gamepads.isNewButtonPress(Buttons.Y, FlxG.controllingPlayer, out pi) && _controllerButtonIndex == 3)
-                {
-                    _callback();
-                }
-            }
 
             base.update();
+
+            //if (_controllerButtonIndex != -1)
+            //{
+            //    PlayerIndex pi;
+
+            //    if (FlxG.gamepads.isNewButtonRelease(Buttons.A, FlxG.controllingPlayer, out pi) && _controllerButtonIndex == 0 && on && _counter > 0.5f)
+            //    {
+            //        if (!exists || !visible || !active || !FlxG.gamepads.isNewButtonRelease(Buttons.A, FlxG.controllingPlayer, out pi) || (FlxG.pause && !pauseProof) || (_callback == null)) return;
+            //        Console.WriteLine("calling back from controller press ");
+
+            //        _callback();
+            //        destroy();
+            //        return;
+            //    }
+            //    if (FlxG.gamepads.isNewButtonRelease(Buttons.B, FlxG.controllingPlayer, out pi) && _controllerButtonIndex == 1 && on && _counter > 0.5f)
+            //    {
+            //        if (!exists || !visible || !active || (FlxG.pause && !pauseProof) || (_callback == null)) return;
+            //        _callback();
+            //    }
+            //    if (FlxG.gamepads.isNewButtonRelease(Buttons.X, FlxG.controllingPlayer, out pi) && _controllerButtonIndex == 2 && on && _counter > 0.5f)
+            //    {
+            //        if (!exists || !visible || !active || (FlxG.pause && !pauseProof) || (_callback == null)) return;
+            //        _callback();
+            //    }
+            //    if (FlxG.gamepads.isNewButtonRelease(Buttons.Y, FlxG.controllingPlayer, out pi) && _controllerButtonIndex == 3 && on && _counter > 0.5f)
+            //    {
+            //        if (!exists || !visible || !active || (FlxG.pause && !pauseProof) || (_callback == null)) return;
+            //        _callback();
+            //    }
+            //}
+
+
 
             visibility(false);
             if (overlapsPoint(FlxG.mouse.x, FlxG.mouse.y))
@@ -351,7 +372,11 @@ namespace org.flixel
         {
 
             if (!exists || !visible || !active || !FlxG.mouse.justReleased() || (FlxG.pause && !pauseProof) || (_callback == null)) return;
-            if (overlapsPoint(FlxG.mouse.x, FlxG.mouse.y)) _callback();
+            if (overlapsPoint(FlxG.mouse.x, FlxG.mouse.y) && _counter > 0.5f)
+            {
+                Console.WriteLine("calling back from mouse press ");
+                _callback();
+            }
 
             
 

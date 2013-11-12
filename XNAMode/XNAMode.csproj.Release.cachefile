@@ -114,6 +114,8 @@ Content\initials\fallAwayBridgeTiles_16x32.xnb
 Content\initials\exitBlocker.xnb
 Content\initials\menuButton.xnb
 Content\initials\menuButtonPressed.xnb
+Content\initials\autotiles_ice_16x16.xnb
+Content\initials\skyPaletteIce.xnb
 Content\mode\button.wma
 levelSettings.xml
 ogmoLevels\level1.oel
