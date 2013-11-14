@@ -1784,10 +1784,12 @@ namespace XNAMode
                     zingers.add(zinger);
                     actors.add(zinger);
 
-
-                    ZingerHoming z = new ZingerHoming(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X, marksman);
-                    zingers.add(z);
-                    actors.add(z);
+                    if (FourChambers_Globals.PIRATE_COPY)
+                    {
+                        ZingerHoming z = new ZingerHoming(p[1] * FourChambers_Globals.TILE_SIZE_X, p[0] * FourChambers_Globals.TILE_SIZE_X, marksman);
+                        zingers.add(z);
+                        actors.add(z);
+                    }
 
 
 
