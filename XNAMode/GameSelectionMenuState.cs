@@ -47,6 +47,10 @@ namespace XNAMode
             add(bgSprite);
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
+            FlxG.mouse.cursor.offset.X = 5;
+            FlxG.mouse.cursor.offset.Y = 5;
+
+
             
             _menuItems = new FlxText(0, 10, FlxG.width);
             _menuItems.setFormat(null, 2, Color.White, FlxJustification.Center, Color.White);
@@ -67,11 +71,11 @@ namespace XNAMode
             play.on = true;
             play.debugName = "playGame";
 
-            playProcedural = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 55, playGameProcedural, FlxButton.ControlPadA);
+            playProcedural = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 55, playGameTutorial, FlxButton.ControlPadA);
             playProcedural.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButtonPressed"), false, false, 100, 20));
-            playProcedural.loadText(new FlxText(2, 2, 100, "Random Gen"), new FlxText(2, 2, 100, "Random Gen"));
+            playProcedural.loadText(new FlxText(2, 2, 100, "Tutorial"), new FlxText(2, 2, 100, "Tutorial"));
             add(playProcedural);
-            playProcedural.debugName = "playGameProcedural";
+            playProcedural.debugName = "tutorial";
 
             editName = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 30, goToDataEntryState, FlxButton.ControlPadA);
             editName.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButtonPressed"), false, false, 100, 20));
@@ -179,7 +183,7 @@ namespace XNAMode
                 }
                 else if (playProcedural.on)
                 {
-                    playGameProcedural();
+                    playGameTutorial();
                 }
                 else if (editName.on)
                 {
@@ -257,6 +261,21 @@ namespace XNAMode
             return;
 
         }
+        //playGameTutorial
+        public void playGameTutorial()
+        {
+            Console.WriteLine("Play Tutorial");
+
+            FlxG.level = -1;
+            FlxG.score = 0;
+            FlxG.hideHud();
+
+            //FlxG.transition.startFadeOut(0.1f,0,120);
+
+            FlxG.state = new BasePlayStateFromOelTutorial();
+
+        }
+
         public void playGameProcedural()
         {
             Console.WriteLine("Play Game Proc");

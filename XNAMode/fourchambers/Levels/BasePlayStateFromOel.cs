@@ -106,6 +106,8 @@ namespace XNAMode
 
         private FlxEmitter tilesExplode;
 
+
+
         #region Actors
         private Artist artist;
         private Assassin assassin;
@@ -248,13 +250,30 @@ namespace XNAMode
 
         override public void create()
         {
-            
-
 
             base.create();
+            
+            FlxG._game.hud.p1HudText.alignment = FlxJustification.Center;
 
-            string levelFile = "ogmoLevels/level" + FlxG.level.ToString() + ".oel";
 
+
+            // Account for minus levels (tutorials etc)
+            // -1 = Tutorial
+            string levelFile;
+            if (FlxG.level >= 1)
+            {
+                levelFile = "ogmoLevels/level" + FlxG.level.ToString() + ".oel";
+            }
+            else if (FlxG.level == -1)
+            {
+                levelFile = "ogmoLevels/levelTutorial.oel";
+            }
+            else
+            {
+                Console.WriteLine("Unknown level, loading level : " + FlxG.level.ToString());
+
+                levelFile = "ogmoLevels/level" + FlxG.level.ToString() + ".oel";
+            }
             //this.test();
 
             Console.WriteLine("Loading BasePlayStateFromOel Level: " + levelFile);
@@ -315,11 +334,6 @@ namespace XNAMode
             bgSprite.color = Color.DarkGray;
             bgSprite.boundingBoxOverride = false;
             add(bgSprite);
-
-
-
-
-
 
             Console.WriteLine("Generate the levels caves/tiles.");
 
@@ -385,6 +399,13 @@ namespace XNAMode
                 }
 
                 buildActor(nodes["Name"], 1, pc , Convert.ToInt32(nodes["x"]),Convert.ToInt32(nodes["y"]), localWidth, localHeight);
+
+                if (nodes["Name"] == "_event")
+                {
+                    buildEvent(Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]), Convert.ToInt32(nodes["width"]), Convert.ToInt32(nodes["height"]), Convert.ToInt32(nodes["repeat"]), nodes["event"]);
+
+                }
+
 
                 foreach (KeyValuePair<string, string> kvp in nodes)
                 {
@@ -568,7 +589,7 @@ namespace XNAMode
 
             }
 
-            if (FlxG.gamepads.isButtonDown(Buttons.Y))
+            if (FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.I )
             {
                 seraphine.velocity.Y = 0;
                 seraphine.x = marksman.x - marksman.width / 2;
@@ -597,7 +618,14 @@ namespace XNAMode
 
             FlxU.collide(powerUps, allLevelTiles);
             
-            FlxU.overlap(playerControlledActors, eventSprites, eventCallback);
+            bool ev = FlxU.overlap(playerControlledActors, eventSprites, eventCallback);
+            if (!ev)
+            {
+                FlxG.setHudText(1, "");
+                
+
+            }
+            
             FlxU.overlap(actors, bullets, overlapped);
             FlxU.overlap(actors, ladders, overlapWithLadder);
 
@@ -893,7 +921,8 @@ namespace XNAMode
         {
 
             ((EventSprite)e.Object2).runCallback();
-            ((EventSprite)e.Object2).hurt(1);
+            if (((EventSprite)e.Object2).repeats >=0)
+                ((EventSprite)e.Object2).hurt(((EventSprite)e.Object2).repeats);
 
 
             return true;
@@ -908,10 +937,30 @@ namespace XNAMode
             if (command == "quake")
             {
                 FlxG.quake.start(0.01f, 1.0f);
-                
+
+            }
+            else
+            {
+                //Console.WriteLine("Command: " + command);
+
+
+                FlxG.setHudText(1, command);
+                FlxG.setHudTextScale(1, 2);
+                FlxG.setHudTextPosition(1, FlxG._game.hud.p1OriginalPosition.X, 20);
+
+
             }
 
+        }
 
+        public void buildEvent(int x=0, int y=0, int width=0, int height=0, int repeat=-1, string eventOrQuote="")
+        {
+
+            EventSprite s2 = new EventSprite(x, y, eventSpriteRun, repeat, eventOrQuote);
+            s2.createGraphic(width, height, Color.Red);
+
+
+            eventSprites.add(s2);
         }
 
         public void buildActor(string ActorType, int NumberOfActors)
@@ -1925,6 +1974,13 @@ namespace XNAMode
             }
 
             #endregion
+
+
+
+
+
+
+
 
         }
     }

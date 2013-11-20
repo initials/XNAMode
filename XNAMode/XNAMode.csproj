@@ -129,6 +129,7 @@
     <Compile Include="fourchambers\EventSprite.cs" />
     <Compile Include="fourchambers\Hud\PlayHud.cs" />
     <Compile Include="fourchambers\Levels\BasePlayStateFromOel.cs" />
+    <Compile Include="fourchambers\Levels\BasePlayStateFromOelTutorial.cs" />
     <Compile Include="fourchambers\Levels\Door.cs" />
     <Compile Include="fourchambers\Levels\LevelVisualizerState.cs" />
     <Compile Include="fourchambers\Weapons\BigExplosion.cs" />
@@ -366,6 +367,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ogmoLevels\level9.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ogmoLevels\levelTutorial.oel">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ogmoLevels\ProjectFile.oep">

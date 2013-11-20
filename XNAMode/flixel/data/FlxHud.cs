@@ -36,10 +36,10 @@ namespace org.flixel
         /// Original positions are used in the <code>reset()</code>
         /// method to reset positions of the text boxes if moved.
         /// </summary>
-        private Vector2 p1OriginalPosition;
-        private Vector2 p2OriginalPosition;
-        private Vector2 p3OriginalPosition;
-        private Vector2 p4OriginalPosition;
+        public Vector2 p1OriginalPosition;
+        public Vector2 p2OriginalPosition;
+        public Vector2 p3OriginalPosition;
+        public Vector2 p4OriginalPosition;
 
         //private FlxSprite p1HudSprite;
         //private FlxSprite p2HudSprite;

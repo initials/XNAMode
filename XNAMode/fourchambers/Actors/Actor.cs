@@ -273,10 +273,6 @@ namespace XNAMode
             }
 
             // Jumping.
-
-            
-
-
             if ((_jump >= 0 || framesSinceLeftGround < 10 || isClimbingLadder) && (FlxG.keys.SPACE || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi)))
             {
                 lastAttack = "range";
@@ -358,19 +354,19 @@ namespace XNAMode
             }
 
             // Attacking using mouse.
-            if (FlxG.mouse.justPressedRightButton())
-            {
-                lastAttack = "melee";
-                attackingMouse = false;
-                attackingMelee = true;
-            }
+            //if ()
+            //{
+            //    lastAttack = "melee";
+            //    attackingMouse = false;
+            //    attackingMelee = true;
+            //}
 
             //else
             //{
             //    attackingMouse = false;
             //}
 
-            if (FlxG.keys.P || FlxG.gamepads.isButtonDown(Buttons.X, FlxG.controllingPlayer, out pi))
+            if (FlxG.keys.P || FlxG.gamepads.isButtonDown(Buttons.X, FlxG.controllingPlayer, out pi) || FlxG.mouse.justPressedRightButton())
             {
                 lastAttack = "melee";
                 attackingMelee = true;

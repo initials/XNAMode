@@ -15,15 +15,16 @@ namespace XNAMode
     class EventSprite : FlxSprite
     {
         private EventCallback _callback;
-        private int _repeats;
+        public int repeats;
         public string command;
+        
 
 
         public EventSprite(int xPos, int yPos, EventCallback Callback, int Repeats, string Command)
             : base(xPos, yPos)
         {
             _callback = Callback;
-            _repeats = Repeats;
+            repeats = Repeats;
             health = Repeats;
             command = Command;
 
