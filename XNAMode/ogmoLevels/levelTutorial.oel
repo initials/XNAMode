@@ -101,10 +101,7 @@
 17,15,18,17,18,17,17,18,18,18,20,18,16,15,16,15,20,19,17,20,19,17,20,15,15,19,16,16,19,18,17,19,15,16,20,18,20,18,19,18,16,18,17,19,15,20,15,15,20,20
 18,17,18,19,20,15,15,17,17,19,15,15,19,20,15,15,17,20,16,19,15,17,20,19,19,15,15,15,20,15,18,15,17,19,15,15,15,16,17,19,17,17,16,15,17,16,19,17,19,20</IndestructableTerrain>
   <ActorsLayer>
-    <ladder id="0" x="320" y="256" height="64" />
     <ladder id="1" x="448" y="432" height="112" />
-    <_event id="2" x="288" y="288" width="32" height="32" event="quake" value1="0" value2="0" repeat="1" />
-    <_event id="3" x="128" y="272" width="48" height="48" event="Press A to jump." value1="0" value2="0" repeat="-1" />
     <_event id="4" x="528" y="288" width="64" height="48" event="Press X to tunnel into the soft, soft ground." value1="0" value2="0" repeat="-1" />
     <_event id="5" x="464" y="496" width="48" height="48" event="Press up to climb the ladder." value1="0" value2="0" repeat="-1" />
     <_event id="6" x="176" y="496" width="48" height="48" event="Use your sword with X or arrows with RT to kill this zombie." value1="0" value2="0" repeat="-1" />
@@ -114,17 +111,11 @@
     <marksman id="10" x="64" y="304" flip="False" isPlayerControlled="True" />
     <_procedurallyGeneratedArea id="11" x="512" y="48" width="208" height="192" />
     <_event id="12" x="256" y="704" width="48" height="48" event="Press Y to call Seraphine and rise above." value1="0" value2="0" repeat="-1" />
-    <zombie id="13" x="112" y="304" flip="False" />
-    <zombie id="14" x="208" y="240" flip="False" />
-    <drone id="15" x="128" y="192" flip="False" />
-    <drone id="16" x="416" y="320" flip="False" />
-    <drone id="17" x="304" y="544" flip="False" />
-    <executor id="18" x="112" y="544" flip="False" />
     <bat id="19" x="528" y="416" flip="False" />
     <bat id="20" x="544" y="528" flip="False" />
-    <bat id="21" x="432" y="224" flip="False" />
-    <bat id="22" x="48" y="448" flip="False" />
-    <bat id="23" x="256" y="400" flip="False" />
+    <ladder id="0" x="320" y="256" height="64" />
+    <_event id="2" x="288" y="288" width="32" height="32" event="quake" value1="0" value2="0" repeat="1" />
+    <_event id="3" x="128" y="272" width="48" height="48" event="Press A to jump." value1="0" value2="0" repeat="-1" />
   </ActorsLayer>
   <EventsLayer />
 </level>

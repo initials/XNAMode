@@ -969,6 +969,8 @@ namespace XNAMode
         }
         public void buildActor(string ActorType, int NumberOfActors, bool playerControlled = false, int x=0, int y=0, int width=0, int height=0)
         {
+            Console.WriteLine("Building actor " + ActorType + " " + NumberOfActors);
+
             #region Marksman
             if (ActorType == "marksman")
             {
@@ -1908,7 +1910,7 @@ namespace XNAMode
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     
-                    zombie = new Zombie(x * FourChambers_Globals.TILE_SIZE_X, y * FourChambers_Globals.TILE_SIZE_X);
+                    zombie = new Zombie(x,y);
                     actors.add(zombie);
                 }
             }
