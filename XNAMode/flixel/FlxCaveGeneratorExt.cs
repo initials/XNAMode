@@ -15,8 +15,6 @@ namespace org.flixel
     /// This class uses the cellular automata algorithm
     /// to generate very nice caves.
     /// 
-    /// 
-    /// 
     /// (Coded by Eddie Lee, October 16, 2010)
     /// (Ported to C# by Shane Brouwer)
     /// </summary>
@@ -57,9 +55,11 @@ namespace org.flixel
         /// <summary>
         /// Top decoration.
         /// </summary>
-        private const string TOP_DECORATION = "25";
-        private const string RIGHT_DECORATION = "26";
-        private const string LEFT_DECORATION = "27";
+        private const int TOP_DECORATION_MIN = 29;
+        private const int TOP_DECORATION_MAX = 40;
+
+        private const string RIGHT_DECORATION = "25";
+        private const string LEFT_DECORATION = "26";
         private const string UNDER_DECORATION = "28";
 
         private const string TOP_RIGHT_DECORATION = "21";
@@ -99,13 +99,16 @@ namespace org.flixel
         }
 
 
-
+        public string[,] generateCaveLevel()
+        {
+            return this.generateCaveLevel(false);
+        }
 
         /// <summary>
         /// Returns an auto tiled cave.
         /// </summary>
         /// <returns>Returns a matrix of a cave!</returns>
-        public string[,] generateCaveLevel()
+        public string[,] generateCaveLevel(bool WithDecorations)
         {
             // Initialize random array
 
@@ -183,8 +186,8 @@ namespace org.flixel
             mat = convertIntArrayToMultiArray(_data);
 
             //add decorations.
-
-            mat = addDecorations(mat);
+            if (WithDecorations)
+                mat = addDecorations(mat);
 
             return mat;
         }
@@ -412,48 +415,59 @@ namespace org.flixel
             }
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mat"></param>
+        /// <param name="Chance">0-1 chance.</param>
+        /// <returns></returns>
+        public string[,] addDecorations(string[,] mat)
+        {
+            return this.addDecorations(mat, 1.0f);
+        }
 
         /// <summary>
         /// Add Decorations such as top, right, etc decorations.
         /// </summary>
         /// <param name="mat">In Matrix</param>
         /// <returns>a string[,] matrix cave.</returns>
-        public string[,] addDecorations(string[,] mat)
+        public string[,] addDecorations(string[,] mat, float Chance)
         {
             for (int x = 0; x < mat.GetLength(1); x++)
             {
                 for (int y = 0; y < mat.GetLength(0); y++)
                 {
-                    string value = mat[y, x];
+                    if (FlxU.random() <= Chance)
+                    {
+                        string value = mat[y, x];
 
-                    if (value == "8" && coordIsInMatrix(mat, x - 1, y))
-                    {
-                        mat[y, x - 1] = TOP_DECORATION;
-                    }
-                    if (value == "14" && coordIsInMatrix(mat, x + 1, y))
-                    {
-                        mat[y, x + 1] = UNDER_DECORATION;
-                    }
-                    if (value == "13" && coordIsInMatrix(mat, x + 1, y))
-                    {
-                        mat[y, x + 1] = TOP_RIGHT_DECORATION;
-                    }
-                    if (value == "10" && coordIsInMatrix(mat, x + 1, y))
-                    {
-                        mat[y, x + 1] = UNDER_LEFT_DECORATION;
-                    }
-                    if (value == "7" && coordIsInMatrix(mat, x - 1, y))
-                    {
-                        mat[y, x - 1] = TOP_LEFT_DECORATION;
-                    }
-                    if (value == "4" && coordIsInMatrix(mat, x - 1, y))
-                    {
-                        mat[y, x - 1] = UNDER_RIGHT_DECORATION;
+                        if (value == "8" && coordIsInMatrix(mat, x - 1, y))
+                        {
+                            mat[y, x - 1] = ((int)FlxU.random(TOP_DECORATION_MIN, TOP_DECORATION_MAX)).ToString();
+                        }
+                        if (value == "14" && coordIsInMatrix(mat, x + 1, y))
+                        {
+                            mat[y, x + 1] = UNDER_DECORATION;
+                        }
+                        if (value == "13" && coordIsInMatrix(mat, x + 1, y))
+                        {
+                            mat[y, x + 1] = TOP_RIGHT_DECORATION;
+                        }
+                        if (value == "10" && coordIsInMatrix(mat, x + 1, y))
+                        {
+                            mat[y, x + 1] = UNDER_LEFT_DECORATION;
+                        }
+                        if (value == "7" && coordIsInMatrix(mat, x - 1, y))
+                        {
+                            mat[y, x - 1] = TOP_LEFT_DECORATION;
+                        }
+                        if (value == "4" && coordIsInMatrix(mat, x - 1, y))
+                        {
+                            mat[y, x - 1] = UNDER_RIGHT_DECORATION;
+                        }
                     }
                 }
-
             }
-
             return mat;
         }
 
@@ -629,7 +643,7 @@ namespace org.flixel
             string[] rows = InString.Split('\n');
             string[] cols1 = rows[0].Split(',');
 
-            Console.WriteLine("This cave is: " + rows.Length + "  " +  cols1.Length);
+            //Console.WriteLine("This cave is: " + rows.Length + "  " +  cols1.Length);
 
             string[,] mat = new string[cols1.Length, rows.Length];
 

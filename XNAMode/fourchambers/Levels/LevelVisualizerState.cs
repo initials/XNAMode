@@ -14,7 +14,7 @@ namespace XNAMode
     {
         private FlxTilemap mainTilemap;
 
-        private int sizex = 30;
+        private int sizex = 12;
         private int sizey = 11;
 
         private FlxCaveGeneratorExt caveExt;
@@ -33,7 +33,7 @@ namespace XNAMode
             //flip x and y here.
             caveExt = new FlxCaveGeneratorExt(sizey, sizex);
             caveExt.numSmoothingIterations = 5;
-            caveExt.initWallRatio = 0.55f;
+            caveExt.initWallRatio = 0.655f;
             tiles = caveExt.generateCaveLevel();
             //caveExt.printCave(tiles);
             string newMap = caveExt.convertMultiArrayStringToString(tiles);
