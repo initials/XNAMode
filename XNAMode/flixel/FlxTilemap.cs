@@ -76,9 +76,19 @@ namespace org.flixel
         public const int STRING = 4;
 
         /// <summary>
-        /// What tile index will you start colliding with (default: 1).
+        /// !! Deprecated !! Now use CollideMin & CollideMax What tile index will you start colliding with (default: 1). 
         /// </summary>
         public int collideIndex;
+
+        /// <summary>
+        /// The minimum collidable tile. <value>1</value>
+        /// </summary>
+        public int collideMin;
+
+        /// <summary>
+        /// The last collidable tile <value>999999</value>
+        /// </summary>
+        public int collideMax;
 
         /// <summary>
         /// The first index of your tile sheet (default: 0) If you want to change it, do so before calling loadMap().
@@ -169,6 +179,8 @@ namespace org.flixel
 
             auto = OFF;
             collideIndex = 1;
+            collideMin = 1;
+            collideMax = 9999999;
             startingIndex = 0;
             drawIndex = 1;
             widthInTiles = 0;
@@ -214,8 +226,6 @@ namespace org.flixel
 
             _tileBitmap = TileGraphic;
 
-            
-
             //Figure out the map dimensions based on the data string
             string[] cols;
             string[] rows = MapData.Split('\n');
@@ -256,14 +266,14 @@ namespace org.flixel
             totalTiles = widthInTiles * heightInTiles;
             if (auto == AUTO || auto == ALT)
             {
-                collideIndex = startingIndex = drawIndex = 1;
+                collideMin = collideIndex = startingIndex = drawIndex = 1;
                 i = 0;
                 while (i < totalTiles)
                     autoTile(i++);
             }
             if (auto == RANDOM)
             {
-                collideIndex = startingIndex = drawIndex = 1;
+                collideMin = collideIndex = startingIndex = drawIndex = 1;
                 i = 0;
                 while (i < totalTiles)
                     randomTile(i++);
@@ -271,7 +281,7 @@ namespace org.flixel
 
             if (auto == STRING)
             {
-                collideIndex = startingIndex = drawIndex = 1;
+                collideMin = collideIndex = startingIndex = drawIndex = 1;
                 i = 0;
                 while (i < totalTiles)
                     stringTile(i++);
@@ -332,7 +342,7 @@ namespace org.flixel
         /// <summary>
         /// Draws the tilemap.
         /// </summary>
-        /// <param name="spriteBatch">???</param>
+        /// <param name="spriteBatch"> SpriteBatch </param>
         public override void render(SpriteBatch spriteBatch)
         {
             //NOTE: While this will only draw the tiles that are actually on screen, it will ALWAYS draw one screen's worth of tiles
@@ -409,7 +419,7 @@ namespace org.flixel
                 {
                     if (c >= widthInTiles) break;
                     dd = _data[d + c];
-                    if (dd >= collideIndex)
+                    if (dd >= collideMin && dd>=collideMax)
                         blocks.Add(new BlockPoint((int)(x + (ix + c) * _tileWidth), (int)(y + (iy + r) * _tileHeight), dd));
                     c++;
                 }
@@ -448,6 +458,9 @@ namespace org.flixel
         /// <param name="Y">The Y coordinate of the point.</param>
         /// <param name="PerPixel"></param>
         /// <returns>Whether or not the point overlaps this object.</returns>
+        /// 
+
+        ///TODO: adjust for collidemin and max
         override public bool overlapsPoint(float X, float Y, bool PerPixel)
         {
             return getTile((int)((X - x) / _tileWidth), (int)((Y - y) / _tileHeight)) >= this.collideIndex;
@@ -507,7 +520,7 @@ namespace org.flixel
                 c = ix;
                 while (c < iw)
                 {
-                    if (_data[rs + c] >= collideIndex)
+                    if (_data[rs + c] >= collideMin && _data[rs + c] <= collideMax)
                     {
                         colOffsets.Add(new Vector2(x + c * _tileWidth, y + r * _tileHeight));
                     }
@@ -692,7 +705,7 @@ namespace org.flixel
 
                 tx = curX / _tileWidth;
                 ty = curY / _tileHeight;
-                if (_data[ty * widthInTiles + tx] >= collideIndex)
+                if (_data[ty * widthInTiles + tx] >= collideMin && _data[ty * widthInTiles + tx] >= collideMax)
                 {
                     //Some basic helper stuff
                     tx *= _tileWidth;

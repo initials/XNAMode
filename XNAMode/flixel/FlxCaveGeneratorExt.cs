@@ -9,8 +9,14 @@ namespace org.flixel
 {
 
     /// <summary>
+    /// This is the EXTENDED Cave Generator.
+    /// This uses strings for each block, to allow for more combinations.
+    /// 
     /// This class uses the cellular automata algorithm
     /// to generate very nice caves.
+    /// 
+    /// 
+    /// 
     /// (Coded by Eddie Lee, October 16, 2010)
     /// (Ported to C# by Shane Brouwer)
     /// </summary>
@@ -46,13 +52,15 @@ namespace org.flixel
         /// </summary>
         public const int GROW_FROM = 1;
 
+        //Extra decoration tiles.
+
         /// <summary>
-        /// Extra decoration tiles.
+        /// Top decoration.
         /// </summary>
-        private const string TOP_DECORATION = "17";
-        private const string RIGHT_DECORATION = "18";
-        private const string LEFT_DECORATION = "19";
-        private const string UNDER_DECORATION = "20";
+        private const string TOP_DECORATION = "25";
+        private const string RIGHT_DECORATION = "26";
+        private const string LEFT_DECORATION = "27";
+        private const string UNDER_DECORATION = "28";
 
         private const string TOP_RIGHT_DECORATION = "21";
         private const string TOP_LEFT_DECORATION = "22";
@@ -182,7 +190,10 @@ namespace org.flixel
         }
 
 
-
+        /// <summary>
+        /// autoTile puts the correct tiles in place.
+        /// </summary>
+        /// <param name="Index"></param>
         public void autoTile(int Index)
         {
             int totalTiles = _data.Length;
@@ -402,6 +413,11 @@ namespace org.flixel
 
         }
 
+        /// <summary>
+        /// Add Decorations such as top, right, etc decorations.
+        /// </summary>
+        /// <param name="mat">In Matrix</param>
+        /// <returns>a string[,] matrix cave.</returns>
         public string[,] addDecorations(string[,] mat)
         {
             for (int x = 0; x < mat.GetLength(1); x++)
@@ -548,7 +564,11 @@ namespace org.flixel
         }
 
 
-
+        /// <summary>
+        /// Converts a Multi Dimensional Array of Strings to an Integer Array.
+        /// </summary>
+        /// <param name="multiArray">Multi Dimensional Array</param>
+        /// <returns>Integer Array</returns>
         public int[] convertMultiArrayStringToIntArray(string[,] multiArray)
         {
             int total = multiArray.GetLength(0) * multiArray.GetLength(1);
@@ -578,6 +598,11 @@ namespace org.flixel
             return newMap;
         }
 
+        /// <summary>
+        /// Convert Integer Array to Multi Dimensional String Array.
+        /// </summary>
+        /// <param name="intArray">In Integer Array</param>
+        /// <returns>String[,]</returns>
         public string[,] convertIntArrayToMultiArray(int[] intArray)
         {
             string[,] mat = new string[_numTilesRows, _numTilesCols];
@@ -593,7 +618,11 @@ namespace org.flixel
             return mat;
         }
 
-
+        /// <summary>
+        /// Convert a string (comma separated) to a Multi Dimensional Array.
+        /// </summary>
+        /// <param name="InString">A comma separated string with \n at the end of each line.</param>
+        /// <returns>string[,]</returns>
         public string[,] convertStringToMultiArray(string InString)
         {
             string[] cols;
@@ -623,14 +652,17 @@ namespace org.flixel
 
 
         //addStrings(baseMap, newMap, 32, 4);
+
         /// <summary>
-        /// 
+        /// Adds two strings together. The AddString will overwrite anything in the base.
         /// </summary>
-        /// <param name="BaseString"></param>
-        /// <param name="AddString"></param>
-        /// <param name="XPos"></param>
-        /// <param name="YPos"></param>
-        /// <returns></returns>
+        /// <param name="BaseString">The original string.</param>
+        /// <param name="AddString">The base string</param>
+        /// <param name="XPos">X position (use if the Addstring is smaller.)</param>
+        /// <param name="YPos">X position (use if the Addstring is smaller.)</param>
+        /// <param name="Width">Width of the AddString (to make it easy to break apart)</param>
+        /// <param name="Height">Height of the AddString (to make it easy to break apart)</param>
+        /// <returns>A new string with the AddString in.</returns>
         public string addStrings(string BaseString, string AddString, int XPos, int YPos, int Width, int Height)
         {
             //Console.WriteLine("1");
@@ -674,6 +706,10 @@ namespace org.flixel
 
         }
 
+        /// <summary>
+        /// Prints a cave multi dimensional array to the console.
+        /// </summary>
+        /// <param name="tiles">A string[,] of tiles. </param>
         public void printCave(string[,] tiles)
         {
             for (int i = 0; i < tiles.GetLength(1); i++)

@@ -23,6 +23,8 @@ namespace XNAMode
         Dictionary<string, string> destructableAttrs;
         private FlxTilemap destructableTilemap;
 
+        private FlxSprite collider;
+
         override public void create()
         {
             base.create();
@@ -50,18 +52,25 @@ namespace XNAMode
             string baseMap = destructableAttrs["IndestructableTerrain"];
 
             string addedMap = caveExt.addStrings(baseMap, newMap, 12, 4, sizex, sizey);
-            //Console.WriteLine(addedMap);
+            Console.WriteLine(addedMap);
 
-
+            
 
             destructableTilemap = new FlxTilemap();
             destructableTilemap.auto = FlxTilemap.STRING;
-            destructableTilemap.loadMap(addedMap, FlxG.Content.Load<Texture2D>("diagnostic/testpalette"), 1, 1);
+            destructableTilemap.loadMap(addedMap, FlxG.Content.Load<Texture2D>("flixel/autotiles"), 2, 2);
             destructableTilemap.boundingBoxOverride = true;
             add(destructableTilemap);
+            //destructableTilemap.collideIndex = 16;
+            destructableTilemap.collideMin = 1;
+            destructableTilemap.collideMax = 12;
 
 
+            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"), 0, 0);
 
+            collider = new FlxSprite(40, 40).createGraphic(2,2,new Color(255,0,0));
+            add(collider);
+            collider.acceleration.Y = 49;
 
         }
 
@@ -93,9 +102,25 @@ namespace XNAMode
                 FlxG.state = new BasePlayState();
             }
 
+            //FlxU.overlap(FlxG.mouse.cursor, destructableTilemap, overlaps);
+            
+            FlxU.collide(collider, destructableTilemap);
+
+            if (FlxG.mouse.justPressedLeftButton())
+            {
+                collider.reset(FlxG.mouse.x, FlxG.mouse.y);
+
+            }
+
             base.update();
+
         }
 
+        protected bool overlaps(object Sender, FlxSpriteCollisionEvent e)
+        {
+            Console.WriteLine("overlappwith ", e.Object2);
+            return true;
+        }
 
     }
 }
