@@ -98,7 +98,10 @@ namespace org.flixel
             return mat;
         }
 
-
+        /// <summary>
+        /// Returns an auto tiled cave.
+        /// </summary>
+        /// <returns>Returns a matrix of a cave!</returns>
         public string[,] generateCaveLevel()
         {
             return this.generateCaveLevel(false);
