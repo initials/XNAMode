@@ -405,6 +405,17 @@ namespace XNAMode
                     buildEvent(Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]), Convert.ToInt32(nodes["width"]), Convert.ToInt32(nodes["height"]), Convert.ToInt32(nodes["repeat"]), nodes["event"]);
 
                 }
+                if (nodes["Name"] == "_procedurallyGeneratedArea")
+                {
+                    FlxCaveGeneratorExt caveExt = new FlxCaveGeneratorExt(Convert.ToInt32(nodes["y"]), Convert.ToInt32(nodes["x"]));
+                    caveExt.numSmoothingIterations = 5;
+                    caveExt.initWallRatio = 0.55f;
+                    string[,] tiles = caveExt.generateCaveLevel();
+                    //caveExt.printCave(tiles);
+                    string newMap = caveExt.convertMultiArrayStringToString(tiles);
+
+                    string addedMap = caveExt.addStrings(destructableAttrs["DestructableTerrain"], newMap, Convert.ToInt32(nodes["x"]) / FourChambers_Globals.TILE_SIZE_X, Convert.ToInt32(nodes["y"]) / FourChambers_Globals.TILE_SIZE_X, Convert.ToInt32(nodes["width"]) / FourChambers_Globals.TILE_SIZE_X, Convert.ToInt32(nodes["height"]) / FourChambers_Globals.TILE_SIZE_X );
+                }
 
 
                 foreach (KeyValuePair<string, string> kvp in nodes)
@@ -416,6 +427,10 @@ namespace XNAMode
                 }
                 //Console.Write("\r\n");
             }
+
+            //reload the map
+            destructableTilemap.loadMap(destructableAttrs["DestructableTerrain"], FlxG.Content.Load<Texture2D>("initials/" + destructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
+            
 
             eventsAttrs = new List<Dictionary<string, string>>();
             eventsAttrs = FlxXMLReader.readNodesFromOelFile(levelFile, "level/EventsLayer");

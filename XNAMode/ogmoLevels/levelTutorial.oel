@@ -116,6 +116,8 @@
     <ladder id="0" x="320" y="256" height="64" />
     <_event id="2" x="288" y="288" width="32" height="32" event="quake" value1="0" value2="0" repeat="1" />
     <_event id="3" x="128" y="272" width="48" height="48" event="Press A to jump." value1="0" value2="0" repeat="-1" />
+    <_procedurallyGeneratedArea id="13" x="112" y="176" width="336" height="48" />
+    <_procedurallyGeneratedArea id="14" x="400" y="224" width="112" height="96" />
   </ActorsLayer>
   <EventsLayer />
 </level>

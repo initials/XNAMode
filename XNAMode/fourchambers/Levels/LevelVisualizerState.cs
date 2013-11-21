@@ -14,30 +14,58 @@ namespace XNAMode
     {
         private FlxTilemap mainTilemap;
 
-        private int sizex = 50;
-        private int sizey = 20;
+        private int sizex = 30;
+        private int sizey = 11;
 
         private FlxCaveGeneratorExt caveExt;
         private string[,] tiles;
+
+        Dictionary<string, string> destructableAttrs;
+        private FlxTilemap destructableTilemap;
 
         override public void create()
         {
             base.create();
 
-            caveExt = new FlxCaveGeneratorExt(sizex, sizey);
+            // 32, 4
+            //flip x and y here.
+            caveExt = new FlxCaveGeneratorExt(sizey, sizex);
             caveExt.numSmoothingIterations = 5;
-            caveExt.initWallRatio = 0.5f;
+            caveExt.initWallRatio = 0.55f;
             tiles = caveExt.generateCaveLevel();
             //caveExt.printCave(tiles);
             string newMap = caveExt.convertMultiArrayStringToString(tiles);
 
-            mainTilemap = new FlxTilemap();
-            mainTilemap.auto = FlxTilemap.STRING;
-            mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("diagnostic/testpalette"), 1, 1);
-            mainTilemap.boundingBoxOverride = true;
-            add(mainTilemap);
+            //mainTilemap = new FlxTilemap();
+            //mainTilemap.auto = FlxTilemap.STRING;
+            //mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("diagnostic/testpalette"), 1, 1);
+            //mainTilemap.boundingBoxOverride = true;
+            //add(mainTilemap);
+
+
+
+            destructableAttrs = new Dictionary<string, string>();
+            destructableAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/levelTutorial.oel", "level/IndestructableTerrain");
+
+            string baseMap = destructableAttrs["IndestructableTerrain"];
+
+            string addedMap = caveExt.addStrings(baseMap, newMap, 12, 4, sizex, sizey);
+            //Console.WriteLine(addedMap);
+
+
+
+            destructableTilemap = new FlxTilemap();
+            destructableTilemap.auto = FlxTilemap.STRING;
+            destructableTilemap.loadMap(addedMap, FlxG.Content.Load<Texture2D>("diagnostic/testpalette"), 1, 1);
+            destructableTilemap.boundingBoxOverride = true;
+            add(destructableTilemap);
+
+
+
 
         }
+
+        
 
         public void regenCave()
         {

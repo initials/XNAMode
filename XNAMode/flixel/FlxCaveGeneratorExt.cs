@@ -441,6 +441,13 @@ namespace org.flixel
             return mat;
         }
 
+        /// <summary>
+        /// Check if a co-ordinate is a valid part of the matrix. Handy to avoid crashes.
+        /// </summary>
+        /// <param name="mat"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public bool coordIsInMatrix(string[,] mat, int x, int y)
         {
             if (x >= 0 && y >= 0 && x < mat.GetLength(1) && y < mat.GetLength(0))
@@ -541,6 +548,7 @@ namespace org.flixel
         }
 
 
+
         public int[] convertMultiArrayStringToIntArray(string[,] multiArray)
         {
             int total = multiArray.GetLength(0) * multiArray.GetLength(1);
@@ -583,6 +591,87 @@ namespace org.flixel
                 }
             }
             return mat;
+        }
+
+
+        public string[,] convertStringToMultiArray(string InString)
+        {
+            string[] cols;
+            string[] rows = InString.Split('\n');
+            string[] cols1 = rows[0].Split(',');
+
+            Console.WriteLine("This cave is: " + rows.Length + "  " +  cols1.Length);
+
+            string[,] mat = new string[cols1.Length, rows.Length];
+
+            int count = 0;
+            for (int _y = 0; _y < rows.Length; _y++)
+            {
+                cols = rows[_y].Split(',');
+
+                //Console.WriteLine(cols.ToString() );
+
+                for (int _x = 0; _x < cols.Length; _x++)
+                {
+                    mat[_x, _y] = cols[_x].ToString();
+                    count++;
+                }
+            }
+            
+            return mat;
+        }
+
+
+        //addStrings(baseMap, newMap, 32, 4);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="BaseString"></param>
+        /// <param name="AddString"></param>
+        /// <param name="XPos"></param>
+        /// <param name="YPos"></param>
+        /// <returns></returns>
+        public string addStrings(string BaseString, string AddString, int XPos, int YPos, int Width, int Height)
+        {
+            //Console.WriteLine("1");
+            string[,] NewBaseString = this.convertStringToMultiArray(BaseString);
+
+            //Console.WriteLine("2:\n" + AddString);
+            string[,] NewAddString = this.convertStringToMultiArray(AddString);
+            //printCave(NewAddString);
+
+
+            //this.printCave(NewBaseString);
+
+            int total = NewBaseString.GetLength(0) * NewBaseString.GetLength(1);
+
+            string newMap = "";
+
+            for (int i = 0; i < NewBaseString.GetLength(0); i++)
+            {
+                for (int j = 0; j < NewBaseString.GetLength(1); j++)
+                {
+                    if (j >= XPos && j < XPos + Width && i >= YPos && i < YPos + Height)
+                    {
+                        //newMap += "1";
+                        //Console.WriteLine("{0}, {1}, {2}, {3} == {4}, {5}", XPos, YPos, j, i, j - XPos, i - YPos);
+                        newMap += NewAddString[i - YPos, j - XPos].ToString();
+                    }
+                    else
+                    {
+                        newMap += NewBaseString[j, i].ToString();
+                    }
+                    if (j != NewBaseString.GetLength(1) - 1)
+                    {
+                        newMap += ",";
+                    }
+                }
+
+                newMap += "\n";
+
+            }
+            return newMap;
+
         }
 
         public void printCave(string[,] tiles)

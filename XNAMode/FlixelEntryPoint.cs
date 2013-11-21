@@ -24,17 +24,23 @@ namespace XNAMode
 
             initGame(w, h, new GameSelectionMenuState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
 
+            
+            
             //initGame(w, h, new EmptyIntroTestState(), new Color(15, 15, 15), false, new Color(5, 5, 5));
 
             //initGame(w, h, new BasePlayStateFromOel(), new Color(15, 15, 15), false, new Color(5, 5, 5));
 
             //initGame(w, h, new CharacterSelectionState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
 
-            //initGame(w, h, new BasePlayState(), new Color(15, 15, 15), false, new Color(5, 5, 5));
+            //initGame(w, h, new BasePlayStateFromOel(), new Color(15, 15, 15), false, new Color(5, 5, 5));
+
+
+            //initGame(w, h, new LevelVisualizerState(), new Color(15, 15, 15), false, new Color(5, 5, 5));
+
 
             FlxG.debug = false;
             FlxG.zoom = 1280 / w;
-            FlxG.level = 1;
+            FlxG.level = -1;
 
             FourChambers_Globals.BUILD_TYPE = FourChambers_Globals.BUILD_TYPE_RELEASE;
             FourChambers_Globals.DEMO_VERSION = false;
