@@ -177,6 +177,7 @@ namespace XNAMode
             
             if ((_curFrame == 8 || _curFrame==9 || _curFrame==10) && attackingJoystick )
             {
+
                 float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
                 float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
                 

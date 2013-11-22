@@ -622,6 +622,11 @@ namespace XNAMode
             if (timeOfDay > 24.99f) timeOfDay = 0.0f;
             //timeOfDay = timeOfDayTotal / timeScale;
 
+            
+            // bring time back to regular.
+            if (FlxG.timeScale != 1.0f) FlxG.timeScale += 0.05f;
+
+
             // color bg tiles
             //bgTiles.color = FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1);
 
@@ -646,8 +651,9 @@ namespace XNAMode
 
             FlxU.overlap(marksman.meleeHitBox, destructableTilemap, destroyTileAtMelee);
 
-
+            // Maybe use the return value of this to reset the combo counter.
             FlxU.collide(destructableTilemap, bullets);
+
 
             FlxU.collide(blood, destructableTilemap);
 
@@ -855,6 +861,12 @@ namespace XNAMode
             {
 
             }
+            else if (e.Object2 is Arrow)
+            {
+                FourChambers_Globals.arrowsHitTarget++;
+                FlxG.timeScale = 0.1f;
+
+            }
             else if (e.Object1 is ZingerNest)
             {
                 bigEx.x = e.Object1.x;
@@ -896,9 +908,9 @@ namespace XNAMode
                 }
                 else
                 {
-                    
+
                 }
-                
+
                 //localHud.score.scale = 4;
 
                 e.Object2.x = -1000;

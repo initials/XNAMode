@@ -133,6 +133,10 @@ namespace XNAMode
 
         public void shoot(int X, int Y, int VelocityX, int VelocityY)
         {
+            // Global counter for arrows fired.
+            FourChambers_Globals.arrowsFired++;
+
+
             visible = true;
             FlxG.play(SndShoot, 0.05f, false);
 
