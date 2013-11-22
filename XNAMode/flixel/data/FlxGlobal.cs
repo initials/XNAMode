@@ -49,4 +49,10 @@ namespace org.flixel
 
 
     }
+
+    class Mode_Globals
+    {
+        public static bool CREATE_FROM_OGMO_LEVEL = false;
+
+    }
 }

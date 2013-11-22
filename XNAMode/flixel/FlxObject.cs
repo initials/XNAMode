@@ -248,9 +248,82 @@ namespace org.flixel
         public float height;
 
         /// <summary>
-        /// Helper for debugging.
+        /// Helper for debugging. Originally used to pin down crashes in buttons.
         /// </summary>
         public string debugName;
+
+
+        /// <summary>
+        /// Path behavior controls: move from the start of the path to the end then stop.
+        /// </summary>
+        public const uint PATH_FORWARD = 0x000000;
+
+        /// <summary>
+        /// Path behavior controls: move from the end of the path to the start then stop.
+        /// </summary>
+        public const uint PATH_BACKWARD = 0x000001;
+
+        /// <summary>
+        /// Path behavior controls: move from the start of the path to the end then directly back to the start, and start over.
+        /// </summary>
+        public const uint PATH_LOOP_FORWARD = 0x000010;
+
+        /// <summary>
+        /// Path behavior controls: move from the end of the path to the start then directly back to the end, and start over.
+        /// </summary>
+        public const uint PATH_LOOP_BACKWARD = 0x000100;
+
+        /// <summary>
+        /// Path behavior controls: move from the start of the path to the end then turn around and go back to the start, over and over.
+        /// </summary>
+        public const uint PATH_YOYO = 0x001000;
+
+        /// <summary>
+        /// Path behavior controls: ignores any vertical component to the path data, only follows side to side.
+        /// </summary>
+        public const uint PATH_HORIZONTAL_ONLY = 0x010000;
+
+        /// <summary>
+        /// Path behavior controls: ignores any horizontal component to the path data, only follows up and down.
+        /// </summary>
+        public const uint PATH_VERTICAL_ONLY = 0x100000;
+
+        /// <summary>
+        /// A reference to a path object.  Null by default, assigned by <code>followPath()</code>.
+        /// </summary>
+        public var path:FlxPath;
+
+        /// <summary>
+        /// The speed at which the object is moving on the path.
+        /// When an object completes a non-looping path circuit,
+        /// the pathSpeed will be zeroed out, but the <code>path</code> reference
+        /// will NOT be nulled out.  So <code>pathSpeed</code> is a good way
+        /// to check if this object is currently following a path or not.
+        /// </summary>
+        public var pathSpeed:Number;
+        /**
+        * The angle in degrees between this object and the next node, where 0 is directly upward, and 90 is to the right.
+        */
+        public var pathAngle:Number;
+        /**
+        * Internal helper, tracks which node of the path this object is moving toward.
+        */
+        protected var _pathNodeIndex:int;
+        /**
+        * Internal tracker for path behavior flags (like looping, horizontal only, etc).
+        */
+        protected var _pathMode:uint;
+        /**
+        * Internal helper for node navigation, specifically yo-yo and backwards movement.
+        */
+        protected var _pathInc:int;
+        /**
+        * Internal flag for whether hte object's angle should be adjusted to the path angle during path follow behavior.
+        */
+        protected var _pathRotate:Boolean;
+
+
+
 
         /// <summary>
         /// Creates a new <code>FlxObject</code>.
@@ -681,5 +754,231 @@ namespace org.flixel
 				return new Color(0x00, 0x90, 0xe9, 0x7f);
 		}
 
+        // ---------------------------- Start the path stuff here.
+
+        /// <summary>
+        /// Call this function to give this object a path to follow.
+        /// If the path does not have at least one node in it, this function
+        /// will log a warning message and return.
+        /// </summary>
+        /// <param name="Path">The <code>FlxPath</code> you want this object to follow.</param>
+        /// <param name="Speed">How fast to travel along the path in pixels per second.</param>
+        /// <param name="Node">Optional, controls the behavior of the object following the path using the path behavior constants.  Can use multiple flags at once, for example PATH_YOYO|PATH_HORIZONTAL_ONLY will make an object move back and forth along the X axis of the path only.</param>
+        /// <param name="AutoRotate">Automatically point the object toward the next node.  Assumes the graphic is pointing upward.  Default behavior is false, or no automatic rotation.</param>
+        public void followPath(FlxPath Path, float Speed, uint Node, bool AutoRotate)
+        {
+            if (Path.nodes.Count <= 0)
+            {
+                FlxG.log("WARNING: Paths need at least one node in them to be followed.");
+                return;
+            }
+
+            path = Path;
+            pathSpeed = FlxU.abs(Speed);
+            _pathMode = Mode;
+            _pathRotate = AutoRotate;
+
+
+
+            /*
+            if(Path.nodes.length <= 0)
+                {
+                        FlxG.log("WARNING: Paths need at least one node in them to be followed.");
+                        return;
+                }
+                        
+                path = Path;
+                pathSpeed = FlxU.abs(Speed);
+                _pathMode = Mode;
+                _pathRotate = AutoRotate;
+                        
+                //get starting node
+                if((_pathMode == PATH_BACKWARD) || (_pathMode == PATH_LOOP_BACKWARD))
+                {
+                        _pathNodeIndex = path.nodes.length-1;
+                        _pathInc = -1;
+                }
+                else
+                {
+                        _pathNodeIndex = 0;
+                        _pathInc = 1;
+                }
+             */
+        }
+
+        /// <summary>
+        /// Tells this object to stop following the path its on.
+        /// </summary>
+        /// <param name="DestroyPath">Tells this function whether to call destroy on the path object.  Default value is false.</param>
+        public void stopFollowingPath(bool DestroyPath=false)
+        {
+            /*
+                pathSpeed = 0;
+                if(DestroyPath && (path != null))
+                {
+                        path.destroy();
+                        path = null;
+                }
+             */
+        }
+        
+        /// <summary>
+        /// Internal function that decides what node in the path to aim for next based on the behavior flags.
+        /// </summary>
+        /// <param name="Snap">Snap</param>
+        /// <returns>The node (a <code>Vector2</code> object) we are aiming for next.</returns>
+        public Vector2 advancePath(bool Snap=true)
+        {
+            /*
+            if(Snap)
+            {
+                    var oldNode:FlxPoint = path.nodes[_pathNodeIndex];
+                    if(oldNode != null)
+                    {
+                            if((_pathMode & PATH_VERTICAL_ONLY) == 0)
+                                    x = oldNode.x - width*0.5;
+                            if((_pathMode & PATH_HORIZONTAL_ONLY) == 0)
+                                    y = oldNode.y - height*0.5;
+                    }
+            }
+                        
+            _pathNodeIndex += _pathInc;
+                        
+            if((_pathMode & PATH_BACKWARD) > 0)
+            {
+                    if(_pathNodeIndex < 0)
+                    {
+                            _pathNodeIndex = 0;
+                            pathSpeed = 0;
+                    }
+            }
+            else if((_pathMode & PATH_LOOP_FORWARD) > 0)
+            {
+                    if(_pathNodeIndex >= path.nodes.length)
+                            _pathNodeIndex = 0;
+            }
+            else if((_pathMode & PATH_LOOP_BACKWARD) > 0)
+            {
+                    if(_pathNodeIndex < 0)
+                    {
+                            _pathNodeIndex = path.nodes.length-1;
+                            if(_pathNodeIndex < 0)
+                                    _pathNodeIndex = 0;
+                    }
+            }
+            else if((_pathMode & PATH_YOYO) > 0)
+            {
+                    if(_pathInc > 0)
+                    {
+                            if(_pathNodeIndex >= path.nodes.length)
+                            {
+                                    _pathNodeIndex = path.nodes.length-2;
+                                    if(_pathNodeIndex < 0)
+                                            _pathNodeIndex = 0;
+                                    _pathInc = -_pathInc;
+                            }
+                    }
+                    else if(_pathNodeIndex < 0)
+                    {
+                            _pathNodeIndex = 1;
+                            if(_pathNodeIndex >= path.nodes.length)
+                                    _pathNodeIndex = path.nodes.length-1;
+                            if(_pathNodeIndex < 0)
+                                    _pathNodeIndex = 0;
+                            _pathInc = -_pathInc;
+                    }
+            }
+            else
+            {
+                    if(_pathNodeIndex >= path.nodes.length)
+                    {
+                            _pathNodeIndex = path.nodes.length-1;
+                            pathSpeed = 0;
+                    }
+            }
+
+            return path.nodes[_pathNodeIndex];
+             */
+
+            return Vector2.Zero;
+        }
+                
+        /// <summary>
+        /// Internal function for moving the object along the path.
+        /// Generally this function is called automatically by <code>preUpdate()</code>.
+        /// The first half of the function decides if the object can advance to the next node in the path,
+        /// while the second half handles actually picking a velocity toward the next node.
+        /// </summary>
+        public void updatePathMotion()
+        {
+            /*
+            //first check if we need to be pointing at the next node yet
+            _point.x = x + width*0.5;
+            _point.y = y + height*0.5;
+            var node:FlxPoint = path.nodes[_pathNodeIndex];
+            var deltaX:Number = node.x - _point.x;
+            var deltaY:Number = node.y - _point.y;
+                        
+            var horizontalOnly:Boolean = (_pathMode & PATH_HORIZONTAL_ONLY) > 0;
+            var verticalOnly:Boolean = (_pathMode & PATH_VERTICAL_ONLY) > 0;
+                        
+            if(horizontalOnly)
+            {
+                    if(((deltaX>0)?deltaX:-deltaX) < pathSpeed*FlxG.elapsed)
+                            node = advancePath();
+            }
+            else if(verticalOnly)
+            {
+                    if(((deltaY>0)?deltaY:-deltaY) < pathSpeed*FlxG.elapsed)
+                            node = advancePath();
+            }
+            else
+            {
+                    if(Math.sqrt(deltaX*deltaX + deltaY*deltaY) < pathSpeed*FlxG.elapsed)
+                            node = advancePath();
+            }
+                        
+            //then just move toward the current node at the requested speed
+            if(pathSpeed != 0)
+            {
+                    //set velocity based on path mode
+                    _point.x = x + width*0.5;
+                    _point.y = y + height*0.5;
+                    if(horizontalOnly || (_point.y == node.y))
+                    {
+                            velocity.x = (_point.x < node.x)?pathSpeed:-pathSpeed;
+                            if(velocity.x < 0)
+                                    pathAngle = -90;
+                            else
+                                    pathAngle = 90;
+                            if(!horizontalOnly)
+                                    velocity.y = 0;
+                    }
+                    else if(verticalOnly || (_point.x == node.x))
+                    {
+                            velocity.y = (_point.y < node.y)?pathSpeed:-pathSpeed;
+                            if(velocity.y < 0)
+                                    pathAngle = 0;
+                            else
+                                    pathAngle = 180;
+                            if(!verticalOnly)
+                                    velocity.x = 0;
+                    }
+                    else
+                    {
+                            pathAngle = FlxU.getAngle(_point,node);
+                            FlxU.rotatePoint(0,pathSpeed,0,0,pathAngle,velocity);
+                    }
+                                
+                    //then set object rotation if necessary
+                    if(_pathRotate)
+                    {
+                            angularVelocity = 0;
+                            angularAcceleration = 0;
+                            angle = pathAngle;
+                    }
+            }   
+            * */
+        }
     }
 }

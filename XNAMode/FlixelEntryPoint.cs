@@ -1,11 +1,17 @@
-﻿using System;
+﻿#region File Description
+//-----------------------------------------------------------------------------
+// Flixel for XNA.
+// Original repo : https://github.com/StAidan/X-flixel
+// Extended and edited repo : https://github.com/initials/XNAMode
+//-----------------------------------------------------------------------------
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using org.flixel;
 using Microsoft.Xna.Framework;
-
-
 
 namespace XNAMode
 {

@@ -433,17 +433,20 @@ namespace org.flixel
 			return c;
 		}
 
-		/**
-		 * An internal function for comparing an object against the contents of a node.
-		 * 
-		 * @param	Iterator	An optional pointer to a linked list entry (for comparing A against itself).
-		 * 
-		 * @return	Whether or not any overlaps were found.
-		 */
+        /// <summary>
+        /// An internal function for comparing an object against the contents of a node.
+        /// 
+        /// </summary>
+        /// <returns>hether or not any overlaps were found.</returns>
         protected bool overlapNode()
         {
             return overlapNode(null);
         }
+        /// <summary>
+        /// An internal function for comparing an object against the contents of a node.
+        /// </summary>
+        /// <param name="Iterator">An optional pointer to a linked list entry (for comparing A against itself).</param>
+        /// <returns>hether or not any overlaps were found.</returns>
 		protected bool overlapNode(FlxList Iterator)
 		{
 			//member list setup
