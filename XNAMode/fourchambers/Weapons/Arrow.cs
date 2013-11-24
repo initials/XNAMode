@@ -117,6 +117,8 @@ namespace XNAMode
         }
         override public void kill()
         {
+            
+
             visible = false;
 
             if (dead) return;

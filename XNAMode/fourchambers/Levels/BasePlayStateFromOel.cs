@@ -379,6 +379,8 @@ namespace XNAMode
             actorsAttrs = new List<Dictionary<string, string>>();
             actorsAttrs = FlxXMLReader.readNodesFromOelFile(levelFile, "level/ActorsLayer");
 
+            string addedMap = destructableAttrs["DestructableTerrain"];
+
             foreach (Dictionary<string, string> nodes in actorsAttrs)
             {
                 bool pc = false;
@@ -407,29 +409,31 @@ namespace XNAMode
                 }
                 if (nodes["Name"] == "_procedurallyGeneratedArea")
                 {
-                    FlxCaveGeneratorExt caveExt = new FlxCaveGeneratorExt(Convert.ToInt32(nodes["y"]), Convert.ToInt32(nodes["x"]));
+                    Console.WriteLine(" PROCE GENE {0}, {1}", Convert.ToInt32(nodes["width"]) ,Convert.ToInt32(nodes["height"]));
+
+                    FlxCaveGeneratorExt caveExt = new FlxCaveGeneratorExt(Convert.ToInt32(nodes["height"]) / FourChambers_Globals.TILE_SIZE_X, Convert.ToInt32(nodes["width"]) / FourChambers_Globals.TILE_SIZE_X);
                     caveExt.numSmoothingIterations = 5;
                     caveExt.initWallRatio = 0.55f;
                     string[,] tiles = caveExt.generateCaveLevel();
                     //caveExt.printCave(tiles);
                     string newMap = caveExt.convertMultiArrayStringToString(tiles);
 
-                    string addedMap = caveExt.addStrings(destructableAttrs["DestructableTerrain"], newMap, Convert.ToInt32(nodes["x"]) / FourChambers_Globals.TILE_SIZE_X, Convert.ToInt32(nodes["y"]) / FourChambers_Globals.TILE_SIZE_X, Convert.ToInt32(nodes["width"]) / FourChambers_Globals.TILE_SIZE_X, Convert.ToInt32(nodes["height"]) / FourChambers_Globals.TILE_SIZE_X );
+                    addedMap = caveExt.addStrings(destructableAttrs["DestructableTerrain"], newMap, Convert.ToInt32(nodes["x"]) / FourChambers_Globals.TILE_SIZE_X, Convert.ToInt32(nodes["y"]) / FourChambers_Globals.TILE_SIZE_X, Convert.ToInt32(nodes["width"]) / FourChambers_Globals.TILE_SIZE_X, Convert.ToInt32(nodes["height"]) / FourChambers_Globals.TILE_SIZE_X );
                 }
 
 
-                foreach (KeyValuePair<string, string> kvp in nodes)
-                {
-                    //Console.Write("Key = {0}, Value = {1}, ",
-                    //    kvp.Key, kvp.Value);
+                //foreach (KeyValuePair<string, string> kvp in nodes)
+                //{
+                //    //Console.Write("Key = {0}, Value = {1}, ",
+                //    //    kvp.Key, kvp.Value);
 
 
-                }
+                //}
                 //Console.Write("\r\n");
             }
 
             //reload the map
-            destructableTilemap.loadMap(destructableAttrs["DestructableTerrain"], FlxG.Content.Load<Texture2D>("initials/" + destructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
+            destructableTilemap.loadMap(addedMap, FlxG.Content.Load<Texture2D>("initials/" + destructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
             
 
             eventsAttrs = new List<Dictionary<string, string>>();
@@ -625,7 +629,7 @@ namespace XNAMode
             
             // bring time back to regular.
             if (FlxG.timeScale != 1.0f) FlxG.timeScale += 0.05f;
-
+            if (FlxG.timeScale > 1.0f) FlxG.timeScale = 1.0f;
 
             // color bg tiles
             //bgTiles.color = FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1);
@@ -689,10 +693,13 @@ namespace XNAMode
 
                 if ((playerControlledActors.members[i2] as FlxSprite).x < 0)
                 {
+                    Console.WriteLine("ArrowsFired : {0} Arrows Hit : {1}", FourChambers_Globals.arrowsFired, FourChambers_Globals.arrowsHitTarget);
                     goToLevel(--FlxG.level);
+
                 }
                 if ((playerControlledActors.members[i2] as FlxSprite).x > FlxG.levelWidth)
                 {
+                    Console.WriteLine("ArrowsFired : {0} Arrows Hit : {1}", FourChambers_Globals.arrowsFired, FourChambers_Globals.arrowsHitTarget);
                     goToLevel(++FlxG.level);
                 }
 
@@ -848,27 +855,14 @@ namespace XNAMode
             // Console.WriteLine("Overlapped.");
 
             // First reject Actors and their bullets.
-            if ((e.Object1 is Warlock) && (e.Object2 is Fireball))
-            {
-
-            }
-            else if ((e.Object1 is Marksman) && (e.Object2 is Arrow))
-            {
-
-            }
+            if ((e.Object1 is Warlock) && (e.Object2 is Fireball)) { }
+            else if ((e.Object1 is Marksman) && (e.Object2 is Arrow)) { }
             else if ((e.Object1 is Marksman) && (e.Object2 is MeleeHitBox)) { }
-            else if ((e.Object1 is Mistress) && (e.Object2 is MeleeHitBox))
-            {
-
-            }
-            else if (e.Object2 is Arrow)
-            {
-                FourChambers_Globals.arrowsHitTarget++;
-                FlxG.timeScale = 0.1f;
-
-            }
+            else if ((e.Object1 is Mistress) && (e.Object2 is MeleeHitBox)) { }
             else if (e.Object1 is ZingerNest)
             {
+                FourChambers_Globals.arrowsHitTarget++;
+
                 bigEx.x = e.Object1.x;
                 bigEx.y = e.Object1.y;
                 bigEx.play("explode", true);
@@ -922,6 +916,10 @@ namespace XNAMode
             // Now that it's a kill, spurt some blood and "hurt" both parties.
             else if (e.Object1.dead == false && e.Object2.dead == false)
             {
+                //FlxG.timeScale = 0.1f;
+                FourChambers_Globals.arrowsHitTarget++;
+
+
                 //pointBurst.alpha = 1;
 
                 //e.Object1.acceleration.Y = 820;

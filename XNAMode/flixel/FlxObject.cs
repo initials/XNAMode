@@ -291,7 +291,7 @@ namespace org.flixel
         /// <summary>
         /// A reference to a path object.  Null by default, assigned by <code>followPath()</code>.
         /// </summary>
-        public var path:FlxPath;
+        public FlxPath path;
 
         /// <summary>
         /// The speed at which the object is moving on the path.
@@ -300,27 +300,32 @@ namespace org.flixel
         /// will NOT be nulled out.  So <code>pathSpeed</code> is a good way
         /// to check if this object is currently following a path or not.
         /// </summary>
-        public var pathSpeed:Number;
-        /**
-        * The angle in degrees between this object and the next node, where 0 is directly upward, and 90 is to the right.
-        */
-        public var pathAngle:Number;
-        /**
-        * Internal helper, tracks which node of the path this object is moving toward.
-        */
-        protected var _pathNodeIndex:int;
-        /**
-        * Internal tracker for path behavior flags (like looping, horizontal only, etc).
-        */
-        protected var _pathMode:uint;
-        /**
-        * Internal helper for node navigation, specifically yo-yo and backwards movement.
-        */
-        protected var _pathInc:int;
-        /**
-        * Internal flag for whether hte object's angle should be adjusted to the path angle during path follow behavior.
-        */
-        protected var _pathRotate:Boolean;
+        public float pathSpeed;
+        
+        /// <summary>
+        /// The angle in degrees between this object and the next node, where 0 is directly upward, and 90 is to the right.
+        /// </summary>
+        public float pathAngle;
+
+        /// <summary>
+        /// Internal helper, tracks which node of the path this object is moving toward.
+        /// </summary>
+        protected int _pathNodeIndex;
+
+        /// <summary>
+        /// Internal tracker for path behavior flags (like looping, horizontal only, etc).
+        /// </summary>
+        protected uint _pathMode;
+
+        /// <summary>
+        /// Internal helper for node navigation, specifically yo-yo and backwards movement.
+        /// </summary>
+        protected int _pathInc;
+
+        /// <summary>
+        /// Internal flag for whether hte object's angle should be adjusted to the path angle during path follow behavior.
+        /// </summary>
+        protected bool _pathRotate;
 
 
 
@@ -763,9 +768,9 @@ namespace org.flixel
         /// </summary>
         /// <param name="Path">The <code>FlxPath</code> you want this object to follow.</param>
         /// <param name="Speed">How fast to travel along the path in pixels per second.</param>
-        /// <param name="Node">Optional, controls the behavior of the object following the path using the path behavior constants.  Can use multiple flags at once, for example PATH_YOYO|PATH_HORIZONTAL_ONLY will make an object move back and forth along the X axis of the path only.</param>
+        /// <param name="Mode">Optional, controls the behavior of the object following the path using the path behavior constants.  Can use multiple flags at once, for example PATH_YOYO|PATH_HORIZONTAL_ONLY will make an object move back and forth along the X axis of the path only.</param>
         /// <param name="AutoRotate">Automatically point the object toward the next node.  Assumes the graphic is pointing upward.  Default behavior is false, or no automatic rotation.</param>
-        public void followPath(FlxPath Path, float Speed, uint Node, bool AutoRotate)
+        public void followPath(FlxPath Path, float Speed, uint Mode, bool AutoRotate)
         {
             if (Path.nodes.Count <= 0)
             {
@@ -778,7 +783,17 @@ namespace org.flixel
             _pathMode = Mode;
             _pathRotate = AutoRotate;
 
-
+            if((_pathMode == PATH_BACKWARD) || (_pathMode == PATH_LOOP_BACKWARD))
+            {
+                _pathNodeIndex = path.nodes.Count - 1;
+                _pathInc = -1;
+            }
+            else
+            {
+                _pathNodeIndex = 0;
+                _pathInc = 1;
+            }
+             
 
             /*
             if(Path.nodes.length <= 0)

@@ -14,8 +14,8 @@ namespace XNAMode
     {
         private FlxTilemap mainTilemap;
 
-        private int sizex = 12;
-        private int sizey = 11;
+        private int sizex = 23;
+        private int sizey = 23;
 
         private FlxCaveGeneratorExt caveExt;
         private string[,] tiles;
@@ -33,8 +33,11 @@ namespace XNAMode
             //flip x and y here.
             caveExt = new FlxCaveGeneratorExt(sizey, sizex);
             caveExt.numSmoothingIterations = 5;
-            caveExt.initWallRatio = 0.655f;
+            caveExt.initWallRatio = 0.500f;
             tiles = caveExt.generateCaveLevel();
+            caveExt.printCave(tiles);
+            Console.WriteLine("\n");
+            //tiles = caveExt.addDecorations(tiles);
             //caveExt.printCave(tiles);
             string newMap = caveExt.convertMultiArrayStringToString(tiles);
 
@@ -52,18 +55,30 @@ namespace XNAMode
             string baseMap = destructableAttrs["IndestructableTerrain"];
 
             string addedMap = caveExt.addStrings(baseMap, newMap, 12, 4, sizex, sizey);
-            Console.WriteLine(addedMap);
+            //Console.WriteLine(addedMap);
 
             
 
+            //destructableTilemap = new FlxTilemap();
+            //destructableTilemap.auto = FlxTilemap.STRING;
+            //destructableTilemap.loadMap(addedMap, FlxG.Content.Load<Texture2D>("flixel/autotiles"), 2, 2);
+            //destructableTilemap.boundingBoxOverride = true;
+            //add(destructableTilemap);
+            ////destructableTilemap.collideIndex = 16;
+            //destructableTilemap.collideMin = 1;
+            //destructableTilemap.collideMax = 12;
+
+
             destructableTilemap = new FlxTilemap();
             destructableTilemap.auto = FlxTilemap.STRING;
-            destructableTilemap.loadMap(addedMap, FlxG.Content.Load<Texture2D>("flixel/autotiles"), 2, 2);
+            destructableTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"), 16, 16);
             destructableTilemap.boundingBoxOverride = true;
             add(destructableTilemap);
             //destructableTilemap.collideIndex = 16;
             destructableTilemap.collideMin = 1;
-            destructableTilemap.collideMax = 12;
+            destructableTilemap.collideMax = 20;
+
+
 
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"), 0, 0);
@@ -71,6 +86,9 @@ namespace XNAMode
             collider = new FlxSprite(40, 40).createGraphic(2,2,new Color(255,0,0));
             add(collider);
             collider.acceleration.Y = 49;
+
+            FlxG.follow(collider, 1.0f);
+
 
         }
 
@@ -88,6 +106,9 @@ namespace XNAMode
 
         override public void update()
         {
+            if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B) && FlxG.debug)
+                FlxG.showBounds = !FlxG.showBounds;
+
             if (FlxG.keys.R)
             {
                 regenCave();
