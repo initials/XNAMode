@@ -409,7 +409,7 @@ namespace XNAMode
                 }
                 if (nodes["Name"] == "_procedurallyGeneratedArea")
                 {
-                    Console.WriteLine(" PROCE GENE {0}, {1}", Convert.ToInt32(nodes["width"]) ,Convert.ToInt32(nodes["height"]));
+                    //Console.WriteLine(" PROCE GENE {0}, {1}", Convert.ToInt32(nodes["width"]) ,Convert.ToInt32(nodes["height"]));
 
                     FlxCaveGeneratorExt caveExt = new FlxCaveGeneratorExt(Convert.ToInt32(nodes["height"]) / FourChambers_Globals.TILE_SIZE_X, Convert.ToInt32(nodes["width"]) / FourChambers_Globals.TILE_SIZE_X);
                     caveExt.numSmoothingIterations = 5;
