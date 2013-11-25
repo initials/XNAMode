@@ -542,11 +542,24 @@ namespace org.flixel
             }
         }
 
+        /// <summary>
+        /// Pre-update is called right before <code>update()</code> on each object in the game loop.
+        /// In <code>FlxObject</code> it controls the flicker timer,
+        /// tracking the last coordinates for collision purposes,
+        /// and checking if the object is moving along a path or not.
+        /// </summary>
+        public void preUpdate()
+        {
+            if ((path != null) && (pathSpeed != 0) && (path.nodes[_pathNodeIndex] != null))
+                updatePathMotion();
+        }
+
 		/// <summary>
         /// Called by the main game loop, handles motion/physics and game logic
 		/// </summary>
         virtual public void update()
 		{
+            preUpdate();
 			updateMotion();
 			updateFlickering();
 		}
@@ -871,78 +884,76 @@ namespace org.flixel
         /// <returns>The node (a <code>Vector2</code> object) we are aiming for next.</returns>
         public Vector2 advancePath(bool Snap=true)
         {
-            // Current progress : to port
+            // Current progress : completed, test.
 
             if(Snap)
             {
-                    Vector2 oldNode = path.nodes[_pathNodeIndex];
-                    if(oldNode != null)
-                    {
-                            if((_pathMode & PATH_VERTICAL_ONLY) == 0)
-                                    x = oldNode.X - width*0.5;
-                            if((_pathMode & PATH_HORIZONTAL_ONLY) == 0)
-                                    y = oldNode.Y - height*0.5;
-                    }
+                Vector2 oldNode = path.nodes[_pathNodeIndex];
+                if(oldNode != null)
+                {
+                    if((_pathMode & PATH_VERTICAL_ONLY) == 0)
+                        x = oldNode.X - width*0.5f;
+                    if((_pathMode & PATH_HORIZONTAL_ONLY) == 0)
+                        y = oldNode.Y - height*0.5f;
+                }
             }
                         
             _pathNodeIndex += _pathInc;
                         
             if((_pathMode & PATH_BACKWARD) > 0)
             {
-                    if(_pathNodeIndex < 0)
-                    {
-                            _pathNodeIndex = 0;
-                            pathSpeed = 0;
-                    }
+                if(_pathNodeIndex < 0)
+                {
+                    _pathNodeIndex = 0;
+                    pathSpeed = 0;
+                }
             }
             else if((_pathMode & PATH_LOOP_FORWARD) > 0)
             {
-                    if(_pathNodeIndex >= path.nodes.length)
-                            _pathNodeIndex = 0;
+                if(_pathNodeIndex >= path.nodes.Count)
+                    _pathNodeIndex = 0;
             }
             else if((_pathMode & PATH_LOOP_BACKWARD) > 0)
             {
+                if(_pathNodeIndex < 0)
+                {
+                    _pathNodeIndex = path.nodes.Count - 1;
                     if(_pathNodeIndex < 0)
-                    {
-                            _pathNodeIndex = path.nodes.length-1;
-                            if(_pathNodeIndex < 0)
-                                    _pathNodeIndex = 0;
-                    }
+                        _pathNodeIndex = 0;
+                }
             }
             else if((_pathMode & PATH_YOYO) > 0)
             {
-                    if(_pathInc > 0)
+                if(_pathInc > 0)
+                {
+                    if (_pathNodeIndex >= path.nodes.Count)
                     {
-                            if(_pathNodeIndex >= path.nodes.length)
-                            {
-                                    _pathNodeIndex = path.nodes.length-2;
-                                    if(_pathNodeIndex < 0)
-                                            _pathNodeIndex = 0;
-                                    _pathInc = -_pathInc;
-                            }
+                        _pathNodeIndex = path.nodes.Count - 2;
+                        if(_pathNodeIndex < 0)
+                            _pathNodeIndex = 0;
+                       _pathInc = -_pathInc;
                     }
-                    else if(_pathNodeIndex < 0)
-                    {
-                            _pathNodeIndex = 1;
-                            if(_pathNodeIndex >= path.nodes.length)
-                                    _pathNodeIndex = path.nodes.length-1;
-                            if(_pathNodeIndex < 0)
-                                    _pathNodeIndex = 0;
-                            _pathInc = -_pathInc;
-                    }
+                }
+                else if(_pathNodeIndex < 0)
+                {
+                    _pathNodeIndex = 1;
+                    if (_pathNodeIndex >= path.nodes.Count)
+                        _pathNodeIndex = path.nodes.Count - 1;
+                    if(_pathNodeIndex < 0)
+                        _pathNodeIndex = 0;
+                    _pathInc = -_pathInc;
+                }
             }
             else
             {
-                    if(_pathNodeIndex >= path.nodes.length)
-                    {
-                            _pathNodeIndex = path.nodes.length-1;
-                            pathSpeed = 0;
-                    }
+                if (_pathNodeIndex >= path.nodes.Count)
+                {
+                    _pathNodeIndex = path.nodes.Count - 1;
+                    pathSpeed = 0;
+                }
             }
 
             return path.nodes[_pathNodeIndex];
-
-
 
             /*
             if(Snap)
@@ -1014,8 +1025,6 @@ namespace org.flixel
 
             return path.nodes[_pathNodeIndex];
              */
-
-            return Vector2.Zero;
         }
                 
         /// <summary>
@@ -1026,7 +1035,77 @@ namespace org.flixel
         /// </summary>
         public void updatePathMotion()
         {
-            // Current progress : to port
+            // Current progress : incomplete
+            // 1. FlxU.getAngle needs to be updated.
+            // 2. FlxU.rotatePoint needs to be updated.
+
+            //first check if we need to be pointing at the next node yet
+            _point.X = x + width*0.5f;
+            _point.Y = y + height*0.5f;
+            Vector2 node = path.nodes[_pathNodeIndex];
+            float deltaX = node.X - _point.X;
+            float deltaY = node.Y - _point.Y;
+                        
+            bool horizontalOnly = (_pathMode & PATH_HORIZONTAL_ONLY) > 0;
+            bool verticalOnly = (_pathMode & PATH_VERTICAL_ONLY) > 0;
+                        
+            if(horizontalOnly)
+            {
+                if(((deltaX>0)?deltaX:-deltaX) < pathSpeed*FlxG.elapsed)
+                    node = advancePath();
+            }
+            else if(verticalOnly)
+            {
+                if(((deltaY>0)?deltaY:-deltaY) < pathSpeed*FlxG.elapsed)
+                    node = advancePath();
+            }
+            else
+            {
+                if(Math.Sqrt(deltaX*deltaX + deltaY*deltaY) < pathSpeed*FlxG.elapsed)
+                    node = advancePath();
+            }
+                        
+            //then just move toward the current node at the requested speed
+            if(pathSpeed != 0)
+            {
+                //set velocity based on path mode
+                _point.X = x + width*0.5f;
+                _point.Y = y + height*0.5f;
+                if(horizontalOnly || (_point.Y == node.Y))
+                {
+                    velocity.X = (_point.X < node.X)?pathSpeed:-pathSpeed;
+                    if(velocity.X < 0)
+                        pathAngle = -90;
+                    else
+                        pathAngle = 90;
+                    if(!horizontalOnly)
+                        velocity.Y = 0;
+                    }
+                    else if(verticalOnly || (_point.X == node.X))
+                    {
+                        velocity.Y = (_point.Y < node.Y)?pathSpeed:-pathSpeed;
+                        if(velocity.Y < 0)
+                            pathAngle = 0;
+                        else
+                            pathAngle = 180;
+                        if(!verticalOnly)
+                            velocity.X = 0;
+                    }
+                    else
+                    {
+                        
+                        //pathAngle = FlxU.getAngle(_point,node);
+                        //FlxU.rotatePoint(0,pathSpeed,0,0,pathAngle,velocity);
+                    }
+                                
+                    //then set object rotation if necessary
+                    if(_pathRotate)
+                    {
+                        angularVelocity = 0;
+                        angularAcceleration = 0;
+                        angle = pathAngle;
+                    }
+            } 
 
             /*
             //first check if we need to be pointing at the next node yet
