@@ -19,23 +19,18 @@ namespace XNAMode
             base.create();
 
             FlxPath path = new FlxPath(null);
-            path.add(0, 45);
-            path.add(4, 14);
-            path.add(5, 15);
-            path.add(41, 2);
-            path.add(0, 0);
+            path.add(10, 45);
+            path.add(45, 45);
+            path.add(66, 66);
+            path.add(77, 77);
+            path.add(88, 0);
             //collider.path = path;
 
             collider = new FlxSprite(0, 0);
             collider.loadGraphic(FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"), false, false, 8, 8);
             add(collider);
             //collider.acceleration.Y = 5;
-            collider.followPath(path, 51.0f, FlxObject.PATH_FORWARD, false);
-
-            Console.WriteLine(collider.path.nodes[0] + "   " + collider.path.nodes[1]);
-            //collider.flicker(5);
-
-
+            collider.followPath(path, 151.0f, FlxObject.PATH_YOYO, false);
 
         }
 
