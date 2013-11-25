@@ -17,11 +17,16 @@ namespace XNAMode
         {
             base.create();
 
-            FlxText t = new FlxText(10, 10, FlxG.width - 20);
-            add(t);
-            t.text = "Choose:\n";
-            t.text += "1. Level Visualizer\n";
-            t.text += "2. Mode\n";
+            string textInfo = "";
+            textInfo = "Choose:\n";
+            textInfo += "1. Level Visualizer\n";
+            textInfo += "2. Mode\n";
+            textInfo += "3. Path Test\n";
+
+            FlxG.showHud();
+
+            FlxG.setHudText(1, textInfo );
+            FlxG.setHudGamepadButton(FlxButton.ControlPadA, 120, 120);
 
 
         }
@@ -29,9 +34,21 @@ namespace XNAMode
         override public void update()
         {
 
-            if (FlxG.keys.ONE) FlxG.state = new LevelVisualizerState();
-            if (FlxG.keys.TWO) FlxG.state = new MenuState();
-            //if (FlxG.keys.THREE) FlxG.state = 
+            if (FlxG.keys.ONE)
+            {
+                FlxG.state = new LevelVisualizerState();
+                FlxG.hideHud();
+            }
+            if (FlxG.keys.TWO)
+            {
+                FlxG.state = new MenuState();
+                FlxG.hideHud();
+            }
+            if (FlxG.keys.THREE)
+            {
+                FlxG.state = new PathTestState();
+                FlxG.hideHud();
+            }
 
 
             base.update();

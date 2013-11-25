@@ -174,7 +174,8 @@ namespace org.flixel
                     }
                     // character may have path nodes:
                     
-                    string point = "";
+                    string pointX = "";
+                    string pointY = "";
 
                     foreach (XmlNode pathnode in xn2)
                     {
@@ -182,16 +183,17 @@ namespace org.flixel
                         {
                             if (item.Name.ToString() == "x")
                             {
-                                point += item.Value.ToString()+",";
+                                pointX += item.Value.ToString()+",";
                             }
                             else if (item.Name.ToString() == "y")
                             {
-                                point += item.Value.ToString() + ",";
+                                pointY += item.Value.ToString() + ",";
                             }
                         }
                     }
 
-                    levelAttrs.Add("pathNodes", point);
+                    levelAttrs.Add("pathNodesX", pointX);
+                    levelAttrs.Add("pathNodesY", pointY);
 
                     nodeList.Add(levelAttrs);
                 }

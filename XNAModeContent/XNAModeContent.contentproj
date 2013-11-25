@@ -176,13 +176,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="mode\dirt.png">
-      <Name>dirt</Name>
+    <Compile Include="mode\dirt_x.png">
+      <Name>dirt_x</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="mode\dirt_top.png">
-      <Name>dirt_top</Name>
+    <Compile Include="mode\dirt_top_x.png">
+      <Name>dirt_top_x</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -271,13 +271,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="mode\tech_tiles.png">
-      <Name>tech_tiles</Name>
+    <Compile Include="mode\tech_tiles_x.png">
+      <Name>tech_tiles_x</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="mode\tiles_all.png">
-      <Name>tiles_all</Name>
+    <Compile Include="mode\tiles_all_x.png">
+      <Name>tiles_all_x</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -292,13 +292,6 @@
   <ItemGroup>
     <Compile Include="mode\bubble.png">
       <Name>bubble</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="mode\warlock_ss_22x29.png">
-      <Name>warlock_ss_22x29</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -760,6 +753,28 @@
   <ItemGroup>
     <Compile Include="initials\skyPaletteIce.png">
       <Name>skyPaletteIce</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="mode\dirt.png">
+      <Name>dirt</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="mode\dirt_top.png">
+      <Name>dirt_top</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="mode\tech_tiles.png">
+      <Name>tech_tiles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="mode\tiles_all.png">
+      <Name>tiles_all</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
