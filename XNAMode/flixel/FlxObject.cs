@@ -407,6 +407,12 @@ namespace org.flixel
             colVector = Vector2.Zero;
             colOffsets.Add(Vector2.Zero);
             _group = false;
+
+            // Initialize path
+            path = null;
+            pathSpeed = 0;
+            pathAngle = 0;
+
         }
 
 		/// <summary>
@@ -415,6 +421,13 @@ namespace org.flixel
 		virtual public void destroy()
 		{
 			//Nothing to destroy yet
+            
+
+            // path code.
+            if (path != null)
+                path.destroy();
+            path = null;
+
 		}
 
         /// <summary>
@@ -772,6 +785,9 @@ namespace org.flixel
         /// <param name="AutoRotate">Automatically point the object toward the next node.  Assumes the graphic is pointing upward.  Default behavior is false, or no automatic rotation.</param>
         public void followPath(FlxPath Path, float Speed, uint Mode, bool AutoRotate)
         {
+
+            // Current progress : complete, needs testing.
+
             if (Path.nodes.Count <= 0)
             {
                 FlxG.log("WARNING: Paths need at least one node in them to be followed.");
@@ -824,9 +840,20 @@ namespace org.flixel
         /// <summary>
         /// Tells this object to stop following the path its on.
         /// </summary>
-        /// <param name="DestroyPath">Tells this function whether to call destroy on the path object.  Default value is false.</param>
+        /// <param name="DdeyPath">Tells this function whether to call destroy on the path object.  Default value is false.</param>
         public void stopFollowingPath(bool DestroyPath=false)
         {
+
+            // Current progress : complete, to test.
+
+            pathSpeed = 0;
+            if (DestroyPath && (path != null))
+            {
+                path.destroy();
+                path = null;
+            }
+
+
             /*
                 pathSpeed = 0;
                 if(DestroyPath && (path != null))
@@ -844,6 +871,79 @@ namespace org.flixel
         /// <returns>The node (a <code>Vector2</code> object) we are aiming for next.</returns>
         public Vector2 advancePath(bool Snap=true)
         {
+            // Current progress : to port
+
+            if(Snap)
+            {
+                    Vector2 oldNode = path.nodes[_pathNodeIndex];
+                    if(oldNode != null)
+                    {
+                            if((_pathMode & PATH_VERTICAL_ONLY) == 0)
+                                    x = oldNode.X - width*0.5;
+                            if((_pathMode & PATH_HORIZONTAL_ONLY) == 0)
+                                    y = oldNode.Y - height*0.5;
+                    }
+            }
+                        
+            _pathNodeIndex += _pathInc;
+                        
+            if((_pathMode & PATH_BACKWARD) > 0)
+            {
+                    if(_pathNodeIndex < 0)
+                    {
+                            _pathNodeIndex = 0;
+                            pathSpeed = 0;
+                    }
+            }
+            else if((_pathMode & PATH_LOOP_FORWARD) > 0)
+            {
+                    if(_pathNodeIndex >= path.nodes.length)
+                            _pathNodeIndex = 0;
+            }
+            else if((_pathMode & PATH_LOOP_BACKWARD) > 0)
+            {
+                    if(_pathNodeIndex < 0)
+                    {
+                            _pathNodeIndex = path.nodes.length-1;
+                            if(_pathNodeIndex < 0)
+                                    _pathNodeIndex = 0;
+                    }
+            }
+            else if((_pathMode & PATH_YOYO) > 0)
+            {
+                    if(_pathInc > 0)
+                    {
+                            if(_pathNodeIndex >= path.nodes.length)
+                            {
+                                    _pathNodeIndex = path.nodes.length-2;
+                                    if(_pathNodeIndex < 0)
+                                            _pathNodeIndex = 0;
+                                    _pathInc = -_pathInc;
+                            }
+                    }
+                    else if(_pathNodeIndex < 0)
+                    {
+                            _pathNodeIndex = 1;
+                            if(_pathNodeIndex >= path.nodes.length)
+                                    _pathNodeIndex = path.nodes.length-1;
+                            if(_pathNodeIndex < 0)
+                                    _pathNodeIndex = 0;
+                            _pathInc = -_pathInc;
+                    }
+            }
+            else
+            {
+                    if(_pathNodeIndex >= path.nodes.length)
+                    {
+                            _pathNodeIndex = path.nodes.length-1;
+                            pathSpeed = 0;
+                    }
+            }
+
+            return path.nodes[_pathNodeIndex];
+
+
+
             /*
             if(Snap)
             {
@@ -926,6 +1026,8 @@ namespace org.flixel
         /// </summary>
         public void updatePathMotion()
         {
+            // Current progress : to port
+
             /*
             //first check if we need to be pointing at the next node yet
             _point.x = x + width*0.5;

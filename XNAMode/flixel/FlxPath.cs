@@ -48,6 +48,7 @@ namespace org.flixel
         /// <param name="Nodes">Optional, can specify all the points for the path up front if you want.</param>
         public FlxPath(List<Vector2> Nodes = null)
         {
+            // Port progress - complete, needs testing. - draw debug stuff is left incomplete.
 
             if (Nodes==null)
                 nodes = new List<Vector2>();
@@ -74,6 +75,8 @@ namespace org.flixel
         /// </summary>
         public void destroy()
         {
+            // Port progress - complete, needs testing.
+
             //  var debugPathDisplay:DebugPathDisplay = manager;
             //  if(debugPathDisplay != null)
             //      debugPathDisplay.remove(this);
@@ -90,6 +93,8 @@ namespace org.flixel
         /// <param name="Y">Y position of the new path point in world coordinates.</param>
         public void add(float X, float Y)
         {
+            // Port progress - complete, needs testing.
+
             nodes.Add(new Vector2(X, Y));
         }
 
@@ -101,6 +106,8 @@ namespace org.flixel
         /// <param name="Index">Where within the list of path nodes to insert this new point.</param>
         public void addAt(float X, float Y, int Index)
         {
+            // Port progress - complete, needs testing.
+
             if (Index > nodes.Count)
                 Index = nodes.Count;
             nodes.Insert(Index, new Vector2(X, Y));
@@ -115,6 +122,8 @@ namespace org.flixel
         /// <param name="AsReference">Whether to add the point as a reference, or to create a new point with the specified values.</param>
         public void addPoint(Vector2 Node, bool AsReference)
         {
+            // Port progress - complete, needs testing.
+
             if (AsReference)
                 nodes.Add(Node);
             else
@@ -131,6 +140,8 @@ namespace org.flixel
         /// <param name="AsReference">Whether to add the point as a reference, or to create a new point with the specified values.</param>
         public void addPointAt(Vector2 Node, int Index, bool AsReference)
         {
+            // Port progress - complete, needs testing.
+
             if (Index > nodes.Count)
                 Index = nodes.Count;
             if (AsReference)
@@ -147,7 +158,7 @@ namespace org.flixel
         /// <returns>The node that was excised.  Returns null if the node was not found.</returns>
         public Vector2 remove(Vector2 Node)
         {
-            // TEST! 
+            // Port progress - incomplete. Needs testing.
 
             int index = nodes.IndexOf(Node);
 
@@ -169,6 +180,15 @@ namespace org.flixel
         /// <returns>The node that was excised.  Returns null if there were no nodes in the path.</returns>
         public Vector2 removeAt(uint Index)
         {
+            // Port progress - incomplete.
+
+            /*
+            if (nodes.length <= 0)
+                return null;
+            if (Index >= nodes.length)
+                Index = nodes.length - 1;
+            return nodes.splice(Index, 1)[0];
+             */
 
             return Vector2.Zero;
         }
@@ -179,6 +199,8 @@ namespace org.flixel
         /// <returns>The first node in the path.</returns>
         public Vector2 head()
         {
+            // Port progress - complete, needs testing.
+
             if (nodes.Count > 0)
                 return nodes[0];
             return Vector2.Zero;
@@ -190,6 +212,8 @@ namespace org.flixel
         /// <returns>The last node in the path.</returns>
         public Vector2 tail()
         {
+            // Port progress - complete, needs testing.
+            
             if (nodes.Count > 0)
                 return nodes[nodes.Count - 1];
             return Vector2.Zero;
@@ -204,7 +228,7 @@ namespace org.flixel
         /// </summary>
         public void drawDebug()
         {
-
+            // Port progress - incomplete.
         }
 
 
