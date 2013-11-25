@@ -254,6 +254,7 @@ namespace org.flixel
         }
         /// <summary>
         /// Load an image from an embedded graphic file.
+        /// <para>Load in this fashion : FlxG.Content.Load<Texture2D>("initials/autotiles_16x16")</para>
         /// </summary>
         /// <param name="Graphic">The image you want to use.</param>
         /// <param name="Animated">Whether the Graphic parameter is a single sprite or a row of sprites.</param>
@@ -382,6 +383,7 @@ namespace org.flixel
         /// </summary>
         public override void update()
         {
+            preUpdate();
             updateMotion();
             updateAnimation();
             updateFlickering();

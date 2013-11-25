@@ -132,7 +132,7 @@
     <Compile Include="fourchambers\Levels\BasePlayStateFromOel.cs" />
     <Compile Include="fourchambers\Levels\BasePlayStateFromOelTutorial.cs" />
     <Compile Include="fourchambers\Levels\Door.cs" />
-    <Compile Include="fourchambers\Levels\LevelVisualizerState.cs" />
+    <Compile Include="TestStates\LevelVisualizerState.cs" />
     <Compile Include="fourchambers\Weapons\BigExplosion.cs" />
     <Compile Include="fx\BloomComponent.cs" />
     <Compile Include="fx\BloomSettings.cs" />
@@ -246,6 +246,7 @@
     <Compile Include="OgmoXNA\Values\OgmoValueTemplate.cs" />
     <Compile Include="OgmoXNA\Values\OgmoValueTemplateOfT.cs" />
     <Compile Include="OgmoXNA\Values\OgmoValueTemplateReader.cs" />
+    <Compile Include="TestStates\PathTestState.cs" />
     <Compile Include="XNATweener\Back.cs" />
     <Compile Include="XNATweener\Bounce.cs" />
     <Compile Include="XNATweener\Circular.cs" />

@@ -412,6 +412,7 @@ namespace org.flixel
             path = null;
             pathSpeed = 0;
             pathAngle = 0;
+            _pathNodeIndex = 0;
 
         }
 
@@ -523,6 +524,8 @@ namespace org.flixel
         /// </summary>
         public virtual void updateFlickering()
         {
+            //Console.WriteLine("Updatinf flickfer from object");
+
             if (flickering())
             {
                 if (_flickerTimer > 0)
@@ -550,6 +553,7 @@ namespace org.flixel
         /// </summary>
         public void preUpdate()
         {
+            //Console.WriteLine("Path: {0}, {1}, {2}, {3}", path, pathSpeed, path.nodes[_pathNodeIndex], _pathNodeIndex);
             if ((path != null) && (pathSpeed != 0) && (path.nodes[_pathNodeIndex] != null))
                 updatePathMotion();
         }
@@ -559,6 +563,8 @@ namespace org.flixel
 		/// </summary>
         virtual public void update()
 		{
+            //Console.WriteLine("Path: {0}, {1}, {2}, {3}", path, pathSpeed, path.nodes[_pathNodeIndex], _pathNodeIndex);
+
             preUpdate();
 			updateMotion();
 			updateFlickering();
@@ -884,10 +890,14 @@ namespace org.flixel
         /// <returns>The node (a <code>Vector2</code> object) we are aiming for next.</returns>
         public Vector2 advancePath(bool Snap=true)
         {
+            Console.WriteLine("advancePath " + _pathNodeIndex + " " + _pathInc);
+
             // Current progress : completed, test.
 
             if(Snap)
             {
+                Console.WriteLine("snap == YES " + _pathNodeIndex + " " + _pathInc);
+
                 Vector2 oldNode = path.nodes[_pathNodeIndex];
                 if(oldNode != null)
                 {
@@ -902,6 +912,8 @@ namespace org.flixel
                         
             if((_pathMode & PATH_BACKWARD) > 0)
             {
+                Console.WriteLine("PATH_BACKWARD " + _pathNodeIndex);
+
                 if(_pathNodeIndex < 0)
                 {
                     _pathNodeIndex = 0;
@@ -910,11 +922,15 @@ namespace org.flixel
             }
             else if((_pathMode & PATH_LOOP_FORWARD) > 0)
             {
+                Console.WriteLine("PATH_LOOP_FORWARD " + _pathNodeIndex);
+
                 if(_pathNodeIndex >= path.nodes.Count)
                     _pathNodeIndex = 0;
             }
             else if((_pathMode & PATH_LOOP_BACKWARD) > 0)
             {
+                Console.WriteLine("PATH_LOOP_BACKWARD " + _pathNodeIndex);
+
                 if(_pathNodeIndex < 0)
                 {
                     _pathNodeIndex = path.nodes.Count - 1;
@@ -924,6 +940,8 @@ namespace org.flixel
             }
             else if((_pathMode & PATH_YOYO) > 0)
             {
+                Console.WriteLine("PATH_YOYO " + _pathNodeIndex);
+
                 if(_pathInc > 0)
                 {
                     if (_pathNodeIndex >= path.nodes.Count)
@@ -946,6 +964,8 @@ namespace org.flixel
             }
             else
             {
+                Console.WriteLine(" else " + _pathNodeIndex);
+
                 if (_pathNodeIndex >= path.nodes.Count)
                 {
                     _pathNodeIndex = path.nodes.Count - 1;
@@ -1035,6 +1055,8 @@ namespace org.flixel
         /// </summary>
         public void updatePathMotion()
         {
+            //Console.WriteLine("updatePathMotion _pathNodeIndex " + _pathNodeIndex);
+
             // Current progress : complete, to test
 
             //first check if we need to be pointing at the next node yet
@@ -1059,6 +1081,8 @@ namespace org.flixel
             }
             else
             {
+                Console.WriteLine("else !!!  " + _pathNodeIndex + "  " + Math.Sqrt(deltaX * deltaX + deltaY * deltaY) + " " + pathSpeed * FlxG.elapsed);
+
                 if(Math.Sqrt(deltaX*deltaX + deltaY*deltaY) < pathSpeed*FlxG.elapsed)
                     node = advancePath();
             }
@@ -1093,7 +1117,7 @@ namespace org.flixel
                     {
                         
                         pathAngle = FlxU.getAngle(_point,node);
-                        velocity = FlxU.rotatePoint(0,pathSpeed,0,0,pathAngle);
+                        velocity = (FlxU.rotatePoint(0,pathSpeed,0,0,pathAngle)) * - 1;
 
                     }
                                 
