@@ -187,6 +187,86 @@ namespace org.flixel
             float dy = PivotY - Y;
             return new Vector2((float)(PivotX + Math.Cos(radians) * dx - Math.Sin(radians) * dy), (float)(PivotY - (Math.Sin(radians) * dx + Math.Cos(radians) * dy)));
         }
+        /**
+                * Rotates a point in 2D space around another point by the given angle.
+                * 
+                * @param        X                The X coordinate of the point you want to rotate.
+                * @param        Y                The Y coordinate of the point you want to rotate.
+                * @param        PivotX        The X coordinate of the point you want to rotate around.
+                * @param        PivotY        The Y coordinate of the point you want to rotate around.
+                * @param        Angle        Rotate the point by this many degrees.
+                * @param        Point        Optional <code>FlxPoint</code> to store the results in.
+                * 
+                * @return        A <code>FlxPoint</code> containing the coordinates of the rotated point.
+                */
+
+        /*
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="PivotX"></param>
+        /// <param name="PivotY"></param>
+        /// <param name="Angle"></param>
+        /// <param name="Point"></param>
+        /// <returns></returns>
+        static public Vector2 rotatePoint(float X, float Y, float PivotX, float PivotY, float Angle, Vector2 Point)
+        {
+            float sin = 0;
+            float cos = 0;
+            float radians = Angle * -0.017453293f;
+            while (radians < -3.14159265f)
+                    radians += 6.28318531f;
+            while (radians >  3.14159265f)
+                    radians = radians - 6.28318531f;
+                        
+            if (radians < 0)
+            {
+                sin = 1.27323954f * radians + .405284735f * radians * radians;
+                if (sin < 0)
+                    sin = .225f * (sin *-sin - sin) + sin;
+                else
+                    sin = .225f * (sin * sin - sin) + sin;
+            }
+            else
+            {
+                    sin = 1.27323954 * radians - 0.405284735 * radians * radians;
+                    if (sin < 0)
+                            sin = .225 * (sin *-sin - sin) + sin;
+                    else
+                            sin = .225 * (sin * sin - sin) + sin;
+            }
+                        
+            radians += 1.57079632;
+            if (radians >  3.14159265)
+                    radians = radians - 6.28318531;
+            if (radians < 0)
+            {
+                    cos = 1.27323954 * radians + 0.405284735 * radians * radians;
+                    if (cos < 0)
+                            cos = .225 * (cos *-cos - cos) + cos;
+                    else
+                            cos = .225 * (cos * cos - cos) + cos;
+            }
+            else
+            {
+                    cos = 1.27323954 * radians - 0.405284735 * radians * radians;
+                    if (cos < 0)
+                            cos = .225 * (cos *-cos - cos) + cos;
+                    else
+                            cos = .225 * (cos * cos - cos) + cos;
+            }
+                        
+            var dx:Number = X-PivotX;
+            var dy:Number = PivotY+Y; //Y axis is inverted in flash, normally this would be a subtract operation
+            if(Point == null)
+                    Point = new FlxPoint();
+            Point.x = PivotX + cos*dx - sin*dy;
+            Point.y = PivotY - sin*dx - cos*dy;
+            return Point;
+        }
+        */
 
         /// <summary>
         /// Calculates the angle between a point and the origin (0,0).
@@ -199,17 +279,38 @@ namespace org.flixel
             return (float)(Math.Atan2(Y, X) * 180f / Math.PI);
         }
 
-        /**
-         * 
-         * 
-         * @param   Red     
-         * @param   Green   
-         * @param   Blue    
-         * @param   Alpha   How opaque the color should be, either between 0 and 1 or 0 and 255.
-         * 
-         * @return  
-         */
-        //
+        /// <summary>
+        /// Calculates the angle between two points.  0 degrees points straight up.
+        /// </summary>
+        /// <param name="Point1">The X coordinate of the point.</param>
+        /// <param name="Point2">The Y coordinate of the point.</param>
+        /// <returns>The angle in degrees, between -180 and 180.</returns>
+        public static float getAngle(Vector2 Point1, Vector2 Point2)
+        {
+
+            float x = Point2.X - Point1.X;
+            float y = Point2.Y - Point1.Y;
+            if((x == 0) && (y == 0))
+                return 0;
+            float c1 = 3.14159265f * 0.25f;
+            float c2 = 3 * c1;
+            float ay = (y < 0)?-y:y;
+            float angle = 0;
+            if (x >= 0)
+                angle = c1 - c1 * ((x - ay) / (x + ay));
+            else
+                angle = c2 - c1 * ((x + ay) / (ay - x));
+            angle = ((y < 0)?-angle:angle)*57.2957796f;
+            if(angle > 90)
+                angle = angle - 270;
+            else
+                angle += 90;
+            return angle;
+
+
+        }
+
+
         /// <summary>
         /// Generate a Flash <code>uint</code> color from RGBA components.
         /// </summary>
@@ -1057,6 +1158,25 @@ namespace org.flixel
 
             return null;
         }
+
+        /// <summary>
+        /// Calculate the distance between two points.
+        /// </summary>
+        /// <param name="Point1">A <code>FlxPoint</code> object referring to the first location.</param>
+        /// <param name="Point2">A <code>FlxPoint</code> object referring to the second location.</param>
+        /// <returns>The distance between the two points as a floating point <code>Number</code> object.</returns>
+        public static float getDistance(Vector2 Point1, Vector2 Point2)
+        {
+            float dx = Point1.X - Point2.X;
+            float dy = Point1.Y - Point2.Y;
+            return (float)Math.Sqrt(dx * dx + dy * dy);
+        }
+
+        
+
+
+
+
 
 
     }

@@ -1035,9 +1035,7 @@ namespace org.flixel
         /// </summary>
         public void updatePathMotion()
         {
-            // Current progress : incomplete
-            // 1. FlxU.getAngle needs to be updated.
-            // 2. FlxU.rotatePoint needs to be updated.
+            // Current progress : complete, to test
 
             //first check if we need to be pointing at the next node yet
             _point.X = x + width*0.5f;
@@ -1094,8 +1092,9 @@ namespace org.flixel
                     else
                     {
                         
-                        //pathAngle = FlxU.getAngle(_point,node);
-                        //FlxU.rotatePoint(0,pathSpeed,0,0,pathAngle,velocity);
+                        pathAngle = FlxU.getAngle(_point,node);
+                        velocity = FlxU.rotatePoint(0,pathSpeed,0,0,pathAngle);
+
                     }
                                 
                     //then set object rotation if necessary
