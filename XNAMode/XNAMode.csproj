@@ -132,6 +132,7 @@
     <Compile Include="fourchambers\Levels\BasePlayStateFromOel.cs" />
     <Compile Include="fourchambers\Levels\BasePlayStateFromOelTutorial.cs" />
     <Compile Include="fourchambers\Levels\Door.cs" />
+    <Compile Include="TestStates\DebugMenuState.cs" />
     <Compile Include="TestStates\LevelVisualizerState.cs" />
     <Compile Include="fourchambers\Weapons\BigExplosion.cs" />
     <Compile Include="fx\BloomComponent.cs" />
@@ -417,7 +418,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ulf\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--
