@@ -890,13 +890,13 @@ namespace org.flixel
         /// <returns>The node (a <code>Vector2</code> object) we are aiming for next.</returns>
         public Vector2 advancePath(bool Snap=true)
         {
-            Console.WriteLine("advancePath " + _pathNodeIndex + " " + _pathInc);
+            //Console.WriteLine("advancePath " + _pathNodeIndex + " " + _pathInc);
 
             // Current progress : completed, test.
 
             if(Snap)
             {
-                Console.WriteLine("snap == YES " + _pathNodeIndex + " " + _pathInc);
+                //Console.WriteLine("snap == YES " + _pathNodeIndex + " " + _pathInc);
 
                 Vector2 oldNode = path.nodes[_pathNodeIndex];
                 if(oldNode != null)
@@ -912,7 +912,7 @@ namespace org.flixel
                         
             if((_pathMode & PATH_BACKWARD) > 0)
             {
-                Console.WriteLine("PATH_BACKWARD " + _pathNodeIndex);
+                //Console.WriteLine("PATH_BACKWARD " + _pathNodeIndex);
 
                 if(_pathNodeIndex < 0)
                 {
@@ -922,14 +922,14 @@ namespace org.flixel
             }
             else if((_pathMode & PATH_LOOP_FORWARD) > 0)
             {
-                Console.WriteLine("PATH_LOOP_FORWARD " + _pathNodeIndex);
+                //Console.WriteLine("PATH_LOOP_FORWARD " + _pathNodeIndex);
 
                 if(_pathNodeIndex >= path.nodes.Count)
                     _pathNodeIndex = 0;
             }
             else if((_pathMode & PATH_LOOP_BACKWARD) > 0)
             {
-                Console.WriteLine("PATH_LOOP_BACKWARD " + _pathNodeIndex);
+                //Console.WriteLine("PATH_LOOP_BACKWARD " + _pathNodeIndex);
 
                 if(_pathNodeIndex < 0)
                 {
@@ -940,7 +940,7 @@ namespace org.flixel
             }
             else if((_pathMode & PATH_YOYO) > 0)
             {
-                Console.WriteLine("PATH_YOYO " + _pathNodeIndex);
+                //Console.WriteLine("PATH_YOYO " + _pathNodeIndex);
 
                 if(_pathInc > 0)
                 {
@@ -964,7 +964,7 @@ namespace org.flixel
             }
             else
             {
-                Console.WriteLine(" else " + _pathNodeIndex);
+                //Console.WriteLine(" else " + _pathNodeIndex);
 
                 if (_pathNodeIndex >= path.nodes.Count)
                 {
@@ -1081,7 +1081,7 @@ namespace org.flixel
             }
             else
             {
-                Console.WriteLine("else !!!  " + _pathNodeIndex + "  " + Math.Sqrt(deltaX * deltaX + deltaY * deltaY) + " " + pathSpeed * FlxG.elapsed);
+                //Console.WriteLine("else !!!  " + _pathNodeIndex + "  " + Math.Sqrt(deltaX * deltaX + deltaY * deltaY) + " " + pathSpeed * FlxG.elapsed);
 
                 if(Math.Sqrt(deltaX*deltaX + deltaY*deltaY) < pathSpeed*FlxG.elapsed)
                     node = advancePath();
@@ -1102,102 +1102,35 @@ namespace org.flixel
                         pathAngle = 90;
                     if(!horizontalOnly)
                         velocity.Y = 0;
-                    }
-                    else if(verticalOnly || (_point.X == node.X))
-                    {
-                        velocity.Y = (_point.Y < node.Y)?pathSpeed:-pathSpeed;
-                        if(velocity.Y < 0)
-                            pathAngle = 0;
-                        else
-                            pathAngle = 180;
-                        if(!verticalOnly)
-                            velocity.X = 0;
-                    }
+                }
+                else if(verticalOnly || (_point.X == node.X))
+                {
+                    velocity.Y = (_point.Y < node.Y)?pathSpeed:-pathSpeed;
+                    if(velocity.Y < 0)
+                        pathAngle = 0;
                     else
-                    {
+                        pathAngle = 180;
+                    if(!verticalOnly)
+                        velocity.X = 0;
+                }
+                else
+                {
                         
-                        pathAngle = FlxU.getAngle(_point,node);
-                        velocity = (FlxU.rotatePoint(0,pathSpeed,0,0,pathAngle)) * - 1;
+                    pathAngle = FlxU.getAngle(_point,node);
+                    velocity = (FlxU.rotatePoint(0,pathSpeed,0,0,pathAngle)) * - 1;
 
-                    }
+                }
                                 
-                    //then set object rotation if necessary
-                    if(_pathRotate)
-                    {
-                        angularVelocity = 0;
-                        angularAcceleration = 0;
-                        angle = pathAngle;
-                    }
-            } 
-
-            /*
-            //first check if we need to be pointing at the next node yet
-            _point.x = x + width*0.5;
-            _point.y = y + height*0.5;
-            var node:FlxPoint = path.nodes[_pathNodeIndex];
-            var deltaX:Number = node.x - _point.x;
-            var deltaY:Number = node.y - _point.y;
-                        
-            var horizontalOnly:Boolean = (_pathMode & PATH_HORIZONTAL_ONLY) > 0;
-            var verticalOnly:Boolean = (_pathMode & PATH_VERTICAL_ONLY) > 0;
-                        
-            if(horizontalOnly)
-            {
-                    if(((deltaX>0)?deltaX:-deltaX) < pathSpeed*FlxG.elapsed)
-                            node = advancePath();
+                //then set object rotation if necessary
+                if(_pathRotate)
+                {
+                    angularVelocity = 0;
+                    angularAcceleration = 0;
+                    angle = pathAngle;
+                }
             }
-            else if(verticalOnly)
-            {
-                    if(((deltaY>0)?deltaY:-deltaY) < pathSpeed*FlxG.elapsed)
-                            node = advancePath();
-            }
-            else
-            {
-                    if(Math.sqrt(deltaX*deltaX + deltaY*deltaY) < pathSpeed*FlxG.elapsed)
-                            node = advancePath();
-            }
-                        
-            //then just move toward the current node at the requested speed
-            if(pathSpeed != 0)
-            {
-                    //set velocity based on path mode
-                    _point.x = x + width*0.5;
-                    _point.y = y + height*0.5;
-                    if(horizontalOnly || (_point.y == node.y))
-                    {
-                            velocity.x = (_point.x < node.x)?pathSpeed:-pathSpeed;
-                            if(velocity.x < 0)
-                                    pathAngle = -90;
-                            else
-                                    pathAngle = 90;
-                            if(!horizontalOnly)
-                                    velocity.y = 0;
-                    }
-                    else if(verticalOnly || (_point.x == node.x))
-                    {
-                            velocity.y = (_point.y < node.y)?pathSpeed:-pathSpeed;
-                            if(velocity.y < 0)
-                                    pathAngle = 0;
-                            else
-                                    pathAngle = 180;
-                            if(!verticalOnly)
-                                    velocity.x = 0;
-                    }
-                    else
-                    {
-                            pathAngle = FlxU.getAngle(_point,node);
-                            FlxU.rotatePoint(0,pathSpeed,0,0,pathAngle,velocity);
-                    }
-                                
-                    //then set object rotation if necessary
-                    if(_pathRotate)
-                    {
-                            angularVelocity = 0;
-                            angularAcceleration = 0;
-                            angle = pathAngle;
-                    }
-            }   
-            * */
         }
+
+        // end
     }
 }

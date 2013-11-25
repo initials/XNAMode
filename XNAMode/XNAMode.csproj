@@ -330,8 +330,8 @@
     <Compile Include="XNATweener\Quartic.cs" />
     <Compile Include="XNATweener\Quintic.cs" />
     <Compile Include="XNATweener\Sinusoidal.cs" />
-    <Compile Include="TemplateSprite.cs" />
-    <Compile Include="TemplateState.cs" />
+    <Compile Include="Templates\TemplateSprite.cs" />
+    <Compile Include="Templates\TemplateState.cs" />
     <Compile Include="XNATweener\Tweener.cs" />
   </ItemGroup>
   <ItemGroup>
