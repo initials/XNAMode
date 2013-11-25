@@ -323,7 +323,7 @@ namespace org.flixel
         protected int _pathInc;
 
         /// <summary>
-        /// Internal flag for whether hte object's angle should be adjusted to the path angle during path follow behavior.
+        /// Internal flag for whether the object's angle should be adjusted to the path angle during path follow behavior.
         /// </summary>
         protected bool _pathRotate;
 
