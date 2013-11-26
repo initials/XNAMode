@@ -43,7 +43,7 @@ namespace XNAMode
             collider.followPath(path, 15.0f, FlxObject.PATH_YOYO, false);
 
 
-            pather = new FlxSprite(0, 0);
+            pather = new FlxSprite(16, 16);
             pather.loadGraphic(FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"), false, false, 8, 8);
             pather.color = new Color(1.0f, 0, 0);
             add(pather);
@@ -83,8 +83,18 @@ namespace XNAMode
                         //convert PathType to a uint (FlxObject.PATH_LOOP_FORWARD) etc
                         uint path_type = FlxPath.convertStringValueForPathType(nodes["pathType"]);
 
-                        //make the object follow the new path.
-                        pather.followPath(xpath, float.Parse(nodes["pathSpeed"]), path_type, false);
+                        // 1.
+                        // make the object follow the new path.
+                        
+                        //pather.followPath(xpath, float.Parse(nodes["pathSpeed"]), path_type, false);
+                        
+                        
+                        // OR
+                        // 2.
+                        // just assign the path to follow at an event.
+                        
+                        pather.assignPath(xpath, float.Parse(nodes["pathSpeed"]), path_type, false);
+
                     }
                 }
 
@@ -95,6 +105,20 @@ namespace XNAMode
 
         override public void update()
         {
+            if (FlxG.mouse.justPressedLeftButton())
+            {
+                Console.WriteLine("Start following");
+
+                pather.startFollowingPath();
+
+            }
+            if (FlxG.mouse.justPressedRightButton())
+            {
+                Console.WriteLine("Start following");
+
+                pather.stopFollowingPath();
+
+            }
             base.update();
         }
     }
