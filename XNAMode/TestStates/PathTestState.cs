@@ -105,6 +105,9 @@ namespace XNAMode
 
         override public void update()
         {
+            if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B) && FlxG.debug)
+                FlxG.showBounds = !FlxG.showBounds;
+
             if (FlxG.mouse.justPressedLeftButton())
             {
                 Console.WriteLine("Start following");

@@ -680,6 +680,16 @@ namespace org.flixel
                 new Rectangle((int)(FlxU.floor(x + FlxU.roundingError) + FlxU.floor(FlxG.scroll.X * scrollFactor.X)),
                     (int)(FlxU.floor(y + FlxU.roundingError) + FlxU.floor(FlxG.scroll.Y * scrollFactor.Y)), (int)width, (int)height),
                 new Rectangle(1, 1, 1, 1), getBoundingColor());
+
+            if (path != null)
+            {
+                foreach (var item in path.nodes)
+                {
+                    spriteBatch.Draw(FlxG.XnaSheet,
+                        new Rectangle((int)item.X, (int)item.Y, 4, 4),
+                        new Rectangle(1, 1, 1, 1), Color.Azure);
+                }
+            }
         }
 
         /// <summary>
