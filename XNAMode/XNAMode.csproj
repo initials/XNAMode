@@ -134,6 +134,7 @@
     <Compile Include="fourchambers\Levels\Door.cs" />
     <Compile Include="TestStates\CleanTestState.cs" />
     <Compile Include="TestStates\DebugMenuState.cs" />
+    <Compile Include="TestStates\LevelBeginTextState.cs" />
     <Compile Include="TestStates\LevelVisualizerState.cs" />
     <Compile Include="fourchambers\Weapons\BigExplosion.cs" />
     <Compile Include="fx\BloomComponent.cs" />

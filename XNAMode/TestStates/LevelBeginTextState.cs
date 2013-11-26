@@ -10,21 +10,28 @@ using System.Xml.Linq;
 
 namespace XNAMode
 {
-    public class CleanTestState : FlxState
+    public class LevelBeginTextState : FlxState
     {
+        float counter;
+        FlxText t;
 
         override public void create()
         {
             base.create();
 
-            //FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
+            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
+
+            t = new LevelBeginText(0, (FlxG.height / 2) - 40, FlxG.width);
+            t.text = "START OF LEVELS";
+            add(t);
+
 
 
         }
 
         override public void update()
         {
-
+            
 
 
 
