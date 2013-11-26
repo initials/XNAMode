@@ -1,11 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using org.flixel;
 
-namespace FourChambers.TestStates
+using System.Linq;
+using System.Xml.Linq;
+
+namespace XNAMode
 {
-    class CleanTestState
+    public class CleanTestState : FlxState
     {
+
+        override public void create()
+        {
+            base.create();
+
+            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
+
+
+        }
+
+        override public void update()
+        {
+
+
+
+
+            base.update();
+        }
+
+
     }
 }

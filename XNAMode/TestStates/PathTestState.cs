@@ -21,7 +21,7 @@ namespace XNAMode
         FlxSprite collider;
         FlxSprite pather;
         FlxPath path;
-
+        Bat bat;
         int type;
 
         override public void create()
@@ -49,15 +49,12 @@ namespace XNAMode
             // Tell the sprite to follow the path. 
             collider.followPath(path, 15.0f, FlxObject.PATH_YOYO, false);
 
-
             pather = new FlxSprite(16, 16);
             pather.loadGraphic(FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"), false, false, 8, 8);
             pather.color = new Color(1.0f, 0, 0);
             add(pather);
 
-
-
-
+            
             // Loading a path from an Ogmo Level.
 
             // Create a list 
@@ -66,7 +63,7 @@ namespace XNAMode
             // load level 3
             /// TO DO: create a template test level.
             
-            actorsAttrs = FlxXMLReader.readNodesFromOelFile("ogmoLevels/level3.oel", "level/ActorsLayer");
+            actorsAttrs = FlxXMLReader.readNodesFromOelFile("ogmoLevels/PathTesting.oel", "level/ActorsLayer");
 
             // loop through the actors.
             foreach (Dictionary<string, string> nodes in actorsAttrs)
@@ -81,28 +78,24 @@ namespace XNAMode
                     // add the first point of the character.
                     xpath.add(float.Parse(nodes["x"]), float.Parse(nodes["y"]));
 
-                    //simple check - can remove later.
-                    if (nodes["Name"] == "bat")
-                    {
-                        // add all the points.
-                        xpath.addPointsUsingStrings(nodes["pathNodesX"], nodes["pathNodesY"]);
+                    // add all the points.
+                    xpath.addPointsUsingStrings(nodes["pathNodesX"], nodes["pathNodesY"]);
 
-                        //convert PathType to a uint (FlxObject.PATH_LOOP_FORWARD) etc
-                        uint path_type = FlxPath.convertStringValueForPathType(nodes["pathType"]);
+                    //convert PathType to a uint (FlxObject.PATH_LOOP_FORWARD) etc
+                    uint path_type = FlxPath.convertStringValueForPathType(nodes["pathType"]);
 
-                        // 1.
-                        // make the object follow the new path.
+                    // 1.
+                    // make the object follow the new path.
                         
-                        //pather.followPath(xpath, float.Parse(nodes["pathSpeed"]), path_type, false);
+                    //pather.followPath(xpath, float.Parse(nodes["pathSpeed"]), path_type, false);
                         
                         
-                        // OR
-                        // 2.
-                        // just assign the path to follow at an event.
+                    // OR
+                    // 2.
+                    // just assign the path to follow at an event.
                         
-                        pather.assignPath(xpath, float.Parse(nodes["pathSpeed"]), path_type, false);
-
-                    }
+                    pather.assignPath(xpath, float.Parse(nodes["pathSpeed"]), path_type, false);
+                    
                 }
 
             }
@@ -153,13 +146,7 @@ namespace XNAMode
                     collider.followPath(path, speed, FlxObject.PATH_YOYO, false);
                     FlxG.setHudText(1, "PATH_YOYO");
                 }
-
-
-
-
-
-
-
+                
                 type++;
                 if (type == 7) type = 0;
 
@@ -173,7 +160,6 @@ namespace XNAMode
                 Console.WriteLine("Start following");
 
                 pather.startFollowingPath();
-
             }
             if (FlxG.mouse.justPressedRightButton())
             {

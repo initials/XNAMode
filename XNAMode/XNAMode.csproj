@@ -382,8 +382,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="ogmoLevels\xlevel1.oel">
+    <None Include="ogmoLevels\PathTesting.oel">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="XNAMode_TemporaryKey.pfx" />
   </ItemGroup>
