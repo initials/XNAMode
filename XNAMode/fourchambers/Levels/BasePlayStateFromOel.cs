@@ -253,6 +253,7 @@ namespace XNAMode
 
             base.create();
             
+            // used for tutorial prompts.
             FlxG._game.hud.p1HudText.alignment = FlxJustification.Center;
 
 
@@ -386,6 +387,11 @@ namespace XNAMode
                 bool pc = false;
                 int localWidth = 0;
                 int localHeight = 0;
+                string PX = "";
+                string PY = "";
+                uint PT = 0;
+                int PS = 0;
+
 
                 if (nodes.ContainsKey("isPlayerControlled"))
                 {
@@ -400,7 +406,12 @@ namespace XNAMode
                     localHeight = Convert.ToInt32(nodes["height"]);
                 }
 
-                buildActor(nodes["Name"], 1, pc , Convert.ToInt32(nodes["x"]),Convert.ToInt32(nodes["y"]), localWidth, localHeight);
+                if (nodes.ContainsKey("PathNodesX")) PX = nodes["pathNodesX"];
+                if (nodes.ContainsKey("PathNodesY")) PY = nodes["pathNodesY"];
+                if (nodes.ContainsKey("PathType")) PT = FlxPath.convertStringValueForPathType(nodes["pathType"]);
+                if (nodes.ContainsKey("PathSpeed")) Convert.ToInt32(nodes["pathSpeed"]);
+
+                buildActor(nodes["Name"], 1, pc , Convert.ToInt32(nodes["x"]),Convert.ToInt32(nodes["y"]), localWidth, localHeight, PX,PY,PT,PS);
 
                 if (nodes["Name"] == "_event")
                 {
@@ -990,9 +1001,19 @@ namespace XNAMode
 
         public void buildActor(string ActorType, int NumberOfActors)
         {
-            buildActor(ActorType, NumberOfActors, false, 0, 0,0,0);
+            buildActor(ActorType, NumberOfActors, false, 0, 0,0,0, "", "", 0, 40);
         }
-        public void buildActor(string ActorType, int NumberOfActors, bool playerControlled = false, int x=0, int y=0, int width=0, int height=0)
+        public void buildActor(string ActorType, 
+            int NumberOfActors, 
+            bool playerControlled = false, 
+            int x=0, 
+            int y=0, 
+            int width=0, 
+            int height=0, 
+            string PathNodesX="", 
+            string PathNodesY="",
+            uint PathType=0,
+            int PathSpeed=40)
         {
             Console.WriteLine("Building actor " + ActorType + " " + NumberOfActors);
 
@@ -1106,9 +1127,17 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    
                     bat = new Bat(x, y);
                     actors.add(bat);
+
+                    if (PathNodesX != "" && PathNodesY != "")
+                    {
+                        FlxPath xpath = new FlxPath(null);
+                        xpath.add(x,y);
+                        xpath.addPointsUsingStrings(PathNodesX,PathNodesY);
+                        bat.followPath(xpath, PathSpeed, PathType, false);
+                    }
+
                 }
             }
             #endregion
@@ -1916,6 +1945,15 @@ namespace XNAMode
                     zinger = new Zinger(x, y);
                     zingers.add(zinger);
                     actors.add(zinger);
+
+                    if (PathNodesX != "" && PathNodesY != "")
+                    {
+                        FlxPath xpath = new FlxPath(null);
+                        xpath.add(x, y);
+                        xpath.addPointsUsingStrings(PathNodesX, PathNodesY);
+                        zinger.followPath(xpath, PathSpeed, PathType, false);
+                    }
+
 
                     if (FourChambers_Globals.PIRATE_COPY)
                     {

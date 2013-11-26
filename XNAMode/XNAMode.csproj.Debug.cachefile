@@ -119,6 +119,7 @@ Content\mode\dirt.xnb
 Content\mode\dirt_top.xnb
 Content\mode\tech_tiles.xnb
 Content\mode\tiles_all.xnb
+Content\flixel\path_box.xnb
 Content\mode\button.wma
 levelSettings.xml
 ogmoLevels\level1.oel

@@ -47,7 +47,7 @@ namespace XNAMode
             if (FlxG.keys.THREE)
             {
                 FlxG.state = new PathTestState();
-                FlxG.hideHud();
+                //FlxG.hideHud();
             }
 
 

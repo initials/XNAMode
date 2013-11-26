@@ -20,22 +20,29 @@ namespace XNAMode
         /// </summary>
         FlxSprite collider;
         FlxSprite pather;
+        FlxPath path;
+
+        int type;
 
         override public void create()
         {
             base.create();
+            //FlxG.resetHud();
+            FlxG.setHudText(1, "Path Tests");
+
+            type = 0;
 
             // Create the path.
-            FlxPath path = new FlxPath(null);
-            path.add(10, 45);
-            path.add(45, 45);
-            path.add(66, 66);
-            path.add(77, 77);
-            path.add(88, 0);
-
+            path = new FlxPath(null);
+            path.add(10, 10);
+            path.add(90, 10);
+            path.add(90, 40);
+            path.add(10, 40);
+            path.add(10, 70);
+            path.add(90, 70);
 
             // Create an object to follow the path.
-            collider = new FlxSprite(0, 0);
+            collider = new FlxSprite(10, 10);
             collider.loadGraphic(FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"), false, false, 8, 8);
             add(collider);
 
@@ -105,6 +112,59 @@ namespace XNAMode
 
         override public void update()
         {
+
+            if (FlxG.keys.justPressed(Keys.A))
+            {
+                FlxG.showHud();
+
+                float speed = 40.0f;
+                if (type == 0)
+                {
+                    collider.followPath(path, speed, FlxObject.PATH_BACKWARD, false);
+                    FlxG.setHudText(1, "PATH_BACKWARD");
+                }
+                if (type == 1)
+                {
+                    collider.followPath(path, speed, FlxObject.PATH_FORWARD, false);
+                    FlxG.setHudText(1, "PATH_FORWARD");
+                }
+                if (type == 2)
+                {
+                    collider.followPath(path, speed, FlxObject.PATH_HORIZONTAL_ONLY, false);
+                    FlxG.setHudText(1, "PATH_HORIZONTAL_ONLY");
+                }
+                if (type == 3)
+                {
+                    collider.followPath(path, speed, FlxObject.PATH_LOOP_BACKWARD, false);
+                    FlxG.setHudText(1, "PATH_LOOP_BACKWARD");
+                }
+                if (type == 4)
+                {
+                    collider.followPath(path, speed, FlxObject.PATH_LOOP_FORWARD, false);
+                    FlxG.setHudText(1, "PATH_LOOP_FORWARD");
+                }
+                if (type == 5)
+                {
+                    collider.followPath(path, speed, FlxObject.PATH_VERTICAL_ONLY, false);
+                    FlxG.setHudText(1, "PATH_VERTICAL_ONLY");
+                }
+                if (type == 6)
+                {
+                    collider.followPath(path, speed, FlxObject.PATH_YOYO, false);
+                    FlxG.setHudText(1, "PATH_YOYO");
+                }
+
+
+
+
+
+
+
+                type++;
+                if (type == 7) type = 0;
+
+            }
+
             if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B) && FlxG.debug)
                 FlxG.showBounds = !FlxG.showBounds;
 

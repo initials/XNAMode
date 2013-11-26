@@ -683,11 +683,24 @@ namespace org.flixel
 
             if (path != null)
             {
+                //int count = 0;
                 foreach (var item in path.nodes)
                 {
                     spriteBatch.Draw(FlxG.XnaSheet,
-                        new Rectangle((int)item.X, (int)item.Y, 4, 4),
-                        new Rectangle(1, 1, 1, 1), Color.Azure);
+                        new Rectangle((int)item.X - 2, (int)item.Y - 2, 4, 4),
+                        new Rectangle(1, 1, 1, 1), Color.DarkOrange);
+
+                    //if (count < path.nodes.Count - 1)
+                    //{
+                    //    float xangle = (float)Math.Atan2(path.nodes[count + 1].Y - path.nodes[count].Y, path.nodes[count + 1].X - path.nodes[count].X);
+                    //    float length = Vector2.Distance(path.nodes[count], path.nodes[count + 1]);
+
+                    //    spriteBatch.Draw(FlxG.XnaSheet, path.nodes[count], null, color,
+                    //               xangle, Vector2.Zero, new Vector2(length, 1.0f),
+                    //               SpriteEffects.None, 0);
+                    //}
+
+                    //count++;
                 }
             }
         }
