@@ -532,6 +532,12 @@ namespace XNAMode
 
             add(bigEx);
 
+            LevelBeginText t = new LevelBeginText(0, (FlxG.height / 2) - 40, FlxG.width);
+            t.text = levelAttrs["levelName"];
+
+            add(t);
+
+
             //if (FlxG.joystickBeingUsed) FlxG.mouse.hide();
             //else FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
