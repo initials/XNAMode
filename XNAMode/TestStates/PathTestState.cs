@@ -53,19 +53,41 @@ namespace XNAMode
 
             // Loading a path from an Ogmo Level.
 
+            // Create a list 
             List<Dictionary<string, string>> actorsAttrs = new List<Dictionary<string, string>>();
+
+            // load level 3
+            /// TO DO: create a template test level.
+            
             actorsAttrs = FlxXMLReader.readNodesFromOelFile("ogmoLevels/level3.oel", "level/ActorsLayer");
 
+            // loop through the actors.
             foreach (Dictionary<string, string> nodes in actorsAttrs)
             {
-                foreach (KeyValuePair<string, string> kvp in nodes)
+
+                // Check for a path in the ogmo level attrs.
+                if (nodes["pathNodesX"] != "" && nodes["pathNodesY"] != "")
                 {
-                    Console.Write("Key = {0}, Value = {1}, ",
-                        kvp.Key, kvp.Value);
+                    //create a Path object.
+                    FlxPath xpath = new FlxPath(null);
 
+                    // add the first point of the character.
+                    xpath.add(float.Parse(nodes["x"]), float.Parse(nodes["y"]));
 
+                    //simple check - can remove later.
+                    if (nodes["Name"] == "bat")
+                    {
+                        // add all the points.
+                        xpath.addPointsUsingStrings(nodes["pathNodesX"], nodes["pathNodesY"]);
+
+                        //convert PathType to a uint (FlxObject.PATH_LOOP_FORWARD) etc
+                        uint path_type = FlxPath.convertStringValueForPathType(nodes["pathType"]);
+
+                        //make the object follow the new path.
+                        pather.followPath(xpath, float.Parse(nodes["pathSpeed"]), path_type, false);
+                    }
                 }
-                Console.Write("\r\n");
+
             }
 
         }

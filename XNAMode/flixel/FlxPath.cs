@@ -87,6 +87,76 @@ namespace org.flixel
         }
 
         /// <summary>
+        /// Simple helper to turn a string from an ogmo level into a uint.
+        /// </summary>
+        /// <param name="PathType"></param>
+        /// <returns></returns>
+        public static uint convertStringValueForPathType(string PathType)
+        {
+            if (PathType == "FORWARD")
+            {
+                return FlxObject.PATH_FORWARD;
+            }
+            else if (PathType == "BACKWARD")
+            {
+                return FlxObject.PATH_BACKWARD;
+            }
+            else if (PathType == "LOOP_FORWARD")
+            {
+                return FlxObject.PATH_LOOP_FORWARD;
+            }
+            else if (PathType == "LOOP_BACKWARD")
+            {
+                return FlxObject.PATH_LOOP_BACKWARD;
+            }
+            else if (PathType == "YOYO")
+            {
+                return FlxObject.PATH_YOYO;
+            }
+            else if (PathType == "HORIZONTAL_ONLY")
+            {
+                return FlxObject.PATH_HORIZONTAL_ONLY;
+            }
+            else if (PathType == "VERTICAL_ONLY")
+            {
+                return FlxObject.PATH_VERTICAL_ONLY;
+            }
+
+
+
+            return FlxObject.PATH_FORWARD;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="PointsX"></param>
+        /// <param name="PointsY"></param>
+        public void addPointsUsingStrings(string PointsX, string PointsY)
+        {
+            string[] splX = PointsX.Split(',');
+            string[] splY = PointsY.Split(',');
+
+            if (splX.Length != splY.Length)
+            {
+                FlxG.log("Length of both paths does not match");
+
+                return;
+            }
+
+
+            for (int i = 0; i < splX.Length; i++)
+            {
+                //Console.WriteLine(splX[i]);
+
+                if (splX[i] != "" || splY[i] != "")
+                {
+                    add(float.Parse(splX[i]), float.Parse(splY[i]));
+                }
+            }
+        }
+
+        /// <summary>
         /// Add a new node to the end of the path at the specified location.
         /// </summary>
         /// <param name="X">X position of the new path point in world coordinates.</param>
