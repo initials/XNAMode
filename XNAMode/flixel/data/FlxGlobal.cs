@@ -50,6 +50,7 @@ namespace org.flixel
         
         public static List<int> availableLevels ;
 
+        //public static Dictionary<string, int> turnProgress;
 
 
 

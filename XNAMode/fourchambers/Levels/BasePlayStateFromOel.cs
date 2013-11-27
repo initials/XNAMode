@@ -497,7 +497,8 @@ namespace XNAMode
 
             seraphine = new Seraphine(0, 0);
             seraphine.play("fly");
-            add(seraphine);
+            actors.add(seraphine);
+           
 
 
             blood = new FlxEmitter();
@@ -625,7 +626,7 @@ namespace XNAMode
 
             }
 
-            if (FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.I )
+            if ((FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.I ) && seraphine.dead == false )
             {
                 seraphine.velocity.Y = 0;
                 seraphine.x = marksman.x - marksman.width / 2;
@@ -930,17 +931,38 @@ namespace XNAMode
                 e.Object1.kill();
 
             }
+            else if ((e.Object1 is Seraphine) && (e.Object2 is Arrow))
+            {
+                foreach (var p in powerUps.members)
+                {
+                    p.dead = false;
+                    p.acceleration.Y = FourChambers_Globals.GRAVITY;
+                    p.velocity.X = FlxU.random(-20, 20) ;
+                    p.exists = true;
+                    p.x = e.Object1.x;
+                    p.y = e.Object1.y;
+                    p.flicker(0.001f);
+                    p.angle = 0;
+                    p.visible = true;
+                }
+                FourChambers_Globals.arrowsHitTarget++;
+                e.Object1.velocity.X = e.Object2.velocity.X;
+                e.Object1.velocity.Y = e.Object2.velocity.Y;
+
+                e.Object1.hurt(1);
+
+                e.Object2.x = -1000;
+                e.Object2.y = -1000;
+                e.Object2.kill();
+
+                blood.at(e.Object1);
+
+                blood.start(true, 0, 10);
+            }
             // Now that it's a kill, spurt some blood and "hurt" both parties.
             else if (e.Object1.dead == false && e.Object2.dead == false)
             {
-                //FlxG.timeScale = 0.1f;
                 FourChambers_Globals.arrowsHitTarget++;
-
-
-                //pointBurst.alpha = 1;
-
-                //e.Object1.acceleration.Y = 820;
-
                 e.Object1.velocity.X = e.Object2.velocity.X;
                 e.Object1.velocity.Y = e.Object2.velocity.Y;
 

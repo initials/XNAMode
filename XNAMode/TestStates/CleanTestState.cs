@@ -104,7 +104,10 @@ namespace XNAMode
             if (elapsedInState > 2.0f && !hasSlotted)
             {
 
-                if (timesPressed[0] == 0 && timesPressed[1] == 0 && timesPressed[2] == 0 && timesPressed[3] == 0)
+                if (timesPressed[0] == 0 && 
+                    timesPressed[1] == 0 && 
+                    timesPressed[2] == 0 && 
+                    timesPressed[3] == 0)
                 {
                     doSlots();
                 }

@@ -1,4 +1,4 @@
-<level width="800" height="800" levelName="The First Chamber" bgGraphic="Fear" timeOfDayPalette="skyPalette">
+<level width="800" height="800" levelName="The Lion" bgGraphic="Fear" timeOfDayPalette="skyPalette">
   <camera x="32" y="256" />
   <DestructableTerrain tileset="autotiles_16x16" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,7,13,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,15,17,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
@@ -109,6 +109,7 @@
     <zingernest id="5" x="512" y="592" />
     <zingernest id="6" x="432" y="512" />
     <zingernest id="7" x="176" y="432" />
+    <lion id="8" x="304" y="432" flip="False" />
   </ActorsLayer>
   <EventsLayer />
 </level>
