@@ -12,15 +12,43 @@ namespace XNAMode
 {
     public class CleanTestState : FlxState
     {
+        List<int> slotNumbers = new List<int>() { 1, 2, 3, 4 };
+
+        List<int> timesPressed = new List<int>() { 0,0,0,0};
+
+        bool hasSlotted;
 
         override public void create()
         {
             base.create();
 
+            //cheats//
+
+            //doSlots();
+
+
+            hasSlotted = false;
+
+        }
+
+        public void doSlots()
+        {
+            slotNumbers[0] = (int)FlxU.random(0, 10);
+            slotNumbers[1] = (int)FlxU.random(0, 10);
+            slotNumbers[2] = (int)FlxU.random(0, 10);
+            slotNumbers[3] = (int)FlxU.random(0, 10);
+
+            foreach (var item in slotNumbers) Console.Write(item + ",");
+            Console.WriteLine("\n");
+
+        }
+
+        public void doLevels()
+        {
             FourChambers_Globals.availableLevels = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
 
-            foreach (var item in FourChambers_Globals.availableLevels) Console.Write(item + ",") ;
+            foreach (var item in FourChambers_Globals.availableLevels) Console.Write(item + ",");
             Console.WriteLine("\n");
 
             FourChambers_Globals.availableLevels.RemoveAt((int)FlxU.random(0, FourChambers_Globals.availableLevels.Count));
@@ -51,22 +79,52 @@ namespace XNAMode
 
             foreach (var item in FourChambers_Globals.availableLevels) Console.Write(item + ",");
             Console.WriteLine("\n + ... " + FourChambers_Globals.availableLevels.Count);
-
-
-
-
-
         }
-
-
 
         override public void update()
         {
 
+            if (FlxG.keys.justPressed(Keys.A))
+            {
+                timesPressed[0]++;
+            }
+            if (FlxG.keys.justPressed(Keys.S))
+            {
+                timesPressed[1]++;
+            }
+            if (FlxG.keys.justPressed(Keys.D))
+            {
+                timesPressed[2]++;
+            }
+            if (FlxG.keys.justPressed(Keys.F))
+            {
+                timesPressed[3]++;
+            }
 
+            if (elapsedInState > 2.0f && !hasSlotted)
+            {
 
+                if (timesPressed[0] == 0 && timesPressed[1] == 0 && timesPressed[2] == 0 && timesPressed[3] == 0)
+                {
+                    doSlots();
+                }
+                else
+                {
+                    // has pressed some buttons.
+                    slotNumbers = timesPressed;
+                    foreach (var item in slotNumbers) Console.Write(item + ",");
+                    Console.WriteLine("\n");
+                }
+
+                hasSlotted = true;
+            }
 
             base.update();
+
+            if (FlxG.keys.justPressed(Keys.Escape))
+            {
+                FlxG.state = new CleanTestState();
+            }
         }
 
 

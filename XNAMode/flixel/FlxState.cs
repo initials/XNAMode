@@ -19,11 +19,12 @@ namespace org.flixel
     /// </summary>
     public abstract class FlxState
     {
-		/**
-		 * This static variable holds the screen buffer,
-		 * so you can draw to it directly if you want.
-		 */
-		//static public FlxSprite screen;
+		
+        /// <summary>
+        /// This static variable holds the screen buffer,
+        /// so you can draw to it directly if you want.
+        /// </summary>
+        static public FlxSprite screen;
 
         /// <summary>
         /// This static variable indicates the "clear color"
@@ -31,10 +32,16 @@ namespace org.flixel
         /// Change it at ANY time using <code>FlxState.bgColor</code>.
         /// </summary>
 		static public Color bgColor;
+
 		/// <summary>
         /// Internal group used to organize and display objects you add to this state.
 		/// </summary>
         public FlxGroup defaultGroup;
+
+        /// <summary>
+        /// Keeps track of how much time is elapsed in this state only.
+        /// </summary>
+        public float elapsedInState;
 
         /// <summary>
         /// Creates a new <code>FlxState</code> object,
@@ -53,6 +60,8 @@ namespace org.flixel
 		{
             bgColor = FlxG.backColor;
             //nothing to create initially
+
+            elapsedInState = 0.0f;
 		}
 
         /// <summary>
@@ -87,6 +96,8 @@ namespace org.flixel
         {
             // Update all time-related stuff.
             defaultGroup.update();
+
+            elapsedInState += FlxG.elapsed;
         }
 
         /// <summary>
