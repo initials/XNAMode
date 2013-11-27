@@ -27,6 +27,7 @@ namespace XNAMode
 
         override public void create()
         {
+            FlxG.backColor = Color.Red;
             base.create();
 
             // 32, 4
@@ -47,8 +48,6 @@ namespace XNAMode
             //mainTilemap.boundingBoxOverride = true;
             //add(mainTilemap);
 
-
-
             destructableAttrs = new Dictionary<string, string>();
             destructableAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/levelTutorial.oel", "level/IndestructableTerrain");
 
@@ -56,8 +55,6 @@ namespace XNAMode
 
             string addedMap = caveExt.addStrings(baseMap, newMap, 12, 4, sizex, sizey);
             //Console.WriteLine(addedMap);
-
-            
 
             //destructableTilemap = new FlxTilemap();
             //destructableTilemap.auto = FlxTilemap.STRING;
@@ -71,7 +68,7 @@ namespace XNAMode
 
             destructableTilemap = new FlxTilemap();
             destructableTilemap.auto = FlxTilemap.STRING;
-            destructableTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"), 16, 16);
+            destructableTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("flixel/autotiles"), 8, 8);
             destructableTilemap.boundingBoxOverride = true;
             add(destructableTilemap);
             //destructableTilemap.collideIndex = 16;

@@ -50,6 +50,37 @@ namespace org.flixel
         /// </summary>
         public const int GROW_FROM = 1;
 
+        /// <summary>
+        /// No auto-tiling.
+        /// </summary>
+        public const int OFF = 0;
+
+        /// <summary>
+        /// Platformer-friendly auto-tiling.
+        /// </summary>
+        public const int AUTO = 1;
+
+        /// <summary>
+        /// Top-down auto-tiling.
+        /// </summary>
+        public const int ALT = 2;
+
+        /// <summary>
+        /// Random pick from tilesheet
+        /// </summary>
+        public const int RANDOMIZED = 3;
+
+        /// <summary>
+        /// Uses a string to choose tiles.
+        /// </summary>
+        public const int STRING = 4;
+
+
+        /// <summary>
+        /// Set this flag to use one of the 16-tile binary auto-tile algorithms (OFF, AUTO, or ALT).
+        /// </summary>
+        public int auto;
+
         //Extra decoration tiles.
 
         /// <summary>
@@ -73,6 +104,7 @@ namespace org.flixel
 
             _numTilesCols = nCols;
             _numTilesRows = nRows;
+            auto = AUTO;
 
         }
 
@@ -217,7 +249,7 @@ namespace org.flixel
                 _data[Index] += 8;
 
             // (auto == ALT
-            if ((true) && (_data[Index] == 15))	//The alternate algo checks for interior corners
+            if ((auto==ALT) && (_data[Index] == 15))	//The alternate algo checks for interior corners
             {
                 if ((Index % _numTilesCols > 0) && (Index + _numTilesCols < totalTiles) && (_data[Index + _numTilesCols - 1] <= 0))
                     _data[Index] = 1;		//BOTTOM LEFT OPEN
@@ -229,7 +261,7 @@ namespace org.flixel
                     _data[Index] = 8; 		//BOTTOM RIGHT OPEN
             }
 
-            _data[Index] += 1;
+            //_data[Index] += 1;
 
         }
 
