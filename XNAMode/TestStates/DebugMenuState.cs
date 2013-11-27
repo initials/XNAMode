@@ -23,6 +23,7 @@ namespace XNAMode
             textInfo += "2. Mode\n";
             textInfo += "3. Path Test\n";
             textInfo += "4. Level Begin Text Test\n";
+            textInfo += "5. Clean Test State\n";
 
             FlxG.showHud();
 
@@ -55,7 +56,11 @@ namespace XNAMode
                 FlxG.state = new LevelBeginTextState();
                 FlxG.hideHud();
             }
-
+            if (FlxG.keys.FIVE)
+            {
+                FlxG.state = new CleanTestState();
+                FlxG.hideHud();
+            }
             base.update();
         }
 
