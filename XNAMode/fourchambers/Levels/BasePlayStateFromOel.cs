@@ -957,7 +957,7 @@ namespace XNAMode
 
                 blood.at(e.Object1);
 
-                blood.start(true, 0, 10);
+                blood.start(true, 0, 50);
             }
             // Now that it's a kill, spurt some blood and "hurt" both parties.
             else if (e.Object1.dead == false && e.Object2.dead == false)
