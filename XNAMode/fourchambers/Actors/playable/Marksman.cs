@@ -173,9 +173,9 @@ namespace XNAMode
                 FlxG.mouse.cursor.y = rotpoint.Y;
 
             }
-            
-            
-            if ((_curFrame == 8 || _curFrame==9 || _curFrame==10) && attackingJoystick )
+
+
+            if (((_curFrame == 8 || _curFrame == 9 || _curFrame == 10) && attackingJoystick) || (FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder) && velocity.X != 0) )
             {
 
                 float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
@@ -260,17 +260,20 @@ namespace XNAMode
             }
 
 
-            if (FlxG.gamepads.isButtonDown(Buttons.Y))
+            if (FourChambers_Globals.seraphineHasBeenKilled == false)
             {
-                velocity.Y = -100;
-                FlxG.bloom.Visible = true;
+                if (FlxG.gamepads.isButtonDown(Buttons.Y))
+                {
+                    velocity.Y = -100;
+                    //FlxG.bloom.Visible = true;
 
-            }
-            else
-            {
-                //velocity.Y = FourChambers_Globals.GRAVITY;
-                FlxG.bloom.Visible = false;
+                }
+                else
+                {
+                    //velocity.Y = FourChambers_Globals.GRAVITY;
+                    //FlxG.bloom.Visible = false;
 
+                }
             }
 
 

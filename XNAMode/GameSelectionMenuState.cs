@@ -256,6 +256,8 @@ namespace XNAMode
 
             play = null;
 
+            FourChambers_Globals.startGame();
+
 
             FlxG.state = new BasePlayStateFromOel();
             return;

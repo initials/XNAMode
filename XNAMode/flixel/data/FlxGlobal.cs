@@ -37,6 +37,7 @@ namespace org.flixel
 
         public static bool PIRATE_COPY = false;
 
+        public static bool seraphineHasBeenKilled = false;
 
         /// <summary>
         /// Keeps track of how many things in a row you've hit with arrows.
@@ -53,6 +54,20 @@ namespace org.flixel
         //public static Dictionary<string, int> turnProgress;
 
 
+        public static void startGame()
+        {
+            
+            FlxG.score = 0;
+            FourChambers_Globals.seraphineHasBeenKilled = false;
+            FourChambers_Globals.availableLevels = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+
+            int newLevel = (int)FlxU.random(0, FourChambers_Globals.availableLevels.Count);
+            FlxG.level = FourChambers_Globals.availableLevels[newLevel];
+            FourChambers_Globals.availableLevels.RemoveAt(newLevel);
+
+            Console.WriteLine("STARTGAME() " + FourChambers_Globals.availableLevels[newLevel] + "  New Level:  " + newLevel);
+
+        }
 
 
     }

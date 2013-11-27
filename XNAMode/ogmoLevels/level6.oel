@@ -1,4 +1,4 @@
-<level width="800" height="800" levelName="The First Chamber" bgGraphic="Fear" timeOfDayPalette="skyPalette">
+<level width="800" height="800" levelName="Pity" bgGraphic="Fear" timeOfDayPalette="skyPalette">
   <camera x="32" y="256" />
   <DestructableTerrain tileset="autotiles_16x16" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,14,14,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
@@ -105,6 +105,8 @@
     <zingernest id="1" x="256" y="464" />
     <zingernest id="2" x="592" y="416" />
     <zingernest id="3" x="640" y="256" />
+    <merchant id="4" x="224" y="512" flip="False" />
+    <priest id="5" x="624" y="592" flip="False" />
   </ActorsLayer>
   <EventsLayer />
 </level>

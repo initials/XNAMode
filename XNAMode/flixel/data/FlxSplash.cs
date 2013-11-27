@@ -118,7 +118,7 @@ namespace org.flixel
 
                 FlxG.state = _nextScreen;
             }
-            if (_logoTimer > 5.5f || FlxG.keys.F1)
+            if (FlxG.keys.F1)
             {
                 FlxG.destroySounds(true);
 

@@ -1,4 +1,4 @@
-<level width="800" height="800" levelName="The First Chamber" bgGraphic="Fear" timeOfDayPalette="skyPalette">
+<level width="800" height="800" levelName="Compassion" bgGraphic="Fear" timeOfDayPalette="skyPalette">
   <camera x="32" y="256" />
   <DestructableTerrain tileset="autotiles_16x16" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,-1,7,13,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,6,17,19,12,-1,-1,-1,-1,6,12,-1,-1,-1,-1,-1,6,12,-1,-1,-1,-1,-1,-1,6,14,14,14,14,14,14,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
@@ -111,6 +111,8 @@
     <zingernest id="7" x="608" y="288" />
     <zingernest id="8" x="560" y="80" />
     <zingernest id="9" x="496" y="96" />
+    <paladin id="10" x="160" y="464" flip="False" />
+    <sphinx id="11" x="320" y="576" flip="False" />
   </ActorsLayer>
   <EventsLayer />
 </level>

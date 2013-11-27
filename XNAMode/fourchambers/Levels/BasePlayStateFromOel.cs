@@ -497,8 +497,10 @@ namespace XNAMode
 
             seraphine = new Seraphine(0, 0);
             seraphine.play("fly");
-            actors.add(seraphine);
-           
+            add(seraphine);
+            //actors.
+
+            buildActor("imp", 1);
 
 
             blood = new FlxEmitter();
@@ -533,7 +535,7 @@ namespace XNAMode
 
             add(bigEx);
 
-            LevelBeginText t = new LevelBeginText(0, (FlxG.height / 2) - 40, FlxG.width);
+            LevelBeginText t = new LevelBeginText(0, 50, FlxG.width);
             t.text = levelAttrs["levelName"];
 
             add(t);
@@ -554,10 +556,17 @@ namespace XNAMode
         {
 
             #region debugLevelSkip
+            if (FlxG.keys.justPressed(Keys.F10) && FlxG.debug && timeOfDay > 2.0f)
+            {
+                foreach (var item in actors.members)
+                {
+                    if (item is ZingerNest) item.dead = true;
+                }
+            }
             if (FlxG.keys.justPressed(Keys.F9) && FlxG.debug && timeOfDay > 2.0f)
             {
                 FlxG.level++;
-                if (FlxG.level > 25) FlxG.level = 1;
+                //if (FlxG.level > 25) FlxG.level = 1;
 
                 FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
 
@@ -570,7 +579,7 @@ namespace XNAMode
             else if (FlxG.keys.justPressed(Keys.F7) && FlxG.debug && timeOfDay > 2.0f)
             {
                 FlxG.level--;
-                if (FlxG.level < 1) FlxG.level = 25;
+                //if (FlxG.level < 1) FlxG.level = 25;
 
                 FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
 
@@ -618,7 +627,7 @@ namespace XNAMode
 
                 if (leftExitBlockerWall.velocity.Y == 0)
                 {
-                    FlxG.quake.start(0.005f, 0.5f);
+                    FlxG.quake.start(0.025f, 1.5f);
                 }
 
                 leftExitBlockerWall.velocity.Y = -50;
@@ -626,15 +635,30 @@ namespace XNAMode
 
             }
 
-            if ((FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.I ) && seraphine.dead == false )
+            if ((FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.I ) && FourChambers_Globals.seraphineHasBeenKilled == false)
             {
+                //Console.WriteLine("SEREAPHINE");
+
+                FlxG.bloom.Visible = true;
+
                 seraphine.velocity.Y = 0;
                 seraphine.x = marksman.x - marksman.width / 2;
                 seraphine.y = marksman.y - marksman.height;
+                seraphine.facing = marksman.facing;
+
+            }
+            else if ((FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.I) && FourChambers_Globals.seraphineHasBeenKilled == true)
+            {
+                
+                imp.x = marksman.x - 30;
+                imp.y = marksman.y - marksman.height;
+                imp.facing = marksman.facing;
 
             }
             else
             {
+                FlxG.bloom.Visible = false;
+
                 seraphine.velocity.Y = -50;
 
             }
@@ -669,6 +693,7 @@ namespace XNAMode
             }
             
             FlxU.overlap(actors, bullets, overlapped);
+            FlxU.overlap(seraphine, bullets, overlapped);
             FlxU.overlap(actors, ladders, overlapWithLadder);
 
             FlxU.overlap(marksman.meleeHitBox, destructableTilemap, destroyTileAtMelee);
@@ -712,13 +737,31 @@ namespace XNAMode
                 if ((playerControlledActors.members[i2] as FlxSprite).x < 0)
                 {
                     Console.WriteLine("ArrowsFired : {0} Arrows Hit : {1}", FourChambers_Globals.arrowsFired, FourChambers_Globals.arrowsHitTarget);
-                    goToLevel(--FlxG.level);
+                    
+                    
+                    int newLevel = (int)FlxU.random(0, FourChambers_Globals.availableLevels.Count);
+                    FlxG.level = FourChambers_Globals.availableLevels[newLevel];
+                    FourChambers_Globals.availableLevels.RemoveAt(newLevel);
+                    goToLevel(FlxG.level);
+
+                    //goToLevel(--FlxG.level);
+
+                    //Console.WriteLine("STARTGAME() " + FourChambers_Globals.availableLevels[newLevel] + "  New Level:  " + newLevel);
 
                 }
                 if ((playerControlledActors.members[i2] as FlxSprite).x > FlxG.levelWidth)
                 {
                     Console.WriteLine("ArrowsFired : {0} Arrows Hit : {1}", FourChambers_Globals.arrowsFired, FourChambers_Globals.arrowsHitTarget);
-                    goToLevel(++FlxG.level);
+                    //goToLevel(++FlxG.level);
+                    int newLevel = (int)FlxU.random(0, FourChambers_Globals.availableLevels.Count);
+                    FlxG.level = FourChambers_Globals.availableLevels[newLevel];
+                    FourChambers_Globals.availableLevels.RemoveAt(newLevel);
+                    goToLevel(FlxG.level);
+
+                    //Console.WriteLine("STARTGAME() " + FourChambers_Globals.availableLevels[newLevel] + "  New Level:  " + newLevel);
+
+
+
                 }
 
                 i2++;
@@ -730,18 +773,18 @@ namespace XNAMode
                 //FlxG.setHudText(1, "Press X to go to Menu \n Press Y to restart.");
 
                 FlxG._game.hud.p1HudText.alignment = FlxJustification.Center;
-                FlxG._game.hud.p1HudText.text = "Press X to go to Menu \n Press Y to restart.";
+                FlxG._game.hud.p1HudText.text = "Press B to go to Menu \n Press X to restart.";
                 FlxG.setHudTextScale(1, 2);
                 FlxG.setHudTextPosition(1, 0, FlxG.height / 2);
 
 
-                if (FlxG.gamepads.isButtonDown(Buttons.X) || FlxG.mouse.pressed())
+                if (FlxG.gamepads.isButtonDown(Buttons.B) || FlxG.mouse.pressed())
                 {
                     FlxOnlineStatCounter.sendStats("fourchambers", "marksman", FlxG.score);
                     goToMenu();
                 }
 
-                if (FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.mouse.pressed())
+                if (FlxG.gamepads.isButtonDown(Buttons.X) || FlxG.mouse.pressed())
                 {
                     FlxOnlineStatCounter.sendStats("fourchambers", "marksman", FlxG.score);
                     restart();
@@ -753,9 +796,17 @@ namespace XNAMode
 
         private void restart()
         {
-            FlxG.level = 1;
-            FlxG.score = 0;
+            //FlxG.level = 1;
+            //FlxG.score = 0;
+            //FourChambers_Globals.seraphineHasBeenKilled = false;
+            //FourChambers_Globals.availableLevels = {1,2,3,4,5,6,7,8,9};
+
+            FourChambers_Globals.startGame();
+
+
             FlxG.state = new BasePlayStateFromOel();
+
+
         }
         private void goToMenu()
         {
@@ -933,11 +984,13 @@ namespace XNAMode
             }
             else if ((e.Object1 is Seraphine) && (e.Object2 is Arrow))
             {
+                FourChambers_Globals.seraphineHasBeenKilled = true;
+
                 foreach (var p in powerUps.members)
                 {
                     p.dead = false;
                     p.acceleration.Y = FourChambers_Globals.GRAVITY;
-                    p.velocity.X = FlxU.random(-20, 20) ;
+                    p.velocity.X = FlxU.random(-220, 220) ;
                     p.exists = true;
                     p.x = e.Object1.x;
                     p.y = e.Object1.y;
