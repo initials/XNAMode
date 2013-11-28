@@ -184,28 +184,31 @@ namespace XNAMode
                 // No Right Stick so do a generic shoot.
                 if (arrowsRemaining >= 1)
                 {
-                    if (rightX == 0 && rightY == 0)
+                    for (int i = 0; i < FourChambers_Globals.arrowsToFire; i++)
                     {
-                        if (facing == Flx2DFacing.Right)
-                            ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), 600, -100);
+                        if (rightX == 0 && rightY == 0)
+                        {
+                            if (facing == Flx2DFacing.Right)
+                                ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), 600, -100);
+                            else
+                                ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), -600, -100);
+                        }
+                        // use the right stick to fire a weapon
                         else
-                            ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), -600, -100);
-                    }
-                    // use the right stick to fire a weapon
-                    else
-                    {
-                        ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 600), (int)(rightY *= -600));
-                    }
-                    if (rightX < 0)
-                    {
-                        ((Arrow)(_bullets[_curArrow])).facing = Flx2DFacing.Left;
-                    }
-                    else
-                    {
-                        ((Arrow)(_bullets[_curArrow])).facing = Flx2DFacing.Right;
+                        {
+                            ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 600), (int)(rightY *= -600));
+                        }
+                        if (rightX < 0)
+                        {
+                            ((Arrow)(_bullets[_curArrow])).facing = Flx2DFacing.Left;
+                        }
+                        else
+                        {
+                            ((Arrow)(_bullets[_curArrow])).facing = Flx2DFacing.Right;
+                        }
+                        
                     }
                     arrowsRemaining--;
-
                 }
 
                 if (++_curArrow >= _bullets.Count)

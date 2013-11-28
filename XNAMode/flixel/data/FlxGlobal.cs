@@ -48,6 +48,8 @@ namespace org.flixel
 
         public static int arrowsHitTarget = 0;
 
+        public static int arrowsToFire = 1;
+
         
         public static List<int> availableLevels ;
 

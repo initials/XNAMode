@@ -11,7 +11,7 @@ To Do
 - [ ] Turn points into money.
 - [ ] Special particles when killing main characters.
 - [ ] All main characters that you kill come back to haunt you in the final stages.
-- [ ] Allow Seraphine to be killed. Stays for whole game.
-- [ ] Check _procGen squares for autotiles.
+- [x] Allow Seraphine to be killed. Stays for whole game.
+- [x] Check _procGen squares for autotiles.
 - [ ] Remove EventsLayer from ogmo project.
 - [ ] Add combos to the HUD.
