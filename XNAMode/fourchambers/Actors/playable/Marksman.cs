@@ -206,13 +206,13 @@ namespace XNAMode
                         {
                             ((Arrow)(_bullets[_curArrow])).facing = Flx2DFacing.Right;
                         }
-                        
+                        if (++_curArrow >= _bullets.Count)
+                            _curArrow = 0;
                     }
                     arrowsRemaining--;
                 }
 
-                if (++_curArrow >= _bullets.Count)
-                    _curArrow = 0;
+
                 attackingJoystick = false;
                 attackingMouse = false;
                 _curFrame = 0;
