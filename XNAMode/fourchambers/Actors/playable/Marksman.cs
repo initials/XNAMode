@@ -206,6 +206,7 @@ namespace XNAMode
                         {
                             ((Arrow)(_bullets[_curArrow])).facing = Flx2DFacing.Right;
                         }
+
                         if (++_curArrow >= _bullets.Count)
                             _curArrow = 0;
                     }
