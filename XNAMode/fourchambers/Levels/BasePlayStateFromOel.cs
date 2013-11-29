@@ -256,8 +256,6 @@ namespace XNAMode
             // used for tutorial prompts.
             FlxG._game.hud.p1HudText.alignment = FlxJustification.Center;
 
-
-
             // Account for minus levels (tutorials etc)
             // -1 = Tutorial
             string levelFile;
@@ -275,7 +273,6 @@ namespace XNAMode
 
                 levelFile = "ogmoLevels/level" + FlxG.level.ToString() + ".oel";
             }
-            //this.test();
 
             Console.WriteLine("Loading BasePlayStateFromOel Level: " + levelFile);
 
@@ -1067,6 +1064,16 @@ namespace XNAMode
 
 
             }
+
+        }
+
+        public void runCheat()
+        {
+            if (FourChambers_Globals.cheatString != "")
+            {
+
+            }
+            FourChambers_Globals.cheatString = "";
 
         }
 

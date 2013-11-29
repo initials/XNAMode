@@ -55,6 +55,7 @@ namespace org.flixel
 
         //public static Dictionary<string, int> turnProgress;
 
+        public static string cheatString;
 
         public static void startGame()
         {
@@ -68,6 +69,18 @@ namespace org.flixel
             FourChambers_Globals.availableLevels.RemoveAt(newLevel);
 
             Console.WriteLine("STARTGAME() " + FourChambers_Globals.availableLevels[newLevel] + "  New Level:  " + newLevel);
+
+        }
+
+        public static void runCheat(string Cheat)
+        {
+
+            if (Cheat.StartsWith("arrows")) FourChambers_Globals.arrowsToFire = Convert.ToInt32(Cheat[Cheat.Length-1].ToString());
+            else if (Cheat.StartsWith("whatisgame")) FlxG.log("Four Chambers");
+            else if (Cheat.StartsWith("liketheangels")) FourChambers_Globals.seraphineHasBeenKilled = false;
+            else if (Cheat.StartsWith("bigmoney")) FlxG.score += 20000;
+
+            cheatString = Cheat;
 
         }
 
