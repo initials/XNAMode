@@ -15,3 +15,4 @@ To Do
 - [x] Check _procGen squares for autotiles.
 - [ ] Remove EventsLayer from ogmo project.
 - [ ] Add combos to the HUD.
+- [ ] Check cheats.
