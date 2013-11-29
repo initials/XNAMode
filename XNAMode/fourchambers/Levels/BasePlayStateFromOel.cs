@@ -1029,22 +1029,20 @@ namespace XNAMode
             if (command == "quake")
             {
                 FlxG.quake.start(0.01f, 1.0f);
-
             }
             else
             {
                 //Console.WriteLine("Command: " + command);
-
-
                 FlxG.setHudText(1, command);
                 FlxG.setHudTextScale(1, 2);
                 FlxG.setHudTextPosition(1, FlxG._game.hud.p1OriginalPosition.X, 20);
-
-
             }
 
         }
 
+        /// <summary>
+        /// Runs cheat from the Global cheatstring.
+        /// </summary>
         public void runCheat()
         {
             if (FourChambers_Globals.cheatString != "")
@@ -1098,7 +1096,7 @@ namespace XNAMode
             uint PathType=0,
             int PathSpeed=40)
         {
-            Console.WriteLine("Building actor " + ActorType + " " + NumberOfActors);
+            //Console.WriteLine("Building actor " + ActorType + " " + NumberOfActors);
 
             #region Marksman
             if (ActorType == "marksman")
@@ -1642,9 +1640,6 @@ namespace XNAMode
                 }
             }
             #endregion
-
-            // marksman was here.
-
             #region Mechanic
             if (ActorType == "mechanic")
             {
@@ -2083,8 +2078,6 @@ namespace XNAMode
             }
             #endregion
 
-
-
             #region ladder
             if (ActorType == "ladder")
             {
@@ -2097,7 +2090,6 @@ namespace XNAMode
             }
             
             #endregion
-
             #region fallAwayBridge
             if (ActorType == "fallAwayBridge")
             {
@@ -2122,13 +2114,6 @@ namespace XNAMode
             }
 
             #endregion
-
-
-
-
-
-
-
 
         }
     }
