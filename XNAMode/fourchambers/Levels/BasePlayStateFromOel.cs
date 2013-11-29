@@ -1071,6 +1071,20 @@ namespace XNAMode
         {
             if (FourChambers_Globals.cheatString != "")
             {
+                if (FourChambers_Globals.cheatString.StartsWith("killzingers"))
+                {
+                    foreach (var item in actors.members)
+                    {
+                        if (item is ZingerNest) item.dead = true;
+                    }
+                }
+                else if (FourChambers_Globals.cheatString.StartsWith("killemall"))
+                {
+                    foreach (var item in actors.members)
+                    {
+                        if (!(item is Marksman)) item.dead = true;
+                    }
+                }
 
             }
             FourChambers_Globals.cheatString = "";
