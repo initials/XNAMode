@@ -21,7 +21,12 @@ namespace org.flixel
         private Rectangle _consoleRect;
         private Color _consoleColor;
         private FlxText _consoleText;
+        
+        /// <summary>
+        /// Text describing frames per second.
+        /// </summary>
         private FlxText _consoleFPS;
+
         private int[] _FPS;
         private int _curFPS;
         private List<string> _consoleLines;
@@ -29,6 +34,9 @@ namespace org.flixel
         private float _consoleYT;
         private bool _fpsUpdate;
 
+        /// <summary>
+        /// Allows a command to be typed and executed.
+        /// </summary>
         private FlxText _consoleCommand;
 
         public Color color
@@ -50,7 +58,7 @@ namespace org.flixel
             _consoleText.height = FlxG.height; //FlxG.spriteBatch.GraphicsDevice.Viewport.Height;
 
             _consoleCommand = new FlxText(targetLeft, -800, targetWidth, "").setFormat(null, 1, Color.Green, FlxJustification.Left, Color.HotPink);
-            _consoleCommand.text = "Command: ";
+            _consoleCommand.text = "Type a command: ";
 
 
             _consoleFPS = new FlxText(targetLeft + targetWidth - 30, -800, 30, "").setFormat(null, 1, Color.White, FlxJustification.Right, Color.White);

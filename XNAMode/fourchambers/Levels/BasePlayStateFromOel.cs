@@ -769,25 +769,29 @@ namespace XNAMode
             }
         }
 
+        /// <summary>
+        /// Resets all values and restarts the playstate.
+        /// </summary>
         private void restart()
         {
-            //FlxG.level = 1;
-            //FlxG.score = 0;
-            //FourChambers_Globals.seraphineHasBeenKilled = false;
-            //FourChambers_Globals.availableLevels = {1,2,3,4,5,6,7,8,9};
-
             FourChambers_Globals.startGame();
-
-
             FlxG.state = new BasePlayStateFromOel();
-
-
         }
+
+        /// <summary>
+        /// Goes to menu.
+        /// </summary>
         private void goToMenu()
         {
             FlxG.state = new GameSelectionMenuState();
         }
 
+        /// <summary>
+        /// Go
+        /// </summary>
+        /// <param name="Sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         protected bool goToNextLevel(object Sender, FlxSpriteCollisionEvent e)
         {
             FlxG.level++;
@@ -895,14 +899,13 @@ namespace XNAMode
         /// <returns></returns>
         protected bool overlapped(object Sender, FlxSpriteCollisionEvent e)
         {
-
-            // Console.WriteLine("Overlapped.");
-
             // First reject Actors and their bullets.
             if ((e.Object1 is Warlock) && (e.Object2 is Fireball)) { }
             else if ((e.Object1 is Marksman) && (e.Object2 is Arrow)) { }
             else if ((e.Object1 is Marksman) && (e.Object2 is MeleeHitBox)) { }
             else if ((e.Object1 is Mistress) && (e.Object2 is MeleeHitBox)) { }
+            
+            //Then collide custom objects.
             else if (e.Object1 is ZingerNest)
             {
                 FourChambers_Globals.arrowsHitTarget++;
@@ -910,7 +913,6 @@ namespace XNAMode
                 bigEx.x = e.Object1.x;
                 bigEx.y = e.Object1.y;
                 bigEx.play("explode", true);
-
 
                 blood.at(e.Object1);
 
@@ -948,8 +950,6 @@ namespace XNAMode
                 {
 
                 }
-
-                //localHud.score.scale = 4;
 
                 e.Object2.x = -1000;
                 e.Object2.y = -1000;
@@ -1016,28 +1016,22 @@ namespace XNAMode
             if (((EventSprite)e.Object2).repeats >=0)
                 ((EventSprite)e.Object2).hurt(((EventSprite)e.Object2).repeats);
 
-
             return true;
-
         }
 
 
         public void eventSpriteRun(string command)
         {
-            //Console.WriteLine("command is: " + command);
-
             if (command == "quake")
             {
                 FlxG.quake.start(0.01f, 1.0f);
             }
             else
             {
-                //Console.WriteLine("Command: " + command);
                 FlxG.setHudText(1, command);
                 FlxG.setHudTextScale(1, 2);
                 FlxG.setHudTextPosition(1, FlxG._game.hud.p1OriginalPosition.X, 20);
             }
-
         }
 
         /// <summary>
@@ -1063,8 +1057,6 @@ namespace XNAMode
                 }
                 else if (FourChambers_Globals.cheatString.StartsWith("completelevel")) marksman.x = FlxG.levelWidth + 3;
 
-
-
             }
             FourChambers_Globals.cheatString = "";
 
@@ -1072,11 +1064,8 @@ namespace XNAMode
 
         public void buildEvent(int x=0, int y=0, int width=0, int height=0, int repeat=-1, string eventOrQuote="")
         {
-
             EventSprite s2 = new EventSprite(x, y, eventSpriteRun, repeat, eventOrQuote);
             s2.createGraphic(width, height, Color.Red);
-
-
             eventSprites.add(s2);
         }
 
