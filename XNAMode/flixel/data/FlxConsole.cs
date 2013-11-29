@@ -162,6 +162,9 @@ namespace org.flixel
 
         }
 
+        /// <summary>
+        /// Keyboard Entry allows for a command to be written and run when the console is active.
+        /// </summary>
         public void keyboardEntry()
         {
             PlayerIndex pi;

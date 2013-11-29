@@ -14,7 +14,9 @@ namespace org.flixel
         //public const int xTILE_SIZE_Y = 16;
     }
 
-
+    /// <summary>
+    /// Globals for the game Four Chambers.
+    /// </summary>
     class FourChambers_Globals
     {
         public const int TILE_SIZE_X = 16;
@@ -57,6 +59,9 @@ namespace org.flixel
 
         public static string cheatString;
 
+        /// <summary>
+        /// This is called at the beginning of every game. Reset all globals here.
+        /// </summary>
         public static void startGame()
         {
             
@@ -72,6 +77,10 @@ namespace org.flixel
 
         }
 
+        /// <summary>
+        /// Allows the FlxConsole to run commands.
+        /// </summary>
+        /// <param name="Cheat">Name of the cheat you want to run.</param>
         public static void runCheat(string Cheat)
         {
 

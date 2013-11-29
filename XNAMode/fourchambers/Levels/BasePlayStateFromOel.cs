@@ -468,11 +468,6 @@ namespace XNAMode
 
             add(eventSprites);
 
-
-
-
-
-
             Console.WriteLine("Done generating levels");
 
             // build atmospheric effects here
@@ -551,6 +546,7 @@ namespace XNAMode
 
         override public void update()
         {
+            runCheat();
 
             #region debugLevelSkip
             if (FlxG.keys.justPressed(Keys.F10) && FlxG.debug && timeOfDay > 2.0f)
@@ -670,6 +666,12 @@ namespace XNAMode
             if (FlxG.timeScale != 1.0f) FlxG.timeScale += 0.05f;
             if (FlxG.timeScale > 1.0f) FlxG.timeScale = 1.0f;
 
+            bool ev = FlxU.overlap(playerControlledActors, eventSprites, eventCallback);
+            if (!ev)
+            {
+                FlxG.setHudText(1, "");
+            }
+
             // color bg tiles
             //bgTiles.color = FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1);
 
@@ -678,32 +680,15 @@ namespace XNAMode
 
             //collides
             FlxU.collide(actors, allLevelTiles);
-
             FlxU.collide(powerUps, allLevelTiles);
-            
-            bool ev = FlxU.overlap(playerControlledActors, eventSprites, eventCallback);
-            if (!ev)
-            {
-                FlxG.setHudText(1, "");
-                
-
-            }
-            
             FlxU.overlap(actors, bullets, overlapped);
             FlxU.overlap(seraphine, bullets, overlapped);
             FlxU.overlap(actors, ladders, overlapWithLadder);
-
             FlxU.overlap(marksman.meleeHitBox, destructableTilemap, destroyTileAtMelee);
-
             // Maybe use the return value of this to reset the combo counter.
             FlxU.collide(destructableTilemap, bullets);
-
-
             FlxU.collide(blood, destructableTilemap);
-
-
             FlxU.overlap(actors, playerControlledActors, actorOverlap);
-
             FlxU.overlap(powerUps, playerControlledActors, getPowerUp);
 
             base.update();
@@ -718,10 +703,7 @@ namespace XNAMode
                     (playerControlledActors.members[i] as FlxSprite).dead = true;
                     i++;
                 }
-
                 Console.WriteLine("Just pressed Escape and killed all player characters.");
-
-
             }
 
             int i2 = 0;
@@ -734,8 +716,6 @@ namespace XNAMode
                 if ((playerControlledActors.members[i2] as FlxSprite).x < 0)
                 {
                     Console.WriteLine("ArrowsFired : {0} Arrows Hit : {1}", FourChambers_Globals.arrowsFired, FourChambers_Globals.arrowsHitTarget);
-                    
-                    
                     int newLevel = (int)FlxU.random(0, FourChambers_Globals.availableLevels.Count);
                     FlxG.level = FourChambers_Globals.availableLevels[newLevel];
                     FourChambers_Globals.availableLevels.RemoveAt(newLevel);
@@ -756,8 +736,6 @@ namespace XNAMode
                     goToLevel(FlxG.level);
 
                     //Console.WriteLine("STARTGAME() " + FourChambers_Globals.availableLevels[newLevel] + "  New Level:  " + newLevel);
-
-
 
                 }
 
@@ -1085,6 +1063,9 @@ namespace XNAMode
                         if (!(item is Marksman)) item.dead = true;
                     }
                 }
+                else if (FourChambers_Globals.cheatString.StartsWith("completelevel")) marksman.x = FlxG.levelWidth + 3;
+
+
 
             }
             FourChambers_Globals.cheatString = "";

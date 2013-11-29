@@ -15,6 +15,9 @@ using System.Xml.Linq;
 
 namespace XNAMode
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DataEntryState : FlxState
     {
         FlxText _nameEntry;
