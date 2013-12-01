@@ -256,8 +256,6 @@ namespace XNAMode
             // used for tutorial prompts.
             FlxG._game.hud.p1HudText.alignment = FlxJustification.Center;
 
-
-
             // Account for minus levels (tutorials etc)
             // -1 = Tutorial
             string levelFile;
@@ -275,7 +273,6 @@ namespace XNAMode
 
                 levelFile = "ogmoLevels/level" + FlxG.level.ToString() + ".oel";
             }
-            //this.test();
 
             Console.WriteLine("Loading BasePlayStateFromOel Level: " + levelFile);
 
@@ -473,11 +470,6 @@ namespace XNAMode
 
             add(eventSprites);
 
-
-
-
-
-
             Console.WriteLine("Done generating levels");
 
             // build atmospheric effects here
@@ -556,6 +548,7 @@ namespace XNAMode
 
         override public void update()
         {
+            runCheat();
 
             #region debugLevelSkip
             if (FlxG.keys.justPressed(Keys.F10) && FlxG.debug && timeOfDay > 2.0f)
@@ -675,6 +668,12 @@ namespace XNAMode
             if (FlxG.timeScale != 1.0f) FlxG.timeScale += 0.05f;
             if (FlxG.timeScale > 1.0f) FlxG.timeScale = 1.0f;
 
+            bool ev = FlxU.overlap(playerControlledActors, eventSprites, eventCallback);
+            if (!ev)
+            {
+                FlxG.setHudText(1, "");
+            }
+
             // color bg tiles
             //bgTiles.color = FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1);
 
@@ -683,32 +682,15 @@ namespace XNAMode
 
             //collides
             FlxU.collide(actors, allLevelTiles);
-
             FlxU.collide(powerUps, allLevelTiles);
-            
-            bool ev = FlxU.overlap(playerControlledActors, eventSprites, eventCallback);
-            if (!ev)
-            {
-                FlxG.setHudText(1, "");
-                
-
-            }
-            
             FlxU.overlap(actors, bullets, overlapped);
             FlxU.overlap(seraphine, bullets, overlapped);
             FlxU.overlap(actors, ladders, overlapWithLadder);
-
             FlxU.overlap(marksman.meleeHitBox, destructableTilemap, destroyTileAtMelee);
-
             // Maybe use the return value of this to reset the combo counter.
             FlxU.collide(destructableTilemap, bullets);
-
-
             FlxU.collide(blood, destructableTilemap);
-
-
             FlxU.overlap(actors, playerControlledActors, actorOverlap);
-
             FlxU.overlap(powerUps, playerControlledActors, getPowerUp);
 
             base.update();
@@ -723,10 +705,7 @@ namespace XNAMode
                     (playerControlledActors.members[i] as FlxSprite).dead = true;
                     i++;
                 }
-
                 Console.WriteLine("Just pressed Escape and killed all player characters.");
-
-
             }
 
             int i2 = 0;
@@ -739,8 +718,6 @@ namespace XNAMode
                 if ((playerControlledActors.members[i2] as FlxSprite).x < 0)
                 {
                     Console.WriteLine("ArrowsFired : {0} Arrows Hit : {1}", FourChambers_Globals.arrowsFired, FourChambers_Globals.arrowsHitTarget);
-                    
-                    
                     int newLevel = (int)FlxU.random(0, FourChambers_Globals.availableLevels.Count);
                     FlxG.level = FourChambers_Globals.availableLevels[newLevel];
                     FourChambers_Globals.availableLevels.RemoveAt(newLevel);
@@ -761,8 +738,6 @@ namespace XNAMode
                     goToLevel(FlxG.level);
 
                     //Console.WriteLine("STARTGAME() " + FourChambers_Globals.availableLevels[newLevel] + "  New Level:  " + newLevel);
-
-
 
                 }
 
@@ -796,25 +771,29 @@ namespace XNAMode
             }
         }
 
+        /// <summary>
+        /// Resets all values and restarts the playstate.
+        /// </summary>
         private void restart()
         {
-            //FlxG.level = 1;
-            //FlxG.score = 0;
-            //FourChambers_Globals.seraphineHasBeenKilled = false;
-            //FourChambers_Globals.availableLevels = {1,2,3,4,5,6,7,8,9};
-
             FourChambers_Globals.startGame();
-
-
             FlxG.state = new BasePlayStateFromOel();
-
-
         }
+
+        /// <summary>
+        /// Goes to menu.
+        /// </summary>
         private void goToMenu()
         {
             FlxG.state = new GameSelectionMenuState();
         }
 
+        /// <summary>
+        /// Go
+        /// </summary>
+        /// <param name="Sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         protected bool goToNextLevel(object Sender, FlxSpriteCollisionEvent e)
         {
             FlxG.level++;
@@ -922,14 +901,13 @@ namespace XNAMode
         /// <returns></returns>
         protected bool overlapped(object Sender, FlxSpriteCollisionEvent e)
         {
-
-            // Console.WriteLine("Overlapped.");
-
             // First reject Actors and their bullets.
             if ((e.Object1 is Warlock) && (e.Object2 is Fireball)) { }
             else if ((e.Object1 is Marksman) && (e.Object2 is Arrow)) { }
             else if ((e.Object1 is Marksman) && (e.Object2 is MeleeHitBox)) { }
             else if ((e.Object1 is Mistress) && (e.Object2 is MeleeHitBox)) { }
+            
+            //Then collide custom objects.
             else if (e.Object1 is ZingerNest)
             {
                 FourChambers_Globals.arrowsHitTarget++;
@@ -937,7 +915,6 @@ namespace XNAMode
                 bigEx.x = e.Object1.x;
                 bigEx.y = e.Object1.y;
                 bigEx.play("explode", true);
-
 
                 blood.at(e.Object1);
 
@@ -975,8 +952,6 @@ namespace XNAMode
                 {
 
                 }
-
-                //localHud.score.scale = 4;
 
                 e.Object2.x = -1000;
                 e.Object2.y = -1000;
@@ -1043,42 +1018,56 @@ namespace XNAMode
             if (((EventSprite)e.Object2).repeats >=0)
                 ((EventSprite)e.Object2).hurt(((EventSprite)e.Object2).repeats);
 
-
             return true;
-
         }
 
 
         public void eventSpriteRun(string command)
         {
-            //Console.WriteLine("command is: " + command);
-
             if (command == "quake")
             {
                 FlxG.quake.start(0.01f, 1.0f);
-
             }
             else
             {
-                //Console.WriteLine("Command: " + command);
-
-
                 FlxG.setHudText(1, command);
                 FlxG.setHudTextScale(1, 2);
                 FlxG.setHudTextPosition(1, FlxG._game.hud.p1OriginalPosition.X, 20);
+            }
+        }
 
+        /// <summary>
+        /// Runs cheat from the Global cheatstring.
+        /// </summary>
+        public void runCheat()
+        {
+            if (FourChambers_Globals.cheatString != "")
+            {
+                if (FourChambers_Globals.cheatString.StartsWith("killzingers"))
+                {
+                    foreach (var item in actors.members)
+                    {
+                        if (item is ZingerNest) item.dead = true;
+                    }
+                }
+                else if (FourChambers_Globals.cheatString.StartsWith("killemall"))
+                {
+                    foreach (var item in actors.members)
+                    {
+                        if (!(item is Marksman)) item.dead = true;
+                    }
+                }
+                else if (FourChambers_Globals.cheatString.StartsWith("completelevel")) marksman.x = FlxG.levelWidth + 3;
 
             }
+            FourChambers_Globals.cheatString = "";
 
         }
 
         public void buildEvent(int x=0, int y=0, int width=0, int height=0, int repeat=-1, string eventOrQuote="")
         {
-
             EventSprite s2 = new EventSprite(x, y, eventSpriteRun, repeat, eventOrQuote);
             s2.createGraphic(width, height, Color.Red);
-
-
             eventSprites.add(s2);
         }
 
@@ -1098,7 +1087,7 @@ namespace XNAMode
             uint PathType=0,
             int PathSpeed=40)
         {
-            Console.WriteLine("Building actor " + ActorType + " " + NumberOfActors);
+            //Console.WriteLine("Building actor " + ActorType + " " + NumberOfActors);
 
             #region Marksman
             if (ActorType == "marksman")
@@ -1642,9 +1631,6 @@ namespace XNAMode
                 }
             }
             #endregion
-
-            // marksman was here.
-
             #region Mechanic
             if (ActorType == "mechanic")
             {
@@ -2083,8 +2069,6 @@ namespace XNAMode
             }
             #endregion
 
-
-
             #region ladder
             if (ActorType == "ladder")
             {
@@ -2097,7 +2081,6 @@ namespace XNAMode
             }
             
             #endregion
-
             #region fallAwayBridge
             if (ActorType == "fallAwayBridge")
             {
@@ -2122,13 +2105,6 @@ namespace XNAMode
             }
 
             #endregion
-
-
-
-
-
-
-
 
         }
     }

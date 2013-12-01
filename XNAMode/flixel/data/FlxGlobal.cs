@@ -14,7 +14,9 @@ namespace org.flixel
         //public const int xTILE_SIZE_Y = 16;
     }
 
-
+    /// <summary>
+    /// Globals for the game Four Chambers.
+    /// </summary>
     class FourChambers_Globals
     {
         public const int TILE_SIZE_X = 16;
@@ -55,7 +57,11 @@ namespace org.flixel
 
         //public static Dictionary<string, int> turnProgress;
 
+        public static string cheatString;
 
+        /// <summary>
+        /// This is called at the beginning of every game. Reset all globals here.
+        /// </summary>
         public static void startGame()
         {
             
@@ -68,6 +74,22 @@ namespace org.flixel
             FourChambers_Globals.availableLevels.RemoveAt(newLevel);
 
             Console.WriteLine("STARTGAME() " + FourChambers_Globals.availableLevels[newLevel] + "  New Level:  " + newLevel);
+
+        }
+
+        /// <summary>
+        /// Allows the FlxConsole to run commands.
+        /// </summary>
+        /// <param name="Cheat">Name of the cheat you want to run.</param>
+        public static void runCheat(string Cheat)
+        {
+            if (Cheat == "arrows") FlxG.log("Current Arrows to Fire: " + FourChambers_Globals.arrowsToFire);
+            else if (Cheat.StartsWith("arrows")) FourChambers_Globals.arrowsToFire = Convert.ToInt32(Cheat[Cheat.Length-1].ToString());
+            else if (Cheat.StartsWith("whatisgame")) FlxG.log("Four Chambers");
+            else if (Cheat.StartsWith("liketheangels")) FourChambers_Globals.seraphineHasBeenKilled = false;
+            else if (Cheat.StartsWith("bigmoney")) FlxG.score += 20000;
+
+            cheatString = Cheat;
 
         }
 

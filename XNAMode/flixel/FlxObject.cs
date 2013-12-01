@@ -332,7 +332,11 @@ namespace org.flixel
         /// </summary>
         protected bool _pathRotate;
 
-
+        /// <summary>
+        /// 0 = linear.
+        /// 
+        /// </summary>
+        public float pathCornering;
 
 
         /// <summary>
@@ -418,6 +422,7 @@ namespace org.flixel
             pathSpeed = 0;
             pathAngle = 0;
             _pathNodeIndex = 0;
+            pathCornering = 10.0f;
 
         }
 
@@ -1044,7 +1049,13 @@ namespace org.flixel
                 _point.Y = y + height*0.5f;
                 if(horizontalOnly || (_point.Y == node.Y))
                 {
-                    velocity.X = (_point.X < node.X)?pathSpeed:-pathSpeed;
+                    //velocity.X = (_point.X < node.X)?pathSpeed:-pathSpeed;
+
+                    float targetVel = (_point.X < node.X)?pathSpeed:-pathSpeed;
+
+                    if (velocity.X < targetVel) velocity.X += 1.0f;
+                    if (velocity.X > targetVel) velocity.X -= 1.0f;
+
                     if(velocity.X < 0)
                         pathAngle = -90;
                     else
@@ -1054,20 +1065,33 @@ namespace org.flixel
                 }
                 else if(verticalOnly || (_point.X == node.X))
                 {
-                    velocity.Y = (_point.Y < node.Y)?pathSpeed:-pathSpeed;
+                    //velocity.Y = (_point.Y < node.Y)?pathSpeed:-pathSpeed;
+
+                    float targetVel = (_point.Y < node.Y)?pathSpeed:-pathSpeed;
                     if(velocity.Y < 0)
                         pathAngle = 0;
                     else
                         pathAngle = 180;
                     if(!verticalOnly)
                         velocity.X = 0;
+
+                    if (velocity.Y < targetVel) velocity.Y += 1.0f;
+                    if (velocity.Y > targetVel) velocity.Y -= 1.0f;
                 }
                 else
                 {
                         
                     pathAngle = FlxU.getAngle(_point,node);
-                    velocity = (FlxU.rotatePoint(0,pathSpeed,0,0,pathAngle)) * - 1;
+                    
+                    //velocity = (FlxU.rotatePoint(0,pathSpeed,0,0,pathAngle)) * - 1;
 
+                    Vector2 targetVel = (FlxU.rotatePoint(0, pathSpeed, 0, 0, pathAngle)) * -1;
+
+                    if (velocity.X < targetVel.X) velocity.X += 1.0f;
+                    if (velocity.X > targetVel.X) velocity.X -= 1.0f;
+
+                    if (velocity.Y < targetVel.Y) velocity.Y += 1.0f;
+                    if (velocity.Y > targetVel.Y) velocity.Y -= 1.0f;
                 }
                                 
                 //then set object rotation if necessary

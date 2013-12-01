@@ -15,6 +15,9 @@ using System.Xml.Linq;
 
 namespace XNAMode
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DataEntryState : FlxState
     {
         FlxText _nameEntry;
@@ -106,8 +109,6 @@ namespace XNAMode
 
             keyboardEntry();
 
-            
-
             base.update();
         }
 
@@ -130,7 +131,6 @@ namespace XNAMode
             FlxG.username = _nameEntry.text;
 
             SaveToDevice();
-
             
             FlxG.level = 1;
             FlxG.score = 0;
@@ -139,8 +139,6 @@ namespace XNAMode
             FlxG.state = new GameSelectionMenuState();
             return;
         }
-
-
 
         public void keyboardEntry()
         {

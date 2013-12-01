@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace org.flixel
 {
@@ -20,13 +21,23 @@ namespace org.flixel
         private Rectangle _consoleRect;
         private Color _consoleColor;
         private FlxText _consoleText;
+        
+        /// <summary>
+        /// Text describing frames per second.
+        /// </summary>
         private FlxText _consoleFPS;
+
         private int[] _FPS;
         private int _curFPS;
         private List<string> _consoleLines;
         private float _consoleY;
         private float _consoleYT;
         private bool _fpsUpdate;
+
+        /// <summary>
+        /// Allows a command to be typed and executed.
+        /// </summary>
+        private FlxText _consoleCommand;
 
         public Color color
         {
@@ -45,6 +56,10 @@ namespace org.flixel
 
             _consoleText = new FlxText(targetLeft, -800, targetWidth, "").setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
             _consoleText.height = FlxG.height; //FlxG.spriteBatch.GraphicsDevice.Viewport.Height;
+
+            _consoleCommand = new FlxText(targetLeft, -800, targetWidth, "").setFormat(null, 1, Color.Green, FlxJustification.Left, Color.HotPink);
+            _consoleCommand.text = "Type a command: ";
+
 
             _consoleFPS = new FlxText(targetLeft + targetWidth - 30, -800, 30, "").setFormat(null, 1, Color.White, FlxJustification.Right, Color.White);
 
@@ -98,6 +113,8 @@ namespace org.flixel
         {
             if (visible)
             {
+                keyboardEntry();
+
                 //_FPS[_curFPS] = (int)(1f / FlxG.elapsed);
                 //if (++_curFPS >= _FPS.Length) _curFPS = 0;
                 //_fpsUpdate = !_fpsUpdate;
@@ -109,8 +126,10 @@ namespace org.flixel
                 //    _consoleFPS.text = ((int)Math.Floor((double)(fps / _FPS.Length))).ToString() + " fps";
                 //}
 
-                _consoleText.y = (-FlxG.spriteBatch.GraphicsDevice.Viewport.Height + _consoleRect.Height + 8);
+                _consoleText.y = (-FlxG.spriteBatch.GraphicsDevice.Viewport.Height + _consoleRect.Height + 24);
                 _consoleFPS.y = _consoleText.y;
+                _consoleCommand.y = _consoleText.y-16;
+                
             }
             if (_consoleY < _consoleYT)
                 _consoleY += FlxG.height * 10 * FlxG.elapsed;
@@ -147,7 +166,82 @@ namespace org.flixel
                 _srcRect, _consoleColor);
             _consoleText.render(spriteBatch);
             _consoleFPS.render(spriteBatch);
+            _consoleCommand.render(spriteBatch);
+
         }
+
+        /// <summary>
+        /// Keyboard Entry allows for a command to be written and run when the console is active.
+        /// </summary>
+        public void keyboardEntry()
+        {
+            PlayerIndex pi;
+            bool shift = FlxG.keys.SHIFT;
+
+            if (FlxG.keys.isNewKeyPress(Keys.A, null, out pi)) _consoleCommand.text += shift ? "A" : "a";
+            if (FlxG.keys.isNewKeyPress(Keys.B, null, out pi)) _consoleCommand.text += shift ? "B" : "b";
+            if (FlxG.keys.isNewKeyPress(Keys.C, null, out pi)) _consoleCommand.text += shift ? "C" : "c";
+            if (FlxG.keys.isNewKeyPress(Keys.D, null, out pi)) _consoleCommand.text += shift ? "D" : "d";
+            if (FlxG.keys.isNewKeyPress(Keys.E, null, out pi)) _consoleCommand.text += shift ? "E" : "e";
+            if (FlxG.keys.isNewKeyPress(Keys.F, null, out pi)) _consoleCommand.text += shift ? "F" : "f";
+            if (FlxG.keys.isNewKeyPress(Keys.G, null, out pi)) _consoleCommand.text += shift ? "G" : "g";
+            if (FlxG.keys.isNewKeyPress(Keys.H, null, out pi)) _consoleCommand.text += shift ? "H" : "h";
+            if (FlxG.keys.isNewKeyPress(Keys.I, null, out pi)) _consoleCommand.text += shift ? "I" : "i";
+            if (FlxG.keys.isNewKeyPress(Keys.J, null, out pi)) _consoleCommand.text += shift ? "J" : "j";
+            if (FlxG.keys.isNewKeyPress(Keys.K, null, out pi)) _consoleCommand.text += shift ? "K" : "k";
+            if (FlxG.keys.isNewKeyPress(Keys.L, null, out pi)) _consoleCommand.text += shift ? "L" : "l";
+            if (FlxG.keys.isNewKeyPress(Keys.M, null, out pi)) _consoleCommand.text += shift ? "M" : "m";
+            if (FlxG.keys.isNewKeyPress(Keys.N, null, out pi)) _consoleCommand.text += shift ? "N" : "n";
+            if (FlxG.keys.isNewKeyPress(Keys.O, null, out pi)) _consoleCommand.text += shift ? "O" : "o";
+            if (FlxG.keys.isNewKeyPress(Keys.P, null, out pi)) _consoleCommand.text += shift ? "P" : "p";
+            if (FlxG.keys.isNewKeyPress(Keys.Q, null, out pi)) _consoleCommand.text += shift ? "Q" : "q";
+            if (FlxG.keys.isNewKeyPress(Keys.R, null, out pi)) _consoleCommand.text += shift ? "R" : "r";
+            if (FlxG.keys.isNewKeyPress(Keys.S, null, out pi)) _consoleCommand.text += shift ? "S" : "s";
+            if (FlxG.keys.isNewKeyPress(Keys.T, null, out pi)) _consoleCommand.text += shift ? "T" : "t";
+            if (FlxG.keys.isNewKeyPress(Keys.U, null, out pi)) _consoleCommand.text += shift ? "U" : "u";
+            if (FlxG.keys.isNewKeyPress(Keys.V, null, out pi)) _consoleCommand.text += shift ? "V" : "v";
+            if (FlxG.keys.isNewKeyPress(Keys.W, null, out pi)) _consoleCommand.text += shift ? "W" : "w";
+            if (FlxG.keys.isNewKeyPress(Keys.X, null, out pi)) _consoleCommand.text += shift ? "X" : "x";
+            if (FlxG.keys.isNewKeyPress(Keys.Y, null, out pi)) _consoleCommand.text += shift ? "Y" : "y";
+            if (FlxG.keys.isNewKeyPress(Keys.Z, null, out pi)) _consoleCommand.text += shift ? "Z" : "z";
+
+            if (FlxG.keys.isNewKeyPress(Keys.D1, null, out pi)) _consoleCommand.text += shift ? "!" : "1";
+            if (FlxG.keys.isNewKeyPress(Keys.D2, null, out pi)) _consoleCommand.text += shift ? "@" : "2";
+            if (FlxG.keys.isNewKeyPress(Keys.D3, null, out pi)) _consoleCommand.text += shift ? "#" : "3";
+            if (FlxG.keys.isNewKeyPress(Keys.D4, null, out pi)) _consoleCommand.text += shift ? "$" : "4";
+            if (FlxG.keys.isNewKeyPress(Keys.D5, null, out pi)) _consoleCommand.text += shift ? "%" : "5";
+            if (FlxG.keys.isNewKeyPress(Keys.D6, null, out pi)) _consoleCommand.text += shift ? "^" : "6";
+            if (FlxG.keys.isNewKeyPress(Keys.D7, null, out pi)) _consoleCommand.text += shift ? "&" : "7";
+            if (FlxG.keys.isNewKeyPress(Keys.D8, null, out pi)) _consoleCommand.text += shift ? "*" : "8";
+            if (FlxG.keys.isNewKeyPress(Keys.D9, null, out pi)) _consoleCommand.text += shift ? "(" : "9";
+            if (FlxG.keys.isNewKeyPress(Keys.D0, null, out pi)) _consoleCommand.text += shift ? ")" : "0";
+            //if (FlxG.keys.isNewKeyPress(Keys.OemMinus, null, out pi)) _consoleCommand.text += shift ? "_" : "-";
+
+            if (FlxG.keys.isNewKeyPress(Keys.Back, null, out pi))
+            {
+
+                if (_consoleCommand.text.Length <= 0)
+                {
+                    return;
+                }
+
+                string backspaced = _consoleCommand.text;
+
+                _consoleCommand.text = backspaced.Remove(backspaced.Length - 1);
+            }
+
+            if (FlxG.keys.isNewKeyPress(Keys.Enter, null, out pi))
+            {
+
+                // run command(_consoleCommand.text);
+                FourChambers_Globals.runCheat(_consoleCommand.text);
+
+
+                _consoleCommand.text = "";
+            }
+        }
+
+
 
     }
 }
