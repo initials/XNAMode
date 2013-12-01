@@ -47,11 +47,12 @@ namespace XNAMode
             add(collider);
 
             // Tell the sprite to follow the path. 
-            collider.followPath(path, 15.0f, FlxObject.PATH_YOYO, false);
+            collider.followPath(path, 0.0f, FlxObject.PATH_YOYO, false);
 
             pather = new FlxSprite(16, 16);
             pather.loadGraphic(FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"), false, false, 8, 8);
             pather.color = new Color(1.0f, 0, 0);
+            pather.pathCornering = 3.0f;
             add(pather);
 
             

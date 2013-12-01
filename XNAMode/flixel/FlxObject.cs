@@ -1051,6 +1051,8 @@ namespace org.flixel
                 {
                     if (pathCornering == 0)
                     {
+                        //Console.WriteLine("horizontalOnly  0 ");
+
                         velocity.X = (_point.X < node.X) ? pathSpeed : -pathSpeed;
 
                         if (velocity.X < 0)
@@ -1062,16 +1064,17 @@ namespace org.flixel
                     }
                     else
                     {
+                        //Console.WriteLine("horizontalOnly ");
+
                         float targetVelX = (_point.X < node.X) ? pathSpeed : -pathSpeed;
 
                         Vector2 targetVel = new Vector2(targetVelX, 0);
-
-                        Console.WriteLine(targetVel);
 
                         if (velocity.X < targetVel.X) velocity.X += pathCornering;
                         if (velocity.X > targetVel.X) velocity.X -= pathCornering;
                         if (velocity.Y < targetVel.Y) velocity.Y += pathCornering;
                         if (velocity.Y > targetVel.Y) velocity.Y -= pathCornering;
+                        //velocity.Y = 0;
 
                         if (velocity.X < 0)
                             pathAngle = -90;
@@ -1084,6 +1087,8 @@ namespace org.flixel
                 {
                     if (pathCornering == 0)
                     {
+                        //Console.WriteLine("verticalOnly 0 ");
+
                         velocity.Y = (_point.Y < node.Y) ? pathSpeed : -pathSpeed;
 
                         if (velocity.Y < 0)
@@ -1095,6 +1100,8 @@ namespace org.flixel
                     }
                     else
                     {
+                        //Console.WriteLine("verticalOnly ");
+
                         float targetVelY = (_point.Y < node.Y) ? pathSpeed : -pathSpeed;
                         
                         Vector2 targetVel = new Vector2(0, targetVelY);
@@ -1103,7 +1110,7 @@ namespace org.flixel
                         if (velocity.X > targetVel.X) velocity.X -= pathCornering;
                         if (velocity.Y < targetVel.Y) velocity.Y += pathCornering;
                         if (velocity.Y > targetVel.Y) velocity.Y -= pathCornering;
-
+                        //velocity.X = 0;
 
                         if (velocity.Y < 0)
                             pathAngle = 0;
@@ -1116,11 +1123,17 @@ namespace org.flixel
                 {
                     if (pathCornering == 0)
                     {
+                        //Console.WriteLine(" else 0 ");
+
                         pathAngle = FlxU.getAngle(_point, node);
                         velocity = (FlxU.rotatePoint(0, pathSpeed, 0, 0, pathAngle)) * -1;
                     }
                     else
                     {
+                        pathAngle = FlxU.getAngle(_point, node);
+
+                        //Console.WriteLine("else ");
+
                         Vector2 targetVel = (FlxU.rotatePoint(0, pathSpeed, 0, 0, pathAngle)) * -1;
                         if (velocity.X < targetVel.X) velocity.X += pathCornering;
                         if (velocity.X > targetVel.X) velocity.X -= pathCornering;
