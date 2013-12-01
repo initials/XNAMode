@@ -346,6 +346,8 @@ namespace XNAMode
             destructableTilemap.loadMap(destructableAttrs["DestructableTerrain"], FlxG.Content.Load<Texture2D>("initials/" + destructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
             destructableTilemap.boundingBoxOverride = true;
             allLevelTiles.add(destructableTilemap);
+            destructableTilemap.collideMin = 0;
+            destructableTilemap.collideMax = 21;
 
 
             indestructableAttrs = new Dictionary<string, string>();

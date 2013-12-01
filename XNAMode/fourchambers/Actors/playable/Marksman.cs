@@ -189,9 +189,9 @@ namespace XNAMode
                         if (rightX == 0 && rightY == 0)
                         {
                             if (facing == Flx2DFacing.Right)
-                                ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), 600, -100);
+                                ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), 600, -100 + (i * 40));
                             else
-                                ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), -600, -100);
+                                ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), -600, -100+(i*40) );
                         }
                         // use the right stick to fire a weapon
                         else

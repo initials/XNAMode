@@ -210,7 +210,7 @@ namespace XNAMode
 
             
             // Running pushes walk speed higher.
-            if (FlxG.gamepads.isButtonDown(Buttons.RightTrigger, FlxG.controllingPlayer, out pi))
+            if (FlxG.gamepads.isButtonDown(Buttons.RightTrigger, FlxG.controllingPlayer, out pi) )
             {
                 lastAttack = "range";
                 maxVelocity.X = runSpeed * 2;
@@ -226,7 +226,7 @@ namespace XNAMode
             acceleration.X = 0;
 
             // Walking left.
-            if ((FlxG.keys.A || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi)) && !isClimbingLadder)
+            if ((FlxG.keys.A || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadLeft) ) && !isClimbingLadder)
             {
                 lastAttack = "range";
                 attackingJoystick = false;
@@ -236,7 +236,7 @@ namespace XNAMode
                 attackingMelee = false;
             }
             //Walking right.
-            else if ((FlxG.keys.D || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi)) && !isClimbingLadder)
+            else if ((FlxG.keys.D || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadRight)) && !isClimbingLadder)
             {
                 lastAttack = "range";
                 attackingJoystick = false;
@@ -247,7 +247,7 @@ namespace XNAMode
             }
 
             // ladders
-            if ((FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, FlxG.controllingPlayer, out pi)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
+            if ((FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadUp) ) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
             {
                 lastAttack = "range";
                 x = ladderPosX + width;
@@ -258,7 +258,7 @@ namespace XNAMode
 
                 // on a ladder, snap to nearest 16
             }
-            else if ((FlxG.keys.S || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, FlxG.controllingPlayer, out pi)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
+            else if ((FlxG.keys.S || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadDown) ) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
             {
                 lastAttack = "range";
                 x = ladderPosX + width;
