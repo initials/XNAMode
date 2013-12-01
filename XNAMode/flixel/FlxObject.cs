@@ -422,7 +422,7 @@ namespace org.flixel
             pathSpeed = 0;
             pathAngle = 0;
             _pathNodeIndex = 0;
-            pathCornering = 10.0f;
+            pathCornering = 0.0f;
 
         }
 
@@ -1049,49 +1049,84 @@ namespace org.flixel
                 _point.Y = y + height*0.5f;
                 if(horizontalOnly || (_point.Y == node.Y))
                 {
-                    //velocity.X = (_point.X < node.X)?pathSpeed:-pathSpeed;
+                    if (pathCornering == 0)
+                    {
+                        velocity.X = (_point.X < node.X) ? pathSpeed : -pathSpeed;
 
-                    float targetVel = (_point.X < node.X)?pathSpeed:-pathSpeed;
-
-                    if (velocity.X < targetVel) velocity.X += 1.0f;
-                    if (velocity.X > targetVel) velocity.X -= 1.0f;
-
-                    if(velocity.X < 0)
-                        pathAngle = -90;
+                        if (velocity.X < 0)
+                            pathAngle = -90;
+                        else
+                            pathAngle = 90;
+                        if (!horizontalOnly)
+                            velocity.Y = 0;
+                    }
                     else
-                        pathAngle = 90;
-                    if(!horizontalOnly)
-                        velocity.Y = 0;
+                    {
+                        float targetVelX = (_point.X < node.X) ? pathSpeed : -pathSpeed;
+
+                        Vector2 targetVel = new Vector2(targetVelX, 0);
+
+                        Console.WriteLine(targetVel);
+
+                        if (velocity.X < targetVel.X) velocity.X += pathCornering;
+                        if (velocity.X > targetVel.X) velocity.X -= pathCornering;
+                        if (velocity.Y < targetVel.Y) velocity.Y += pathCornering;
+                        if (velocity.Y > targetVel.Y) velocity.Y -= pathCornering;
+
+                        if (velocity.X < 0)
+                            pathAngle = -90;
+                        else
+                            pathAngle = 90;
+                    }
+
                 }
                 else if(verticalOnly || (_point.X == node.X))
                 {
-                    //velocity.Y = (_point.Y < node.Y)?pathSpeed:-pathSpeed;
+                    if (pathCornering == 0)
+                    {
+                        velocity.Y = (_point.Y < node.Y) ? pathSpeed : -pathSpeed;
 
-                    float targetVel = (_point.Y < node.Y)?pathSpeed:-pathSpeed;
-                    if(velocity.Y < 0)
-                        pathAngle = 0;
+                        if (velocity.Y < 0)
+                            pathAngle = 0;
+                        else
+                            pathAngle = 180;
+                        if (!verticalOnly)
+                            velocity.X = 0;
+                    }
                     else
-                        pathAngle = 180;
-                    if(!verticalOnly)
-                        velocity.X = 0;
+                    {
+                        float targetVelY = (_point.Y < node.Y) ? pathSpeed : -pathSpeed;
+                        
+                        Vector2 targetVel = new Vector2(0, targetVelY);
 
-                    if (velocity.Y < targetVel) velocity.Y += 1.0f;
-                    if (velocity.Y > targetVel) velocity.Y -= 1.0f;
+                        if (velocity.X < targetVel.X) velocity.X += pathCornering;
+                        if (velocity.X > targetVel.X) velocity.X -= pathCornering;
+                        if (velocity.Y < targetVel.Y) velocity.Y += pathCornering;
+                        if (velocity.Y > targetVel.Y) velocity.Y -= pathCornering;
+
+
+                        if (velocity.Y < 0)
+                            pathAngle = 0;
+                        else
+                            pathAngle = 180;
+                    }
+
                 }
                 else
                 {
-                        
-                    pathAngle = FlxU.getAngle(_point,node);
-                    
-                    //velocity = (FlxU.rotatePoint(0,pathSpeed,0,0,pathAngle)) * - 1;
-
-                    Vector2 targetVel = (FlxU.rotatePoint(0, pathSpeed, 0, 0, pathAngle)) * -1;
-
-                    if (velocity.X < targetVel.X) velocity.X += 1.0f;
-                    if (velocity.X > targetVel.X) velocity.X -= 1.0f;
-
-                    if (velocity.Y < targetVel.Y) velocity.Y += 1.0f;
-                    if (velocity.Y > targetVel.Y) velocity.Y -= 1.0f;
+                    if (pathCornering == 0)
+                    {
+                        pathAngle = FlxU.getAngle(_point, node);
+                        velocity = (FlxU.rotatePoint(0, pathSpeed, 0, 0, pathAngle)) * -1;
+                    }
+                    else
+                    {
+                        Vector2 targetVel = (FlxU.rotatePoint(0, pathSpeed, 0, 0, pathAngle)) * -1;
+                        if (velocity.X < targetVel.X) velocity.X += pathCornering;
+                        if (velocity.X > targetVel.X) velocity.X -= pathCornering;
+                        if (velocity.Y < targetVel.Y) velocity.Y += pathCornering;
+                        if (velocity.Y > targetVel.Y) velocity.Y -= pathCornering;
+                    }
                 }
                                 
                 //then set object rotation if necessary
