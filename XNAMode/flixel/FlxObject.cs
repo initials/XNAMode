@@ -333,8 +333,8 @@ namespace org.flixel
         protected bool _pathRotate;
 
         /// <summary>
-        /// 0 = linear.
-        /// 
+        /// <value>0</value> is Linear movement.
+        /// <value>0.001f and above</value> Higher numbers will result in tighter curves.
         /// </summary>
         public float pathCornering;
 
@@ -1009,10 +1009,6 @@ namespace org.flixel
         /// </summary>
         public void updatePathMotion()
         {
-            //Console.WriteLine("updatePathMotion _pathNodeIndex " + _pathNodeIndex);
-
-            // Current progress : complete, to test
-
             //first check if we need to be pointing at the next node yet
             _point.X = x + width*0.5f;
             _point.Y = y + height*0.5f;
@@ -1035,8 +1031,6 @@ namespace org.flixel
             }
             else
             {
-                //Console.WriteLine("else !!!  " + _pathNodeIndex + "  " + Math.Sqrt(deltaX * deltaX + deltaY * deltaY) + " " + pathSpeed * FlxG.elapsed);
-
                 if(Math.Sqrt(deltaX*deltaX + deltaY*deltaY) < pathSpeed*FlxG.elapsed)
                     node = advancePath();
             }
@@ -1049,10 +1043,10 @@ namespace org.flixel
                 _point.Y = y + height*0.5f;
                 if(horizontalOnly || (_point.Y == node.Y))
                 {
+                    // Path cornering is 0, so move in a linear fashion.
+
                     if (pathCornering == 0)
                     {
-                        //Console.WriteLine("horizontalOnly  0 ");
-
                         velocity.X = (_point.X < node.X) ? pathSpeed : -pathSpeed;
 
                         if (velocity.X < 0)
@@ -1062,10 +1056,9 @@ namespace org.flixel
                         if (!horizontalOnly)
                             velocity.Y = 0;
                     }
+                    // Path cornering is not zero, so progress to target speed using the PathCornering value.
                     else
                     {
-                        //Console.WriteLine("horizontalOnly ");
-
                         float targetVelX = (_point.X < node.X) ? pathSpeed : -pathSpeed;
 
                         Vector2 targetVel = new Vector2(targetVelX, 0);
