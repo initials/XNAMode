@@ -181,7 +181,7 @@ namespace XNAMode
                 float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
                 float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
                 
-                // No Right Stick so do a generic shoot.
+                // No Right Stick so do a generic shoot...
                 if (arrowsRemaining >= 1)
                 {
                     for (int i = 0; i < FourChambers_Globals.arrowsToFire; i++)
