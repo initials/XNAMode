@@ -124,9 +124,4 @@
     <automaton id="20" x="160" y="624" flip="False" />
     <automaton id="21" x="640" y="160" flip="False" />
   </ActorsLayer>
-  <EventsLayer>
-    <_event id="0" x="352" y="256" width="48" height="48" event="quake" value1="0" value2="0" repeat="1" />
-    <_event id="1" x="720" y="128" width="32" height="48" event="quake" value1="0" value2="0" repeat="1" />
-    <_event id="2" x="752" y="704" width="48" height="48" event="quake" value1="0" value2="0" repeat="1" />
-  </EventsLayer>
 </level>

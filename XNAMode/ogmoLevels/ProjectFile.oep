@@ -16,7 +16,7 @@
     <Width>3200</Width>
     <Height>3200</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Shane\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
+  <Filename>C:\Users\User\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>true</CameraEnabled>
   <CameraSize>
@@ -56,17 +56,6 @@
     </LayerDefinition>
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>ActorsLayer</Name>
-      <Grid>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Grid>
-      <ScrollFactor>
-        <X>1</X>
-        <Y>1</Y>
-      </ScrollFactor>
-    </LayerDefinition>
-    <LayerDefinition xsi:type="EntityLayerDefinition">
-      <Name>EventsLayer</Name>
       <Grid>
         <Width>16</Width>
         <Height>16</Height>
