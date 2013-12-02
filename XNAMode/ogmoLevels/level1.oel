@@ -105,18 +105,24 @@
     <automaton id="1" x="528" y="480" flip="False" />
     <marksman id="2" x="160" y="400" flip="False" isPlayerControlled="True" />
     <zingernest id="3" x="720" y="688" />
-    <bat id="4" x="96" y="272" flip="False" pathType="FORWARD" pathSpeed="100" />
-    <bat id="5" x="80" y="368" flip="False" pathType="FORWARD" pathSpeed="100" />
-    <bat id="6" x="416" y="160" flip="False" pathType="FORWARD" pathSpeed="100" />
-    <bat id="7" x="432" y="80" flip="False" pathType="FORWARD" pathSpeed="100" />
-    <bat id="8" x="496" y="176" flip="False" pathType="FORWARD" pathSpeed="100" />
-    <bat id="9" x="320" y="224" flip="False" pathType="FORWARD" pathSpeed="100" />
-    <bat id="10" x="288" y="272" flip="False" pathType="FORWARD" pathSpeed="100" />
-    <bat id="11" x="224" y="224" flip="False" pathType="FORWARD" pathSpeed="100" />
-    <bat id="12" x="688" y="224" flip="False" pathType="FORWARD" pathSpeed="100" />
-    <bat id="13" x="720" y="192" flip="False" pathType="FORWARD" pathSpeed="100" />
-    <bat id="14" x="656" y="144" flip="False" pathType="FORWARD" pathSpeed="100" />
-    <bat id="15" x="608" y="112" flip="False" pathType="FORWARD" pathSpeed="100" />
+    <bat id="4" x="96" y="272" flip="False" pathType="LOOP_FORWARD" pathSpeed="100" pathCornering="3">
+      <node x="176" y="256" />
+      <node x="240" y="288" />
+      <node x="256" y="368" />
+      <node x="144" y="384" />
+      <node x="64" y="320" />
+    </bat>
+    <bat id="5" x="80" y="368" flip="False" pathType="FORWARD" pathSpeed="100" pathCornering="3" />
+    <bat id="6" x="416" y="160" flip="False" pathType="FORWARD" pathSpeed="100" pathCornering="3" />
+    <bat id="7" x="432" y="80" flip="False" pathType="FORWARD" pathSpeed="100" pathCornering="3" />
+    <bat id="8" x="496" y="176" flip="False" pathType="FORWARD" pathSpeed="100" pathCornering="3" />
+    <bat id="9" x="320" y="224" flip="False" pathType="FORWARD" pathSpeed="100" pathCornering="3" />
+    <bat id="10" x="288" y="272" flip="False" pathType="FORWARD" pathSpeed="100" pathCornering="3" />
+    <bat id="11" x="224" y="224" flip="False" pathType="FORWARD" pathSpeed="100" pathCornering="3" />
+    <bat id="12" x="688" y="224" flip="False" pathType="FORWARD" pathSpeed="100" pathCornering="3" />
+    <bat id="13" x="720" y="192" flip="False" pathType="FORWARD" pathSpeed="100" pathCornering="3" />
+    <bat id="14" x="656" y="144" flip="False" pathType="FORWARD" pathSpeed="100" pathCornering="3" />
+    <bat id="15" x="608" y="112" flip="False" pathType="FORWARD" pathSpeed="100" pathCornering="3" />
     <zinger id="16" x="448" y="208" flip="False" pathType="FORWARD" pathSpeed="100" />
     <zinger id="17" x="464" y="144" flip="False" pathType="FORWARD" pathSpeed="100" />
     <zinger id="18" x="368" y="80" flip="False" pathType="FORWARD" pathSpeed="100" />
@@ -132,7 +138,4 @@
     <zombie id="28" x="240" y="384" flip="False" />
     <_procedurallyGeneratedArea id="29" x="192" y="336" width="512" height="128" />
   </ActorsLayer>
-  <EventsLayer>
-    <_event id="0" x="336" y="704" width="48" height="48" event="quake" value1="0" value2="0" repeat="1" />
-  </EventsLayer>
 </level>

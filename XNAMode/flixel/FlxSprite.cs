@@ -678,8 +678,11 @@ namespace org.flixel
         {
             spriteBatch.Draw(FlxG.XnaSheet,
                 new Rectangle((int)(FlxU.floor(x + FlxU.roundingError) + FlxU.floor(FlxG.scroll.X * scrollFactor.X)),
-                    (int)(FlxU.floor(y + FlxU.roundingError) + FlxU.floor(FlxG.scroll.Y * scrollFactor.Y)), (int)width, (int)height),
-                new Rectangle(1, 1, 1, 1), getBoundingColor());
+                    (int)(FlxU.floor(y + FlxU.roundingError) + FlxU.floor(FlxG.scroll.Y * scrollFactor.Y)), 
+                    (int)width, 
+                    (int)height),
+                new Rectangle(1, 1, 1, 1), 
+                getBoundingColor());
 
             if (path != null)
             {
@@ -687,8 +690,12 @@ namespace org.flixel
                 foreach (var item in path.nodes)
                 {
                     spriteBatch.Draw(FlxG.XnaSheet,
-                        new Rectangle((int)item.X - 2, (int)item.Y - 2, 4, 4),
-                        new Rectangle(1, 1, 1, 1), Color.DarkOrange);
+                        new Rectangle((int)item.X - 2 + (int)(FlxU.floor(FlxG.scroll.X * scrollFactor.X)),
+                            (int)item.Y - 2 + (int)(FlxU.floor(FlxG.scroll.Y * scrollFactor.Y)), 
+                            4, 
+                            4),
+                        new Rectangle(1, 1, 1, 1), 
+                        Color.DarkOrange);
 
                     //if (count < path.nodes.Count - 1)
                     //{

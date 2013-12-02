@@ -390,6 +390,7 @@ namespace XNAMode
                 string PY = "";
                 uint PT = 0;
                 int PS = 0;
+                float PC = 0.0f;
 
 
                 if (nodes.ContainsKey("isPlayerControlled"))
@@ -405,12 +406,17 @@ namespace XNAMode
                     localHeight = Convert.ToInt32(nodes["height"]);
                 }
 
-                if (nodes.ContainsKey("PathNodesX")) PX = nodes["pathNodesX"];
-                if (nodes.ContainsKey("PathNodesY")) PY = nodes["pathNodesY"];
-                if (nodes.ContainsKey("PathType")) PT = FlxPath.convertStringValueForPathType(nodes["pathType"]);
-                if (nodes.ContainsKey("PathSpeed")) Convert.ToInt32(nodes["pathSpeed"]);
+                if (nodes.ContainsKey("pathNodesX")) PX = nodes["pathNodesX"];
+                if (nodes.ContainsKey("pathNodesY")) PY = nodes["pathNodesY"];
 
-                buildActor(nodes["Name"], 1, pc , Convert.ToInt32(nodes["x"]),Convert.ToInt32(nodes["y"]), localWidth, localHeight, PX,PY,PT,PS);
+                //Console.WriteLine("PathNodes: {0} {1}", PX, PY);
+
+
+                if (nodes.ContainsKey("pathType")) PT = FlxPath.convertStringValueForPathType(nodes["pathType"]);
+                if (nodes.ContainsKey("pathSpeed")) PS = Convert.ToInt32(nodes["pathSpeed"]);
+                if (nodes.ContainsKey("pathCornering")) PC = (float)(Convert.ToInt32(nodes["pathCornering"]));
+
+                buildActor(nodes["Name"], 1, pc , Convert.ToInt32(nodes["x"]),Convert.ToInt32(nodes["y"]), localWidth, localHeight, PX,PY,PT,PS, PC);
 
                 if (nodes["Name"] == "_event")
                 {
@@ -1041,7 +1047,7 @@ namespace XNAMode
         /// </summary>
         public void runCheat()
         {
-            if (FourChambers_Globals.cheatString != "")
+            if (FourChambers_Globals.cheatString != null)
             {
                 if (FourChambers_Globals.cheatString.StartsWith("killzingers"))
                 {
@@ -1073,7 +1079,7 @@ namespace XNAMode
 
         public void buildActor(string ActorType, int NumberOfActors)
         {
-            buildActor(ActorType, NumberOfActors, false, 0, 0,0,0, "", "", 0, 40);
+            buildActor(ActorType, NumberOfActors, false, 0, 0,0,0, "", "", 0, 40,3.0f);
         }
         public void buildActor(string ActorType, 
             int NumberOfActors, 
@@ -1085,7 +1091,8 @@ namespace XNAMode
             string PathNodesX="", 
             string PathNodesY="",
             uint PathType=0,
-            int PathSpeed=40)
+            int PathSpeed=40, 
+            float PathCornering=3.0f)
         {
             //Console.WriteLine("Building actor " + ActorType + " " + NumberOfActors);
 
@@ -1201,13 +1208,19 @@ namespace XNAMode
                 {
                     bat = new Bat(x, y);
                     actors.add(bat);
+                    Console.WriteLine("Building a bat {0} {1} {2} {3}", x, y, PathNodesX, PathNodesY);
 
                     if (PathNodesX != "" && PathNodesY != "")
                     {
+                        Console.WriteLine("Building a path {0} {1} {2}", PathNodesX, PathNodesY , PathCornering);
+
                         FlxPath xpath = new FlxPath(null);
                         xpath.add(x,y);
                         xpath.addPointsUsingStrings(PathNodesX,PathNodesY);
                         bat.followPath(xpath, PathSpeed, PathType, false);
+                        bat.pathCornering = PathCornering;
+
+
                     }
 
                 }
@@ -2060,7 +2073,7 @@ namespace XNAMode
                     powerUp.visible = false;
                     powerUps.add(powerUp);
 
-                    if (FlxU.random() < 0.5)
+                    if (FlxU.random() < 0.5f)
                     {
                         ZingerHoming z = new ZingerHoming(x, y, marksman);
                         zingers.add(z);

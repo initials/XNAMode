@@ -192,6 +192,8 @@ namespace org.flixel
                         }
                     }
 
+                    //Console.WriteLine("XML READER: {0} {1}", pointX, pointY);
+
                     levelAttrs.Add("pathNodesX", pointX);
                     levelAttrs.Add("pathNodesY", pointY);
 
