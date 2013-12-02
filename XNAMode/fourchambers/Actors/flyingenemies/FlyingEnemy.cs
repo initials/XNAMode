@@ -50,43 +50,42 @@ namespace XNAMode
         override public void update()
         {
 
-            if (dead)
+            if (path == null)
             {
-                timeDead += FlxG.elapsed;
-                acceleration.Y = FourChambers_Globals.GRAVITY;
-            }
-            else
-            {
-                timeDead = 0;
-                acceleration.Y = 50;
-            }
-            if (timeDead > 2)
-            {
-                flicker(1.0f);
-            }
-            if (timeDead > 3)
-            {
-                reset(originalPosition.X, originalPosition.Y);
-                dead = false;
-                angle = 0;
-                flicker(-0.001f);
-                angularVelocity = 0;
-                angularDrag = 700;
-                drag.X = 0;
-                timeDead = 0;
-                play("fly");
-                velocity.X = 100;
-            }
-
-            if (dead == false)
-            {
-                //if (FlxG.level==4) Console.WriteLine("Y vals Acc {0} Vel {1} ", acceleration.Y, velocity.Y);
-
-                if (FlxU.random() < chanceOfWingFlap)
+                if (dead)
                 {
-                    //Console.WriteLine("Just flapped ");
+                    timeDead += FlxG.elapsed;
+                    acceleration.Y = FourChambers_Globals.GRAVITY;
+                }
+                else
+                {
+                    timeDead = 0;
+                    acceleration.Y = 50;
+                }
+                if (timeDead > 2)
+                {
+                    flicker(1.0f);
+                }
+                if (timeDead > 3)
+                {
+                    reset(originalPosition.X, originalPosition.Y);
+                    dead = false;
+                    angle = 0;
+                    flicker(-0.001f);
+                    angularVelocity = 0;
+                    angularDrag = 700;
+                    drag.X = 0;
+                    timeDead = 0;
+                    play("fly");
+                    velocity.X = 100;
+                }
 
-                    velocity.Y = speedOfWingFlapVelocity;
+                if (dead == false)
+                {
+                    if (FlxU.random() < chanceOfWingFlap)
+                    {
+                        velocity.Y = speedOfWingFlapVelocity;
+                    }
                 }
             }
 
@@ -101,20 +100,17 @@ namespace XNAMode
                 facing = Flx2DFacing.Left;
             }
 
-            if (x > FlxG.levelWidth) x = 1;
-            if (x < 0) x = FlxG.levelWidth - 1;
+            if (x > FlxG.levelWidth+20) x = 1;
+            if (x < -20) x = FlxG.levelWidth - 1;
 
         }
         public override void kill()
         {
             play("death");
-            //velocity.X = 0;
-            //velocity.Y = 0;
             dead = true;
             angularVelocity = 500;
             angularDrag = 700;
             drag.X = 1000;
-
 
             FlxG.score += score;
 

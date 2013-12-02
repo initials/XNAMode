@@ -2055,16 +2055,29 @@ namespace XNAMode
                     ZingerNest = new ZingerNest(x,y, zingers);
                     actors.add(ZingerNest);
 
-                    zinger = new Zinger(x,y);
-                    zingers.add(zinger);
-                    actors.add(zinger);
-                    zinger.dead = true;
-                    zinger.visible = false;
-
                     powerUp = new PowerUp(x,y);
                     powerUp.dead = true;
                     powerUp.visible = false;
                     powerUps.add(powerUp);
+
+                    if (FlxU.random() < 0.5)
+                    {
+                        ZingerHoming z = new ZingerHoming(x, y, marksman);
+                        zingers.add(z);
+                        actors.add(z);
+                        z.dead = true;
+                        z.visible = false;
+                    }
+                    else
+                    {
+                        zinger = new Zinger(x, y);
+                        zingers.add(zinger);
+                        actors.add(zinger);
+                        zinger.dead = true;
+                        zinger.visible = false;
+                    }
+
+
                 }
             }
             #endregion

@@ -55,8 +55,10 @@ namespace XNAMode
 
             _player = player;
             
-            
-            color = Color.Red;
+            // Distinguish from regular zingers.
+            color = Color.PaleVioletRed;
+
+
             maxAngular = 120;
             angularDrag = 400;
             maxThrust = 200;
@@ -81,9 +83,18 @@ namespace XNAMode
             double velocity_x = Math.Cos((float)radians);
             double velocity_y = Math.Sin((float)radians);
 
+            // original
+            //velocity.X = (float)velocity_x * -400;
+            //velocity.Y = (float)velocity_y * -400;
 
-            velocity.X = (float)velocity_x * -400;
-            velocity.Y = (float)velocity_y * -400;
+            Vector2 targetVel = new Vector2((float)velocity_x * -400, (float)velocity_y * -400);
+
+            if (velocity.X < targetVel.X) velocity.X += 40;
+            if (velocity.X > targetVel.X) velocity.X -= 40;
+            if (velocity.Y < targetVel.Y) velocity.Y += 40;
+            if (velocity.Y > targetVel.Y) velocity.Y -= 40;
+
+
 
             base.update();
 

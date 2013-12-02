@@ -71,10 +71,32 @@ namespace org.flixel
 
             int newLevel = (int)FlxU.random(0, FourChambers_Globals.availableLevels.Count);
             FlxG.level = FourChambers_Globals.availableLevels[newLevel];
+            
+
+            Console.WriteLine("startGame() " + FourChambers_Globals.availableLevels[newLevel] + "  New Level:  " + newLevel + " " + availableLevels.Count );
+
             FourChambers_Globals.availableLevels.RemoveAt(newLevel);
 
-            Console.WriteLine("STARTGAME() " + FourChambers_Globals.availableLevels[newLevel] + "  New Level:  " + newLevel);
+        }
 
+        public static void advanceToNextLevel()
+        {
+            FourChambers_Globals.seraphineHasBeenKilled = false;
+
+            if (availableLevels.Count == 0)
+            {
+                FourChambers_Globals.availableLevels = new List<int>() { 21, 22, 23, 24, 25, 26, 27 };
+
+                FlxG.level = 1000;
+                Console.WriteLine("advanceToNextLevel() " );
+            }
+            else
+            {
+                int newLevel = (int)FlxU.random(0, FourChambers_Globals.availableLevels.Count);
+                FlxG.level = FourChambers_Globals.availableLevels[newLevel];
+                Console.WriteLine("advanceToNextLevel() " + FourChambers_Globals.availableLevels[newLevel] + "  New Level:  " + newLevel + " " + availableLevels.Count);
+                FourChambers_Globals.availableLevels.RemoveAt(newLevel);
+            }
         }
 
         /// <summary>

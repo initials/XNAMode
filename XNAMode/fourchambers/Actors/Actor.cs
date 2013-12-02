@@ -140,12 +140,8 @@ namespace XNAMode
 
         public int runSpeed = 120;
 
-
         public List<FlxObject> _bullets;
         public int _curBullet;
-
-        
-        
         /// <summary>
         /// Tells the Actor whether to play the attack animation
         /// </summary>

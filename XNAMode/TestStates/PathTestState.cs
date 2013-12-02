@@ -22,13 +22,19 @@ namespace XNAMode
         FlxSprite pather;
         FlxPath path;
         Bat bat;
+        Bat bat2;
         int type;
 
         override public void create()
         {
             base.create();
+
+            FlxG.levelWidth = FlxG.levelHeight = 1000;
+
             //FlxG.resetHud();
             FlxG.setHudText(1, "Path Tests");
+
+            FourChambers_Globals.startGame();
 
             type = 0;
 
@@ -44,10 +50,11 @@ namespace XNAMode
             // Create an object to follow the path.
             collider = new FlxSprite(10, 10);
             collider.loadGraphic(FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"), false, false, 8, 8);
+            collider.pathCornering = 2.0f;
             add(collider);
 
             // Tell the sprite to follow the path. 
-            collider.followPath(path, 0.0f, FlxObject.PATH_YOYO, false);
+            collider.followPath(path, 40.0f, FlxObject.PATH_YOYO, false);
 
             pather = new FlxSprite(16, 16);
             pather.loadGraphic(FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"), false, false, 8, 8);
@@ -55,6 +62,18 @@ namespace XNAMode
             pather.pathCornering = 3.0f;
             add(pather);
 
+            bat = new Bat(30, 30);
+            add(bat);
+            FlxPath batpath = new FlxPath(null);
+            batpath.addPointsUsingStrings("30,40,50,60,100,", "30,120,150,40,20,");
+            bat.followPath(batpath, 80, FlxObject.PATH_LOOP_FORWARD, false);
+            bat.pathCornering = 4.0f;
+
+
+            bat2 = new Bat(50, 50);
+            bat2.color = Color.Green;
+            bat2.velocity.X = 100;
+            add(bat2);
             
             // Loading a path from an Ogmo Level.
 
@@ -106,46 +125,54 @@ namespace XNAMode
 
         override public void update()
         {
+            //FourChambers_Globals.advanceToNextLevel();
 
             if (FlxG.keys.justPressed(Keys.A))
             {
                 FlxG.showHud();
 
-                float speed = 40.0f;
+                float speed = 140.0f;
                 if (type == 0)
                 {
                     collider.followPath(path, speed, FlxObject.PATH_BACKWARD, false);
-                    FlxG.setHudText(1, "PATH_BACKWARD");
+                    collider.pathCornering = 1.0f;
+                    FlxG.setHudText(1, "PATH_BACKWARD, Cornering=1.0f");
                 }
                 if (type == 1)
                 {
                     collider.followPath(path, speed, FlxObject.PATH_FORWARD, false);
-                    FlxG.setHudText(1, "PATH_FORWARD");
+                    collider.pathCornering = 3.0f;
+                    FlxG.setHudText(1, "PATH_FORWARD, Cornering=3.0f");
                 }
                 if (type == 2)
                 {
                     collider.followPath(path, speed, FlxObject.PATH_HORIZONTAL_ONLY, false);
-                    FlxG.setHudText(1, "PATH_HORIZONTAL_ONLY");
+                    collider.pathCornering = 8.0f;
+                    FlxG.setHudText(1, "PATH_HORIZONTAL_ONLY, Cornering=8.0f");
                 }
                 if (type == 3)
                 {
                     collider.followPath(path, speed, FlxObject.PATH_LOOP_BACKWARD, false);
-                    FlxG.setHudText(1, "PATH_LOOP_BACKWARD");
+                    collider.pathCornering = 11.0f;
+                    FlxG.setHudText(1, "PATH_LOOP_BACKWARD, Cornering=11.0f");
                 }
                 if (type == 4)
                 {
                     collider.followPath(path, speed, FlxObject.PATH_LOOP_FORWARD, false);
-                    FlxG.setHudText(1, "PATH_LOOP_FORWARD");
+                    collider.pathCornering = 0.1f;
+                    FlxG.setHudText(1, "PATH_LOOP_FORWARD, Cornering=0.1f");
                 }
                 if (type == 5)
                 {
                     collider.followPath(path, speed, FlxObject.PATH_VERTICAL_ONLY, false);
-                    FlxG.setHudText(1, "PATH_VERTICAL_ONLY");
+                    collider.pathCornering = 21.0f;
+                    FlxG.setHudText(1, "PATH_VERTICAL_ONLY, Cornering=21.0f");
                 }
                 if (type == 6)
                 {
                     collider.followPath(path, speed, FlxObject.PATH_YOYO, false);
-                    FlxG.setHudText(1, "PATH_YOYO");
+                    collider.pathCornering = 5.0f;
+                    FlxG.setHudText(1, "PATH_YOYO, Cornering=5.0f");
                 }
                 
                 type++;
