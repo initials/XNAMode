@@ -37,8 +37,14 @@ namespace org.flixel
         public const int PLAYER_MISTRESS = 2;
         public const int PLAYER_WARLOCK = 3;
 
+        /// <summary>
+        /// Releases a lot of Homing Zingers.
+        /// </summary>
         public static bool PIRATE_COPY = false;
 
+        /// <summary>
+        /// Keeps track of whether you can use the Seraphine to fly in a level.
+        /// </summary>
         public static bool seraphineHasBeenKilled = false;
 
         /// <summary>
@@ -50,14 +56,23 @@ namespace org.flixel
 
         public static int arrowsHitTarget = 0;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static int arrowsToFire = 3;
-
         
+        /// <summary>
+        /// A list of available level numbers. 
+        /// Levels are removed as they are played, making the List smaller.
+        /// </summary>
         public static List<int> availableLevels ;
 
-        //public static Dictionary<string, int> turnProgress;
-
+        /// <summary>
+        /// Allows playstates to see what the current cheat to run is.
+        /// </summary>
         public static string cheatString;
+
+        public static bool goldenRun  = false;
 
         /// <summary>
         /// This is called at the beginning of every game. Reset all globals here.
