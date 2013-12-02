@@ -1,4 +1,4 @@
-<level width="800" height="800" levelName="The Second Chamber of the Human Heart" bgGraphic="Fear" timeOfDayPalette="skyPaletteIce">
+<level width="800" height="800" levelName="The Second Chamber of the Human Heart" bgGraphic="bgIce" timeOfDayPalette="skyPaletteIce">
   <camera x="32" y="256" />
   <DestructableTerrain tileset="autotiles_ice_16x16" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,14,12,-1,-1
@@ -123,5 +123,22 @@
     <vampire id="19" x="304" y="560" flip="False" />
     <automaton id="20" x="160" y="624" flip="False" />
     <automaton id="21" x="640" y="160" flip="False" />
+    <drone id="22" x="608" y="464" flip="False">
+      <node x="688" y="464" />
+      <node x="704" y="496" />
+      <node x="624" y="512" />
+      <node x="560" y="512" />
+      <node x="592" y="496" />
+    </drone>
+    <bat id="23" x="288" y="208" flip="False" pathType="LOOP_FORWARD" pathSpeed="100" pathCornering="3">
+      <node x="368" y="224" />
+      <node x="464" y="112" />
+      <node x="448" y="96" />
+      <node x="464" y="80" />
+      <node x="480" y="96" />
+      <node x="368" y="240" />
+      <node x="304" y="272" />
+      <node x="272" y="240" />
+    </bat>
   </ActorsLayer>
 </level>

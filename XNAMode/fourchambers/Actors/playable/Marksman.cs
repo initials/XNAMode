@@ -196,7 +196,10 @@ namespace XNAMode
                         // use the right stick to fire a weapon
                         else
                         {
-                            ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 600), (int)(rightY *= -600));
+                            int yVel = (int)(rightY * -600);
+                            int yVelAdjusted = yVel - (i*40);
+
+                            ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 600), yVelAdjusted);
                         }
                         if (rightX < 0)
                         {
@@ -238,8 +241,14 @@ namespace XNAMode
 
                 if (arrowsRemaining >= 1)
                 {
-                    ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(velocity_x *= -600), (int)(velocity_y *= -600));
-                    arrowsRemaining--;
+                    for (int i = 0; i < FourChambers_Globals.arrowsToFire; i++)
+                    {
+                        int yVel = (int)(velocity_y * -600);
+                        int yVelAdjusted = yVel - (i * 40);
+
+                        ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(velocity_x *= -600), yVelAdjusted);
+                        arrowsRemaining--;
+                    }
                 }
 
                 if (rightX1 - x < 0)
