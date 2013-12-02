@@ -18,6 +18,8 @@ namespace XNAMode
 
         bool hasSlotted;
 
+        FlxBar bar;
+
         override public void create()
         {
             base.create();
@@ -28,6 +30,9 @@ namespace XNAMode
 
 
             hasSlotted = false;
+
+            bar = new FlxBar(20, 20, 10, 1);
+            add(bar);
 
         }
 
@@ -87,10 +92,12 @@ namespace XNAMode
             if (FlxG.keys.justPressed(Keys.A))
             {
                 timesPressed[0]++;
+                bar.filledBar.width -= 1;
             }
             if (FlxG.keys.justPressed(Keys.S))
             {
                 timesPressed[1]++;
+                bar.filledBar.width += 1;
             }
             if (FlxG.keys.justPressed(Keys.D))
             {

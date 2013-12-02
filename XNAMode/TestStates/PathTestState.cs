@@ -23,6 +23,8 @@ namespace XNAMode
         FlxPath path;
         Bat bat;
         Bat bat2;
+        FlxBar bar;
+
         int type;
 
         override public void create()
@@ -69,6 +71,8 @@ namespace XNAMode
             bat.followPath(batpath, 80, FlxObject.PATH_LOOP_FORWARD, false);
             bat.pathCornering = 4.0f;
 
+            bar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT,20,2,bat, "health", 0, 100, true);
+            add(bar);
 
             bat2 = new Bat(50, 50);
             bat2.color = Color.Green;

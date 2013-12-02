@@ -47,7 +47,7 @@ namespace XNAMode
 
             play("fly");
 
-            health = 0;
+            health = 7;
 
             score = 60;
 
