@@ -119,6 +119,9 @@ Content\mode\dirt_x.xnb
 Content\mode\dirt_top_x.xnb
 Content\mode\tech_tiles_x.xnb
 Content\mode\tiles_all_x.xnb
+Content\initials\sparkles.xnb
+Content\initials\sparkles_glow.xnb
+Content\initials\bgIce.xnb
 Content\mode\button.wma
 levelSettings.xml
 ogmoLevels\level1.oel

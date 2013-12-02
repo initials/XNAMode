@@ -106,6 +106,9 @@ namespace XNAMode
 
         private FlxEmitter tilesExplode;
 
+        private FlxEmitter specialFX;
+
+
 
 
         #region Actors
@@ -532,6 +535,23 @@ namespace XNAMode
             tilesExplode.setScale(0.5f);
 
 
+            specialFX = new FlxEmitter();
+            specialFX.x = 0;
+            specialFX.y = 0;
+            specialFX.width = 16;
+            specialFX.height = 16;
+            specialFX.delay = 0.8f;
+            specialFX.setXSpeed(-250, 250);
+            specialFX.setYSpeed(-50, 0);
+            specialFX.setRotation(0, 360);
+            specialFX.gravity = FourChambers_Globals.GRAVITY * -0.1f;
+            specialFX.createSprites(FlxG.Content.Load<Texture2D>("initials/sparkles_glow"), 20, true, 1.0f, 0.1f);
+            add(specialFX);
+
+
+
+
+
 
             add(bigEx);
 
@@ -864,6 +884,11 @@ namespace XNAMode
 
         protected bool getPowerUp(object Sender, FlxSpriteCollisionEvent e)
         {
+            specialFX.at(e.Object1);
+            specialFX.start(true, 0, 30);
+
+
+
             int x = ((PowerUp)e.Object1).typeOfPowerUp;
             if (x == 154 || x == 155 || x == 156 || x == 157)
             {
