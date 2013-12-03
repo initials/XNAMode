@@ -72,6 +72,9 @@ namespace org.flixel
         /// </summary>
         public static string cheatString;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool goldenRun  = false;
 
         /// <summary>

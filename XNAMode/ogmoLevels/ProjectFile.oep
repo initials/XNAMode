@@ -16,7 +16,7 @@
     <Width>3200</Width>
     <Height>3200</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Shane\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
+  <Filename>C:\Users\User\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>true</CameraEnabled>
   <CameraSize>
@@ -68,6 +68,15 @@
   </LayerDefinitions>
   <Tilesets>
     <Tileset>
+      <Name>tiles_sydney</Name>
+      <FilePath>..\..\..\OgmoEditor2\OgmoEditor\ExampleProject\tiles_sydney.png</FilePath>
+      <TileSize>
+        <Width>20</Width>
+        <Height>20</Height>
+      </TileSize>
+      <TileSep>0</TileSep>
+    </Tileset>
+    <Tileset>
       <Name>autotiles_16x16</Name>
       <FilePath>..\..\XNAModeContent\initials\autotiles_16x16.png</FilePath>
       <TileSize>
@@ -79,24 +88,6 @@
     <Tileset>
       <Name>autotiles_ice_16x16</Name>
       <FilePath>..\..\XNAModeContent\initials\autotiles_ice_16x16.png</FilePath>
-      <TileSize>
-        <Width>16</Width>
-        <Height>16</Height>
-      </TileSize>
-      <TileSep>0</TileSep>
-    </Tileset>
-    <Tileset>
-      <Name>autotilesSciFi_16x16</Name>
-      <FilePath>..\..\XNAModeContent\initials\autotilesSciFi_16x16.png</FilePath>
-      <TileSize>
-        <Width>16</Width>
-        <Height>16</Height>
-      </TileSize>
-      <TileSep>0</TileSep>
-    </Tileset>
-    <Tileset>
-      <Name>extraGameplayPieces</Name>
-      <FilePath>..\..\XNAModeContent\initials\extraGameplayPieces.png</FilePath>
       <TileSize>
         <Width>16</Width>
         <Height>16</Height>
