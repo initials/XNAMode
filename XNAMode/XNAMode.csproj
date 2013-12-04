@@ -350,6 +350,7 @@
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
     <Content Include="Lemonade\characters\reference\Andre.h" />
+    <Content Include="Lemonade\characters\reference\BaseCharacter.h" />
     <Content Include="Lemonade\characters\reference\Enemy.h" />
     <Content Include="Lemonade\characters\reference\EnemyArmy.h" />
     <Content Include="Lemonade\characters\reference\EnemyChef.h" />
@@ -360,6 +361,7 @@
     <Content Include="Lemonade\characters\reference\Liselot.h" />
     <Content Include="Lemonade\characters\reference\Player.h" />
     <None Include="Lemonade\characters\reference\Andre.m" />
+    <None Include="Lemonade\characters\reference\BaseCharacter.m" />
     <None Include="Lemonade\characters\reference\Enemy.m" />
     <None Include="Lemonade\characters\reference\EnemyArmy.m" />
     <None Include="Lemonade\characters\reference\EnemyChef.m" />
