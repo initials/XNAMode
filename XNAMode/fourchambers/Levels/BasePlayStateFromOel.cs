@@ -440,13 +440,10 @@ namespace XNAMode
                     addedMap = caveExt.addStrings(destructableAttrs["DestructableTerrain"], newMap, Convert.ToInt32(nodes["x"]) / FourChambers_Globals.TILE_SIZE_X, Convert.ToInt32(nodes["y"]) / FourChambers_Globals.TILE_SIZE_X, Convert.ToInt32(nodes["width"]) / FourChambers_Globals.TILE_SIZE_X, Convert.ToInt32(nodes["height"]) / FourChambers_Globals.TILE_SIZE_X );
                 }
 
-
                 //foreach (KeyValuePair<string, string> kvp in nodes)
                 //{
                 //    //Console.Write("Key = {0}, Value = {1}, ",
                 //    //    kvp.Key, kvp.Value);
-
-
                 //}
                 //Console.Write("\r\n");
             }
@@ -469,12 +466,8 @@ namespace XNAMode
                 {
                     //Console.Write("Key = {0}, Value = {1}, ",
                     //    kvp.Key, kvp.Value);
-
-
                 }
                 //Console.Write("\r\n");
-
-                
             }
 
             add(eventSprites);
@@ -485,14 +478,11 @@ namespace XNAMode
 
             paletteTexture = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["timeOfDayPalette"]);
 
-
-
             //FlxG.followAdjust(0.5f, 0.0f);
             FlxG.followBounds(0, 0, Convert.ToInt32(levelAttrs["width"]) , Convert.ToInt32(levelAttrs["height"]) );
 
             
             add(bullets);
-            
             add(allLevelTiles);
             add(ladders);
             add(actors);
@@ -501,11 +491,9 @@ namespace XNAMode
             seraphine = new Seraphine(0, 0);
             seraphine.play("fly");
             add(seraphine);
-            //actors.
 
             buildActor("imp", 1);
-
-
+            
             blood = new FlxEmitter();
             blood.x = 0;
             blood.y = 0;
@@ -548,11 +536,7 @@ namespace XNAMode
             specialFX.createSprites(FlxG.Content.Load<Texture2D>("initials/sparkles_glow"), 20, true, 1.0f, 0.1f);
             add(specialFX);
 
-
-
-
-
-
+            
             add(bigEx);
 
             LevelBeginText t = new LevelBeginText(0, 50, FlxG.width);

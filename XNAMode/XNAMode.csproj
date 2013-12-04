@@ -133,6 +133,13 @@
     <Compile Include="fourchambers\Levels\BasePlayStateFromOel.cs" />
     <Compile Include="fourchambers\Levels\BasePlayStateFromOelTutorial.cs" />
     <Compile Include="fourchambers\Levels\Door.cs" />
+    <Compile Include="Lemonade\characters\Actor.cs" />
+    <Compile Include="Lemonade\characters\Andre.cs" />
+    <Compile Include="Lemonade\characters\Army.cs" />
+    <Compile Include="Lemonade\characters\Chef.cs" />
+    <Compile Include="Lemonade\characters\Inspector.cs" />
+    <Compile Include="Lemonade\characters\Liselot.cs" />
+    <Compile Include="Lemonade\characters\Worker.cs" />
     <Compile Include="Lemonade\testStates\LemonadeTestState.cs" />
     <Compile Include="TestStates\CleanTestState.cs" />
     <Compile Include="TestStates\DebugMenuState.cs" />
@@ -342,6 +349,26 @@
   <ItemGroup>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
+    <Content Include="Lemonade\characters\reference\Andre.h" />
+    <Content Include="Lemonade\characters\reference\Enemy.h" />
+    <Content Include="Lemonade\characters\reference\EnemyArmy.h" />
+    <Content Include="Lemonade\characters\reference\EnemyChef.h" />
+    <Content Include="Lemonade\characters\reference\EnemyGeneric.h" />
+    <Content Include="Lemonade\characters\reference\EnemyInspector.h" />
+    <Content Include="Lemonade\characters\reference\EnemyWorker.h" />
+    <Content Include="Lemonade\characters\reference\Liselot %282%29.h" />
+    <Content Include="Lemonade\characters\reference\Liselot.h" />
+    <Content Include="Lemonade\characters\reference\Player.h" />
+    <None Include="Lemonade\characters\reference\Andre.m" />
+    <None Include="Lemonade\characters\reference\Enemy.m" />
+    <None Include="Lemonade\characters\reference\EnemyArmy.m" />
+    <None Include="Lemonade\characters\reference\EnemyChef.m" />
+    <None Include="Lemonade\characters\reference\EnemyGeneric.m" />
+    <None Include="Lemonade\characters\reference\EnemyInspector.m" />
+    <None Include="Lemonade\characters\reference\EnemyWorker.m" />
+    <None Include="Lemonade\characters\reference\Liselot %282%29.m" />
+    <None Include="Lemonade\characters\reference\Liselot.m" />
+    <None Include="Lemonade\characters\reference\Player.m" />
     <None Include="Lemonade\levels\bgmilita.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -610,9 +637,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Lemonade\characters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--
