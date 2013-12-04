@@ -338,6 +338,12 @@ namespace org.flixel
         /// </summary>
         public float pathCornering;
 
+        /// <summary>
+        /// A helper string so that you can set "modes" or "flags"
+        /// For examples set this to "attacking" and then check in movement for "attacking" enemies
+        /// </summary>
+        public string mode;
+        
 
         /// <summary>
         /// Creates a new <code>FlxObject</code>.
@@ -423,6 +429,9 @@ namespace org.flixel
             pathAngle = 0;
             _pathNodeIndex = 0;
             pathCornering = 0.0f;
+
+            mode = "";
+
 
         }
 
