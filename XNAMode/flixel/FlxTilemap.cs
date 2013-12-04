@@ -166,6 +166,9 @@ namespace org.flixel
 
         protected Texture2D _tileBitmap;
 
+        public int indexOffset;
+
+
         /// <summary>
         /// The tilemap constructor just initializes some basic variables.
         /// </summary>
@@ -198,6 +201,7 @@ namespace org.flixel
             //_callbacks = new Array();
             @fixed = true;
             moves = false;
+            indexOffset = 0;
         }
 
 
@@ -229,6 +233,14 @@ namespace org.flixel
             //Figure out the map dimensions based on the data string
             string[] cols;
             string[] rows = MapData.Split('\n');
+
+            //int xxx = 0;
+            //foreach (var item in rows)
+            //{
+            //    Console.WriteLine(xxx + " " + item);
+            //    xxx++;
+            //}
+
             heightInTiles = rows.Length;
             int r = 0;
             int c;
@@ -246,8 +258,13 @@ namespace org.flixel
                 if (widthInTiles == 0)
                     widthInTiles = cols.Length;
                 c = 0;
+                
+                //Console.WriteLine(widthInTiles + " " + heightInTiles);
+
                 while (c < widthInTiles)
+                {
                     _data[((r - 1) * widthInTiles) + c] = int.Parse(cols[c++]); //.push(uint(cols[c++]));
+                }
             }
 
             //foreach (var item in _data)
@@ -902,6 +919,7 @@ namespace org.flixel
             }
             
             _data[Index] += 1;
+            _data[Index] += indexOffset;
         }
 
         /// <summary>

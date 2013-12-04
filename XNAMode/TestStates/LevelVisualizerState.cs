@@ -65,6 +65,7 @@ namespace XNAMode
             //destructableTilemap.collideMin = 1;
             //destructableTilemap.collideMax = 12;
 
+            //Console.WriteLine(newMap);
 
             destructableTilemap = new FlxTilemap();
             destructableTilemap.auto = FlxTilemap.STRING;

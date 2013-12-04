@@ -144,6 +144,37 @@ namespace org.flixel
             return levelAttrs;
         }
 
+
+        /// <summary>
+        /// Returns the attributes on the node/element specified.
+        /// </summary>
+        /// <param name="filename">Filename, example: "ogmoLevels/level1.oel"</param>
+        /// <param name="element">Element from XML file, example: "level/ActorsLayer" or "level"</param>
+        /// <returns></returns>
+        public static Dictionary<string, string> readAttributesFromTmxFile(string filename, string element)
+        {
+
+            Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
+
+            XmlDocument xml = new XmlDocument();
+            xml.Load(filename);
+            //Console.WriteLine("Node Name: {0} ", element);
+            XmlNodeList xnList = xml.SelectNodes(element);
+            foreach (XmlNode xn in xnList)
+            {
+                //levelAttrs.Add(xn.Name.ToString(), xn.InnerText.ToString());
+
+                //Console.WriteLine("Name: {0} -- {1}", xn.Name.ToString(), xn.Attributes.ToString());
+
+                foreach (XmlAttribute item in xn.Attributes)
+                {
+                    //Console.WriteLine("attr: {0}", item.Name.ToString());
+                    levelAttrs.Add(item.Name.ToString(), item.Value.ToString());
+                }
+            }
+            return levelAttrs;
+        }
+
         public static List<Dictionary<string, string>> readNodesFromOelFile(string filename, string element)
         {
             List<Dictionary<string, string>> nodeList = new List<Dictionary<string, string>>();
@@ -203,6 +234,8 @@ namespace org.flixel
             return nodeList;
         }
 
+
+
         public static List<Dictionary<string, string>> readNodesFromTmxFile(string filename, string element, string name)
         {
             List<Dictionary<string, string>> nodeList = new List<Dictionary<string, string>>();
@@ -216,29 +249,58 @@ namespace org.flixel
             {
                 // cycle through characters.
 
+                string nameToHoldDataString = "";
+
                 foreach (XmlNode xn2 in xn)
                 {
 
                     Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
-                    Console.WriteLine("xn2 Name: {0} -- {1}", xn2.Name.ToString(), xn2.Attributes.ToString());
+                    //Console.WriteLine("xn2 Name: {0} -- {1}", xn2.Name.ToString(), xn2.Attributes.ToString());
 
                     //add characters name
                     levelAttrs.Add("Name", xn2.Name.ToString());
-                    levelAttrs.Add("data", xn2.Value.ToString());
 
-                //    //cycle attributes.
-                //    foreach (XmlAttribute item in xn2.Attributes)
-                //    {
-                //        Console.WriteLine("attr: {0}", item.Name.ToString());
-                //        levelAttrs.Add(item.Name.ToString(), item.Value.ToString());
+                    //cycle attributes.
+                    foreach (XmlAttribute item in xn2.Attributes)
+                    {
 
-                //    }
+                        levelAttrs.Add(item.Name.ToString(), item.Value.ToString());
 
-                    nodeList.Add(levelAttrs);
+                        if (item.Value.ToString() == name)
+                        {
+                            //Console.WriteLine("attr: {0} {1}", item.Name.ToString(), item.Value.ToString());
+
+                            //levelAttrs.Add(item.Name.ToString(), item.Value.ToString());
+
+
+                            nameToHoldDataString = item.Value.ToString();
+
+                            //XmlNodeList xnData = xn2.SelectNodes("data");
+                            //foreach (XmlNode xn2 in xnData)
+                            //levelAttrs.Add(item.Name.ToString(), xnData2.InnerText.ToString());
+
+                            foreach (XmlNode xn3 in xn2)
+                            {
+                                //Console.WriteLine("xn3 Name: {0} -- {1}", xn3.Name.ToString(), xn3.InnerText.ToString());
+
+                                levelAttrs.Add("csvData", xn3.InnerText.ToString());
+                            }
+
+                            nodeList.Add(levelAttrs);
+                        }
+
+
+                    }
+
+                    
                 }
+
+
             }
             return nodeList;
         }
+        
+
 
         /// <summary>
         /// 

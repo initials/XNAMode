@@ -342,59 +342,160 @@
   <ItemGroup>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
-    <None Include="Lemonade\levels\bgmilita.tmx" />
-    <None Include="Lemonade\levels\bgnewyor.tmx" />
-    <None Include="Lemonade\levels\bgsydney.tmx" />
-    <None Include="Lemonade\levels\military_cutscene.tmx" />
-    <None Include="Lemonade\levels\military_level1.tmx">
+    <None Include="Lemonade\levels\bgmilita.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\bgnewyor.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Lemonade\levels\military_level10.tmx" />
-    <None Include="Lemonade\levels\military_level11.tmx" />
-    <None Include="Lemonade\levels\military_level12.tmx" />
-    <None Include="Lemonade\levels\military_level2.tmx" />
-    <None Include="Lemonade\levels\military_level3.tmx" />
-    <None Include="Lemonade\levels\military_level4.tmx" />
-    <None Include="Lemonade\levels\military_level5.tmx" />
-    <None Include="Lemonade\levels\military_level6.tmx" />
-    <None Include="Lemonade\levels\military_level7.tmx" />
-    <None Include="Lemonade\levels\military_level8.tmx" />
-    <None Include="Lemonade\levels\military_level9.tmx" />
-    <None Include="Lemonade\levels\military_level_template.tmx" />
-    <None Include="Lemonade\levels\military_menu.tmx" />
-    <None Include="Lemonade\levels\newyork_cutscene.tmx" />
-    <None Include="Lemonade\levels\newyork_intro.tmx" />
-    <None Include="Lemonade\levels\newyork_level1.tmx" />
-    <None Include="Lemonade\levels\newyork_level10.tmx" />
-    <None Include="Lemonade\levels\newyork_level11.tmx" />
-    <None Include="Lemonade\levels\newyork_level12.tmx" />
-    <None Include="Lemonade\levels\newyork_level2.tmx" />
-    <None Include="Lemonade\levels\newyork_level3.tmx" />
-    <None Include="Lemonade\levels\newyork_level4.tmx" />
-    <None Include="Lemonade\levels\newyork_level5.tmx" />
-    <None Include="Lemonade\levels\newyork_level6.tmx" />
-    <None Include="Lemonade\levels\newyork_level7.tmx" />
-    <None Include="Lemonade\levels\newyork_level8.tmx" />
-    <None Include="Lemonade\levels\newyork_level9.tmx" />
-    <None Include="Lemonade\levels\newyork_level_template.tmx" />
-    <None Include="Lemonade\levels\newyork_menu.tmx" />
-    <None Include="Lemonade\levels\sydney_1.tmx" />
-    <None Include="Lemonade\levels\sydney_cutscene.tmx" />
-    <None Include="Lemonade\levels\sydney_level1.tmx" />
-    <None Include="Lemonade\levels\sydney_level10.tmx" />
-    <None Include="Lemonade\levels\sydney_level11.tmx" />
-    <None Include="Lemonade\levels\sydney_level12.tmx" />
-    <None Include="Lemonade\levels\sydney_level2.tmx" />
-    <None Include="Lemonade\levels\sydney_level3.tmx" />
-    <None Include="Lemonade\levels\sydney_level4.tmx" />
-    <None Include="Lemonade\levels\sydney_level5.tmx" />
-    <None Include="Lemonade\levels\sydney_level6.tmx" />
-    <None Include="Lemonade\levels\sydney_level7.tmx" />
-    <None Include="Lemonade\levels\sydney_level8.tmx" />
-    <None Include="Lemonade\levels\sydney_level9.tmx" />
-    <None Include="Lemonade\levels\sydney_level_empty.tmx" />
-    <None Include="Lemonade\levels\sydney_level_template.tmx" />
-    <None Include="Lemonade\levels\sydney_menu.tmx" />
+    <None Include="Lemonade\levels\bgsydney.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\military_cutscene.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\military_level1.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Lemonade\levels\military_level10.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\military_level11.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\military_level12.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\military_level2.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\military_level3.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\military_level4.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\military_level5.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\military_level6.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\military_level7.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\military_level8.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\military_level9.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\military_level_template.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\military_menu.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_cutscene.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_intro.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_level1.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_level10.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_level11.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_level12.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_level2.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_level3.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_level4.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_level5.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_level6.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_level7.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_level8.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_level9.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_level_template.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\newyork_menu.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_1.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_cutscene.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_level1.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_level10.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_level11.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_level12.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_level2.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_level3.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_level4.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_level5.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_level6.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_level7.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_level8.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_level9.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_level_empty.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_level_template.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\sydney_menu.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="levelSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -510,7 +611,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Lemonade\art\" />
+    <Folder Include="Lemonade\characters\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
