@@ -106,16 +106,17 @@
     <_event id="5" x="464" y="496" width="48" height="48" event="Press up to climb the ladder." value1="0" value2="0" repeat="-1" />
     <_event id="6" x="176" y="496" width="48" height="48" event="Use your sword with X or arrows with RT to kill this zombie." value1="0" value2="0" repeat="-1" />
     <zombie id="7" x="128" y="544" flip="False" />
-    <_event id="8" x="640" y="704" width="48" height="48" event="Aim with the Right Stick and press RT to shoot an arrow." value1="0" value2="0" repeat="-1" />
+    <_event id="8" x="544" y="704" width="48" height="48" event="Aim with the Right Stick and press RT to shoot an arrow." value1="0" value2="0" repeat="-1" />
     <zingernest id="9" x="704" y="704" />
     <marksman id="10" x="64" y="304" flip="False" isPlayerControlled="True" />
     <_event id="12" x="256" y="704" width="48" height="48" event="Press Y to call Seraphine and rise above." value1="0" value2="0" repeat="-1" />
-    <bat id="19" x="528" y="416" flip="False" pathType="FORWARD" pathSpeed="100" />
-    <bat id="20" x="544" y="528" flip="False" pathType="FORWARD" pathSpeed="100" />
+    <bat id="19" x="528" y="416" flip="False" pathType="FORWARD" pathSpeed="100" pathCornering="3" />
+    <bat id="20" x="544" y="528" flip="False" pathType="FORWARD" pathSpeed="100" pathCornering="3" />
     <ladder id="0" x="320" y="256" height="64" />
     <_event id="2" x="288" y="288" width="32" height="32" event="quake" value1="0" value2="0" repeat="1" />
     <_event id="3" x="128" y="272" width="48" height="48" event="Press A to jump." value1="0" value2="0" repeat="-1" />
     <_procedurallyGeneratedArea id="11" x="512" y="48" width="208" height="192" />
+    <zingernest id="13" x="608" y="704" />
+    <_event id="14" x="640" y="704" width="64" height="48" event="Destroy all the nests to open the doors," value1="0" value2="0" repeat="1" />
   </ActorsLayer>
-  <EventsLayer />
 </level>

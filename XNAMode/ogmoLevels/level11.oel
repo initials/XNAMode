@@ -111,13 +111,12 @@
     <ladder id="7" x="912" y="512" height="96" />
     <ladder id="8" x="768" y="640" height="112" />
     <ladder id="9" x="1472" y="480" height="272" />
-    <bat id="10" x="592" y="112" flip="False" pathType="LOOP_FORWARD" pathSpeed="100" pathCornering="3">
-      <node x="640" y="112" />
-      <node x="672" y="128" />
-      <node x="672" y="160" />
-      <node x="640" y="160" />
-      <node x="640" y="176" />
-      <node x="608" y="160" />
+    <bat id="10" x="608" y="464" flip="False" pathType="YOYO" pathSpeed="100" pathCornering="3">
+      <node x="752" y="432" />
+      <node x="752" y="592" />
+      <node x="848" y="480" />
+      <node x="896" y="416" />
+      <node x="1024" y="416" />
     </bat>
     <bat id="11" x="48" y="48" flip="False" pathType="LOOP_FORWARD" pathSpeed="100" pathCornering="3">
       <node x="192" y="48" />

@@ -128,7 +128,9 @@
     <Compile Include="flixel\PowerTools\FlxBar.cs" />
     <Compile Include="fourchambers\Actors\flyingenemies\ZingerHoming.cs" />
     <Compile Include="fourchambers\CharacterSelectionState.cs" />
+    <Compile Include="fourchambers\Dangers\FireBall.cs" />
     <Compile Include="fourchambers\EventSprite.cs" />
+    <Compile Include="fourchambers\Dangers\FireThrower.cs" />
     <Compile Include="fourchambers\Hud\PlayHud.cs" />
     <Compile Include="fourchambers\Levels\BasePlayStateFromOel.cs" />
     <Compile Include="fourchambers\Levels\BasePlayStateFromOelTutorial.cs" />

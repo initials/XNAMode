@@ -59,7 +59,7 @@ namespace org.flixel
         /// <summary>
         /// 
         /// </summary>
-        public static int arrowsToFire = 3;
+        public static int arrowsToFire = 1;
         
         /// <summary>
         /// A list of available level numbers. 

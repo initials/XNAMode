@@ -40,7 +40,7 @@ namespace XNAMode
             addAnimation("jump", new int[] { 3, 4, 5, 6, 7, 8, 9 }, 3, true);
             addAnimation("climb", new int[] { 20, 21 }, 6, true);
             addAnimation("climbidle", new int[] { 20 }, 0, true);
-            addAnimation("death", new int[] { 22,23 }, 15, true);
+            addAnimation("death", new int[] { 22,23 }, 4, false);
             //addAnimationCallback(stopAttacking);
 
             //bounding box tweaks

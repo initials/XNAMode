@@ -74,6 +74,9 @@ namespace XNAMode
 
         private FlxTileblock ladder;
 
+        private FireBall fireBall;
+        private FlxGroup fireBalls;
+
         // --- FlxGroups, for overlap collide.
 
         /// <summary>
@@ -199,7 +202,8 @@ namespace XNAMode
         private Zombie zombie;
         #endregion
 
-        private ZingerNest ZingerNest;
+        private FireThrower fireThrower;
+        private ZingerNest zingerNest;
         private FlxGroup zingers;
         private FlxGroup powerUps;
         private PowerUp powerUp;
@@ -297,6 +301,7 @@ namespace XNAMode
             zingers = new FlxGroup();
             powerUps = new FlxGroup();
             eventSprites = new FlxGroup();
+            fireBalls = new FlxGroup();
 
             bigEx = new BigExplosion(-1000, -1000);
 
@@ -383,6 +388,13 @@ namespace XNAMode
             actorsAttrs = FlxXMLReader.readNodesFromOelFile(levelFile, "level/ActorsLayer");
 
             string addedMap = destructableAttrs["DestructableTerrain"];
+
+            for (int i = 0; i < 20; i++)
+            {
+                fireBall = new FireBall(-1000, -1000);
+                fireBalls.add(fireBall);
+            }
+            
 
             foreach (Dictionary<string, string> nodes in actorsAttrs)
             {
@@ -526,18 +538,19 @@ namespace XNAMode
             specialFX = new FlxEmitter();
             specialFX.x = 0;
             specialFX.y = 0;
-            specialFX.width = 16;
-            specialFX.height = 16;
+            specialFX.width = 4;
+            specialFX.height = 4;
             specialFX.delay = 0.8f;
-            specialFX.setXSpeed(-250, 250);
-            specialFX.setYSpeed(-50, 0);
+            specialFX.setXSpeed(-50, 50);
+            specialFX.setYSpeed(-850, 0);
             specialFX.setRotation(0, 360);
-            specialFX.gravity = FourChambers_Globals.GRAVITY * -0.1f;
-            specialFX.createSprites(FlxG.Content.Load<Texture2D>("initials/sparkles_glow"), 20, true, 1.0f, 0.1f);
+            specialFX.gravity = FourChambers_Globals.GRAVITY ;
+            specialFX.createSprites(FlxG.Content.Load<Texture2D>("initials/sparkles_small"), 20, true, 1.0f, 0.1f);
             add(specialFX);
 
             
             add(bigEx);
+            add(fireBalls);
 
             LevelBeginText t = new LevelBeginText(0, 50, FlxG.width);
             t.text = levelAttrs["levelName"];
@@ -921,7 +934,7 @@ namespace XNAMode
             else if ((e.Object1 is Marksman) && (e.Object2 is Arrow)) { }
             else if ((e.Object1 is Marksman) && (e.Object2 is MeleeHitBox)) { }
             else if ((e.Object1 is Mistress) && (e.Object2 is MeleeHitBox)) { }
-            
+            else if ((e.Object1 is Mistress) && (e.Object2 is Arrow) && (e.Object1 as Mistress).hurtTimer < 1.0f) {  }
             //Then collide custom objects.
             else if (e.Object1 is ZingerNest)
             {
@@ -1043,6 +1056,10 @@ namespace XNAMode
             {
                 FlxG.quake.start(0.01f, 1.0f);
             }
+            if (command == "mistress")
+            {
+                mistress.mode = "attack";
+            }
             else
             {
                 FlxG.setHudText(1, command);
@@ -1104,7 +1121,11 @@ namespace XNAMode
             float PathCornering=3.0f)
         {
             //Console.WriteLine("Building actor " + ActorType + " " + NumberOfActors);
-
+            if (ActorType == "fireThrower")
+            {
+                fireThrower = new FireThrower(x, y, fireBalls.members);
+                add(fireThrower);
+            }
             #region Marksman
             if (ActorType == "marksman")
             {
@@ -1141,16 +1162,16 @@ namespace XNAMode
                     mistress = new Mistress(x, y );
                     actors.add(mistress);
                     mistress.flicker(2);
-                    playerControlledActors.add(mistress);
+                    //playerControlledActors.add(mistress);
                     bullets.add(mistress.whipHitBox);
 
                 }
 
-                if (levelAttrs["playerControlled"] == "mistress")
-                {
-                    mistress.isPlayerControlled = true;
-                    FlxG.follow(mistress, FOLLOW_LERP);
-                }
+                //if (levelAttrs["playerControlled"] == "mistress")
+                //{
+                //    mistress.isPlayerControlled = true;
+                //    FlxG.follow(mistress, FOLLOW_LERP);
+                //}
             }
             #endregion
             #region Warlock
@@ -1166,13 +1187,13 @@ namespace XNAMode
                     warlock = new Warlock(x, y , fireballs.members);
                     actors.add(warlock);
                     warlock.flicker(2);
-                    playerControlledActors.add(warlock);
+                    //playerControlledActors.add(warlock);
                 }
-                if (levelAttrs["playerControlled"] == "warlock")
-                {
-                    warlock.isPlayerControlled = true;
-                    FlxG.follow(warlock, FOLLOW_LERP);
-                }
+                //if (levelAttrs["playerControlled"] == "warlock")
+                //{
+                //    warlock.isPlayerControlled = true;
+                //    FlxG.follow(warlock, FOLLOW_LERP);
+                //}
             }
             #endregion
             #region Artist
@@ -2074,8 +2095,8 @@ namespace XNAMode
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    ZingerNest = new ZingerNest(x,y, zingers);
-                    actors.add(ZingerNest);
+                    zingerNest = new ZingerNest(x,y, zingers);
+                    actors.add(zingerNest);
 
                     powerUp = new PowerUp(x,y);
                     powerUp.dead = true;
