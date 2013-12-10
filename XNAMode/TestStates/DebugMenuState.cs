@@ -25,6 +25,7 @@ namespace XNAMode
             textInfo += "4. Level Begin Text Test\n";
             textInfo += "5. Clean Test State\n";
             textInfo += "6. Lemonade Test\n";
+            textInfo += "7. VCR Test\n";
 
             FlxG.showHud();
 
@@ -67,6 +68,12 @@ namespace XNAMode
                 FlxG.state = new Lemonade.LemonadeTestState();
                 FlxG.hideHud();
             }
+            if (FlxG.keys.SEVEN)
+            {
+                FlxG.state = new VCRState();
+                FlxG.hideHud();
+            }
+
             base.update();
         }
 
