@@ -16,7 +16,7 @@
     <Width>3200</Width>
     <Height>3200</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Shane\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
+  <Filename>C:\Users\User\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>true</CameraEnabled>
   <CameraSize>
@@ -180,6 +180,35 @@
       </ImageDefinition>
       <ValueDefinitions />
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="movingPlatform" Limit="-1" ResizableX="true" ResizableY="true" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Rectangle" ImagePath="" Tiled="false">
+        <RectColor A="255" R="255" G="128" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="pathType">
+          <Elements>
+            <string>LOOP_FORWARD</string>
+            <string>LOOP_BACKWARD</string>
+            <string>FORWARD</string>
+            <string>BACKWARD</string>
+            <string>YOYO</string>
+            <string>HORIZONTAL_ONLY</string>
+            <string>VERTICAL_ONLY</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="IntValueDefinition" Name="pathSpeed" Default="100" Min="0" Max="10000" ShowSlider="false" />
+        <ValueDefinition xsi:type="FloatValueDefinition" Name="pathCornering" Default="3" Min="0" Max="100" Round="0.1" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
     </EntityDefinition>
     <EntityDefinition Name="fallAwayBridge" Limit="-1" ResizableX="true" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
