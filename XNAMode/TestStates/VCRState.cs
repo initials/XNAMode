@@ -31,7 +31,6 @@ namespace XNAMode
             if (FlxG.keys.S)
             {
                 DateTime now = DateTime.Now;
-                Console.WriteLine(now.ToString() + " " + now.ToLongTimeString() );
 
                 string nowTime = now.ToString().Replace("/", "_").Replace(":", "_") ;
 
@@ -40,6 +39,7 @@ namespace XNAMode
 
 
             base.update();
+
         }
 
 
@@ -60,11 +60,7 @@ namespace XNAMode
         {
             string value1 = File.ReadAllText(Filename);
 
-            //Console.WriteLine("--- Contents of file.txt: ---");
-            //Console.WriteLine(value1);
-
             return value1.Substring(0, value1.Length - 1) ;
-
 
         }
     }
