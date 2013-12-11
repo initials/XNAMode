@@ -17,6 +17,7 @@ namespace Lemonade
         List<Dictionary<string, string>> actorsAttrs;
         private FlxTilemap destructableTilemap;
         private FlxSprite collider;
+        private FlxSprite collider2;
 
         override public void create()
         {
@@ -58,6 +59,10 @@ namespace Lemonade
 
             collider = new FlxSprite(40, 40).createGraphic(2, 2, new Color(255, 0, 0));
             add(collider);
+
+            collider2 = new FlxSprite(70, 140).createGraphic(2, 2, new Color(2, 230, 40));
+            add(collider2);
+
             FlxG.followBounds(0,0,20 * 110, 20 * 34);
             FlxG.follow(collider, 1.0f);
 
@@ -74,7 +79,19 @@ namespace Lemonade
             {
                 collider.velocity.X = collider.velocity.Y = 55;
             }
-            
+
+            PlayerIndex pi;
+
+            //if (FlxG.gamepads.isNewButtonPress(Buttons.DPadDown, PlayerIndex.One, pi))
+            if (FlxG.gamepads.isNewButtonPress(Buttons.DPadDown, FlxG.controllingPlayer, out pi))
+            {
+                collider.velocity.Y = 55;
+            }
+            //if (FlxG.gamepads.isNewButtonPress(Buttons.DPadDown, PlayerIndex.One, pi))
+            if (FlxG.gamepads.isNewButtonPress(Buttons.DPadDown, PlayerIndex.Two, out pi))
+            {
+                collider2.velocity.Y = 55;
+            }
 
             base.update();
 
