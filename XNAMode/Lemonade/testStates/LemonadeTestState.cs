@@ -69,8 +69,14 @@ namespace Lemonade
 
         override public void update()
         {
+            PlayerIndex pi;
 
-            if (FlxG.keys.justPressed(Keys.A))
+            if (FlxG.gamepads.isNewButtonPress(Buttons.DPadDown, PlayerIndex.Two, out pi))
+            {
+
+            }
+
+            if (FlxG.keys.justPressed(Keys.A) )
             {
                 collider.velocity.X = collider.velocity.Y = 55;
             }
