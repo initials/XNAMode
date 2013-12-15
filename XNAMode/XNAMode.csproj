@@ -143,6 +143,9 @@
     <Compile Include="Lemonade\characters\Liselot.cs" />
     <Compile Include="Lemonade\characters\Worker.cs" />
     <Compile Include="Lemonade\testStates\LemonadeTestState.cs" />
+    <Compile Include="mode\Multiplayer\BulletMulti.cs" />
+    <Compile Include="mode\Multiplayer\PlayerMulti.cs" />
+    <Compile Include="mode\Multiplayer\PlayStateMulti.cs" />
     <Compile Include="TestStates\CleanTestState.cs" />
     <Compile Include="TestStates\DebugMenuState.cs" />
     <Compile Include="TestStates\LevelBeginTextState.cs" />

@@ -225,6 +225,12 @@ namespace XNAMode
                 FlxG.state = new GameSelectionMenuState();
                 return;
             }
+
+            if (FlxG.keys.justPressed(Keys.F1))
+            {
+                FlxG.state = new PlayStateMulti();
+                return;
+            }
 		}
 
 		private void onFlixel()
