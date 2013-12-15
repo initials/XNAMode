@@ -30,11 +30,20 @@ namespace XNAMode
 		private FlxEmitter _gibs;
 
         public PlayerIndex? controller;
-        //private string _history;
-        List<float[]> _history = new List<float[]>();
-        
-        private bool _playback;
+        private List<float[]> _history = new List<float[]>();
+        //private bool _playback;
         private int frameCount;
+
+        private Recording _rec = Recording.None; 
+
+        public enum Recording
+        {
+            None = 0,
+            Recording = 1,
+            Playback = 2,
+            Reverse = 3
+        }
+
 
         public PlayerMulti(int X, int Y, List<FlxObject> Bullets, FlxEmitter Gibs)
             : base(X, Y)
@@ -84,7 +93,7 @@ namespace XNAMode
 		{
             PlayerIndex pi;
 
-            if (_playback == false)
+            if (_rec == Recording.Recording)
             {
                 if (FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi))
                 {
@@ -96,34 +105,59 @@ namespace XNAMode
                 }
 
             }
-            //_history += x.ToString() + "," + y.ToString() + "\n";
-            else
+            else if (_rec == Recording.Playback)
             {
                 x = _history[frameCount][0];
                 y = _history[frameCount][1];
 
                 if (_history[frameCount][3] == 1) facing = Flx2DFacing.Right;
                 else if (_history[frameCount][3] == 0) facing = Flx2DFacing.Left;
-                
+
                 frameCount++;
 
                 if (frameCount > _history.Count - 1)
-                    frameCount = 0;
+                {
+                    _rec = Recording.Reverse;
+                }
+            }
+            else if (_rec == Recording.Reverse)
+            {
+                x = _history[frameCount][0];
+                y = _history[frameCount][1];
 
-                //Console.WriteLine(_history[frameCount][3].ToString());
+                if (_history[frameCount][3] == 0) facing = Flx2DFacing.Right;
+                else if (_history[frameCount][3] == 1) facing = Flx2DFacing.Left;
 
+                frameCount--;
 
+                if (frameCount < 1)
+                {
+                    _rec = Recording.Playback;
+                }
             }
 
-            
 
-            
 
             if (FlxG.gamepads.isButtonDown(Buttons.LeftShoulder, controller, out pi))
             {
-                frameCount = 0;
-                _playback = true;
+                if (_rec == Recording.None)
+                {
+                    _rec = Recording.Playback;
+                }
+                else if (_rec == Recording.Playback)
+                {
+                    _rec = Recording.Recording;
+                }
+                else if (_rec == Recording.Recording)
+                {
+                    _rec = Recording.Reverse;
+                }
+                else if (_rec == Recording.Reverse)
+                {
+                    _rec = Recording.None;
+                }
             }
+
 
 			//game restart timer
 			if(dead)
@@ -180,7 +214,7 @@ namespace XNAMode
 			//SHOOTING
             if (!flickering() && (FlxG.keys.justPressed(Keys.C) ||
                     FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi)) || 
-                    (_history[frameCount][2]==1 && _playback == true) )
+                    (_history[frameCount][2]==1 && (_rec == Recording.Playback || _rec == Recording.Reverse)) )
 			{
 				int bXVel = 0;
 				int bYVel = 0;

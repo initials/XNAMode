@@ -415,7 +415,7 @@ namespace XNAMode
 			}
 			
 			//then place a bunch of blocks
-			int numBlocks = 5+(int)(FlxU.random()*4);
+			int numBlocks = 3+(int)(FlxU.random()*4);
 			if(!Spawners) numBlocks++;
 			int maxW = 10;
 			int minW = 2;
