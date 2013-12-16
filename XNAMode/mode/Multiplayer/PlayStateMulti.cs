@@ -169,10 +169,7 @@ namespace XNAMode
 			add(_decorations);
 			add(_bots);
 			
-			//actually create the bullets now
-			for(i = 0; i < 50; i++)
-				_botBullets.add(new BotBullet());
-			for(i = 0; i < 8; i++)
+			for(i = 0; i < 80; i++)
 				_bullets.add(new BulletMulti());
 
 			//add player and set up scrolling camera
