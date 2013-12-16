@@ -27,10 +27,7 @@ namespace FourChambers
         {
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
-
-
             base.create();
-
 
             levelAttrs = new Dictionary<string, string>();
 
@@ -92,19 +89,12 @@ namespace FourChambers
                 SaveToDevice(_data, "replay" + nowTime  + ".txt");
             }
 
-
             FlxU.collide(m, destructableTilemap);
             FlxU.collide(miss, destructableTilemap);
-
 
             base.update();
 
         }
-
-
-
-
-
 
         public void SaveToDevice(string Lines, string Filename)
         {

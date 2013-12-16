@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <OgmoVersion>1.0</OgmoVersion>
-  <Name>New Project</Name>
+  <Name>Mode</Name>
   <BackgroundColor A="255" R="0" G="15" B="0" />
   <GridColor A="255" R="255" G="240" B="90" />
   <LevelDefaultSize>
     <Width>320</Width>
-    <Height>180</Height>
+    <Height>184</Height>
   </LevelDefaultSize>
   <LevelMinimumSize>
     <Width>320</Width>
-    <Height>180</Height>
+    <Height>184</Height>
   </LevelMinimumSize>
   <LevelMaximumSize>
     <Width>6400</Width>
@@ -49,6 +49,17 @@
         <Y>1</Y>
       </ScrollFactor>
       <ExportMode>CSV</ExportMode>
+    </LayerDefinition>
+    <LayerDefinition xsi:type="EntityLayerDefinition">
+      <Name>Items</Name>
+      <Grid>
+        <Width>8</Width>
+        <Height>8</Height>
+      </Grid>
+      <ScrollFactor>
+        <X>1</X>
+        <Y>1</Y>
+      </ScrollFactor>
     </LayerDefinition>
   </LayerDefinitions>
   <Tilesets>
