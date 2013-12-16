@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using org.flixel;
 
-namespace XNAMode
+namespace FourChambers
 {
     class Warlock : Actor
     {

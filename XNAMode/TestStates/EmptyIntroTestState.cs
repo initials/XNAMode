@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 using OgmoXNA;
 
-namespace XNAMode
+namespace FourChambers
 {
     public class EmptyIntroTestState : FlxState
     {

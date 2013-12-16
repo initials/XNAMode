@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 
-namespace XNAMode
+namespace FourChambers
 {
     class Prism : Actor
     {

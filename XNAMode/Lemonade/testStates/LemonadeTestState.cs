@@ -86,7 +86,7 @@ namespace Lemonade
 
             if (FlxG.keys.justPressed(Keys.Escape))
             {
-                FlxG.state = new XNAMode.CleanTestState();
+                FlxG.state = new FourChambers.CleanTestState();
             }
         }
 

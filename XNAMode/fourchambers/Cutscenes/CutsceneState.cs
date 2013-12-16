@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 using System.Reflection;
 
-namespace XNAMode
+namespace FourChambers
 {
     public class CutsceneState : FlxState
     {

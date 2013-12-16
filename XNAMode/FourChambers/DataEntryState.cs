@@ -13,7 +13,7 @@ using org.flixel;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace XNAMode
+namespace FourChambers
 {
     /// <summary>
     /// 

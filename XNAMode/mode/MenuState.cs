@@ -222,7 +222,7 @@ namespace XNAMode
             // exit.
             if (FlxG.keys.justPressed(Keys.Escape))
             {
-                FlxG.state = new GameSelectionMenuState();
+                FlxG.state = new FourChambers.GameSelectionMenuState();
                 return;
             }
 

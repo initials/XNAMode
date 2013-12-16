@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 
-namespace XNAMode
+namespace FourChambers
 {
     class Mistress : FlxSprite
     {
@@ -255,7 +255,7 @@ namespace XNAMode
 //using Microsoft.Xna.Framework.Input;
 
 
-//namespace XNAMode
+//namespace FourChambers
 //{
 //    class Mistress : Actor
 //    {

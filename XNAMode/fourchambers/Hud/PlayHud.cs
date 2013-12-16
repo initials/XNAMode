@@ -11,7 +11,7 @@ using org.flixel;
 using XNATweener;
 
 
-namespace XNAMode
+namespace FourChambers
 {
     class PlayHud : FlxGroup
     {

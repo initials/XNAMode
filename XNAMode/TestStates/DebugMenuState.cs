@@ -40,7 +40,7 @@ namespace XNAMode
 
             if (FlxG.keys.ONE)
             {
-                FlxG.state = new LevelVisualizerState();
+                FlxG.state = new FourChambers.LevelVisualizerState();
                 FlxG.hideHud();
             }
             if (FlxG.keys.TWO)
@@ -50,17 +50,17 @@ namespace XNAMode
             }
             if (FlxG.keys.THREE)
             {
-                FlxG.state = new PathTestState();
+                FlxG.state = new FourChambers.PathTestState();
                 //FlxG.hideHud();
             }
             if (FlxG.keys.FOUR)
             {
-                FlxG.state = new LevelBeginTextState();
+                FlxG.state = new FourChambers.LevelBeginTextState();
                 FlxG.hideHud();
             }
             if (FlxG.keys.FIVE)
             {
-                FlxG.state = new CleanTestState();
+                FlxG.state = new FourChambers.CleanTestState();
                 FlxG.hideHud();
             }
             if (FlxG.keys.SIX)
@@ -70,7 +70,7 @@ namespace XNAMode
             }
             if (FlxG.keys.SEVEN)
             {
-                FlxG.state = new VCRState();
+                FlxG.state = new FourChambers.VCRState();
                 FlxG.hideHud();
             }
 

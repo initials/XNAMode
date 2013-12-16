@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 using org.flixel;
 
-namespace Mode
+namespace Loader_Mode
 {
     /// <summary>
     /// Starts the game

@@ -8,7 +8,7 @@ using org.flixel;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace XNAMode
+namespace FourChambers
 {
     /// <summary>
     /// Shows how to use a path object, and follow.

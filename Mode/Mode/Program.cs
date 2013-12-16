@@ -13,7 +13,7 @@ using System.Text;
 using org.flixel;
 using Microsoft.Xna.Framework;
 
-namespace Mode
+namespace Loader_Mode
 {
     /// <summary>
     /// Flixel enters here.
@@ -29,23 +29,6 @@ namespace Mode
             int h = 180;
 
             initGame(w, h, new XNAMode.MenuState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
-
-
-            //initGame(w, h, new EmptyIntroTestState(), new Color(15, 15, 15), false, new Color(5, 5, 5));
-
-            //initGame(w, h, new BasePlayStateFromOel(), new Color(15, 15, 15), false, new Color(5, 5, 5));
-
-            //initGame(w, h, new CharacterSelectionState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
-
-            //initGame(w, h, new BasePlayStateFromOel(), new Color(15, 15, 15), false, new Color(5, 5, 5));
-
-
-            //initGame(w, h, new PathTestState(), new Color(15, 15, 15), false, new Color(5, 5, 5));
-
-
-            //initGame(w, h, new MenuState(), new Color(15, 15, 15), false, new Color(5, 5, 5));
-
-
 
             FlxG.debug = true;
             FlxG.zoom = 1280 / w;

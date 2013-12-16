@@ -11,7 +11,7 @@ using System.Xml.Linq;
 using XNATweener;
 using System.IO;
 
-namespace XNAMode
+namespace FourChambers
 {
     public class GameSelectionMenuState : FlxState
     {
@@ -206,7 +206,7 @@ namespace XNAMode
 
             if (FlxG.keys.F1)
             {
-                FlxG.state = new MenuState();
+                FlxG.state = new XNAMode.MenuState();
 
             }
             if (FlxG.keys.F2)
@@ -288,13 +288,13 @@ namespace XNAMode
 
             //FlxG.transition.startFadeOut(0.1f,0,120);
 
-            FlxG.state = new BasePlayState();
+            FlxG.state = new FourChambers.BasePlayState();
 
         }
         public void goToDataEntryState()
         {
             FlxG.transition.resetAndStop();
-            FlxG.state = new DataEntryState();
+            FlxG.state = new FourChambers.DataEntryState();
         }
     }
         

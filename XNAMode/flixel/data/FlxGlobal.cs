@@ -8,7 +8,7 @@ namespace org.flixel
     /// <summary>
     /// FlxGlobals stores a bunch of constants
     /// </summary>
-    class FlxGlobal
+    public class FlxGlobal
     {
         //public const int xTILE_SIZE_X = 16;
         //public const int xTILE_SIZE_Y = 16;
@@ -17,7 +17,7 @@ namespace org.flixel
     /// <summary>
     /// Globals for the game Four Chambers.
     /// </summary>
-    class FourChambers_Globals
+    public class FourChambers_Globals
     {
         public const int TILE_SIZE_X = 16;
         public const int TILE_SIZE_Y = 16;
@@ -136,7 +136,7 @@ namespace org.flixel
 
     }
 
-    class Mode_Globals
+    public class Mode_Globals
     {
         public static bool CREATE_FROM_OGMO_LEVEL = false;
 
