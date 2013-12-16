@@ -48,7 +48,7 @@ namespace XNAMode
         public PlayerMulti(int X, int Y, List<FlxObject> Bullets, FlxEmitter Gibs)
             : base(X, Y)
 		{
-            _playback = false;
+            //_playback = false;
             frameCount = 0;
             
 
