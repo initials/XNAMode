@@ -8,6 +8,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mode", "Mode\Mode\Mode.csproj", "{34A31726-EC55-4F87-8FB5-157A985AE009}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FourChambersOfTheHumanHeart", "Four\Four\FourChambersOfTheHumanHeart.csproj", "{4DE081E9-8E86-44F4-A589-796F3FEB3167}"
+	ProjectSection(ProjectDependencies) = postProject
+		{34A31726-EC55-4F87-8FB5-157A985AE009} = {34A31726-EC55-4F87-8FB5-157A985AE009}
+		{BF77E6C4-8CA1-426E-975B-C6D5221CD5E9} = {BF77E6C4-8CA1-426E-975B-C6D5221CD5E9}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperLemonadeFactory", "SuperLemonadeFactory\SuperLemonadeFactory\SuperLemonadeFactory.csproj", "{BF77E6C4-8CA1-426E-975B-C6D5221CD5E9}"
 EndProject
