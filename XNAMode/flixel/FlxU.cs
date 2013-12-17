@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 
 namespace org.flixel
 {
@@ -1172,9 +1173,28 @@ namespace org.flixel
             return (float)Math.Sqrt(dx * dx + dy * dy);
         }
 
-        
 
+        /// <summary>
+        /// Added to make saving files to disk easy.
+        /// </summary>
+        /// <param name="Lines"></param>
+        /// <param name="Filename"></param>
+        public static void saveToDevice(string Lines, string Filename)
+        {
+            // Write the string to a file.
+            System.IO.StreamWriter file = new System.IO.StreamWriter(Filename);
+            file.WriteLine(Lines);
 
+            file.Close();
+        }
+
+        public static string loadFromDevice(string Filename)
+        {
+            string value1 = File.ReadAllText(Filename);
+
+            return value1.Substring(0, value1.Length - 1);
+
+        }
 
 
 

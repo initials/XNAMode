@@ -26,6 +26,8 @@ namespace XNAMode
 		protected FlxGroup _blocks;
 		protected FlxGroup _decorations;
 		protected FlxGroup _bullets;
+        protected FlxTilemap _tileMap;
+        Dictionary<string, string> attrs;
 
         protected FlxGroup _players;
 		protected PlayerMulti _player1;
@@ -92,73 +94,40 @@ namespace XNAMode
 			_bullets = new FlxGroup();
             _players = new FlxGroup();
 
+            List<Dictionary<string, string>> actorsAttrs = new List<Dictionary<string, string>>();
+            actorsAttrs = FlxXMLReader.readNodesFromOelFile("Mode/level1.oel", "level/Items");
 
-			_player1 = new PlayerMulti(16, 30, _bullets.members, _littleGibs);
+
+            _player1 = new PlayerMulti(Convert.ToInt32(actorsAttrs[0]["x"]), Convert.ToInt32(actorsAttrs[0]["y"]), _bullets.members, _littleGibs);
             _player1.controller = PlayerIndex.One;
+            _player1.color = Color.White;
 
-            _player2 = new PlayerMulti(26, 30, _bullets.members, _littleGibs);
+            _player2 = new PlayerMulti(Convert.ToInt32(actorsAttrs[1]["x"]), Convert.ToInt32(actorsAttrs[1]["y"]), _bullets.members, _littleGibs);
             _player2.controller = PlayerIndex.Two;
-            _player2.color = Color.Purple;
-            
-            _player3 = new PlayerMulti(36, 30, _bullets.members, _littleGibs);
+            _player2.color = Color.Red;
+
+            _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs);
             _player3.controller = PlayerIndex.Three;
             _player3.color = Color.Teal;
 
-            _player4 = new PlayerMulti(46, 30, _bullets.members, _littleGibs);
+            _player4 = new PlayerMulti(Convert.ToInt32(actorsAttrs[3]["x"]), Convert.ToInt32(actorsAttrs[3]["y"]), _bullets.members, _littleGibs);
             _player4.controller = PlayerIndex.Four;
-            _player4.color = Color.Orange;
+            _player4.color = Color.Yellow;
 
 
 			_bots = new FlxGroup();
 			_botBullets = new FlxGroup();
 			_spawners = new FlxGroup();
 			
-			//simple procedural level generation
-			int i;
-			int r = 160;
-			FlxTileblock b;
-
-            b = new FlxTileblock(0, 0, FlxG.width, 16);
-			b.loadGraphic(ImgTech);
-			_blocks.add(b);
-
-            b = new FlxTileblock(0, 16, 16, FlxG.height);
-			b.loadGraphic(ImgTech);
-			_blocks.add(b);
-
-            b = new FlxTileblock(FlxG.width - 16, 16, 16, FlxG.height);
-			b.loadGraphic(ImgTech);
-			_blocks.add(b);
-
-            b = new FlxTileblock(16, FlxG.height - 24, FlxG.width - 32, 8);
-			b.loadGraphic(ImgDirtTop);
-			_blocks.add(b);
-
-            b = new FlxTileblock(16, FlxG.height - 16, FlxG.width - 32, 16);
-			b.loadGraphic(ImgDirt);
-			_blocks.add(b);
-
-            buildRoom(r * 0, r * 0, true);
-            buildRoom(r * 1, r * 0);
+            attrs = new Dictionary<string, string>();
+            attrs = FlxXMLReader.readAttributesFromOelFile("Mode/level1.oel", "level/NonDestructable");
+            _tileMap = new FlxTilemap();
+            _tileMap.auto = FlxTilemap.STRING;
+            _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Mode/" + attrs["tileset"]), 8, 8);
+            _blocks.add(_tileMap);
 
 
-            //buildRoom(r * 0, r * 0, true);
-            //buildRoom(r*1,r*0);
-            //buildRoom(r*2,r*0);
-            //buildRoom(r * 3, r * 0, true);
-            //buildRoom(r * 0, r * 1, true);
-            //buildRoom(r*1,r*1);
-            //buildRoom(r*2,r*1);
-            //buildRoom(r * 3, r * 1, true);
-            //buildRoom(r*0,r*2);
-            //buildRoom(r*1,r*2);
-            //buildRoom(r*2,r*2);
-            //buildRoom(r*3,r*2);
-            //buildRoom(r*0,r*3,true);
-            //buildRoom(r*1,r*3);
-            //buildRoom(r*2,r*3);
-            //buildRoom(r*3,r*3,true);
-			
+
 			//Add bots and spawners after we add blocks to the state,
 			// so that they're drawn on top of the level, and so that
 			// the bots are drawn on top of both the blocks + the spawners.
@@ -168,7 +137,8 @@ namespace XNAMode
 			add(_blocks);
 			add(_decorations);
 			add(_bots);
-			
+
+            int i;
 			for(i = 0; i < 80; i++)
 				_bullets.add(new BulletMulti());
 
@@ -205,70 +175,33 @@ namespace XNAMode
             _objects.add(_littleGibs);
 			_objects.add(_bigGibs);
 			
-			//HUD - score
-			Vector2 ssf = new Vector2(0,0);
-			_score = new FlxText(0,0,FlxG.width);
-			_score.color = new Color (0xd8, 0xeb, 0xa2);
-			_score.scale = 2;
-			_score.alignment = FlxJustification.Center;
-			_score.scrollFactor = ssf;
-			_score.shadow = new Color(0x13, 0x1c, 0x1b);
-			add(_score);
-            if (FlxG.scores.Count < 2)
-            {
-                FlxG.scores.Add(0);
-                FlxG.scores.Add(0);
-            }
-			
-			//HUD - highest and last scores
-			_score2 = new FlxText(FlxG.width/2,0,FlxG.width/2);
-			_score2.color = new Color(0xd8, 0xeb, 0xa2);
-			_score2.alignment = FlxJustification.Right;
-			_score2.scrollFactor = ssf;
-			_score2.shadow = _score.shadow;
-			add(_score2);
-            if (FlxG.score > FlxG.scores[0])
-                FlxG.scores[0] = FlxG.score;
-            if (FlxG.scores[0] != 0)
-                _score2.text = "HIGHEST: " + FlxG.scores[0] + "\nLAST: " + FlxG.score;
-			FlxG.score = 0;
-			_scoreTimer = 0;
-			
-			//HUD - the "number of spawns left" icons
-            //_notches = new List<FlxSprite>();
-            //FlxSprite tmp;
-            //for(i = 0; i < 6; i++)
-            //{
-            //    tmp = new FlxSprite(4+i*10,4);
-            //    tmp.loadGraphic(ImgNotch,true);
-            //    tmp.scrollFactor.X = tmp.scrollFactor.Y = 0;
-            //    tmp.addAnimation("on", new int[] {0});
-            //    tmp.addAnimation("off",new int[] {1});
-            //    tmp.moves = false;
-            //    tmp.solid = false;
-            //    tmp.play("on");
-            //    _notches.Add((FlxSprite)this.add(tmp));
-            //}
-			
-			//HUD - the "gun jammed" notification
-			_jamBar = this.add((new FlxSprite(0,FlxG.height-22)).createGraphic(FlxG.width,24, new Color(0x13, 0x1c, 0x1b))) as FlxSprite;
-			_jamBar.scrollFactor.X = _jamBar.scrollFactor.Y = 0;
-			_jamBar.visible = false;
-			_jamText = new FlxText(0,FlxG.height-22,FlxG.width,"GUN IS JAMMED");
-			_jamText.color = new Color(0xd8, 0xeb, 0xa2);
-			_jamText.scale = 2;
-			_jamText.alignment = FlxJustification.Center;
-			_jamText.scrollFactor = ssf;
-			_jamText.visible = false;
-			add(_jamText);
-			
 			FlxG.playMusic(SndMode);
 			FlxG.flash.start(new Color(0x13, 0x1c, 0x1b), 0.5f, null, false);
 			_fading = false;
+
+            FlxG.scores.Add(0);
+            FlxG.scores.Add(0);
+            FlxG.scores.Add(0);
+            FlxG.scores.Add(0);
+
+            FlxG.showHud();
+            FlxG.setHudGamepadButton(0, -200, -200);
+
+            FlxG.setHudText(1, FlxG.scores[0].ToString() );
+
+
+
 		}
 
 		override public void update()
 		{
+
+            FlxG.setHudText(1, FlxG.scores[0].ToString());
+            FlxG.setHudText(2, FlxG.scores[1].ToString());
+            FlxG.setHudText(3, FlxG.scores[2].ToString());
+            FlxG.setHudText(4, FlxG.scores[3].ToString());
+
+
             PlayerIndex pi;
 
 			int os = FlxG.score;
@@ -349,17 +282,42 @@ namespace XNAMode
                 FlxG.flash.start(new Color(0xd8, 0xeb, 0xa2), 0.5f, null, false);
                 FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
             }
+
+            int hi = 10;
+            if ( (FlxG.scores[0] > hi) || (FlxG.scores[1] > hi) || (FlxG.scores[2] > hi) || (FlxG.scores[3] > hi))
+            {
+                FlxG.fade.start(new Color(0xd8, 0xeb, 0xa2), 3, onVictory, false);
+            }
 		}
 
         protected bool hitPlayer(object Sender, FlxSpriteCollisionEvent e)
         {
-            if ((e.Object1 is BotBullet) || (e.Object1 is BulletMulti))
-                e.Object1.kill();
             if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color)
             {
-                e.Object2.hurt(1);
-                e.Object2.x = 10;
-                e.Object2.y = 10;
+
+                if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.One) FlxG.scores[0]--;
+                else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Two) FlxG.scores[1]--;
+                else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Three) FlxG.scores[2]--;
+                else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Four) FlxG.scores[3]--;
+
+                if (((BulletMulti)(e.Object1)).color == Color.White) FlxG.scores[0]++;
+                else if (((BulletMulti)(e.Object1)).color == Color.Red) FlxG.scores[1]++;
+                else if (((BulletMulti)(e.Object1)).color == Color.Teal) FlxG.scores[2]++;
+                else if (((BulletMulti)(e.Object1)).color == Color.Yellow) FlxG.scores[3]++;
+
+                if ((e.Object1 is BotBullet) || (e.Object1 is BulletMulti))
+                {
+                    e.Object1.kill();
+                }
+
+                ((PlayerMulti)(e.Object2)).frameCount = 0;
+
+                ((PlayerMulti)(e.Object2)).x = ((PlayerMulti)(e.Object2)).originalPosition.X;
+
+                ((PlayerMulti)(e.Object2)).y = ((PlayerMulti)(e.Object2)).originalPosition.Y;
+
+                //e.Object2.x = 10;
+                //e.Object2.y = 10;
 
             }
             return true;
@@ -380,7 +338,7 @@ namespace XNAMode
 		protected void onVictory(object Sender, FlxEffectCompletedEvent e)
 		{
 			FlxG.music.stop();
-			FlxG.state = new VictoryState();
+			FlxG.state = new VictoryStateMulti();
 		}
 		
 		/// <summary>

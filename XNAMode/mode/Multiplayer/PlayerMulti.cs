@@ -30,9 +30,16 @@ namespace XNAMode
 		private FlxEmitter _gibs;
 
         public PlayerIndex? controller;
+
+        /// <summary>
+        /// [0] - x
+        /// [1] - y
+        /// [2] - shooting?
+        /// [3] - facing 
+        /// </summary>
         private List<float[]> _history = new List<float[]>();
         //private bool _playback;
-        private int frameCount;
+        public int frameCount;
 
         private Recording _rec = Recording.None; 
 
@@ -50,6 +57,7 @@ namespace XNAMode
 		{
             //_playback = false;
             frameCount = 0;
+
             
 
             ImgSpaceman = FlxG.Content.Load<Texture2D>("Mode/spaceman");
@@ -87,7 +95,11 @@ namespace XNAMode
 			
 			//Gibs emitted upon death
 			_gibs = Gibs;
+
+            originalPosition = new Vector2(x, y);
 		}
+
+
 		
 		override public void update()
 		{
@@ -115,9 +127,13 @@ namespace XNAMode
 
                 frameCount++;
 
+                //Console.WriteLine("Rec is Playback");
+
                 if (frameCount > _history.Count - 1)
                 {
+                    //Console.WriteLine("FrameCount>>>>>>>>>>>>>>_history");
                     _rec = Recording.Reverse;
+                    frameCount--;
                 }
             }
             else if (_rec == Recording.Reverse)
@@ -132,17 +148,20 @@ namespace XNAMode
 
                 if (frameCount < 1)
                 {
+                    
                     _rec = Recording.Playback;
+                    frameCount++;
+
                 }
             }
 
+            //if (controller == PlayerIndex.One) Console.WriteLine("_recMode: " + _rec.ToString() + " frameCount: " + frameCount);
 
-
-            if (FlxG.gamepads.isButtonDown(Buttons.LeftShoulder, controller, out pi))
+            if (FlxG.gamepads.isNewButtonPress(Buttons.LeftShoulder, controller, out pi))
             {
                 if (_rec == Recording.None)
                 {
-                    _rec = Recording.Playback;
+                    _rec = Recording.Recording;
                 }
                 else if (_rec == Recording.Playback)
                 {
@@ -150,14 +169,60 @@ namespace XNAMode
                 }
                 else if (_rec == Recording.Recording)
                 {
-                    _rec = Recording.Reverse;
+                    string _historyString = "";
+                    foreach (var item in _history)
+                    {
+                        _historyString += item[0].ToString() + "," + item[1].ToString() + "," + item[2].ToString() + "," + item[3].ToString() + "\n";
+                    }
+
+                    FlxU.saveToDevice(_historyString, (controller.ToString() + "PlayerData.txt"));
+
+                    _rec = Recording.Playback;
                 }
                 else if (_rec == Recording.Reverse)
                 {
                     _rec = Recording.None;
                 }
+
+                Console.WriteLine("Recording Mode is: " + _rec);
+
+
+            }
+            if (FlxG.gamepads.isButtonDown(Buttons.LeftStick, controller, out pi))
+            {
+
+                _rec = Recording.Recording ;
+                _history = null;
+                _history = new List<float[]>();
+
+               
             }
 
+            if (FlxG.gamepads.isButtonDown(Buttons.RightStick, controller, out pi))
+            {
+                _history = new List<float[]>();
+
+                string x = FlxU.loadFromDevice(controller.ToString() + "PlayerData.txt");
+
+                string[] y = x.Split('\n');
+
+                foreach (var item in y)
+                {
+                    string[] item1 = item.Split(',');
+
+                    //Console.WriteLine(float.Parse(item1[0]) + " + " + float.Parse(item1[1]) + " + " + float.Parse(item1[2]) + " + " + float.Parse(item1[3]));
+
+                    if (item1.Length==4)
+
+                        _history.Add(new float[] { float.Parse(item1[0]), float.Parse(item1[1]), float.Parse(item1[2]), float.Parse(item1[3]) });
+                }
+
+
+                _rec = Recording.Playback;
+                frameCount = 0;
+
+
+            }
 
 			//game restart timer
 			if(dead)
@@ -210,11 +275,20 @@ namespace XNAMode
 				if(_up) play("run_up");
 				else play("run");
 			}
+
+            bool shootForPlayback = false;
+            if (_rec == Recording.Playback || _rec == Recording.Reverse)
+            {
+                if (_history[frameCount]!= null)
+                {
+                    if (_history[frameCount][2] == 1) shootForPlayback = true;
+                }
+            }
 			
 			//SHOOTING
             if (!flickering() && (FlxG.keys.justPressed(Keys.C) ||
-                    FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi)) || 
-                    (_history[frameCount][2]==1 && (_rec == Recording.Playback || _rec == Recording.Reverse)) )
+                    FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi)) ||
+                    ((_rec == Recording.Playback || _rec == Recording.Reverse) && shootForPlayback))
 			{
 				int bXVel = 0;
 				int bYVel = 0;

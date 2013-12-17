@@ -146,6 +146,7 @@
     <Compile Include="Mode\Multiplayer\BulletMulti.cs" />
     <Compile Include="Mode\Multiplayer\PlayerMulti.cs" />
     <Compile Include="Mode\Multiplayer\PlayStateMulti.cs" />
+    <Compile Include="Mode\Multiplayer\VictoryStateMulti.cs" />
     <Compile Include="TestStates\CleanTestState.cs" />
     <Compile Include="TestStates\DebugMenuState.cs" />
     <Compile Include="TestStates\LevelBeginTextState.cs" />
@@ -534,6 +535,9 @@
     <None Include="levelSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Mode\level1.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ogmoLevels\level1.oel">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
