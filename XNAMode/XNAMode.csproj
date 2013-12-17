@@ -121,6 +121,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Revvolvver\Bot.cs" />
+    <Compile Include="Revvolvver\BotBullet.cs" />
+    <Compile Include="Revvolvver\Bullet.cs" />
+    <Compile Include="Revvolvver\MenuState.cs" />
+    <Compile Include="Revvolvver\Multiplayer\BulletMulti.cs" />
+    <Compile Include="Revvolvver\Multiplayer\PlayerMulti.cs" />
+    <Compile Include="Revvolvver\Multiplayer\PlayStateMulti.cs" />
+    <Compile Include="Revvolvver\Multiplayer\VictoryStateMulti.cs" />
+    <Compile Include="Revvolvver\Player.cs" />
+    <Compile Include="Revvolvver\PlayState.cs" />
+    <Compile Include="Revvolvver\PlayStateTiles.cs" />
+    <Compile Include="Revvolvver\Spawner.cs" />
+    <Compile Include="Revvolvver\VictoryState.cs" />
     <Compile Include="FourChambers\DataEntryState.cs" />
     <Compile Include="flixel\data\FlxGlobal.cs" />
     <Compile Include="flixel\FlxCaveGeneratorExt.cs" />
@@ -367,6 +380,9 @@
     <Content Include="Lemonade\characters\reference\Liselot %282%29.h" />
     <Content Include="Lemonade\characters\reference\Liselot.h" />
     <Content Include="Lemonade\characters\reference\Player.h" />
+    <None Include="Revvolvver\level1.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Lemonade\characters\reference\Andre.m" />
     <None Include="Lemonade\characters\reference\BaseCharacter.m" />
     <None Include="Lemonade\characters\reference\Enemy.m" />
