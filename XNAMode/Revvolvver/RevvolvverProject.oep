@@ -16,7 +16,7 @@
     <Width>6400</Width>
     <Height>4800</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Shane\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\Revvolvver\Multiplayer\RevvolvverProject.oep</Filename>
+  <Filename>C:\Users\User\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\Revvolvver\RevvolvverProject.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -65,7 +65,7 @@
   <Tilesets>
     <Tileset>
       <Name>tech_tiles</Name>
-      <FilePath>..\..\..\XNAModeContent\Revvolvver\tech_tiles.png</FilePath>
+      <FilePath>..\..\XNAModeContent\Revvolvver\tech_tiles.png</FilePath>
       <TileSize>
         <Width>8</Width>
         <Height>8</Height>
@@ -74,7 +74,7 @@
     </Tileset>
     <Tileset>
       <Name>dirt</Name>
-      <FilePath>..\..\..\XNAModeContent\mode\dirt.png</FilePath>
+      <FilePath>..\..\XNAModeContent\mode\dirt.png</FilePath>
       <TileSize>
         <Width>8</Width>
         <Height>8</Height>
@@ -92,7 +92,7 @@
         <X>0</X>
         <Y>0</Y>
       </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="..\..\..\XNAModeContent\mode\spaceman.png" Tiled="false">
+      <ImageDefinition DrawMode="Image" ImagePath="..\..\XNAModeContent\mode\spaceman.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions />
