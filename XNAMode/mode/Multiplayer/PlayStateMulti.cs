@@ -214,7 +214,7 @@ namespace XNAMode
 			FlxU.overlap(_bullets,_enemies,overlapped);
 
             FlxU.overlap(_bullets, _players, hitPlayer);
-
+            FlxU.overlap(_bullets, _bullets, hitBullet);
 			
 			//Jammed message
 			if(FlxG.keys.justPressed(Keys.C) && _player1.flickering())
@@ -289,6 +289,15 @@ namespace XNAMode
                 FlxG.fade.start(new Color(0xd8, 0xeb, 0xa2), 3, onVictory, false);
             }
 		}
+
+        protected bool hitBullet(object Sender, FlxSpriteCollisionEvent e)
+        {
+            e.Object1.kill();
+            e.Object2.kill();
+
+            return true;
+        }
+
 
         protected bool hitPlayer(object Sender, FlxSpriteCollisionEvent e)
         {
