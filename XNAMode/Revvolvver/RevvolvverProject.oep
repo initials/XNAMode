@@ -16,7 +16,7 @@
     <Width>6400</Width>
     <Height>4800</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Shane\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\mode\Multiplayer\ModeProject.oep</Filename>
+  <Filename>C:\Users\Shane\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\Revvolvver\Multiplayer\RevvolvverProject.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -65,7 +65,7 @@
   <Tilesets>
     <Tileset>
       <Name>tech_tiles</Name>
-      <FilePath>..\..\..\XNAModeContent\mode\tech_tiles.png</FilePath>
+      <FilePath>..\..\..\XNAModeContent\Revvolvver\tech_tiles.png</FilePath>
       <TileSize>
         <Width>8</Width>
         <Height>8</Height>
