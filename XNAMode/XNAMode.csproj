@@ -385,6 +385,7 @@
     </None>
     <None Include="Revvolvver\level1.oel">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Lemonade\characters\reference\Andre.m" />
     <None Include="Lemonade\characters\reference\BaseCharacter.m" />
@@ -635,6 +636,7 @@
     </None>
     <None Include="Revvolvver\RevvolvverProject.oep">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="XNAMode_TemporaryKey.pfx" />
   </ItemGroup>
