@@ -323,7 +323,7 @@
     <Compile Include="flixel\FlxTilemap.cs" />
     <Compile Include="flixel\FlxTransition.cs" />
     <Compile Include="flixel\FlxU.cs" />
-    <Compile Include="GameSelectionMenuState.cs" />
+    <Compile Include="FourChambers\GameSelectionMenuState.cs" />
     <Compile Include="FourChambers\Actors\Actor.cs" />
     <Compile Include="FourChambers\Actors\enemies\Automaton.cs" />
     <Compile Include="FourChambers\Weapons\Arrow.cs" />
