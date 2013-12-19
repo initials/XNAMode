@@ -15,12 +15,16 @@ Content\mode\bot.xnb
 Content\mode\bot_bullet.xnb
 Content\mode\bullet.xnb
 Content\mode\cursor.xnb
+Content\mode\dirt_x.xnb
+Content\mode\dirt_top_x.xnb
 Content\mode\gibs.xnb
 Content\mode\jetsmoke.xnb
 Content\mode\notch.xnb
 Content\mode\spaceman.xnb
 Content\mode\spawner.xnb
 Content\mode\spawner_gibs.xnb
+Content\mode\tech_tiles_x.xnb
+Content\mode\tiles_all_x.xnb
 Content\initials\initialsLogo.xnb
 Content\mode\bubble.xnb
 Content\initials\autotiles_16x16.xnb
@@ -136,9 +140,6 @@ Content\Revvolvver\spawner.xnb
 Content\Revvolvver\spawner_gibs.xnb
 Content\Revvolvver\tech_tiles.xnb
 Content\Revvolvver\tiles_all.xnb
-Content\initials\Munro.xnb
-Content\initials\SpaceMarine.xnb
-Content\mode\tech_autotiles.xnb
 Content\mode\button.wma
 Mode\ModeProject.oep
 Revvolvver\level1.oel
