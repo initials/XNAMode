@@ -122,6 +122,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cd C:\Users\User\Documents\Visual Studio 2010\Projects\XNAMode\Mode\Mode\bin\x86
+C:\_Files\programs\7-Zip\7z a -tzip Mode.zip Release\ -r</PostBuildEvent>
+  </PropertyGroup>
   <!--
       To modify your build process, add your task inside one of the targets below and uncomment it. 
       Other similar extension points exist, see Microsoft.Common.targets.
