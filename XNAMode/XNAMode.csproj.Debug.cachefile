@@ -141,6 +141,7 @@ Content\Revvolvver\spawner_gibs.xnb
 Content\Revvolvver\tech_tiles.xnb
 Content\Revvolvver\tiles_all.xnb
 Content\mode\button.wma
+Mode\ModeProject.oep
 Revvolvver\level1.oel
 Lemonade\levels\bgnewyor.tmx
 Lemonade\levels\bgsydney.tmx
@@ -217,4 +218,5 @@ ogmoLevels\level9.oel
 ogmoLevels\levelTutorial.oel
 ogmoLevels\ProjectFile.oep
 ogmoLevels\PathTesting.oel
+Revvolvver\RevvolvverProject.oep
 Lemonade\levels\bgmilita.tmx
