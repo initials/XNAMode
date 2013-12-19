@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using org.flixel;
 
-namespace Revvolvver
+namespace XNAMode
 {
     /// <summary>
     /// The main player class.

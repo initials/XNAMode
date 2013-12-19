@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using org.flixel;
 
-namespace Revvolvver
+namespace XNAMode
 {
     public class BotBullet : FlxSprite
     {
