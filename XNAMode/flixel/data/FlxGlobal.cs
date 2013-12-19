@@ -132,13 +132,19 @@ namespace org.flixel
             cheatString = Cheat;
 
         }
-
-
     }
 
     public class Mode_Globals
     {
+
         public static bool CREATE_FROM_OGMO_LEVEL = false;
+
+        /// <summary>
+        /// Number of players for multiplayer.
+        /// </summary>
+        public static int PLAYERS = 0;
+
+
 
     }
 }

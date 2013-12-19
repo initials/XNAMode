@@ -97,23 +97,29 @@ namespace XNAMode
             List<Dictionary<string, string>> actorsAttrs = new List<Dictionary<string, string>>();
             actorsAttrs = FlxXMLReader.readNodesFromOelFile("Mode/level1.oel", "level/Items");
 
+            if (Mode_Globals.PLAYERS >= 2)
+            {
+                _player1 = new PlayerMulti(Convert.ToInt32(actorsAttrs[0]["x"]), Convert.ToInt32(actorsAttrs[0]["y"]), _bullets.members, _littleGibs);
+                _player1.controller = PlayerIndex.One;
+                _player1.color = Color.White;
 
-            _player1 = new PlayerMulti(Convert.ToInt32(actorsAttrs[0]["x"]), Convert.ToInt32(actorsAttrs[0]["y"]), _bullets.members, _littleGibs);
-            _player1.controller = PlayerIndex.One;
-            _player1.color = Color.White;
+                _player2 = new PlayerMulti(Convert.ToInt32(actorsAttrs[1]["x"]), Convert.ToInt32(actorsAttrs[1]["y"]), _bullets.members, _littleGibs);
+                _player2.controller = PlayerIndex.Two;
+                _player2.color = Color.Red;
+            }
 
-            _player2 = new PlayerMulti(Convert.ToInt32(actorsAttrs[1]["x"]), Convert.ToInt32(actorsAttrs[1]["y"]), _bullets.members, _littleGibs);
-            _player2.controller = PlayerIndex.Two;
-            _player2.color = Color.Red;
-
-            _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs);
-            _player3.controller = PlayerIndex.Three;
-            _player3.color = Color.Teal;
-
-            _player4 = new PlayerMulti(Convert.ToInt32(actorsAttrs[3]["x"]), Convert.ToInt32(actorsAttrs[3]["y"]), _bullets.members, _littleGibs);
-            _player4.controller = PlayerIndex.Four;
-            _player4.color = Color.Yellow;
-
+            if (Mode_Globals.PLAYERS >= 3)
+            {
+                _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs);
+                _player3.controller = PlayerIndex.Three;
+                _player3.color = Color.Teal;
+            }
+            if (Mode_Globals.PLAYERS >= 4)
+            {
+                _player4 = new PlayerMulti(Convert.ToInt32(actorsAttrs[3]["x"]), Convert.ToInt32(actorsAttrs[3]["y"]), _bullets.members, _littleGibs);
+                _player4.controller = PlayerIndex.Four;
+                _player4.color = Color.Yellow;
+            }
 
 			_bots = new FlxGroup();
 			_botBullets = new FlxGroup();
