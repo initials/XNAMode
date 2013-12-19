@@ -10,7 +10,7 @@ using System.IO;
 
 using org.flixel;
 
-namespace XNAMode
+namespace Revvolvver
 {
     public class PlayStateTiles : FlxState
     {

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using org.flixel;
 
-namespace XNAMode
+namespace Revvolvver
 {
     /// <summary>
     /// Spawner.

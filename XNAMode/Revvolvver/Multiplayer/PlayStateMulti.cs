@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using org.flixel;
 
-namespace XNAMode
+namespace Revvolvver
 {
     /// <summary>
     /// The main play state.
@@ -65,7 +65,7 @@ namespace XNAMode
 		{
             base.create();
 
-            ImgTech=FlxG.Content.Load<Texture2D>("Mode/tech_tiles");
+            ImgTech=FlxG.Content.Load<Texture2D>("Revvolvver/tech_tiles");
             ImgDirtTop=FlxG.Content.Load<Texture2D>("Mode/dirt_top");
             ImgDirt=FlxG.Content.Load<Texture2D>("Mode/dirt");
             ImgNotch=FlxG.Content.Load<Texture2D>("Mode/notch");
@@ -97,47 +97,23 @@ namespace XNAMode
             List<Dictionary<string, string>> actorsAttrs = new List<Dictionary<string, string>>();
             actorsAttrs = FlxXMLReader.readNodesFromOelFile("Mode/level1.oel", "level/Items");
 
-            if (Mode_Globals.PLAYERS >= 2)
-            {
-                _player1 = new PlayerMulti(Convert.ToInt32(actorsAttrs[0]["x"]), Convert.ToInt32(actorsAttrs[0]["y"]), _bullets.members, _littleGibs);
-                _player1.controller = PlayerIndex.One;
-                _player1.color = Color.White;
 
-                FlxG._game.hud.p1HudText.scale = 3;
-                FlxG._game.hud.p1HudText.color = Color.LightGreen;
+            _player1 = new PlayerMulti(Convert.ToInt32(actorsAttrs[0]["x"]), Convert.ToInt32(actorsAttrs[0]["y"]), _bullets.members, _littleGibs);
+            _player1.controller = PlayerIndex.One;
+            _player1.color = Color.White;
 
+            _player2 = new PlayerMulti(Convert.ToInt32(actorsAttrs[1]["x"]), Convert.ToInt32(actorsAttrs[1]["y"]), _bullets.members, _littleGibs);
+            _player2.controller = PlayerIndex.Two;
+            _player2.color = Color.Red;
 
-                _player2 = new PlayerMulti(Convert.ToInt32(actorsAttrs[1]["x"]), Convert.ToInt32(actorsAttrs[1]["y"]), _bullets.members, _littleGibs);
-                _player2.controller = PlayerIndex.Two;
-                _player2.color = Color.Red;
+            _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs);
+            _player3.controller = PlayerIndex.Three;
+            _player3.color = Color.Teal;
 
-                FlxG._game.hud.p2HudText.scale = 3;
-                FlxG._game.hud.p2HudText.color = Color.Red;
+            _player4 = new PlayerMulti(Convert.ToInt32(actorsAttrs[3]["x"]), Convert.ToInt32(actorsAttrs[3]["y"]), _bullets.members, _littleGibs);
+            _player4.controller = PlayerIndex.Four;
+            _player4.color = Color.Yellow;
 
-            }
-
-            if (Mode_Globals.PLAYERS >= 3)
-            {
-                _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs);
-                _player3.controller = PlayerIndex.Three;
-                _player3.color = Color.Teal;
-
-                FlxG._game.hud.p3HudText.scale = 3;
-                FlxG._game.hud.p3HudText.y -= 20;
-                FlxG._game.hud.p3HudText.color = Color.Teal;
-
-            }
-            if (Mode_Globals.PLAYERS >= 4)
-            {
-                _player4 = new PlayerMulti(Convert.ToInt32(actorsAttrs[3]["x"]), Convert.ToInt32(actorsAttrs[3]["y"]), _bullets.members, _littleGibs);
-                _player4.controller = PlayerIndex.Four;
-                _player4.color = Color.Yellow;
-
-                FlxG._game.hud.p4HudText.scale = 3;
-                FlxG._game.hud.p4HudText.y -= 20;
-                FlxG._game.hud.p4HudText.color = Color.Yellow;
-
-            }
 
 			_bots = new FlxGroup();
 			_botBullets = new FlxGroup();
@@ -147,7 +123,7 @@ namespace XNAMode
             attrs = FlxXMLReader.readAttributesFromOelFile("Mode/level1.oel", "level/NonDestructable");
             _tileMap = new FlxTilemap();
             _tileMap.auto = FlxTilemap.STRING;
-            _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Mode/" + attrs["tileset"]), 8, 8);
+            _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 8, 8);
             _blocks.add(_tileMap);
 
 
@@ -203,7 +179,6 @@ namespace XNAMode
 			FlxG.flash.start(new Color(0x13, 0x1c, 0x1b), 0.5f, null, false);
 			_fading = false;
 
-            FlxG.scores.Clear();
             FlxG.scores.Add(0);
             FlxG.scores.Add(0);
             FlxG.scores.Add(0);
@@ -213,7 +188,6 @@ namespace XNAMode
             FlxG.setHudGamepadButton(0, -200, -200);
 
             FlxG.setHudText(1, FlxG.scores[0].ToString() );
-
 
 
 
@@ -240,7 +214,7 @@ namespace XNAMode
 			FlxU.overlap(_bullets,_enemies,overlapped);
 
             FlxU.overlap(_bullets, _players, hitPlayer);
-            FlxU.overlap(_bullets, _bullets, hitBullet);
+
 			
 			//Jammed message
 			if(FlxG.keys.justPressed(Keys.C) && _player1.flickering())
@@ -316,24 +290,15 @@ namespace XNAMode
             }
 		}
 
-        protected bool hitBullet(object Sender, FlxSpriteCollisionEvent e)
-        {
-            e.Object1.kill();
-            e.Object2.kill();
-
-            return true;
-        }
-
-
         protected bool hitPlayer(object Sender, FlxSpriteCollisionEvent e)
         {
-            if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color && !((PlayerMulti)(e.Object2)).dead)
+            if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color)
             {
 
-                //if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.One) FlxG.scores[0]--;
-                //else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Two) FlxG.scores[1]--;
-                //else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Three) FlxG.scores[2]--;
-                //else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Four) FlxG.scores[3]--;
+                if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.One) FlxG.scores[0]--;
+                else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Two) FlxG.scores[1]--;
+                else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Three) FlxG.scores[2]--;
+                else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Four) FlxG.scores[3]--;
 
                 if (((BulletMulti)(e.Object1)).color == Color.White) FlxG.scores[0]++;
                 else if (((BulletMulti)(e.Object1)).color == Color.Red) FlxG.scores[1]++;
@@ -347,15 +312,9 @@ namespace XNAMode
 
                 ((PlayerMulti)(e.Object2)).frameCount = 0;
 
-                //((PlayerMulti)(e.Object2)).x = ((PlayerMulti)(e.Object2)).originalPosition.X;
-                //((PlayerMulti)(e.Object2)).y = ((PlayerMulti)(e.Object2)).originalPosition.Y;
+                ((PlayerMulti)(e.Object2)).x = ((PlayerMulti)(e.Object2)).originalPosition.X;
 
-                ((PlayerMulti)(e.Object2)).angularVelocity = 1000;
-                ((PlayerMulti)(e.Object2)).angularDrag = 450;
-                ((PlayerMulti)(e.Object2)).dead = true;
-                ((PlayerMulti)(e.Object2)).velocity.Y = -250;
-                FlxG.quake.start(0.005f, 0.5f);
-
+                ((PlayerMulti)(e.Object2)).y = ((PlayerMulti)(e.Object2)).originalPosition.Y;
 
                 //e.Object2.x = 10;
                 //e.Object2.y = 10;

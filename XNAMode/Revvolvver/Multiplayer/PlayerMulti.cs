@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using org.flixel;
 
-namespace XNAMode
+namespace Revvolvver
 {
     /// <summary>
     /// The main player class.
@@ -60,16 +60,16 @@ namespace XNAMode
 
             
 
-            ImgSpaceman = FlxG.Content.Load<Texture2D>("Mode/spaceman");
+            ImgSpaceman = FlxG.Content.Load<Texture2D>("Revvolvver/spaceman");
 
-			loadGraphic(ImgSpaceman,true,true,8);
+			loadGraphic(ImgSpaceman,true,true,16);
 			_restart = 0;
 			
 			//bounding box tweaks
-			width = 6;
-			height = 7;
-			offset.X = 1;
-			offset.Y = 1;
+            width = 12;
+            height = 14;
+            offset.X = 2;
+            offset.Y = 2;
 			
 			//basic player physics
 			int runSpeed = 80;
@@ -117,7 +117,7 @@ namespace XNAMode
                 }
 
             }
-            else if (_rec == Recording.Playback && !dead)
+            else if (_rec == Recording.Playback)
             {
                 x = _history[frameCount][0];
                 y = _history[frameCount][1];
@@ -136,7 +136,7 @@ namespace XNAMode
                     frameCount--;
                 }
             }
-            else if (_rec == Recording.Reverse && !dead)
+            else if (_rec == Recording.Reverse)
             {
                 x = _history[frameCount][0];
                 y = _history[frameCount][1];
@@ -224,96 +224,101 @@ namespace XNAMode
 
             }
 
-            if (!dead)
+			//game restart timer
+			if(dead)
+			{
+				_restart += FlxG.elapsed;
+				if(_restart > 2)
+					(FlxG.state as PlayState).reload = true;
+				return;
+			}
+			
+			//MOVEMENT
+			acceleration.X = 0;
+			if(FlxG.keys.LEFT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, controller, out pi))
+			{
+				facing = Flx2DFacing.Left;
+				acceleration.X -= drag.X;
+			}
+            else if (FlxG.keys.RIGHT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, controller, out pi))
+			{
+				facing = Flx2DFacing.Right;
+				acceleration.X += drag.X;
+			}
+			if((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, controller, out pi))
+                && velocity.Y == 0)
+			{
+				velocity.Y = -_jumpPower;
+				FlxG.play(SndJump);
+			}
+			
+			//AIMING
+			_up = false;
+			_down = false;
+			if(FlxG.keys.UP || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, controller, out pi)) _up = true;
+			else if((FlxG.keys.DOWN  || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, controller, out pi)) && velocity.Y != 0) _down = true;
+			
+			//ANIMATION
+			if(velocity.Y != 0)
+			{
+				if(_up) play("jump_up");
+				else if(_down) play("jump_down");
+				else play("jump");
+			}
+			else if(velocity.X == 0)
+			{
+				if(_up) play("idle_up");
+				else play("idle");
+			}
+			else
+			{
+				if(_up) play("run_up");
+				else play("run");
+			}
+
+            bool shootForPlayback = false;
+            if (_rec == Recording.Playback || _rec == Recording.Reverse)
             {
-
-                //MOVEMENT
-                acceleration.X = 0;
-                if (FlxG.keys.LEFT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, controller, out pi))
+                if (_history[frameCount]!= null)
                 {
-                    facing = Flx2DFacing.Left;
-                    acceleration.X -= drag.X;
-                }
-                else if (FlxG.keys.RIGHT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, controller, out pi))
-                {
-                    facing = Flx2DFacing.Right;
-                    acceleration.X += drag.X;
-                }
-                if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, controller, out pi))
-                    && velocity.Y == 0)
-                {
-                    velocity.Y = -_jumpPower;
-                    FlxG.play(SndJump);
-                }
-
-                //AIMING
-                _up = false;
-                _down = false;
-                if (FlxG.keys.UP || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, controller, out pi)) _up = true;
-                else if ((FlxG.keys.DOWN || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, controller, out pi)) && velocity.Y != 0) _down = true;
-
-                //ANIMATION
-                if (velocity.Y != 0)
-                {
-                    if (_up) play("jump_up");
-                    else if (_down) play("jump_down");
-                    else play("jump");
-                }
-                else if (velocity.X == 0)
-                {
-                    if (_up) play("idle_up");
-                    else play("idle");
-                }
-                else
-                {
-                    if (_up) play("run_up");
-                    else play("run");
-                }
-
-                bool shootForPlayback = false;
-                if (_rec == Recording.Playback || _rec == Recording.Reverse)
-                {
-                    if (_history[frameCount] != null)
-                    {
-                        if (_history[frameCount][2] == 1) shootForPlayback = true;
-                    }
-                }
-
-                //SHOOTING
-                if (!flickering() && (FlxG.keys.justPressed(Keys.C) ||
-                        FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi)) ||
-                        ((_rec == Recording.Playback || _rec == Recording.Reverse) && shootForPlayback))
-                {
-                    int bXVel = 0;
-                    int bYVel = 0;
-                    int bX = (int)x;
-                    int bY = (int)y;
-                    if (_up)
-                    {
-                        bY -= (int)_bullets[_curBullet].height - 4;
-                        bYVel = -_bulletVel;
-                    }
-                    else if (_down)
-                    {
-                        bY += (int)height - 4;
-                        bYVel = _bulletVel;
-                        velocity.Y -= 36;
-                    }
-                    else if (facing == Flx2DFacing.Right)
-                    {
-                        bX += (int)width - 4;
-                        bXVel = _bulletVel;
-                    }
-                    else
-                    {
-                        bX -= (int)_bullets[_curBullet].width - 4;
-                        bXVel = -_bulletVel;
-                    }
-                    ((BulletMulti)(_bullets[_curBullet])).shoot(bX, bY, bXVel, bYVel, color);
-                    if (++_curBullet >= _bullets.Count)
-                        _curBullet = 0;
+                    if (_history[frameCount][2] == 1) shootForPlayback = true;
                 }
             }
+			
+			//SHOOTING
+            if (!flickering() && (FlxG.keys.justPressed(Keys.C) ||
+                    FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi)) ||
+                    ((_rec == Recording.Playback || _rec == Recording.Reverse) && shootForPlayback))
+			{
+				int bXVel = 0;
+				int bYVel = 0;
+				int bX = (int)x;
+				int bY = (int)y;
+				if(_up)
+				{
+					bY -= (int)_bullets[_curBullet].height - 4;
+					bYVel = -_bulletVel;
+				}
+				else if(_down)
+				{
+					bY += (int)height - 4;
+					bYVel = _bulletVel;
+					velocity.Y -= 36;
+				}
+				else if(facing == Flx2DFacing.Right)
+				{
+					bX += (int)width - 4;
+					bXVel = _bulletVel;
+				}
+				else
+				{
+					bX -= (int)_bullets[_curBullet].width - 4;
+					bXVel = -_bulletVel;
+				}
+				((BulletMulti)(_bullets[_curBullet])).shoot(bX,bY,bXVel,bYVel, color);
+				if(++_curBullet >= _bullets.Count)
+					_curBullet = 0;
+			}
 				
 			//UPDATE POSITION AND ANIMATION
 			base.update();
@@ -325,14 +330,6 @@ namespace XNAMode
                     FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi))
 					FlxG.play(SndJam);
 			}
-
-            if (dead && angularVelocity == 0)
-            {
-                reset(originalPosition.X, originalPosition.Y);
-                angle = 0;
-                dead = false;
-                
-            }
 		}
 		
 		override public void hitBottom(FlxObject Contact, float Velocity)

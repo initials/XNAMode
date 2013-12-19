@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Storage;
 #endif
 using org.flixel;
 
-namespace XNAMode
+namespace Revvolvver
 {
     /// <summary>
     /// The main menu for the game Mode.
@@ -42,8 +42,6 @@ namespace XNAMode
 
             base.create();
 
-            FlxG.hideHud();
-
             ImgGibs = FlxG.Content.Load<Texture2D>("Mode/spawner_gibs");
             ImgCursor = FlxG.Content.Load<Texture2D>("Mode/cursor");
 
@@ -55,16 +53,18 @@ namespace XNAMode
 			_gibs.createSprites(ImgGibs,1000);
 			add(_gibs);
 				
-			_t1 = new FlxText(FlxG.width,30,80,"mo");
+			_t1 = new FlxText(FlxG.width,30,80,"revvo");
 			_t1.scale = 4; // size = 32
 			_t1.color = new Color(0x3a, 0x5c, 0x39);
 			_t1.antialiasing = true;
+            _t1.angularVelocity = 125;
 			add(_t1);
 
-			_t2 = new FlxText(-60,30,80,"de");
+			_t2 = new FlxText(-60,30,80,"lvver");
 			_t2.scale = _t1.scale;
 			_t2.color = _t1.color;
 			_t2.antialiasing = _t1.antialiasing;
+            _t2.angularVelocity = -125;
 			add(_t2);
 			
 			_ok = false;
@@ -142,8 +142,6 @@ namespace XNAMode
 				_t1.color = new Color(0xd8, 0xeb, 0xa2);
                 _t2.color = new Color(0xd8, 0xeb, 0xa2);
 				_gibs.start(true,5);
-				_t1.angle = FlxU.random()*40-20;
-				_t2.angle = FlxU.random()*40-20;
 
 				FlxText t1;
 				FlxText t2;
@@ -221,6 +219,9 @@ namespace XNAMode
 
 			base.update();
 
+            _t1.angle += 5;
+            _t2.angle -= 5;
+
             // exit.
             if (FlxG.keys.justPressed(Keys.Escape))
             {
@@ -228,26 +229,11 @@ namespace XNAMode
                 return;
             }
 
-            if (FlxG.keys.justPressed(Keys.F2) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Two, out pi) )
+            if (FlxG.keys.justPressed(Keys.F1))
             {
-                Mode_Globals.PLAYERS = 2;
                 FlxG.state = new PlayStateMulti();
                 return;
             }
-            if (FlxG.keys.justPressed(Keys.F3) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Three, out pi))
-            {
-                Mode_Globals.PLAYERS = 3;
-                FlxG.state = new PlayStateMulti();
-                return;
-            }
-            if (FlxG.keys.justPressed(Keys.F4) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Four, out pi))
-            {
-                Mode_Globals.PLAYERS = 4;
-                FlxG.state = new PlayStateMulti();
-                return;
-            }
-
-
 		}
 
 		private void onFlixel()

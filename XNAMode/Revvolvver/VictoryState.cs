@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using org.flixel;
 
-namespace XNAMode
+namespace Revvolvver
 {
     public class VictoryState : FlxState
     {
@@ -18,8 +18,6 @@ namespace XNAMode
 		override public void create()
 		{
             base.create();
-
-            FlxG.hideHud();
 
             ImgGibs=FlxG.Content.Load<Texture2D>("Mode/spawner_gibs");
 
@@ -58,7 +56,7 @@ namespace XNAMode
 
         private void onPlay(object Sender, FlxEffectCompletedEvent e) 
 		{
-			FlxG.state = new MenuState();
+			FlxG.state = new PlayState();
 		}
     }
 }
