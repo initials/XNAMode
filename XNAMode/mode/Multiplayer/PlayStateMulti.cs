@@ -103,9 +103,17 @@ namespace XNAMode
                 _player1.controller = PlayerIndex.One;
                 _player1.color = Color.White;
 
+                FlxG._game.hud.p1HudText.scale = 3;
+                FlxG._game.hud.p1HudText.color = Color.LightGreen;
+
+
                 _player2 = new PlayerMulti(Convert.ToInt32(actorsAttrs[1]["x"]), Convert.ToInt32(actorsAttrs[1]["y"]), _bullets.members, _littleGibs);
                 _player2.controller = PlayerIndex.Two;
                 _player2.color = Color.Red;
+
+                FlxG._game.hud.p2HudText.scale = 3;
+                FlxG._game.hud.p2HudText.color = Color.Red;
+
             }
 
             if (Mode_Globals.PLAYERS >= 3)
@@ -113,12 +121,22 @@ namespace XNAMode
                 _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs);
                 _player3.controller = PlayerIndex.Three;
                 _player3.color = Color.Teal;
+
+                FlxG._game.hud.p3HudText.scale = 3;
+                FlxG._game.hud.p3HudText.y -= 20;
+                FlxG._game.hud.p3HudText.color = Color.Teal;
+
             }
             if (Mode_Globals.PLAYERS >= 4)
             {
                 _player4 = new PlayerMulti(Convert.ToInt32(actorsAttrs[3]["x"]), Convert.ToInt32(actorsAttrs[3]["y"]), _bullets.members, _littleGibs);
                 _player4.controller = PlayerIndex.Four;
                 _player4.color = Color.Yellow;
+
+                FlxG._game.hud.p4HudText.scale = 3;
+                FlxG._game.hud.p4HudText.y -= 20;
+                FlxG._game.hud.p4HudText.color = Color.Yellow;
+
             }
 
 			_bots = new FlxGroup();
@@ -185,6 +203,7 @@ namespace XNAMode
 			FlxG.flash.start(new Color(0x13, 0x1c, 0x1b), 0.5f, null, false);
 			_fading = false;
 
+            FlxG.scores.Clear();
             FlxG.scores.Add(0);
             FlxG.scores.Add(0);
             FlxG.scores.Add(0);
@@ -194,6 +213,7 @@ namespace XNAMode
             FlxG.setHudGamepadButton(0, -200, -200);
 
             FlxG.setHudText(1, FlxG.scores[0].ToString() );
+
 
 
 
@@ -307,13 +327,13 @@ namespace XNAMode
 
         protected bool hitPlayer(object Sender, FlxSpriteCollisionEvent e)
         {
-            if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color)
+            if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color && !((PlayerMulti)(e.Object2)).dead)
             {
 
-                if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.One) FlxG.scores[0]--;
-                else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Two) FlxG.scores[1]--;
-                else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Three) FlxG.scores[2]--;
-                else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Four) FlxG.scores[3]--;
+                //if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.One) FlxG.scores[0]--;
+                //else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Two) FlxG.scores[1]--;
+                //else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Three) FlxG.scores[2]--;
+                //else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Four) FlxG.scores[3]--;
 
                 if (((BulletMulti)(e.Object1)).color == Color.White) FlxG.scores[0]++;
                 else if (((BulletMulti)(e.Object1)).color == Color.Red) FlxG.scores[1]++;
@@ -327,9 +347,15 @@ namespace XNAMode
 
                 ((PlayerMulti)(e.Object2)).frameCount = 0;
 
-                ((PlayerMulti)(e.Object2)).x = ((PlayerMulti)(e.Object2)).originalPosition.X;
+                //((PlayerMulti)(e.Object2)).x = ((PlayerMulti)(e.Object2)).originalPosition.X;
+                //((PlayerMulti)(e.Object2)).y = ((PlayerMulti)(e.Object2)).originalPosition.Y;
 
-                ((PlayerMulti)(e.Object2)).y = ((PlayerMulti)(e.Object2)).originalPosition.Y;
+                ((PlayerMulti)(e.Object2)).angularVelocity = 1000;
+                ((PlayerMulti)(e.Object2)).angularDrag = 450;
+                ((PlayerMulti)(e.Object2)).dead = true;
+                ((PlayerMulti)(e.Object2)).velocity.Y = -250;
+                FlxG.quake.start(0.005f, 0.5f);
+
 
                 //e.Object2.x = 10;
                 //e.Object2.y = 10;
