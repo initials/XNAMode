@@ -53,9 +53,9 @@ namespace FourChambers
 
             
             _menuItems = new FlxText(0, 10, FlxG.width);
-            _menuItems.setFormat(FlxG.Content.Load<SpriteFont>("initials/Munro"), 2, Color.White, FlxJustification.Center, Color.White);
+            _menuItems.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, Color.White, FlxJustification.Center, Color.White);
             //_menuItems.text = "Four Chambers\n\nEnter name, use @ symbol to specify Twitter handle.\nPress enter when complete.";
-            _menuItems.text = "The Four Chambers\nOf The Human Heart";
+            _menuItems.text = "The Four\nChambers Of The\nHuman Heart";
             _menuItems.shadow = Color.Black;
             add(_menuItems);
 
