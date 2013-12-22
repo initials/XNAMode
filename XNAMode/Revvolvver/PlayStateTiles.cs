@@ -14,9 +14,9 @@ namespace Revvolvver
 {
     public class PlayStateTiles : FlxState
     {
-		private const string SndMode = "Mode/mode";
-        private const string TxtMap = "Mode/map.txt";
-        private const string TxtMap2 = "Mode/map2.txt";
+		private const string SndMode = "Revvolvver/mode";
+        private const string TxtMap = "Revvolvver/map.txt";
+        private const string TxtMap2 = "Revvolvver/map2.txt";
 		private Texture2D ImgTiles;
 		
 		//major game objects
@@ -26,7 +26,7 @@ namespace Revvolvver
 		
 		override public void create()
 		{
-            ImgTiles = FlxG.Content.Load<Texture2D>("Mode/tiles_all");
+            ImgTiles = FlxG.Content.Load<Texture2D>("Revvolvver/tiles_all");
 
             //load map from file
             string sMap;

@@ -16,9 +16,6 @@ namespace Revvolvver
         protected Texture2D ImgDirtTop;
         protected Texture2D ImgDirt;
         protected Texture2D ImgNotch;
-        protected const string SndHit2 = "Mode/menu_hit_2";
-        protected const string SndMode = "Mode/mode";
-        protected const string SndCount = "Mode/countdown";
         private Texture2D ImgGibs;
         private Texture2D ImgSpawnerGibs;
 
@@ -65,12 +62,9 @@ namespace Revvolvver
         {
             base.create();
 
-            ImgTech = FlxG.Content.Load<Texture2D>("Mode/tech_tiles");
-            ImgDirtTop = FlxG.Content.Load<Texture2D>("Mode/dirt_top");
-            ImgDirt = FlxG.Content.Load<Texture2D>("Mode/dirt");
-            ImgNotch = FlxG.Content.Load<Texture2D>("Mode/notch");
-            ImgGibs = FlxG.Content.Load<Texture2D>("Mode/gibs");
-            ImgSpawnerGibs = FlxG.Content.Load<Texture2D>("Mode/spawner_gibs");
+            ImgTech = FlxG.Content.Load<Texture2D>("Revvolvver/tech_tiles");
+            ImgGibs = FlxG.Content.Load<Texture2D>("Revvolvver/gibs");
+            ImgSpawnerGibs = FlxG.Content.Load<Texture2D>("Revvolvver/spawner_gibs");
 
             FlxG.mouse.hide();
             reload = false;
@@ -95,7 +89,7 @@ namespace Revvolvver
             _players = new FlxGroup();
 
             List<Dictionary<string, string>> actorsAttrs = new List<Dictionary<string, string>>();
-            actorsAttrs = FlxXMLReader.readNodesFromOelFile("Mode/level1.oel", "level/Items");
+            actorsAttrs = FlxXMLReader.readNodesFromOelFile("Revvolvver/level1.oel", "level/Items");
 
             if (Mode_Globals.PLAYERS >= 2)
             {
@@ -103,9 +97,17 @@ namespace Revvolvver
                 _player1.controller = PlayerIndex.One;
                 _player1.color = Color.White;
 
+                FlxG._game.hud.p1HudText.scale = 3;
+                FlxG._game.hud.p1HudText.color = Color.LightGreen;
+
+
                 _player2 = new PlayerMulti(Convert.ToInt32(actorsAttrs[1]["x"]), Convert.ToInt32(actorsAttrs[1]["y"]), _bullets.members, _littleGibs);
                 _player2.controller = PlayerIndex.Two;
                 _player2.color = Color.Red;
+
+                FlxG._game.hud.p2HudText.scale = 3;
+                FlxG._game.hud.p2HudText.color = Color.Red;
+
             }
 
             if (Mode_Globals.PLAYERS >= 3)
@@ -113,12 +115,22 @@ namespace Revvolvver
                 _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs);
                 _player3.controller = PlayerIndex.Three;
                 _player3.color = Color.Teal;
+
+                FlxG._game.hud.p3HudText.scale = 3;
+                FlxG._game.hud.p3HudText.y -= 20;
+                FlxG._game.hud.p3HudText.color = Color.Teal;
+
             }
             if (Mode_Globals.PLAYERS >= 4)
             {
                 _player4 = new PlayerMulti(Convert.ToInt32(actorsAttrs[3]["x"]), Convert.ToInt32(actorsAttrs[3]["y"]), _bullets.members, _littleGibs);
                 _player4.controller = PlayerIndex.Four;
                 _player4.color = Color.Yellow;
+
+                FlxG._game.hud.p4HudText.scale = 3;
+                FlxG._game.hud.p4HudText.y -= 20;
+                FlxG._game.hud.p4HudText.color = Color.Yellow;
+
             }
 
             _bots = new FlxGroup();
@@ -126,7 +138,7 @@ namespace Revvolvver
             _spawners = new FlxGroup();
 
             attrs = new Dictionary<string, string>();
-            attrs = FlxXMLReader.readAttributesFromOelFile("Mode/level1.oel", "level/NonDestructable");
+            attrs = FlxXMLReader.readAttributesFromOelFile("Revvolvver/level2.oel", "level/NonDestructable");
             _tileMap = new FlxTilemap();
             _tileMap.auto = FlxTilemap.STRING;
             _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 8, 8);
@@ -181,10 +193,11 @@ namespace Revvolvver
             _objects.add(_littleGibs);
             _objects.add(_bigGibs);
 
-            FlxG.playMusic(SndMode);
+            //FlxG.playMusic(SndMode);
             FlxG.flash.start(new Color(0x13, 0x1c, 0x1b), 0.5f, null, false);
             _fading = false;
 
+            FlxG.scores.Clear();
             FlxG.scores.Add(0);
             FlxG.scores.Add(0);
             FlxG.scores.Add(0);
@@ -194,6 +207,7 @@ namespace Revvolvver
             FlxG.setHudGamepadButton(0, -200, -200);
 
             FlxG.setHudText(1, FlxG.scores[0].ToString());
+
 
 
 
@@ -240,32 +254,6 @@ namespace Revvolvver
                 }
             }
 
-            if (!_fading)
-            {
-                //Score + countdown stuffs
-                if (os != FlxG.score) _scoreTimer = 2;
-                _scoreTimer -= FlxG.elapsed;
-                if (_scoreTimer < 0)
-                {
-                    if (FlxG.score > 0)
-                    {
-                        FlxG.play(SndCount);
-                        if (FlxG.score > 100) FlxG.score -= 100;
-                        else { FlxG.score = 0; _player1.kill(); }
-                        _scoreTimer = 1;
-                        if (FlxG.score < 600)
-                            FlxG.play(SndCount);
-                        if (FlxG.score < 500)
-                            FlxG.play(SndCount);
-                        if (FlxG.score < 400)
-                            FlxG.play(SndCount);
-                        if (FlxG.score < 300)
-                            FlxG.play(SndCount);
-                        if (FlxG.score < 200)
-                            FlxG.play(SndCount);
-                    }
-                }
-            }
 
             //actually update score text if it changed
             if (os != FlxG.score)
@@ -275,7 +263,7 @@ namespace Revvolvver
             }
 
             if (reload)
-                FlxG.state = new PlayState();
+                FlxG.state = new PlayStateMulti();
 
             //Toggle the bounding box visibility
             if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B))
@@ -284,7 +272,7 @@ namespace Revvolvver
             if (FlxG.gamepads.isNewButtonPress(Buttons.Back, FlxG.controllingPlayer, out pi))
             {
                 _fading = true;
-                FlxG.play(SndHit2);
+                //FlxG.play(SndHit2);
                 FlxG.flash.start(new Color(0xd8, 0xeb, 0xa2), 0.5f, null, false);
                 FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
             }
@@ -307,29 +295,35 @@ namespace Revvolvver
 
         protected bool hitPlayer(object Sender, FlxSpriteCollisionEvent e)
         {
-            if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color)
+            if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color && !((PlayerMulti)(e.Object2)).dead)
             {
 
-                if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.One) FlxG.scores[0]--;
-                else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Two) FlxG.scores[1]--;
-                else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Three) FlxG.scores[2]--;
-                else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Four) FlxG.scores[3]--;
+                //if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.One) FlxG.scores[0]--;
+                //else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Two) FlxG.scores[1]--;
+                //else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Three) FlxG.scores[2]--;
+                //else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Four) FlxG.scores[3]--;
 
                 if (((BulletMulti)(e.Object1)).color == Color.White) FlxG.scores[0]++;
                 else if (((BulletMulti)(e.Object1)).color == Color.Red) FlxG.scores[1]++;
                 else if (((BulletMulti)(e.Object1)).color == Color.Teal) FlxG.scores[2]++;
                 else if (((BulletMulti)(e.Object1)).color == Color.Yellow) FlxG.scores[3]++;
 
-                if ((e.Object1 is BotBullet) || (e.Object1 is BulletMulti))
+                if  (e.Object1 is BulletMulti)
                 {
                     e.Object1.kill();
                 }
 
                 ((PlayerMulti)(e.Object2)).frameCount = 0;
 
-                ((PlayerMulti)(e.Object2)).x = ((PlayerMulti)(e.Object2)).originalPosition.X;
+                //((PlayerMulti)(e.Object2)).x = ((PlayerMulti)(e.Object2)).originalPosition.X;
+                //((PlayerMulti)(e.Object2)).y = ((PlayerMulti)(e.Object2)).originalPosition.Y;
 
-                ((PlayerMulti)(e.Object2)).y = ((PlayerMulti)(e.Object2)).originalPosition.Y;
+                ((PlayerMulti)(e.Object2)).angularVelocity = 1000;
+                ((PlayerMulti)(e.Object2)).angularDrag = 450;
+                ((PlayerMulti)(e.Object2)).dead = true;
+                ((PlayerMulti)(e.Object2)).velocity.Y = -250;
+                FlxG.quake.start(0.005f, 0.5f);
+
 
                 //e.Object2.x = 10;
                 //e.Object2.y = 10;
@@ -340,7 +334,7 @@ namespace Revvolvver
 
         protected bool overlapped(object Sender, FlxSpriteCollisionEvent e)
         {
-            if ((e.Object1 is BotBullet) || (e.Object1 is BulletMulti))
+            if  (e.Object1 is BulletMulti)
                 e.Object1.kill();
             e.Object2.hurt(1);
 

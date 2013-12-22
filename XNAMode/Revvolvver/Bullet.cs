@@ -13,12 +13,12 @@ namespace Revvolvver
     {
 
         private Texture2D ImgBullet;
-        private const string SndHit = "Mode/jump";
-        private const string SndShoot = "Mode/shoot";
+        private const string SndHit = "Revvolvver/jump";
+        private const string SndShoot = "Revvolvver/shoot";
 
 		public Bullet()
 		{
-            ImgBullet= FlxG.Content.Load<Texture2D>("Mode/bullet");
+            ImgBullet= FlxG.Content.Load<Texture2D>("Revvolvver/bullet");
 
 			loadGraphic(ImgBullet,true);
 			width = 6;

@@ -121,8 +121,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Revvolvver\Bot.cs" />
-    <Compile Include="Revvolvver\BotBullet.cs" />
     <Compile Include="Revvolvver\Bullet.cs" />
     <Compile Include="Revvolvver\MenuState.cs" />
     <Compile Include="Revvolvver\Multiplayer\BulletMulti.cs" />
@@ -130,9 +128,7 @@
     <Compile Include="Revvolvver\Multiplayer\PlayStateMulti.cs" />
     <Compile Include="Revvolvver\Multiplayer\VictoryStateMulti.cs" />
     <Compile Include="Revvolvver\Player.cs" />
-    <Compile Include="Revvolvver\PlayState.cs" />
     <Compile Include="Revvolvver\PlayStateTiles.cs" />
-    <Compile Include="Revvolvver\Spawner.cs" />
     <Compile Include="Revvolvver\VictoryState.cs" />
     <Compile Include="FourChambers\DataEntryState.cs" />
     <Compile Include="flixel\data\FlxGlobal.cs" />
@@ -633,6 +629,9 @@
     <None Include="ogmoLevels\PathTesting.oel">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Revvolvver\level2.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Revvolvver\RevvolvverProject.oep">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -10,7 +10,7 @@ namespace Revvolvver
     public class VictoryStateMulti : FlxState
     {
         private Texture2D ImgGibs;
-        private const string SndMenu = "Mode/menu_hit_2";
+        private const string SndMenu = "Revvolvver/menu_hit_2";
 
         private float _timer;
         private bool _fading;
@@ -19,7 +19,7 @@ namespace Revvolvver
         {
             base.create();
 
-            ImgGibs = FlxG.Content.Load<Texture2D>("Mode/spawner_gibs");
+            ImgGibs = FlxG.Content.Load<Texture2D>("Revvolvver/spawner_gibs");
 
             _timer = 0;
             _fading = false;
@@ -65,7 +65,7 @@ namespace Revvolvver
 
         private void onPlay(object Sender, FlxEffectCompletedEvent e)
         {
-            FlxG.state = new PlayState();
+            FlxG.state = new PlayStateMulti();
         }
     }
 }

@@ -13,12 +13,12 @@ namespace Revvolvver
     public class Player : FlxSprite
     {
 		private Texture2D ImgSpaceman;
-		private const string SndJump = "Mode/jump";
-		private const string SndLand = "Mode/land";
-		private const string SndExplode = "Mode/asplode";
-		private const string SndExplode2 = "Mode/menu_hit_2";
-		private const string SndHurt = "Mode/hurt";
-		private const string SndJam = "Mode/jam";
+		private const string SndJump = "Revvolvver/jump";
+		private const string SndLand = "Revvolvver/land";
+		private const string SndExplode = "Revvolvver/asplode";
+		private const string SndExplode2 = "Revvolvver/menu_hit_2";
+		private const string SndHurt = "Revvolvver/hurt";
+		private const string SndJam = "Revvolvver/jam";
 		
 		private int _jumpPower;
         private List<FlxObject> _bullets;
@@ -32,7 +32,7 @@ namespace Revvolvver
 		public Player(int X, int Y, List<FlxObject> Bullets, FlxEmitter Gibs)
             : base(X, Y)
 		{
-            ImgSpaceman = FlxG.Content.Load<Texture2D>("Mode/spaceman");
+            ImgSpaceman = FlxG.Content.Load<Texture2D>("Revvolvver/spaceman");
 
 			loadGraphic(ImgSpaceman,true,true,8);
 			_restart = 0;
@@ -78,7 +78,7 @@ namespace Revvolvver
 			{
 				_restart += FlxG.elapsed;
 				if(_restart > 2)
-					(FlxG.state as PlayState).reload = true;
+                    (FlxG.state as PlayStateMulti).reload = true;
 				return;
 			}
 			

@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 Content\flixel\autotiles.xnb
 Content\flixel\autotiles_alt.xnb
 Content\flixel\cursor.xnb
@@ -98,20 +96,12 @@ Content\Lemonade\tiles_sydney.xnb
 Content\initials\sparkles_small.xnb
 Content\fire.xnb
 Content\initials\fire.xnb
-Content\Revvolvver\bot.xnb
 Content\Revvolvver\bot_bullet.xnb
 Content\Revvolvver\bullet.xnb
-Content\Revvolvver\cursor.xnb
-Content\Revvolvver\dirt.xnb
-Content\Revvolvver\dirt_top.xnb
 Content\Revvolvver\gibs.xnb
-Content\Revvolvver\jetsmoke.xnb
-Content\Revvolvver\notch.xnb
 Content\Revvolvver\spaceman.xnb
-Content\Revvolvver\spawner.xnb
 Content\Revvolvver\spawner_gibs.xnb
 Content\Revvolvver\tech_tiles.xnb
-Content\Revvolvver\tiles_all.xnb
 Content\mode\tech_autotiles.xnb
 Content\flixel\beep.xnb
 Content\flixel\flixel.xnb
@@ -219,6 +209,7 @@ ogmoLevels\level9.oel
 ogmoLevels\levelTutorial.oel
 ogmoLevels\ProjectFile.oep
 ogmoLevels\PathTesting.oel
+Revvolvver\level2.oel
 Revvolvver\RevvolvverProject.oep
 Content\flixel\autotiles.xnb
 Content\flixel\autotiles_alt.xnb
@@ -318,20 +309,12 @@ Content\Lemonade\tiles_sydney.xnb
 Content\initials\sparkles_small.xnb
 Content\fire.xnb
 Content\initials\fire.xnb
-Content\Revvolvver\bot.xnb
 Content\Revvolvver\bot_bullet.xnb
 Content\Revvolvver\bullet.xnb
-Content\Revvolvver\cursor.xnb
-Content\Revvolvver\dirt.xnb
-Content\Revvolvver\dirt_top.xnb
 Content\Revvolvver\gibs.xnb
-Content\Revvolvver\jetsmoke.xnb
-Content\Revvolvver\notch.xnb
 Content\Revvolvver\spaceman.xnb
-Content\Revvolvver\spawner.xnb
 Content\Revvolvver\spawner_gibs.xnb
 Content\Revvolvver\tech_tiles.xnb
-Content\Revvolvver\tiles_all.xnb
 Content\mode\tech_autotiles.xnb
 Content\flixel\beep.xnb
 Content\flixel\flixel.xnb
@@ -363,4 +346,3 @@ Content\fx\BloomExtract.xnb
 Content\fx\GaussianBlur.xnb
 Content\mode\button.wma
 Lemonade\levels\bgmilita.tmx
->>>>>>> parent of 598dc6c... four player works great.

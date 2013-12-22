@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <OgmoVersion>1.0</OgmoVersion>
-  <Name>Mode</Name>
-  <BackgroundColor A="255" R="0" G="15" B="0" />
-  <GridColor A="255" R="255" G="240" B="90" />
+  <Name>Revvolvver</Name>
+  <BackgroundColor A="255" R="231" G="225" B="179" />
+  <GridColor A="255" R="255" G="128" B="64" />
   <LevelDefaultSize>
     <Width>320</Width>
     <Height>184</Height>
@@ -16,7 +16,7 @@
     <Width>6400</Width>
     <Height>4800</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\User\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\Revvolvver\RevvolvverProject.oep</Filename>
+  <Filename>C:\Users\Shane\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\Revvolvver\RevvolvverProject.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -72,15 +72,6 @@
       </TileSize>
       <TileSep>0</TileSep>
     </Tileset>
-    <Tileset>
-      <Name>dirt</Name>
-      <FilePath>..\..\XNAModeContent\mode\dirt.png</FilePath>
-      <TileSize>
-        <Width>8</Width>
-        <Height>8</Height>
-      </TileSize>
-      <TileSep>0</TileSep>
-    </Tileset>
   </Tilesets>
   <EntityDefinitions>
     <EntityDefinition Name="player" Limit="4" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
@@ -92,7 +83,7 @@
         <X>0</X>
         <Y>0</Y>
       </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="..\..\XNAModeContent\mode\spaceman.png" Tiled="false">
+      <ImageDefinition DrawMode="Image" ImagePath="..\..\XNAModeContent\Revvolvver\spaceman.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions />
