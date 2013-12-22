@@ -19,6 +19,8 @@ namespace XNAMode
         {
             base.create();
 
+            FlxG.hideHud();
+
             ImgGibs = FlxG.Content.Load<Texture2D>("Mode/spawner_gibs");
 
             _timer = 0;
@@ -65,7 +67,7 @@ namespace XNAMode
 
         private void onPlay(object Sender, FlxEffectCompletedEvent e)
         {
-            FlxG.state = new PlayState();
+            FlxG.state = new MenuState();
         }
     }
 }
