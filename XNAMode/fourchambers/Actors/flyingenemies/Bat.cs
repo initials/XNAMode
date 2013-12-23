@@ -47,7 +47,7 @@ namespace FourChambers
 
             play("fly");
 
-            health = 7;
+            health = 1;
 
             score = 60;
 

@@ -638,9 +638,9 @@ namespace FourChambers
             {
                 localHud.setArrowsRemaining(marksman.arrowsRemaining);
 
-                localHud.nestsRemaining.text = actors.countLivingOfType("XNAMode.ZingerNest").ToString();
+                localHud.nestsRemaining.text = actors.countLivingOfType("FourChambers.ZingerNest").ToString();
             }
-            if (actors.countLivingOfType("XNAMode.ZingerNest") <= 0)
+            if (actors.countLivingOfType("FourChambers.ZingerNest") <= 0)
             {
 
                 if (leftExitBlockerWall.velocity.Y == 0)

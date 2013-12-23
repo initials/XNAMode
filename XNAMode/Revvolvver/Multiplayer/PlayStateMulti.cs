@@ -60,6 +60,12 @@ namespace Revvolvver
 
         public FlxGroup hudElements;
 
+        private  Color p1Color = Color.Red;
+        private  Color p2Color = Color.Green;
+        private  Color p3Color = Color.Blue;
+        private  Color p4Color = Color.Yellow;
+
+
         override public void create()
         {
             base.create();
@@ -98,18 +104,20 @@ namespace Revvolvver
             {
                 _player1 = new PlayerMulti(Convert.ToInt32(actorsAttrs[0]["x"]), Convert.ToInt32(actorsAttrs[0]["y"]), _bullets.members, _littleGibs);
                 _player1.controller = PlayerIndex.One;
-                _player1.color = Color.LightGreen;
+                _player1.color = p1Color;
 
                 FlxG._game.hud.p1HudText.scale = 3;
-                FlxG._game.hud.p1HudText.color = Color.LightGreen;
+                FlxG._game.hud.p1HudText.x += 40;
+                FlxG._game.hud.p1HudText.color = p1Color;
 
 
                 _player2 = new PlayerMulti(Convert.ToInt32(actorsAttrs[1]["x"]), Convert.ToInt32(actorsAttrs[1]["y"]), _bullets.members, _littleGibs);
                 _player2.controller = PlayerIndex.Two;
-                _player2.color = Color.Red;
+                _player2.color = p2Color;
 
                 FlxG._game.hud.p2HudText.scale = 3;
-                FlxG._game.hud.p2HudText.color = Color.Red;
+                FlxG._game.hud.p2HudText.x -= 40;
+                FlxG._game.hud.p2HudText.color = p2Color;
 
             }
 
@@ -117,22 +125,24 @@ namespace Revvolvver
             {
                 _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs);
                 _player3.controller = PlayerIndex.Three;
-                _player3.color = Color.LightBlue;
+                _player3.color = p3Color;
 
                 FlxG._game.hud.p3HudText.scale = 3;
+                FlxG._game.hud.p3HudText.x += 40 ;
                 FlxG._game.hud.p3HudText.y -= 20;
-                FlxG._game.hud.p3HudText.color = Color.LightBlue;
+                FlxG._game.hud.p3HudText.color = p3Color;
 
             }
             if (Revvolvver_Globals.PLAYERS >= 4)
             {
                 _player4 = new PlayerMulti(Convert.ToInt32(actorsAttrs[3]["x"]), Convert.ToInt32(actorsAttrs[3]["y"]), _bullets.members, _littleGibs);
                 _player4.controller = PlayerIndex.Four;
-                _player4.color = Color.Yellow;
+                _player4.color = p4Color;
 
                 FlxG._game.hud.p4HudText.scale = 3;
+                FlxG._game.hud.p4HudText.x -= 40;
                 FlxG._game.hud.p4HudText.y -= 20;
-                FlxG._game.hud.p4HudText.color = Color.Yellow;
+                FlxG._game.hud.p4HudText.color = p4Color;
 
             }
 
@@ -216,36 +226,44 @@ namespace Revvolvver
 
             FlxG._game.hud.hudGroup.members.Clear();
 
+            Color xc = Color.Wheat;
 
             for (i = 0; i < 24; i++)
             {
                 int xp = 0;
                 int yp = 40;
+                int xo = 40;
+                
 
                 if (i < 6)
                 {
-                    xp = 24 + i * 20;
+                    xp = xo + i * 32;
+                    xc = p1Color;
                 }
                 else if (i < 12)
                 {
-                    xp = (int)((FlxG.width*1.8f) + (i-6) * 20);
+                    xp = (int)((FlxG.width*1.6f) + (i-6) * 32);
+                    xc = p2Color;
                 }
                 else if (i < 18)
                 {
-                    xp = 24 + (i-12) * 20;
+                    xp = xo + (i - 12) * 32;
                     yp = FlxG.height*2 - 60;
+                    xc = p3Color;
                 }
                 else if (i < 24)
                 {
-                    xp = (int)((FlxG.width * 1.8f) + (i-18) * 20);
+                    xp = (int)((FlxG.width * 1.6f) + (i-18) * 32);
                     yp = FlxG.height * 2 - 60;
+                    xc = p4Color;
                 }
 
 
                 FlxSprite bulletHUD = new FlxSprite(xp,yp);
                 bulletHUD.loadGraphic(ImgNotch, true);
                 bulletHUD.scrollFactor.X = bulletHUD.scrollFactor.Y = 0;
-                bulletHUD.scale = 2;
+                bulletHUD.scale = 3;
+                bulletHUD.color = xc;
                 bulletHUD.addAnimation("ready", new int[] { 0 });
                 bulletHUD.addAnimation("missed", new int[] { 1 });
                 bulletHUD.addAnimation("hit", new int[] { 2 });
@@ -271,10 +289,10 @@ namespace Revvolvver
         override public void update()
         {
 
-            FlxG.setHudText(1, "Player 1: " + FlxG.scores[0].ToString() + " " + _player1.bulletsLeft);
-            FlxG.setHudText(2, "Player 2: " + FlxG.scores[1].ToString() + " " + _player2.bulletsLeft);
-            FlxG.setHudText(3, "Player 3: " + FlxG.scores[2].ToString() + " " + _player3.bulletsLeft);
-            FlxG.setHudText(4, "Player 4: " + FlxG.scores[3].ToString() + " " + _player4.bulletsLeft);
+            FlxG.setHudText(1, "Player 1: " + FlxG.scores[0].ToString());
+            FlxG.setHudText(2, "Player 2: " + FlxG.scores[1].ToString());
+            FlxG.setHudText(3, "Player 3: " + FlxG.scores[2].ToString());
+            FlxG.setHudText(4, "Player 4: " + FlxG.scores[3].ToString());
 
 
             PlayerIndex pi;

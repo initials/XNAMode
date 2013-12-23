@@ -29,14 +29,14 @@ namespace Revvolvver
 		{
             ImgSpaceman = FlxG.Content.Load<Texture2D>("Revvolvver/spaceman");
 
-			loadGraphic(ImgSpaceman,true,true,8);
+			loadGraphic(ImgSpaceman,true,true,16,16);
 			_restart = 0;
 			
 			//bounding box tweaks
-			width = 6;
-			height = 7;
-			offset.X = 1;
-			offset.Y = 1;
+			width = 12;
+			height = 14;
+			offset.X = 2;
+			offset.Y = 2;
 			
 			//basic player physics
 			int runSpeed = 80;
