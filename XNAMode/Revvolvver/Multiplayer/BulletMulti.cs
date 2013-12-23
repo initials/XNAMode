@@ -14,6 +14,10 @@ namespace Revvolvver
 
         private Texture2D ImgBullet;
 
+        public bool exploding = false;
+        public int tileOffsetX = 0;
+        public int tileOffsetY = 0;
+
 		public BulletMulti()
 		{
             ImgBullet= FlxG.Content.Load<Texture2D>("Revvolvver/bullet");
@@ -36,11 +40,72 @@ namespace Revvolvver
 		{
 			if(dead && finished) exists = false;
 			else base.update();
+
+            if (_curAnim.name == "explode") exploding = true;
+            else exploding = false;
 		}
 		
-		override public void hitSide(FlxObject Contact, float Velocity) { kill(); }
-		override public void hitBottom(FlxObject Contact, float Velocity) { kill(); }
-		override public void hitTop(FlxObject Contact, float Velocity) { kill(); }
+		//override public void hitSide(FlxObject Contact, float Velocity) { kill(); }
+
+
+        override public void hitRight(FlxObject Contact, float Velocity)
+        {
+            x = ((int)(x / 8)) * 8;
+            y = ((int)(y / 8)) * 8;
+
+            tileOffsetX = 9;
+            tileOffsetY = 0;
+
+            //Console.WriteLine("hitRight");
+            kill();
+            //base.hitRight(Contact, Velocity);
+            //x += 4;
+            
+        }
+
+        public override void hitLeft(FlxObject Contact, float Velocity)
+        {
+            tileOffsetX = -4;
+            tileOffsetY = 0;
+
+            x = ((int)(x / 8)) * 8;
+            y = ((int)(y / 8)) * 8;
+
+            //Console.WriteLine("hitLeft");
+            kill();
+            //base.hitLeft(Contact, Velocity);
+            //x -= 4;
+            
+
+        }
+
+		override public void hitBottom(FlxObject Contact, float Velocity) 
+        {
+            tileOffsetX = 0;
+            tileOffsetY = 9;
+
+            //x = ((int)(x / 8)) * 8;
+            //y = ((int)(y / 8)) * 8;
+
+
+
+            //Console.WriteLine("hitBottom {0}", x % 8);
+            kill();
+            
+        }
+		override public void hitTop(FlxObject Contact, float Velocity) 
+        {
+
+            //x = ((int)(x / 8)) * 8;
+            //y = ((int)(y / 8)) * 8;
+
+            tileOffsetX = 0;
+            tileOffsetY = -4;
+
+            //Console.WriteLine("hitTop {0}", x % 8);
+            kill(); 
+        }
+
 		override public void kill()
 		{
 			if(dead) return;

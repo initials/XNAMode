@@ -95,7 +95,7 @@ namespace Revvolvver
             {
                 _player1 = new PlayerMulti(Convert.ToInt32(actorsAttrs[0]["x"]), Convert.ToInt32(actorsAttrs[0]["y"]), _bullets.members, _littleGibs);
                 _player1.controller = PlayerIndex.One;
-                _player1.color = Color.White;
+                _player1.color = Color.LightGreen;
 
                 FlxG._game.hud.p1HudText.scale = 3;
                 FlxG._game.hud.p1HudText.color = Color.LightGreen;
@@ -110,7 +110,7 @@ namespace Revvolvver
 
             }
 
-            if (Mode_Globals.PLAYERS >= 3)
+            if (Revvolvver_Globals.PLAYERS >= 3)
             {
                 _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs);
                 _player3.controller = PlayerIndex.Three;
@@ -121,7 +121,7 @@ namespace Revvolvver
                 FlxG._game.hud.p3HudText.color = Color.Teal;
 
             }
-            if (Mode_Globals.PLAYERS >= 4)
+            if (Revvolvver_Globals.PLAYERS >= 4)
             {
                 _player4 = new PlayerMulti(Convert.ToInt32(actorsAttrs[3]["x"]), Convert.ToInt32(actorsAttrs[3]["y"]), _bullets.members, _littleGibs);
                 _player4.controller = PlayerIndex.Four;
@@ -142,6 +142,8 @@ namespace Revvolvver
             _tileMap = new FlxTilemap();
             _tileMap.auto = FlxTilemap.STRING;
             _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 8, 8);
+            _tileMap.collideMin = 1;
+            _tileMap.collideMax = 21;
             _blocks.add(_tileMap);
 
 
@@ -183,7 +185,7 @@ namespace Revvolvver
             _enemies.add(_spawners);
             _enemies.add(_bots);
             _objects = new FlxGroup();
-            _objects.add(_botBullets);
+            //_objects.add(_botBullets);
             _objects.add(_bullets);
             _objects.add(_bots);
             _objects.add(_player1);
@@ -213,6 +215,9 @@ namespace Revvolvver
 
         }
 
+
+
+
         override public void update()
         {
 
@@ -226,24 +231,43 @@ namespace Revvolvver
 
             int os = FlxG.score;
 
+            //FlxU.overlap(_bullets, _tileMap, destroyTileAt);
+
+
             base.update();
 
             //collisions with environment
-            FlxU.collide(_blocks, _objects);
-            FlxU.overlap(_enemies, _players, overlapped);
-            FlxU.overlap(_bullets, _enemies, overlapped);
 
+            
+
+            FlxU.collide(_blocks, _objects);
+            //FlxU.overlap(_enemies, _players, overlapped);
+            //FlxU.overlap(_bullets, _enemies, overlapped);
             FlxU.overlap(_bullets, _players, hitPlayer);
             FlxU.overlap(_bullets, _bullets, hitBullet);
 
-            if (reload)
-                FlxG.state = new PlayStateMulti();
+            foreach (BulletMulti item in _bullets.members)
+            {
+                if (item.exploding == true)
+                {
+                    if (_tileMap.getTile((int)(item.x + item.tileOffsetX) / 8, (int)(item.y + item.tileOffsetY) / 8) != 0)
+                    {
+                        _tileMap.setTile((int)(item.x + item.tileOffsetX) / 8, (int)(item.y + item.tileOffsetY) / 8, 0, true);
+                        _tileMap.setTile((int)(item.x + 9) / 8, (int)(item.y + item.tileOffsetY) / 8, 0, true);
+                    }
+
+
+
+                }
+            }
+
+
 
             //Toggle the bounding box visibility
             if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B))
                 FlxG.showBounds = !FlxG.showBounds;
 
-            if (FlxG.gamepads.isNewButtonPress(Buttons.Back, FlxG.controllingPlayer, out pi))
+            if (FlxG.gamepads.isNewButtonPress(Buttons.Back) || FlxG.keys.ESCAPE )
             {
                 _fading = true;
                 //FlxG.play(SndHit2);
@@ -251,7 +275,7 @@ namespace Revvolvver
                 FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
             }
 
-            int hi = 10;
+            int hi = 20;
             if ((FlxG.scores[0] > hi) || (FlxG.scores[1] > hi) || (FlxG.scores[2] > hi) || (FlxG.scores[3] > hi))
             {
                 FlxG.fade.start(new Color(0xd8, 0xeb, 0xa2), 3, onVictory, false);
@@ -262,6 +286,27 @@ namespace Revvolvver
         {
             e.Object1.kill();
             e.Object2.kill();
+
+            return true;
+        }
+
+        protected bool destroyTileAt(object Sender, FlxSpriteCollisionEvent e)
+        {
+
+            if (_tileMap.getTile((int)e.Object2.x / 8, (int)e.Object2.y / 8) != 0)
+            {
+                _tileMap.setTile((int)e.Object2.x / 8, (int)e.Object2.y / 8, 0, true);
+            }
+
+            //if (e.Object1 is BulletMulti)
+            //    e.Object1.kill();
+            //if (e.Object2 is BulletMulti)
+            //    e.Object2.kill();
+
+            //Console.WriteLine("DESTORY TILE AT " + e.Object1.GetType() + " " + e.Object2.GetType());
+             
+
+            //e.Object2.kill();
 
             return true;
         }
@@ -324,89 +369,11 @@ namespace Revvolvver
             FlxG.state = new VictoryStateMulti();
         }
 
-        /// <summary>
-        /// Just plops down a spawner and some blocks - haphazard and crappy atm but functional!
-        /// </summary>
-        /// <param name="RX">The room to build in X</param>
-        /// <param name="RY">The room to build in Y</param>
-        protected void buildRoom(int RX, int RY)
-        {
-            buildRoom(RX, RY, false);
-        }
 
-        /// <summary>
-        /// Just plops down a spawner and some blocks - haphazard and crappy atm but functional!
-        /// </summary>
-        /// <param name="RX"></param>
-        /// <param name="RY"></param>
-        /// <param name="Spawners">Whether or not to include a Spawner.</param>
-        protected void buildRoom(int RX, int RY, bool Spawners)
-        {
-            //first place the spawn point (if necessary)
-            int rw = 20;
-            int sx = 0;
-            int sy = 0;
-            if (Spawners)
-            {
-                sx = 2 + (int)(FlxU.random() * (rw - 7));
-                sy = 2 + (int)(FlxU.random() * (rw - 7));
-            }
-
-            //then place a bunch of blocks
-            int numBlocks = 3 + (int)(FlxU.random() * 4);
-            if (!Spawners) numBlocks++;
-            int maxW = 10;
-            int minW = 2;
-            int maxH = 6;
-            int minH = 1;
-            int bx;
-            int by;
-            int bw;
-            int bh;
-            bool check;
-            for (int i = 0; i < numBlocks; i++)
-            {
-                check = false;
-                do
-                {
-                    //keep generating different specs if they overlap the spawner
-                    bw = minW + (int)(FlxU.random() * (maxW - minW));
-                    bh = minH + (int)(FlxU.random() * (maxH - minH));
-                    bx = -1 + (int)(FlxU.random() * (rw + 1 - bw));
-                    by = -1 + (int)(FlxU.random() * (rw + 1 - bh));
-                    if (Spawners)
-                        check = ((sx > bx + bw) || (sx + 3 < bx) || (sy > by + bh) || (sy + 3 < by));
-                    else
-                        check = true;
-                } while (!check);
-
-                FlxTileblock b;
-
-                b = new FlxTileblock(RX + bx * 8, RY + by * 8, bw * 8, bh * 8);
-                b.loadTiles(ImgTech);
-                _blocks.add(b);
-
-                //If the block has room, add some non-colliding "dirt" graphics for variety
-                if ((bw >= 4) && (bh >= 5))
-                {
-                    b = new FlxTileblock(RX + bx * 8 + 8, RY + by * 8, bw * 8 - 16, 8);
-                    b.loadTiles(ImgDirtTop);
-                    _decorations.add(b);
-
-                    b = new FlxTileblock(RX + bx * 8 + 8, RY + by * 8 + 8, bw * 8 - 16, bh * 8 - 24);
-                    b.loadTiles(ImgDirt);
-                    _decorations.add(b);
-                }
-            }
-
-            //Finally actually add the spawner
-            //if(Spawners)
-            //_spawners.add(new Spawner(RX+sx*8,RY+sy*8,_bigGibs,_bots,_botBullets.members,_littleGibs,_player1));
-        }
 
         private void onFade(object sender, FlxEffectCompletedEvent e)
         {
-            FlxG.music.stop();
+            //FlxG.music.stop();
             FlxG.state = new MenuState();
         }
 
