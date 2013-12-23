@@ -26,7 +26,7 @@ namespace Loader_Revvolvver
         {
 
             int w = 640;
-            int h = 320;
+            int h = 360;
 
             initGame(w, h, new Revvolvver.MenuState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
 

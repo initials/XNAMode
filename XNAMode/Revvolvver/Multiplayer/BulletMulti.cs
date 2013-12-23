@@ -13,8 +13,6 @@ namespace Revvolvver
     {
 
         private Texture2D ImgBullet;
-        private const string SndHit = "Revvolvver/jump";
-        private const string SndShoot = "Revvolvver/shoot";
 
 		public BulletMulti()
 		{
@@ -48,7 +46,7 @@ namespace Revvolvver
 			if(dead) return;
 			velocity.X = 0;
 			velocity.Y = 0;
-			if(onScreen()) FlxG.play(SndHit);
+			//if(onScreen()) FlxG.play(SndHit);
 			dead = true;
 			solid = false;
 			play("explode");
@@ -58,7 +56,7 @@ namespace Revvolvver
 		{
             color = Colorx;
 
-			FlxG.play(SndShoot);
+			//FlxG.play(SndShoot);
 			base.reset(X,Y);
 			solid = true;
 			velocity.X = VelocityX;

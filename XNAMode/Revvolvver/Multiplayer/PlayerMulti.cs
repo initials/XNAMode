@@ -13,12 +13,6 @@ namespace Revvolvver
     public class PlayerMulti : FlxSprite
     {
 		private Texture2D ImgSpaceman;
-		private const string SndJump = "Revvolvver/jump";
-		private const string SndLand = "Revvolvver/land";
-		private const string SndExplode = "Revvolvver/asplode";
-		private const string SndExplode2 = "Revvolvver/menu_hit_2";
-		private const string SndHurt = "Revvolvver/hurt";
-		private const string SndJam = "Revvolvver/jam";
 		
 		private int _jumpPower;
         private List<FlxObject> _bullets;
@@ -249,7 +243,7 @@ namespace Revvolvver
                 && velocity.Y == 0)
 			{
 				velocity.Y = -_jumpPower;
-				FlxG.play(SndJump);
+				//FlxG.play(SndJump);
 			}
 			
 			//AIMING
@@ -324,18 +318,18 @@ namespace Revvolvver
 			base.update();
 
 			//Jammed, can't fire!
-			if(flickering())
-			{
-				if(FlxG.keys.justPressed(Keys.C) ||
-                    FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi))
-					FlxG.play(SndJam);
-			}
+            //if(flickering())
+            //{
+            //    if(FlxG.keys.justPressed(Keys.C) ||
+            //        FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi))
+            //        //FlxG.play(SndJam);
+            //}
 		}
 		
 		override public void hitBottom(FlxObject Contact, float Velocity)
 		{
 			if(velocity.Y > 50)
-				FlxG.play(SndLand);
+				//FlxG.play(SndLand);
 			onFloor = true;
 			base.hitBottom(Contact,Velocity);
 		}
@@ -345,7 +339,7 @@ namespace Revvolvver
 			Damage = 0;
 			if(flickering())
 				return;
-			FlxG.play(SndHurt);
+			//FlxG.play(SndHurt);
 			flicker(1.3f);
 			if(FlxG.score > 1000) FlxG.score -= 1000;
 			if(velocity.X > 0)
@@ -360,8 +354,8 @@ namespace Revvolvver
 			if(dead)
 				return;
 			solid = false;
-			FlxG.play(SndExplode);
-			FlxG.play(SndExplode2);
+			//FlxG.play(SndExplode);
+			//FlxG.play(SndExplode2);
 			base.kill();
 			flicker(-1);
 			exists = true;

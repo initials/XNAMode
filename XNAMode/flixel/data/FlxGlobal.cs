@@ -147,4 +147,13 @@ namespace org.flixel
 
 
     }
+
+    public class Revvolvver_Globals
+    {
+        /// <summary>
+        /// Number of players for multiplayer.
+        /// </summary>
+        public static int PLAYERS = 0;
+
+    }
 }

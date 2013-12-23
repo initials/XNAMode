@@ -89,9 +89,9 @@ namespace Revvolvver
             _players = new FlxGroup();
 
             List<Dictionary<string, string>> actorsAttrs = new List<Dictionary<string, string>>();
-            actorsAttrs = FlxXMLReader.readNodesFromOelFile("Revvolvver/level1.oel", "level/Items");
+            actorsAttrs = FlxXMLReader.readNodesFromOelFile("Revvolvver/level2.oel", "level/Items");
 
-            if (Mode_Globals.PLAYERS >= 2)
+            if (Revvolvver_Globals.PLAYERS >= 2)
             {
                 _player1 = new PlayerMulti(Convert.ToInt32(actorsAttrs[0]["x"]), Convert.ToInt32(actorsAttrs[0]["y"]), _bullets.members, _littleGibs);
                 _player1.controller = PlayerIndex.One;
@@ -167,9 +167,9 @@ namespace Revvolvver
             _players.add(_player4);
             add(_players);
 
-            FlxG.follow(_player1, 2.5f);
-            FlxG.followAdjust(0.5f, 0.0f);
-            FlxG.followBounds(0, 0, FlxG.width, FlxG.height);
+            //FlxG.follow(_player1, 2.5f);
+            //FlxG.followAdjust(0.5f, 0.0f);
+            //FlxG.followBounds(0, 0, FlxG.width, FlxG.height);
 
 
             //add gibs + bullets to scene here, so they're drawn on top of pretty much everything
@@ -236,32 +236,6 @@ namespace Revvolvver
             FlxU.overlap(_bullets, _players, hitPlayer);
             FlxU.overlap(_bullets, _bullets, hitBullet);
 
-            //Jammed message
-            if (FlxG.keys.justPressed(Keys.C) && _player1.flickering())
-            {
-                _jamTimer = 1;
-                _jamBar.visible = true;
-                _jamText.visible = true;
-            }
-            if (_jamTimer > 0)
-            {
-                if (!_player1.flickering()) _jamTimer = 0;
-                _jamTimer -= FlxG.elapsed;
-                if (_jamTimer < 0)
-                {
-                    _jamBar.visible = false;
-                    _jamText.visible = false;
-                }
-            }
-
-
-            //actually update score text if it changed
-            if (os != FlxG.score)
-            {
-                if (_player1.dead) FlxG.score = 0;
-                _score.text = FlxG.score.ToString();
-            }
-
             if (reload)
                 FlxG.state = new PlayStateMulti();
 
@@ -298,10 +272,10 @@ namespace Revvolvver
             if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color && !((PlayerMulti)(e.Object2)).dead)
             {
 
-                //if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.One) FlxG.scores[0]--;
-                //else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Two) FlxG.scores[1]--;
-                //else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Three) FlxG.scores[2]--;
-                //else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Four) FlxG.scores[3]--;
+                if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.One && FlxG.scores[0]>0) FlxG.scores[0]--;
+                else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Two && FlxG.scores[1] > 0) FlxG.scores[1]--;
+                else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Three && FlxG.scores[2] > 0) FlxG.scores[2]--;
+                else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Four && FlxG.scores[3] > 0) FlxG.scores[3]--;
 
                 if (((BulletMulti)(e.Object1)).color == Color.White) FlxG.scores[0]++;
                 else if (((BulletMulti)(e.Object1)).color == Color.Red) FlxG.scores[1]++;
