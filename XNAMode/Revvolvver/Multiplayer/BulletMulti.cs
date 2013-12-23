@@ -18,6 +18,11 @@ namespace Revvolvver
         public int tileOffsetX = 0;
         public int tileOffsetY = 0;
 
+        public string firedFromPlayer;
+        public int bulletNumber;
+
+
+
 		public BulletMulti()
 		{
             ImgBullet= FlxG.Content.Load<Texture2D>("Revvolvver/bullet");

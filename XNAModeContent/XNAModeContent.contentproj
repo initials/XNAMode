@@ -573,6 +573,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Revvolvver\notch.png">
+      <Name>notch</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="sfx\arrowShoot.wav">
       <Name>arrowShoot</Name>
       <Importer>WavImporter</Importer>

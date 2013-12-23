@@ -12,18 +12,30 @@ namespace Revvolvver
     /// </summary>
     public class PlayerMulti : FlxSprite
     {
-		private Texture2D ImgSpaceman;
-		
-		private int _jumpPower;
+        private Texture2D ImgSpaceman;
+        //private const string SndJump = "Mode/jump";
+        //private const string SndLand = "Mode/land";
+        //private const string SndExplode = "Mode/asplode";
+        //private const string SndExplode2 = "Mode/menu_hit_2";
+        //private const string SndHurt = "Mode/hurt";
+        //private const string SndJam = "Mode/jam";
+
+        private int _jumpPower;
         private List<FlxObject> _bullets;
-		private int _curBullet;
-		private int _bulletVel;
-		private bool _up;
-		private bool _down;
-		private float _restart;
-		private FlxEmitter _gibs;
+        private int _curBullet;
+        private int _bulletVel;
+        private bool _up;
+        private bool _down;
+        private float _restart;
+        private FlxEmitter _gibs;
 
         public PlayerIndex? controller;
+
+        private const int BULLETS_PER_REVOLVER = 6;
+
+        public int bulletsLeft = 6;
+
+
 
         /// <summary>
         /// [0] - x
@@ -35,7 +47,7 @@ namespace Revvolvver
         //private bool _playback;
         public int frameCount;
 
-        private Recording _rec = Recording.None; 
+        private Recording _rec = Recording.None;
 
         public enum Recording
         {
@@ -48,55 +60,55 @@ namespace Revvolvver
 
         public PlayerMulti(int X, int Y, List<FlxObject> Bullets, FlxEmitter Gibs)
             : base(X, Y)
-		{
+        {
             //_playback = false;
             frameCount = 0;
 
-            
+
 
             ImgSpaceman = FlxG.Content.Load<Texture2D>("Revvolvver/spaceman");
 
-			loadGraphic(ImgSpaceman,true,true,16);
-			_restart = 0;
-			
-			//bounding box tweaks
+            loadGraphic(ImgSpaceman, true, true, 16);
+            _restart = 0;
+
+            //bounding box tweaks
             width = 12;
             height = 14;
             offset.X = 2;
             offset.Y = 2;
-			
-			//basic player physics
-			int runSpeed = 80;
-			drag.X = runSpeed*8;
-			acceleration.Y = 420;
-			_jumpPower = 205;
-			maxVelocity.X = runSpeed;
-			maxVelocity.Y = _jumpPower;
-			
-			//animations
-			addAnimation("idle", new int[] {0});
-			addAnimation("run", new int [] {1, 2, 3, 0}, 12);
-			addAnimation("jump", new int[] {4});
-			addAnimation("idle_up", new int[] {5});
-			addAnimation("run_up", new int[] {6, 7, 8, 5}, 12);
-			addAnimation("jump_up", new int[] {9});
-			addAnimation("jump_down", new int[] {10});
-			
-			//bullet stuff
-			_bullets = Bullets;
-			_curBullet = 0;
-			_bulletVel = 360;
-			
-			//Gibs emitted upon death
-			_gibs = Gibs;
+
+            //basic player physics
+            int runSpeed = 80;
+            drag.X = runSpeed * 8;
+            acceleration.Y = 420;
+            _jumpPower = 205;
+            maxVelocity.X = runSpeed;
+            maxVelocity.Y = _jumpPower;
+
+            //animations
+            addAnimation("idle", new int[] { 0 });
+            addAnimation("run", new int[] { 1, 2, 3, 0 }, 12);
+            addAnimation("jump", new int[] { 4 });
+            addAnimation("idle_up", new int[] { 5 });
+            addAnimation("run_up", new int[] { 6, 7, 8, 5 }, 12);
+            addAnimation("jump_up", new int[] { 9 });
+            addAnimation("jump_down", new int[] { 10 });
+
+            //bullet stuff
+            _bullets = Bullets;
+            _curBullet = 0;
+            _bulletVel = 360;
+
+            //Gibs emitted upon death
+            _gibs = Gibs;
 
             originalPosition = new Vector2(x, y);
-		}
+        }
 
 
-		
-		override public void update()
-		{
+
+        override public void update()
+        {
             PlayerIndex pi;
 
             if (_rec == Recording.Recording)
@@ -111,7 +123,7 @@ namespace Revvolvver
                 }
 
             }
-            else if (_rec == Recording.Playback)
+            else if (_rec == Recording.Playback && !dead)
             {
                 x = _history[frameCount][0];
                 y = _history[frameCount][1];
@@ -130,7 +142,7 @@ namespace Revvolvver
                     frameCount--;
                 }
             }
-            else if (_rec == Recording.Reverse)
+            else if (_rec == Recording.Reverse && !dead)
             {
                 x = _history[frameCount][0];
                 y = _history[frameCount][1];
@@ -142,7 +154,7 @@ namespace Revvolvver
 
                 if (frameCount < 1)
                 {
-                    
+
                     _rec = Recording.Playback;
                     frameCount++;
 
@@ -185,11 +197,11 @@ namespace Revvolvver
             if (FlxG.gamepads.isButtonDown(Buttons.LeftStick, controller, out pi))
             {
 
-                _rec = Recording.Recording ;
+                _rec = Recording.Recording;
                 _history = null;
                 _history = new List<float[]>();
 
-               
+
             }
 
             if (FlxG.gamepads.isButtonDown(Buttons.RightStick, controller, out pi))
@@ -206,7 +218,7 @@ namespace Revvolvver
 
                     //Console.WriteLine(float.Parse(item1[0]) + " + " + float.Parse(item1[1]) + " + " + float.Parse(item1[2]) + " + " + float.Parse(item1[3]));
 
-                    if (item1.Length==4)
+                    if (item1.Length == 4)
 
                         _history.Add(new float[] { float.Parse(item1[0]), float.Parse(item1[1]), float.Parse(item1[2]), float.Parse(item1[3]) });
                 }
@@ -218,155 +230,190 @@ namespace Revvolvver
 
             }
 
-			//game restart timer
-			if(dead)
-			{
-				_restart += FlxG.elapsed;
-				if(_restart > 2)
-                    (FlxG.state as PlayStateMulti).reload = true;
-				return;
-			}
-			
-			//MOVEMENT
-			acceleration.X = 0;
-			if(FlxG.keys.LEFT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, controller, out pi))
-			{
-				facing = Flx2DFacing.Left;
-				acceleration.X -= drag.X;
-			}
-            else if (FlxG.keys.RIGHT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, controller, out pi))
-			{
-				facing = Flx2DFacing.Right;
-				acceleration.X += drag.X;
-			}
-			if((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, controller, out pi))
-                && velocity.Y == 0)
-			{
-				velocity.Y = -_jumpPower;
-				//FlxG.play(SndJump);
-			}
-			
-			//AIMING
-			_up = false;
-			_down = false;
-			if(FlxG.keys.UP || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, controller, out pi)) _up = true;
-			else if((FlxG.keys.DOWN  || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, controller, out pi)) && velocity.Y != 0) _down = true;
-			
-			//ANIMATION
-			if(velocity.Y != 0)
-			{
-				if(_up) play("jump_up");
-				else if(_down) play("jump_down");
-				else play("jump");
-			}
-			else if(velocity.X == 0)
-			{
-				if(_up) play("idle_up");
-				else play("idle");
-			}
-			else
-			{
-				if(_up) play("run_up");
-				else play("run");
-			}
-
-            bool shootForPlayback = false;
-            if (_rec == Recording.Playback || _rec == Recording.Reverse)
+            if (!dead)
             {
-                if (_history[frameCount]!= null)
+
+                //MOVEMENT
+                acceleration.X = 0;
+                if (FlxG.keys.LEFT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, controller, out pi))
                 {
-                    if (_history[frameCount][2] == 1) shootForPlayback = true;
+                    facing = Flx2DFacing.Left;
+                    acceleration.X -= drag.X;
+                }
+                else if (FlxG.keys.RIGHT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, controller, out pi))
+                {
+                    facing = Flx2DFacing.Right;
+                    acceleration.X += drag.X;
+                }
+                if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, controller, out pi))
+                    && velocity.Y == 0)
+                {
+                    velocity.Y = -_jumpPower;
+                    //FlxG.play(SndJump);
+                }
+
+                //AIMING
+                _up = false;
+                _down = false;
+                if (FlxG.keys.UP || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, controller, out pi)) _up = true;
+                else if ((FlxG.keys.DOWN || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, controller, out pi)) && velocity.Y != 0) _down = true;
+
+                //ANIMATION
+                if (velocity.Y != 0)
+                {
+                    if (_up) play("jump_up");
+                    else if (_down) play("jump_down");
+                    else play("jump");
+                }
+                else if (velocity.X == 0)
+                {
+                    if (_up) play("idle_up");
+                    else play("idle");
+                }
+                else
+                {
+                    if (_up) play("run_up");
+                    else play("run");
+                }
+
+                bool shootForPlayback = false;
+                if (_rec == Recording.Playback || _rec == Recording.Reverse)
+                {
+                    if (_history[frameCount] != null)
+                    {
+                        if (_history[frameCount][2] == 1) shootForPlayback = true;
+                    }
+                }
+
+                //SHOOTING
+                if (!flickering() && (FlxG.keys.justPressed(Keys.C) ||
+                        FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi)) ||
+                        ((_rec == Recording.Playback || _rec == Recording.Reverse) && shootForPlayback))
+                {
+
+                    if (bulletsLeft <= 0) return;
+
+                    int bXVel = 0;
+                    int bYVel = 0;
+                    int bX = (int)x;
+                    int bY = (int)y;
+                    if (_up)
+                    {
+                        bY -= (int)_bullets[_curBullet].height - 4;
+                        bYVel = -_bulletVel;
+                    }
+                    else if (_down)
+                    {
+                        bY += (int)height - 4;
+                        bYVel = _bulletVel;
+                        velocity.Y -= 36;
+                    }
+                    else if (facing == Flx2DFacing.Right)
+                    {
+                        bX += (int)width - 4;
+                        bXVel = _bulletVel;
+                    }
+                    else
+                    {
+                        bX -= (int)_bullets[_curBullet].width - 4;
+                        bXVel = -_bulletVel;
+                    }
+                    ((BulletMulti)(_bullets[_curBullet])).shoot(bX, bY, bXVel, bYVel, color);
+                    ((BulletMulti)(_bullets[_curBullet])).firedFromPlayer = controller.ToString();
+                    ((BulletMulti)(_bullets[_curBullet])).bulletNumber = bulletsLeft;
+
+
+                    int notchToRender = 6 - bulletsLeft;
+
+                    
+
+                    if (controller.ToString() == "Two")
+                    {
+                        notchToRender += 6;
+                    }
+                    if (controller.ToString() == "Three")
+                    {
+                        notchToRender += 12;
+                    }
+                    if (controller.ToString() == "Four")
+                    {
+                        notchToRender += 18;
+                    }
+
+                    //Console.WriteLine((FlxG._game.hud.hudGroup.members.Count));
+
+                    (FlxG._game.hud.hudGroup.members[notchToRender] as FlxSprite).play("missed");
+
+                    bulletsLeft--;
+
+
+
+
+                    if (++_curBullet >= _bullets.Count)
+                        _curBullet = 0;
                 }
             }
-			
-			//SHOOTING
-            if (!flickering() && (FlxG.keys.justPressed(Keys.C) ||
-                    FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi)) ||
-                    ((_rec == Recording.Playback || _rec == Recording.Reverse) && shootForPlayback))
-			{
-				int bXVel = 0;
-				int bYVel = 0;
-				int bX = (int)x;
-				int bY = (int)y;
-				if(_up)
-				{
-					bY -= (int)_bullets[_curBullet].height - 4;
-					bYVel = -_bulletVel;
-				}
-				else if(_down)
-				{
-					bY += (int)height - 4;
-					bYVel = _bulletVel;
-					velocity.Y -= 36;
-				}
-				else if(facing == Flx2DFacing.Right)
-				{
-					bX += (int)width - 4;
-					bXVel = _bulletVel;
-				}
-				else
-				{
-					bX -= (int)_bullets[_curBullet].width - 4;
-					bXVel = -_bulletVel;
-				}
-				((BulletMulti)(_bullets[_curBullet])).shoot(bX,bY,bXVel,bYVel, color);
-				if(++_curBullet >= _bullets.Count)
-					_curBullet = 0;
-			}
-				
-			//UPDATE POSITION AND ANIMATION
-			base.update();
 
-			//Jammed, can't fire!
-            //if(flickering())
+            //UPDATE POSITION AND ANIMATION
+            base.update();
+
+            //Jammed, can't fire!
+            //if (flickering())
             //{
-            //    if(FlxG.keys.justPressed(Keys.C) ||
+            //    if (FlxG.keys.justPressed(Keys.C) ||
             //        FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi))
-            //        //FlxG.play(SndJam);
+            //        FlxG.play(SndJam);
             //}
-		}
-		
-		override public void hitBottom(FlxObject Contact, float Velocity)
-		{
-			if(velocity.Y > 50)
-				//FlxG.play(SndLand);
-			onFloor = true;
-			base.hitBottom(Contact,Velocity);
-		}
-		
-		override public void hurt(float Damage)
-		{
-			Damage = 0;
-			if(flickering())
-				return;
-			//FlxG.play(SndHurt);
-			flicker(1.3f);
-			if(FlxG.score > 1000) FlxG.score -= 1000;
-			if(velocity.X > 0)
-				velocity.X = -maxVelocity.X;
-			else
-				velocity.X = maxVelocity.X;
-			base.hurt(Damage);
-		}
+
+            if (dead && angularVelocity == 0)
+            {
+                reset(originalPosition.X, originalPosition.Y);
+                angle = 0;
+                dead = false;
+
+            }
+        }
+
+        override public void hitBottom(FlxObject Contact, float Velocity)
+        {
+            //if (velocity.Y > 50)
+            //    FlxG.play(SndLand);
+            onFloor = true;
+            base.hitBottom(Contact, Velocity);
+        }
+
+        override public void hurt(float Damage)
+        {
+            Damage = 0;
+            if (flickering())
+                return;
+            //FlxG.play(SndHurt);
+            flicker(1.3f);
+            if (FlxG.score > 1000) FlxG.score -= 1000;
+            if (velocity.X > 0)
+                velocity.X = -maxVelocity.X;
+            else
+                velocity.X = maxVelocity.X;
+            base.hurt(Damage);
+        }
 
         override public void kill()
-		{
-			if(dead)
-				return;
-			solid = false;
-			//FlxG.play(SndExplode);
-			//FlxG.play(SndExplode2);
-			base.kill();
-			flicker(-1);
-			exists = true;
-			visible = false;
-			FlxG.quake.start(0.005f,0.35f);
-			FlxG.flash.start(new Color(0xd8, 0xeb, 0xa2),0.35f, null, false);
-			if(_gibs != null)
-			{
-				_gibs.at(this);
-				_gibs.start(true,0,50);
-			}
-		}
+        {
+            if (dead)
+                return;
+            solid = false;
+
+            base.kill();
+            flicker(-1);
+            exists = true;
+            visible = false;
+            FlxG.quake.start(0.005f, 0.35f);
+            FlxG.flash.start(new Color(0xd8, 0xeb, 0xa2), 0.35f, null, false);
+            if (_gibs != null)
+            {
+                _gibs.at(this);
+                _gibs.start(true, 0, 50);
+            }
+        }
     }
 }

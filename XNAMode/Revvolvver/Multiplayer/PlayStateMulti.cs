@@ -58,6 +58,8 @@ namespace Revvolvver
         //used to safely reload the playstate after dying
         public bool reload;
 
+        public FlxGroup hudElements;
+
         override public void create()
         {
             base.create();
@@ -65,6 +67,7 @@ namespace Revvolvver
             ImgTech = FlxG.Content.Load<Texture2D>("Revvolvver/tech_tiles");
             ImgGibs = FlxG.Content.Load<Texture2D>("Revvolvver/gibs");
             ImgSpawnerGibs = FlxG.Content.Load<Texture2D>("Revvolvver/spawner_gibs");
+            ImgNotch = FlxG.Content.Load<Texture2D>("Revvolvver/notch");
 
             FlxG.mouse.hide();
             reload = false;
@@ -114,11 +117,11 @@ namespace Revvolvver
             {
                 _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs);
                 _player3.controller = PlayerIndex.Three;
-                _player3.color = Color.Teal;
+                _player3.color = Color.LightBlue;
 
                 FlxG._game.hud.p3HudText.scale = 3;
                 FlxG._game.hud.p3HudText.y -= 20;
-                FlxG._game.hud.p3HudText.color = Color.Teal;
+                FlxG._game.hud.p3HudText.color = Color.LightBlue;
 
             }
             if (Revvolvver_Globals.PLAYERS >= 4)
@@ -136,6 +139,7 @@ namespace Revvolvver
             _bots = new FlxGroup();
             _botBullets = new FlxGroup();
             _spawners = new FlxGroup();
+            hudElements = new FlxGroup();
 
             attrs = new Dictionary<string, string>();
             attrs = FlxXMLReader.readAttributesFromOelFile("Revvolvver/level2.oel", "level/NonDestructable");
@@ -210,6 +214,52 @@ namespace Revvolvver
 
             FlxG.setHudText(1, FlxG.scores[0].ToString());
 
+            FlxG._game.hud.hudGroup.members.Clear();
+
+
+            for (i = 0; i < 24; i++)
+            {
+                int xp = 0;
+                int yp = 40;
+
+                if (i < 6)
+                {
+                    xp = 24 + i * 20;
+                }
+                else if (i < 12)
+                {
+                    xp = (int)((FlxG.width*1.8f) + (i-6) * 20);
+                }
+                else if (i < 18)
+                {
+                    xp = 24 + (i-12) * 20;
+                    yp = FlxG.height*2 - 60;
+                }
+                else if (i < 24)
+                {
+                    xp = (int)((FlxG.width * 1.8f) + (i-18) * 20);
+                    yp = FlxG.height * 2 - 60;
+                }
+
+
+                FlxSprite bulletHUD = new FlxSprite(xp,yp);
+                bulletHUD.loadGraphic(ImgNotch, true);
+                bulletHUD.scrollFactor.X = bulletHUD.scrollFactor.Y = 0;
+                bulletHUD.scale = 2;
+                bulletHUD.addAnimation("ready", new int[] { 0 });
+                bulletHUD.addAnimation("missed", new int[] { 1 });
+                bulletHUD.addAnimation("hit", new int[] { 2 });
+                bulletHUD.moves = false;
+                bulletHUD.solid = false;
+                bulletHUD.play("on");
+                FlxG._game.hud.hudGroup.add(bulletHUD);
+
+            }
+
+            //FlxG._game.hud.hudGroup.add(hudElements);
+
+
+
 
 
 
@@ -221,10 +271,10 @@ namespace Revvolvver
         override public void update()
         {
 
-            FlxG.setHudText(1, FlxG.scores[0].ToString());
-            FlxG.setHudText(2, FlxG.scores[1].ToString());
-            FlxG.setHudText(3, FlxG.scores[2].ToString());
-            FlxG.setHudText(4, FlxG.scores[3].ToString());
+            FlxG.setHudText(1, "Player 1: " + FlxG.scores[0].ToString() + " " + _player1.bulletsLeft);
+            FlxG.setHudText(2, "Player 2: " + FlxG.scores[1].ToString() + " " + _player2.bulletsLeft);
+            FlxG.setHudText(3, "Player 3: " + FlxG.scores[2].ToString() + " " + _player3.bulletsLeft);
+            FlxG.setHudText(4, "Player 4: " + FlxG.scores[3].ToString() + " " + _player4.bulletsLeft);
 
 
             PlayerIndex pi;
@@ -327,6 +377,35 @@ namespace Revvolvver
                 else if (((BulletMulti)(e.Object1)).color == Color.Teal) FlxG.scores[2]++;
                 else if (((BulletMulti)(e.Object1)).color == Color.Yellow) FlxG.scores[3]++;
 
+
+                string bulletData = ((BulletMulti)(e.Object1)).firedFromPlayer;
+                int bulletInt = ((BulletMulti)(e.Object1)).bulletNumber;
+
+                int notchToRender = 6 - bulletInt;
+
+                
+
+                if (bulletData == "Two")
+                {
+                    notchToRender += 6;
+                }
+                if (bulletData == "Three")
+                {
+                    notchToRender += 12;
+                }
+                if (bulletData == "Four")
+                {
+                    notchToRender += 18;
+                }
+
+                
+
+                (FlxG._game.hud.hudGroup.members[notchToRender] as FlxSprite).play("hit");
+
+
+
+
+
                 if  (e.Object1 is BulletMulti)
                 {
                     e.Object1.kill();
@@ -336,6 +415,8 @@ namespace Revvolvver
 
                 //((PlayerMulti)(e.Object2)).x = ((PlayerMulti)(e.Object2)).originalPosition.X;
                 //((PlayerMulti)(e.Object2)).y = ((PlayerMulti)(e.Object2)).originalPosition.Y;
+
+                //Console.WriteLine(e.Object2.GetType());
 
                 ((PlayerMulti)(e.Object2)).angularVelocity = 1000;
                 ((PlayerMulti)(e.Object2)).angularDrag = 450;
