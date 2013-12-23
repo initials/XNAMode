@@ -65,7 +65,6 @@ namespace Revvolvver
         private  Color p3Color = Color.Blue;
         private  Color p4Color = Color.Yellow;
 
-
         override public void create()
         {
             base.create();
@@ -275,8 +274,6 @@ namespace Revvolvver
             }
 
             //FlxG._game.hud.hudGroup.add(hudElements);
-
-
 
 
 

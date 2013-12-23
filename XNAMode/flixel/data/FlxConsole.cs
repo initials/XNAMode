@@ -19,6 +19,7 @@ namespace org.flixel
 
         private Rectangle _srcRect = new Rectangle(1, 1, 1, 1);
         private Rectangle _consoleRect;
+        private Rectangle _titleSafeRect;
         private Color _consoleColor;
         private FlxText _consoleText;
         
@@ -33,6 +34,16 @@ namespace org.flixel
         private float _consoleY;
         private float _consoleYT;
         private bool _fpsUpdate;
+
+        int width; // Viewport width
+        int height; // Viewport height
+        int dx; // 5% of width
+        int dy; // 5% of height
+        Color notActionSafeColor = new Color(255, 0, 0, 23); // Red, 50% opacity
+        Color notTitleSafeColor = new Color(255, 255, 0, 23); // Yellow, 50% opacity
+
+
+
 
         /// <summary>
         /// Allows a command to be typed and executed.
@@ -50,8 +61,12 @@ namespace org.flixel
 
             _FPS = new int[8];
 
-            _consoleRect = new Rectangle(0, 0,
-                FlxG.spriteBatch.GraphicsDevice.Viewport.Width, FlxG.spriteBatch.GraphicsDevice.Viewport.Height);
+            _consoleRect = new Rectangle(FlxG.spriteBatch.GraphicsDevice.Viewport.X, 0,
+                FlxG.spriteBatch.GraphicsDevice.Viewport.Width, 
+                FlxG.spriteBatch.GraphicsDevice.Viewport.Height);
+
+
+
             _consoleColor = new Color(0, 0, 0, 0x7F);
 
             _consoleText = new FlxText(targetLeft, -800, targetWidth, "").setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
@@ -66,6 +81,19 @@ namespace org.flixel
             _consoleLines = new List<string>();
 
             MAX_CONSOLE_LINES = (FlxG.spriteBatch.GraphicsDevice.Viewport.Height / (int)(_consoleText.font.MeasureString("Qq").Y)) - 1;
+
+
+
+            width = FlxG.spriteBatch.GraphicsDevice.Viewport.Width;
+            height = FlxG.spriteBatch.GraphicsDevice.Viewport.Height;
+            dx = (int)(width * 0.05);
+            dy = (int)(height * 0.05);
+
+            _titleSafeRect = new Rectangle(dx*2, dy*2,
+                width - 4 * dx,
+                height - 4 * dy);
+
+
         }
 	
         /// <summary>
@@ -164,9 +192,16 @@ namespace org.flixel
 
             spriteBatch.Draw(FlxG.XnaSheet, _consoleRect,
                 _srcRect, _consoleColor);
+
+            spriteBatch.Draw(FlxG.XnaSheet, _titleSafeRect,
+                _srcRect, notTitleSafeColor);
+
             _consoleText.render(spriteBatch);
             _consoleFPS.render(spriteBatch);
             _consoleCommand.render(spriteBatch);
+
+
+
 
         }
 
