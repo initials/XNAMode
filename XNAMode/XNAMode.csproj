@@ -638,6 +638,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
+    <None Include="Revvolvver\titlescreen.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="XNAMode_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

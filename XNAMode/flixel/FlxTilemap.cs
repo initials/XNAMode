@@ -168,12 +168,15 @@ namespace org.flixel
 
         public int indexOffset;
 
+        public Color color;
 
         /// <summary>
         /// The tilemap constructor just initializes some basic variables.
         /// </summary>
         public FlxTilemap()
         {
+            color = Color.White;
+
             if (ImgAuto == null || ImgAutoAlt == null)
             {
                 ImgAuto = FlxG.Content.Load<Texture2D>("flixel/autotiles");
@@ -388,10 +391,12 @@ namespace org.flixel
                 {
                     if (_rects[cri] != Rectangle.Empty)
                     {
+                        // Render the color too;
+
                         spriteBatch.Draw(_tileBitmap,
                             new Rectangle((ix * _tileWidth) + (int)Math.Floor(FlxG.scroll.X * scrollFactor.X), (iy * _tileHeight) + (int)Math.Floor(FlxG.scroll.Y * scrollFactor.Y), _tileWidth, _tileHeight),
                             _rects[iy * widthInTiles + ix],
-                            Color.White);
+                            color);
                         if (FlxG.showBounds && boundingBoxOverride==true)
                         {
                             spriteBatch.Draw(FlxG.XnaSheet,

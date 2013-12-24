@@ -27,6 +27,13 @@ namespace Revvolvver
         private int frameCount;
         private int clickCount;
 
+        private const string SndClick = "Revvolvver/sfx/gunclick";
+        private const string SndGun1 = "Revvolvver/sfx/gunshot1";
+        private const string SndGun2 = "Revvolvver/sfx/gunshot2";
+
+        private FlxSound SndFlxClick;
+
+        private FlxSprite flower;
 
         //#if !WINDOWS_PHONE
         //        FlxSave save;
@@ -40,13 +47,33 @@ namespace Revvolvver
 
             base.create();
 
+            flower = new FlxSprite(FlxG.width / 2 - 290 / 2, FlxG.height / 2 - 290 / 2 + 60);
+            flower.loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/flower"), false, false, 290, 290);
+            add(flower);
+            flower.visible = false;
+
+            flower.angularDrag = 1500;
+
+
+            Dictionary<string, string> attrs = new Dictionary<string, string>();
+            attrs = FlxXMLReader.readAttributesFromOelFile("Revvolvver/titlescreen.oel", "level/NonDestructable");
+            FlxTilemap _tileMap = new FlxTilemap();
+            _tileMap.auto = FlxTilemap.STRING;
+            _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 8, 8);
+            _tileMap.collideMin = 1;
+            _tileMap.collideMax = 21;
+            add(_tileMap);
+
+
+
+
             FlxG.hideHud();
 
             ImgGibs = FlxG.Content.Load<Texture2D>("Revvolvver/spawner_gibs");
             ImgCursor = FlxG.Content.Load<Texture2D>("initials/crosshair");
 
-            _gibs = new FlxEmitter(FlxG.width / 2 - 50, FlxG.height  - 10);
-            _gibs.setSize(200, 30);
+            _gibs = new FlxEmitter(0, FlxG.height  - 30);
+            _gibs.setSize(FlxG.width, 30);
             _gibs.setYSpeed(-400, -20);
             _gibs.setRotation(-720, 720);
             _gibs.gravity = 50;
@@ -68,16 +95,19 @@ namespace Revvolvver
 
             frameCount = 1;
 
+            //SndFlxClick = new FlxSound();
+            
+
         }
 
         public void createLetter(char Letter, int x, int y)
         {
             FlxText _t1 = new FlxText(x,y,20, Letter.ToString() );
-            _t1.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, Color.Black, FlxJustification.Left, Color.Black);
-
+            _t1.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xd1, 0x6e, 0x55), FlxJustification.Left, new Color(0xd1, 0x6e, 0x55));
+            _t1.shadow = new Color(0xd1, 0x6e, 0x55);
             _t1.scale = 3; // size = 32
             _t1.color = new Color(0xd1, 0x6e, 0x55);
-            _t1.antialiasing = true;
+            _t1.antialiasing = false;
             _t1.angle = -5;
 
             letters.add(_t1);
@@ -94,7 +124,28 @@ namespace Revvolvver
                 letters.members[clickCount].angle = 0;
                 // play a sound;
 
+                FlxG.play(SndClick, 0.5f);
+
+                //SndFlxClick.proximity(clickCount * 10, 20, null, 30.0f, false);
+
+                //SndFlxClick.play();
+
+
                 clickCount++;
+            }
+
+            if (frameCount > 160)
+            {
+                if (FlxU.random() < 0.015f)
+                {
+                    flower.visible = true;
+                    flower.angularVelocity = 500;
+
+                    int r = (int)FlxU.random(0, 10);
+                    letters.members[r].angle= FlxU.random(-45,45);
+                    //letters.members[r].angularDrag = 100;
+                    FlxG.play(SndGun2, 0.25f);
+                }
             }
 
             //X + C were pressed, fade out and change to play state
@@ -122,6 +173,7 @@ namespace Revvolvver
 
             if (FlxG.keys.justPressed(Keys.D2) || FlxG.keys.justPressed(Keys.F2) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Two, out pi))
             {
+                FlxG.play(SndGun1);
                 _gibs.start(true, 5);
                 Revvolvver_Globals.PLAYERS = 2;
                 //FlxG.state = new PlayStateMulti();
@@ -130,6 +182,7 @@ namespace Revvolvver
             }
             if (FlxG.keys.justPressed(Keys.D3) || FlxG.keys.justPressed(Keys.F3) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Three, out pi))
             {
+                FlxG.play(SndGun1);
                 _gibs.start(true, 5);
                 Revvolvver_Globals.PLAYERS = 3;
                 //FlxG.state = new PlayStateMulti();
@@ -138,6 +191,7 @@ namespace Revvolvver
             }
             if (FlxG.keys.justPressed(Keys.D4) || FlxG.keys.justPressed(Keys.F4) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Four, out pi))
             {
+                FlxG.play(SndGun1);
                 _gibs.start(true, 5);
                 Revvolvver_Globals.PLAYERS = 4;
                 //FlxG.state = new PlayStateMulti();

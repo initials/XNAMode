@@ -60,10 +60,10 @@ namespace Revvolvver
 
         public FlxGroup hudElements;
 
-        private  Color p1Color = Color.Red;
-        private  Color p2Color = Color.Green;
-        private  Color p3Color = Color.Blue;
-        private  Color p4Color = Color.Yellow;
+        private  Color p1Color = Color.PaleVioletRed;
+        private  Color p2Color = Color.MediumSpringGreen;
+        private  Color p3Color = Color.MediumSlateBlue;
+        private  Color p4Color = Color.Cyan;
 
         override public void create()
         {
@@ -230,31 +230,56 @@ namespace Revvolvver
             for (i = 0; i < 24; i++)
             {
                 int xp = 0;
-                int yp = 40;
-                int xo = 40;
+                int yp = FlxG.height * 2 - 120;
+                int xo = 180;
                 
 
                 if (i < 6)
                 {
                     xp = xo + i * 32;
                     xc = p1Color;
+
+                    if (i == 0)
+                    {
+                        FlxG._game.hud.p1HudText.x = xp;
+                        FlxG._game.hud.p1HudText.y = yp - 40;
+                    }
                 }
                 else if (i < 12)
                 {
-                    xp = (int)((FlxG.width*1.6f) + (i-6) * 32);
+                    //xp = (int)((FlxG.width*1.6f) + (i-6) * 32);
+                    xp = (xo+50) + i * 32;
                     xc = p2Color;
+                    if (i == 6)
+                    {
+                        FlxG._game.hud.p2HudText.x = xp;
+                        FlxG._game.hud.p2HudText.y = yp - 40;
+                        FlxG._game.hud.p2HudText.alignment = FlxJustification.Left;
+                    }
                 }
                 else if (i < 18)
                 {
-                    xp = xo + (i - 12) * 32;
-                    yp = FlxG.height*2 - 60;
+                    xp = (xo + 100) + i * 32;
+                    
                     xc = p3Color;
+                    if (i == 12)
+                    {
+                        FlxG._game.hud.p3HudText.x = xp;
+                        FlxG._game.hud.p3HudText.y = yp - 40;
+                    }
+
                 }
                 else if (i < 24)
                 {
-                    xp = (int)((FlxG.width * 1.6f) + (i-18) * 32);
-                    yp = FlxG.height * 2 - 60;
+                    xp = (xo + 150) + i * 32;
+                    
                     xc = p4Color;
+                    if (i == 18)
+                    {
+                        FlxG._game.hud.p4HudText.x = xp;
+                        FlxG._game.hud.p4HudText.y = yp - 40;
+                        FlxG._game.hud.p4HudText.alignment = FlxJustification.Left;
+                    }
                 }
 
 
@@ -286,10 +311,10 @@ namespace Revvolvver
         override public void update()
         {
 
-            FlxG.setHudText(1, "Player 1: " + FlxG.scores[0].ToString());
-            FlxG.setHudText(2, "Player 2: " + FlxG.scores[1].ToString());
-            FlxG.setHudText(3, "Player 3: " + FlxG.scores[2].ToString());
-            FlxG.setHudText(4, "Player 4: " + FlxG.scores[3].ToString());
+            FlxG.setHudText(1, "P1: " + FlxG.scores[0].ToString());
+            FlxG.setHudText(2, "P2: " + FlxG.scores[1].ToString());
+            FlxG.setHudText(3, "P3: " + FlxG.scores[2].ToString());
+            FlxG.setHudText(4, "P4: " + FlxG.scores[3].ToString());
 
 
             PlayerIndex pi;
@@ -321,7 +346,7 @@ namespace Revvolvver
                         _tileMap.setTile((int)(item.x + 9) / 8, (int)(item.y + item.tileOffsetY) / 8, 0, true);
                     }
 
-
+                    //_tileMap.set
 
                 }
             }
@@ -340,7 +365,7 @@ namespace Revvolvver
                 FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
             }
 
-            int hi = 20;
+            int hi = 12;
             if ((FlxG.scores[0] > hi) || (FlxG.scores[1] > hi) || (FlxG.scores[2] > hi) || (FlxG.scores[3] > hi))
             {
                 FlxG.fade.start(new Color(0xd8, 0xeb, 0xa2), 3, onVictory, false);
