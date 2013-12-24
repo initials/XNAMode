@@ -63,7 +63,7 @@ namespace Revvolvver
         private  Color p1Color = Color.PaleVioletRed;
         private  Color p2Color = Color.MediumSpringGreen;
         private  Color p3Color = Color.MediumSlateBlue;
-        private  Color p4Color = Color.Red;
+        private  Color p4Color = Color.Cyan;
 
         override public void create()
         {
