@@ -99,51 +99,69 @@ namespace Revvolvver
             List<Dictionary<string, string>> actorsAttrs = new List<Dictionary<string, string>>();
             actorsAttrs = FlxXMLReader.readNodesFromOelFile("Revvolvver/level2.oel", "level/Items");
 
-            if (Revvolvver_Globals.PLAYERS >= 2)
+
+
+            _player1 = new PlayerMulti(Convert.ToInt32(actorsAttrs[0]["x"]), Convert.ToInt32(actorsAttrs[0]["y"]), _bullets.members, _littleGibs);
+            _player1.controller = PlayerIndex.One;
+            _player1.color = p1Color;
+
+            FlxG._game.hud.p1HudText.scale = 3;
+            FlxG._game.hud.p1HudText.x += 40;
+            FlxG._game.hud.p1HudText.color = p1Color;
+
+
+            _player2 = new PlayerMulti(Convert.ToInt32(actorsAttrs[1]["x"]), Convert.ToInt32(actorsAttrs[1]["y"]), _bullets.members, _littleGibs);
+            _player2.controller = PlayerIndex.Two;
+            _player2.color = p2Color;
+
+            FlxG._game.hud.p2HudText.scale = 3;
+            FlxG._game.hud.p2HudText.x -= 40;
+            FlxG._game.hud.p2HudText.color = p2Color;
+
+            _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs);
+            _player3.controller = PlayerIndex.Three;
+            _player3.color = p3Color;
+
+            FlxG._game.hud.p3HudText.scale = 3;
+            FlxG._game.hud.p3HudText.x += 40 ;
+            FlxG._game.hud.p3HudText.y -= 20;
+            FlxG._game.hud.p3HudText.color = p3Color;
+
+            
+            _player4 = new PlayerMulti(Convert.ToInt32(actorsAttrs[3]["x"]), Convert.ToInt32(actorsAttrs[3]["y"]), _bullets.members, _littleGibs);
+            _player4.controller = PlayerIndex.Four;
+            _player4.color = p4Color;
+
+            FlxG._game.hud.p4HudText.scale = 3;
+            FlxG._game.hud.p4HudText.x -= 40;
+            FlxG._game.hud.p4HudText.y -= 20;
+            FlxG._game.hud.p4HudText.color = p4Color;
+
+            if (Revvolvver_Globals.PLAYERS == 1)
             {
-                _player1 = new PlayerMulti(Convert.ToInt32(actorsAttrs[0]["x"]), Convert.ToInt32(actorsAttrs[0]["y"]), _bullets.members, _littleGibs);
-                _player1.controller = PlayerIndex.One;
-                _player1.color = p1Color;
+                _player2.startPlayingBack();
+                _player3.startPlayingBack();
+                _player4.startPlayingBack();
+            }
 
-                FlxG._game.hud.p1HudText.scale = 3;
-                FlxG._game.hud.p1HudText.x += 40;
-                FlxG._game.hud.p1HudText.color = p1Color;
+            if (Revvolvver_Globals.PLAYERS == 2)
+            {
+                _player3.startPlayingBack();
+                _player4.startPlayingBack();
+            }
 
+            if (Revvolvver_Globals.PLAYERS == 3)
+            {
+                _player4.startPlayingBack();
+            }
 
-                _player2 = new PlayerMulti(Convert.ToInt32(actorsAttrs[1]["x"]), Convert.ToInt32(actorsAttrs[1]["y"]), _bullets.members, _littleGibs);
-                _player2.controller = PlayerIndex.Two;
-                _player2.color = p2Color;
-
-                FlxG._game.hud.p2HudText.scale = 3;
-                FlxG._game.hud.p2HudText.x -= 40;
-                FlxG._game.hud.p2HudText.color = p2Color;
+            if (Revvolvver_Globals.PLAYERS == 4)
+            {
 
             }
 
-            if (Revvolvver_Globals.PLAYERS >= 3)
-            {
-                _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs);
-                _player3.controller = PlayerIndex.Three;
-                _player3.color = p3Color;
 
-                FlxG._game.hud.p3HudText.scale = 3;
-                FlxG._game.hud.p3HudText.x += 40 ;
-                FlxG._game.hud.p3HudText.y -= 20;
-                FlxG._game.hud.p3HudText.color = p3Color;
-
-            }
-            if (Revvolvver_Globals.PLAYERS >= 4)
-            {
-                _player4 = new PlayerMulti(Convert.ToInt32(actorsAttrs[3]["x"]), Convert.ToInt32(actorsAttrs[3]["y"]), _bullets.members, _littleGibs);
-                _player4.controller = PlayerIndex.Four;
-                _player4.color = p4Color;
-
-                FlxG._game.hud.p4HudText.scale = 3;
-                FlxG._game.hud.p4HudText.x -= 40;
-                FlxG._game.hud.p4HudText.y -= 20;
-                FlxG._game.hud.p4HudText.color = p4Color;
-
-            }
+            
 
             _bots = new FlxGroup();
             _botBullets = new FlxGroup();
@@ -293,6 +311,7 @@ namespace Revvolvver
                 bulletHUD.addAnimation("hit", new int[] { 2 });
                 bulletHUD.moves = false;
                 bulletHUD.solid = false;
+                bulletHUD.debugName = "ready";
                 bulletHUD.play("on");
                 FlxG._game.hud.hudGroup.add(bulletHUD);
 
@@ -370,6 +389,72 @@ namespace Revvolvver
             {
                 FlxG.fade.start(new Color(0xd8, 0xeb, 0xa2), 3, onVictory, false);
             }
+
+            adjustHUD();
+            checkForPerfectRound();
+        }
+
+        private void checkForPerfectRound()
+        {
+            if ((FlxG._game.hud.hudGroup.members[0] as FlxSprite).debugName == "hit" && 
+                (FlxG._game.hud.hudGroup.members[1] as FlxSprite).debugName == "hit" && 
+                (FlxG._game.hud.hudGroup.members[2] as FlxSprite).debugName == "hit" && 
+                (FlxG._game.hud.hudGroup.members[3] as FlxSprite).debugName == "hit" && 
+                (FlxG._game.hud.hudGroup.members[4] as FlxSprite).debugName == "hit" && 
+                (FlxG._game.hud.hudGroup.members[5] as FlxSprite).debugName == "hit" )
+            {
+                FlxG.scores[0] += 25;
+            }
+
+            if ((FlxG._game.hud.hudGroup.members[6] as FlxSprite).debugName == "hit" &&
+                (FlxG._game.hud.hudGroup.members[7] as FlxSprite).debugName == "hit" &&
+                (FlxG._game.hud.hudGroup.members[8] as FlxSprite).debugName == "hit" &&
+                (FlxG._game.hud.hudGroup.members[9] as FlxSprite).debugName == "hit" &&
+                (FlxG._game.hud.hudGroup.members[10] as FlxSprite).debugName == "hit" &&
+                (FlxG._game.hud.hudGroup.members[11] as FlxSprite).debugName == "hit")
+            {
+                FlxG.scores[1] += 25;
+            }
+            if ((FlxG._game.hud.hudGroup.members[12] as FlxSprite).debugName == "hit" &&
+                (FlxG._game.hud.hudGroup.members[13] as FlxSprite).debugName == "hit" &&
+                (FlxG._game.hud.hudGroup.members[14] as FlxSprite).debugName == "hit" &&
+                (FlxG._game.hud.hudGroup.members[15] as FlxSprite).debugName == "hit" &&
+                (FlxG._game.hud.hudGroup.members[16] as FlxSprite).debugName == "hit" &&
+                (FlxG._game.hud.hudGroup.members[17] as FlxSprite).debugName == "hit")
+            {
+                FlxG.scores[2] += 25;
+            }
+
+            if ((FlxG._game.hud.hudGroup.members[18] as FlxSprite).debugName == "hit" &&
+                (FlxG._game.hud.hudGroup.members[19] as FlxSprite).debugName == "hit" &&
+                (FlxG._game.hud.hudGroup.members[20] as FlxSprite).debugName == "hit" &&
+                (FlxG._game.hud.hudGroup.members[21] as FlxSprite).debugName == "hit" &&
+                (FlxG._game.hud.hudGroup.members[22] as FlxSprite).debugName == "hit" &&
+                (FlxG._game.hud.hudGroup.members[23] as FlxSprite).debugName == "hit")
+            {
+                FlxG.scores[3] += 25;
+            }
+        }
+
+        private void adjustHUD()
+        {
+            int offset = 0;
+            foreach (PlayerMulti item in _players.members)
+            {
+                if (item.bulletsLeft == 6)
+                {
+
+                    //Console.WriteLine("p" + item.getScreenXY().ToString());
+
+                    for (int i = offset; i < offset+6; i++)
+                    {
+                        //Console.WriteLine(i);
+                        (FlxG._game.hud.hudGroup.members[i] as FlxSprite).play("ready");
+                        (FlxG._game.hud.hudGroup.members[i] as FlxSprite).debugName = "ready";
+                    }   
+                }
+                offset += 6;
+            }
         }
 
         protected bool hitBullet(object Sender, FlxSpriteCollisionEvent e)
@@ -412,10 +497,10 @@ namespace Revvolvver
                 else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Three && FlxG.scores[2] > 0) FlxG.scores[2]--;
                 else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Four && FlxG.scores[3] > 0) FlxG.scores[3]--;
 
-                if (((BulletMulti)(e.Object1)).color == Color.White) FlxG.scores[0]++;
-                else if (((BulletMulti)(e.Object1)).color == Color.Red) FlxG.scores[1]++;
-                else if (((BulletMulti)(e.Object1)).color == Color.Teal) FlxG.scores[2]++;
-                else if (((BulletMulti)(e.Object1)).color == Color.Yellow) FlxG.scores[3]++;
+                if (((BulletMulti)(e.Object1)).color == p1Color) FlxG.scores[0]++;
+                else if (((BulletMulti)(e.Object1)).color == p2Color) FlxG.scores[1]++;
+                else if (((BulletMulti)(e.Object1)).color == p3Color) FlxG.scores[2]++;
+                else if (((BulletMulti)(e.Object1)).color == p4Color) FlxG.scores[3]++;
 
 
                 string bulletData = ((BulletMulti)(e.Object1)).firedFromPlayer;
@@ -438,13 +523,8 @@ namespace Revvolvver
                     notchToRender += 18;
                 }
 
-                
-
                 (FlxG._game.hud.hudGroup.members[notchToRender] as FlxSprite).play("hit");
-
-
-
-
+                (FlxG._game.hud.hudGroup.members[notchToRender] as FlxSprite).debugName = "hit";
 
                 if  (e.Object1 is BulletMulti)
                 {
@@ -486,7 +566,7 @@ namespace Revvolvver
 
         protected void onVictory(object Sender, FlxEffectCompletedEvent e)
         {
-            FlxG.music.stop();
+            //FlxG.music.stop();
             FlxG.state = new VictoryStateMulti();
         }
 

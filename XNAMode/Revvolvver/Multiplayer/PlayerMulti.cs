@@ -35,6 +35,13 @@ namespace Revvolvver
 
         public int bulletsLeft = 6;
 
+        private const string SndClick = "Revvolvver/sfx/gunclick";
+        private const string SndGun1 = "Revvolvver/sfx/gunshot1";
+        private const string SndGun2 = "Revvolvver/sfx/gunshot2";
+        private const string SndGun3 = "Revvolvver/sfx/gunshot3";
+
+        private float timeOnZeroBullets = 0.0f;
+        private const float maxTimeOnZeroBullets = 4.0f;
 
 
         /// <summary>
@@ -110,6 +117,27 @@ namespace Revvolvver
         override public void update()
         {
             PlayerIndex pi;
+
+            if (bulletsLeft <= 0)
+            {
+
+                timeOnZeroBullets += FlxG.elapsed;
+
+            }
+            else
+            {
+                timeOnZeroBullets = 0;
+            }
+
+            if (timeOnZeroBullets > maxTimeOnZeroBullets)
+            {
+                bulletsLeft = 6;
+                timeOnZeroBullets = 0.0f;
+            }
+
+
+
+            // Recording
 
             if (_rec == Recording.Recording)
             {
@@ -206,26 +234,7 @@ namespace Revvolvver
 
             if (FlxG.gamepads.isButtonDown(Buttons.RightStick, controller, out pi))
             {
-                _history = new List<float[]>();
-
-                string x = FlxU.loadFromDevice(controller.ToString() + "PlayerData.txt");
-
-                string[] y = x.Split('\n');
-
-                foreach (var item in y)
-                {
-                    string[] item1 = item.Split(',');
-
-                    //Console.WriteLine(float.Parse(item1[0]) + " + " + float.Parse(item1[1]) + " + " + float.Parse(item1[2]) + " + " + float.Parse(item1[3]));
-
-                    if (item1.Length == 4)
-
-                        _history.Add(new float[] { float.Parse(item1[0]), float.Parse(item1[1]), float.Parse(item1[2]), float.Parse(item1[3]) });
-                }
-
-
-                _rec = Recording.Playback;
-                frameCount = 0;
+                startPlayingBack();
 
 
             }
@@ -291,8 +300,12 @@ namespace Revvolvver
                         ((_rec == Recording.Playback || _rec == Recording.Reverse) && shootForPlayback))
                 {
 
-                    if (bulletsLeft <= 0) return;
+                    if (bulletsLeft <= 0)
+                    {
+                        FlxG.play(SndClick, 0.25f);
 
+                        return;
+                    }
                     int bXVel = 0;
                     int bYVel = 0;
                     int bX = (int)x;
@@ -321,6 +334,7 @@ namespace Revvolvver
                     ((BulletMulti)(_bullets[_curBullet])).shoot(bX, bY, bXVel, bYVel, color);
                     ((BulletMulti)(_bullets[_curBullet])).firedFromPlayer = controller.ToString();
                     ((BulletMulti)(_bullets[_curBullet])).bulletNumber = bulletsLeft;
+                    FlxG.play(SndGun1, 0.25f);
 
 
                     int notchToRender = 6 - bulletsLeft;
@@ -343,6 +357,7 @@ namespace Revvolvver
                     //Console.WriteLine((FlxG._game.hud.hudGroup.members.Count));
 
                     (FlxG._game.hud.hudGroup.members[notchToRender] as FlxSprite).play("missed");
+                    (FlxG._game.hud.hudGroup.members[notchToRender] as FlxSprite).debugName = "missed";
 
                     bulletsLeft--;
 
@@ -372,6 +387,32 @@ namespace Revvolvver
                 dead = false;
 
             }
+        }
+
+        public void startPlayingBack()
+        {
+            _history = new List<float[]>();
+
+            string x = FlxU.loadFromDevice(controller.ToString() + "PlayerData.txt");
+
+            string[] y = x.Split('\n');
+
+            foreach (var item in y)
+            {
+                string[] item1 = item.Split(',');
+
+                //Console.WriteLine(float.Parse(item1[0]) + " + " + float.Parse(item1[1]) + " + " + float.Parse(item1[2]) + " + " + float.Parse(item1[3]));
+
+                if (item1.Length == 4)
+
+                    _history.Add(new float[] { float.Parse(item1[0]), float.Parse(item1[1]), float.Parse(item1[2]), float.Parse(item1[3]) });
+            }
+
+
+            _rec = Recording.Playback;
+            frameCount = 0;
+
+
         }
 
         override public void hitBottom(FlxObject Contact, float Velocity)
