@@ -103,6 +103,7 @@ namespace Revvolvver
 
             _player1 = new PlayerMulti(Convert.ToInt32(actorsAttrs[0]["x"]), Convert.ToInt32(actorsAttrs[0]["y"]), _bullets.members, _littleGibs);
             _player1.controller = PlayerIndex.One;
+            _player1.controllerAsInt = 1;
             _player1.color = p1Color;
 
             FlxG._game.hud.p1HudText.scale = 3;
@@ -112,6 +113,7 @@ namespace Revvolvver
 
             _player2 = new PlayerMulti(Convert.ToInt32(actorsAttrs[1]["x"]), Convert.ToInt32(actorsAttrs[1]["y"]), _bullets.members, _littleGibs);
             _player2.controller = PlayerIndex.Two;
+            _player2.controllerAsInt = 2;
             _player2.color = p2Color;
 
             FlxG._game.hud.p2HudText.scale = 3;
@@ -120,6 +122,7 @@ namespace Revvolvver
 
             _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs);
             _player3.controller = PlayerIndex.Three;
+            _player3.controllerAsInt = 3;
             _player3.color = p3Color;
 
             FlxG._game.hud.p3HudText.scale = 3;
@@ -130,6 +133,7 @@ namespace Revvolvver
             
             _player4 = new PlayerMulti(Convert.ToInt32(actorsAttrs[3]["x"]), Convert.ToInt32(actorsAttrs[3]["y"]), _bullets.members, _littleGibs);
             _player4.controller = PlayerIndex.Four;
+            _player4.controllerAsInt = 4;
             _player4.color = p4Color;
 
             FlxG._game.hud.p4HudText.scale = 3;
@@ -491,11 +495,15 @@ namespace Revvolvver
         {
             if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color && !((PlayerMulti)(e.Object2)).dead)
             {
-
+                /*
                 if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.One && FlxG.scores[0]>0) FlxG.scores[0]--;
                 else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Two && FlxG.scores[1] > 0) FlxG.scores[1]--;
                 else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Three && FlxG.scores[2] > 0) FlxG.scores[2]--;
                 else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Four && FlxG.scores[3] > 0) FlxG.scores[3]--;
+                */
+
+                FlxG.gamepads.vibrate(((PlayerMulti)(e.Object2)).controllerAsInt , 1.0f, 0.6f, 0.6f);
+
 
                 if (((BulletMulti)(e.Object1)).color == p1Color) FlxG.scores[0]++;
                 else if (((BulletMulti)(e.Object1)).color == p2Color) FlxG.scores[1]++;

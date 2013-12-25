@@ -126,6 +126,13 @@ namespace Revvolvver
 
                 FlxG.play(SndClick, 0.5f);
 
+                //FlxG.gamepads.vibrate(clickCount, 1.0f, 0.5f, 0.5f);
+
+
+                //GamePad.SetVibration(PlayerIndex.One, (float)(clickCount)/10, 0);
+
+                //GamePad.SetVibration(PlayerIndex.One, 0, (float)(clickCount) / 10);
+
                 //SndFlxClick.proximity(clickCount * 10, 20, null, 30.0f, false);
 
                 //SndFlxClick.play();
@@ -133,9 +140,15 @@ namespace Revvolvver
 
                 clickCount++;
             }
+            if (frameCount % 15 == 11 && clickCount < 10)
+            {
+                //GamePad.SetVibration(PlayerIndex.One, 0, 0);
+            }
 
             if (frameCount > 160)
             {
+                //GamePad.SetVibration(PlayerIndex.One, 0, 0);
+
                 if (FlxU.random() < 0.015f)
                 {
                     flower.visible = true;
@@ -148,15 +161,20 @@ namespace Revvolvver
                 }
             }
 
-            //X + C were pressed, fade out and change to play state
-            if (((FlxG.keys.isKeyDown(Keys.X, FlxG.controllingPlayer, out pi) && FlxG.keys.isKeyDown(Keys.C, FlxG.controllingPlayer, out pi))
-                || (FlxG.gamepads.isNewButtonPress(Buttons.Start, FlxG.controllingPlayer, out pi))))
+
+            if (clickCount > 160)
             {
-                _ok2 = true;
-                //FlxG.play(SndHit2);
-                FlxG.flash.start(new Color(0xd8, 0xeb, 0xa2), 0.5f, null, false);
-                FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
+                if (((FlxG.keys.isKeyDown(Keys.X, FlxG.controllingPlayer, out pi) && FlxG.keys.isKeyDown(Keys.C, FlxG.controllingPlayer, out pi))
+                    || (FlxG.gamepads.isNewButtonPress(Buttons.Start, FlxG.controllingPlayer, out pi))))
+                {
+                    _ok2 = true;
+                    //FlxG.play(SndHit2);
+                    FlxG.flash.start(new Color(0xd8, 0xeb, 0xa2), 0.5f, null, false);
+                    FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
+                }
             }
+
+
             if (FlxG.gamepads.isNewButtonPress(Buttons.Back, FlxG.controllingPlayer, out pi))
             {
                 FlxG.Game.Exit();
@@ -170,49 +188,54 @@ namespace Revvolvver
                 FlxG.state = new FourChambers.GameSelectionMenuState();
                 return;
             }
-            if (FlxG.keys.justPressed(Keys.D1) || FlxG.keys.justPressed(Keys.F1) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.One, out pi))
-            {
-                // VOICE OVER: "One Player";
 
-                FlxG.play(SndGun1);
-                _gibs.start(true, 5);
-                Revvolvver_Globals.PLAYERS = 1;
-                //FlxG.state = new PlayStateMulti();
-                FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
-                return;
-            }
-            if (FlxG.keys.justPressed(Keys.D2) || FlxG.keys.justPressed(Keys.F2) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Two, out pi))
-            {
-                // VOICE OVER: "Two Players";
-                
-                FlxG.play(SndGun1);
-                _gibs.start(true, 5);
-                Revvolvver_Globals.PLAYERS = 2;
-                //FlxG.state = new PlayStateMulti();
-                FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
-                return;
-            }
-            if (FlxG.keys.justPressed(Keys.D3) || FlxG.keys.justPressed(Keys.F3) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Three, out pi))
-            {
-                // VOICE OVER: "Three Players";
 
-                FlxG.play(SndGun1);
-                _gibs.start(true, 5);
-                Revvolvver_Globals.PLAYERS = 3;
-                //FlxG.state = new PlayStateMulti();
-                FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
-                return;
-            }
-            if (FlxG.keys.justPressed(Keys.D4) || FlxG.keys.justPressed(Keys.F4) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Four, out pi))
+            if (clickCount > 9)
             {
-                // VOICE OVER: "Maximum Four Players";
+                if (FlxG.keys.justPressed(Keys.D1) || FlxG.keys.justPressed(Keys.F1) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.One, out pi))
+                {
+                    // VOICE OVER: "One Player";
 
-                FlxG.play(SndGun1);
-                _gibs.start(true, 5);
-                Revvolvver_Globals.PLAYERS = 4;
-                //FlxG.state = new PlayStateMulti();
-                FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
-                return;
+                    FlxG.play(SndGun1);
+                    _gibs.start(true, 5);
+                    Revvolvver_Globals.PLAYERS = 1;
+                    //FlxG.state = new PlayStateMulti();
+                    FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
+                    return;
+                }
+                if (FlxG.keys.justPressed(Keys.D2) || FlxG.keys.justPressed(Keys.F2) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Two, out pi))
+                {
+                    // VOICE OVER: "Two Players";
+
+                    FlxG.play(SndGun1);
+                    _gibs.start(true, 5);
+                    Revvolvver_Globals.PLAYERS = 2;
+                    //FlxG.state = new PlayStateMulti();
+                    FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
+                    return;
+                }
+                if (FlxG.keys.justPressed(Keys.D3) || FlxG.keys.justPressed(Keys.F3) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Three, out pi))
+                {
+                    // VOICE OVER: "Three Players";
+
+                    FlxG.play(SndGun1);
+                    _gibs.start(true, 5);
+                    Revvolvver_Globals.PLAYERS = 3;
+                    //FlxG.state = new PlayStateMulti();
+                    FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
+                    return;
+                }
+                if (FlxG.keys.justPressed(Keys.D4) || FlxG.keys.justPressed(Keys.F4) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Four, out pi))
+                {
+                    // VOICE OVER: "Maximum Four Players";
+
+                    FlxG.play(SndGun1);
+                    _gibs.start(true, 5);
+                    Revvolvver_Globals.PLAYERS = 4;
+                    //FlxG.state = new PlayStateMulti();
+                    FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
+                    return;
+                }
             }
 
 

@@ -30,6 +30,7 @@ namespace Revvolvver
         private FlxEmitter _gibs;
 
         public PlayerIndex? controller;
+        public int controllerAsInt;
 
         private const int BULLETS_PER_REVOLVER = 6;
 

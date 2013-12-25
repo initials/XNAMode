@@ -24,7 +24,7 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-
+using System;
 namespace org.flixel
 {
     /// <summary>
@@ -32,6 +32,13 @@ namespace org.flixel
     /// </summary>
     public class FlxGamepad
     {
+        public float[] m_Time;
+        public float[] m_Ratio;
+        public float[] m_CurrTime;
+        public float[] m_LeftMotor;
+        public float[] m_RightMotor;
+
+
         private PlayerIndex pi;
 
         /*==============================================
@@ -71,7 +78,41 @@ namespace org.flixel
             _lastGamepad = new GamePadState[MaxInputs];
 
             GamePadWasConnected = new bool[MaxInputs];
+
+
+        //            public float[] m_Time;
+        //public float[] m_Ratio;
+        //public float[] m_CurrTime;
+        //public float[] m_LeftMotor;
+        //public float[] m_RightMotor;
+
+
+            m_Time = new float[MaxInputs-1];
+            m_Ratio = new float[MaxInputs - 1];
+            m_CurrTime = new float[MaxInputs - 1];
+            m_LeftMotor = new float[MaxInputs - 1];
+            m_RightMotor = new float[MaxInputs - 1];
+
+
         }
+
+        public void vibrate(int Player, float Time, float LeftMotor, float RightMotor)
+        {
+            //FlxG.log("Vibrating");
+
+            if (Player > MaxInputs-1 || Player < 1)
+            {
+                return;
+            }
+
+
+            Console.WriteLine(Player);
+
+            m_LeftMotor[Player - 1] = LeftMotor;
+            m_RightMotor[Player - 1] = RightMotor;
+            m_CurrTime[Player - 1] = m_Time[Player - 1] = Time;
+        }  
+
 
         /*==============================================
         * 
@@ -96,7 +137,28 @@ namespace org.flixel
                 if (_curGamepad[i].IsConnected)
                 {
                     GamePadWasConnected[i] = true;
+
+                    m_CurrTime[i] -= FlxG.elapsed;
+                    m_Ratio[i] = m_CurrTime[i] / m_Time[i];
+
+
+                    //FlxG.log("Vibrating " + i.ToString() + " " + m_LeftMotor.ToString() );
+                    if (m_CurrTime[i] <= 0)
+                    {
+                        GamePad.SetVibration((PlayerIndex)i, 0, 0);
+                    }
+                    else
+                    {
+                        GamePad.SetVibration((PlayerIndex)i, m_LeftMotor[i] * m_Ratio[i], m_RightMotor[i] * m_Ratio[i]);
+                    }
+
                 }
+
+                //Console.WriteLine(i);
+
+
+
+
             }
         }
 
