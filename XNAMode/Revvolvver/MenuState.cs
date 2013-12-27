@@ -31,6 +31,8 @@ namespace Revvolvver
         private const string SndGun1 = "Revvolvver/sfx/gunshot1";
         private const string SndGun2 = "Revvolvver/sfx/gunshot2";
 
+        private const string Music = "Revvolvver/sfx/asong";
+
         private FlxSound SndFlxClick;
 
         private FlxSprite flower;
@@ -65,6 +67,7 @@ namespace Revvolvver
             add(_tileMap);
 
 
+            FlxG.playMusic(Music, 0.75f);
 
 
             FlxG.hideHud();
