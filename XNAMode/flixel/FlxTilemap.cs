@@ -168,7 +168,15 @@ namespace org.flixel
 
         public int indexOffset;
 
+        /// <summary>
+        /// color will tint the entire tilemap
+        /// </summary>
         public Color color;
+
+        /// <summary>
+        /// Rainbow will make the whole map go rainbow.
+        /// </summary>
+        public bool rainbow = false;
 
         /// <summary>
         /// The tilemap constructor just initializes some basic variables.
@@ -393,10 +401,16 @@ namespace org.flixel
                     {
                         // Render the color too;
 
+                        if (rainbow)
+                        {
+                            color = new Color(FlxU.random(0.5,1), FlxU.random(0.5,1), FlxU.random(0.5,1));
+                        }
+
                         spriteBatch.Draw(_tileBitmap,
                             new Rectangle((ix * _tileWidth) + (int)Math.Floor(FlxG.scroll.X * scrollFactor.X), (iy * _tileHeight) + (int)Math.Floor(FlxG.scroll.Y * scrollFactor.Y), _tileWidth, _tileHeight),
                             _rects[iy * widthInTiles + ix],
                             color);
+                        
                         if (FlxG.showBounds && boundingBoxOverride==true)
                         {
                             spriteBatch.Draw(FlxG.XnaSheet,

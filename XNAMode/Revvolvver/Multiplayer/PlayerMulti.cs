@@ -245,17 +245,17 @@ namespace Revvolvver
 
                 //MOVEMENT
                 acceleration.X = 0;
-                if (FlxG.keys.LEFT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, controller, out pi))
+                if ((FlxG.keys.LEFT && controller== PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, controller, out pi))
                 {
                     facing = Flx2DFacing.Left;
                     acceleration.X -= drag.X;
                 }
-                else if (FlxG.keys.RIGHT || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, controller, out pi))
+                else if ((FlxG.keys.RIGHT && controller== PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, controller, out pi))
                 {
                     facing = Flx2DFacing.Right;
                     acceleration.X += drag.X;
                 }
-                if ((FlxG.keys.justPressed(Keys.X) || FlxG.gamepads.isNewButtonPress(Buttons.A, controller, out pi))
+                if (((FlxG.keys.justPressed(Keys.X) && controller== PlayerIndex.One) || FlxG.gamepads.isNewButtonPress(Buttons.A, controller, out pi))
                     && velocity.Y == 0)
                 {
                     velocity.Y = -_jumpPower;
@@ -265,8 +265,8 @@ namespace Revvolvver
                 //AIMING
                 _up = false;
                 _down = false;
-                if (FlxG.keys.UP || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, controller, out pi)) _up = true;
-                else if ((FlxG.keys.DOWN || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, controller, out pi)) && velocity.Y != 0) _down = true;
+                if ((FlxG.keys.UP  && controller== PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, controller, out pi)) _up = true;
+                else if (((FlxG.keys.DOWN && controller== PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, controller, out pi)) && velocity.Y != 0) _down = true;
 
                 //ANIMATION
                 if (velocity.Y != 0)
@@ -296,7 +296,7 @@ namespace Revvolvver
                 }
 
                 //SHOOTING
-                if (!flickering() && (FlxG.keys.justPressed(Keys.C) ||
+                if (!flickering() && ((FlxG.keys.justPressed(Keys.C)  && controller== PlayerIndex.One) ||
                         FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi)) ||
                         ((_rec == Recording.Playback || _rec == Recording.Reverse) && shootForPlayback))
                 {

@@ -230,7 +230,7 @@ namespace Revvolvver
             _objects.add(_littleGibs);
             _objects.add(_bigGibs);
 
-            //FlxG.playMusic(SndMode);
+            FlxG.playMusic("Revvolvver/sfx/fullHeavyMetalJacket");
             FlxG.flash.start(new Color(0x13, 0x1c, 0x1b), 0.5f, null, false);
             _fading = false;
 
@@ -339,7 +339,11 @@ namespace Revvolvver
             FlxG.setHudText(3, "P3: " + FlxG.scores[2].ToString());
             FlxG.setHudText(4, "P4: " + FlxG.scores[3].ToString());
 
+            if (FourChambers_Globals.cheatString == "playerhater")
+            {
+                FlxG.scores[0] = 100;
 
+            }
             PlayerIndex pi;
 
             int os = FlxG.score;
@@ -359,6 +363,9 @@ namespace Revvolvver
             FlxU.overlap(_bullets, _players, hitPlayer);
             FlxU.overlap(_bullets, _bullets, hitBullet);
 
+
+            // THIS IS WHERE IT USED TO DESTROY TILES
+            /*
             foreach (BulletMulti item in _bullets.members)
             {
                 if (item.exploding == true)
@@ -373,7 +380,7 @@ namespace Revvolvver
 
                 }
             }
-
+            */
 
 
             //Toggle the bounding box visibility
