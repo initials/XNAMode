@@ -252,7 +252,11 @@ namespace Revvolvver
             for (i = 0; i < 24; i++)
             {
                 int xp = 0;
-                int yp = FlxG.height * 2 - 120;
+                
+                //TITLE SAFE
+                //int yp = FlxG.height * 2 - 120;
+
+                int yp = FlxG.height * 2 - 40;
                 int xo = 180;
                 
 
