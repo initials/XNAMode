@@ -56,7 +56,7 @@ namespace Revvolvver
                 if ((_timer > 0.35) && ((_timer > 10) || FlxG.keys.justPressed(Keys.X) || FlxG.keys.justPressed(Keys.C) || FlxG.gamepads.isNewButtonPress(Buttons.Start) || FlxG.gamepads.isNewButtonPress(Buttons.A)))
                 {
                     _fading = true;
-                    FlxG.play(SndMenu);
+                    //cccccccccccccccccccccccccccccccccccFlxG.play(SndMenu);
                     FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 2, onPlay, false);
                 }
             }

@@ -138,6 +138,7 @@ namespace org.flixel
                 {
                     GamePadWasConnected[i] = true;
 
+                    /*
                     m_CurrTime[i] -= FlxG.elapsed;
                     m_Ratio[i] = m_CurrTime[i] / m_Time[i];
 
@@ -151,6 +152,7 @@ namespace org.flixel
                     {
                         GamePad.SetVibration((PlayerIndex)i, m_LeftMotor[i] * m_Ratio[i], m_RightMotor[i] * m_Ratio[i]);
                     }
+                    */
 
                 }
 
