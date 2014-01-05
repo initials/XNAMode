@@ -30,6 +30,15 @@ namespace Revvolvver
         private const string SndClick = "Revvolvver/sfx/gunclick";
         private const string SndGun1 = "Revvolvver/sfx/gunshot1";
         private const string SndGun2 = "Revvolvver/sfx/gunshot2";
+        private const string SndChord1 = "Revvolvver/sfx/chord_01";
+        private const string SndChord2 = "Revvolvver/sfx/chord_02";
+        private const string SndChord3 = "Revvolvver/sfx/chord_03";
+        private const string SndChord4 = "Revvolvver/sfx/chord_04";
+        private const string SndChord5 = "Revvolvver/sfx/chord_05";
+        private const string SndChord6 = "Revvolvver/sfx/chord_06";
+        private const string SndChord7 = "Revvolvver/sfx/chord_07";
+
+        private string[] Snds;
 
         private const string Music = "Revvolvver/sfx/asong";
 
@@ -38,6 +47,7 @@ namespace Revvolvver
         private FlxSprite flower;
 
         private FlxText playersText;
+        private FlxText playersTextx;
 
         //#if !WINDOWS_PHONE
         //        FlxSave save;
@@ -46,6 +56,12 @@ namespace Revvolvver
 
         override public void create()
         {
+            Snds = new string[8] { SndClick, SndChord1, SndChord2, SndChord3, SndChord4, SndChord5, SndChord6, SndChord7};
+            
+            FlxG.playMusic(Music, 1.0f);
+
+            if (FlxG.music.playing)
+                FlxG.music.stop();
 
             FlxG.backColor = new Color(0xdb, 0xd8, 0xac);
 
@@ -70,7 +86,7 @@ namespace Revvolvver
             add(_tileMap);
 
 
-            FlxG.playMusic(Music, 1.0f);
+            
 
 
             FlxG.hideHud();
@@ -114,13 +130,16 @@ namespace Revvolvver
 
 
             //n
-            FlxText playersTextx = new FlxText(0, FlxG.height / 2 + 100, FlxG.width, "Press 1, 2, 3 or 4 for more players.\nPress Start or Enter to begin");
+            playersTextx = new FlxText(0, FlxG.height / 2 + 100, FlxG.width, "Press 1, 2, 3 or 4 for more players.\nPress Start or Enter to begin");
             playersTextx.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Center, new Color(0xff, 0x6e, 0x55));
             playersTextx.shadow = new Color(0xff, 0x6e, 0x55);
             playersTextx.scale = 1; // size = 32
             playersTextx.color = new Color(0xff, 0x6e, 0x55);
             playersTextx.antialiasing = false;
             add(playersTextx);
+
+            playersText.visible = false;
+            playersTextx.visible = false;
 
             Revvolvver_Globals.PLAYERS = 1;
 
@@ -149,8 +168,11 @@ namespace Revvolvver
             {
                 letters.members[clickCount].angle = 0;
                 // play a sound;
+                int snd= (int)FlxU.random(1,8);
 
-                FlxG.play(SndClick, 0.2f);
+                FlxG.play(Snds[snd], 0.95f);
+
+                //Console.WriteLine(snd);
 
                 //FlxG.gamepads.vibrate(clickCount, 1.0f, 0.5f, 0.5f);
 
@@ -169,11 +191,23 @@ namespace Revvolvver
             if (frameCount % 15 == 11 && clickCount < 10)
             {
                 //GamePad.SetVibration(PlayerIndex.One, 0, 0);
+
             }
 
             if (frameCount > 160)
             {
                 //GamePad.SetVibration(PlayerIndex.One, 0, 0);
+
+                if (frameCount == 161)
+                {
+                    playersText.visible = true;
+                    playersTextx.visible = true;
+
+                    FlxG.playMusic(Music, 1.0f);
+                }
+                
+
+
 
                 if (FlxU.random() < 0.015f)
                 {
@@ -211,12 +245,12 @@ namespace Revvolvver
             // exit.
             if (FlxG.keys.justPressed(Keys.Escape))
             {
-                FlxG.state = new FourChambers.GameSelectionMenuState();
+                //FlxG.state = new FourChambers.GameSelectionMenuState();
                 return;
             }
 
 
-            if (clickCount > 9)
+            if (clickCount > 2)
             {
                 if (FlxG.keys.justPressed(Keys.D1) || FlxG.keys.justPressed(Keys.F1) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.One, out pi))
                 {
@@ -281,6 +315,8 @@ namespace Revvolvver
 
         private void onFade(object sender, FlxEffectCompletedEvent e)
         {
+            FlxG.level = (int)FlxU.random(1,9.9);
+
             FlxG.state = new PlayStateMulti();
             //FlxG.state = new PlayStateTiles();
         }

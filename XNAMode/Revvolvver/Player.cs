@@ -181,7 +181,7 @@ namespace Revvolvver
 				return;
 			//FlxG.play(SndHurt);
 			flicker(1.3f);
-			if(FlxG.score > 1000) FlxG.score -= 1000;
+			
 			if(velocity.X > 0)
 				velocity.X = -maxVelocity.X;
 			else

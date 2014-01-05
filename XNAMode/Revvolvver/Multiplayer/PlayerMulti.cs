@@ -20,7 +20,7 @@ namespace Revvolvver
         //private const string SndHurt = "Mode/hurt";
         //private const string SndJam = "Mode/jam";
 
-        private int _jumpPower;
+        private float _jumpPower = -180.0f;
         private List<FlxObject> _bullets;
         private int _curBullet;
         private int _bulletVel;
@@ -51,18 +51,35 @@ namespace Revvolvver
         /// [2] - shooting?
         /// [3] - facing 
         /// </summary>
-        private List<float[]> _history = new List<float[]>();
+        private List<bool[]> _history = new List<bool[]>();
         //private bool _playback;
         public int frameCount;
 
         private Recording _rec = Recording.None;
+
+        /// <summary>
+        /// holds the amount of time character has been jumping.
+        /// </summary>
+        private float _jump = 0.0f;
+
+        private float _jumpInitialPower = -140.0f;
+
+        private float _jumpMaxTime = 0.25f;
+
+        private float _jumpInitialTime = 0.065f;
+        /// <summary>
+        /// How many frames have passed since the character left the ground.
+        /// </summary>
+        public float framesSinceLeftGround;
+        public int runSpeed = 120;
 
         public enum Recording
         {
             None = 0,
             Recording = 1,
             Playback = 2,
-            Reverse = 3
+            Reverse = 3,
+            RecordingController = 4
         }
 
 
@@ -88,10 +105,15 @@ namespace Revvolvver
             //basic player physics
             int runSpeed = 80;
             drag.X = runSpeed * 8;
-            acceleration.Y = 420;
-            _jumpPower = 205;
+            drag.Y = runSpeed * 8;
+
+            acceleration.Y = 840;
             maxVelocity.X = runSpeed;
-            maxVelocity.Y = _jumpPower;
+            maxVelocity.Y = 1000;
+
+
+
+
 
             //animations
             addAnimation("idle", new int[] { 0 });
@@ -119,6 +141,16 @@ namespace Revvolvver
         {
             PlayerIndex pi;
 
+            if (onFloor)
+            {
+                framesSinceLeftGround = 0;
+            }
+            else
+            {
+                framesSinceLeftGround++;
+            }
+
+
             if (bulletsLeft <= 0)
             {
 
@@ -136,29 +168,28 @@ namespace Revvolvver
                 timeOnZeroBullets = 0.0f;
             }
 
+            // Running pushes walk speed higher.
+            if (FlxG.gamepads.isButtonDown(Buttons.RightTrigger, controller, out pi))
+            {
+                
+                maxVelocity.X = runSpeed * 2;
+                
+            }
+            else
+            {
+                maxVelocity.X = runSpeed;
 
+            }
 
             // Recording
 
             if (_rec == Recording.Recording)
             {
-                if (FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi))
-                {
-                    _history.Add(new float[] { x, y, 1, (int)facing });
-                }
-                else
-                {
-                    _history.Add(new float[] { x, y, 0, (int)facing });
-                }
+
 
             }
             else if (_rec == Recording.Playback && !dead)
             {
-                x = _history[frameCount][0];
-                y = _history[frameCount][1];
-
-                if (_history[frameCount][3] == 1) facing = Flx2DFacing.Right;
-                else if (_history[frameCount][3] == 0) facing = Flx2DFacing.Left;
 
                 frameCount++;
 
@@ -173,11 +204,6 @@ namespace Revvolvver
             }
             else if (_rec == Recording.Reverse && !dead)
             {
-                x = _history[frameCount][0];
-                y = _history[frameCount][1];
-
-                if (_history[frameCount][3] == 0) facing = Flx2DFacing.Right;
-                else if (_history[frameCount][3] == 1) facing = Flx2DFacing.Left;
 
                 frameCount--;
 
@@ -189,9 +215,71 @@ namespace Revvolvver
 
                 }
             }
+            
+                
+            if (_rec == Recording.RecordingController)
+            {
+
+                _history.Add(new bool[] { (FlxG.gamepads.isButtonDown(Buttons.DPadUp, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp)), //0
+                    (FlxG.gamepads.isButtonDown(Buttons.DPadRight, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight)), //1
+                    (FlxG.gamepads.isButtonDown(Buttons.DPadDown, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown)), //2
+                    (FlxG.gamepads.isButtonDown(Buttons.DPadLeft, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft)), //3
+                    FlxG.gamepads.isButtonDown(Buttons.A, controller, out pi), //4
+                    FlxG.gamepads.isButtonDown(Buttons.B, controller, out pi), //5
+                    FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi), //6
+                    FlxG.gamepads.isButtonDown(Buttons.Y, controller, out pi), //7
+                    FlxG.gamepads.isButtonDown(Buttons.LeftShoulder, controller, out pi), //8
+                    FlxG.gamepads.isButtonDown(Buttons.LeftTrigger, controller, out pi), //9
+                    FlxG.gamepads.isButtonDown(Buttons.RightShoulder, controller, out pi), //10
+                    FlxG.gamepads.isButtonDown(Buttons.RightTrigger, controller, out pi) //11
+                });
+
+
+            }
+
+
+            //if (_rec == Recording.Playback && controllerAsInt==2)
+            //{
+            //    Console.Write(frameCount);
+            //    for (int i = 0; i < 12; i++)
+            //    {
+            //        Console.Write(_history[frameCount][i] + "-" + i.ToString() + ",");
+            //    }
+            //    Console.WriteLine("_");
+            //}
+
+            if (FlxG.gamepads.isNewButtonPress(Buttons.LeftShoulder, controller, out pi))
+            {
+                if (_rec == Recording.None)
+                {
+                    _rec = Recording.RecordingController;
+                    _history = null;
+                    _history = new List<bool[]>();
+
+                }
+                else if (_rec == Recording.RecordingController)
+                {
+                    string _historyString = "";
+                    foreach (var item in _history)
+                    {
+                        _historyString += item[0].ToString() + "," + item[1].ToString() + "," + item[2].ToString() + "," + item[3].ToString() + "," + 
+                            item[4].ToString() + "," + item[5].ToString() + "," + item[6].ToString() + "," + item[7].ToString() + "," + 
+                            item[8].ToString() + "," + item[9].ToString() + "," + item[10].ToString() + "," + item[11].ToString() + "\n" ;
+                    }
+
+                    FlxU.saveToDevice(_historyString, ("Level" + FlxG.level.ToString() + "_" + controller.ToString() + "PlayerData.txt"));
+
+                    _rec = Recording.Playback;
+
+                    startPlayingBack();
+                    
+                }
+
+            }
+
 
             //if (controller == PlayerIndex.One) Console.WriteLine("_recMode: " + _rec.ToString() + " frameCount: " + frameCount);
-
+            /*
             if (FlxG.gamepads.isNewButtonPress(Buttons.LeftShoulder, controller, out pi))
             {
                 if (_rec == Recording.None)
@@ -236,37 +324,68 @@ namespace Revvolvver
             if (FlxG.gamepads.isButtonDown(Buttons.RightStick, controller, out pi))
             {
                 startPlayingBack();
-
-
             }
+             */ 
 
             if (!dead)
             {
 
                 //MOVEMENT
                 acceleration.X = 0;
-                if ((FlxG.keys.LEFT && controller== PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, controller, out pi))
+                if (( (_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][3] == true) || (FlxG.keys.LEFT && controller == PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadLeft, controller, out pi))
                 {
                     facing = Flx2DFacing.Left;
                     acceleration.X -= drag.X;
                 }
-                else if ((FlxG.keys.RIGHT && controller== PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, controller, out pi))
+                else if (( (_rec == Recording.Playback || _rec == Recording.Reverse ) && _history[frameCount][1] == true) || (FlxG.keys.RIGHT && controller == PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadRight, controller, out pi))
                 {
                     facing = Flx2DFacing.Right;
                     acceleration.X += drag.X;
                 }
-                if (((FlxG.keys.justPressed(Keys.X) && controller== PlayerIndex.One) || FlxG.gamepads.isNewButtonPress(Buttons.A, controller, out pi))
-                    && velocity.Y == 0)
+
+                //Jumping.
+
+                //if ( ((FlxG.keys.justPressed(Keys.X) &&
+                //    controller == PlayerIndex.One) || FlxG.gamepads.isNewButtonPress(Buttons.A, controller, out pi) || ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][4] == true))
+                //    && velocity.Y == 0)
+                //{
+                //    velocity.Y = -205;
+                //    //FlxG.play(SndJump);
+                //}
+
+                // Mario style jumping
+
+                if ((_jump >= 0 || framesSinceLeftGround < 10 ) && (FlxG.gamepads.isButtonDown(Buttons.A, controller, out pi)))
                 {
-                    velocity.Y = -_jumpPower;
-                    //FlxG.play(SndJump);
+                    
+                    if (framesSinceLeftGround < 10)
+                    {
+                        _jump = 0.0f;
+                        framesSinceLeftGround = 10000;
+                    }
+
+                    _jump += FlxG.elapsed;
+                    if (_jump > _jumpMaxTime) _jump = -1;
                 }
+                else
+                {
+                    _jump = -1;
+                }
+                if (_jump > 0)
+                {
+                    if (_jump < _jumpInitialTime)
+                        velocity.Y = _jumpInitialPower;
+                    else
+                        velocity.Y = _jumpPower;
+                }
+
+
 
                 //AIMING
                 _up = false;
                 _down = false;
-                if ((FlxG.keys.UP  && controller== PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, controller, out pi)) _up = true;
-                else if (((FlxG.keys.DOWN && controller== PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, controller, out pi)) && velocity.Y != 0) _down = true;
+                if (((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][0] == true) || (FlxG.keys.UP && controller == PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadUp, controller, out pi)) _up = true;
+                else if (((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][2] == true) || ((FlxG.keys.DOWN && controller == PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadDown, controller, out pi)) && velocity.Y != 0) _down = true;
 
                 //ANIMATION
                 if (velocity.Y != 0)
@@ -286,19 +405,19 @@ namespace Revvolvver
                     else play("run");
                 }
 
-                bool shootForPlayback = false;
-                if (_rec == Recording.Playback || _rec == Recording.Reverse)
-                {
-                    if (_history[frameCount] != null)
-                    {
-                        if (_history[frameCount][2] == 1) shootForPlayback = true;
-                    }
-                }
-
+                //bool shootForPlayback = false;
+                //if (_rec == Recording.Playback || _rec == Recording.Reverse)
+                //{
+                //    if (_history[frameCount] != null)
+                //    {
+                //        if (_history[frameCount][2] == true) shootForPlayback = true;
+                //    }
+                //}
+                // ((_rec == Recording.Playback || _rec == Recording.Reverse) && shootForPlayback == true)
                 //SHOOTING
-                if (!flickering() && ((FlxG.keys.justPressed(Keys.C)  && controller== PlayerIndex.One) ||
-                        FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi)) ||
-                        ((_rec == Recording.Playback || _rec == Recording.Reverse) && shootForPlayback))
+                if (!flickering() && (((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][6] == true) ||  (FlxG.keys.justPressed(Keys.C) && controller == PlayerIndex.One) ||
+                        FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi)) 
+                        )
                 {
 
                     if (bulletsLeft <= 0)
@@ -392,9 +511,11 @@ namespace Revvolvver
 
         public void startPlayingBack()
         {
-            _history = new List<float[]>();
+            _history = new List<bool[]>();
 
-            string x = FlxU.loadFromDevice(controller.ToString() + "PlayerData.txt");
+            //string x = FlxU.loadFromDevice("Level" + FlxG.level.ToString() + "_" + controller.ToString() + "PlayerData.txt");
+            string x = FlxU.loadFromDevice("Level1_" + controller.ToString() + "PlayerData.txt");
+
 
             string[] y = x.Split('\n');
 
@@ -404,11 +525,20 @@ namespace Revvolvver
 
                 //Console.WriteLine(float.Parse(item1[0]) + " + " + float.Parse(item1[1]) + " + " + float.Parse(item1[2]) + " + " + float.Parse(item1[3]));
 
-                if (item1.Length == 4)
+                //Console.WriteLine(item1.Length + " -- " + item1[1] + " -- " + bool.Parse(item1[1]));
 
-                    _history.Add(new float[] { float.Parse(item1[0]), float.Parse(item1[1]), float.Parse(item1[2]), float.Parse(item1[3]) });
+
+                if (item1.Length == 12)
+
+                    _history.Add(new bool[] { bool.Parse(item1[0]), bool.Parse(item1[1]), bool.Parse(item1[2]), bool.Parse(item1[3]), 
+                    bool.Parse(item1[4]), bool.Parse(item1[5]), bool.Parse(item1[6]), bool.Parse(item1[7]),
+                    bool.Parse(item1[8]), bool.Parse(item1[9]), bool.Parse(item1[10]), bool.Parse(item1[11])});
+
+                //Console.WriteLine(item1.Length + " -- " + item1[1]);
+
             }
 
+            Console.WriteLine(_history.Count);
 
             _rec = Recording.Playback;
             frameCount = 0;
@@ -418,6 +548,8 @@ namespace Revvolvver
 
         override public void hitBottom(FlxObject Contact, float Velocity)
         {
+            _jump = 0.0f;
+
             //if (velocity.Y > 50)
             //    FlxG.play(SndLand);
             onFloor = true;

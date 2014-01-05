@@ -155,5 +155,8 @@ namespace org.flixel
         /// </summary>
         public static int PLAYERS = 0;
 
+        public static int WINNING_SCORE = 10;
+
+
     }
 }

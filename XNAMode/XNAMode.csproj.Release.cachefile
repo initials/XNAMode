@@ -140,6 +140,13 @@ Content\Revvolvver\sfx\spx.xnb
 Content\Revvolvver\flower.xnb
 Content\Revvolvver\sfx\asong.xnb
 Content\Revvolvver\sfx\fullHeavyMetalJacket.xnb
+Content\Revvolvver\sfx\chord_01.xnb
+Content\Revvolvver\sfx\chord_02.xnb
+Content\Revvolvver\sfx\chord_03.xnb
+Content\Revvolvver\sfx\chord_04.xnb
+Content\Revvolvver\sfx\chord_05.xnb
+Content\Revvolvver\sfx\chord_06.xnb
+Content\Revvolvver\sfx\chord_07.xnb
 Content\mode\button.wma
 Mode\ModeProject.oep
 Revvolvver\level1.oel
@@ -219,6 +226,13 @@ ogmoLevels\levelTutorial.oel
 ogmoLevels\ProjectFile.oep
 ogmoLevels\PathTesting.oel
 Revvolvver\level2.oel
+Revvolvver\level3.oel
+Revvolvver\level4.oel
+Revvolvver\level5.oel
+Revvolvver\level6.oel
+Revvolvver\level7.oel
+Revvolvver\level8.oel
+Revvolvver\level9.oel
 Revvolvver\RevvolvverProject.oep
 Revvolvver\titlescreen.oel
 Lemonade\levels\bgmilita.tmx

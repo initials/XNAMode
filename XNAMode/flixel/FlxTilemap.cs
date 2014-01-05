@@ -403,7 +403,7 @@ namespace org.flixel
 
                         if (rainbow)
                         {
-                            color = new Color(FlxU.random(0.5,1), FlxU.random(0.5,1), FlxU.random(0.5,1));
+                            color = new Color(FlxU.random(0.15,1), FlxU.random(0.15,1), FlxU.random(0.15,1));
                         }
 
                         spriteBatch.Draw(_tileBitmap,

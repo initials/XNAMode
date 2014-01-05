@@ -64,7 +64,7 @@ namespace Revvolvver
 
         private void onPlay(object Sender, FlxEffectCompletedEvent e)
         {
-            FlxG.state = new PlayStateMulti();
+            FlxG.state = new MenuState();
         }
     }
 }

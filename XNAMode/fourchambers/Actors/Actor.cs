@@ -123,10 +123,7 @@ namespace FourChambers
 
 
 
-        /// <summary>
-        /// How many frames have passed since the character left the ground.
-        /// </summary>
-        public float framesSinceLeftGround;
+
 
         /// <summary>
         /// Deadzone for the joystick on this character.
@@ -174,6 +171,13 @@ namespace FourChambers
         private float _jumpMaxTime = 0.25f;
 
         private float _jumpInitialTime = 0.065f;
+
+        /// <summary>
+        /// How many frames have passed since the character left the ground.
+        /// </summary>
+        public float framesSinceLeftGround;
+
+
 
         public float ladderPosX = 0;
 

@@ -65,6 +65,18 @@ namespace Revvolvver
         private  Color p3Color = Color.MediumSlateBlue;
         private  Color p4Color = Color.Cyan;
 
+        private const string SndClick = "Revvolvver/sfx/gunclick";
+        private const string SndGun1 = "Revvolvver/sfx/gunshot1";
+        private const string SndGun2 = "Revvolvver/sfx/gunshot2";
+        private const string SndChord1 = "Revvolvver/sfx/chord_01";
+        private const string SndChord2 = "Revvolvver/sfx/chord_02";
+        private const string SndChord3 = "Revvolvver/sfx/chord_03";
+        private const string SndChord4 = "Revvolvver/sfx/chord_04";
+        private const string SndChord5 = "Revvolvver/sfx/chord_05";
+        private const string SndChord6 = "Revvolvver/sfx/chord_06";
+        private const string SndChord7 = "Revvolvver/sfx/chord_07";
+
+
         override public void create()
         {
             base.create();
@@ -97,7 +109,7 @@ namespace Revvolvver
             _players = new FlxGroup();
 
             List<Dictionary<string, string>> actorsAttrs = new List<Dictionary<string, string>>();
-            actorsAttrs = FlxXMLReader.readNodesFromOelFile("Revvolvver/level2.oel", "level/Items");
+            actorsAttrs = FlxXMLReader.readNodesFromOelFile("Revvolvver/level" + FlxG.level.ToString() + ".oel", "level/Items");
 
 
 
@@ -173,13 +185,24 @@ namespace Revvolvver
             hudElements = new FlxGroup();
 
             attrs = new Dictionary<string, string>();
-            attrs = FlxXMLReader.readAttributesFromOelFile("Revvolvver/level2.oel", "level/NonDestructable");
+            attrs = FlxXMLReader.readAttributesFromOelFile("Revvolvver/level" + FlxG.level.ToString() + ".oel", "level/NonDestructable");
             _tileMap = new FlxTilemap();
             _tileMap.auto = FlxTilemap.STRING;
             _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 8, 8);
             _tileMap.collideMin = 1;
             _tileMap.collideMax = 21;
             _blocks.add(_tileMap);
+
+            attrs = new Dictionary<string, string>();
+            attrs = FlxXMLReader.readAttributesFromOelFile("Revvolvver/level" + FlxG.level.ToString() + ".oel", "level/Destructable");
+            _tileMap = new FlxTilemap();
+            _tileMap.auto = FlxTilemap.STRING;
+            _tileMap.loadMap(attrs["Destructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 8, 8);
+            _tileMap.collideMin = 1;
+            _tileMap.collideMax = 21;
+            _blocks.add(_tileMap);
+            _tileMap.color = new Color(FlxU.random(0, 1), FlxU.random(0, 1), FlxU.random(0, 1));
+
 
 
 
@@ -327,7 +350,10 @@ namespace Revvolvver
 
             //FlxG._game.hud.hudGroup.add(hudElements);
 
-
+            FlxG.setHudText(1, "P1: 0" );
+            FlxG.setHudText(2, "P2: 0" );
+            FlxG.setHudText(3, "P3: 0" );
+            FlxG.setHudText(4, "P4: 0" );
 
 
         }
@@ -343,14 +369,17 @@ namespace Revvolvver
             FlxG.setHudText(3, "P3: " + FlxG.scores[2].ToString());
             FlxG.setHudText(4, "P4: " + FlxG.scores[3].ToString());
 
-            if (FourChambers_Globals.cheatString == "playerhater")
+            if (FourChambers_Globals.cheatString == "winegar")
             {
-                FlxG.scores[0] = 100;
+                FourChambers_Globals.cheatString = " ";
+
+                FlxG.scores[0] = Revvolvver_Globals.WINNING_SCORE - 1;
 
             }
-            PlayerIndex pi;
 
-            int os = FlxG.score;
+            //PlayerIndex pi;
+
+            //int os = FlxG.score;
 
             //FlxU.overlap(_bullets, _tileMap, destroyTileAt);
 
@@ -369,7 +398,7 @@ namespace Revvolvver
 
 
             // THIS IS WHERE IT USED TO DESTROY TILES
-            /*
+            
             foreach (BulletMulti item in _bullets.members)
             {
                 if (item.exploding == true)
@@ -380,11 +409,9 @@ namespace Revvolvver
                         _tileMap.setTile((int)(item.x + 9) / 8, (int)(item.y + item.tileOffsetY) / 8, 0, true);
                     }
 
-                    //_tileMap.set
-
                 }
             }
-            */
+            
 
 
             //Toggle the bounding box visibility
@@ -399,8 +426,32 @@ namespace Revvolvver
                 FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
             }
 
-            int hi = 12;
-            if ((FlxG.scores[0] > hi) || (FlxG.scores[1] > hi) || (FlxG.scores[2] > hi) || (FlxG.scores[3] > hi))
+            if (FlxG.scores[0] == Revvolvver_Globals.WINNING_SCORE-1) 
+            {
+                if (_tileMap.color != p1Color) FlxG.play(SndChord7);
+                _tileMap.color = p1Color;
+                
+            }
+            if (FlxG.scores[1] == Revvolvver_Globals.WINNING_SCORE - 1)
+            {
+                if (_tileMap.color != p2Color) FlxG.play(SndChord6);
+                _tileMap.color = p2Color;
+
+            }
+            if (FlxG.scores[2] == Revvolvver_Globals.WINNING_SCORE - 1)
+            {
+                if (_tileMap.color != p3Color) FlxG.play(SndChord5);
+                _tileMap.color = p3Color;
+
+            }
+            if (FlxG.scores[3] == Revvolvver_Globals.WINNING_SCORE - 1)
+            {
+                if (_tileMap.color != p4Color) FlxG.play(SndChord4);
+                _tileMap.color = p4Color;
+
+            }
+            
+            if ((FlxG.scores[0] >= Revvolvver_Globals.WINNING_SCORE) || (FlxG.scores[1] >= Revvolvver_Globals.WINNING_SCORE) || (FlxG.scores[2] >= Revvolvver_Globals.WINNING_SCORE) || (FlxG.scores[3] >= Revvolvver_Globals.WINNING_SCORE))
             {
                 FlxG.fade.start(new Color(0xd8, 0xeb, 0xa2), 3, onVictory, false);
             }
