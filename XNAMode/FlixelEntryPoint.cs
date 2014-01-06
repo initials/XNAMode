@@ -19,6 +19,14 @@ namespace XNAMode
     /// Flixel enters here.
     /// <code>FlxFactory</code> refers to it as the "masterclass".
     /// </summary>
+    /// 
+    /*
+     * AUTO ZIP CODE.
+     * 
+        cd C:\Users\Shane\Documents\Visual Studio 2010\Projects\XNAMode\Mode\Mode\bin\x86
+        C:\_Files\programs\7-Zip\7z a -tzip Mode.zip Release\ -r
+    */
+ 
     public class FlixelEntryPoint : FlxGame
     {
         public FlixelEntryPoint(Game game)
