@@ -2,7 +2,15 @@ XNAMode
 =======----
 -----------
 
-Fork of X-Flixel, the Mode port that went with it, and a new game.
+Fork of X-Flixel, the Mode port that went with it, and other games.
+
+Other games included in the huge pack are:
+
+Mode
+Revvolvver - 4 player death match.
+Super Lemonade Factory - 1% complete
+Four Chambers
+
 
 To Do
 - [ ] Install 7zip for quick zips/uploads.
