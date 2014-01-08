@@ -153,7 +153,7 @@ namespace org.flixel
         /// <summary>
         /// Number of players for multiplayer.
         /// </summary>
-        public static int PLAYERS = 0;
+        public static int PLAYERS = 1;
 
         public static int WINNING_SCORE = 10;
 

@@ -120,7 +120,7 @@ namespace Revvolvver
             //SndFlxClick = new FlxSound();
 
 
-            playersText = new FlxText(0, FlxG.height/2, FlxG.width, "Players: 1");
+            playersText = new FlxText(0, FlxG.height/2, FlxG.width, "");
             playersText.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Center, new Color(0xff, 0x6e, 0x55));
             playersText.shadow = new Color(0xff, 0x6e, 0x55);
             playersText.scale = 1; // size = 32
@@ -128,8 +128,11 @@ namespace Revvolvver
             playersText.antialiasing = false;
             add(playersText);
 
-
-            //n
+            if (Revvolvver_Globals.PLAYERS==1) playersText.text = "Players: 1";
+            else if (Revvolvver_Globals.PLAYERS == 2) playersText.text = "Players: 2";
+            else if (Revvolvver_Globals.PLAYERS == 3) playersText.text = "Players: 3";
+            else if (Revvolvver_Globals.PLAYERS == 4) playersText.text = "Players: 4";
+            
             playersTextx = new FlxText(0, FlxG.height / 2 + 100, FlxG.width, "Press 1, 2, 3 or 4 for more players.\nPress Start or Enter to begin");
             playersTextx.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Center, new Color(0xff, 0x6e, 0x55));
             playersTextx.shadow = new Color(0xff, 0x6e, 0x55);
@@ -140,8 +143,6 @@ namespace Revvolvver
 
             playersText.visible = false;
             playersTextx.visible = false;
-
-            Revvolvver_Globals.PLAYERS = 1;
 
         }
 
@@ -164,41 +165,25 @@ namespace Revvolvver
 
             frameCount++;
 
-            if (frameCount % 15 == 0 && clickCount < 10)
+            if (frameCount % 5 == 0 && clickCount < 10)
             {
                 letters.members[clickCount].angle = 0;
+
                 // play a sound;
                 int snd= (int)FlxU.random(1,8);
-
                 FlxG.play(Snds[snd], 0.95f);
-
-                //Console.WriteLine(snd);
-
-                //FlxG.gamepads.vibrate(clickCount, 1.0f, 0.5f, 0.5f);
-
-
-                //GamePad.SetVibration(PlayerIndex.One, (float)(clickCount)/10, 0);
-
-                //GamePad.SetVibration(PlayerIndex.One, 0, (float)(clickCount) / 10);
-
-                //SndFlxClick.proximity(clickCount * 10, 20, null, 30.0f, false);
-
-                //SndFlxClick.play();
-
-
                 clickCount++;
             }
-            if (frameCount % 15 == 11 && clickCount < 10)
+            if (frameCount % 5 == 11 && clickCount < 10)
             {
                 //GamePad.SetVibration(PlayerIndex.One, 0, 0);
-
             }
 
-            if (frameCount > 160)
+            if (frameCount > 70)
             {
                 //GamePad.SetVibration(PlayerIndex.One, 0, 0);
 
-                if (frameCount == 161)
+                if (frameCount == 71)
                 {
                     playersText.visible = true;
                     playersTextx.visible = true;
@@ -206,9 +191,6 @@ namespace Revvolvver
                     FlxG.playMusic(Music, 1.0f);
                 }
                 
-
-
-
                 if (FlxU.random() < 0.015f)
                 {
                     flower.visible = true;
