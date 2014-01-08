@@ -13,9 +13,9 @@ Four Chambers
 
 
 To Do
-- [ ] Install 7zip for quick zips/uploads.
+- [x] Install 7zip for quick zips/uploads.
 - [ ] Make proper icons
-- [ ] Make favicon.ico for website.
+- [x] Make favicon.ico for website.
 - [ ] Create 99 levels.
 - [ ] Choose a random level at levelbegin, and pop it out of an array of each level.
 - [ ] Create a golden run.
@@ -28,3 +28,5 @@ To Do
 - [ ] Remove EventsLayer from ogmo project.
 - [ ] Add combos to the HUD.
 - [ ] Check cheats.
+- [ ] Revvolvver - switch to 16x16 tiles.
+- [ ] Clear cheat string after using.

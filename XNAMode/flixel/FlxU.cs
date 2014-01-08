@@ -1195,9 +1195,5 @@ namespace org.flixel
             return value1.Substring(0, value1.Length - 1);
 
         }
-
-
-
-
     }
 }
