@@ -297,7 +297,8 @@ namespace Revvolvver
 
         private void onFade(object sender, FlxEffectCompletedEvent e)
         {
-            FlxG.level = (int)FlxU.random(1,9.9);
+            //FlxG.level = (int)FlxU.random(1,9.9);
+            FlxG.level = 1;
 
             FlxG.state = new PlayStateMulti();
             //FlxG.state = new PlayStateTiles();

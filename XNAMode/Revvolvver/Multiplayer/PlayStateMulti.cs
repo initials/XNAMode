@@ -188,7 +188,7 @@ namespace Revvolvver
             attrs = FlxXMLReader.readAttributesFromOelFile("Revvolvver/level" + FlxG.level.ToString() + ".oel", "level/NonDestructable");
             _tileMap = new FlxTilemap();
             _tileMap.auto = FlxTilemap.STRING;
-            _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 8, 8);
+            _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]),16, 16);
             _tileMap.collideMin = 1;
             _tileMap.collideMax = 21;
             _blocks.add(_tileMap);
@@ -197,11 +197,11 @@ namespace Revvolvver
             attrs = FlxXMLReader.readAttributesFromOelFile("Revvolvver/level" + FlxG.level.ToString() + ".oel", "level/Destructable");
             _tileMap = new FlxTilemap();
             _tileMap.auto = FlxTilemap.STRING;
-            _tileMap.loadMap(attrs["Destructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 8, 8);
+            _tileMap.loadMap(attrs["Destructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]),16, 16);
             _tileMap.collideMin = 1;
             _tileMap.collideMax = 21;
             _blocks.add(_tileMap);
-            _tileMap.color = new Color(FlxU.random(0, 1), FlxU.random(0, 1), FlxU.random(0, 1));
+            //_tileMap.color = new Color(FlxU.random(0, 1), FlxU.random(0, 1), FlxU.random(0, 1));
 
 
 
@@ -403,10 +403,10 @@ namespace Revvolvver
             {
                 if (item.exploding == true)
                 {
-                    if (_tileMap.getTile((int)(item.x + item.tileOffsetX) / 8, (int)(item.y + item.tileOffsetY) / 8) != 0)
+                    if (_tileMap.getTile((int)(item.x + item.tileOffsetX) / 16, (int)(item.y + item.tileOffsetY) / 16) != 0)
                     {
-                        _tileMap.setTile((int)(item.x + item.tileOffsetX) / 8, (int)(item.y + item.tileOffsetY) / 8, 0, true);
-                        _tileMap.setTile((int)(item.x + 9) / 8, (int)(item.y + item.tileOffsetY) / 8, 0, true);
+                        _tileMap.setTile((int)(item.x + item.tileOffsetX) / 16, (int)(item.y + item.tileOffsetY) / 16, 0, true);
+                        _tileMap.setTile((int)(item.x + 9) / 16, (int)(item.y + item.tileOffsetY) / 16, 0, true);
                     }
 
                 }

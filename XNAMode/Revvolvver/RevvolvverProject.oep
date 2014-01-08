@@ -5,8 +5,8 @@
   <BackgroundColor A="255" R="231" G="225" B="179" />
   <GridColor A="255" R="255" G="128" B="64" />
   <LevelDefaultSize>
-    <Width>320</Width>
-    <Height>184</Height>
+    <Width>640</Width>
+    <Height>400</Height>
   </LevelDefaultSize>
   <LevelMinimumSize>
     <Width>320</Width>
@@ -16,7 +16,7 @@
     <Width>6400</Width>
     <Height>4800</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\User\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\Revvolvver\RevvolvverProject.oep</Filename>
+  <Filename>C:\Users\Shane\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\Revvolvver\RevvolvverProject.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -29,8 +29,8 @@
     <LayerDefinition xsi:type="TileLayerDefinition">
       <Name>NonDestructable</Name>
       <Grid>
-        <Width>8</Width>
-        <Height>8</Height>
+        <Width>16</Width>
+        <Height>16</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -41,8 +41,8 @@
     <LayerDefinition xsi:type="TileLayerDefinition">
       <Name>Destructable</Name>
       <Grid>
-        <Width>8</Width>
-        <Height>8</Height>
+        <Width>16</Width>
+        <Height>16</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -53,8 +53,8 @@
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>Items</Name>
       <Grid>
-        <Width>8</Width>
-        <Height>8</Height>
+        <Width>16</Width>
+        <Height>16</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -67,8 +67,17 @@
       <Name>tech_tiles</Name>
       <FilePath>..\..\XNAModeContent\Revvolvver\tech_tiles.png</FilePath>
       <TileSize>
-        <Width>8</Width>
-        <Height>8</Height>
+        <Width>16</Width>
+        <Height>16</Height>
+      </TileSize>
+      <TileSep>0</TileSep>
+    </Tileset>
+    <Tileset>
+      <Name>square_tiles_16x16</Name>
+      <FilePath>..\..\XNAModeContent\Revvolvver\square_tiles_16x16.png</FilePath>
+      <TileSize>
+        <Width>16</Width>
+        <Height>16</Height>
       </TileSize>
       <TileSep>0</TileSep>
     </Tileset>
@@ -76,8 +85,8 @@
   <EntityDefinitions>
     <EntityDefinition Name="player" Limit="4" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>8</Width>
-        <Height>8</Height>
+        <Width>16</Width>
+        <Height>16</Height>
       </Size>
       <Origin>
         <X>0</X>
