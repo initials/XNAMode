@@ -355,7 +355,7 @@ namespace Revvolvver
 
                 // Mario style jumping
 
-                if ((_jump >= 0 || framesSinceLeftGround < 10 ) && (FlxG.gamepads.isButtonDown(Buttons.A, controller, out pi)))
+                if ((_jump >= 0 || framesSinceLeftGround < 10 ) && (FlxG.keys.X || FlxG.gamepads.isButtonDown(Buttons.A, controller, out pi)))
                 {
                     
                     if (framesSinceLeftGround < 10)
