@@ -718,7 +718,9 @@ namespace org.flixel
                 step = _tileHeight;
             step /= Resolution;
             int dx = EndX - StartX;
+            //if (dx == 0) return false;
             int dy = EndY - StartY;
+            //if (dy == 0) return false;
             float distance = (float)Math.Sqrt(dx * dx + dy * dy);
             int steps = (int)FlxU.ceil(distance / step);
             int stepX = dx / steps;
@@ -728,6 +730,8 @@ namespace org.flixel
             int tx;
             int ty;
             int i = 0;
+            
+
             while (i < steps)
             {
                 curX += stepX;
@@ -741,7 +745,7 @@ namespace org.flixel
 
                 tx = curX / _tileWidth;
                 ty = curY / _tileHeight;
-                if (_data[ty * widthInTiles + tx] >= collideMin && _data[ty * widthInTiles + tx] >= collideMax)
+                if (_data[ty * widthInTiles + tx] >= collideMin && _data[ty * widthInTiles + tx] <= collideMax)
                 {
                     //Some basic helper stuff
                     tx *= _tileWidth;
@@ -760,6 +764,7 @@ namespace org.flixel
                     ry = ly + stepY * ((q - lx) / stepX);
                     if ((ry > ty) && (ry < ty + _tileHeight))
                     {
+                        Console.WriteLine("X Result: {0} {1}", rx, ry);
                         Result.X = rx;
                         Result.Y = ry;
                         return true;
@@ -773,6 +778,7 @@ namespace org.flixel
                     ry = q;
                     if ((rx > tx) && (rx < tx + _tileWidth))
                     {
+                        Console.WriteLine("Y Result: {0} {1}", rx, ry);
                         Result.X = rx;
                         Result.Y = ry;
                         return true;

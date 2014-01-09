@@ -275,7 +275,7 @@ namespace FourChambers
 
             if (FourChambers_Globals.seraphineHasBeenKilled == false)
             {
-                if (FlxG.gamepads.isButtonDown(Buttons.Y))
+                if (FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.UP)
                 {
                     velocity.Y = -100;
                     //FlxG.bloom.Visible = true;

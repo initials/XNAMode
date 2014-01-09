@@ -27,7 +27,7 @@ namespace FourChambers
 
         override public void create()
         {
-            FlxG.backColor = Color.Red;
+            FlxG.backColor = Color.DarkGray;
             base.create();
 
             // 32, 4
@@ -129,6 +129,17 @@ namespace FourChambers
             {
                 collider.reset(FlxG.mouse.x, FlxG.mouse.y);
 
+            }
+
+
+
+
+
+            if (FlxG.keys.Y)
+            {
+                Vector2 v = new Vector2();
+                bool red = destructableTilemap.ray(8, 8, (int)collider.x, (int)collider.y, v, 1);
+                Console.WriteLine(red + " {0} {1} -> {2} {3} ", (int)collider.x, (int)collider.y, v.X, v.Y);
             }
 
             base.update();
