@@ -23,18 +23,32 @@ namespace Revvolvver
 
 			_timer = 0;
 			_fading = false;
-            FlxG.flash.start(new Color(0xd1, 0x6e, 0x55));
+            FlxG.flash.start(Color.Black);
+
+
+            FlxSprite bg = new FlxSprite(0, 0);
+            bg.loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/bg"));
+            add(bg);
+
+            
+
+            for (int vv = 0; vv < 10; vv++)
+            {
+                Cloud c = new Cloud((int)FlxU.random(-550, 400), (int)FlxU.random(0, 100));
+                add(c);
+            }
+
 			
 			//Gibs emitted upon death
-			FlxEmitter gibs = new FlxEmitter(0,0);
-			gibs.setSize(FlxG.width,FlxG.height);
-			gibs.setXSpeed(-100,100);
-			gibs.setYSpeed(-100,100);
-			gibs.setRotation(-360,360);
-			gibs.gravity = 80;
-			gibs.createSprites(ImgGibs,800);
-			add(gibs);
-			gibs.start(false,0.005f);
+            //FlxEmitter gibs = new FlxEmitter(0,0);
+            //gibs.setSize(FlxG.width,FlxG.height);
+            //gibs.setXSpeed(-100,100);
+            //gibs.setYSpeed(-100,100);
+            //gibs.setRotation(-360,360);
+            //gibs.gravity = 80;
+            //gibs.createSprites(ImgGibs,800);
+            //add(gibs);
+            //gibs.start(false,0.005f);
 
             add((new FlxText(0, FlxG.height / 3, FlxG.width, "VICTORY\nSCORE: " + FlxG.score)).setFormat(null, 3, new Color(0xd1, 0x6e, 0x55), FlxJustification.Center, Color.Black));
 		}

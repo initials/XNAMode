@@ -82,6 +82,8 @@ namespace Revvolvver
 
         private float bloomTimer = 0.0f;
 
+        private float regenTimer = 0.0f;
+
 
         override public void create()
         {
@@ -89,7 +91,7 @@ namespace Revvolvver
             
             _caveMap = new FlxTilemap();
 
-            FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[0];
+            FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[6];
 
             FlxSprite bg = new FlxSprite(0, 0);
             bg.loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/bg"));
@@ -125,6 +127,7 @@ namespace Revvolvver
             for (int vv = 0; vv < 10; vv++)
             {
                 Cloud c = new Cloud((int)FlxU.random(-50, 400), (int)FlxU.random(0, 100));
+                c.velocity.X = FlxU.random(50, 150);
                 _cloudsGrp.add(c);
             }
 
@@ -262,6 +265,19 @@ namespace Revvolvver
             _players.add(_player4);
             add(_players);
 
+            FlxSprite movingPlatform = new FlxSprite(320, 0, FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform"));
+            _blocks.add(movingPlatform);
+            FlxPath batpath = new FlxPath(null);
+            batpath.addPointsUsingStrings("320,320,320,320,", "112,284,284,112,");
+            movingPlatform.followPath(batpath, 80, FlxObject.PATH_YOYO, false);
+            movingPlatform.pathCornering = 4.0f;
+            movingPlatform.solid = true;
+            movingPlatform.@fixed = true;
+            //movingPlatform.startFollowingPath();
+
+
+
+
             //FlxG.follow(_player1, 2.5f);
             //FlxG.followAdjust(0.5f, 0.0f);
             //FlxG.followBounds(0, 0, FlxG.width, FlxG.height);
@@ -289,7 +305,7 @@ namespace Revvolvver
             _objects.add(_bigGibs);
 
             FlxG.playMusic("Revvolvver/sfx/fullHeavyMetalJacket");
-            FlxG.flash.start(new Color(0x13, 0x1c, 0x1b), 0.5f, null, false);
+            FlxG.flash.start(Color.Black, 0.5f, null, false);
             _fading = false;
 
             FlxG.scores.Clear();
@@ -398,13 +414,35 @@ namespace Revvolvver
         {
             FlxCaveGeneratorExt caveExt = new FlxCaveGeneratorExt(40, 30);
             caveExt.numSmoothingIterations = 5;
-            caveExt.initWallRatio = 0.485f;
+            caveExt.initWallRatio = 0.505f;
             
             _caveMap.auto = FlxTilemap.AUTO;
-            string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, null, new int[] { 0, 1, 2, 37, 38 }, null, null);
+            string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20}, new int[] { 15, 25 }, new int[] { 0, 1, 2, 18,19,20,21, 37, 38 });
             string newMap = caveExt.convertMultiArrayStringToString(tiles);
             _caveMap.loadMap(newMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
             _blocks.add(_caveMap);
+
+
+            _caveMap.setTile((int)(_player1.x) / 16, (int)(_player1.y) / 16, 0, true);
+            _caveMap.setTile((int)(_player2.x) / 16, (int)(_player2.y) / 16, 0, true);
+            _caveMap.setTile((int)(_player3.x) / 16, (int)(_player3.y) / 16, 0, true);
+            _caveMap.setTile((int)(_player4.x) / 16, (int)(_player4.y) / 16, 0, true);
+
+            _caveMap.setTile((int)(_player1.x + 16) / 16, (int)(_player1.y) / 16, 0, true);
+            _caveMap.setTile((int)(_player2.x + 16) / 16, (int)(_player2.y) / 16, 0, true);
+            _caveMap.setTile((int)(_player3.x + 16) / 16, (int)(_player3.y) / 16, 0, true);
+            _caveMap.setTile((int)(_player4.x + 16) / 16, (int)(_player4.y) / 16, 0, true);
+
+            _caveMap.setTile((int)(_player1.x - 16) / 16, (int)(_player1.y) / 16, 0, true);
+            _caveMap.setTile((int)(_player2.x - 16) / 16, (int)(_player2.y) / 16, 0, true);
+            _caveMap.setTile((int)(_player3.x - 16) / 16, (int)(_player3.y) / 16, 0, true);
+            _caveMap.setTile((int)(_player4.x - 16) / 16, (int)(_player4.y) / 16, 0, true);
+
+            _caveMap.setTile((int)(_player1.x) / 16, (int)(_player1.y - 16) / 16, 0, true);
+            _caveMap.setTile((int)(_player2.x) / 16, (int)(_player2.y - 16) / 16, 0, true);
+            _caveMap.setTile((int)(_player3.x) / 16, (int)(_player3.y - 16) / 16, 0, true);
+            _caveMap.setTile((int)(_player4.x) / 16, (int)(_player4.y - 16) / 16, 0, true);
+
 
 
         }
@@ -417,6 +455,20 @@ namespace Revvolvver
                 FlxG.bloom.Visible = false;
             }
 
+            regenTimer += FlxG.elapsed;
+
+            if (regenTimer > 5.0f)
+            {
+                _caveMap.rainbow = true;
+            }
+
+            if (regenTimer > 6.2f)
+            {
+                _caveMap.rainbow = false;
+                regen();
+                regenTimer = 0;
+                _caveMap.color = Color.White;
+            }
 
             FlxG.setHudText(1, "P1: " + FlxG.scores[0].ToString());
             FlxG.setHudText(2, "P2: " + FlxG.scores[1].ToString());
@@ -491,8 +543,8 @@ namespace Revvolvver
             {
                 _fading = true;
                 //FlxG.play(SndHit2);
-                FlxG.flash.start(new Color(0xd8, 0xeb, 0xa2), 0.5f, null, false);
-                FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
+                FlxG.flash.start(Color.White, 0.5f, null, false);
+                FlxG.fade.start(Color.White, 1f, onFade, false);
             }
 
             if (FlxG.scores[0] == Revvolvver_Globals.WINNING_SCORE-1) 
@@ -522,7 +574,7 @@ namespace Revvolvver
             
             if ((FlxG.scores[0] >= Revvolvver_Globals.WINNING_SCORE) || (FlxG.scores[1] >= Revvolvver_Globals.WINNING_SCORE) || (FlxG.scores[2] >= Revvolvver_Globals.WINNING_SCORE) || (FlxG.scores[3] >= Revvolvver_Globals.WINNING_SCORE))
             {
-                FlxG.fade.start(new Color(0xd8, 0xeb, 0xa2), 3, onVictory, false);
+                FlxG.fade.start(Color.White, 3, onVictory, false);
             }
 
             adjustHUD();
@@ -686,7 +738,7 @@ namespace Revvolvver
                 ((PlayerMulti)(e.Object2)).velocity.Y = -250;
                 FlxG.quake.start(0.005f, 0.5f);
 
-                FlxG.bloom.Visible = true;
+                FlxG.bloom.Visible = false;
 
                 bloomTimer = 0.0f;
 
@@ -719,6 +771,7 @@ namespace Revvolvver
 
         private void onFade(object sender, FlxEffectCompletedEvent e)
         {
+            FlxG.bloom.Visible = true;
             //FlxG.music.stop();
             FlxG.state = new MenuState();
         }

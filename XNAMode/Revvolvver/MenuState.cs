@@ -80,13 +80,19 @@ namespace Revvolvver
             attrs = FlxXMLReader.readAttributesFromOelFile("Revvolvver/titlescreen.oel", "level/NonDestructable");
             FlxTilemap _tileMap = new FlxTilemap();
             _tileMap.auto = FlxTilemap.STRING;
-            _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 8, 8);
+            _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
             _tileMap.collideMin = 1;
             _tileMap.collideMax = 21;
             add(_tileMap);
 
-
-            
+            Dictionary<string, string> attrs2 = new Dictionary<string, string>();
+            attrs2 = FlxXMLReader.readAttributesFromOelFile("Revvolvver/titlescreen.oel", "level/Destructable");
+            FlxTilemap _tileMap2 = new FlxTilemap();
+            _tileMap2.auto = FlxTilemap.STRING;
+            _tileMap2.loadMap(attrs2["Destructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
+            _tileMap2.collideMin = 1;
+            _tileMap2.collideMax = 21;
+            add(_tileMap2);
 
 
             FlxG.hideHud();

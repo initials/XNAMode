@@ -50,5 +50,20 @@
     <player id="1" x="592" y="96" />
     <player id="2" x="32" y="304" />
     <player id="3" x="584" y="304" />
+    <movingPlatform id="4" x="16" y="48">
+      <node x="16" y="112" />
+      <node x="64" y="112" />
+      <node x="64" y="144" />
+      <node x="16" y="144" />
+      <node x="16" y="304" />
+    </movingPlatform>
+    <movingPlatform id="5" x="576" y="48">
+      <node x="576" y="96" />
+      <node x="528" y="96" />
+      <node x="528" y="144" />
+      <node x="576" y="144" />
+      <node x="576" y="304" />
+    </movingPlatform>
+    <movingPlatform id="6" x="64" y="112" />
   </Items>
 </level>

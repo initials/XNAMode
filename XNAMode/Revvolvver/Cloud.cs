@@ -19,7 +19,7 @@ namespace Revvolvver
 
             loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/cloud"), false, false, 90 , 14);
 
-            velocity.X = FlxU.random(50, 150);
+            //velocity.X = FlxU.random(50, 150);
 
 
 
@@ -31,7 +31,7 @@ namespace Revvolvver
         {
 
             if (x > FlxG.width) x = -50;
-
+            if (x < -100) x = FlxG.width - 2 ;
             base.update();
 
         }

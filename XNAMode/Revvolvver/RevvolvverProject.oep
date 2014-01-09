@@ -16,7 +16,7 @@
     <Width>6400</Width>
     <Height>4800</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\User\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\Revvolvver\RevvolvverProject.oep</Filename>
+  <Filename>C:\Users\Shane\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\Revvolvver\RevvolvverProject.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -97,6 +97,21 @@
       </ImageDefinition>
       <ValueDefinitions />
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="movingPlatform" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>48</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\..\XNAModeContent\Revvolvver\movingPlatform.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions />
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Path" Ghost="false" />
     </EntityDefinition>
   </EntityDefinitions>
 </project>
