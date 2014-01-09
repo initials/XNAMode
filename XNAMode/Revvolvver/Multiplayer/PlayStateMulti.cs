@@ -83,6 +83,8 @@ namespace Revvolvver
         override public void create()
         {
             base.create();
+            
+            _caveMap = new FlxTilemap();
 
             FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[0];
 
@@ -115,8 +117,6 @@ namespace Revvolvver
 
             List<Dictionary<string, string>> actorsAttrs = new List<Dictionary<string, string>>();
             actorsAttrs = FlxXMLReader.readNodesFromOelFile("Revvolvver/level" + FlxG.level.ToString() + ".oel", "level/Items");
-
-
 
             _player1 = new PlayerMulti(Convert.ToInt32(actorsAttrs[0]["x"]), Convert.ToInt32(actorsAttrs[0]["y"]), _bullets.members, _littleGibs);
             _player1.controller = PlayerIndex.One;
@@ -380,7 +380,7 @@ namespace Revvolvver
             FlxCaveGeneratorExt caveExt = new FlxCaveGeneratorExt(40, 30);
             caveExt.numSmoothingIterations = 5;
             caveExt.initWallRatio = 0.485f;
-            _caveMap = new FlxTilemap();
+            
             _caveMap.auto = FlxTilemap.AUTO;
             string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, null, new int[] { 0, 1, 2, 37, 38 }, null, null);
             string newMap = caveExt.convertMultiArrayStringToString(tiles);
