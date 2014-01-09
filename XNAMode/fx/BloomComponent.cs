@@ -100,8 +100,8 @@ namespace BloomPostprocess
             // Look up the resolution and format of our main backbuffer.
             PresentationParameters pp = GraphicsDevice.PresentationParameters;
 
-            int width = pp.BackBufferWidth / 4; //unsure of where this 4 comes from.
-            int height = pp.BackBufferHeight / 4;
+            int width = pp.BackBufferWidth / FlxG.zoom; //unsure of where this 4 comes from.
+            int height = pp.BackBufferHeight / FlxG.zoom;
 
             SurfaceFormat format = pp.BackBufferFormat;
 

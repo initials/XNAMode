@@ -77,10 +77,14 @@ namespace Revvolvver
         private const string SndChord6 = "Revvolvver/sfx/chord_06";
         private const string SndChord7 = "Revvolvver/sfx/chord_07";
 
+        private float bloomTimer = 0.0f;
+
 
         override public void create()
         {
             base.create();
+
+            FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[0];
 
             ImgTech = FlxG.Content.Load<Texture2D>("Revvolvver/tech_tiles");
             ImgGibs = FlxG.Content.Load<Texture2D>("Revvolvver/gibs");
@@ -388,6 +392,12 @@ namespace Revvolvver
 
         override public void update()
         {
+            bloomTimer += FlxG.elapsed;
+            if (bloomTimer > 0.5f)
+            {
+                FlxG.bloom.Visible = false;
+            }
+
 
             FlxG.setHudText(1, "P1: " + FlxG.scores[0].ToString());
             FlxG.setHudText(2, "P2: " + FlxG.scores[1].ToString());
@@ -595,6 +605,11 @@ namespace Revvolvver
 
         protected bool hitPlayer(object Sender, FlxSpriteCollisionEvent e)
         {
+            FlxG.bloom.Visible = true;
+
+            bloomTimer = 0.0f;
+
+
             if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color && !((PlayerMulti)(e.Object2)).dead)
             {
                 /*
