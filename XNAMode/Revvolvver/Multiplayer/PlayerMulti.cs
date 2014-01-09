@@ -28,6 +28,8 @@ namespace Revvolvver
         private bool _down;
         private float _restart;
         private FlxEmitter _gibs;
+        public bool shoot = false;
+        public float timeSinceLastShot = 0.0f;
 
         public PlayerIndex? controller;
         public int controllerAsInt;
@@ -133,6 +135,8 @@ namespace Revvolvver
             _gibs = Gibs;
 
             originalPosition = new Vector2(x, y);
+
+            facing = Flx2DFacing.Right;
         }
 
 
@@ -355,7 +359,7 @@ namespace Revvolvver
 
                 // Mario style jumping
 
-                if ((_jump >= 0 || framesSinceLeftGround < 10 ) && (FlxG.keys.X || FlxG.gamepads.isButtonDown(Buttons.A, controller, out pi)))
+                if ((_jump >= 0 || framesSinceLeftGround < 10 ) && ( (FlxG.keys.X && controller==PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.A, controller, out pi)))
                 {
                     
                     if (framesSinceLeftGround < 10)
@@ -415,9 +419,13 @@ namespace Revvolvver
                 //}
                 // ((_rec == Recording.Playback || _rec == Recording.Reverse) && shootForPlayback == true)
                 //SHOOTING
-                if (!flickering() && (((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][6] == true) ||  (FlxG.keys.justPressed(Keys.C) && controller == PlayerIndex.One) ||
-                        FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi)) 
-                        )
+
+
+                // 
+
+                if (!flickering() && ((shoot && timeSinceLastShot > 0.25f) || ((_rec == Recording.Playback || _rec == Recording.Reverse) 
+                    && _history[frameCount][6] == true) ||  (FlxG.keys.justPressed(Keys.C) && controller == PlayerIndex.One) ||
+                        FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi) ) )
                 {
 
                     if (bulletsLeft <= 0)
@@ -489,16 +497,17 @@ namespace Revvolvver
                 }
             }
 
+            
+
             //UPDATE POSITION AND ANIMATION
             base.update();
 
-            //Jammed, can't fire!
-            //if (flickering())
-            //{
-            //    if (FlxG.keys.justPressed(Keys.C) ||
-            //        FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi))
-            //        FlxG.play(SndJam);
-            //}
+            if (shoot) timeSinceLastShot = 0.0f;
+
+            shoot = false;
+
+            timeSinceLastShot += FlxG.elapsed;
+
 
             if (dead && angularVelocity == 0)
             {

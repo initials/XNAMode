@@ -24,6 +24,7 @@ namespace Revvolvver
         protected FlxGroup _decorations;
         protected FlxGroup _bullets;
         protected FlxTilemap _tileMap;
+        protected FlxTilemap _caveMap;
         Dictionary<string, string> attrs;
 
         protected FlxGroup _players;
@@ -204,6 +205,17 @@ namespace Revvolvver
             //_tileMap.color = new Color(FlxU.random(0, 1), FlxU.random(0, 1), FlxU.random(0, 1));
 
 
+            regen();
+
+            //FlxCaveGeneratorExt caveExt = new FlxCaveGeneratorExt(40, 30);
+            //caveExt.numSmoothingIterations = 5;
+            //caveExt.initWallRatio = 0.485f;
+            //FlxTilemap _tileMap2 = new FlxTilemap();
+            //_tileMap2.auto = FlxTilemap.AUTO;
+            //string[,] tiles = caveExt.generateCaveLevel(null,new int[] {21},null,null,null,new int[] {0,1,2,37,38},null,null);              
+            //string newMap = caveExt.convertMultiArrayStringToString(tiles);
+            //_tileMap.loadMap(newMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
+            //_blocks.add(_tileMap2);
 
 
             //Add bots and spawners after we add blocks to the state,
@@ -359,7 +371,20 @@ namespace Revvolvver
         }
 
 
+        public void regen()
+        {
+            FlxCaveGeneratorExt caveExt = new FlxCaveGeneratorExt(40, 30);
+            caveExt.numSmoothingIterations = 5;
+            caveExt.initWallRatio = 0.485f;
+            _caveMap = new FlxTilemap();
+            _caveMap.auto = FlxTilemap.AUTO;
+            string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, null, new int[] { 0, 1, 2, 37, 38 }, null, null);
+            string newMap = caveExt.convertMultiArrayStringToString(tiles);
+            _caveMap.loadMap(newMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
+            _blocks.add(_caveMap);
 
+
+        }
 
         override public void update()
         {
@@ -403,20 +428,35 @@ namespace Revvolvver
             {
                 if (item.exploding == true)
                 {
-                    if (_tileMap.getTile((int)(item.x + item.tileOffsetX) / 16, (int)(item.y + item.tileOffsetY) / 16) != 0)
+                    if (_caveMap.getTile((int)(item.x + item.tileOffsetX) / 16, (int)(item.y + item.tileOffsetY) / 16) != 0)
                     {
-                        _tileMap.setTile((int)(item.x + item.tileOffsetX) / 16, (int)(item.y + item.tileOffsetY) / 16, 0, true);
-                        _tileMap.setTile((int)(item.x + 9) / 16, (int)(item.y + item.tileOffsetY) / 16, 0, true);
+                        _caveMap.setTile((int)(item.x + item.tileOffsetX) / 16, (int)(item.y + item.tileOffsetY) / 16, 0, true);
+                        _caveMap.setTile((int)(item.x + 9) / 16, (int)(item.y + item.tileOffsetY) / 16, 0, true);
                     }
 
                 }
             }
-            
+
+            //// Rays aren't working.
+
+            //Vector2 result = new Vector2();
+            //if (_caveMap.ray((int)_player3.x, (int)_player3.y, (int)_player1.x, (int)_player1.y, result, 1) == false)
+            //{
+            //    Console.WriteLine("Shoot");
+
+            //    if (_player3.timeSinceLastShot > 0.25f)
+            //        _player3.shoot = true;
+
+
+            //}
 
 
             //Toggle the bounding box visibility
-            if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B))
+            if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.B) && FlxG.debug)
                 FlxG.showBounds = !FlxG.showBounds;
+
+            if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.N) && FlxG.debug)
+                regen();
 
             if (FlxG.gamepads.isNewButtonPress(Buttons.Back) || FlxG.keys.ESCAPE )
             {
@@ -534,9 +574,9 @@ namespace Revvolvver
         protected bool destroyTileAt(object Sender, FlxSpriteCollisionEvent e)
         {
 
-            if (_tileMap.getTile((int)e.Object2.x / 8, (int)e.Object2.y / 8) != 0)
+            if (_caveMap.getTile((int)e.Object2.x / 8, (int)e.Object2.y / 8) != 0)
             {
-                _tileMap.setTile((int)e.Object2.x / 8, (int)e.Object2.y / 8, 0, true);
+                _caveMap.setTile((int)e.Object2.x / 8, (int)e.Object2.y / 8, 0, true);
             }
 
             //if (e.Object1 is BulletMulti)

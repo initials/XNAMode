@@ -1188,6 +1188,11 @@ namespace org.flixel
             file.Close();
         }
 
+        /// <summary>
+        /// Loads a text file from the Hard Drive
+        /// </summary>
+        /// <param name="Filename"></param>
+        /// <returns></returns>
         public static string loadFromDevice(string Filename)
         {
             string value1 = File.ReadAllText(Filename);
