@@ -40,9 +40,12 @@ namespace Revvolvver
         protected FlxEmitter _littleGibs;
         protected FlxEmitter _bigGibs;
 
+        protected FlxEmitter _clouds;
+
         //meta groups, to help speed up collisions
         protected FlxGroup _objects;
         protected FlxGroup _enemies;
+        protected FlxGroup _cloudsGrp;
 
         //HUD
         protected FlxText _score;
@@ -88,15 +91,15 @@ namespace Revvolvver
 
             FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[0];
 
+            FlxSprite bg = new FlxSprite(0, 0);
+            bg.loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/bg"));
+            add(bg);
+
             ImgTech = FlxG.Content.Load<Texture2D>("Revvolvver/tech_tiles");
             ImgGibs = FlxG.Content.Load<Texture2D>("Revvolvver/gibs");
             ImgSpawnerGibs = FlxG.Content.Load<Texture2D>("Revvolvver/spawner_gibs");
             ImgNotch = FlxG.Content.Load<Texture2D>("Revvolvver/notch");
 
-            FlxG.mouse.hide();
-            reload = false;
-
-            //get the gibs set up and out of the way
             _littleGibs = new FlxEmitter();
             _littleGibs.delay = 3;
             _littleGibs.setXSpeed(-150, 150);
@@ -108,6 +111,25 @@ namespace Revvolvver
             _bigGibs.setYSpeed(-300, 0);
             _bigGibs.setRotation(-720, -720);
             _bigGibs.createSprites(ImgSpawnerGibs, 50, true, 0.5f, 0.35f);
+
+
+
+
+
+            FlxG.mouse.hide();
+            reload = false;
+
+
+            _cloudsGrp = new FlxGroup();
+
+            for (int vv = 0; vv < 10; vv++)
+            {
+                Cloud c = new Cloud((int)FlxU.random(-50, 400), (int)FlxU.random(0, 100));
+                _cloudsGrp.add(c);
+            }
+
+            add(_cloudsGrp);
+
 
             //level generation needs to know about the spawners (and thusly the bots, players, etc)
             _blocks = new FlxGroup();
@@ -221,13 +243,10 @@ namespace Revvolvver
             //_tileMap.loadMap(newMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
             //_blocks.add(_tileMap2);
 
-
-            //Add bots and spawners after we add blocks to the state,
-            // so that they're drawn on top of the level, and so that
-            // the bots are drawn on top of both the blocks + the spawners.
-            add(_spawners);
             add(_littleGibs);
             add(_bigGibs);
+
+            
             add(_blocks);
             add(_decorations);
             add(_bots);
@@ -605,9 +624,7 @@ namespace Revvolvver
 
         protected bool hitPlayer(object Sender, FlxSpriteCollisionEvent e)
         {
-            FlxG.bloom.Visible = true;
 
-            bloomTimer = 0.0f;
 
 
             if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color && !((PlayerMulti)(e.Object2)).dead)
@@ -669,6 +686,9 @@ namespace Revvolvver
                 ((PlayerMulti)(e.Object2)).velocity.Y = -250;
                 FlxG.quake.start(0.005f, 0.5f);
 
+                FlxG.bloom.Visible = true;
+
+                bloomTimer = 0.0f;
 
                 //e.Object2.x = 10;
                 //e.Object2.y = 10;

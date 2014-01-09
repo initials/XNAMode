@@ -224,7 +224,7 @@ namespace org.flixel
         /// <summary>
         /// Load an image from an embedded graphic file.
         /// </summary>
-        /// <param name="Graphic">The image you want to use.</param>
+        /// <param name="Graphic">The image you want to use. </param>
         /// <returns>This FlxSprite instance (nice for chaining stuff together, if you're into that).</returns>
         public virtual FlxSprite loadGraphic(Texture2D Graphic)
         {

@@ -123,6 +123,7 @@
   <ItemGroup>
     <Compile Include="flixel\SafeArea.cs" />
     <Compile Include="Revvolvver\Bullet.cs" />
+    <Compile Include="Revvolvver\Cloud.cs" />
     <Compile Include="Revvolvver\MenuState.cs" />
     <Compile Include="Revvolvver\Multiplayer\BulletMulti.cs" />
     <Compile Include="Revvolvver\Multiplayer\PlayerMulti.cs" />
