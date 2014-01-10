@@ -366,7 +366,7 @@ namespace FourChambers
             //    attackingMouse = false;
             //}
 
-            if (FlxG.keys.P || FlxG.gamepads.isButtonDown(Buttons.X, FlxG.controllingPlayer, out pi) || FlxG.mouse.justPressedRightButton())
+            if (FlxG.keys.P || FlxG.gamepads.isButtonDown(Buttons.X, FlxG.controllingPlayer, out pi) || FlxG.mouse.pressedRightButton())
             {
                 lastAttack = "melee";
                 attackingMelee = true;

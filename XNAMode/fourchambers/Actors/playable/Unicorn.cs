@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Unicorn : Actor
+    class Unicorn : EnemyActor
     {
 
         public Unicorn(int xPos, int yPos)
@@ -23,7 +23,7 @@ namespace FourChambers
             addAnimation("run", new int[] {2, 3, 4, 5, 6, 7,8,9 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0 }, 12);
-
+            addAnimation("death", new int[] { 10, 11, 12, 13, 14, 14, 14, 14, 14, 14, 13, 14, 11, 12, 13, 14, 14, 14, 14, 14, 14, 13, 14, 15, 15, 14, 14, 15, 15, 14, 14, 15, 15, 14, 14, 15, 14, 15, 14, 15, 14, 15, 14, 15, 16 }, 12, false);
             //bounding box tweaks
             width = 10;
             height = 20;
@@ -32,23 +32,29 @@ namespace FourChambers
 
             //basic player physics
             int runSpeed = 120;
-            drag.X = runSpeed * 4;
-            acceleration.Y = 820;
+            drag.X = 145;
+            acceleration.Y = FourChambers_Globals.GRAVITY;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
-
+            health = 5;
         }
 
         override public void update()
         {
-
-
-
             base.update();
-
         }
 
+        public override void hurt(float Damage)
+        {
+            play("run");
+            
+            if(facing==Flx2DFacing.Right)
+                velocity.X = 3300;
+            else if (facing == Flx2DFacing.Left)
+                velocity.X = -3300;
 
+            base.hurt(Damage);
+        }
     }
 }

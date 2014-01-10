@@ -248,7 +248,7 @@ namespace FourChambers
         {
             Console.WriteLine("Play Game");
 
-            FlxG.level = 1;
+            FlxG.level = 20;
             FlxG.score = 0;
             FlxG.hideHud();
 
@@ -256,7 +256,7 @@ namespace FourChambers
 
             play = null;
 
-            FourChambers_Globals.startGame();
+            //FourChambers_Globals.startGame();
 
 
             FlxG.state = new BasePlayStateFromOel();

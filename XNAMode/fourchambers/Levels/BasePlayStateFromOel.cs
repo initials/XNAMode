@@ -653,7 +653,7 @@ namespace FourChambers
 
             }
 
-            if ((FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.I ) && FourChambers_Globals.seraphineHasBeenKilled == false)
+            if ((FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.W ) && FourChambers_Globals.seraphineHasBeenKilled == false)
             {
                 //Console.WriteLine("SEREAPHINE");
 
@@ -665,7 +665,7 @@ namespace FourChambers
                 seraphine.facing = marksman.facing;
 
             }
-            else if ((FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.I) && FourChambers_Globals.seraphineHasBeenKilled == true)
+            else if ((FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.W) && FourChambers_Globals.seraphineHasBeenKilled == true)
             {
                 
                 imp.x = marksman.x - 30;
@@ -915,6 +915,17 @@ namespace FourChambers
             {
                 e.Object2.hurt(1);
                 e.Object1.hurt(1);
+            }
+
+            if (e.Object1.dead == true && e.Object2.dead == false && 
+                (((FlxG.keys.S&&FlxG.mouse.justPressedRightButton()) 
+                || (FlxG.gamepads.isNewButtonPress(Buttons.X) && (FlxG.gamepads.isButtonDown(Buttons.DPadDown) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown))) )   )
+                
+                )
+            {
+                blood.at(e.Object1);
+
+                blood.start(true, 0, 50);
             }
 
             return true;
@@ -1999,7 +2010,7 @@ namespace FourChambers
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     
-                    unicorn = new Unicorn(x, y);
+                    unicorn = new Unicorn(x, y-4);
                     actors.add(unicorn);
                 }
             }

@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Artist : Actor
+    class Artist : EnemyActor
     {
         public Artist(int xPos, int yPos)
             : base(xPos, yPos)
@@ -34,7 +34,7 @@ namespace FourChambers
             //basic player physics
             int runSpeed = 30;
             drag.X = runSpeed * 4;
-            acceleration.Y = 820;
+            acceleration.Y = FourChambers_Globals.GRAVITY;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 

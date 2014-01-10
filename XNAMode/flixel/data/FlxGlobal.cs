@@ -128,7 +128,7 @@ namespace org.flixel
             else if (Cheat.StartsWith("whatisgame")) FlxG.log("Four Chambers");
             else if (Cheat.StartsWith("liketheangels")) FourChambers_Globals.seraphineHasBeenKilled = false;
             else if (Cheat.StartsWith("bigmoney")) FlxG.score += 20000;
-
+            else if (Cheat.StartsWith("nobugs")) FlxG.debug=false;
             cheatString = Cheat;
 
         }

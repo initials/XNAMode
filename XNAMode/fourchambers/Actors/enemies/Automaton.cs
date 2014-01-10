@@ -50,9 +50,6 @@ namespace FourChambers
 
         override public void update()
         {
-
-
-
             base.update();
         }
 

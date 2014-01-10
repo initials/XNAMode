@@ -34,7 +34,7 @@ namespace FourChambers
 
             if (FlxU.random() < 0.025f)
             {
-                Console.WriteLine("Shooting");
+                //Console.WriteLine("Shooting");
 
                 shoot();
             }

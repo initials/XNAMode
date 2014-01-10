@@ -20,6 +20,8 @@ namespace FourChambers
 
         public bool explodesOnImpact = false;
 
+        protected FlxEmitter _fire;
+
         public Arrow(int xPos, int yPos, FlxSprite exp)
             : base(xPos, yPos)
         {
@@ -50,7 +52,26 @@ namespace FourChambers
             maxVelocity.X = 1000;
             maxVelocity.Y = 1000;
 
+            
+            _fire = new FlxEmitter();
+            _fire.setSize(5, 5);
+            _fire.setRotation();
+            _fire.setXSpeed(-15, 15);
+            _fire.setYSpeed(-15, 15);
+            _fire.gravity = 0;
+            _fire.createSprites(FlxG.Content.Load<Texture2D>("initials/arrowSparkles"), 25, true);
+
+            
+
+
         }
+
+        override public void render(SpriteBatch spriteBatch)
+        {
+            _fire.render(spriteBatch);
+            base.render(spriteBatch);
+        }
+
 
         override public void update()
         {
@@ -74,7 +95,12 @@ namespace FourChambers
             }
 
             if (dead && finished) exists = false;
-            else base.update();
+            else
+            {
+                _fire.at(this);
+                _fire.update();
+                base.update();
+            }
         }
 
         override public void hitSide(FlxObject Contact, float Velocity) 
@@ -85,6 +111,7 @@ namespace FourChambers
                 _ex.y = y - _ex.height / 2;
                 _ex.play("explode", true);
             }
+            _fire.stop();
 
             hasTouched= true;
             kill(); 
@@ -97,7 +124,7 @@ namespace FourChambers
                 _ex.y = y - _ex.height / 2;
                 _ex.play("explode", true);
             }
-
+            _fire.stop();
             hasTouched = true;
             dead = true;
             solid = false;
@@ -111,14 +138,14 @@ namespace FourChambers
                 _ex.y = y - _ex.height / 2;
                 _ex.play("explode", true);
             }
-
+            _fire.stop();
             hasTouched = true;
             kill(); 
         }
         override public void kill()
         {
-            
 
+            _fire.stop();
             visible = false;
 
             if (dead) return;
@@ -135,6 +162,10 @@ namespace FourChambers
 
         public void shoot(int X, int Y, int VelocityX, int VelocityY)
         {
+
+            
+            _fire.start(false, 0.01f, 0);
+
             // Global counter for arrows fired.
             FourChambers_Globals.arrowsFired++;
 

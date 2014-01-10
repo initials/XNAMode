@@ -54,5 +54,10 @@ namespace FourChambers
 
             base.update();
         }
+
+        public override void kill()
+        {
+            //base.kill();
+        }
     }
 }

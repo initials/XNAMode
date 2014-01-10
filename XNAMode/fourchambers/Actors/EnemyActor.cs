@@ -41,7 +41,7 @@ namespace FourChambers
             {
                 facing = Flx2DFacing.Right;
             }
-            else
+            else if (velocity.X < 0)
             {
                 facing = Flx2DFacing.Left;
 
@@ -83,7 +83,13 @@ namespace FourChambers
             velocity.Y = 0;
             dead = true;
 
-            base.kill();
+            //base.kill();
+
+            FlxG.write("Enemy "  + actorName + " is dead");
+
+            flicker(0.25f);
+            velocity.X = 0;
+            acceleration.X = 0;
         }
     }
 }
