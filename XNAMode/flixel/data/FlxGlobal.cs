@@ -78,6 +78,11 @@ namespace org.flixel
         public static bool goldenRun  = false;
 
         /// <summary>
+        /// gif will eliminate extra stuff, so that GIFs can be made with minimal colors.
+        /// </summary>
+        public static bool gif = false;
+
+        /// <summary>
         /// This is called at the beginning of every game. Reset all globals here.
         /// </summary>
         public static void startGame()

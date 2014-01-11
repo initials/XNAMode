@@ -25,6 +25,11 @@ namespace FourChambers
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0, 1, 2 }, 12);
 
+            addAnimation("walk", new int[] { 0, 1, 2 }, 12);
+            addAnimation("run", new int[] { 0, 1, 2 }, 12);
+            addAnimation("hurt", new int[] { 10 }, 12);
+            addAnimation("death", new int[] { 10,11,12,13,14,15 }, 12, false);
+
             //basic player physics
             int runSpeed = 120;
             drag.X = runSpeed * 4;
@@ -52,11 +57,25 @@ namespace FourChambers
             //    }
             //}
 
+            if (dead && onFloor)
+            {
+                play("death");
+            }
+
+            else if (dead)
+            {
+                play("hurt");
+            }
+
+
+
             base.update();
         }
 
         public override void kill()
         {
+            acceleration.Y = FourChambers_Globals.GRAVITY;
+            dead = true;
             //base.kill();
         }
     }

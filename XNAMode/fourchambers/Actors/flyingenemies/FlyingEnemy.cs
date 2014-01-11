@@ -111,6 +111,7 @@ namespace FourChambers
             angularVelocity = 500;
             angularDrag = 700;
             drag.X = 1000;
+            acceleration.Y = FourChambers_Globals.GRAVITY;
 
             FlxG.score += score;
 

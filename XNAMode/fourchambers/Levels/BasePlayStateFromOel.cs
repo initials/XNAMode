@@ -75,7 +75,7 @@ namespace FourChambers
         private FlxTileblock ladder;
 
         private FireBall fireBall;
-        private FlxGroup fireBalls;
+        private static FlxGroup fireBalls;
 
         // --- FlxGroups, for overlap collide.
 
@@ -257,9 +257,12 @@ namespace FourChambers
 
         override public void create()
         {
+            
 
             base.create();
-            
+
+            bgColor = Color.Black;
+
             // used for tutorial prompts.
             FlxG._game.hud.p1HudText.alignment = FlxJustification.Center;
 
@@ -330,16 +333,19 @@ namespace FourChambers
             Console.WriteLine("Level Width: " + FlxG.levelWidth + " Level Height: " + FlxG.levelHeight);
 
 
-            Texture2D bgGraphic = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]);
-            bgSprite = new FlxSprite(0, 0, bgGraphic);
-            bgSprite.loadGraphic(bgGraphic);
-            bgSprite.scrollFactor.X = 0.4f;
-            bgSprite.scrollFactor.Y = 0.4f;
-            bgSprite.x = 0;
-            bgSprite.y = 0;
-            bgSprite.color = Color.DarkGray;
-            bgSprite.boundingBoxOverride = false;
-            add(bgSprite);
+            if (FourChambers_Globals.gif== false)
+            {
+                Texture2D bgGraphic = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]);
+                bgSprite = new FlxSprite(0, 0, bgGraphic);
+                bgSprite.loadGraphic(bgGraphic);
+                bgSprite.scrollFactor.X = 0.4f;
+                bgSprite.scrollFactor.Y = 0.4f;
+                bgSprite.x = 0;
+                bgSprite.y = 0;
+                bgSprite.color = Color.DarkGray;
+                bgSprite.boundingBoxOverride = false;
+                add(bgSprite);
+            }
 
             Console.WriteLine("Generate the levels caves/tiles.");
 
@@ -430,6 +436,11 @@ namespace FourChambers
                 if (nodes.ContainsKey("pathType")) PT = FlxPath.convertStringValueForPathType(nodes["pathType"]);
                 if (nodes.ContainsKey("pathSpeed")) PS = Convert.ToInt32(nodes["pathSpeed"]);
                 if (nodes.ContainsKey("pathCornering")) PC = (float)(Convert.ToInt32(nodes["pathCornering"]));
+
+                // these are for fireballs only!
+                if (nodes.ContainsKey("angleCounter")) localWidth = Convert.ToInt32(nodes["angleCounter"]);
+                if (nodes.ContainsKey("shootEvery")) PC = float.Parse(nodes["shootEvery"]);
+                // -----------------------------
 
                 buildActor(nodes["Name"], 1, pc , Convert.ToInt32(nodes["x"]),Convert.ToInt32(nodes["y"]), localWidth, localHeight, PX,PY,PT,PS, PC);
 
@@ -668,10 +679,14 @@ namespace FourChambers
             else if ((FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.W) && FourChambers_Globals.seraphineHasBeenKilled == true)
             {
                 
-                imp.x = marksman.x - 30;
-                imp.y = marksman.y - marksman.height;
-                imp.facing = marksman.facing;
+                //imp.x = marksman.x - 30;
+                //imp.y = marksman.y - marksman.height;
+                //imp.facing = marksman.facing;
 
+            }
+            else if (seraphine.dead == true)
+            {
+                seraphine.acceleration.Y = FourChambers_Globals.GRAVITY;
             }
             else
             {
@@ -680,12 +695,19 @@ namespace FourChambers
                 seraphine.velocity.Y = -50;
 
             }
-
-            //calculate time of day.
             timeOfDay += FlxG.elapsed * timeScale;
             if (timeOfDay > 24.99f) timeOfDay = 0.0f;
             //timeOfDay = timeOfDayTotal / timeScale;
 
+            //calculate time of day.
+            if (FourChambers_Globals.gif == false)
+            {
+
+
+                // color whole game.
+                FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1));
+
+            }
             
             // bring time back to regular.
             if (FlxG.timeScale != 1.0f) FlxG.timeScale += 0.05f;
@@ -700,8 +722,7 @@ namespace FourChambers
             // color bg tiles
             //bgTiles.color = FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1);
 
-            // color whole game.
-            FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1));
+
 
             //collides
             FlxU.collide(actors, allLevelTiles);
@@ -715,6 +736,8 @@ namespace FourChambers
             FlxU.collide(blood, destructableTilemap);
             FlxU.overlap(actors, playerControlledActors, actorOverlap);
             FlxU.overlap(powerUps, playerControlledActors, getPowerUp);
+            if (seraphine.dead) FlxU.collide(seraphine, allLevelTiles);
+            FlxU.collide(fireBalls, allLevelTiles);
 
             base.update();
 
@@ -776,7 +799,7 @@ namespace FourChambers
                 FlxG._game.hud.p1HudText.text = "Press B to go to Menu \n Press X to restart.";
                 FlxG.setHudTextScale(1, 2);
                 FlxG.setHudTextPosition(1, 0, FlxG.height / 2);
-
+                FourChambers_Globals.seraphineHasBeenKilled = false;
 
                 if (FlxG.gamepads.isButtonDown(Buttons.B) || FlxG.mouse.pressed())
                 {
@@ -799,6 +822,7 @@ namespace FourChambers
         /// </summary>
         private void restart()
         {
+            FourChambers_Globals.seraphineHasBeenKilled = false;
             FourChambers_Globals.startGame();
             FlxG.state = new BasePlayStateFromOel();
         }
@@ -1002,18 +1026,23 @@ namespace FourChambers
             {
                 FourChambers_Globals.seraphineHasBeenKilled = true;
 
-                foreach (var p in powerUps.members)
+                if (FourChambers_Globals.gif == false)
                 {
-                    p.dead = false;
-                    p.acceleration.Y = FourChambers_Globals.GRAVITY;
-                    p.velocity.X = FlxU.random(-220, 220) ;
-                    p.exists = true;
-                    p.x = e.Object1.x;
-                    p.y = e.Object1.y;
-                    p.flicker(0.001f);
-                    p.angle = 0;
-                    p.visible = true;
+                    foreach (var p in powerUps.members)
+                    {
+                        p.dead = false;
+                        p.acceleration.Y = FourChambers_Globals.GRAVITY;
+                        p.velocity.X = FlxU.random(-220, 220);
+                        p.exists = true;
+                        p.x = e.Object1.x;
+                        p.y = e.Object1.y;
+                        p.flicker(0.001f);
+                        p.angle = 0;
+                        p.visible = true;
+                    }
                 }
+
+
                 FourChambers_Globals.arrowsHitTarget++;
                 e.Object1.velocity.X = e.Object2.velocity.X;
                 e.Object1.velocity.Y = e.Object2.velocity.Y;
@@ -1032,8 +1061,8 @@ namespace FourChambers
             else if (e.Object1.dead == false && e.Object2.dead == false)
             {
                 FourChambers_Globals.arrowsHitTarget++;
-                e.Object1.velocity.X = e.Object2.velocity.X;
-                e.Object1.velocity.Y = e.Object2.velocity.Y;
+                //e.Object1.velocity.X = e.Object2.velocity.X;
+                //e.Object1.velocity.Y = e.Object2.velocity.Y;
 
                 e.Object1.hurt(1);
 
@@ -1134,7 +1163,9 @@ namespace FourChambers
             //Console.WriteLine("Building actor " + ActorType + " " + NumberOfActors);
             if (ActorType == "fireThrower")
             {
-                fireThrower = new FireThrower(x, y, fireBalls.members);
+                fireThrower = new FireThrower(x-8, y-8, fireBalls.members);
+                fireThrower.shootEvery = PathCornering;
+                fireThrower.angleCount = width;
                 add(fireThrower);
             }
             #region Marksman

@@ -256,8 +256,10 @@ namespace FourChambers
 
             play = null;
 
-            //FourChambers_Globals.startGame();
-
+            if (FlxG.debug == false)
+            {
+                FourChambers_Globals.startGame();
+            }
 
             FlxG.state = new BasePlayStateFromOel();
             return;

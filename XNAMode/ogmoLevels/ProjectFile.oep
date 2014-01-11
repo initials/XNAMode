@@ -149,7 +149,7 @@
       <ValueDefinitions />
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
-    <EntityDefinition Name="fireThrower" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="true" RotateIncrement="15">
+    <EntityDefinition Name="fireThrower" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="1">
       <Size>
         <Width>16</Width>
         <Height>16</Height>
@@ -162,7 +162,8 @@
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
-        <ValueDefinition xsi:type="IntValueDefinition" Name="speed" Default="0" Min="0" Max="100" ShowSlider="false" />
+        <ValueDefinition xsi:type="FloatValueDefinition" Name="shootEvery" Default="1" Min="0" Max="100" Round="0.1" />
+        <ValueDefinition xsi:type="IntValueDefinition" Name="angleCounter" Default="0" Min="0" Max="9" ShowSlider="false" />
       </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>

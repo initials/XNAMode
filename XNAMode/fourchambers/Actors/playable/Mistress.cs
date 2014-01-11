@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Mistress : FlxSprite
+    class Mistress : EnemyActor
     {
         public FlxSprite whipHitBox;
         public bool attackingJoystick;
@@ -224,22 +224,22 @@ namespace FourChambers
 
         }
 
-        public override void hurt(float Damage)
-        {
-            if (hurtTimer > 1.0f)
-                base.hurt(Damage);
+        //public override void hurt(float Damage)
+        //{
+        //    if (hurtTimer > 1.0f)
+        //        base.hurt(Damage);
 
-            hurtTimer = 0.0f;
+        //    hurtTimer = 0.0f;
 
             
-        }
+        //}
 
-        public override void kill()
-        {
+        //public override void kill()
+        //{
             
 
-            base.kill();
-        }
+        //    base.kill();
+        //}
 
     }
 }

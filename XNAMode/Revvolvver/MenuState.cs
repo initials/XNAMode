@@ -56,6 +56,9 @@ namespace Revvolvver
 
         override public void create()
         {
+
+            FlxG.bloom.Visible = false;
+
             Snds = new string[8] { SndClick, SndChord1, SndChord2, SndChord3, SndChord4, SndChord5, SndChord6, SndChord7};
             
             FlxG.playMusic(Music, 1.0f);
@@ -167,6 +170,8 @@ namespace Revvolvver
 
         override public void update()
         {
+            Console.WriteLine("FlxG.debug is: " + FlxG.debug);
+
             PlayerIndex pi;
 
             frameCount++;

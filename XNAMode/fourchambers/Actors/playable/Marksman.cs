@@ -20,7 +20,12 @@ namespace FourChambers
         public int arrowsRemaining = 0;
 
         public FlxSprite meleeHitBox;
-        
+
+        public bool hasUsedJoystickToAim = false;
+
+        private double _degrees;
+
+        private Vector2 lastJoystickDirection;
 
         public Marksman(int xPos, int yPos, List<FlxObject> Bullets)
             : base(xPos, yPos)
@@ -62,6 +67,7 @@ namespace FourChambers
             meleeHitBox.width = 5;
             meleeHitBox.height = 5;
 
+            lastJoystickDirection = new Vector2(0, 0);
 
         }
 
@@ -158,22 +164,34 @@ namespace FourChambers
 
             float rightX11 = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
             float rightY11 = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
-            if (rightX11 != 0 || rightY11 != 0)
+            if (rightX11 != 0 || rightY11 != 0 || hasUsedJoystickToAim)
             {
-                
+                hasUsedJoystickToAim = true;
+
                 float xDiff = 0 - rightX11;
                 float yDiff = 0 - rightY11;
 
-                double degrees = Math.Atan2(yDiff, xDiff) * 180.0 / Math.PI;
+                if (rightX11 == 0 && rightY11 == 0)
+                {
 
-                double radians = Math.PI / 180 * degrees;
+                }
+                else
+                {
+                    _degrees = Math.Atan2(yDiff, xDiff) * 180.0 / Math.PI;
+                }
 
-                Vector2 rotpoint = FlxU.rotatePoint(x-50, y, x, y, (float)degrees*-1);
+                double radians = Math.PI / 180 * _degrees;
+
+                Vector2 rotpoint = FlxU.rotatePoint(x - 50, y, x, y, (float)_degrees * -1);
                 FlxG.mouse.cursor.x = rotpoint.X;
                 FlxG.mouse.cursor.y = rotpoint.Y;
 
             }
 
+            if (FlxG.mouse.pressed())
+            {
+                hasUsedJoystickToAim = false;
+            }
 
             if (((_curFrame == 8 || _curFrame == 9 || _curFrame == 10) && attackingJoystick) || (FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder) && velocity.X != 0) )
             {
@@ -188,19 +206,29 @@ namespace FourChambers
                     {
                         if (rightX == 0 && rightY == 0)
                         {
-                            if (facing == Flx2DFacing.Right)
-                                ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), 600, -100 + (i * 40));
-                            else
-                                ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), -600, -100+(i*40) );
+                            //if (facing == Flx2DFacing.Right)
+                            //    ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), 600, -100 + (i * 40));
+                            //else
+                            //    ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), -600, -100 + (i * 40));
+
+                            Console.WriteLine(12 * (int)(x - FlxG.mouse.cursor.x) * -1);
+                            int yVel = (int)(12 * (int)(y - FlxG.mouse.cursor.y) * -1);
+                            int yVelAdjusted = yVel - (i * 40);
+                            ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), 12 * (int)(x - FlxG.mouse.cursor.x) * -1, yVelAdjusted);
+                            
                         }
                         // use the right stick to fire a weapon
                         else
                         {
                             int yVel = (int)(rightY * -600);
-                            int yVelAdjusted = yVel - (i*40);
+                            int yVelAdjusted = yVel - (i * 40);
 
                             ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), (int)(rightX * 600), yVelAdjusted);
                         }
+
+
+
+
                         if (rightX < 0)
                         {
                             ((Arrow)(_bullets[_curArrow])).facing = Flx2DFacing.Left;

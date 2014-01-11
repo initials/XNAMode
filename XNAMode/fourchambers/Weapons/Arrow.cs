@@ -54,7 +54,7 @@ namespace FourChambers
 
             
             _fire = new FlxEmitter();
-            _fire.setSize(5, 5);
+            _fire.setSize(1, 1);
             _fire.setRotation();
             _fire.setXSpeed(-15, 15);
             _fire.setYSpeed(-15, 15);

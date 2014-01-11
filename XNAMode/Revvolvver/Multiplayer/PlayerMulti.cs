@@ -173,7 +173,7 @@ namespace Revvolvver
             }
 
             // Running pushes walk speed higher.
-            if (FlxG.gamepads.isButtonDown(Buttons.RightTrigger, controller, out pi))
+            if (FlxG.gamepads.isButtonDown(Buttons.RightTrigger, controller, out pi) || ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][11] == true))
             {
                 
                 maxVelocity.X = runSpeed * 2;
@@ -186,13 +186,7 @@ namespace Revvolvver
             }
 
             // Recording
-
-            if (_rec == Recording.Recording)
-            {
-
-
-            }
-            else if (_rec == Recording.Playback && !dead)
+            if (_rec == Recording.Playback && !dead)
             {
 
                 frameCount++;
@@ -219,12 +213,21 @@ namespace Revvolvver
 
                 }
             }
-            
-                
-            if (_rec == Recording.RecordingController)
-            {
 
-                _history.Add(new bool[] { (FlxG.gamepads.isButtonDown(Buttons.DPadUp, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp)), //0
+
+
+
+            if (FlxG.debug == true)
+            {
+                if (_rec == Recording.Recording)
+                {
+
+
+                }
+                if (_rec == Recording.RecordingController)
+                {
+
+                    _history.Add(new bool[] { (FlxG.gamepads.isButtonDown(Buttons.DPadUp, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp)), //0
                     (FlxG.gamepads.isButtonDown(Buttons.DPadRight, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight)), //1
                     (FlxG.gamepads.isButtonDown(Buttons.DPadDown, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown)), //2
                     (FlxG.gamepads.isButtonDown(Buttons.DPadLeft, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft)), //3
@@ -239,46 +242,47 @@ namespace Revvolvver
                 });
 
 
-            }
-
-
-            //if (_rec == Recording.Playback && controllerAsInt==2)
-            //{
-            //    Console.Write(frameCount);
-            //    for (int i = 0; i < 12; i++)
-            //    {
-            //        Console.Write(_history[frameCount][i] + "-" + i.ToString() + ",");
-            //    }
-            //    Console.WriteLine("_");
-            //}
-
-            if (FlxG.gamepads.isNewButtonPress(Buttons.LeftShoulder, controller, out pi))
-            {
-                if (_rec == Recording.None)
-                {
-                    _rec = Recording.RecordingController;
-                    _history = null;
-                    _history = new List<bool[]>();
-
                 }
-                else if (_rec == Recording.RecordingController)
+
+
+                //if (_rec == Recording.Playback && controllerAsInt==2)
+                //{
+                //    Console.Write(frameCount);
+                //    for (int i = 0; i < 12; i++)
+                //    {
+                //        Console.Write(_history[frameCount][i] + "-" + i.ToString() + ",");
+                //    }
+                //    Console.WriteLine("_");
+                //}
+
+                if (FlxG.gamepads.isNewButtonPress(Buttons.LeftShoulder, controller, out pi))
                 {
-                    string _historyString = "";
-                    foreach (var item in _history)
+                    if (_rec == Recording.None)
                     {
-                        _historyString += item[0].ToString() + "," + item[1].ToString() + "," + item[2].ToString() + "," + item[3].ToString() + "," + 
-                            item[4].ToString() + "," + item[5].ToString() + "," + item[6].ToString() + "," + item[7].ToString() + "," + 
-                            item[8].ToString() + "," + item[9].ToString() + "," + item[10].ToString() + "," + item[11].ToString() + "\n" ;
+                        _rec = Recording.RecordingController;
+                        _history = null;
+                        _history = new List<bool[]>();
+
+                    }
+                    else if (_rec == Recording.RecordingController)
+                    {
+                        string _historyString = "";
+                        foreach (var item in _history)
+                        {
+                            _historyString += item[0].ToString() + "," + item[1].ToString() + "," + item[2].ToString() + "," + item[3].ToString() + "," +
+                                item[4].ToString() + "," + item[5].ToString() + "," + item[6].ToString() + "," + item[7].ToString() + "," +
+                                item[8].ToString() + "," + item[9].ToString() + "," + item[10].ToString() + "," + item[11].ToString() + "\n";
+                        }
+
+                        FlxU.saveToDevice(_historyString, ("Level" + FlxG.level.ToString() + "_" + controller.ToString() + "PlayerData.txt"));
+
+                        _rec = Recording.Playback;
+
+                        startPlayingBack();
+
                     }
 
-                    FlxU.saveToDevice(_historyString, ("Level" + FlxG.level.ToString() + "_" + controller.ToString() + "PlayerData.txt"));
-
-                    _rec = Recording.Playback;
-
-                    startPlayingBack();
-                    
                 }
-
             }
 
 
@@ -359,7 +363,7 @@ namespace Revvolvver
 
                 // Mario style jumping
 
-                if ((_jump >= 0 || framesSinceLeftGround < 10 ) && ( (FlxG.keys.X && controller==PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.A, controller, out pi)))
+                if ((_jump >= 0 || framesSinceLeftGround < 10) && (((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][4] == true) || (FlxG.keys.X && controller == PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.A, controller, out pi)))
                 {
                     
                     if (framesSinceLeftGround < 10)

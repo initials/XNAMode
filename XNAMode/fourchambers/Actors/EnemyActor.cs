@@ -22,6 +22,8 @@ namespace FourChambers
         /// </summary>
         public int score = 50;
 
+        public float hurtTimer = 550.0f;
+
         public EnemyActor(int xPos, int yPos)
             : base(xPos, yPos)
         {
@@ -37,6 +39,8 @@ namespace FourChambers
         }
         override public void update()
         {
+            hurtTimer += FlxG.elapsed;
+
             if (velocity.X > 0)
             {
                 facing = Flx2DFacing.Right;
@@ -48,7 +52,15 @@ namespace FourChambers
             }
 
             //ANIMATION
-            if (dead)
+            //if (_curAnim.name == "hurt")
+            //{
+
+            //}
+            if (hurtTimer < 1.0f)
+            {
+                play("hurt");
+            }
+            else if (dead)
             {
                 play("death");
             }
@@ -60,11 +72,14 @@ namespace FourChambers
             {
                 play("idle");
             }
-            else if (FlxU.abs(velocity.X) > 1)
+            else if (FlxU.abs(velocity.X) > 70)
             {
                 play("run");
             }
-
+            else if (FlxU.abs(velocity.X) > 1)
+            {
+                play("walk");
+            }
             else
             {
                 play("idle");
@@ -74,8 +89,17 @@ namespace FourChambers
 
         }
 
+        public override void hurt(float Damage)
+        {
+            color = Color.PaleVioletRed;
+
+            base.hurt(Damage);
+        }
+
         public override void kill()
         {
+            color = Color.White;
+
             FlxG.score += score;
 
             play("death");
@@ -87,7 +111,7 @@ namespace FourChambers
 
             FlxG.write("Enemy "  + actorName + " is dead");
 
-            flicker(0.25f);
+            //flicker(0.25f);
             velocity.X = 0;
             acceleration.X = 0;
         }
