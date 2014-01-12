@@ -16,6 +16,7 @@ namespace Revvolvver
         protected Texture2D ImgDirtTop;
         protected Texture2D ImgDirt;
         protected Texture2D ImgNotch;
+        protected Texture2D ImgParticles;
         private Texture2D ImgGibs;
         private Texture2D ImgSpawnerGibs;
 
@@ -45,6 +46,7 @@ namespace Revvolvver
         protected FlxGroup _botBullets;
         protected FlxEmitter _littleGibs;
         protected FlxEmitter _bigGibs;
+        protected FlxEmitter _pieces;
 
         protected FlxEmitter _clouds;
 
@@ -110,17 +112,7 @@ namespace Revvolvver
             ImgSpawnerGibs = FlxG.Content.Load<Texture2D>("Revvolvver/spawner_gibs");
             ImgNotch = FlxG.Content.Load<Texture2D>("Revvolvver/notch");
 
-            _littleGibs = new FlxEmitter();
-            _littleGibs.delay = 3;
-            _littleGibs.setXSpeed(-150, 150);
-            _littleGibs.setYSpeed(-200, 0);
-            _littleGibs.setRotation(-720, -720);
-            _littleGibs.createSprites(ImgGibs, 100, true, 0.5f, 0.65f);
-            _bigGibs = new FlxEmitter();
-            _bigGibs.setXSpeed(-200, 200);
-            _bigGibs.setYSpeed(-300, 0);
-            _bigGibs.setRotation(-720, -720);
-            _bigGibs.createSprites(ImgSpawnerGibs, 50, true, 0.5f, 0.35f);
+
 
             FlxG.mouse.hide();
             reload = false;
@@ -252,8 +244,7 @@ namespace Revvolvver
             //_tileMap.loadMap(newMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
             //_blocks.add(_tileMap2);
 
-            add(_littleGibs);
-            add(_bigGibs);
+
             add(_blocks);
             add(_decorations);
             add(_bots);
@@ -439,6 +430,41 @@ namespace Revvolvver
                 bulletHUD.play("on");
                 FlxG._game.hud.hudGroup.add(bulletHUD);
 
+
+
+                ImgParticles = FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform");
+
+                _littleGibs = new FlxEmitter();
+                _littleGibs.delay = 3;
+                _littleGibs.setXSpeed(-150, 150);
+                _littleGibs.setYSpeed(-200, 0);
+                _littleGibs.setRotation(-720, -720);
+                _littleGibs.createSprites(ImgGibs, 200, true, 0.5f, 0.65f);
+
+                _bigGibs = new FlxEmitter();
+                _bigGibs.setXSpeed(-200, 200);
+                _bigGibs.setYSpeed(-300, 0);
+                _bigGibs.setRotation(-720, -720);
+                _bigGibs.createSprites(ImgSpawnerGibs, 50, true, 0.5f, 0.35f);
+
+                _pieces = new FlxEmitter();
+                _pieces.x = 0;
+                _pieces.y = 0;
+                _pieces.width = 16;
+                _pieces.height = 16;
+                _pieces.delay = 0.8f;
+                _pieces.setXSpeed(-50, 50);
+                _pieces.setYSpeed(-150, -50);
+                _pieces.setRotation(0, 0);
+                _pieces.gravity = FourChambers_Globals.GRAVITY;
+                _pieces.createSprites(ImgParticles, 200, true, 1.0f, 0.1f);
+                add(_pieces);
+                _pieces.setScale(0.5f);
+
+                add(_littleGibs);
+                add(_bigGibs);
+
+
             }
 
             //FlxG._game.hud.hudGroup.add(hudElements);
@@ -510,7 +536,7 @@ namespace Revvolvver
                 _caveMap.rainbow = true;
             }
 
-            if (regenTimer > 6.2f)
+            if (regenTimer > 10.2f)
             {
                 _caveMap.rainbow = false;
                 regen();
@@ -528,6 +554,13 @@ namespace Revvolvver
             {
                 if (item.scale > 0.9f) // && item.x > 0 && item.x < FlxG.width-48 && item.y > 0 && item.y < FlxG.height - 48
                 {
+                    if (item.scale < 2.0f)
+                    {
+                        _pieces.x = (int)item.x;
+                        _pieces.y = (int)item.y;
+                        _pieces.start(true, 0, 12);
+                    }
+
                     for (int i = -3; i < 4; i++)
                     {
                         for (int j = -3; j < 4; j++)
@@ -537,6 +570,10 @@ namespace Revvolvver
                             int yp = (int)((item.y+item.height/2) + (16*j)) / 16;
                             if (xp>0 && xp<FlxG.width/16 && yp>0 && yp<FlxG.height/16 ) { 
                                 _caveMap.setTile(xp, yp, 0, true);
+
+                                //Console.WriteLine("Bomb {0} {1}",i,j );
+
+
                             }
                         }
                     }
@@ -604,17 +641,33 @@ namespace Revvolvver
             FlxU.overlap(_bullets, _bullets, hitBullet);
             FlxU.overlap(_bombs, _players, bombPlayer);
             FlxU.overlap(_players, powerup, checkPowerUp);
+            FlxU.overlap(_bullets, _bombs, removeBomb);
+
 
             // THIS IS WHERE IT USED TO DESTROY TILES
             
             foreach (BulletMulti item in _bullets.members)
             {
-                if (item.exploding == true)
+                if (item.exploding == true && item.x>0 && item.y > 0)
                 {
                     if (_caveMap.getTile((int)(item.x + item.tileOffsetX) / 16, (int)(item.y + item.tileOffsetY) / 16) != 0)
                     {
+                        //Console.WriteLine("BulletMulti {0} {1}", item.x, item.y);
+
+                        int x2 = (int)(item.x + item.tileOffsetX) / 16;
+                        x2 *= 16;
+                        int y2 = (int)(item.y + item.tileOffsetY) / 16;
+                        y2 *= 16;
+
+                        _pieces.x = x2;
+                        _pieces.y = y2;
+                        _pieces.start(true, 0, 4);
+
                         _caveMap.setTile((int)(item.x + item.tileOffsetX) / 16, (int)(item.y + item.tileOffsetY) / 16, 0, true);
                         _caveMap.setTile((int)(item.x + 9) / 16, (int)(item.y + item.tileOffsetY) / 16, 0, true);
+
+
+
                     }
 
                 }
@@ -767,6 +820,8 @@ namespace Revvolvver
                 foreach (PlayerMulti item in _players.members)
                 {
                     item.speed = 0.0f;
+                    item.velocity.X = 0.0f;
+
                 }
 
                 foreach (Cloud item in _cloudsGrp.members)
@@ -796,6 +851,23 @@ namespace Revvolvver
             return true;
 
         }
+
+
+        protected bool removeBomb(object Sender, FlxSpriteCollisionEvent e)
+        {
+
+            if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color)
+            {
+
+                ((Bomb)(e.Object2)).explodeTimer = 3.0f;
+
+                e.Object1.kill();
+                //e.Object2.kill();
+            }
+            return true;
+        }
+
+
 
         protected bool hitBullet(object Sender, FlxSpriteCollisionEvent e)
         {
@@ -834,6 +906,9 @@ namespace Revvolvver
         {
             if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color && !((PlayerMulti)(e.Object2)).dead && !((PlayerMulti)(e.Object2)).flickering() )
             {
+
+
+
                 /*
                 if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.One && FlxG.scores[0]>0) FlxG.scores[0]--;
                 else if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.Two && FlxG.scores[1] > 0) FlxG.scores[1]--;
@@ -896,6 +971,9 @@ namespace Revvolvver
                 ((PlayerMulti)(e.Object2)).velocity.Y = -250;
                 ((PlayerMulti)(e.Object2)).flicker(5.0f);
 
+                _littleGibs.x = e.Object2.x;
+                _littleGibs.y = e.Object2.y;
+                _littleGibs.start(true, 0, 30);
 
                 FlxG.quake.start(0.005f, 0.5f);
 
