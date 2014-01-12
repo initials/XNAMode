@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="flixel\SafeArea.cs" />
+    <Compile Include="Revvolvver\Bomb.cs" />
     <Compile Include="Revvolvver\Bullet.cs" />
     <Compile Include="Revvolvver\Cloud.cs" />
     <Compile Include="Revvolvver\MenuState.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Revvolvver\Multiplayer\VictoryStateMulti.cs" />
     <Compile Include="Revvolvver\Player.cs" />
     <Compile Include="Revvolvver\PlayStateTiles.cs" />
+    <Compile Include="Revvolvver\PowerUp.cs" />
     <Compile Include="Revvolvver\VictoryState.cs" />
     <Compile Include="FourChambers\DataEntryState.cs" />
     <Compile Include="flixel\data\FlxGlobal.cs" />

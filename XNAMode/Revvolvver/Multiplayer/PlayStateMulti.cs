@@ -23,6 +23,12 @@ namespace Revvolvver
         protected FlxGroup _blocks;
         protected FlxGroup _decorations;
         protected FlxGroup _bullets;
+        protected FlxGroup _bombs;
+        protected FlxGroup _bombs1;
+        protected FlxGroup _bombs2;
+        protected FlxGroup _bombs3;
+        protected FlxGroup _bombs4;
+
         protected FlxTilemap _tileMap;
         protected FlxTilemap _caveMap;
         Dictionary<string, string> attrs;
@@ -84,6 +90,8 @@ namespace Revvolvver
 
         private float regenTimer = 0.0f;
 
+        private PowerUp powerup;
+        private FlxSprite bg;
 
         override public void create()
         {
@@ -93,7 +101,7 @@ namespace Revvolvver
 
             FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[6];
 
-            FlxSprite bg = new FlxSprite(0, 0);
+            bg = new FlxSprite(0, 0);
             bg.loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/bg"));
             add(bg);
 
@@ -114,13 +122,8 @@ namespace Revvolvver
             _bigGibs.setRotation(-720, -720);
             _bigGibs.createSprites(ImgSpawnerGibs, 50, true, 0.5f, 0.35f);
 
-
-
-
-
             FlxG.mouse.hide();
             reload = false;
-
 
             _cloudsGrp = new FlxGroup();
 
@@ -133,17 +136,24 @@ namespace Revvolvver
 
             add(_cloudsGrp);
 
-
             //level generation needs to know about the spawners (and thusly the bots, players, etc)
             _blocks = new FlxGroup();
             _decorations = new FlxGroup();
             _bullets = new FlxGroup();
             _players = new FlxGroup();
 
+            _bombs = new FlxGroup();
+            _bombs1 = new FlxGroup();
+            _bombs2 = new FlxGroup();
+            _bombs3 = new FlxGroup();
+            _bombs4 = new FlxGroup();
+
+
+
             List<Dictionary<string, string>> actorsAttrs = new List<Dictionary<string, string>>();
             actorsAttrs = FlxXMLReader.readNodesFromOelFile("Revvolvver/level" + FlxG.level.ToString() + ".oel", "level/Items");
 
-            _player1 = new PlayerMulti(Convert.ToInt32(actorsAttrs[0]["x"]), Convert.ToInt32(actorsAttrs[0]["y"]), _bullets.members, _littleGibs);
+            _player1 = new PlayerMulti(Convert.ToInt32(actorsAttrs[0]["x"]), Convert.ToInt32(actorsAttrs[0]["y"]), _bullets.members, _littleGibs, _bombs1.members);
             _player1.controller = PlayerIndex.One;
             _player1.controllerAsInt = 1;
             _player1.color = p1Color;
@@ -153,7 +163,7 @@ namespace Revvolvver
             FlxG._game.hud.p1HudText.color = p1Color;
 
 
-            _player2 = new PlayerMulti(Convert.ToInt32(actorsAttrs[1]["x"]), Convert.ToInt32(actorsAttrs[1]["y"]), _bullets.members, _littleGibs);
+            _player2 = new PlayerMulti(Convert.ToInt32(actorsAttrs[1]["x"]), Convert.ToInt32(actorsAttrs[1]["y"]), _bullets.members, _littleGibs, _bombs2.members);
             _player2.controller = PlayerIndex.Two;
             _player2.controllerAsInt = 2;
             _player2.color = p2Color;
@@ -162,7 +172,7 @@ namespace Revvolvver
             FlxG._game.hud.p2HudText.x -= 40;
             FlxG._game.hud.p2HudText.color = p2Color;
 
-            _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs);
+            _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs, _bombs3.members);
             _player3.controller = PlayerIndex.Three;
             _player3.controllerAsInt = 3;
             _player3.color = p3Color;
@@ -172,8 +182,8 @@ namespace Revvolvver
             FlxG._game.hud.p3HudText.y -= 20;
             FlxG._game.hud.p3HudText.color = p3Color;
 
-            
-            _player4 = new PlayerMulti(Convert.ToInt32(actorsAttrs[3]["x"]), Convert.ToInt32(actorsAttrs[3]["y"]), _bullets.members, _littleGibs);
+
+            _player4 = new PlayerMulti(Convert.ToInt32(actorsAttrs[3]["x"]), Convert.ToInt32(actorsAttrs[3]["y"]), _bullets.members, _littleGibs, _bombs4.members);
             _player4.controller = PlayerIndex.Four;
             _player4.controllerAsInt = 4;
             _player4.color = p4Color;
@@ -206,9 +216,6 @@ namespace Revvolvver
 
             }
 
-
-            
-
             _bots = new FlxGroup();
             _botBullets = new FlxGroup();
             _spawners = new FlxGroup();
@@ -233,7 +240,6 @@ namespace Revvolvver
             _blocks.add(_tileMap);
             //_tileMap.color = new Color(FlxU.random(0, 1), FlxU.random(0, 1), FlxU.random(0, 1));
 
-
             regen();
 
             //FlxCaveGeneratorExt caveExt = new FlxCaveGeneratorExt(40, 30);
@@ -248,8 +254,6 @@ namespace Revvolvver
 
             add(_littleGibs);
             add(_bigGibs);
-
-            
             add(_blocks);
             add(_decorations);
             add(_bots);
@@ -257,6 +261,38 @@ namespace Revvolvver
             int i;
             for (i = 0; i < 80; i++)
                 _bullets.add(new BulletMulti());
+
+            for (i = 0; i < 4; i++)
+            {
+                Bomb b = new Bomb(-100, -100);
+
+                _bombs1.add(b);
+                _bombs.add(b);
+            }
+
+            for (i = 0; i < 4; i++)
+            {
+                Bomb b = new Bomb(-100, -100);
+
+                _bombs2.add(b);
+                _bombs.add(b);
+            }
+
+            for (i = 0; i < 4; i++)
+            {
+                Bomb b = new Bomb(-100, -100);
+
+                _bombs3.add(b);
+                _bombs.add(b);
+            }
+
+            for (i = 0; i < 4; i++)
+            {
+                Bomb b = new Bomb(-100, -100);
+
+                _bombs4.add(b);
+                _bombs.add(b);
+            }
 
             //add player and set up scrolling camera
             _players.add(_player1);
@@ -286,6 +322,12 @@ namespace Revvolvver
             //add gibs + bullets to scene here, so they're drawn on top of pretty much everything
             add(_botBullets);
             add(_bullets);
+
+
+            add(_bombs1);
+            add(_bombs2);
+            add(_bombs3);
+            add(_bombs4);
 
             //finally we are going to sort things into a couple of helper groups.
             //we don't add these to the state, we just use them for collisions later!
@@ -407,6 +449,12 @@ namespace Revvolvver
             FlxG.setHudText(4, "P4: 0" );
 
 
+            // FlxU.random(0, FlxG.width), FlxU.random(0, FlxG.height)
+            powerup = new PowerUp(300, 300);
+            
+            add(powerup);
+
+
         }
 
 
@@ -457,7 +505,7 @@ namespace Revvolvver
 
             regenTimer += FlxG.elapsed;
 
-            if (regenTimer > 5.0f)
+            if (regenTimer > 9.0f)
             {
                 _caveMap.rainbow = true;
             }
@@ -475,12 +523,65 @@ namespace Revvolvver
             FlxG.setHudText(3, "P3: " + FlxG.scores[2].ToString());
             FlxG.setHudText(4, "P4: " + FlxG.scores[3].ToString());
 
+
+            foreach (Bomb item in _bombs.members)
+            {
+                if (item.scale > 0.9f) // && item.x > 0 && item.x < FlxG.width-48 && item.y > 0 && item.y < FlxG.height - 48
+                {
+                    for (int i = -3; i < 4; i++)
+                    {
+                        for (int j = -3; j < 4; j++)
+                        {
+
+                            int xp = (int)((item.x+item.width/2) + (16*i)) / 16;
+                            int yp = (int)((item.y+item.height/2) + (16*j)) / 16;
+                            if (xp>0 && xp<FlxG.width/16 && yp>0 && yp<FlxG.height/16 ) { 
+                                _caveMap.setTile(xp, yp, 0, true);
+                            }
+                        }
+                    }
+                    //_caveMap.setTile((int)(item.x+16) / 16, (int)(item.y) / 16, 0, true);
+                    //_caveMap.setTile((int)(item.x) / 16, (int)(item.y+16) / 16, 0, true);
+                    //_caveMap.setTile((int)(item.x+16) / 16, (int)(item.y+16) / 16, 0, true);
+                    //_caveMap.setTile((int)(item.x - 16) / 16, (int)(item.y) / 16, 0, true);
+                    //_caveMap.setTile((int)(item.x) / 16, (int)(item.y - 16) / 16, 0, true);
+                    //_caveMap.setTile((int)(item.x - 16) / 16, (int)(item.y - 16) / 16, 0, true);
+
+                    //_caveMap.setTile((int)(item.x + 32) / 16, (int)(item.y) / 16, 0, true);
+                    //_caveMap.setTile((int)(item.x) / 16, (int)(item.y + 32) / 16, 0, true);
+                    //_caveMap.setTile((int)(item.x + 32) / 16, (int)(item.y + 32) / 16, 0, true);
+                    //_caveMap.setTile((int)(item.x - 32) / 16, (int)(item.y) / 16, 0, true);
+                    //_caveMap.setTile((int)(item.x) / 16, (int)(item.y - 32) / 16, 0, true);
+                    //_caveMap.setTile((int)(item.x - 32) / 16, (int)(item.y - 32) / 16, 0, true);
+
+                    //_caveMap.setTile((int)(item.x + 48) / 16, (int)(item.y) / 16, 0, true);
+                    //_caveMap.setTile((int)(item.x) / 16, (int)(item.y + 48) / 16, 0, true);
+                    //_caveMap.setTile((int)(item.x + 48) / 16, (int)(item.y + 48) / 16, 0, true);
+                    //_caveMap.setTile((int)(item.x - 48) / 16, (int)(item.y) / 16, 0, true);
+                    //_caveMap.setTile((int)(item.x) / 16, (int)(item.y - 48) / 16, 0, true);
+                    //_caveMap.setTile((int)(item.x - 48) / 16, (int)(item.y - 48) / 16, 0, true);
+
+                }
+
+            }
+
+
             if (FourChambers_Globals.cheatString == "winegar")
             {
                 FourChambers_Globals.cheatString = " ";
 
                 FlxG.scores[0] = Revvolvver_Globals.WINNING_SCORE - 1;
 
+            }
+
+            if (_player1.speed > 0.9f && _player2.speed > 0.9f && _player3.speed > 0.9f && _player4.speed > 0.9f && bg.color == Color.LightBlue)
+            {
+                bg.color = Color.White;
+                foreach (Cloud item in _cloudsGrp.members)
+                {
+                    item.color = Color.White;
+                    item.velocity.X = FlxU.random(50, 150);
+                }
             }
 
             //PlayerIndex pi;
@@ -501,7 +602,8 @@ namespace Revvolvver
             //FlxU.overlap(_bullets, _enemies, overlapped);
             FlxU.overlap(_bullets, _players, hitPlayer);
             FlxU.overlap(_bullets, _bullets, hitBullet);
-
+            FlxU.overlap(_bombs, _players, bombPlayer);
+            FlxU.overlap(_players, powerup, checkPowerUp);
 
             // THIS IS WHERE IT USED TO DESTROY TILES
             
@@ -549,27 +651,27 @@ namespace Revvolvver
 
             if (FlxG.scores[0] == Revvolvver_Globals.WINNING_SCORE-1) 
             {
-                if (_tileMap.color != p1Color) FlxG.play(SndChord7);
-                _tileMap.color = p1Color;
+                //if (_tileMap.color != p1Color) FlxG.play(SndChord7);
+                _caveMap.color = p1Color;
                 
             }
             if (FlxG.scores[1] == Revvolvver_Globals.WINNING_SCORE - 1)
             {
-                if (_tileMap.color != p2Color) FlxG.play(SndChord6);
-                _tileMap.color = p2Color;
+                //if (_tileMap.color != p2Color) FlxG.play(SndChord6);
+                _caveMap.color = p2Color;
 
             }
             if (FlxG.scores[2] == Revvolvver_Globals.WINNING_SCORE - 1)
             {
-                if (_tileMap.color != p3Color) FlxG.play(SndChord5);
-                _tileMap.color = p3Color;
+                //if (_tileMap.color != p3Color) FlxG.play(SndChord5);
+                _caveMap.color = p3Color;
 
             }
             if (FlxG.scores[3] == Revvolvver_Globals.WINNING_SCORE - 1)
             {
-                if (_tileMap.color != p4Color) FlxG.play(SndChord4);
-                _tileMap.color = p4Color;
-
+                //if (_tileMap.color != p4Color) FlxG.play(SndChord4);
+                _caveMap.color = p4Color;
+                
             }
             
             if ((FlxG.scores[0] >= Revvolvver_Globals.WINNING_SCORE) || (FlxG.scores[1] >= Revvolvver_Globals.WINNING_SCORE) || (FlxG.scores[2] >= Revvolvver_Globals.WINNING_SCORE) || (FlxG.scores[3] >= Revvolvver_Globals.WINNING_SCORE))
@@ -644,11 +746,65 @@ namespace Revvolvver
             }
         }
 
+        protected bool checkPowerUp(object Sender, FlxSpriteCollisionEvent e)
+        {
+            
+            e.Object2.x = FlxU.random(50, 300);
+            e.Object2.y = FlxU.random(50, 300);
+            ((PowerUp)(e.Object2)).timerInvisible = 0.0f;
+
+            if (((PowerUp)(e.Object2)).powerup == 0)
+            {
+                ((PlayerMulti)(e.Object1)).machineGun = 0.0f;
+            }
+            if (((PowerUp)(e.Object2)).powerup == 1)
+            {
+
+                //Console.WriteLine("Freeze Everyone Except " + e.Object1);
+
+                bg.color = Color.LightBlue;
+
+                foreach (PlayerMulti item in _players.members)
+                {
+                    item.speed = 0.0f;
+                }
+
+                foreach (Cloud item in _cloudsGrp.members)
+                {
+                    item.color = Color.LightBlue;
+                    item.velocity.X = 0;
+                }
+                ((PlayerMulti)(e.Object1)).speed = 1.0f;
+
+            }
+
+
+            int ran = (int)FlxU.random(0, 2);
+
+            if (ran == 0)
+            {
+                ((PowerUp)(e.Object2)).play("machinegun");
+                ((PowerUp)(e.Object2)).powerup = 0;
+            }
+            else if (ran == 1)
+            {
+                ((PowerUp)(e.Object2)).play("freeze");
+                ((PowerUp)(e.Object2)).powerup = 1;
+            }
+
+
+            return true;
+
+        }
+
         protected bool hitBullet(object Sender, FlxSpriteCollisionEvent e)
         {
-            e.Object1.kill();
-            e.Object2.kill();
 
+            if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color)
+            {
+                e.Object1.kill();
+                e.Object2.kill();
+            }
             return true;
         }
 
@@ -676,10 +832,7 @@ namespace Revvolvver
 
         protected bool hitPlayer(object Sender, FlxSpriteCollisionEvent e)
         {
-
-
-
-            if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color && !((PlayerMulti)(e.Object2)).dead)
+            if (((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color && !((PlayerMulti)(e.Object2)).dead && !((PlayerMulti)(e.Object2)).flickering() )
             {
                 /*
                 if (((PlayerMulti)(e.Object2)).controller == PlayerIndex.One && FlxG.scores[0]>0) FlxG.scores[0]--;
@@ -702,8 +855,6 @@ namespace Revvolvver
 
                 int notchToRender = 6 - bulletInt;
 
-                
-
                 if (bulletData == "Two")
                 {
                     notchToRender += 6;
@@ -717,8 +868,15 @@ namespace Revvolvver
                     notchToRender += 18;
                 }
 
-                (FlxG._game.hud.hudGroup.members[notchToRender] as FlxSprite).play("hit");
-                (FlxG._game.hud.hudGroup.members[notchToRender] as FlxSprite).debugName = "hit";
+                if (bulletData == "OneMachine" || bulletData == "TwoMachine" || bulletData == "ThreeMachine" || bulletData == "FourMachine")
+                {
+
+                }
+                else
+                {
+                    (FlxG._game.hud.hudGroup.members[notchToRender] as FlxSprite).play("hit");
+                    (FlxG._game.hud.hudGroup.members[notchToRender] as FlxSprite).debugName = "hit";
+                }
 
                 if  (e.Object1 is BulletMulti)
                 {
@@ -736,6 +894,9 @@ namespace Revvolvver
                 ((PlayerMulti)(e.Object2)).angularDrag = 450;
                 ((PlayerMulti)(e.Object2)).dead = true;
                 ((PlayerMulti)(e.Object2)).velocity.Y = -250;
+                ((PlayerMulti)(e.Object2)).flicker(5.0f);
+
+
                 FlxG.quake.start(0.005f, 0.5f);
 
                 FlxG.bloom.Visible = false;
@@ -749,10 +910,33 @@ namespace Revvolvver
             return true;
         }
 
+        protected bool bombPlayer(object Sender, FlxSpriteCollisionEvent e)
+        {
+            if (((FlxSprite)(e.Object1)).scale>0.74f && ((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color && !((PlayerMulti)(e.Object2)).dead && !((PlayerMulti)(e.Object2)).flickering())
+            {
+                if (((FlxSprite)(e.Object1)).color == p1Color) FlxG.scores[0]++;
+                else if (((FlxSprite)(e.Object1)).color == p2Color) FlxG.scores[1]++;
+                else if (((FlxSprite)(e.Object1)).color == p3Color) FlxG.scores[2]++;
+                else if (((FlxSprite)(e.Object1)).color == p4Color) FlxG.scores[3]++;
+
+                ((PlayerMulti)(e.Object2)).angularVelocity = 1000;
+                ((PlayerMulti)(e.Object2)).angularDrag = 450;
+                ((PlayerMulti)(e.Object2)).dead = true;
+                ((PlayerMulti)(e.Object2)).velocity.Y = -250;
+                ((PlayerMulti)(e.Object2)).flicker(5.0f);
+
+
+                FlxG.quake.start(0.015f, 0.9f);
+            }
+            return true;
+        }
+
+
         protected bool overlapped(object Sender, FlxSpriteCollisionEvent e)
         {
             if  (e.Object1 is BulletMulti)
                 e.Object1.kill();
+            
             e.Object2.hurt(1);
 
 

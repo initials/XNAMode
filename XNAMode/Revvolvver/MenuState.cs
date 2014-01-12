@@ -170,7 +170,7 @@ namespace Revvolvver
 
         override public void update()
         {
-            Console.WriteLine("FlxG.debug is: " + FlxG.debug);
+            //Console.WriteLine("FlxG.debug is: " + FlxG.debug);
 
             PlayerIndex pi;
 

@@ -23,6 +23,10 @@ namespace Revvolvver
         private float _jumpPower = -180.0f;
         private List<FlxObject> _bullets;
         private int _curBullet;
+
+        private List<FlxObject> _bombs;
+        private int _curBomb;
+
         private int _bulletVel;
         private bool _up;
         private bool _down;
@@ -46,6 +50,9 @@ namespace Revvolvver
         private float timeOnZeroBullets = 0.0f;
         private const float maxTimeOnZeroBullets = 4.0f;
 
+        public float machineGun = 12.0f;
+
+        public float speed = 1.0f;
 
         /// <summary>
         /// [0] - x
@@ -85,7 +92,7 @@ namespace Revvolvver
         }
 
 
-        public PlayerMulti(int X, int Y, List<FlxObject> Bullets, FlxEmitter Gibs)
+        public PlayerMulti(int X, int Y, List<FlxObject> Bullets, FlxEmitter Gibs, List<FlxObject> Bombs)
             : base(X, Y)
         {
             //_playback = false;
@@ -130,6 +137,9 @@ namespace Revvolvver
             _bullets = Bullets;
             _curBullet = 0;
             _bulletVel = 360;
+
+            _bombs = Bombs;
+            _curBomb = 0;
 
             //Gibs emitted upon death
             _gibs = Gibs;
@@ -333,7 +343,17 @@ namespace Revvolvver
             {
                 startPlayingBack();
             }
-             */ 
+             */
+
+            if (speed < 0.01f) speed += 0.00004f;
+            else if (speed < 1.0f) { 
+                speed += 0.15f;
+                //return;
+            }
+            else speed = 1;
+
+            
+
 
             if (!dead)
             {
@@ -343,14 +363,15 @@ namespace Revvolvver
                 if (( (_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][3] == true) || (FlxG.keys.LEFT && controller == PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadLeft, controller, out pi))
                 {
                     facing = Flx2DFacing.Left;
-                    acceleration.X -= drag.X;
+                    acceleration.X -= drag.X * speed;
                 }
                 else if (( (_rec == Recording.Playback || _rec == Recording.Reverse ) && _history[frameCount][1] == true) || (FlxG.keys.RIGHT && controller == PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadRight, controller, out pi))
                 {
                     facing = Flx2DFacing.Right;
-                    acceleration.X += drag.X;
+                    acceleration.X += drag.X * speed;
                 }
 
+                //Console.WriteLine(speed + "accel " + acceleration.X);
                 //Jumping.
 
                 //if ( ((FlxG.keys.justPressed(Keys.X) &&
@@ -363,7 +384,7 @@ namespace Revvolvver
 
                 // Mario style jumping
 
-                if ((_jump >= 0 || framesSinceLeftGround < 10) && (((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][4] == true) || (FlxG.keys.X && controller == PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.A, controller, out pi)))
+                if (speed> 0.2f &&  (_jump >= 0 || framesSinceLeftGround < 10) && (((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][4] == true) || (FlxG.keys.X && controller == PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.A, controller, out pi)))
                 {
                     
                     if (framesSinceLeftGround < 10)
@@ -396,7 +417,11 @@ namespace Revvolvver
                 else if (((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][2] == true) || ((FlxG.keys.DOWN && controller == PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadDown, controller, out pi)) && velocity.Y != 0) _down = true;
 
                 //ANIMATION
-                if (velocity.Y != 0)
+                if (speed < 0.2f)
+                {
+                    play("idle");
+                }
+                else if (velocity.Y != 0)
                 {
                     if (_up) play("jump_up");
                     else if (_down) play("jump_down");
@@ -425,13 +450,69 @@ namespace Revvolvver
                 //SHOOTING
 
 
-                // 
+                // !flickering()
 
-                if (!flickering() && ((shoot && timeSinceLastShot > 0.25f) || ((_rec == Recording.Playback || _rec == Recording.Reverse) 
+                if (speed> 0.2f  && ((shoot && timeSinceLastShot > 0.45f) || ((_rec == Recording.Playback || _rec == Recording.Reverse)
+                    && _history[frameCount][6] == true) || (FlxG.keys.justPressed(Keys.C) && controller == PlayerIndex.One) ||
+                        FlxG.gamepads.isButtonDown(Buttons.X, controller, out pi)))
+                {
+                    if (machineGun < 6.9999f)
+                    {
+                        int bXVel = 0;
+                        int bYVel = 0;
+                        int bX = (int)x;
+                        int bY = (int)y;
+                        if (_up)
+                        {
+                            bY -= (int)_bullets[_curBullet].height - 4;
+                            bYVel = -_bulletVel;
+                        }
+                        else if (_down)
+                        {
+                            bY += (int)height - 4;
+                            bYVel = _bulletVel;
+                            velocity.Y -= 36;
+                        }
+                        else if (facing == Flx2DFacing.Right)
+                        {
+                            bX += (int)width - 4;
+                            bXVel = _bulletVel;
+                        }
+                        else
+                        {
+                            bX -= (int)_bullets[_curBullet].width - 4;
+                            bXVel = -_bulletVel;
+                        }
+                        ((BulletMulti)(_bullets[_curBullet])).shoot(bX, bY, bXVel, bYVel, color);
+                        ((BulletMulti)(_bullets[_curBullet])).firedFromPlayer = controller.ToString() + "Machine";
+                        ((BulletMulti)(_bullets[_curBullet])).bulletNumber = bulletsLeft;
+                        //FlxG.play(SndGun1, 0.25f);
+
+                        int notchToRender = 6 - bulletsLeft;
+                        if (controller.ToString() == "Two")
+                        {
+                            notchToRender += 6;
+                        }
+                        if (controller.ToString() == "Three")
+                        {
+                            notchToRender += 12;
+                        }
+                        if (controller.ToString() == "Four")
+                        {
+                            notchToRender += 18;
+                        }
+
+                        bulletsLeft--;
+                        if (++_curBullet >= _bullets.Count)
+                            _curBullet = 0;
+                    }
+                }
+
+                if (speed> 0.2f && ((shoot && timeSinceLastShot > 0.25f) || ((_rec == Recording.Playback || _rec == Recording.Reverse) 
                     && _history[frameCount][6] == true) ||  (FlxG.keys.justPressed(Keys.C) && controller == PlayerIndex.One) ||
                         FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi) ) )
                 {
-
+                    /// && machineGun > 6.9999f
                     if (bulletsLeft <= 0)
                     {
                         FlxG.play(SndClick, 0.25f);
@@ -499,8 +580,29 @@ namespace Revvolvver
                     if (++_curBullet >= _bullets.Count)
                         _curBullet = 0;
                 }
+
+
+
+                if (speed > 0.2f && ((shoot && timeSinceLastShot > 0.25f) || ((_rec == Recording.Playback || _rec == Recording.Reverse)
+                    && (_history[frameCount][5] == true || FlxU.random()<0.0075f)) || (FlxG.keys.justPressed(Keys.V) && controller == PlayerIndex.One) ||
+                        FlxG.gamepads.isNewButtonPress(Buttons.B, controller, out pi)))
+                {
+                    if ( ! ((Bomb)(_bombs[_curBomb])).onScreen() ) {
+                        ((Bomb)(_bombs[_curBomb])).x = x-26;
+                        ((Bomb)(_bombs[_curBomb])).y = y-26;
+                        ((Bomb)(_bombs[_curBomb])).explodeTimer = 0.0f;
+                        ((Bomb)(_bombs[_curBomb])).scale = 0.1f;
+                        ((Bomb)(_bombs[_curBomb])).color = color;
+                    }
+                    if (++_curBomb >= _bombs.Count)
+                        _curBomb = 0;
+                }
+
+
+
             }
 
+            machineGun += FlxG.elapsed;
             
 
             //UPDATE POSITION AND ANIMATION
