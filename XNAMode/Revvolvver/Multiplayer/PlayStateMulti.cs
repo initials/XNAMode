@@ -105,6 +105,7 @@ namespace Revvolvver
 
             bg = new FlxSprite(0, 0);
             bg.loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/bg"));
+            bg.boundingBoxOverride = false;
             add(bg);
 
             ImgTech = FlxG.Content.Load<Texture2D>("Revvolvver/tech_tiles");
@@ -334,8 +335,7 @@ namespace Revvolvver
             _objects.add(_player2);
             _objects.add(_player3);
             _objects.add(_player4);
-            _objects.add(_littleGibs);
-            _objects.add(_bigGibs);
+
 
             FlxG.playMusic("Revvolvver/sfx/fullHeavyMetalJacket");
             FlxG.flash.start(Color.Black, 0.5f, null, false);
@@ -464,6 +464,8 @@ namespace Revvolvver
                 add(_littleGibs);
                 add(_bigGibs);
 
+                _objects.add(_littleGibs);
+                _objects.add(_bigGibs);
 
             }
 
@@ -554,12 +556,12 @@ namespace Revvolvver
             {
                 if (item.scale > 0.9f) // && item.x > 0 && item.x < FlxG.width-48 && item.y > 0 && item.y < FlxG.height - 48
                 {
-                    if (item.scale < 2.0f)
-                    {
-                        _pieces.x = (int)item.x;
-                        _pieces.y = (int)item.y;
-                        _pieces.start(true, 0, 12);
-                    }
+                    //if (item.scale < 2.0f)
+                    //{
+                    //    _pieces.x = (int)item.x;
+                    //    _pieces.y = (int)item.y;
+                    //    _pieces.start(true, 0, 12);
+                    //}
 
                     for (int i = -3; i < 4; i++)
                     {
@@ -568,7 +570,16 @@ namespace Revvolvver
 
                             int xp = (int)((item.x+item.width/2) + (16*i)) / 16;
                             int yp = (int)((item.y+item.height/2) + (16*j)) / 16;
-                            if (xp>0 && xp<FlxG.width/16 && yp>0 && yp<FlxG.height/16 ) { 
+                            if (xp>0 && xp<FlxG.width/16 && yp>0 && yp<FlxG.height/16 ) {
+
+                                if (_caveMap.getTile(xp, yp) != 0)
+                                {
+                                    _pieces.x = xp * 16;
+                                    _pieces.y = yp * 16;
+
+                                    _pieces.start(true, 0, 4);
+                                }
+
                                 _caveMap.setTile(xp, yp, 0, true);
 
                                 //Console.WriteLine("Bomb {0} {1}",i,j );

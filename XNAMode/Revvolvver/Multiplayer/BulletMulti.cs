@@ -43,6 +43,12 @@ namespace Revvolvver
 		
 		override public void update()
 		{
+            if (exploding && _caf == 7)
+            {
+                x = -1000;
+                y = -1000;
+                exploding = false;
+            }
 			if(dead && finished) exists = false;
 			else base.update();
 
