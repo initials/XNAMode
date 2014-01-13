@@ -284,7 +284,7 @@ namespace Revvolvver
                                 item[8].ToString() + "," + item[9].ToString() + "," + item[10].ToString() + "," + item[11].ToString() + "\n";
                         }
 
-                        FlxU.saveToDevice(_historyString, ("Level" + FlxG.level.ToString() + "_" + controller.ToString() + "PlayerData.txt"));
+                        FlxU.saveToDevice(_historyString, ("Revvolvver/Level" + FlxG.level.ToString() + "_" + controller.ToString() + "PlayerData.txt"));
 
                         _rec = Recording.Playback;
 
@@ -453,7 +453,7 @@ namespace Revvolvver
                 // !flickering()
 
                 if (speed> 0.2f  && ((shoot && timeSinceLastShot > 0.45f) || ((_rec == Recording.Playback || _rec == Recording.Reverse)
-                    && _history[frameCount][6] == true) || (FlxG.keys.justPressed(Keys.C) && controller == PlayerIndex.One) ||
+                    && _history[frameCount][6] == true) || (FlxG.keys.C && controller == PlayerIndex.One) ||
                         FlxG.gamepads.isButtonDown(Buttons.X, controller, out pi)))
                 {
                     if (machineGun < 6.9999f)
@@ -629,7 +629,7 @@ namespace Revvolvver
             _history = new List<bool[]>();
 
             //string x = FlxU.loadFromDevice("Level" + FlxG.level.ToString() + "_" + controller.ToString() + "PlayerData.txt");
-            string x = FlxU.loadFromDevice("Level1_" + controller.ToString() + "PlayerData.txt");
+            string x = FlxU.loadFromDevice("Revvolvver/Level1_" + controller.ToString() + "PlayerData.txt");
 
 
             string[] y = x.Split('\n');
@@ -644,10 +644,18 @@ namespace Revvolvver
 
 
                 if (item1.Length == 12)
-
-                    _history.Add(new bool[] { bool.Parse(item1[0]), bool.Parse(item1[1]), bool.Parse(item1[2]), bool.Parse(item1[3]), 
+                    try
+                    {
+                        _history.Add(new bool[] { bool.Parse(item1[0]), bool.Parse(item1[1]), bool.Parse(item1[2]), bool.Parse(item1[3]), 
                     bool.Parse(item1[4]), bool.Parse(item1[5]), bool.Parse(item1[6]), bool.Parse(item1[7]),
                     bool.Parse(item1[8]), bool.Parse(item1[9]), bool.Parse(item1[10]), bool.Parse(item1[11])});
+                    }
+                    catch (Exception)
+                    {
+                        
+                       
+                    }
+
 
                 //Console.WriteLine(item1.Length + " -- " + item1[1]);
 

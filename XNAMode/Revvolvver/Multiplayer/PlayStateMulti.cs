@@ -45,6 +45,7 @@ namespace Revvolvver
         protected FlxGroup _spawners;
         protected FlxGroup _botBullets;
         protected FlxEmitter _littleGibs;
+        protected FlxEmitter _deathGibs;
         protected FlxEmitter _bigGibs;
         protected FlxEmitter _pieces;
 
@@ -447,6 +448,13 @@ namespace Revvolvver
                 _bigGibs.setRotation(-720, -720);
                 _bigGibs.createSprites(ImgSpawnerGibs, 50, true, 0.5f, 0.35f);
 
+                _deathGibs = new FlxEmitter();
+                _deathGibs.delay = 3;
+                _deathGibs.setXSpeed(-150, 150);
+                _deathGibs.setYSpeed(-200, 0);
+                _deathGibs.setRotation(-720, 720);
+                _deathGibs.createSprites(ImgGibs, 200, true, 1.0f, 0.65f);
+
                 _pieces = new FlxEmitter();
                 _pieces.x = 0;
                 _pieces.y = 0;
@@ -463,7 +471,9 @@ namespace Revvolvver
 
                 add(_littleGibs);
                 add(_bigGibs);
+                add(_deathGibs);
 
+                _objects.add(_deathGibs);
                 _objects.add(_littleGibs);
                 _objects.add(_bigGibs);
 
@@ -493,7 +503,7 @@ namespace Revvolvver
             caveExt.initWallRatio = 0.505f;
             
             _caveMap.auto = FlxTilemap.AUTO;
-            string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20}, new int[] { 15, 25 }, new int[] { 0, 1, 2, 18,19,20,21, 37, 38 });
+            string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20}, new int[] { 15, 25 }, new int[] { 0, 1, 2, 3, 4, 17,18,19,20,21,22, 35,36, 37, 38 });
             string newMap = caveExt.convertMultiArrayStringToString(tiles);
             _caveMap.loadMap(newMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
             _blocks.add(_caveMap);
@@ -982,9 +992,9 @@ namespace Revvolvver
                 ((PlayerMulti)(e.Object2)).velocity.Y = -250;
                 ((PlayerMulti)(e.Object2)).flicker(5.0f);
 
-                _littleGibs.x = e.Object2.x;
-                _littleGibs.y = e.Object2.y;
-                _littleGibs.start(true, 0, 30);
+                _deathGibs.x = e.Object2.x;
+                _deathGibs.y = e.Object2.y;
+                _deathGibs.start(true, 0, 30);
 
                 FlxG.quake.start(0.005f, 0.5f);
 
