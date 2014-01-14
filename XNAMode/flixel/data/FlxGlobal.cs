@@ -163,5 +163,44 @@ namespace org.flixel
         public static int WINNING_SCORE = 10;
 
 
+        
+
+        // Extra setters --
+
+        public static float caveGen = 0.5f;
+        public static float caveGen_EMPTY = 0.45f;
+        public static float caveGen_HALF = 0.475f;
+        public static float caveGen_REGULAR = 0.5f;
+        public static float caveGen_MEDIUM_BROWN = 0.525f;
+        public static float caveGen_FULL = 0.55f;
+
+        public static int bombsPerPlayer = 4;
+        public static int bombsPerPlayerMin = 0;
+        public static int bombsPerPlayerMax = 20;
+
+        public static float timeBeforeLevelRegen = 10.0f;
+
+        public static int cloudsPerGame = 10;
+
+        public static Dictionary<string, float> GAME_SETTINGS;
+
+        static Revvolvver_Globals()
+        {
+            GAME_SETTINGS = new Dictionary<string, float>();
+            GAME_SETTINGS.Add("cloudsPerGame", 10.0f);
+
+        }
+
+        public static bool TryGetSetting(string key, out float setting)
+        {
+            return GAME_SETTINGS.TryGetValue(key, out setting);
+        }
+
+
+
+        
+
+
+
     }
 }

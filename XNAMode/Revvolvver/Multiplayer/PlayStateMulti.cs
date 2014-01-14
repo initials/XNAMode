@@ -121,7 +121,10 @@ namespace Revvolvver
 
             _cloudsGrp = new FlxGroup();
 
-            for (int vv = 0; vv < 10; vv++)
+            float clouds;
+            Revvolvver_Globals.TryGetSetting("cloudsPerGame", out clouds);
+
+            for (int vv = 0; vv < clouds ; vv++)
             {
                 Cloud c = new Cloud((int)FlxU.random(-50, 400), (int)FlxU.random(0, 100));
                 c.velocity.X = FlxU.random(50, 150);
