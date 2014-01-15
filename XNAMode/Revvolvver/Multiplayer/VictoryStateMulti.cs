@@ -47,13 +47,13 @@ namespace Revvolvver
             //add(gibs);
             //gibs.start(false, 0.005f);
 
-            if (FlxG.scores[0]>9)
+            if (FlxG.scores[0] > Revvolvver_Globals.GameSettings[4].DefaultAmount)
                 add((new FlxText(0, FlxG.height / 3, FlxG.width, "PLAYER 1 WINS\nSCORE: " + FlxG.scores[0])).setFormat(null, 3, new Color(0xd1, 0x6e, 0x55), FlxJustification.Center, Color.Black));
-            if (FlxG.scores[1] > 9)
+            if (FlxG.scores[1] > Revvolvver_Globals.GameSettings[4].DefaultAmount)
                 add((new FlxText(0, FlxG.height / 3, FlxG.width, "PLAYER 2 WINS\nSCORE: " + FlxG.scores[1])).setFormat(null, 3, new Color(0xd1, 0x6e, 0x55), FlxJustification.Center, Color.Black));
-            if (FlxG.scores[2] > 9)
+            if (FlxG.scores[2] > Revvolvver_Globals.GameSettings[4].DefaultAmount)
                 add((new FlxText(0, FlxG.height / 3, FlxG.width, "PLAYER 3 WINS\nSCORE: " + FlxG.scores[2])).setFormat(null, 3, new Color(0xd1, 0x6e, 0x55), FlxJustification.Center, Color.Black));
-            if (FlxG.scores[3] > 9)
+            if (FlxG.scores[3] > Revvolvver_Globals.GameSettings[4].DefaultAmount)
                 add((new FlxText(0, FlxG.height / 3, FlxG.width, "PLAYER 4 WINS\nSCORE: " + FlxG.scores[3])).setFormat(null, 3, new Color(0xd1, 0x6e, 0x55), FlxJustification.Center, Color.Black));
 
             //string n = "Scores: " + FlxG.scores[0] + FlxG.scores[1] + FlxG.scores[2] + FlxG.scores[3];
@@ -70,7 +70,7 @@ namespace Revvolvver
                 if ((_timer > 0.35) && ((_timer > 10) || FlxG.keys.justPressed(Keys.X) || FlxG.keys.justPressed(Keys.C) || FlxG.gamepads.isNewButtonPress(Buttons.Start) || FlxG.gamepads.isNewButtonPress(Buttons.A)))
                 {
                     _fading = true;
-                    //cccccccccccccccccccccccccccccccccccFlxG.play(SndMenu);
+                    
                     FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 2, onPlay, false);
                 }
             }

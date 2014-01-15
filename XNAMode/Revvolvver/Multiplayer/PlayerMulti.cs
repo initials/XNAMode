@@ -631,8 +631,11 @@ namespace Revvolvver
             //string x = FlxU.loadFromDevice("Level" + FlxG.level.ToString() + "_" + controller.ToString() + "PlayerData.txt");
             string x = FlxU.loadFromDevice("Revvolvver/Level1_" + controller.ToString() + "PlayerData.txt");
 
+            
 
             string[] y = x.Split('\n');
+
+            int line = 0;
 
             foreach (var item in y)
             {
@@ -641,9 +644,10 @@ namespace Revvolvver
                 //Console.WriteLine(float.Parse(item1[0]) + " + " + float.Parse(item1[1]) + " + " + float.Parse(item1[2]) + " + " + float.Parse(item1[3]));
 
                 //Console.WriteLine(item1.Length + " -- " + item1[1] + " -- " + bool.Parse(item1[1]));
-
-
-                if (item1.Length == 12)
+                //Console.WriteLine(controller.ToString() + " + Line: " + line + "Item: " + item);
+                line++;
+                if (item1.Length == 12  )
+                {
                     try
                     {
                         _history.Add(new bool[] { bool.Parse(item1[0]), bool.Parse(item1[1]), bool.Parse(item1[2]), bool.Parse(item1[3]), 
@@ -652,16 +656,16 @@ namespace Revvolvver
                     }
                     catch (Exception)
                     {
-                        
-                       
-                    }
+                        Console.WriteLine("History Not Added " + controller.ToString() + " " + item1.Length + " -- " + item1[1]);
 
+                    }
+                }
 
                 //Console.WriteLine(item1.Length + " -- " + item1[1]);
 
             }
 
-            Console.WriteLine(_history.Count);
+            //Console.WriteLine(_history.Count);
 
             _rec = Recording.Playback;
             frameCount = 0;

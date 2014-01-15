@@ -3,7 +3,6 @@
 #################
 
 *.pydevproject
-*.cachefile
 .project
 .metadata
 bin/
@@ -42,6 +41,7 @@ local.properties
 *.user
 *.sln.docstates
 *.contentproj
+*.cachefile
 
 # Build results
 [Dd]ebug/

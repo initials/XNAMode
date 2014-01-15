@@ -125,6 +125,7 @@
     <Compile Include="Revvolvver\Bomb.cs" />
     <Compile Include="Revvolvver\Bullet.cs" />
     <Compile Include="Revvolvver\Cloud.cs" />
+    <Compile Include="Revvolvver\GameSettings.cs" />
     <Compile Include="Revvolvver\MenuState.cs" />
     <Compile Include="Revvolvver\Multiplayer\BulletMulti.cs" />
     <Compile Include="Revvolvver\Multiplayer\PlayerMulti.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Revvolvver\Player.cs" />
     <Compile Include="Revvolvver\PlayStateTiles.cs" />
     <Compile Include="Revvolvver\PowerUp.cs" />
+    <Compile Include="Revvolvver\SettingsState.cs" />
     <Compile Include="Revvolvver\VictoryState.cs" />
     <Compile Include="FourChambers\DataEntryState.cs" />
     <Compile Include="flixel\data\FlxGlobal.cs" />

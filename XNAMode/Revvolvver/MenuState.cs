@@ -222,8 +222,8 @@ namespace Revvolvver
                 {
                     _ok2 = true;
                     //FlxG.play(SndHit2);
-                    FlxG.flash.start(new Color(0xd8, 0xeb, 0xa2), 0.5f, null, false);
-                    FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
+                    FlxG.flash.start(new Color(0xd1, 0x6e, 0x55), 0.5f, null, false);
+                    FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onFade, false);
                 }
             }
 
@@ -296,10 +296,14 @@ namespace Revvolvver
                     FlxG.play(SndGun2, 0.35f);
                    // _gibs.start(true, 5);
                     //FlxG.state = new PlayStateMulti();
-                    FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
+                    FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onFade, false);
                     return;
                 }
-
+                if (FlxG.keys.justPressed(Keys.Q) || FlxG.gamepads.isNewButtonPress(Buttons.Y))
+                {
+                    FlxG.state = new SettingsState();
+                    return;
+                }
 
             }
 
