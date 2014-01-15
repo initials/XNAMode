@@ -25,13 +25,13 @@ namespace Loader_Revvolvver
             : base(game)
         {
 
-            int w = 960;
-            int h = 540;
+            int w = 640;
+            int h = 360;
 
             initGame(w, h, new Revvolvver.MenuState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
 
             FlxG.debug = false;
-            FlxG.zoom = 1920 / w;
+            FlxG.zoom = 1280 / w;
             FlxG.level = -1;
 
             //FourChambers_Globals.BUILD_TYPE = FourChambers_Globals.BUILD_TYPE_RELEASE;

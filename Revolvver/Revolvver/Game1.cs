@@ -27,14 +27,14 @@ namespace Loader_Revvolvver
         /// resolution parameters used when you call
         /// initGame() in your FlxGame class.
         /// </summary>
-        private int resX = 1920;
+        private int resX = 1280;
         /// <summary>
         /// DO NOT CHANGE THESE VALUES!!
         /// your game should only be concerned with the
         /// resolution parameters used when you call
         /// initGame() in your FlxGame class.
         /// </summary>
-        private int resY = 1080;
+        private int resY = 720;
 #else
         private int resX = 480; //DO NOT CHANGE THESE VALUES!!
         private int resY = 800;  //your game should only be concerned with the
@@ -45,10 +45,10 @@ namespace Loader_Revvolvver
 #if XBOX360
         private bool _fullScreen = true;
 #else
-        private bool _fullScreen = true;
+        private bool _fullScreen = false;
 #endif
         //graphics management
-        private GraphicsDeviceManager _graphics;
+        public GraphicsDeviceManager _graphics;
         //other variables
         private FlxGame _flixelgame;
 

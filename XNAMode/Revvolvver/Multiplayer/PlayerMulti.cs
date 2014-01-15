@@ -103,7 +103,7 @@ namespace Revvolvver
             ImgSpaceman = FlxG.Content.Load<Texture2D>("Revvolvver/spaceman");
 
             loadGraphic(ImgSpaceman, true, true, 16);
-            _restart = 0;
+            //_restart = 0;
 
             //bounding box tweaks
             width = 12;

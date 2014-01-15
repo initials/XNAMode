@@ -63,7 +63,7 @@ namespace XNAMode
             ImgSpaceman = FlxG.Content.Load<Texture2D>("Mode/spaceman");
 
 			loadGraphic(ImgSpaceman,true,true,8);
-			_restart = 0;
+			//_restart = 0;
 			
 			//bounding box tweaks
 			width = 6;
