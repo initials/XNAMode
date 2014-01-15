@@ -42,11 +42,11 @@ namespace FourChambers
             //caveExt.printCave(tiles);
             string newMap = caveExt.convertMultiArrayStringToString(tiles);
 
-            //mainTilemap = new FlxTilemap();
+            mainTilemap = new FlxTilemap();
             //mainTilemap.auto = FlxTilemap.STRING;
             //mainTilemap.loadMap(newMap, FlxG.Content.Load<Texture2D>("diagnostic/testpalette"), 1, 1);
             //mainTilemap.boundingBoxOverride = true;
-            //add(mainTilemap);
+            add(mainTilemap);
 
             destructableAttrs = new Dictionary<string, string>();
             destructableAttrs = FlxXMLReader.readAttributesFromOelFile("ogmoLevels/levelTutorial.oel", "level/IndestructableTerrain");

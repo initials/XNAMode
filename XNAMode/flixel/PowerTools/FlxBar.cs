@@ -32,7 +32,7 @@ namespace org.flixel
     {
         //private var canvas:BitmapData;
 
-        private uint barType;
+        //private uint barType;
         private uint barWidth;
         private uint barHeight;
 

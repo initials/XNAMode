@@ -12,7 +12,7 @@ namespace FourChambers
 {
     public class LevelBeginTextState : FlxState
     {
-        float counter;
+        //float counter;
         FlxText t;
 
         override public void create()

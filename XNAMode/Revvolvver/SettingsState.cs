@@ -21,11 +21,11 @@ namespace Revvolvver
         private Texture2D ImgCursor;
 
         private FlxEmitter _gibs;
-        private bool _ok2;
+        //private bool _ok2;
         private FlxGroup textGrp;
 
-        private int frameCount;
-        private int clickCount;
+        //private int frameCount;
+        //private int clickCount;
 
         private const string SndClick = "Revvolvver/sfx/gunclick";
         private const string SndGun1 = "Revvolvver/sfx/gunshot1";
@@ -38,30 +38,23 @@ namespace Revvolvver
         private const string SndChord6 = "Revvolvver/sfx/chord_06";
         private const string SndChord7 = "Revvolvver/sfx/chord_07";
 
-        private string[] Snds;
+        //private string[] Snds;
 
         private const string Music = "Revvolvver/sfx/asong";
 
-        private FlxSound SndFlxClick;
+        //private FlxSound SndFlxClick;
 
         private FlxSprite flower;
 
         private FlxText playersText;
-        private FlxText playersTextx;
+        //private FlxText playersTextx;
 
         private int currentTextSelected = 0;
-
-        //#if !WINDOWS_PHONE
-        //        FlxSave save;
-        //        private bool hasCheckedSaveFile = false;
-        //#endif
 
         override public void create()
         {
 
             FlxG.bloom.Visible = false;
-
-
 
             FlxG.backColor = new Color(0xdb, 0xd8, 0xac);
 

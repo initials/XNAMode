@@ -30,7 +30,7 @@ namespace Revvolvver
         private int _bulletVel;
         private bool _up;
         private bool _down;
-        private float _restart;
+        //private float _restart = 0.0f;
         private FlxEmitter _gibs;
         public bool shoot = false;
         public float timeSinceLastShot = 0.0f;

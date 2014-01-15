@@ -21,7 +21,7 @@ namespace FourChambers
         Dictionary<string, string> levelAttrs;
         List<Dictionary<string, string>> actorsAttrs;
         private FlxTilemap destructableTilemap;
-        private FlxSprite collider;
+        //private FlxSprite collider;
 
         override public void create()
         {

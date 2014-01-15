@@ -26,7 +26,7 @@ namespace XNAMode
 		private int _bulletVel;
 		private bool _up;
 		private bool _down;
-		private float _restart;
+		//private float _restart;
 		private FlxEmitter _gibs;
 
         public PlayerIndex? controller;

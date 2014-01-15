@@ -21,7 +21,7 @@ namespace Revvolvver
         private Texture2D ImgCursor;
 
         private FlxEmitter _gibs;
-        private bool _ok2;
+        //private bool _ok2 = false;
         private FlxGroup letters;
 
         private int frameCount;
@@ -42,7 +42,7 @@ namespace Revvolvver
 
         private const string Music = "Revvolvver/sfx/asong";
 
-        private FlxSound SndFlxClick;
+        //private FlxSound SndFlxClick;
 
         private FlxSprite flower;
 
@@ -220,11 +220,12 @@ namespace Revvolvver
                 if (((FlxG.keys.isKeyDown(Keys.X, FlxG.controllingPlayer, out pi) && FlxG.keys.isKeyDown(Keys.C, FlxG.controllingPlayer, out pi))
                     || (FlxG.gamepads.isNewButtonPress(Buttons.Start, FlxG.controllingPlayer, out pi))))
                 {
-                    _ok2 = true;
+                    //_ok2 = true;
                     //FlxG.play(SndHit2);
                     FlxG.flash.start(new Color(0xd1, 0x6e, 0x55), 0.5f, null, false);
                     FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onFade, false);
                 }
+
             }
 
 
