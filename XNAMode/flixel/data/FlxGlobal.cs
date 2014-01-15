@@ -169,12 +169,16 @@ namespace org.flixel
 
         public static Revvolvver.GameSettings[] GameSettings =
         {
-            //                          Name       Default, Min,    Max
-            new Revvolvver.GameSettings("Clouds",  10,      1,      100 ), //0
-            new Revvolvver.GameSettings("Bombs",    4,      0,      20  ), //1
-            new Revvolvver.GameSettings("Cave",     50,     40,     60 ),//2
-            new Revvolvver.GameSettings("RegenTime",10,     3,      100 ), //3
-            new Revvolvver.GameSettings("WinningScore",10,  1,      100 ), //4
+            //                          Name       Default, Min,Max
+            new Revvolvver.GameSettings("Clouds",       10, 1,  100 ), //0
+            new Revvolvver.GameSettings("Bombs",        4,  0,  20  ), //1
+            new Revvolvver.GameSettings("Cave",         50, 40, 60  ),  //2
+            new Revvolvver.GameSettings("Regen Time",    10, 3,  100 ), //3
+            new Revvolvver.GameSettings("Winning Score", 10, 1,  100 ), //4
+            new Revvolvver.GameSettings("Run Speed"  ,   80, 50, 500 ), //5
+            new Revvolvver.GameSettings("Bullet Regen"  ,4,  0,  100 ), //6
+            new Revvolvver.GameSettings("Power Up Time"  ,7,  1,  20 ), //7
+            new Revvolvver.GameSettings("Bullet Velocity",360,  100,  600 ), //8
         };
     }
 }

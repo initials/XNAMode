@@ -49,6 +49,8 @@ namespace Revvolvver
         private FlxText playersText;
         private FlxText playersTextx;
 
+        private int currentTextSelected = 0;
+
         //#if !WINDOWS_PHONE
         //        FlxSave save;
         //        private bool hasCheckedSaveFile = false;
@@ -102,7 +104,7 @@ namespace Revvolvver
             for (int i = 0; i < Revvolvver_Globals.GameSettings.Length; i++)
             {
                 string value = Revvolvver_Globals.GameSettings[i].Name + ": " + Revvolvver_Globals.GameSettings[i].DefaultAmount;
-                playersText = new FlxText(0, 40 + (i*20), FlxG.width, value);
+                playersText = new FlxText(70, 40 + (i*20), FlxG.width, value);
                 playersText.alignment = FlxJustification.Left;
                 playersText.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Left, new Color(0xff, 0x6e, 0x55));
                 playersText.shadow = new Color(0xff, 0x6e, 0x55);
@@ -124,20 +126,57 @@ namespace Revvolvver
         override public void update()
         {
             
-            
             base.update();
+
+            if (FlxG.keys.justPressed(Keys.Up))
+            {
+                currentTextSelected--;
+                if (currentTextSelected < 0) currentTextSelected = textGrp.members.Count - 1;
+            }
+            if (FlxG.keys.justPressed(Keys.Down))
+            {
+                currentTextSelected++;
+                if (currentTextSelected > textGrp.members.Count - 1) currentTextSelected = 0;
+            }
+
+            if (FlxG.keys.RIGHT )
+            {
+                Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount += 1.0f;
+
+                if (Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount > Revvolvver_Globals.GameSettings[currentTextSelected].MaxAmount)
+                {
+                    Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount = Revvolvver_Globals.GameSettings[currentTextSelected].MaxAmount;
+                }
+
+                string value = Revvolvver_Globals.GameSettings[currentTextSelected].Name + ": " + Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount.ToString();
+                ((FlxText)(textGrp.members[currentTextSelected])).text = value;
+            }
+            if (FlxG.keys.LEFT)
+            {
+                Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount -= 1.0f;
+
+                if (Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount < Revvolvver_Globals.GameSettings[currentTextSelected].MinAmount)
+                {
+                    Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount = Revvolvver_Globals.GameSettings[currentTextSelected].MinAmount;
+                }
+
+                string value = Revvolvver_Globals.GameSettings[currentTextSelected].Name + ": " + Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount.ToString();
+                ((FlxText)(textGrp.members[currentTextSelected])).text = value;
+            }
+
 
             for (int i = 0; i < textGrp.members.Count; i++)
             {
 
-                if (FlxG.keys.justPressed(Keys.Right))
-                {
-                    Revvolvver_Globals.GameSettings[i].DefaultAmount++;
-                    string value = Revvolvver_Globals.GameSettings[i].Name + ": " + Revvolvver_Globals.GameSettings[i].DefaultAmount;
-                    ((FlxText)(textGrp.members[i])).text = value;
-                }
+
+
+
+
+
+                ((FlxText)(textGrp.members[i])).color = Color.White;
             }
 
+            ((FlxText)(textGrp.members[currentTextSelected])).color = Color.Red;
 
             if (FlxG.keys.justPressed(Keys.Enter) || FlxG.gamepads.isNewButtonPress(Buttons.Start))
             {
