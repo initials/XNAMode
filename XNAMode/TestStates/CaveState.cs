@@ -298,7 +298,7 @@ namespace FourChambers
 
             if (FlxG.keys.F4)
             {
-                FlxG.takeScreenshot();
+                //FlxG.takeScreenshot();
             }
 
             if (FlxG.keys.A)

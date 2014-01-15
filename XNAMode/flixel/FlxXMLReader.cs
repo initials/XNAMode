@@ -18,7 +18,6 @@ namespace org.flixel
     public class FlxXMLReader
     {
 
-
         public static void readOgmoProjectAndLevel(string projectFilename, string levelFilename)
         {
             XDocument project = XDocument.Load(projectFilename);
@@ -26,8 +25,6 @@ namespace org.flixel
             {
                 Console.WriteLine(xEle.Descendants("Name").ToString() );
             }
-
-
         }
 
         public static List<Dictionary<string, string>> readOgmoV2Level(string filename)
@@ -48,24 +45,14 @@ namespace org.flixel
             {
                 Console.WriteLine(xAttr.Name.ToString() + "  " + xAttr.Value.ToString());
                 //levelAttrs.Add(xAttr.Name.ToString(), xAttr.Value.ToString());
-
             }
-
-
 
             foreach (XElement xEle in xdoc.Descendants("level").Elements())
             {
                 Console.WriteLine(xEle.Name.ToString());
-
-
-
-                
             }
             return completeSet;
         }
-
-
-
 
         /// <summary>
         /// Reads a custom XML document
@@ -117,25 +104,31 @@ namespace org.flixel
 
         /// <summary>
         /// Returns the attributes on the node/element specified.
+        /// NOTE: Test for Android.
         /// </summary>
         /// <param name="filename">Filename, example: "ogmoLevels/level1.oel"</param>
         /// <param name="element">Element from XML file, example: "level/ActorsLayer" or "level"</param>
         /// <returns></returns>
         public static Dictionary<string, string> readAttributesFromOelFile(string filename, string element)
         {
+
+            XmlDocument xml = new XmlDocument();
+            Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
+
+#if ANDROID
+
 			string content;
-			using (StreamReader sr = new StreamReader (Game.Activity.Assets.Open("Revvolvver/titlescreen.oel")))
+			using (StreamReader sr = new StreamReader (Game.Activity.Assets.Open(filename)))
 			{
 				content = sr.ReadToEnd();
 			}
-
-
-			System.Console.WriteLine (content);
-
-            Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
-
-            XmlDocument xml = new XmlDocument();
 			xml.LoadXml(content);
+
+#endif
+#if !ANDROID
+            xml.Load(filename);
+#endif
+
             //Console.WriteLine("Node Name: {0} ", element);
             XmlNodeList xnList = xml.SelectNodes(element);
             foreach (XmlNode xn in xnList)
@@ -243,8 +236,6 @@ namespace org.flixel
             return nodeList;
         }
 
-
-
         public static List<Dictionary<string, string>> readNodesFromTmxFile(string filename, string element, string name)
         {
             List<Dictionary<string, string>> nodeList = new List<Dictionary<string, string>>();
@@ -348,11 +339,7 @@ namespace org.flixel
             return completeSet;
         }
 
-
-
-
-
-
+        // END
     }
 
 }
