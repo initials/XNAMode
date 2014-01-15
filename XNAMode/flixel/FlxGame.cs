@@ -225,7 +225,7 @@ namespace org.flixel
             targetLeft = (GraphicsDevice.Viewport.Width - targetWidth) / 2;
 
             FlxG.LoadContent(GraphicsDevice);
-            _sndBeep = FlxG.Content.Load<SoundEffect>("Flixel/beep");
+			_sndBeep = FlxG.Content.Load<SoundEffect>("flixel/beep");
 
             initConsole();
 
@@ -517,28 +517,28 @@ namespace org.flixel
         /// <summary>
         /// Not working.
         /// </summary>
-        public void takeScreenshot()
-        {
-
-            int w = GraphicsDevice.PresentationParameters.BackBufferWidth;
-            int h = GraphicsDevice.PresentationParameters.BackBufferHeight;
-
-            //pull the picture from the buffer 
-            int[] backBuffer = new int[w * h];
-            GraphicsDevice.GetBackBufferData(backBuffer);
-
-            //copy into a texture 
-            Texture2D texture = new Texture2D(GraphicsDevice, w, h, false, GraphicsDevice.PresentationParameters.BackBufferFormat);
-            texture.SetData(backBuffer);
-
-            //save to disk 
-            Stream stream = File.OpenWrite("screenie" + ".jpg");
-
-            texture.SaveAsJpeg(stream, w, h);
-            stream.Dispose();
-
-            texture.Dispose();
-        }
+//        public void takeScreenshot()
+//        {
+//
+//            int w = GraphicsDevice.PresentationParameters.BackBufferWidth;
+//            int h = GraphicsDevice.PresentationParameters.BackBufferHeight;
+//
+//            //pull the picture from the buffer 
+//            int[] backBuffer = new int[w * h];
+//            GraphicsDevice.GetBackBufferData(backBuffer);
+//
+//            //copy into a texture 
+//            Texture2D texture = new Texture2D(GraphicsDevice, w, h, false, GraphicsDevice.PresentationParameters.BackBufferFormat);
+//            texture.SetData(backBuffer);
+//
+//            //save to disk 
+//            Stream stream = File.OpenWrite("screenie" + ".jpg");
+//
+//            texture.SaveAsJpeg(stream, w, h);
+//            stream.Dispose();
+//
+//            texture.Dispose();
+//        }
 
 		/// <summary>
 		/// This function is only used by the FlxGame class to do important internal management stuff

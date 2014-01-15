@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
 using System.Xml.Linq;
 using System.Xml;
+using System.IO;
 
 namespace org.flixel
 {
@@ -122,11 +123,19 @@ namespace org.flixel
         /// <returns></returns>
         public static Dictionary<string, string> readAttributesFromOelFile(string filename, string element)
         {
+			string content;
+			using (StreamReader sr = new StreamReader (Game.Activity.Assets.Open("Revvolvver/titlescreen.oel")))
+			{
+				content = sr.ReadToEnd();
+			}
+
+
+			System.Console.WriteLine (content);
 
             Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
 
             XmlDocument xml = new XmlDocument();
-            xml.Load(filename);
+			xml.LoadXml(content);
             //Console.WriteLine("Node Name: {0} ", element);
             XmlNodeList xnList = xml.SelectNodes(element);
             foreach (XmlNode xn in xnList)

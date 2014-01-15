@@ -92,9 +92,9 @@ namespace BloomPostprocess
         protected override void LoadContent()
         {
             //spriteBatch = new SpriteBatch(GraphicsDevice);
-
+			bloomCombineEffect = Game.Content.Load<Effect>("fx/BloomCombine");
             bloomExtractEffect = Game.Content.Load<Effect>("fx/BloomExtract");
-            bloomCombineEffect = Game.Content.Load<Effect>("fx/BloomCombine");
+            
             gaussianBlurEffect = Game.Content.Load<Effect>("fx/GaussianBlur");
 
             // Look up the resolution and format of our main backbuffer.

@@ -436,7 +436,7 @@ namespace org.flixel
         /// <summary>
         /// Not working yet!
         /// </summary>
-        public static void takeScreenshot() { _game.takeScreenshot(); }
+		//public static void takeScreenshot() { _game.takeScreenshot(); }
 
 
         /// <summary>
