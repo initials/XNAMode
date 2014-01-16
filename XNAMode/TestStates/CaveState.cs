@@ -118,7 +118,7 @@ namespace FourChambers
             // Warlock
             int i = 0;
             for (i = 0; i < BULLETS_PER_ACTOR; i++)
-                _bullets.add(new Fireball());
+                _bullets.add(new WarlockFireBall());
             _bulletsAll.add(_bullets);
 
             p = cav.findRandomSolid(decr);
@@ -404,7 +404,7 @@ namespace FourChambers
             return true;
              */
 
-            if ((e.Object1 is Warlock) && (e.Object2 is Fireball))
+            if ((e.Object1 is Warlock) && (e.Object2 is WarlockFireBall))
             {
 
             }

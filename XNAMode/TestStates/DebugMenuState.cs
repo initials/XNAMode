@@ -26,6 +26,7 @@ namespace XNAMode
             textInfo += "5. Clean Test State\n";
             textInfo += "6. Lemonade Test\n";
             textInfo += "7. VCR Test\n";
+            textInfo += "8. Rotate Test\n";
 
             FlxG.showHud();
 
@@ -73,7 +74,11 @@ namespace XNAMode
                 FlxG.state = new FourChambers.VCRState();
                 FlxG.hideHud();
             }
-
+            if (FlxG.keys.EIGHT)
+            {
+                FlxG.state = new RotateState();
+                //FlxG.hideHud();
+            }
             base.update();
         }
 

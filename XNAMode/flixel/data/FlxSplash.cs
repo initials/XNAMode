@@ -121,8 +121,7 @@ namespace org.flixel
             if (FlxG.keys.F1)
             {
                 FlxG.destroySounds(true);
-
-				//FlxG.state = new XNAMode.DebugMenuState();
+				FlxG.state = new XNAMode.DebugMenuState();
             }
         }
     }

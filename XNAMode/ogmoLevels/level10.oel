@@ -1,4 +1,4 @@
-<level width="800" height="800" levelName="Death" bgGraphic="Fear" timeOfDayPalette="skyPalette">
+<level width="800" height="800" levelName="The Fourth Chamber of the Human Heart" bgGraphic="Fear" timeOfDayPalette="skyPalette">
   <camera x="32" y="256" />
   <DestructableTerrain tileset="autotiles_16x16" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,7,13,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,19,18,12,-1,-1,-1,-1,-1,6,14,14,12,-1,-1,-1

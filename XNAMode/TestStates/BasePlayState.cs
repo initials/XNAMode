@@ -772,7 +772,7 @@ namespace FourChambers
             // Console.WriteLine("Overlapped.");
 
             // First reject Actors and their bullets.
-            if ((e.Object1 is Warlock) && (e.Object2 is Fireball))
+            if ((e.Object1 is Warlock) && (e.Object2 is WarlockFireBall))
             {
 
             }
@@ -916,7 +916,7 @@ namespace FourChambers
             {
                 int x = 0;
                 for (x = 0; x < BULLETS_PER_ACTOR; x++)
-                    fireballs.add(new Fireball());
+                    fireballs.add(new WarlockFireBall());
                 bullets.add(fireballs);
                 for (int i = 0; i < NumberOfActors; i++)
                 {

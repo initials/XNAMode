@@ -10,18 +10,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Kerberos : Actor
+    class Wolf : EnemyActor
     {
-        public Kerberos(int xPos, int yPos)
+        public Wolf(int xPos, int yPos)
             : base(xPos, yPos)
         {
 
-            actorName = "Kerberos";
+            actorName = "Wolf";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/allActors"), true, false, 26, 26);
 
             //addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 12);
-            addAnimation("idle", new int[] { FR_kerberos }, 0);
+            addAnimation("idle", new int[] { FR_wolf }, 0);
             //addAnimation("attack", new int[] { 2, 4 }, 18);
 
             //bounding box tweaks

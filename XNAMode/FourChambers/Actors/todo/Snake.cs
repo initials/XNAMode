@@ -10,18 +10,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Lion : Actor
+    class Snake : EnemyActor
     {
-        public Lion(int xPos, int yPos)
+        public Snake(int xPos, int yPos)
             : base(xPos, yPos)
         {
 
-            actorName = "Lion";
+            actorName = "Snake";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("initials/allActors"), true, false, 26, 26);
 
             //addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 12);
-            addAnimation("idle", new int[] { FR_lion }, 0);
+            addAnimation("idle", new int[] { FR_snake }, 0);
             //addAnimation("attack", new int[] { 2, 4 }, 18);
 
             //bounding box tweaks

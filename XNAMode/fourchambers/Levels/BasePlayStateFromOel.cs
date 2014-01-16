@@ -965,7 +965,7 @@ namespace FourChambers
         protected bool overlapped(object Sender, FlxSpriteCollisionEvent e)
         {
             // First reject Actors and their bullets.
-            if ((e.Object1 is Warlock) && (e.Object2 is Fireball)) { }
+            if ((e.Object1 is Warlock) && (e.Object2 is WarlockFireBall)) { }
             else if ((e.Object1 is Marksman) && (e.Object2 is Arrow)) { }
             else if ((e.Object1 is Marksman) && (e.Object2 is MeleeHitBox)) { }
             else if ((e.Object1 is Mistress) && (e.Object2 is MeleeHitBox)) { }

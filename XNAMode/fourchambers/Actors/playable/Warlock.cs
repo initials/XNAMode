@@ -55,21 +55,21 @@ namespace FourChambers
                 if (rightX == 0 && rightY == 0)
                 {
                     if (facing == Flx2DFacing.Right)
-                        ((Fireball)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 12)), 600, -100);
+                        ((WarlockFireBall)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 12)), 600, -100);
                     else
-                        ((Fireball)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 12)), -600, -100);
+                        ((WarlockFireBall)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 12)), -600, -100);
                 }
                 else
                 {
-                    ((Fireball)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 12)), (int)(rightX * 600), (int)(rightY *= -600));
+                    ((WarlockFireBall)(_bullets[_curBullet])).shoot((int)x, (int)(y + (height / 12)), (int)(rightX * 600), (int)(rightY *= -600));
                 }
                 if (rightX < 0)
                 {
-                    ((Fireball)(_bullets[_curBullet])).facing = Flx2DFacing.Left;
+                    ((WarlockFireBall)(_bullets[_curBullet])).facing = Flx2DFacing.Left;
                 }
                 else
                 {
-                    ((Fireball)(_bullets[_curBullet])).facing = Flx2DFacing.Right;
+                    ((WarlockFireBall)(_bullets[_curBullet])).facing = Flx2DFacing.Right;
                 }
 
                 if (++_curBullet >= _bullets.Count)
