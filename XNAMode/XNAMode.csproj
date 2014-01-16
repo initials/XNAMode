@@ -133,6 +133,7 @@
     <Compile Include="Revvolvver\Player.cs" />
     <Compile Include="Revvolvver\PlayStateTiles.cs" />
     <Compile Include="Revvolvver\PowerUp.cs" />
+    <Compile Include="Revvolvver\Revvolvver_Globals.cs" />
     <Compile Include="Revvolvver\SettingsState.cs" />
     <Compile Include="Revvolvver\VictoryState.cs" />
     <Compile Include="FourChambers\DataEntryState.cs" />
@@ -381,7 +382,6 @@
     <Content Include="Lemonade\characters\reference\Liselot %282%29.h" />
     <Content Include="Lemonade\characters\reference\Liselot.h" />
     <Content Include="Lemonade\characters\reference\Player.h" />
-    <Content Include="GAMESETTINGS.txt" />
     <Content Include="Revvolvver\Level1_FourPlayerData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

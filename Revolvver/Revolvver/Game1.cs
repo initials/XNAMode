@@ -66,7 +66,7 @@ namespace Loader_Revvolvver
 
             string gameSettings = File.ReadAllText("GAMESETTINGS.txt");
             string[] splitter = gameSettings.Split('\n');
-            Console.WriteLine(splitter[0]);
+            //Console.WriteLine(splitter[0]);
 
             resX = Convert.ToInt32(splitter[0].Substring(2));
             resY = Convert.ToInt32(splitter[1].Substring(2));

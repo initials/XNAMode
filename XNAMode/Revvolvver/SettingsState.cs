@@ -51,6 +51,8 @@ namespace Revvolvver
 
         private int currentTextSelected = 0;
 
+        public float timer;
+
         override public void create()
         {
 
@@ -93,11 +95,15 @@ namespace Revvolvver
 
 
             textGrp = new FlxGroup();
-
-            for (int i = 0; i < Revvolvver_Globals.GameSettings.Length; i++)
+            int i = 0;
+            for ( i=0; i < Revvolvver_Globals.GameSettings.Length; i++)
             {
-                string value = Revvolvver_Globals.GameSettings[i].Name + ": " + Revvolvver_Globals.GameSettings[i].DefaultAmount;
-                playersText = new FlxText(70, 40 + (i*20), FlxG.width, value);
+                //string value = Revvolvver_Globals.GameSettings[i].Name + ": " + Revvolvver_Globals.GameSettings[i].GameValue;
+
+
+
+
+                playersText = new FlxText(70, 40 + (i * 20), FlxG.width, findMenuString(i));
                 playersText.alignment = FlxJustification.Left;
                 playersText.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Left, new Color(0xff, 0x6e, 0x55));
                 playersText.shadow = new Color(0xff, 0x6e, 0x55);
@@ -110,72 +116,108 @@ namespace Revvolvver
             }
 
             add(textGrp);
-            
 
+            timer = 0.0f;
         }
 
+        public string findMenuString(int i)
+        {
+            string value = "";
 
+            if (Revvolvver_Globals.GameSettings[i].Name == "Play Now" || Revvolvver_Globals.GameSettings[i].Name == "Randomonium")
+                value = Revvolvver_Globals.GameSettings[i].Name;
+            else
+                value = Revvolvver_Globals.GameSettings[i].Name + ": " + Revvolvver_Globals.GameSettings[i].GameValue.ToString();
+
+            return value;
+        }
 
         override public void update()
         {
             
+
             base.update();
 
-            if (FlxG.keys.justPressed(Keys.Up))
+            if (FlxG.keys.justPressed(Keys.Up) || FlxG.gamepads.isNewButtonPress(Buttons.DPadUp) || FlxG.gamepads.isNewButtonPress(Buttons.LeftThumbstickUp))
             {
                 currentTextSelected--;
                 if (currentTextSelected < 0) currentTextSelected = textGrp.members.Count - 1;
             }
-            if (FlxG.keys.justPressed(Keys.Down))
+            if (FlxG.keys.justPressed(Keys.Down) || FlxG.gamepads.isNewButtonPress(Buttons.DPadDown) || FlxG.gamepads.isNewButtonPress(Buttons.LeftThumbstickDown))
             {
                 currentTextSelected++;
                 if (currentTextSelected > textGrp.members.Count - 1) currentTextSelected = 0;
             }
 
-            if (FlxG.keys.RIGHT )
+            if (FlxG.keys.justPressed(Keys.Right) || FlxG.gamepads.isNewButtonPress(Buttons.DPadRight) || FlxG.gamepads.isNewButtonPress(Buttons.LeftThumbstickRight) || FlxG.gamepads.isButtonDown(Buttons.RightTrigger))
             {
-                Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount += 1.0f;
+                Revvolvver_Globals.GameSettings[currentTextSelected].GameValue += Revvolvver_Globals.GameSettings[currentTextSelected].Increment;
 
-                if (Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount > Revvolvver_Globals.GameSettings[currentTextSelected].MaxAmount)
+                if (Revvolvver_Globals.GameSettings[currentTextSelected].GameValue > Revvolvver_Globals.GameSettings[currentTextSelected].MaxAmount)
                 {
-                    Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount = Revvolvver_Globals.GameSettings[currentTextSelected].MaxAmount;
+                    Revvolvver_Globals.GameSettings[currentTextSelected].GameValue = Revvolvver_Globals.GameSettings[currentTextSelected].MaxAmount;
+                }
+                string value = findMenuString(currentTextSelected);
+
+                ((FlxText)(textGrp.members[currentTextSelected])).text = value;
+
+                
+            }
+            else if (FlxG.keys.justPressed(Keys.Left) || FlxG.gamepads.isNewButtonPress(Buttons.DPadLeft) || FlxG.gamepads.isNewButtonPress(Buttons.LeftThumbstickLeft) || FlxG.gamepads.isButtonDown(Buttons.LeftTrigger) )
+            {
+                Revvolvver_Globals.GameSettings[currentTextSelected].GameValue -= 1.0f;
+
+                if (Revvolvver_Globals.GameSettings[currentTextSelected].GameValue < Revvolvver_Globals.GameSettings[currentTextSelected].MinAmount)
+                {
+                    Revvolvver_Globals.GameSettings[currentTextSelected].GameValue = Revvolvver_Globals.GameSettings[currentTextSelected].MinAmount;
                 }
 
-                string value = Revvolvver_Globals.GameSettings[currentTextSelected].Name + ": " + Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount.ToString();
+                string value = findMenuString(currentTextSelected);
                 ((FlxText)(textGrp.members[currentTextSelected])).text = value;
+
+                
             }
-            if (FlxG.keys.LEFT)
+            else
             {
-                Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount -= 1.0f;
-
-                if (Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount < Revvolvver_Globals.GameSettings[currentTextSelected].MinAmount)
-                {
-                    Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount = Revvolvver_Globals.GameSettings[currentTextSelected].MinAmount;
-                }
-
-                string value = Revvolvver_Globals.GameSettings[currentTextSelected].Name + ": " + Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount.ToString();
-                ((FlxText)(textGrp.members[currentTextSelected])).text = value;
+                timer = 0.0f;
             }
 
+            timer += FlxG.elapsed;
 
             for (int i = 0; i < textGrp.members.Count; i++)
             {
-
-
-
-
-
-
                 ((FlxText)(textGrp.members[i])).color = Color.White;
             }
 
             ((FlxText)(textGrp.members[currentTextSelected])).color = Color.Red;
 
-            if (FlxG.keys.justPressed(Keys.Enter) || FlxG.gamepads.isNewButtonPress(Buttons.Start))
+            if (FlxG.keys.justPressed(Keys.Enter) || FlxG.gamepads.isNewButtonPress(Buttons.Start) || FlxG.gamepads.isNewButtonPress(Buttons.A))
             {
-                FlxG.play(SndGun2, 0.35f);
-                FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onFade, false);
-                return;
+
+                if (Revvolvver_Globals.GameSettings[currentTextSelected].Name == "Play Now")
+                {
+                    FlxG.play(SndGun2, 0.35f);
+                    FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onFade, false);
+                    return;
+                }
+                else if (Revvolvver_Globals.GameSettings[currentTextSelected].Name == "Randomonium")
+                {
+                    for (int i = 0; i < textGrp.members.Count; i++)
+                    {
+                        Revvolvver_Globals.GameSettings[i].GameValue = (int)FlxU.random(Revvolvver_Globals.GameSettings[i].MinAmount, Revvolvver_Globals.GameSettings[i].MaxAmount);
+                        string value = findMenuString(i);
+                        ((FlxText)(textGrp.members[i])).text = value;
+                    }
+                }
+                else
+                {
+                    Revvolvver_Globals.GameSettings[currentTextSelected].GameValue = Revvolvver_Globals.GameSettings[currentTextSelected].DefaultAmount;
+                    string value = findMenuString(currentTextSelected);
+                    ((FlxText)(textGrp.members[currentTextSelected])).text = value;
+
+                }
+
+
             }
 
 
@@ -186,7 +228,7 @@ namespace Revvolvver
 
         private void onFade(object sender, FlxEffectCompletedEvent e)
         {
-            FlxG.state = new MenuState();
+            FlxG.state = new PlayStateMulti();
             
         }
 

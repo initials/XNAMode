@@ -48,6 +48,7 @@ namespace Revvolvver
 
         private FlxText playersText;
         private FlxText playersTextx;
+        //private FlxText credits;
 
         //#if !WINDOWS_PHONE
         //        FlxSave save;
@@ -153,6 +154,17 @@ namespace Revvolvver
             playersText.visible = false;
             playersTextx.visible = false;
 
+            //credits = new FlxText(FlxG.width, FlxG.height/2 + 140, FlxG.width, "Revvolvver is a game by Initials, Art by Cellusious, Additional Game Design by Ees, Engine X-Flixel");
+            //credits.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Left, new Color(0xff, 0x6e, 0x55));
+            //credits.shadow = new Color(0xff, 0x6e, 0x55);
+            //credits.scale = 1; // size = 32
+            //credits.color = new Color(0xff, 0x6e, 0x55);
+            //credits.antialiasing = false;
+            
+            //add(credits);
+
+
+
         }
 
         public void createLetter(char Letter, int x, int y)
@@ -173,7 +185,7 @@ namespace Revvolvver
             //Console.WriteLine("FlxG.debug is: " + FlxG.debug);
 
             PlayerIndex pi;
-
+            
             frameCount++;
 
             if (frameCount % 5 == 0 && clickCount < 10)
@@ -316,7 +328,7 @@ namespace Revvolvver
             //FlxG.level = (int)FlxU.random(1,9.9);
             FlxG.level = 1;
 
-            FlxG.state = new PlayStateMulti();
+            FlxG.state = new SettingsState();
             //FlxG.state = new PlayStateTiles();
         }
 

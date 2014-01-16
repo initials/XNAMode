@@ -123,7 +123,7 @@ namespace Revvolvver
 
             
 
-            for (int vv = 0; vv < Revvolvver_Globals.GameSettings[0].DefaultAmount; vv++)
+            for (int vv = 0; vv < Revvolvver_Globals.GameSettings[0].GameValue; vv++)
             {
                 Cloud c = new Cloud((int)FlxU.random(-50, 400), (int)FlxU.random(0, 100));
                 c.velocity.X = FlxU.random(50, 150);
@@ -257,7 +257,7 @@ namespace Revvolvver
             for (i = 0; i < 80; i++)
                 _bullets.add(new BulletMulti());
 
-            for (i = 0; i < Revvolvver_Globals.GameSettings[1].DefaultAmount; i++)
+            for (i = 0; i < Revvolvver_Globals.GameSettings[1].GameValue; i++)
             {
                 Bomb b = new Bomb(-100, -100);
 
@@ -265,7 +265,7 @@ namespace Revvolvver
                 _bombs.add(b);
             }
 
-            for (i = 0; i < Revvolvver_Globals.GameSettings[1].DefaultAmount; i++)
+            for (i = 0; i < Revvolvver_Globals.GameSettings[1].GameValue; i++)
             {
                 Bomb b = new Bomb(-100, -100);
 
@@ -273,7 +273,7 @@ namespace Revvolvver
                 _bombs.add(b);
             }
 
-            for (i = 0; i < Revvolvver_Globals.GameSettings[1].DefaultAmount; i++)
+            for (i = 0; i < Revvolvver_Globals.GameSettings[1].GameValue; i++)
             {
                 Bomb b = new Bomb(-100, -100);
 
@@ -281,7 +281,7 @@ namespace Revvolvver
                 _bombs.add(b);
             }
 
-            for (i = 0; i < Revvolvver_Globals.GameSettings[1].DefaultAmount; i++)
+            for (i = 0; i < Revvolvver_Globals.GameSettings[1].GameValue; i++)
             {
                 Bomb b = new Bomb(-100, -100);
 
@@ -502,7 +502,7 @@ namespace Revvolvver
         {
             FlxCaveGeneratorExt caveExt = new FlxCaveGeneratorExt(40, 30);
             caveExt.numSmoothingIterations = 5;
-            caveExt.initWallRatio = Revvolvver_Globals.GameSettings[2].DefaultAmount / 100.0f;
+            caveExt.initWallRatio = Revvolvver_Globals.GameSettings[2].GameValue / 100.0f;
             
             _caveMap.auto = FlxTilemap.AUTO;
             string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20}, new int[] { 15, 25 }, new int[] { 0, 1, 2, 3, 4, 17,18,19,20,21,22, 35,36, 37, 38 });
@@ -545,12 +545,12 @@ namespace Revvolvver
 
             regenTimer += FlxG.elapsed;
 
-            if (regenTimer > Revvolvver_Globals.GameSettings[3].DefaultAmount - 1)
+            if (regenTimer > Revvolvver_Globals.GameSettings[3].GameValue - 1)
             {
                 _caveMap.rainbow = true;
             }
 
-            if (regenTimer > Revvolvver_Globals.GameSettings[3].DefaultAmount)
+            if (regenTimer > Revvolvver_Globals.GameSettings[3].GameValue)
             {
                 _caveMap.rainbow = false;
                 regen();
@@ -630,7 +630,7 @@ namespace Revvolvver
             {
                 FourChambers_Globals.cheatString = " ";
 
-                FlxG.scores[0] = (int)Revvolvver_Globals.GameSettings[4].DefaultAmount - 1;
+                FlxG.scores[0] = (int)Revvolvver_Globals.GameSettings[4].GameValue - 1;
 
             }
 
@@ -725,35 +725,35 @@ namespace Revvolvver
                 FlxG.fade.start(Color.White, 1f, onFade, false);
             }
 
-            if (FlxG.scores[0] == Revvolvver_Globals.GameSettings[4].DefaultAmount - 1) 
+            if (FlxG.scores[0] == Revvolvver_Globals.GameSettings[4].GameValue - 1) 
             {
                 //if (_tileMap.color != p1Color) FlxG.play(SndChord7);
                 _caveMap.color = p1Color;
                 
             }
-            if (FlxG.scores[1] == Revvolvver_Globals.GameSettings[4].DefaultAmount - 1)
+            if (FlxG.scores[1] == Revvolvver_Globals.GameSettings[4].GameValue - 1)
             {
                 //if (_tileMap.color != p2Color) FlxG.play(SndChord6);
                 _caveMap.color = p2Color;
 
             }
-            if (FlxG.scores[2] == Revvolvver_Globals.GameSettings[4].DefaultAmount - 1)
+            if (FlxG.scores[2] == Revvolvver_Globals.GameSettings[4].GameValue - 1)
             {
                 //if (_tileMap.color != p3Color) FlxG.play(SndChord5);
                 _caveMap.color = p3Color;
 
             }
-            if (FlxG.scores[3] == Revvolvver_Globals.GameSettings[4].DefaultAmount - 1)
+            if (FlxG.scores[3] == Revvolvver_Globals.GameSettings[4].GameValue - 1)
             {
                 //if (_tileMap.color != p4Color) FlxG.play(SndChord4);
                 _caveMap.color = p4Color;
                 
             }
 
-            if ((FlxG.scores[0] >= Revvolvver_Globals.GameSettings[4].DefaultAmount) ||
-                (FlxG.scores[1] >= Revvolvver_Globals.GameSettings[4].DefaultAmount) ||
-                (FlxG.scores[2] >= Revvolvver_Globals.GameSettings[4].DefaultAmount) ||
-                (FlxG.scores[3] >= Revvolvver_Globals.GameSettings[4].DefaultAmount))
+            if ((FlxG.scores[0] >= Revvolvver_Globals.GameSettings[4].GameValue) ||
+                (FlxG.scores[1] >= Revvolvver_Globals.GameSettings[4].GameValue) ||
+                (FlxG.scores[2] >= Revvolvver_Globals.GameSettings[4].GameValue) ||
+                (FlxG.scores[3] >= Revvolvver_Globals.GameSettings[4].GameValue))
             {
                 FlxG.fade.start(Color.White, 3, onVictory, false);
             }

@@ -99,7 +99,9 @@ namespace org.flixel
             {
                 for (int _x = 0; _x < cols; _x++)
                 {
-                    s = new FlxSprite(width * _y * FlxG.zoom, height * _x * FlxG.zoom);
+                    //Console.WriteLine(":::: z{0} w{1} h{2} x{3} y{4} ", FlxG.zoom, width, height, _x, _y);
+
+                    s = new FlxSprite(width * _y * 4, height * _x * 4 );
 
                     if (Graphics==null)
                         s.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/transition_40x40"), false, false, width, height);
