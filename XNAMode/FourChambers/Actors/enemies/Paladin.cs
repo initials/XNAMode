@@ -10,26 +10,25 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Corsair : Actor
+    class Paladin : EnemyActor
     {
 
-        public Corsair(int xPos, int yPos)
+        public Paladin(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            actorName = "Sierra";
+            actorName = "Johnny Football Hero";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/corsair_18x21"), true, false, 18, 21);
+            loadGraphic(FlxG.Content.Load<Texture2D>("initials/paladin_ss_16x26"), true, false, 16, 26);
 
-            addAnimation("run", new int[] { 1, 2, 3, 4, 5}, 12);
+            addAnimation("run", new int[] {0, 1, 2, 3, 4, 5, 6, 7 }, 18);
             addAnimation("idle", new int[] { 0 }, 12);
-            addAnimation("jump", new int[] { 1, 1, 1, 2, 3 }, 6, false);
-            addAnimation("attack", new int[] { 0,1,2}, 12);
+            addAnimation("attack", new int[] { 0, 1, 2 }, 12);
 
             //bounding box tweaks
             width = 10;
             height = 20;
-            offset.X = 4;
-            offset.Y = 1;
+            offset.X = 3;
+            offset.Y = 6;
 
             //basic player physics
             int runSpeed = 120;
@@ -37,6 +36,7 @@ namespace FourChambers
             acceleration.Y = 820;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
+
 
         }
 

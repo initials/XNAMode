@@ -82,7 +82,7 @@ namespace FourChambers
         /// <summary>
         /// Fireballs for the warlock
         /// </summary>
-        protected FlxGroup fireballs;
+        protected FlxGroup warlockFireBalls;
 
         /// <summary>
         /// Arrows for the Marksman
@@ -295,7 +295,7 @@ namespace FourChambers
 
             // initialize a bunch of groups
             actors = new FlxGroup();
-            fireballs = new FlxGroup();
+            warlockFireBalls = new FlxGroup();
             bullets = new FlxGroup();
             arrows = new FlxGroup();
             ladders = new FlxGroup();
@@ -1221,12 +1221,12 @@ namespace FourChambers
             {
                 int j = 0;
                 for (j = 0; j < BULLETS_PER_ACTOR;j++)
-                    fireballs.add(new Fireball());
-                bullets.add(fireballs);
+                    warlockFireBalls.add(new WarlockFireBall());
+                bullets.add(warlockFireBalls);
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    
-                    warlock = new Warlock(x, y , fireballs.members);
+
+                    warlock = new Warlock(x, y, warlockFireBalls.members);
                     actors.add(warlock);
                     warlock.flicker(2);
                     //playerControlledActors.add(warlock);

@@ -9,11 +9,11 @@ namespace FourChambers
     /// <summary>
     /// 
     /// </summary>
-    public class Fireball : FlxSprite
+    public class WarlockFireBall : FlxSprite
     {
         private Texture2D ImgBullet;
 
-        public Fireball()
+        public WarlockFireBall()
         {
             ImgBullet = FlxG.Content.Load<Texture2D>("initials/warlock_fireball");
 
