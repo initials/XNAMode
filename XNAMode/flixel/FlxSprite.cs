@@ -410,14 +410,19 @@ namespace org.flixel
 
             //the origin must be recalculated based on the difference between the
             //object's actual (collision) dimensions and its art (animation) dimensions.
+
+            // BROKEN WHEN USING OFFSETS!
             vc = new Vector2(_flashRect.Width, _flashRect.Height);
+            if (debugName == "toybox") Console.WriteLine("1. VC: " + vc + " Origin: " + origin);
             if (!_stretchToFit)
             {
                 vc *= (origin / new Vector2(width, height));
+                if (debugName=="toybox") Console.WriteLine("2. VC: "+vc+" Origin: "+origin);
             }
             else
             {
                 vc *= (origin / new Vector2(width + 1, height + 1));
+                
             }
 
             if (_facing2d == Flx2DFacing.NotUsed)
