@@ -239,7 +239,7 @@ namespace Revvolvver
             // exit.
             if (FlxG.keys.justPressed(Keys.Escape))
             {
-                //FlxG.state = new FourChambers.GameSelectionMenuState();
+                FlxG.Game.Exit();
                 return;
             }
 

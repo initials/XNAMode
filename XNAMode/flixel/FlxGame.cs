@@ -365,6 +365,7 @@ namespace org.flixel
                 //FlxG.keys.isNewKeyPress(Keys.D1, null, out pi) ||
                 if (FlxG.debug==true)
                     _console.toggle();
+                
             }
             else if (FlxG.autoHandlePause && (FlxG.keys.isPauseGame(FlxG.controllingPlayer) || FlxG.gamepads.isPauseGame(FlxG.controllingPlayer)))
             {

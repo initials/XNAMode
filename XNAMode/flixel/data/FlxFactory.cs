@@ -43,10 +43,10 @@ namespace org.flixel
 #if XBOX360
         private bool _fullScreen = true;
 #else
-        private bool _fullScreen = false;
+        public bool _fullScreen = false;
 #endif
         //graphics management
-        private GraphicsDeviceManager _graphics;
+        public GraphicsDeviceManager _graphics;
         //other variables
         private FlxGame _flixelgame;
 

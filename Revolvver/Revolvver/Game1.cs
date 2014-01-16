@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 using org.flixel;
+using System.IO;
 
 namespace Loader_Revvolvver
 {
@@ -18,6 +19,12 @@ namespace Loader_Revvolvver
     /// </summary>
     public class FlxFactory : Microsoft.Xna.Framework.Game
     {
+
+
+
+
+        
+
         //primary display buffer constants
 #if !WINDOWS_PHONE
 
@@ -55,14 +62,26 @@ namespace Loader_Revvolvver
         //nothing much to see here, typical XNA initialization code
         public FlxFactory()
         {
+            //Read the GAMESETTINGS.txt file
+
+            string gameSettings = File.ReadAllText("GAMESETTINGS.txt");
+            string[] splitter = gameSettings.Split('\n');
+            Console.WriteLine(splitter[0]);
+
+            resX = Convert.ToInt32(splitter[0].Substring(2));
+            resY = Convert.ToInt32(splitter[1].Substring(2));
+            if (splitter[2].Substring(11) == "1")
+                _fullScreen = true;
+
+
             //set up the graphics device and the content manager
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
             if (_fullScreen)
             {
-                resX = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-                resY = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+                //resX = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+                //resY = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
                 if (GraphicsAdapter.DefaultAdapter.IsWideScreen)
                 {
                     //if user has it set to widescreen, let's make sure this

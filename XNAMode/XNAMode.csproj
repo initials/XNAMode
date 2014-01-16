@@ -381,6 +381,7 @@
     <Content Include="Lemonade\characters\reference\Liselot %282%29.h" />
     <Content Include="Lemonade\characters\reference\Liselot.h" />
     <Content Include="Lemonade\characters\reference\Player.h" />
+    <Content Include="GAMESETTINGS.txt" />
     <Content Include="Revvolvver\Level1_FourPlayerData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -563,7 +564,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="levelSettings.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
     <None Include="Mode\level1.oel">
