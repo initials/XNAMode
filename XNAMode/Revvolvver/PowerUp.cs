@@ -44,11 +44,15 @@ namespace Revvolvver
 
             if (timerInvisible < timeToStayInvisible)
             {
-                visible = false;
+                alpha = 0.01f;
+                //exists = false;
+                dead = true;
             }
             else
             {
-                visible = true;
+                alpha = 1;
+                //exists = true;
+                dead = false;
             }
 
             base.update();

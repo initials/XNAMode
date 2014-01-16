@@ -48,7 +48,7 @@ namespace Revvolvver
         private const string SndGun3 = "Revvolvver/sfx/gunshot3";
 
         private float timeOnZeroBullets = 0.0f;
-        private float maxTimeOnZeroBullets = Revvolvver_Globals.GameSettings[6].DefaultAmount;
+        private float maxTimeOnZeroBullets = Revvolvver_Globals.GameSettings[6].GameValue;
 
         public float machineGun = 12.0f;
 
@@ -112,7 +112,7 @@ namespace Revvolvver
             offset.Y = 2;
 
             //basic player physics
-            int runSpeed = (int)Revvolvver_Globals.GameSettings[5].DefaultAmount;
+            runSpeed = (int)Revvolvver_Globals.GameSettings[5].GameValue;
             drag.X = runSpeed * 8;
             drag.Y = runSpeed * 8;
 
@@ -136,7 +136,7 @@ namespace Revvolvver
             //bullet stuff
             _bullets = Bullets;
             _curBullet = 0;
-            _bulletVel = (int)Revvolvver_Globals.GameSettings[8].DefaultAmount;
+            _bulletVel = (int)Revvolvver_Globals.GameSettings[8].GameValue;
 
             _bombs = Bombs;
             _curBomb = 0;
@@ -456,7 +456,7 @@ namespace Revvolvver
                     && _history[frameCount][6] == true) || (FlxG.keys.C && controller == PlayerIndex.One) ||
                         FlxG.gamepads.isButtonDown(Buttons.X, controller, out pi)))
                 {
-                    if (machineGun < Revvolvver_Globals.GameSettings[7].DefaultAmount)
+                    if (machineGun < Revvolvver_Globals.GameSettings[7].GameValue)
                     {
                         int bXVel = 0;
                         int bYVel = 0;

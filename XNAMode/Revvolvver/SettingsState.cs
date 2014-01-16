@@ -49,7 +49,7 @@ namespace Revvolvver
         private FlxText playersText;
         //private FlxText playersTextx;
 
-        private int currentTextSelected = 0;
+        private int currentTextSelected = 9;
 
         public float timer;
 
@@ -165,7 +165,7 @@ namespace Revvolvver
             }
             else if (FlxG.keys.justPressed(Keys.Left) || FlxG.gamepads.isNewButtonPress(Buttons.DPadLeft) || FlxG.gamepads.isNewButtonPress(Buttons.LeftThumbstickLeft) || FlxG.gamepads.isButtonDown(Buttons.LeftTrigger) )
             {
-                Revvolvver_Globals.GameSettings[currentTextSelected].GameValue -= 1.0f;
+                Revvolvver_Globals.GameSettings[currentTextSelected].GameValue -= Revvolvver_Globals.GameSettings[currentTextSelected].Increment;
 
                 if (Revvolvver_Globals.GameSettings[currentTextSelected].GameValue < Revvolvver_Globals.GameSettings[currentTextSelected].MinAmount)
                 {

@@ -27,7 +27,7 @@ namespace Revvolvver
             new Revvolvver.GameSettings("Cave",   50,      50, 40, 60,1  ),  //2
             new Revvolvver.GameSettings("Regen Time",  10,  10, 3,  100,1 ), //3
             new Revvolvver.GameSettings("Winning Score", 10, 10, 1,  100,1 ), //4
-            new Revvolvver.GameSettings("Run Speed"  ,   80, 80, 50, 500,10 ), //5
+            new Revvolvver.GameSettings("Run Speed"  ,   120, 120, 50, 500,10 ), //5
             new Revvolvver.GameSettings("Bullet Regen"  ,4,4,  0,  100,1 ), //6
             new Revvolvver.GameSettings("Power Up Time"  ,7,7,  1,  20,1 ), //7
             new Revvolvver.GameSettings("Bullet Velocity",360,360,  100,  600,20 ), //8
