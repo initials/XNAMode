@@ -361,8 +361,8 @@ namespace org.flixel
 
         public void adjustOrigin()
         {
-            _origin.X = (width-offset.X) * 0.5f;
-            _origin.Y = (height-offset.Y) * 0.5f;
+            _origin.X = (width) * 0.5f;
+            _origin.Y = (height) * 0.5f;
         }
 
         /// <summary>
@@ -476,7 +476,8 @@ namespace org.flixel
                 pos.X += offset.X;
                 pos.Y += offset.Y;
                 drawBounds(spriteBatch, (int)pos.X, (int)pos.Y);
-                drawPivot(spriteBatch, (int)
+                drawPivot(spriteBatch, (int)(origin.X), (int)(origin.Y), Color.Yellow);
+                drawPivot(spriteBatch, (int)(pos.X + origin.X), (int)(pos.Y + origin.Y), Color.Purple);
             }
         }
 
@@ -740,25 +741,6 @@ namespace org.flixel
 
                     //count++;
                 }
-            }
-        }
-
-        /// <summary>
-        /// Helper function that adjusts the offset automatically to center the bounding box within the graphic.
-        /// </summary>
-        /// <param name="AdjustPosition">Adjusts the actual X and Y position just once to match the offset change. Default is false.</param>
-        public void centerOffsets(bool AdjustPosition=false)
-        {
-            // status, to test!
-
-            float x2 = ((float)frameWidth - width) * 0.5f; 
-            float y2 = ((float)frameHeight-height) * 0.5f;
-            offset.X = (int)x2;
-            offset.Y = (int)y2;
-            if(AdjustPosition)
-            {
-                x += offset.X;
-                y += offset.Y;
             }
         }
                 
