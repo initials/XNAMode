@@ -570,7 +570,7 @@ namespace FourChambers
 
             //if (FlxG.joystickBeingUsed) FlxG.mouse.hide();
             //else FlxG.mouse.show(FlxG.Content.Load<Texture2D>("fourchambers/crosshair"));
-            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("fourchambers/crosshair"));
+            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
             localHud = new PlayHud();
             FlxG._game.hud.hudGroup = localHud;
 

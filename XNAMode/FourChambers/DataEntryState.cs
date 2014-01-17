@@ -31,7 +31,7 @@ namespace FourChambers
 
             base.create();
 
-            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("fourchambers/crosshair"));
+            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
             
             //FlxG.backColor = new Color(0xc2, 0x88, 0x83);
 

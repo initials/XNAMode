@@ -46,7 +46,7 @@ namespace FourChambers
             bgSprite = new FlxSprite(-350, 0, FlxG.Content.Load<Texture2D>("fourchambers/Fear"));
             add(bgSprite);
 
-            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("fourchambers/crosshair"));
+            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
             FlxG.mouse.cursor.offset.X = 5;
             FlxG.mouse.cursor.offset.Y = 5;
 
