@@ -70,7 +70,7 @@ namespace FourChambers
             
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
-            Texture2D bgGraphic = FlxG.Content.Load<Texture2D>("initials/room");
+            Texture2D bgGraphic = FlxG.Content.Load<Texture2D>("fourchambers/room");
             bgSprite = new FlxSprite(0, 0, bgGraphic);
             bgSprite.loadGraphic(bgGraphic);
             bgSprite.x = 80;
@@ -80,11 +80,11 @@ namespace FourChambers
             bgSprite.color = Color.DimGray;
 
             corsairOff = new FlxSprite(0, 0, null);
-            corsairOff.loadGraphic(FlxG.Content.Load<Texture2D>("initials/corsair_18x21"), true, false, 18, 21);
+            corsairOff.loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/corsair_18x21"), true, false, 18, 21);
             corsairOff.addAnimation("idle", new int[] { 0 }, 12);
 
             corsairOn = new FlxSprite(0, 0, null);
-            corsairOn.loadGraphic(FlxG.Content.Load<Texture2D>("initials/corsair_18x21"), true, false, 18, 21);
+            corsairOn.loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/corsair_18x21"), true, false, 18, 21);
             corsairOn.addAnimation("run", new int[] { 1, 2, 3, 4, 5}, 12);
             corsairOn.play("run");
 
@@ -98,11 +98,11 @@ namespace FourChambers
             
             //Marksman
             marksmanOff = new FlxSprite(0, 0, null);
-            marksmanOff.loadGraphic(FlxG.Content.Load<Texture2D>("initials/marksman_ss_31x24"), true, false, 31, 24);
+            marksmanOff.loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/marksman_ss_31x24"), true, false, 31, 24);
             marksmanOff.addAnimation("idle", new int[] { 0 }, 12);
 
             marksmanOn = new FlxSprite(0, 0, null);
-            marksmanOn.loadGraphic(FlxG.Content.Load<Texture2D>("initials/marksman_ss_31x24"), true, false, 31, 24);
+            marksmanOn.loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/marksman_ss_31x24"), true, false, 31, 24);
             marksmanOn.addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 12);
             marksmanOn.play("run");
 

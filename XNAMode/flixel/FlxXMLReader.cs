@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
@@ -115,7 +115,7 @@ namespace org.flixel
             XmlDocument xml = new XmlDocument();
             Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
 
-#if ANDROID
+			#if __ANDROID__
 
 			string content;
 			using (StreamReader sr = new StreamReader (Game.Activity.Assets.Open(filename)))
@@ -124,10 +124,10 @@ namespace org.flixel
 			}
 			xml.LoadXml(content);
 
-#endif
-#if !ANDROID
+			#endif
+			#if !__ANDROID__
             xml.Load(filename);
-#endif
+			#endif
 
             //Console.WriteLine("Node Name: {0} ", element);
             XmlNodeList xnList = xml.SelectNodes(element);
@@ -179,10 +179,29 @@ namespace org.flixel
 
         public static List<Dictionary<string, string>> readNodesFromOelFile(string filename, string element)
         {
+
+			XmlDocument xml = new XmlDocument();
+			//Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
+
+			#if __ANDROID__
+
+			string content;
+			using (StreamReader sr = new StreamReader (Game.Activity.Assets.Open(filename)))
+			{
+				content = sr.ReadToEnd();
+			}
+			xml.LoadXml(content);
+
+			#endif
+			#if !__ANDROID__
+			xml.Load(filename);
+			#endif
+
+
             List<Dictionary<string, string>> nodeList = new List<Dictionary<string, string>>();
             
-            XmlDocument xml = new XmlDocument();
-            xml.Load(filename);
+			//XmlDocument xml = new XmlDocument();
+			//xml.Load(filename);
             
             XmlNodeList xnList = xml.SelectNodes(element);
             

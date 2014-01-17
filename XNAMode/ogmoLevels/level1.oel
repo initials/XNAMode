@@ -115,6 +115,6 @@
     <bat id="11" x="224" y="224" flip="False" pathType="FORWARD" pathSpeed="100" pathCornering="3" />
     <zinger id="20" x="64" y="320" flip="False" pathType="FORWARD" pathSpeed="100" />
     <ladder id="24" x="720" y="400" height="96" />
-    <succubus id="25" x="96" y="400" flip="False" />
+    <chicken id="1" x="96" y="400" flip="False" />
   </ActorsLayer>
 </level>

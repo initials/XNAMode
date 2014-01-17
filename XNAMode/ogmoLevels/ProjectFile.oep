@@ -78,7 +78,7 @@
     </Tileset>
     <Tileset>
       <Name>autotiles_16x16</Name>
-      <FilePath>..\..\XNAModeContent\initials\autotiles_16x16.png</FilePath>
+      <FilePath>..\..\XNAModeContent\fourchambers\autotiles_16x16.png</FilePath>
       <TileSize>
         <Width>16</Width>
         <Height>16</Height>
@@ -87,7 +87,7 @@
     </Tileset>
     <Tileset>
       <Name>autotiles_ice_16x16</Name>
-      <FilePath>..\..\XNAModeContent\initials\autotiles_ice_16x16.png</FilePath>
+      <FilePath>..\..\XNAModeContent\fourchambers\autotiles_ice_16x16.png</FilePath>
       <TileSize>
         <Width>16</Width>
         <Height>16</Height>
@@ -96,7 +96,7 @@
     </Tileset>
     <Tileset>
       <Name>autotiles_alt</Name>
-      <FilePath>..\..\XNAModeContent\initials\autotiles_alt.png</FilePath>
+      <FilePath>..\..\XNAModeContent\flixel\autotiles_alt.png</FilePath>
       <TileSize>
         <Width>16</Width>
         <Height>16</Height>
@@ -105,7 +105,7 @@
     </Tileset>
     <Tileset>
       <Name>autotiles</Name>
-      <FilePath>..\..\XNAModeContent\initials\autotiles.png</FilePath>
+      <FilePath>..\..\XNAModeContent\flixel\autotiles.png</FilePath>
       <TileSize>
         <Width>16</Width>
         <Height>16</Height>
@@ -176,7 +176,7 @@
         <X>0</X>
         <Y>0</Y>
       </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="..\..\XNAModeContent\initials\ladderTiles_16x16.png" Tiled="true">
+      <ImageDefinition DrawMode="Image" ImagePath="..\..\XNAModeContent\fourchambers\ladderTiles_16x16.png" Tiled="true">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions />
@@ -220,11 +220,80 @@
         <X>0</X>
         <Y>0</Y>
       </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="..\..\XNAModeContent\initials\fallAwayBridgeTiles_16x32.png" Tiled="true">
+      <ImageDefinition DrawMode="Image" ImagePath="..\..\XNAModeContent\fourchambers\fallAwayBridgeTiles_16x32.png" Tiled="true">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions />
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="marksman" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\marksman.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="isPlayerControlled" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="mistress" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\mistress.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="seraphine" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\seraphine.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="warlock" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\warlock.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
     </EntityDefinition>
     <EntityDefinition Name="artist" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
@@ -236,23 +305,6 @@
         <Y>0</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="characters\artist.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="assassin" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\assassin.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
@@ -304,6 +356,509 @@
         </ValueDefinition>
         <ValueDefinition xsi:type="IntValueDefinition" Name="pathSpeed" Default="100" Min="0" Max="10000" ShowSlider="false" />
         <ValueDefinition xsi:type="FloatValueDefinition" Name="pathCornering" Default="3" Min="0" Max="100" Round="0.1" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="chicken" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\chicken.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="corsair" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\corsair.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="cow" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\cow.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="deer" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\deer.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="embersteed" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\embersteed.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="executor" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\executor.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="feline" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\feline.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="gloom" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\gloom.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="grizzly" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\grizzly.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="harvester" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\harvester.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="horse" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\horse.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="kerberos" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\kerberos.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="lion" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\lion.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="medusa" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\nymph.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="mummy" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\mummy.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="nightmare" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\nightmare.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="nymph" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\nymph.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="paladin" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\paladin.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="rat" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\rat.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="snake" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\snake.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="succubus" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\succubus.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="tormentor" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\tormentor.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="unicorn" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\unicorn.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="wolf" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\wolf.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="zinger" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\zinger.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="pathType">
+          <Elements>
+            <string>FORWARD</string>
+            <string>BACKWARD</string>
+            <string>LOOP_FORWARD</string>
+            <string>LOOP_BACKWARD</string>
+            <string>YOYO</string>
+            <string>HORIZONTAL_ONLY</string>
+            <string>VERTICAL_ONLY</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="IntValueDefinition" Name="pathSpeed" Default="100" Min="0" Max="10000" ShowSlider="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="vampire" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\vampire.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="zingernest" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\zingernest.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="zombie" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\zombie.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="assassin" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="characters\assassin.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
       </ValueDefinitions>
       <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
     </EntityDefinition>
@@ -392,23 +947,6 @@
       </ValueDefinitions>
       <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
     </EntityDefinition>
-    <EntityDefinition Name="chicken" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\chicken.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
     <EntityDefinition Name="chimaera" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>16</Width>
@@ -419,40 +957,6 @@
         <Y>0</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="characters\chimaera.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="corsair" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\corsair.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="cow" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\cow.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
@@ -487,23 +991,6 @@
         <Y>0</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="characters\deathclaw.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="deer" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\deer.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
@@ -596,57 +1083,6 @@
       </ValueDefinitions>
       <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
     </EntityDefinition>
-    <EntityDefinition Name="embersteed" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\embersteed.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="executor" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\executor.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="feline" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\feline.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
     <EntityDefinition Name="floatingeye" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>16</Width>
@@ -691,23 +1127,6 @@
         <Y>0</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="characters\gelatine.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="gloom" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\gloom.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
@@ -817,57 +1236,6 @@
       </ValueDefinitions>
       <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
     </EntityDefinition>
-    <EntityDefinition Name="grizzly" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\grizzly.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="harvester" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\harvester.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="horse" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\horse.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
     <EntityDefinition Name="ifrit" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>16</Width>
@@ -902,23 +1270,6 @@
       </ValueDefinitions>
       <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
     </EntityDefinition>
-    <EntityDefinition Name="kerberos" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\kerberos.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
     <EntityDefinition Name="lich" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>16</Width>
@@ -933,41 +1284,6 @@
       </ImageDefinition>
       <ValueDefinitions>
         <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="lion" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\lion.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="marksman" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\marksman.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="isPlayerControlled" Default="true" />
       </ValueDefinitions>
       <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
     </EntityDefinition>
@@ -1056,23 +1372,6 @@
       </ValueDefinitions>
       <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
     </EntityDefinition>
-    <EntityDefinition Name="mistress" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\mistress.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
-    </EntityDefinition>
     <EntityDefinition Name="monk" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>16</Width>
@@ -1090,57 +1389,6 @@
       </ValueDefinitions>
       <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
     </EntityDefinition>
-    <EntityDefinition Name="mummy" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\mummy.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="nightmare" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\nightmare.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="nymph" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\nymph.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
     <EntityDefinition Name="ogre" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>16</Width>
@@ -1151,23 +1399,6 @@
         <Y>0</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="characters\ogre.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="paladin" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\paladin.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
@@ -1226,23 +1457,6 @@
       </ValueDefinitions>
       <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
     </EntityDefinition>
-    <EntityDefinition Name="rat" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\rat.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
     <EntityDefinition Name="savage" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>16</Width>
@@ -1253,23 +1467,6 @@
         <Y>0</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="characters\savage.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="seraphine" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\seraphine.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
@@ -1304,23 +1501,6 @@
         <Y>0</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="characters\skeleton.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="snake" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\snake.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
@@ -1379,23 +1559,6 @@
       </ValueDefinitions>
       <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
     </EntityDefinition>
-    <EntityDefinition Name="succubus" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\succubus.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
     <EntityDefinition Name="tauro" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>16</Width>
@@ -1423,23 +1586,6 @@
         <Y>0</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="characters\toad.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="tormentor" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\tormentor.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
@@ -1481,57 +1627,6 @@
       </ValueDefinitions>
       <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
     </EntityDefinition>
-    <EntityDefinition Name="unicorn" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\unicorn.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="vampire" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\vampire.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="warlock" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\warlock.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
     <EntityDefinition Name="willowisp" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>16</Width>
@@ -1559,84 +1654,6 @@
         <Y>0</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="characters\wizard.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="wolf" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\wolf.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="zinger" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\zinger.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions>
-        <ValueDefinition xsi:type="BoolValueDefinition" Name="flip" Default="false" />
-        <ValueDefinition xsi:type="EnumValueDefinition" Name="pathType">
-          <Elements>
-            <string>FORWARD</string>
-            <string>BACKWARD</string>
-            <string>LOOP_FORWARD</string>
-            <string>LOOP_BACKWARD</string>
-            <string>YOYO</string>
-            <string>HORIZONTAL_ONLY</string>
-            <string>VERTICAL_ONLY</string>
-          </Elements>
-        </ValueDefinition>
-        <ValueDefinition xsi:type="IntValueDefinition" Name="pathSpeed" Default="100" Min="0" Max="10000" ShowSlider="false" />
-      </ValueDefinitions>
-      <NodesDefinition Enabled="true" Limit="-1" DrawMode="Circuit" Ghost="true" />
-    </EntityDefinition>
-    <EntityDefinition Name="zingernest" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\zingernest.png" Tiled="false">
-        <RectColor A="255" R="255" G="0" B="0" />
-      </ImageDefinition>
-      <ValueDefinitions />
-      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
-    </EntityDefinition>
-    <EntityDefinition Name="zombie" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
-      <Size>
-        <Width>16</Width>
-        <Height>16</Height>
-      </Size>
-      <Origin>
-        <X>0</X>
-        <Y>0</Y>
-      </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="characters\zombie.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>

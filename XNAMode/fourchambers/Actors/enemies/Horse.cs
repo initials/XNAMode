@@ -18,7 +18,7 @@ namespace FourChambers
 
             actorName = "Fast Eddie";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/horse_ss_20x25"), true, false, 20, 25);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/horse_ss_20x25"), true, false, 20, 25);
 
             addAnimation("run", new int[] { 2, 3, 4, 5, 6, 7, 8, 9 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);

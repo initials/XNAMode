@@ -27,7 +27,7 @@ namespace FourChambers
             dead = true;
             drag.X = 50;
             drag.Y = 50;
-            Texture2D Img = FlxG.Content.Load<Texture2D>("initials/pickups_16x16");
+            Texture2D Img = FlxG.Content.Load<Texture2D>("fourchambers/pickups_16x16");
 
             loadGraphic(Img, false, false, 16, 16);
 

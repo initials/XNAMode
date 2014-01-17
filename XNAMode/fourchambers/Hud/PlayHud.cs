@@ -41,7 +41,7 @@ namespace FourChambers
 
             ypos = FlxG.height * FlxG.zoom-30;
 
-            FlxSprite hudGraphic = new FlxSprite(0,0, FlxG.Content.Load<Texture2D>("initials/hudElements"));
+            FlxSprite hudGraphic = new FlxSprite(0,0, FlxG.Content.Load<Texture2D>("fourchambers/hudElements"));
             hudGraphic.scrollFactor.X = 0;
             hudGraphic.scrollFactor.Y = 0;
             hudGraphic.scale = 2;
@@ -53,7 +53,7 @@ namespace FourChambers
             //for (int i = 0; i < 11; i++)
             //{
             //    hudGraphic = new FlxSprite(100 + ((i * 16) + 1), ypos, null);
-            //    hudGraphic.loadGraphic(FlxG.Content.Load<Texture2D>("initials/treasures_16x16"), true, false, 16, 16);
+            //    hudGraphic.loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/treasures_16x16"), true, false, 16, 16);
             //    hudGraphic.width = 16;
             //    hudGraphic.height = 16;
             //    hudGraphic.addAnimation("off", new int[] { i*2 });

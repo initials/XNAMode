@@ -121,6 +121,8 @@ namespace FourChambers
 
         public float hurtTimer = 550.0f;
 
+        public bool readyForHarvester = false;
+
         public EnemyActor(int xPos, int yPos)
             : base(xPos, yPos)
         {

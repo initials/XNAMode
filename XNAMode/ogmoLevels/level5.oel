@@ -1,4 +1,4 @@
-<level width="800" height="800" levelName="The Lion" bgGraphic="Fear" timeOfDayPalette="skyPalette">
+<level width="800" height="800" levelName="The Lion" bgGraphic="bgIce" timeOfDayPalette="skyPalette">
   <camera x="32" y="256" />
   <DestructableTerrain tileset="autotiles_ice_16x16" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,7,13,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,16,17,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1

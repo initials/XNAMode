@@ -18,7 +18,7 @@ namespace FourChambers
         {
             actorName = "Count Esperanza";
 
-            ImgVampire = FlxG.Content.Load<Texture2D>("initials/vampire_ss_14x19");
+            ImgVampire = FlxG.Content.Load<Texture2D>("fourchambers/vampire_ss_14x19");
 
             loadGraphic(ImgVampire, true, false, 14, 19);
 

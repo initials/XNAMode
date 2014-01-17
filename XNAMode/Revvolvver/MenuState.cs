@@ -48,6 +48,7 @@ namespace Revvolvver
 
         private FlxText playersText;
         private FlxText playersTextx;
+
         //private FlxText credits;
 
         //#if !WINDOWS_PHONE
@@ -304,7 +305,16 @@ namespace Revvolvver
                     //FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
                     return;
                 }
-                if (FlxG.keys.justPressed(Keys.Enter) || FlxG.gamepads.isNewButtonPress(Buttons.Start))
+
+				bool start = false;
+				GamePadState state = GamePad.GetState (PlayerIndex.One);
+				if (state.Buttons.A == ButtonState.Pressed)
+				{
+					Console.WriteLine ("STARTING");
+					start = true;
+				}
+
+				if (start || FlxG.gamepads.isNewButtonPress(Buttons.DPadDown) || FlxG.keys.justPressed(Keys.Enter) || FlxG.gamepads.isNewButtonPress(Buttons.Start) || FlxG.gamepads.isNewButtonPress(Buttons.A))
                 {
                     FlxG.play(SndGun2, 0.35f);
                    // _gibs.start(true, 5);

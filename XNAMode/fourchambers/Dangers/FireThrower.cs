@@ -29,7 +29,7 @@ namespace FourChambers
 
             angleCount = 0;
 
-            Texture2D Img = FlxG.Content.Load<Texture2D>("initials/fireThrower");
+            Texture2D Img = FlxG.Content.Load<Texture2D>("fourchambers/fireThrower");
 
             loadGraphic(Img, false, false, 26, 26);
 

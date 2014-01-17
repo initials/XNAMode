@@ -90,15 +90,16 @@ namespace org.flixel
             
             FlxG.score = 0;
             FourChambers_Globals.seraphineHasBeenKilled = false;
-            FourChambers_Globals.availableLevels = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
 
-            int newLevel = (int)FlxU.random(0, FourChambers_Globals.availableLevels.Count);
-            FlxG.level = FourChambers_Globals.availableLevels[newLevel];
-            
+            FlxG.level = 1;
 
-            Console.WriteLine("startGame() " + FourChambers_Globals.availableLevels[newLevel] + "  New Level:  " + newLevel + " " + availableLevels.Count );
 
-            FourChambers_Globals.availableLevels.RemoveAt(newLevel);
+            //FourChambers_Globals.availableLevels = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+            //int newLevel = (int)FlxU.random(0, FourChambers_Globals.availableLevels.Count);
+            //FlxG.level = FourChambers_Globals.availableLevels[newLevel];
+            //Console.WriteLine("startGame() " + FourChambers_Globals.availableLevels[newLevel] + "  New Level:  " + newLevel + " " + availableLevels.Count );
+            //FourChambers_Globals.availableLevels.RemoveAt(newLevel);
+
 
         }
 

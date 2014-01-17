@@ -19,7 +19,7 @@ namespace FourChambers
             width = 16;
             height = 16;
 
-            Texture2D Img = FlxG.Content.Load<Texture2D>("initials/door_24x24");
+            Texture2D Img = FlxG.Content.Load<Texture2D>("fourchambers/door_24x24");
 
             loadGraphic(Img, false, false, 24, 24);
 

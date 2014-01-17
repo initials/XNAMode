@@ -18,7 +18,7 @@ namespace FourChambers
 
             actorName = "Scott The Rocks";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/artist_ss_20x20"), true, false, 20, 20);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/artist_ss_20x20"), true, false, 20, 20);
 
             //addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 12);
             addAnimation("idle", new int[] { 0, 1, 2, 3, 4 }, 12);

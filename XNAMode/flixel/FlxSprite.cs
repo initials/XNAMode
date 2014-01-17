@@ -351,6 +351,20 @@ namespace org.flixel
 			refreshHulls();
 		}
 
+        public void setOffset(int X, int Y)
+        {
+            offset.X = X;
+            offset.Y = Y;
+
+            adjustOrigin();
+        }
+
+        public void adjustOrigin()
+        {
+            _origin.X = (width) * 0.5f;
+            _origin.Y = (height) * 0.5f;
+        }
+
         /// <summary>
         /// Internal function for updating the sprite's animation.
         /// Useful for cases when you need to update this but are buried down in too many supers.
@@ -410,14 +424,19 @@ namespace org.flixel
 
             //the origin must be recalculated based on the difference between the
             //object's actual (collision) dimensions and its art (animation) dimensions.
+
+            // BROKEN WHEN USING OFFSETS!
             vc = new Vector2(_flashRect.Width, _flashRect.Height);
+            if (debugName == "toybox") Console.WriteLine("1. VC: " + vc + " Origin: " + origin);
             if (!_stretchToFit)
             {
                 vc *= (origin / new Vector2(width, height));
+                if (debugName=="toybox") Console.WriteLine("2. VC: "+vc+" Origin: "+origin);
             }
             else
             {
                 vc *= (origin / new Vector2(width + 1, height + 1));
+                
             }
 
             if (_facing2d == Flx2DFacing.NotUsed)
@@ -457,6 +476,8 @@ namespace org.flixel
                 pos.X += offset.X;
                 pos.Y += offset.Y;
                 drawBounds(spriteBatch, (int)pos.X, (int)pos.Y);
+                drawPivot(spriteBatch, (int)(origin.X), (int)(origin.Y), Color.Yellow);
+                drawPivot(spriteBatch, (int)(pos.X + origin.X), (int)(pos.Y + origin.Y), Color.Purple);
             }
         }
 
@@ -668,6 +689,17 @@ namespace org.flixel
             if (_callback != null && _curAnim != null) _callback(_curAnim.name, (uint)_curFrame, _caf);
 		}
 
+        protected void drawPivot(SpriteBatch spriteBatch, int X, int Y, Color col)
+        {
+            spriteBatch.Draw(FlxG.XnaSheet,
+                new Rectangle((int)(FlxU.floor(X + FlxU.roundingError) + FlxU.floor(FlxG.scroll.X * scrollFactor.X)),
+                    (int)(FlxU.floor(Y + FlxU.roundingError) + FlxU.floor(FlxG.scroll.Y * scrollFactor.Y)),
+                    1,
+                    1),
+                new Rectangle(1, 1, 1, 1),
+                col);
+        }
+
         /// <summary>
         /// Draws bounds
         /// </summary>
@@ -709,25 +741,6 @@ namespace org.flixel
 
                     //count++;
                 }
-            }
-        }
-
-        /// <summary>
-        /// Helper function that adjusts the offset automatically to center the bounding box within the graphic.
-        /// </summary>
-        /// <param name="AdjustPosition">Adjusts the actual X and Y position just once to match the offset change. Default is false.</param>
-        public void centerOffsets(bool AdjustPosition=false)
-        {
-            // status, to test!
-
-            float x2 = ((float)frameWidth - width) * 0.5f; 
-            float y2 = ((float)frameHeight-height) * 0.5f;
-            offset.X = (int)x2;
-            offset.Y = (int)y2;
-            if(AdjustPosition)
-            {
-                x += offset.X;
-                y += offset.Y;
             }
         }
                 

@@ -23,7 +23,7 @@ namespace FourChambers
             width = 16;
             height = 16;
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/icons16x16"),true, false,16,16);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/icons16x16"),true, false,16,16);
 
             addAnimation("skull", new int[] { 355 }, 0);
             play("skull");

@@ -1194,8 +1194,27 @@ namespace org.flixel
         /// <param name="Filename"></param>
         /// <returns></returns>
         public static string loadFromDevice(string Filename)
-        {
-            string value1 = File.ReadAllText(Filename);
+		{
+
+			string value1;
+
+			#if __ANDROID__
+
+
+			using (StreamReader sr = new StreamReader (Game.Activity.Assets.Open(Filename)))
+			{
+				value1 = sr.ReadToEnd();
+			}
+
+
+			#endif
+			#if !__ANDROID__
+			string value1 = File.ReadAllText(Filename);
+			#endif
+
+
+
+            
 
             return value1.Substring(0, value1.Length - 1);
 

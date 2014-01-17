@@ -38,6 +38,7 @@ namespace XNAMode
 
         override public void update()
         {
+#if !__ANDROID__
 
             if (FlxG.keys.ONE)
             {
@@ -79,6 +80,7 @@ namespace XNAMode
                 FlxG.state = new RotateState();
                 //FlxG.hideHud();
             }
+#endif
             base.update();
         }
 

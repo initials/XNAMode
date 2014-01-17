@@ -57,7 +57,7 @@ namespace FourChambers
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
-            Texture2D bgGraphic = FlxG.Content.Load<Texture2D>("initials/room");
+            Texture2D bgGraphic = FlxG.Content.Load<Texture2D>("fourchambers/room");
             bgSprite = new FlxSprite(0, 0, bgGraphic);
             bgSprite.loadGraphic(bgGraphic);
             bgSprite.x = 80;

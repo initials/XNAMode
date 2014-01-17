@@ -30,7 +30,7 @@ namespace FourChambers
 
             //actorName = "Zinger";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/zinger_ss_12x14"), true, false, 12, 14);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/zinger_ss_12x14"), true, false, 12, 14);
 
             addAnimation("fly", new int[] { 0, 1 }, 30);
             play("fly");

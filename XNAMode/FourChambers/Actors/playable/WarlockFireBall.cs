@@ -15,7 +15,7 @@ namespace FourChambers
 
         public WarlockFireBall()
         {
-            ImgBullet = FlxG.Content.Load<Texture2D>("initials/warlock_fireball");
+            ImgBullet = FlxG.Content.Load<Texture2D>("fourchambers/warlock_fireball");
 
             loadGraphic(ImgBullet, false,false,6,9);
             width = 6;

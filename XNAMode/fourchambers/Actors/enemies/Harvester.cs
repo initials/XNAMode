@@ -18,7 +18,7 @@ namespace FourChambers
         {
             actorName = "Death";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/harvester_ss_14x27"), true, false, 14, 27);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/harvester_ss_14x27"), true, false, 14, 27);
 
             addAnimation("run", new int[] { 2, 3, 4, 5, 6, 7 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);

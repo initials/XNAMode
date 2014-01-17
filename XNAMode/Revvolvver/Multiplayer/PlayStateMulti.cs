@@ -427,7 +427,7 @@ namespace Revvolvver
                 bulletHUD.addAnimation("ready", new int[] { 0 });
                 bulletHUD.addAnimation("missed", new int[] { 1 });
                 bulletHUD.addAnimation("hit", new int[] { 2 });
-                bulletHUD.moves = false;
+				bulletHUD.moves = false;
                 bulletHUD.solid = false;
                 bulletHUD.debugName = "ready";
                 bulletHUD.play("on");

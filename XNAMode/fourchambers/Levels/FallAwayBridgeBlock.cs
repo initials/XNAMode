@@ -27,7 +27,7 @@ namespace FourChambers
 
 
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/fallAwayBridgeTiles_16x32"), false, false, 16,32);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/fallAwayBridgeTiles_16x32"), false, false, 16,32);
             width = 16;
             height = 16;
 
