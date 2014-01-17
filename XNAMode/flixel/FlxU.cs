@@ -1209,7 +1209,7 @@ namespace org.flixel
 
 			#endif
 			#if !__ANDROID__
-			string value1 = File.ReadAllText(Filename);
+			value1 = File.ReadAllText(Filename);
 			#endif
 
 

@@ -658,7 +658,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\hudelements.png">
+    <Compile Include="fourchambers\hudelements.png">
       <Name>hudelements</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -1012,6 +1012,20 @@
   <ItemGroup>
     <Compile Include="Revvolvver\bomb.png">
       <Name>bomb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="fourchambers\autotiles_generic_16x16.png">
+      <Name>autotiles_generic_16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="fourchambers\skyPalette7-9.png">
+      <Name>skyPalette7-9</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

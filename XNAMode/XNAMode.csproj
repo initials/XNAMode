@@ -620,6 +620,7 @@
     </None>
     <None Include="ogmoLevels\level5.oel">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="ogmoLevels\level6.oel">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -16,7 +16,7 @@
     <Width>3200</Width>
     <Height>3200</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\User\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
+  <Filename>C:\Users\Shane\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>true</CameraEnabled>
   <CameraSize>
@@ -68,11 +68,11 @@
   </LayerDefinitions>
   <Tilesets>
     <Tileset>
-      <Name>tiles_sydney</Name>
-      <FilePath>..\..\..\OgmoEditor2\OgmoEditor\ExampleProject\tiles_sydney.png</FilePath>
+      <Name>autotiles_generic_16x16</Name>
+      <FilePath>..\..\XNAModeContent\fourchambers\autotiles_generic_16x16.png</FilePath>
       <TileSize>
-        <Width>20</Width>
-        <Height>20</Height>
+        <Width>16</Width>
+        <Height>16</Height>
       </TileSize>
       <TileSep>0</TileSep>
     </Tileset>
@@ -96,7 +96,7 @@
     </Tileset>
     <Tileset>
       <Name>autotiles_alt</Name>
-      <FilePath>..\..\XNAModeContent\flixel\autotiles_alt.png</FilePath>
+      <FilePath>..\..\XNAModeContent\initials\autotiles_alt.png</FilePath>
       <TileSize>
         <Width>16</Width>
         <Height>16</Height>
@@ -105,10 +105,19 @@
     </Tileset>
     <Tileset>
       <Name>autotiles</Name>
-      <FilePath>..\..\XNAModeContent\flixel\autotiles.png</FilePath>
+      <FilePath>..\..\XNAModeContent\initials\autotiles.png</FilePath>
       <TileSize>
         <Width>16</Width>
         <Height>16</Height>
+      </TileSize>
+      <TileSep>0</TileSep>
+    </Tileset>
+    <Tileset>
+      <Name>tiles_sydney</Name>
+      <FilePath>..\..\..\OgmoEditor2\OgmoEditor\ExampleProject\tiles_sydney.png</FilePath>
+      <TileSize>
+        <Width>20</Width>
+        <Height>20</Height>
       </TileSize>
       <TileSep>0</TileSep>
     </Tileset>

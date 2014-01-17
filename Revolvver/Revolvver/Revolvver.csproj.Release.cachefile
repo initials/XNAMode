@@ -30,7 +30,6 @@ Content\buttons\BP3_SSTRIP_64.xnb
 Content\flixel\transition_30x30.xnb
 Content\Revvolvver\notch.xnb
 Content\initials\crosshair.xnb
-Content\initials\hudelements.xnb
 Content\diagnostic\testpalette.xnb
 Content\mode\dirt.xnb
 Content\mode\dirt_top.xnb
@@ -56,6 +55,10 @@ Content\Revvolvver\bomb.xnb
 Content\flixel\beep.xnb
 Content\flixel\flixel.xnb
 Content\mode\button.xnb
+Content\initials\initials_empire_tagtone1.xnb
+Content\initials\initials_empire_tagtone2.xnb
+Content\initials\initials_empire_tagtone3.xnb
+Content\initials\initials_empire_tagtone4.xnb
 Content\flixel\deffont.xnb
 Content\initials\Munro.xnb
 Content\initials\SpaceMarine.xnb
@@ -152,10 +155,9 @@ Content\fourchambers\sparkles_small.xnb
 Content\fourchambers\fire.xnb
 Content\fourchambers\arrowSparkles.xnb
 Content\fourchambers\fireThrower.xnb
-Content\initials\initials_empire_tagtone1.xnb
-Content\initials\initials_empire_tagtone2.xnb
-Content\initials\initials_empire_tagtone3.xnb
-Content\initials\initials_empire_tagtone4.xnb
+Content\fourchambers\autotiles_generic_16x16.xnb
+Content\fourchambers\skyPalette7-9.xnb
+Content\fourchambers\hudelements.xnb
 Content\mode\button.wma
 Revvolvver\Level1_FourPlayerData.txt
 Revvolvver\Level1_ThreePlayerData.txt
@@ -277,28 +279,7 @@ Content\buttons\BP3_SSTRIP_32.xnb
 Content\buttons\BP3_SSTRIP_48.xnb
 Content\buttons\BP3_SSTRIP_64.xnb
 Content\flixel\transition_30x30.xnb
-<<<<<<< HEAD
-Content\initials\warlock_ss_29x29.xnb
-Content\initials\executor_ss_21x21.xnb
-Content\initials\arrow_8x1.xnb
-Content\initials\colorss.xnb
-Content\initials\palette.xnb
-Content\initials\texture_placement_small.xnb
-Content\initials\Fear.xnb
-Content\initials\skyPalette.xnb
-Content\initials\blood.xnb
-Content\initials\allActors.xnb
-Content\initials\artist_ss_20x20.xnb
-Content\initials\icons16x16.xnb
-Content\initials\mistress_ss_35x22.xnb
-Content\initials\ladderTiles_16x16.xnb
-Content\initials\horse_ss_20x25.xnb
-Content\initials\room.xnb
-=======
-Content\Revvolvver\notch.xnb
->>>>>>> dac1187695688a71f92070fcb4cde1ccf2cf7d6c
 Content\initials\crosshair.xnb
-Content\initials\hudelements.xnb
 Content\diagnostic\testpalette.xnb
 Content\mode\dirt.xnb
 Content\mode\dirt_top.xnb
@@ -313,20 +294,13 @@ Content\Revvolvver\spaceman.xnb
 Content\Revvolvver\spawner_gibs.xnb
 Content\Revvolvver\tech_tiles.xnb
 Content\mode\tech_autotiles.xnb
-<<<<<<< HEAD
-=======
-Content\Revvolvver\flower.xnb
-Content\Revvolvver\square_tiles_16x16.xnb
-Content\Revvolvver\bg.xnb
-Content\Revvolvver\cloud.xnb
-Content\Revvolvver\movingPlatform.xnb
-Content\Revvolvver\flowersmall.xnb
-Content\Revvolvver\flowersmallblue.xnb
-Content\Revvolvver\bomb.xnb
->>>>>>> dac1187695688a71f92070fcb4cde1ccf2cf7d6c
 Content\flixel\beep.xnb
 Content\flixel\flixel.xnb
 Content\mode\button.xnb
+Content\initials\initials_empire_tagtone1.xnb
+Content\initials\initials_empire_tagtone2.xnb
+Content\initials\initials_empire_tagtone3.xnb
+Content\initials\initials_empire_tagtone4.xnb
 Content\flixel\deffont.xnb
 Content\initials\Munro.xnb
 Content\initials\SpaceMarine.xnb
@@ -364,20 +338,13 @@ Content\Revvolvver\sfx\chord_04.xnb
 Content\Revvolvver\sfx\chord_05.xnb
 Content\Revvolvver\sfx\chord_06.xnb
 Content\Revvolvver\sfx\chord_07.xnb
-<<<<<<< HEAD
 Content\Revvolvver\square_tiles_16x16.xnb
 Content\Revvolvver\bg.xnb
 Content\Revvolvver\cloud.xnb
 Content\Revvolvver\movingPlatform.xnb
-Content\initials\arrowSparkles.xnb
-Content\initials\fireThrower.xnb
 Content\Revvolvver\flowersmall.xnb
 Content\Revvolvver\flowersmallblue.xnb
 Content\Revvolvver\bomb.xnb
-=======
-Content\fx\BloomCombine.xnb
-Content\fx\BloomExtract.xnb
-Content\fx\GaussianBlur.xnb
 Content\fourchambers\autotiles_16x16.xnb
 Content\fourchambers\automaton_ss_11x24.xnb
 Content\fourchambers\batParticles_12x12.xnb
@@ -439,10 +406,8 @@ Content\fourchambers\sparkles_small.xnb
 Content\fourchambers\fire.xnb
 Content\fourchambers\arrowSparkles.xnb
 Content\fourchambers\fireThrower.xnb
-Content\initials\initials_empire_tagtone1.xnb
-Content\initials\initials_empire_tagtone2.xnb
-Content\initials\initials_empire_tagtone3.xnb
-Content\initials\initials_empire_tagtone4.xnb
->>>>>>> dac1187695688a71f92070fcb4cde1ccf2cf7d6c
+Content\fourchambers\autotiles_generic_16x16.xnb
+Content\fourchambers\skyPalette7-9.xnb
+Content\fourchambers\hudelements.xnb
 Content\mode\button.wma
 Lemonade\levels\bgmilita.tmx
