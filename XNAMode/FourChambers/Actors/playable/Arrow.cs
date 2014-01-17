@@ -28,8 +28,8 @@ namespace FourChambers
 
 
             _ex = exp;
-            
-            ImgBullet = FlxG.Content.Load<Texture2D>("initials/arrow_8x1");
+
+            ImgBullet = FlxG.Content.Load<Texture2D>("fourchambers/arrow_8x1");
 
             loadGraphic(ImgBullet, false, false, 8,1);
 
@@ -59,7 +59,7 @@ namespace FourChambers
             _fire.setXSpeed(-15, 15);
             _fire.setYSpeed(-15, 15);
             _fire.gravity = 0;
-            _fire.createSprites(FlxG.Content.Load<Texture2D>("initials/arrowSparkles"), 25, true);
+            _fire.createSprites(FlxG.Content.Load<Texture2D>("fourchambers/arrowSparkles"), 25, true);
 
             
 

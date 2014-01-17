@@ -18,7 +18,7 @@ namespace FourChambers
         {
             actorName = "Fabulous Diamond Joe";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/unicorn_ss_20x25"), true, false, 20, 25);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/unicorn_ss_20x25"), true, false, 20, 25);
 
             addAnimation("walk", new int[] { 2, 3, 4, 5, 6, 7, 8, 9 }, 10);
             addAnimation("run", new int[] {2, 3, 4, 5, 6, 7,8,9 }, 18);

@@ -335,7 +335,7 @@ namespace FourChambers
 
             if (FourChambers_Globals.gif== false)
             {
-                Texture2D bgGraphic = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["bgGraphic"]);
+                Texture2D bgGraphic = FlxG.Content.Load<Texture2D>("fourchambers/" + levelAttrs["bgGraphic"]);
                 bgSprite = new FlxSprite(0, 0, bgGraphic);
                 bgSprite.loadGraphic(bgGraphic);
                 bgSprite.scrollFactor.X = 0.4f;
@@ -354,7 +354,7 @@ namespace FourChambers
 
             destructableTilemap = new FlxTilemap();
             destructableTilemap.auto = FlxTilemap.STRING;
-            destructableTilemap.loadMap(destructableAttrs["DestructableTerrain"], FlxG.Content.Load<Texture2D>("initials/" + destructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
+            destructableTilemap.loadMap(destructableAttrs["DestructableTerrain"], FlxG.Content.Load<Texture2D>("fourchambers/" + destructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
             destructableTilemap.boundingBoxOverride = true;
             allLevelTiles.add(destructableTilemap);
             destructableTilemap.collideMin = 0;
@@ -366,29 +366,27 @@ namespace FourChambers
 
             //leftExitBlockerWall = new FlxTileblock(0, FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FourChambers_Globals.TILE_SIZE_X * 2, FourChambers_Globals.TILE_SIZE_Y * 3);
             //leftExitBlockerWall.@fixed = false;
-            //leftExitBlockerWall.loadTiles(FlxG.Content.Load<Texture2D>("initials/" + indestructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y, 0);
+            //leftExitBlockerWall.loadTiles(FlxG.Content.Load<Texture2D>("fourchambers/" + indestructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y, 0);
             //leftExitBlockerWall.velocity.X = -2000;
 
-            leftExitBlockerWall = new FlxSprite(0, FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FlxG.Content.Load<Texture2D>("initials/exitBlocker"));
+            leftExitBlockerWall = new FlxSprite(0, FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FlxG.Content.Load<Texture2D>("fourchambers/exitBlocker"));
             leftExitBlockerWall.@fixed = true;
             allLevelTiles.add(leftExitBlockerWall);
 
             //rightExitBlockerWall = new FlxTileblock(FlxG.levelWidth - (FourChambers_Globals.TILE_SIZE_X * 2), FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FourChambers_Globals.TILE_SIZE_X * 2, FourChambers_Globals.TILE_SIZE_Y * 3);
-            //rightExitBlockerWall.loadTiles(FlxG.Content.Load<Texture2D>("initials/" + indestructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y, 0);
+            //rightExitBlockerWall.loadTiles(FlxG.Content.Load<Texture2D>("fourchambers/" + indestructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y, 0);
 
             //rightExitBlockerWall.add(rightExitBlockerWall);
 
-            rightExitBlockerWall = new FlxSprite(FlxG.levelWidth - (FourChambers_Globals.TILE_SIZE_X * 2), FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FlxG.Content.Load<Texture2D>("initials/exitBlocker"));
+            rightExitBlockerWall = new FlxSprite(FlxG.levelWidth - (FourChambers_Globals.TILE_SIZE_X * 2), FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FlxG.Content.Load<Texture2D>("fourchambers/exitBlocker"));
             rightExitBlockerWall.@fixed = true;
             allLevelTiles.add(rightExitBlockerWall);
 
             indestructableTilemap = new FlxTilemap();
             indestructableTilemap.auto = FlxTilemap.STRING;
-            indestructableTilemap.loadMap(indestructableAttrs["IndestructableTerrain"], FlxG.Content.Load<Texture2D>("initials/" + indestructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
+            indestructableTilemap.loadMap(indestructableAttrs["IndestructableTerrain"], FlxG.Content.Load<Texture2D>("fourchambers/" + indestructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
             indestructableTilemap.boundingBoxOverride = true;
             allLevelTiles.add(indestructableTilemap);
-
-
 
             actorsAttrs = new List<Dictionary<string, string>>();
             actorsAttrs = FlxXMLReader.readNodesFromOelFile(levelFile, "level/ActorsLayer");
@@ -472,7 +470,7 @@ namespace FourChambers
             }
 
             //reload the map
-            destructableTilemap.loadMap(addedMap, FlxG.Content.Load<Texture2D>("initials/" + destructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
+            destructableTilemap.loadMap(addedMap, FlxG.Content.Load<Texture2D>("fourchambers/" + destructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
             
 
             eventsAttrs = new List<Dictionary<string, string>>();
@@ -499,7 +497,7 @@ namespace FourChambers
 
             // build atmospheric effects here
 
-            paletteTexture = FlxG.Content.Load<Texture2D>("initials/" + levelAttrs["timeOfDayPalette"]);
+            paletteTexture = FlxG.Content.Load<Texture2D>("fourchambers/" + levelAttrs["timeOfDayPalette"]);
 
             //FlxG.followAdjust(0.5f, 0.0f);
             FlxG.followBounds(0, 0, Convert.ToInt32(levelAttrs["width"]) , Convert.ToInt32(levelAttrs["height"]) );
@@ -516,6 +514,7 @@ namespace FourChambers
             add(seraphine);
 
             buildActor("imp", 1);
+            buildActor("harvester", 1,false,-100,100,0,0,null,null,0,0,0);
             
             blood = new FlxEmitter();
             blood.x = 0;
@@ -527,7 +526,7 @@ namespace FourChambers
             blood.setYSpeed(-250, -50);
             blood.setRotation(0, 0);
             blood.gravity = FourChambers_Globals.GRAVITY;
-            blood.createSprites(FlxG.Content.Load<Texture2D>("initials/blood"), 1500, true, 1.0f, 0.1f);
+            blood.createSprites(FlxG.Content.Load<Texture2D>("fourchambers/blood"), 1500, true, 1.0f, 0.1f);
             add(blood);
 
 
@@ -541,7 +540,7 @@ namespace FourChambers
             tilesExplode.setYSpeed(-150, -50);
             tilesExplode.setRotation(0, 0);
             tilesExplode.gravity = FourChambers_Globals.GRAVITY;
-            tilesExplode.createSprites(FlxG.Content.Load<Texture2D>("initials/" + destructableAttrs["tileset"]), 100, true, 1.0f, 0.1f);
+            tilesExplode.createSprites(FlxG.Content.Load<Texture2D>("fourchambers/" + destructableAttrs["tileset"]), 100, true, 1.0f, 0.1f);
             add(tilesExplode);
             tilesExplode.setScale(0.5f);
 
@@ -556,7 +555,7 @@ namespace FourChambers
             specialFX.setYSpeed(-850, 0);
             specialFX.setRotation(0, 360);
             specialFX.gravity = FourChambers_Globals.GRAVITY ;
-            specialFX.createSprites(FlxG.Content.Load<Texture2D>("initials/sparkles_small"), 20, true, 1.0f, 0.1f);
+            specialFX.createSprites(FlxG.Content.Load<Texture2D>("fourchambers/sparkles_small"), 20, true, 1.0f, 0.1f);
             add(specialFX);
 
             
@@ -570,8 +569,8 @@ namespace FourChambers
 
 
             //if (FlxG.joystickBeingUsed) FlxG.mouse.hide();
-            //else FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
-            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
+            //else FlxG.mouse.show(FlxG.Content.Load<Texture2D>("fourchambers/crosshair"));
+            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("fourchambers/crosshair"));
             localHud = new PlayHud();
             FlxG._game.hud.hudGroup = localHud;
 
@@ -678,11 +677,9 @@ namespace FourChambers
             }
             else if ((FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.W) && FourChambers_Globals.seraphineHasBeenKilled == true)
             {
-                
                 //imp.x = marksman.x - 30;
                 //imp.y = marksman.y - marksman.height;
                 //imp.facing = marksman.facing;
-
             }
             else if (seraphine.dead == true)
             {
@@ -691,22 +688,16 @@ namespace FourChambers
             else
             {
                 FlxG.bloom.Visible = false;
-
                 seraphine.velocity.Y = -50;
-
             }
             timeOfDay += FlxG.elapsed * timeScale;
             if (timeOfDay > 24.99f) timeOfDay = 0.0f;
-            //timeOfDay = timeOfDayTotal / timeScale;
 
             //calculate time of day.
             if (FourChambers_Globals.gif == false)
             {
-
-
                 // color whole game.
                 FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1));
-
             }
             
             // bring time back to regular.
@@ -718,11 +709,6 @@ namespace FourChambers
             {
                 FlxG.setHudText(1, "");
             }
-
-            // color bg tiles
-            //bgTiles.color = FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1);
-
-
 
             //collides
             FlxU.collide(actors, allLevelTiles);
@@ -764,27 +750,16 @@ namespace FourChambers
                 if ((playerControlledActors.members[i2] as FlxSprite).x < 0)
                 {
                     Console.WriteLine("ArrowsFired : {0} Arrows Hit : {1}", FourChambers_Globals.arrowsFired, FourChambers_Globals.arrowsHitTarget);
-                    int newLevel = (int)FlxU.random(0, FourChambers_Globals.availableLevels.Count);
-                    FlxG.level = FourChambers_Globals.availableLevels[newLevel];
-                    FourChambers_Globals.availableLevels.RemoveAt(newLevel);
-                    goToLevel(FlxG.level);
+                    //int newLevel = (int)FlxU.random(0, FourChambers_Globals.availableLevels.Count);
+                    //FlxG.level = FourChambers_Globals.availableLevels[newLevel];
+                    //FourChambers_Globals.availableLevels.RemoveAt(newLevel);
 
-                    //goToLevel(--FlxG.level);
 
-                    //Console.WriteLine("STARTGAME() " + FourChambers_Globals.availableLevels[newLevel] + "  New Level:  " + newLevel);
-
+                    goToLevel(++FlxG.level);
                 }
                 if ((playerControlledActors.members[i2] as FlxSprite).x > FlxG.levelWidth)
                 {
-                    Console.WriteLine("ArrowsFired : {0} Arrows Hit : {1}", FourChambers_Globals.arrowsFired, FourChambers_Globals.arrowsHitTarget);
-                    //goToLevel(++FlxG.level);
-                    int newLevel = (int)FlxU.random(0, FourChambers_Globals.availableLevels.Count);
-                    FlxG.level = FourChambers_Globals.availableLevels[newLevel];
-                    FourChambers_Globals.availableLevels.RemoveAt(newLevel);
-                    goToLevel(FlxG.level);
-
-                    //Console.WriteLine("STARTGAME() " + FourChambers_Globals.availableLevels[newLevel] + "  New Level:  " + newLevel);
-
+                    goToLevel(++FlxG.level);
                 }
 
                 i2++;
@@ -835,32 +810,11 @@ namespace FourChambers
             FlxG.state = new GameSelectionMenuState();
         }
 
-        /// <summary>
-        /// Go
-        /// </summary>
-        /// <param name="Sender"></param>
-        /// <param name="e"></param>
-        /// <returns></returns>
-        protected bool goToNextLevel(object Sender, FlxSpriteCollisionEvent e)
-        {
-            FlxG.level++;
-            if (FlxG.level > 25) FlxG.level = 1;
-
-            FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
-
-            FlxG.transition.startFadeIn(0.2f);
-
-            FlxG.state = new BasePlayState();
-
-            return true;
-        }
-
-
         protected bool goToLevel(int Level)
         {
             FlxG.level = Level;
 
-            if (FlxG.level > 11) FlxG.level = 1;
+            if (FlxG.level > 25) FlxG.level = 1;
             else if (FlxG.level < 1) FlxG.level = 10;
             FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
 
@@ -907,8 +861,6 @@ namespace FourChambers
         {
             specialFX.at(e.Object1);
             specialFX.start(true, 0, 30);
-
-
 
             int x = ((PowerUp)e.Object1).typeOfPowerUp;
             if (x == 154 || x == 155 || x == 156 || x == 157)
@@ -2166,14 +2118,13 @@ namespace FourChambers
                 }
             }
             #endregion
-
             #region ladder
             if (ActorType == "ladder")
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     ladder = new FlxTileblock(x,y,16, height );
-                    ladder.loadTiles(FlxG.Content.Load<Texture2D>("initials/ladderTiles_16x16"), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y, 0);
+                    ladder.loadTiles(FlxG.Content.Load<Texture2D>("fourchambers/ladderTiles_16x16"), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y, 0);
                     ladders.add(ladder);
                 }
             }

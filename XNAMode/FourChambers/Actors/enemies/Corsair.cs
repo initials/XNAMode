@@ -18,7 +18,7 @@ namespace FourChambers
         {
             actorName = "Sierra";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/corsair_18x21"), true, false, 18, 21);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/corsair_18x21"), true, false, 18, 21);
 
             addAnimation("run", new int[] { 1, 2, 3, 4, 5}, 12);
             addAnimation("idle", new int[] { 0 }, 12);

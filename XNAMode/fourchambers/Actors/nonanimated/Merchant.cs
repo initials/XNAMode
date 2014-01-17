@@ -18,7 +18,7 @@ namespace FourChambers
 
             actorName = "Merchant";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/allActors"), true, false, 26, 26);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/allActors"), true, false, 26, 26);
 
             //addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 12);
             addAnimation("idle", new int[] { FR_merchant }, 0);

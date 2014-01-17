@@ -63,7 +63,7 @@ namespace org.flixel
 
             visible = false;
 
-            //hudGraphic = new FlxSprite(targetLeft+76, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 36, FlxG.Content.Load<Texture2D>("initials/hudElements"));
+            //hudGraphic = new FlxSprite(targetLeft+76, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 36, FlxG.Content.Load<Texture2D>("fourchambers/hudElements"));
             //hudGraphic = new FlxSprite();
             //hudGraphic.visible = false;
             //hudGraphic.scrollFactor.X = 0;

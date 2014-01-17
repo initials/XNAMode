@@ -18,7 +18,7 @@ namespace FourChambers
         {
             actorName = "Josie";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/succubus_ss_35x30"), true, false, 35, 20);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/succubus_ss_35x30"), true, false, 35, 20);
 
             addAnimation("run", new int[] { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }, 18);
             addAnimation("idle", new int[] { 0 }, 12);

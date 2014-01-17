@@ -299,106 +299,106 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\autotiles_16x16.png">
+    <Compile Include="fourchambers\autotiles_16x16.png">
       <Name>autotiles_16x16</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\automaton_ss_11x24.png">
+    <Compile Include="fourchambers\automaton_ss_11x24.png">
       <Name>automaton_ss_11x24</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\batParticles_12x12.png">
+    <Compile Include="fourchambers\batParticles_12x12.png">
       <Name>batParticles_12x12</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\corsair_18x21.png">
+    <Compile Include="fourchambers\corsair_18x21.png">
       <Name>corsair_18x21</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\gloom_spritesheet.png">
+    <Compile Include="fourchambers\gloom_spritesheet.png">
       <Name>gloom_spritesheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\harvester_ss_14x27.png">
+    <Compile Include="fourchambers\harvester_ss_14x27.png">
       <Name>harvester_ss_14x27</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\marksman_ss_31x24.png">
+    <Compile Include="fourchambers\marksman_ss_31x24.png">
       <Name>marksman_ss_31x24</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\medusa_ss_35x30.png">
+    <Compile Include="fourchambers\medusa_ss_35x30.png">
       <Name>medusa_ss_35x30</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\mummy_ss_13x19.png">
+    <Compile Include="fourchambers\mummy_ss_13x19.png">
       <Name>mummy_ss_13x19</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\nymph_ss_35x30.png">
+    <Compile Include="fourchambers\nymph_ss_35x30.png">
       <Name>nymph_ss_35x30</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\paladin_ss_16x26.png">
+    <Compile Include="fourchambers\paladin_ss_16x26.png">
       <Name>paladin_ss_16x26</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\prism_ss_14x20.png">
+    <Compile Include="fourchambers\prism_ss_14x20.png">
       <Name>prism_ss_14x20</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\seraphine_ss_24x30.png">
+    <Compile Include="fourchambers\seraphine_ss_24x30.png">
       <Name>seraphine_ss_24x30</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\spawner.png">
+    <Compile Include="fourchambers\spawner.png">
       <Name>spawner</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\succubus_ss_35x30.png">
+    <Compile Include="fourchambers\succubus_ss_35x30.png">
       <Name>succubus_ss_35x30</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\tormentor_ss_13x24.png">
+    <Compile Include="fourchambers\tormentor_ss_13x24.png">
       <Name>tormentor_ss_13x24</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\unicorn_ss_20x25.png">
+    <Compile Include="fourchambers\unicorn_ss_20x25.png">
       <Name>unicorn_ss_20x25</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\vampire_ss_14x19.png">
+    <Compile Include="fourchambers\vampire_ss_14x19.png">
       <Name>vampire_ss_14x19</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\zombie_ss_13x19.png">
+    <Compile Include="fourchambers\zombie_ss_13x19.png">
       <Name>zombie_ss_13x19</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\envir_dusk.png">
+    <Compile Include="fourchambers\envir_dusk.png">
       <Name>envir_dusk</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -412,14 +412,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\Ambience.png">
+    <Compile Include="fourchambers\Ambience.png">
       <Name>Ambience</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\warlock_fireball.png">
+    <Compile Include="fourchambers\warlock_fireball.png">
       <Name>warlock_fireball</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -450,35 +450,35 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\warlock_ss_29x29.png">
+    <Compile Include="fourchambers\warlock_ss_29x29.png">
       <Name>warlock_ss_29x29</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\executor_ss_21x21.png">
+    <Compile Include="fourchambers\executor_ss_21x21.png">
       <Name>executor_ss_21x21</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\arrow_8x1.png">
+    <Compile Include="fourchambers\arrow_8x1.png">
       <Name>arrow_8x1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\colorss.PNG">
+    <Compile Include="fourchambers\colorss.PNG">
       <Name>colorss</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\palette.png">
+    <Compile Include="fourchambers\palette.png">
       <Name>palette</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -502,7 +502,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\texture_placement_small.png">
+    <Compile Include="fourchambers\texture_placement_small.png">
       <Name>texture_placement_small</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -531,42 +531,42 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\Fear.png">
+    <Compile Include="fourchambers\Fear.png">
       <Name>Fear</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\skyPalette.png">
+    <Compile Include="fourchambers\skyPalette.png">
       <Name>skyPalette</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\blood.png">
+    <Compile Include="fourchambers\blood.png">
       <Name>blood</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\allActors.png">
+    <Compile Include="fourchambers\allActors.png">
       <Name>allActors</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\artist_ss_20x20.png">
+    <Compile Include="fourchambers\artist_ss_20x20.png">
       <Name>artist_ss_20x20</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\icons16x16.png">
+    <Compile Include="fourchambers\icons16x16.png">
       <Name>icons16x16</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -585,28 +585,28 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\mistress_ss_35x22.png">
+    <Compile Include="fourchambers\mistress_ss_35x22.png">
       <Name>mistress_ss_35x22</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\ladderTiles_16x16.png">
+    <Compile Include="fourchambers\ladderTiles_16x16.png">
       <Name>ladderTiles_16x16</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\horse_ss_20x25.png">
+    <Compile Include="fourchambers\horse_ss_20x25.png">
       <Name>horse_ss_20x25</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\room.png">
+    <Compile Include="fourchambers\room.png">
       <Name>room</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -620,31 +620,31 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\decorationsBack_16x16.png">
+    <Compile Include="fourchambers\decorationsBack_16x16.png">
       <Name>decorationsBack_16x16</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\decorationsFront_16x16.png">
+    <Compile Include="fourchambers\decorationsFront_16x16.png">
       <Name>decorationsFront_16x16</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\drone_ss_9x13.png">
+    <Compile Include="fourchambers\drone_ss_9x13.png">
       <Name>drone_ss_9x13</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\zinger_ss_12x14.png">
+    <Compile Include="fourchambers\zinger_ss_12x14.png">
       <Name>zinger_ss_12x14</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\fallAwayBridgeTiles_16x16.png">
+    <Compile Include="fourchambers\fallAwayBridgeTiles_16x16.png">
       <Name>fallAwayBridgeTiles_16x16</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -665,31 +665,31 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\door_24x24.png">
+    <Compile Include="fourchambers\door_24x24.png">
       <Name>door_24x24</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\powerup_16x16.png">
+    <Compile Include="fourchambers\powerup_16x16.png">
       <Name>powerup_16x16</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\pickups_16x16.png">
+    <Compile Include="fourchambers\pickups_16x16.png">
       <Name>pickups_16x16</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\treasures_16x16.png">
+    <Compile Include="fourchambers\treasures_16x16.png">
       <Name>treasures_16x16</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\explosion_32x32.png">
+    <Compile Include="fourchambers\explosion_32x32.png">
       <Name>explosion_32x32</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -703,40 +703,40 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\fallAwayBridgeTiles_16x32.png">
+    <Compile Include="fourchambers\fallAwayBridgeTiles_16x32.png">
       <Name>fallAwayBridgeTiles_16x32</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\exitBlocker.png">
+    <Compile Include="fourchambers\exitBlocker.png">
       <Name>exitBlocker</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\menuButton.png">
+    <Compile Include="fourchambers\menuButton.png">
       <Name>menuButton</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\menuButtonPressed.png">
+    <Compile Include="fourchambers\menuButtonPressed.png">
       <Name>menuButtonPressed</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\autotiles_ice_16x16.png">
+    <Compile Include="fourchambers\autotiles_ice_16x16.png">
       <Name>autotiles_ice_16x16</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\skyPaletteIce.png">
+    <Compile Include="fourchambers\skyPaletteIce.png">
       <Name>skyPaletteIce</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -765,19 +765,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\sparkles.png">
+    <Compile Include="fourchambers\sparkles.png">
       <Name>sparkles</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="initials\sparkles_glow.png">
+    <Compile Include="fourchambers\sparkles_glow.png">
       <Name>sparkles_glow</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\bgIce.png">
+    <Compile Include="fourchambers\bgIce.png">
       <Name>bgIce</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -791,7 +791,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\sparkles_small.png">
+    <Compile Include="fourchambers\sparkles_small.png">
       <Name>sparkles_small</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -805,7 +805,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\fire.png">
+    <Compile Include="fourchambers\fire.png">
       <Name>fire</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -982,14 +982,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\arrowSparkles.png">
+    <Compile Include="fourchambers\arrowSparkles.png">
       <Name>arrowSparkles</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="initials\fireThrower.png">
+    <Compile Include="fourchambers\fireThrower.png">
       <Name>fireThrower</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

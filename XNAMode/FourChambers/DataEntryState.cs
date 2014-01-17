@@ -31,7 +31,7 @@ namespace FourChambers
 
             base.create();
 
-            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
+            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("fourchambers/crosshair"));
             
             //FlxG.backColor = new Color(0xc2, 0x88, 0x83);
 
@@ -64,7 +64,7 @@ namespace FourChambers
             play = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 30, advanceToNextState , FlxButton.ControlPadA);
             //play = new FlxButton(0, FlxG.height - 30, advanceToNextState, FlxButton.ControlPadA);
 
-            play.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButtonPressed"), false, false, 100, 20));
+            play.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButtonPressed"), false, false, 100, 20));
             
             play.loadText(new FlxText(2, 2, 100, "Enter"), new FlxText(2, 2, 100, "ENTER"));
             add(play);

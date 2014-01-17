@@ -34,7 +34,7 @@ namespace FourChambers
 
             _bullets = Bullets;
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("initials/marksman_ss_31x24"), true, false, 31, 24);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/marksman_ss_31x24"), true, false, 31, 24);
 
             addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);

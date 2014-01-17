@@ -43,17 +43,17 @@ namespace FourChambers
             tween = new Tweener(0, -240 , TimeSpan.FromSeconds(3.9f), Quadratic.EaseOut);
 
             // -350, -310
-            bgSprite = new FlxSprite(-350, 0, FlxG.Content.Load<Texture2D>("initials/Fear"));
+            bgSprite = new FlxSprite(-350, 0, FlxG.Content.Load<Texture2D>("fourchambers/Fear"));
             add(bgSprite);
 
-            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
+            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("fourchambers/crosshair"));
             FlxG.mouse.cursor.offset.X = 5;
             FlxG.mouse.cursor.offset.Y = 5;
 
 
             
             _menuItems = new FlxText(0, 10, FlxG.width);
-            _menuItems.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, Color.White, FlxJustification.Center, Color.White);
+            _menuItems.setFormat(FlxG.Content.Load<SpriteFont>("fourchambers/SpaceMarine"), 1, Color.White, FlxJustification.Center, Color.White);
             //_menuItems.text = "Four Chambers\n\nEnter name, use @ symbol to specify Twitter handle.\nPress enter when complete.";
             _menuItems.text = "The Four\nChambers Of The\nHuman Heart";
             _menuItems.shadow = Color.Black;
@@ -65,20 +65,20 @@ namespace FourChambers
             //add(_nameEntry);
 
             play = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 80, playGame, FlxButton.ControlPadA);
-            play.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButtonPressed"), false,false,100,20));
+            play.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButtonPressed"), false,false,100,20));
             play.loadText(new FlxText(2, 2, 100, "Play Game"), new FlxText(2, 2, 100, "Play Game!"));
             add(play);
             play.on = true;
             play.debugName = "playGame";
 
             playProcedural = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 55, playGameTutorial, FlxButton.ControlPadA);
-            playProcedural.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButtonPressed"), false, false, 100, 20));
+            playProcedural.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButtonPressed"), false, false, 100, 20));
             playProcedural.loadText(new FlxText(2, 2, 100, "Tutorial"), new FlxText(2, 2, 100, "Tutorial"));
             add(playProcedural);
             playProcedural.debugName = "tutorial";
 
             editName = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 30, goToDataEntryState, FlxButton.ControlPadA);
-            editName.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("initials/menuButtonPressed"), false, false, 100, 20));
+            editName.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButtonPressed"), false, false, 100, 20));
             editName.loadText(new FlxText(2, 2, 100, "Edit Name"), new FlxText(2, 2, 100, "Edit Name"));
             add(editName);
             editName.debugName = "editName";

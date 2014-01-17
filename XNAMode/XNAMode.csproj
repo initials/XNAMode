@@ -185,19 +185,19 @@
     <Compile Include="FourChambers\Actors\nonanimated\Bogbeast.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Bombling.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Centaur.cs" />
-    <Compile Include="FourChambers\Actors\todo\Chicken.cs" />
+    <Compile Include="FourChambers\Actors\enemies\Chicken.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Chimaera.cs" />
-    <Compile Include="FourChambers\Actors\todo\Cow.cs" />
+    <Compile Include="FourChambers\Actors\enemies\Cow.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Cyclops.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Deathclaw.cs" />
-    <Compile Include="FourChambers\Actors\todo\Deer.cs" />
+    <Compile Include="FourChambers\Actors\enemies\Deer.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Devil.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Djinn.cs" />
     <Compile Include="FourChambers\Actors\flyingenemies\Drone.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Druid.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Dwarf.cs" />
-    <Compile Include="FourChambers\Actors\todo\Embersteed.cs" />
-    <Compile Include="FourChambers\Actors\todo\Feline.cs" />
+    <Compile Include="FourChambers\Actors\enemies\Embersteed.cs" />
+    <Compile Include="FourChambers\Actors\enemies\Feline.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Floatingeye.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Fungant.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Gelatine.cs" />
@@ -207,29 +207,29 @@
     <Compile Include="FourChambers\Actors\nonanimated\Gorgon.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Gourmet.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Grimwarrior.cs" />
-    <Compile Include="FourChambers\Actors\todo\Grizzly.cs" />
+    <Compile Include="FourChambers\Actors\enemies\Grizzly.cs" />
     <Compile Include="FourChambers\Actors\enemies\Horse.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Ifrit.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Imp.cs" />
-    <Compile Include="FourChambers\Actors\todo\Kerberos.cs" />
+    <Compile Include="FourChambers\Actors\enemies\Kerberos.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Lich.cs" />
-    <Compile Include="FourChambers\Actors\todo\Lion.cs" />
+    <Compile Include="FourChambers\Actors\enemies\Lion.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Mechanic.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Mephisto.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Merchant.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Mermaid.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Mimick.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Monk.cs" />
-    <Compile Include="FourChambers\Actors\todo\Nightmare.cs" />
+    <Compile Include="FourChambers\Actors\enemies\Nightmare.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Ogre.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Phantom.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Priest.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Prism.cs" />
-    <Compile Include="FourChambers\Actors\todo\Rat.cs" />
+    <Compile Include="FourChambers\Actors\enemies\Rat.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Savage.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Sheep.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Skeleton.cs" />
-    <Compile Include="FourChambers\Actors\todo\Snake.cs" />
+    <Compile Include="FourChambers\Actors\enemies\Snake.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Soldier.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Sphinx.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Spider.cs" />
@@ -239,7 +239,7 @@
     <Compile Include="FourChambers\Actors\nonanimated\Troll.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Willowisp.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Wizard.cs" />
-    <Compile Include="FourChambers\Actors\todo\Wolf.cs" />
+    <Compile Include="FourChambers\Actors\enemies\Wolf.cs" />
     <Compile Include="FourChambers\Actors\flyingenemies\Zinger.cs" />
     <Compile Include="FourChambers\GameProgress.cs" />
     <Compile Include="TestStates\BasePlayState.cs" />
@@ -713,6 +713,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="FourChambers\Actors\todo\" />
     <Folder Include="FourChambers\Weapons\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
