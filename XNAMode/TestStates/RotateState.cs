@@ -32,15 +32,16 @@ namespace XNAMode
             bg.debugName = "toybox";
             add(bg);
 
-            //bg1 = new FlxSprite(140, 40);
-            //bg1.loadGraphic(FlxG.Content.Load<Texture2D>("initials/texture_placement_small"), true, false, 32, 32);
-            //bg1.addAnimation("first", new int[] { 0, 1, 2, 0, 1, 2, 0, 1, 2 }, 3);
-            //bg1.addAnimation("second", new int[] { 0, 11, 12, 0, 1, 12, 0, 1, 12 }, 3);
-            //bg1.play("first");
-            //bg1.angularVelocity = 110;
-            //bg1.width = 10;
-            //bg1.height = 10;
-            //add(bg1);
+            bg1 = new FlxSprite(140, 40);
+            bg1.loadGraphic(FlxG.Content.Load<Texture2D>("initials/texture_placement_small"), true, false, 32, 32);
+            bg1.addAnimation("first", new int[] { 0, 1, 2, 0, 1, 2, 0, 1, 2 }, 3);
+            bg1.addAnimation("second", new int[] { 0, 11, 12, 0, 1, 12, 0, 1, 12 }, 3);
+            bg1.play("first");
+            bg1.width = 12;
+            bg1.height = 20;
+            bg1.offset.X = 10;
+            bg1.offset.Y = 12;
+            add(bg1);
 
 
             //bg2 = new FlxSprite(140, 90);
