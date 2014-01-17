@@ -351,6 +351,12 @@ namespace org.flixel
 			refreshHulls();
 		}
 
+        public void adjustOrigin()
+        {
+            _origin.X = width * 0.5f;
+            _origin.Y = height * 0.5f;
+        }
+
         /// <summary>
         /// Internal function for updating the sprite's animation.
         /// Useful for cases when you need to update this but are buried down in too many supers.
