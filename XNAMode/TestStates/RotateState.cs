@@ -33,37 +33,29 @@ namespace XNAMode
             add(bg);
 
             bg1 = new FlxSprite(140, 40);
-            
-
-
             bg1.loadGraphic(FlxG.Content.Load<Texture2D>("initials/texture_placement_small"), true, false, 32, 32);
             bg1.addAnimation("first", new int[] { 0, 1, 2, 0, 1, 2, 0, 1, 2 }, 3);
             bg1.addAnimation("second", new int[] { 0, 11, 12, 0, 1, 12, 0, 1, 12 }, 3);
             bg1.play("first");
-
             bg1.width = 12;
             bg1.height = 20;
             bg1.offset.X = 10;
             bg1.offset.Y = 12;
             bg1.adjustOrigin();
-
-
             bg1.angularVelocity = 110;
-
             add(bg1);
 
 
-            //bg2 = new FlxSprite(140, 90);
-            //bg2.loadGraphic(FlxG.Content.Load<Texture2D>("initials/texture_placement_small"), true, false, 32, 32);
-            //bg2.addAnimation("first", new int[] { 0, 1, 2, 0, 1, 2, 0, 1, 2 }, 3);
-            //bg2.addAnimation("second", new int[] { 0, 11, 12, 0, 1, 12, 0, 1, 12 }, 3);
-            //bg2.play("first");
-            //bg2.angularVelocity = 110;
-            //bg2.width = 32;
-            //bg2.height = 32;
-            //bg2.offset.X = 22;
-            //bg2.offset.Y = 22;
-            //add(bg2);
+            bg2 = new FlxSprite(140, 140);
+            bg2.loadGraphic(FlxG.Content.Load<Texture2D>("initials/texture_placement_small"), true, false, 32, 32);
+            bg2.addAnimation("first", new int[] { 0, 1, 2, 0, 1, 2, 0, 1, 2 }, 3);
+            bg2.addAnimation("second", new int[] { 0, 11, 12, 0, 1, 12, 0, 1, 12 }, 3);
+            bg2.play("first");
+            bg2.width = 12;
+            bg2.height = 20;
+            bg2.setOffset(10, 12);
+            bg2.angularVelocity = 110;
+            add(bg2);
 
             //bg3 = new FlxSprite(40, 90);
             //bg3.loadGraphic(FlxG.Content.Load<Texture2D>("initials/texture_placement_small"), true, false, 32, 32);
@@ -92,46 +84,61 @@ namespace XNAMode
 
             FlxG._game.hud.p1HudText.text = values;
 
-            if (FlxG.keys.Q)
+            if (FlxG.keys.justPressed(Keys.F))
             {
-                bg.width++;
+                bg.width /= 2;
+                bg.adjustOrigin();
             }
-            if (FlxG.keys.W)
+            if (FlxG.keys.justPressed(Keys.H))
             {
-                bg.width--;
+                bg.width *= 2;
+                bg.adjustOrigin();
+            }
+            if (FlxG.keys.justPressed(Keys.G))
+            {
+                bg.height /= 2;
+                bg.adjustOrigin();
+            }
+            if (FlxG.keys.justPressed(Keys.T))
+            {
+                bg.height *= 2;
+                bg.adjustOrigin();
+            }
+
+
+            if (FlxG.keys.D)
+            {
+                bg.offset.X++;
+                bg1.offset.X++;
             }
             if (FlxG.keys.A)
             {
-                bg.height++;
+                bg.offset.X--;
+                bg1.offset.X--;
+            }
+            if (FlxG.keys.W)
+            {
+                bg.offset.Y++;
+                bg1.offset.Y++;
             }
             if (FlxG.keys.S)
             {
-                bg.height--;
-            }
-
-
-            if (FlxG.keys.E)
-            {
-                bg.offset.X++;
-            }
-            if (FlxG.keys.R)
-            {
-                bg.offset.X--;
-            }
-            if (FlxG.keys.D)
-            {
-                bg.offset.Y++;
-            }
-            if (FlxG.keys.F)
-            {
                 bg.offset.Y--;
+                bg1.offset.Y--;
             }
-            if (FlxG.keys.T)
+            if (FlxG.keys.justPressed(Keys.E))
             {
                 bg.width = 32;
                 bg.height = 32;
                 bg.offset.X = 0;
                 bg.offset.Y = 0;
+                bg.angularVelocity = 0;
+                bg.angle = 0;
+            }
+            if (FlxG.keys.justPressed(Keys.R))
+            {
+                bg.angularVelocity = 100;
+                bg1.angularVelocity = 100;
             }
 
 

@@ -351,10 +351,18 @@ namespace org.flixel
 			refreshHulls();
 		}
 
+        public void setOffset(int X, int Y)
+        {
+            offset.X = X;
+            offset.Y = Y;
+
+            adjustOrigin();
+        }
+
         public void adjustOrigin()
         {
-            _origin.X = width * 0.5f;
-            _origin.Y = height * 0.5f;
+            _origin.X = (width-offset.X) * 0.5f;
+            _origin.Y = (height-offset.Y) * 0.5f;
         }
 
         /// <summary>
