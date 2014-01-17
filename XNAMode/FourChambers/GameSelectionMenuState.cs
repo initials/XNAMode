@@ -248,7 +248,7 @@ namespace FourChambers
         {
             Console.WriteLine("Play Game");
 
-            FlxG.level = 20;
+            FlxG.level = 1;
             FlxG.score = 0;
             FlxG.hideHud();
 

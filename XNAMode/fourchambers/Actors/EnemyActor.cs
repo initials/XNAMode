@@ -127,7 +127,7 @@ namespace FourChambers
             : base(xPos, yPos)
         {
 
-
+            acceleration.Y = FourChambers_Globals.GRAVITY;
 
 
 

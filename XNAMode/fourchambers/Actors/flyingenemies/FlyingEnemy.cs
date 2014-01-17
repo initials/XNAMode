@@ -62,23 +62,23 @@ namespace FourChambers
                     timeDead = 0;
                     acceleration.Y = 50;
                 }
-                if (timeDead > 2)
-                {
-                    flicker(1.0f);
-                }
-                if (timeDead > 3)
-                {
-                    reset(originalPosition.X, originalPosition.Y);
-                    dead = false;
-                    angle = 0;
-                    flicker(-0.001f);
-                    angularVelocity = 0;
-                    angularDrag = 700;
-                    drag.X = 0;
-                    timeDead = 0;
-                    play("fly");
-                    velocity.X = 100;
-                }
+                //if (timeDead > 2)
+                //{
+                //    flicker(1.0f);
+                //}
+                //if (timeDead > 3)
+                //{
+                //    reset(originalPosition.X, originalPosition.Y);
+                //    dead = false;
+                //    angle = 0;
+                //    flicker(-0.001f);
+                //    angularVelocity = 0;
+                //    angularDrag = 700;
+                //    drag.X = 0;
+                //    timeDead = 0;
+                //    play("fly");
+                //    velocity.X = 100;
+                //}
 
                 if (dead == false)
                 {

@@ -1311,7 +1311,7 @@ namespace FourChambers
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     
-                    chicken = new Chicken(x, y);
+                    chicken = new Chicken(x, y-16);
                     actors.add(chicken);
                 }
             }
