@@ -476,6 +476,7 @@ namespace org.flixel
                 pos.X += offset.X;
                 pos.Y += offset.Y;
                 drawBounds(spriteBatch, (int)pos.X, (int)pos.Y);
+                drawPivot(spriteBatch, (int)
             }
         }
 
@@ -686,6 +687,17 @@ namespace org.flixel
 			}
             if (_callback != null && _curAnim != null) _callback(_curAnim.name, (uint)_curFrame, _caf);
 		}
+
+        protected void drawPivot(SpriteBatch spriteBatch, int X, int Y, Color col)
+        {
+            spriteBatch.Draw(FlxG.XnaSheet,
+                new Rectangle((int)(FlxU.floor(X + FlxU.roundingError) + FlxU.floor(FlxG.scroll.X * scrollFactor.X)),
+                    (int)(FlxU.floor(Y + FlxU.roundingError) + FlxU.floor(FlxG.scroll.Y * scrollFactor.Y)),
+                    1,
+                    1),
+                new Rectangle(1, 1, 1, 1),
+                col);
+        }
 
         /// <summary>
         /// Draws bounds
