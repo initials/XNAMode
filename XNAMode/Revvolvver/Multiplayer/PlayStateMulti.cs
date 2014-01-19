@@ -381,7 +381,7 @@ namespace Revvolvver
                 //TITLE SAFE
                 //int yp = FlxG.height * 2 - 120;
 
-                int yp = FlxG.height - 80;
+                int yp = (FlxG.height * FlxG.zoom) - 80;
                 int xo = 120;
                 
 
