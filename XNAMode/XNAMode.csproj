@@ -76,6 +76,9 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Revvolvver|x86'">
+    <OutputPath>bin\x86\Revvolvver\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <Private>False</Private>
@@ -675,6 +678,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Revvolvver\titlescreen.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Revvolvver\titlescreenOUYA.oel">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="XNAMode_TemporaryKey.pfx" />

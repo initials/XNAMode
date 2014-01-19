@@ -25,7 +25,7 @@ namespace Revvolvver
             : base(xPos, yPos)
         {
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("revvolvver/flowersmall"), false,false,16,16);
+			loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/flowersmall"), false,false,16,16);
             addAnimation("machinegun", new int[] { 0 });
             addAnimation("freeze", new int[] { 1 });
 

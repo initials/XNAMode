@@ -65,18 +65,27 @@ namespace org.flixel
                 FlxG.spriteBatch.GraphicsDevice.Viewport.Width, 
                 FlxG.spriteBatch.GraphicsDevice.Viewport.Height);
 
+            width = FlxG.spriteBatch.GraphicsDevice.Viewport.Width;
+            height = FlxG.spriteBatch.GraphicsDevice.Viewport.Height;
+            dx = (int)(width * 0.05);
+            dy = (int)(height * 0.05);
+
+            _titleSafeRect = new Rectangle(dx * 2, dy * 2,
+                width - 4 * dx,
+                height - 4 * dy);
+
 
 
             _consoleColor = new Color(0, 0, 0, 0x7F);
 
-            _consoleText = new FlxText(targetLeft, -800, targetWidth, "").setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
+            _consoleText = new FlxText(targetLeft+(dx*2), -800, targetWidth, "").setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
             _consoleText.height = FlxG.height; //FlxG.spriteBatch.GraphicsDevice.Viewport.Height;
 
-            _consoleCommand = new FlxText(targetLeft, -800, targetWidth, "").setFormat(null, 1, Color.Green, FlxJustification.Left, Color.HotPink);
+            _consoleCommand = new FlxText(targetLeft + (dx * 2), -800, targetWidth, "").setFormat(null, 1, Color.Green, FlxJustification.Left, Color.HotPink);
             _consoleCommand.text = "Type a command: ";
 
 
-            _consoleFPS = new FlxText(targetLeft + targetWidth - 30, -800, 30, "").setFormat(null, 1, Color.White, FlxJustification.Right, Color.White);
+            _consoleFPS = new FlxText(targetLeft + targetWidth - (dx*3), -800, 30, "").setFormat(null, 1, Color.White, FlxJustification.Right, Color.White);
 
             _consoleLines = new List<string>();
 
@@ -84,14 +93,7 @@ namespace org.flixel
 
 
 
-            width = FlxG.spriteBatch.GraphicsDevice.Viewport.Width;
-            height = FlxG.spriteBatch.GraphicsDevice.Viewport.Height;
-            dx = (int)(width * 0.05);
-            dy = (int)(height * 0.05);
 
-            _titleSafeRect = new Rectangle(dx*2, dy*2,
-                width - 4 * dx,
-                height - 4 * dy);
 
 
         }
@@ -154,7 +156,7 @@ namespace org.flixel
                 //    _consoleFPS.text = ((int)Math.Floor((double)(fps / _FPS.Length))).ToString() + " fps";
                 //}
 
-                _consoleText.y = (-FlxG.spriteBatch.GraphicsDevice.Viewport.Height + _consoleRect.Height + 24);
+                _consoleText.y = (-FlxG.spriteBatch.GraphicsDevice.Viewport.Height + _consoleRect.Height + 70);
                 _consoleFPS.y = _consoleText.y;
                 _consoleCommand.y = _consoleText.y-16;
                 

@@ -515,7 +515,7 @@ namespace Revvolvver
                     /// && machineGun > 6.9999f
                     if (bulletsLeft <= 0)
                     {
-                        FlxG.play(SndClick, 0.25f);
+						FlxG.play(SndClick, 0.25f);
 
                         return;
                     }

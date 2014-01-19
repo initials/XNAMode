@@ -360,11 +360,14 @@ namespace org.flixel
                 FlxG.volume += 0.1f;
                 showSoundTray();
             }
-            else if ( FlxG.keys.isNewKeyPress(Keys.OemTilde, null, out pi))
+			else if ( FlxG.keys.isNewKeyPress(Keys.OemTilde, null, out pi) || FlxG.keys.isNewKeyPress(Keys.B, null, out pi) )
             {
                 //FlxG.keys.isNewKeyPress(Keys.D1, null, out pi) ||
-                if (FlxG.debug==true)
-                    _console.toggle();
+				//if (FlxG.debug==true)
+
+				Console.WriteLine ("TOGGLING THE CONSOLE");
+
+                _console.toggle();
                 
             }
             else if (FlxG.autoHandlePause && (FlxG.keys.isPauseGame(FlxG.controllingPlayer) || FlxG.gamepads.isPauseGame(FlxG.controllingPlayer)))

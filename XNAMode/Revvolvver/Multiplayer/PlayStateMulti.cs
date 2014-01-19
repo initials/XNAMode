@@ -107,6 +107,7 @@ namespace Revvolvver
             bg = new FlxSprite(0, 0);
             bg.loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/bg"));
             bg.boundingBoxOverride = false;
+			bg.scale = 3;
             add(bg);
 
             ImgTech = FlxG.Content.Load<Texture2D>("Revvolvver/tech_tiles");
@@ -144,10 +145,16 @@ namespace Revvolvver
             _bombs3 = new FlxGroup();
             _bombs4 = new FlxGroup();
 
+			string prefix = ".oel";
 
+			#if __ANDROID__
+
+			prefix = "OUYA.oel";
+
+			#endif
 
             List<Dictionary<string, string>> actorsAttrs = new List<Dictionary<string, string>>();
-            actorsAttrs = FlxXMLReader.readNodesFromOelFile("Revvolvver/level" + FlxG.level.ToString() + ".oel", "level/Items");
+			actorsAttrs = FlxXMLReader.readNodesFromOelFile("Revvolvver/level" + FlxG.level.ToString() + prefix, "level/Items");
 
             _player1 = new PlayerMulti(Convert.ToInt32(actorsAttrs[0]["x"]), Convert.ToInt32(actorsAttrs[0]["y"]), _bullets.members, _littleGibs, _bombs1.members);
             _player1.controller = PlayerIndex.One;
@@ -218,7 +225,7 @@ namespace Revvolvver
             hudElements = new FlxGroup();
 
             attrs = new Dictionary<string, string>();
-            attrs = FlxXMLReader.readAttributesFromOelFile("Revvolvver/level" + FlxG.level.ToString() + ".oel", "level/NonDestructable");
+			attrs = FlxXMLReader.readAttributesFromOelFile("Revvolvver/level" + FlxG.level.ToString() + prefix, "level/NonDestructable");
             _tileMap = new FlxTilemap();
             _tileMap.auto = FlxTilemap.STRING;
             _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]),16, 16);
@@ -227,7 +234,7 @@ namespace Revvolvver
             _blocks.add(_tileMap);
 
             attrs = new Dictionary<string, string>();
-            attrs = FlxXMLReader.readAttributesFromOelFile("Revvolvver/level" + FlxG.level.ToString() + ".oel", "level/Destructable");
+			attrs = FlxXMLReader.readAttributesFromOelFile("Revvolvver/level" + FlxG.level.ToString() + prefix, "level/Destructable");
             _tileMap = new FlxTilemap();
             _tileMap.auto = FlxTilemap.STRING;
             _tileMap.loadMap(attrs["Destructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]),16, 16);
@@ -500,7 +507,7 @@ namespace Revvolvver
 
         public void regen()
         {
-            FlxCaveGeneratorExt caveExt = new FlxCaveGeneratorExt(40, 30);
+			FlxCaveGeneratorExt caveExt = new FlxCaveGeneratorExt(60, 45);
             caveExt.numSmoothingIterations = 5;
             caveExt.initWallRatio = Revvolvver_Globals.GameSettings[2].GameValue / 100.0f;
             
@@ -537,6 +544,9 @@ namespace Revvolvver
 
         override public void update()
         {
+
+			//FlxG.log (FlxG.elapsed.ToString() );
+
             bloomTimer += FlxG.elapsed;
             if (bloomTimer > 0.5f)
             {
@@ -1018,6 +1028,10 @@ namespace Revvolvver
         {
             if (((FlxSprite)(e.Object1)).scale>0.74f && ((FlxSprite)(e.Object1)).color != ((FlxSprite)(e.Object2)).color && !((PlayerMulti)(e.Object2)).dead && !((PlayerMulti)(e.Object2)).flickering())
             {
+				_deathGibs.x = e.Object2.x;
+				_deathGibs.y = e.Object2.y;
+				_deathGibs.start(true, 0, 30);
+
                 if (((FlxSprite)(e.Object1)).color == p1Color) FlxG.scores[0]++;
                 else if (((FlxSprite)(e.Object1)).color == p2Color) FlxG.scores[1]++;
                 else if (((FlxSprite)(e.Object1)).color == p3Color) FlxG.scores[2]++;

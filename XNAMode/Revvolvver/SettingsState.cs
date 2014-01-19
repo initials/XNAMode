@@ -70,9 +70,16 @@ namespace Revvolvver
 
             flower.angularDrag = 1500;
 
+			string level = "Revvolvver/titlescreen.oel";
+
+			#if __ANDROID__
+
+			level = "Revvolvver/titlescreenOUYA.oel";
+
+			#endif
 
             Dictionary<string, string> attrs = new Dictionary<string, string>();
-            attrs = FlxXMLReader.readAttributesFromOelFile("Revvolvver/titlescreen.oel", "level/NonDestructable");
+			attrs = FlxXMLReader.readAttributesFromOelFile(level, "level/NonDestructable");
             FlxTilemap _tileMap = new FlxTilemap();
             _tileMap.auto = FlxTilemap.STRING;
             _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
@@ -103,7 +110,7 @@ namespace Revvolvver
 
 
 
-                playersText = new FlxText(70, 40 + (i * 20), FlxG.width, findMenuString(i));
+				playersText = new FlxText(140, 70 + (i * 20), FlxG.width, findMenuString(i));
                 playersText.alignment = FlxJustification.Left;
                 playersText.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Left, new Color(0xff, 0x6e, 0x55));
                 playersText.shadow = new Color(0xff, 0x6e, 0x55);
@@ -191,7 +198,7 @@ namespace Revvolvver
 
             ((FlxText)(textGrp.members[currentTextSelected])).color = Color.Red;
 
-            if (FlxG.keys.justPressed(Keys.Enter) || FlxG.gamepads.isNewButtonPress(Buttons.Start) || FlxG.gamepads.isNewButtonPress(Buttons.A))
+			if (FlxG.keys.justPressed(Keys.Enter) || FlxG.gamepads.isNewButtonPress(Buttons.Start) || FlxG.gamepads.isNewButtonPress(Buttons.A) || FlxG.gamepads.isButtonDown(Buttons.A))
             {
 
                 if (Revvolvver_Globals.GameSettings[currentTextSelected].Name == "Play Now")

@@ -82,7 +82,17 @@ namespace Revvolvver
 
 
             Dictionary<string, string> attrs = new Dictionary<string, string>();
-            attrs = FlxXMLReader.readAttributesFromOelFile("Revvolvver/titlescreen.oel", "level/NonDestructable");
+			string level = "Revvolvver/titlescreen.oel";
+
+			#if __ANDROID__
+
+			level = "Revvolvver/titlescreenOUYA.oel";
+
+			#endif
+
+            level = "Revvolvver/titlescreenOUYA.oel";
+
+			attrs = FlxXMLReader.readAttributesFromOelFile(level, "level/NonDestructable");
             FlxTilemap _tileMap = new FlxTilemap();
             _tileMap.auto = FlxTilemap.STRING;
             _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
@@ -91,7 +101,7 @@ namespace Revvolvver
             add(_tileMap);
 
             Dictionary<string, string> attrs2 = new Dictionary<string, string>();
-            attrs2 = FlxXMLReader.readAttributesFromOelFile("Revvolvver/titlescreen.oel", "level/Destructable");
+			attrs2 = FlxXMLReader.readAttributesFromOelFile(level, "level/Destructable");
             FlxTilemap _tileMap2 = new FlxTilemap();
             _tileMap2.auto = FlxTilemap.STRING;
             _tileMap2.loadMap(attrs2["Destructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
@@ -119,7 +129,7 @@ namespace Revvolvver
             int count = 0;
             foreach (char c in title)
             {
-                createLetter(c, 70 + count * 50, 60);
+				createLetter(c, (FlxG.width/2 - 250) + count * 50, 80);
 
                 count++;
             }
@@ -195,7 +205,7 @@ namespace Revvolvver
 
                 // play a sound;
                 int snd= (int)FlxU.random(1,8);
-                FlxG.play(Snds[snd], 0.95f);
+				//FlxG.play(Snds[snd], 0.95f);
                 clickCount++;
             }
             if (frameCount % 5 == 11 && clickCount < 10)

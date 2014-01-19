@@ -403,6 +403,38 @@ namespace org.flixel
             updateFlickering();
         }
 
+		/// <summary>
+		/// Just updates the retro-style flickering.
+		/// Considered update logic rather than rendering because it toggles visibility.
+		/// </summary>
+		public virtual void updateFlickering()
+		{
+			if (flickering())
+			{
+				if (_flickerTimer > 0)
+				{
+					_flickerTimer -= FlxG.elapsed;
+					if (_flickerTimer == 0)
+					{
+						_flickerTimer = -1;
+					}
+				}
+				if (_flickerTimer < 0) flicker(-1);
+				else
+				{
+					_flicker = !_flicker;
+					//visible = !_flicker;
+
+					if (_flicker) {
+						alpha = 0.2f;
+					} else {
+						alpha = 1;
+					}
+
+				}
+			}
+		}
+
         /// <summary>
         /// Called by game loop, updates then blits or renders current frame of animation to the screen
         /// </summary>

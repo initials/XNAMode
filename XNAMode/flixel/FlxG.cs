@@ -593,6 +593,7 @@ namespace org.flixel
         /// <returns>A <code>FlxSound</code> object.</returns>
         static public FlxSound play(string EmbeddedSound, float Volume, bool Looped)
 		{
+
 			int i = 0;
 			int sl = sounds.Count;
 			while(i < sl)
@@ -607,6 +608,8 @@ namespace org.flixel
             sounds[i].volume = Volume;
             sounds[i].play();
             return sounds[i];
+
+
 		}
 
         /// <summary>

@@ -543,8 +543,6 @@ namespace org.flixel
         /// </summary>
         public virtual void updateFlickering()
         {
-            //Console.WriteLine("Updatinf flickfer from object");
-
             if (flickering())
             {
                 if (_flickerTimer > 0)
@@ -559,7 +557,7 @@ namespace org.flixel
                 else
                 {
                     _flicker = !_flicker;
-                    visible = !_flicker;
+					// visible = !_flicker;
                 }
             }
         }
