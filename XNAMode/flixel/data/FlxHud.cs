@@ -74,7 +74,6 @@ namespace org.flixel
             hudGroup.scrollFactor.X = 0;
             hudGroup.scrollFactor.Y = 0;
 
-
             p1OriginalPosition = new Vector2(targetLeft, 0);
             p2OriginalPosition = new Vector2(targetLeft, 0);
             p3OriginalPosition = new Vector2(targetLeft, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 20);
@@ -161,15 +160,10 @@ namespace org.flixel
         /// </summary>
         public void update()
         {
-            
-            
             if (visible)
             {
                 hudGroup.update();
             }
-
-            
-
         }
 
         public void reset()
