@@ -49,6 +49,8 @@ namespace Revvolvver
         private FlxText playersText;
         private FlxText playersTextx;
 
+        private bool _fading;
+
         //private FlxText credits;
 
         //#if !WINDOWS_PHONE
@@ -58,7 +60,7 @@ namespace Revvolvver
 
         override public void create()
         {
-
+            _fading = false;
             FlxG.bloom.Visible = false;
 
             Snds = new string[8] { SndClick, SndChord1, SndChord2, SndChord3, SndChord4, SndChord5, SndChord6, SndChord7};
@@ -149,10 +151,10 @@ namespace Revvolvver
             playersText.antialiasing = false;
             add(playersText);
 
-            if (Revvolvver_Globals.PLAYERS==1) playersText.text = "Players: 1";
-            else if (Revvolvver_Globals.PLAYERS == 2) playersText.text = "Players: 2";
-            else if (Revvolvver_Globals.PLAYERS == 3) playersText.text = "Players: 3";
-            else if (Revvolvver_Globals.PLAYERS == 4) playersText.text = "Players: 4";
+            if (Revvolvver_Globals.PLAYERS==1) playersText.text = "<- Players: 1 ->";
+            else if (Revvolvver_Globals.PLAYERS == 2) playersText.text = "<- Players: 2 ->";
+            else if (Revvolvver_Globals.PLAYERS == 3) playersText.text = "<- Players: 3 ->";
+            else if (Revvolvver_Globals.PLAYERS == 4) playersText.text = "<- Players: 4 ->";
             
             playersTextx = new FlxText(0, FlxG.height / 2 + 100, FlxG.width, "Press 1, 2, 3 or 4 for more players.\nPress Start or Enter to begin");
             playersTextx.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Center, new Color(0xff, 0x6e, 0x55));
@@ -266,13 +268,33 @@ namespace Revvolvver
                 return;
             }
 
+            if (Revvolvver_Globals.PLAYERS == 1) playersText.text = "<- Players: 1 ->";
+            if (Revvolvver_Globals.PLAYERS == 2) playersText.text = "<- Players: 2 ->";
+            if (Revvolvver_Globals.PLAYERS == 3) playersText.text = "<- Players: 3 ->";
+            if (Revvolvver_Globals.PLAYERS == 4) playersText.text = "<- Players: 4 ->";
 
-            if (clickCount > 2)
+
+            if (clickCount > 2 && !_fading)
             {
+
+                if (FlxG.keys.justPressed(Keys.Left) || FlxG.gamepads.isNewButtonPress(Buttons.DPadLeft) || FlxG.gamepads.isNewButtonPress(Buttons.LeftThumbstickLeft))
+                {
+                    Revvolvver_Globals.PLAYERS--;
+
+                    if (Revvolvver_Globals.PLAYERS == 0) Revvolvver_Globals.PLAYERS = 4;
+
+                }
+                if (FlxG.keys.justPressed(Keys.Right) || FlxG.gamepads.isNewButtonPress(Buttons.DPadRight) || FlxG.gamepads.isNewButtonPress(Buttons.LeftThumbstickRight))
+                {
+                    Revvolvver_Globals.PLAYERS++;
+
+                    if (Revvolvver_Globals.PLAYERS >=5) Revvolvver_Globals.PLAYERS = 1;
+                }
+
                 if (FlxG.keys.justPressed(Keys.D1) || FlxG.keys.justPressed(Keys.F1) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.One, out pi))
                 {
                     // VOICE OVER: "One Player";
-                    playersText.text = "Players: 1";
+                    playersText.text = "<- Players: 1 ->";
                     FlxG.play(SndGun1, 0.25f);
                     //_gibs.start(true, 5);
                     Revvolvver_Globals.PLAYERS = 1;
@@ -287,7 +309,7 @@ namespace Revvolvver
                     FlxG.play(SndGun1, 0.25f);
                     //_gibs.start(true, 5);
                     Revvolvver_Globals.PLAYERS = 2;
-                    playersText.text = "Players: 2";
+                    playersText.text = "<- Players: 2 ->";
                     //FlxG.state = new PlayStateMulti();
                     //FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
                     return;
@@ -295,7 +317,7 @@ namespace Revvolvver
                 if (FlxG.keys.justPressed(Keys.D3) || FlxG.keys.justPressed(Keys.F3) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Three, out pi))
                 {
                     // VOICE OVER: "Three Players";
-                    playersText.text = "Players: 3";
+                    playersText.text = "<- Players: 3 ->";
                     FlxG.play(SndGun1, 0.25f);
                     //_gibs.start(true, 5);
                     Revvolvver_Globals.PLAYERS = 3;
@@ -310,7 +332,7 @@ namespace Revvolvver
                     FlxG.play(SndGun1, 0.25f);
                     //_gibs.start(true, 5);
                     Revvolvver_Globals.PLAYERS = 4;
-                    playersText.text = "Players: 4";
+                    playersText.text = "<- Players: 4 ->";
                     //FlxG.state = new PlayStateMulti();
                     //FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
                     return;
@@ -324,12 +346,14 @@ namespace Revvolvver
 					start = true;
 				}
 
-				if (start || FlxG.gamepads.isNewButtonPress(Buttons.DPadDown) || FlxG.keys.justPressed(Keys.Enter) || FlxG.gamepads.isNewButtonPress(Buttons.Start) || FlxG.gamepads.isNewButtonPress(Buttons.A))
+				if (start || FlxG.keys.justPressed(Keys.Enter) || FlxG.gamepads.isNewButtonPress(Buttons.Start) || FlxG.gamepads.isNewButtonPress(Buttons.A))
                 {
+                    _fading = true;
                     FlxG.play(SndGun2, 0.35f);
                    // _gibs.start(true, 5);
                     //FlxG.state = new PlayStateMulti();
                     FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onFade, false);
+                    
                     return;
                 }
                 if (FlxG.keys.justPressed(Keys.Q) || FlxG.gamepads.isNewButtonPress(Buttons.Y))

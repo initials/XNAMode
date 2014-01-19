@@ -70,7 +70,7 @@ namespace Revvolvver
 
             flower.angularDrag = 1500;
 
-			string level = "Revvolvver/titlescreen.oel";
+			string level = "Revvolvver/titlescreenOUYA.oel";
 
 			#if __ANDROID__
 
@@ -110,7 +110,7 @@ namespace Revvolvver
 
 
 
-				playersText = new FlxText(140, 70 + (i * 20), FlxG.width, findMenuString(i));
+				playersText = new FlxText(280, 140 + (i * 20), FlxG.width, findMenuString(i));
                 playersText.alignment = FlxJustification.Left;
                 playersText.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Left, new Color(0xff, 0x6e, 0x55));
                 playersText.shadow = new Color(0xff, 0x6e, 0x55);

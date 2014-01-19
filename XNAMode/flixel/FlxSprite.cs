@@ -407,7 +407,7 @@ namespace org.flixel
 		/// Just updates the retro-style flickering.
 		/// Considered update logic rather than rendering because it toggles visibility.
 		/// </summary>
-		public virtual void updateFlickering()
+		override public void updateFlickering()
 		{
 			if (flickering())
 			{

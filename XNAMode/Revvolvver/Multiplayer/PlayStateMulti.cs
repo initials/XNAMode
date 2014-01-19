@@ -145,7 +145,7 @@ namespace Revvolvver
             _bombs3 = new FlxGroup();
             _bombs4 = new FlxGroup();
 
-			string prefix = ".oel";
+			string prefix = "OUYA.oel";
 
 			#if __ANDROID__
 
@@ -306,14 +306,22 @@ namespace Revvolvver
             FlxSprite movingPlatform = new FlxSprite(320, 0, FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform"));
             _blocks.add(movingPlatform);
             FlxPath batpath = new FlxPath(null);
-            batpath.addPointsUsingStrings("320,320,320,320,", "112,284,284,112,");
+            batpath.addPointsUsingStrings("320,320,320,320,", "112,390,390,112,");
             movingPlatform.followPath(batpath, 80, FlxObject.PATH_YOYO, false);
             movingPlatform.pathCornering = 4.0f;
             movingPlatform.solid = true;
             movingPlatform.@fixed = true;
             //movingPlatform.startFollowingPath();
 
-
+            movingPlatform = new FlxSprite(640, 0, FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform"));
+            _blocks.add(movingPlatform);
+            batpath = new FlxPath(null);
+            batpath.addPointsUsingStrings("640,640,640,640,", "390,112,112,390,");
+            movingPlatform.followPath(batpath, 80, FlxObject.PATH_YOYO, false);
+            movingPlatform.pathCornering = 4.0f;
+            movingPlatform.solid = true;
+            movingPlatform.@fixed = true;
+            //movingPlatform.startFollowingPath();
 
 
             //FlxG.follow(_player1, 2.5f);
@@ -373,8 +381,8 @@ namespace Revvolvver
                 //TITLE SAFE
                 //int yp = FlxG.height * 2 - 120;
 
-                int yp = FlxG.height * 2 - 40;
-                int xo = 180;
+                int yp = FlxG.height - 80;
+                int xo = 120;
                 
 
                 if (i < 6)
@@ -512,7 +520,7 @@ namespace Revvolvver
             caveExt.initWallRatio = Revvolvver_Globals.GameSettings[2].GameValue / 100.0f;
             
             _caveMap.auto = FlxTilemap.AUTO;
-            string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20}, new int[] { 15, 25 }, new int[] { 0, 1, 2, 3, 4, 17,18,19,20,21,22, 35,36, 37, 38 });
+            string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20 }, new int[] { 15, 25 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 37, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 59 });
             string newMap = caveExt.convertMultiArrayStringToString(tiles);
             _caveMap.loadMap(newMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
             _blocks.add(_caveMap);
