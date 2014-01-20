@@ -100,7 +100,7 @@ namespace Revvolvver
         {
             base.create();
             
-            _caveMap = new FlxTilemap();
+
 
             FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[6];
 
@@ -144,6 +144,9 @@ namespace Revvolvver
             _bombs2 = new FlxGroup();
             _bombs3 = new FlxGroup();
             _bombs4 = new FlxGroup();
+
+            _caveMap = new FlxTilemap();
+            _blocks.add(_caveMap);
 
 			string prefix = "OUYA.oel";
 
@@ -523,7 +526,7 @@ namespace Revvolvver
             string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20 }, new int[] { 15, 25 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 37, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 59 });
             string newMap = caveExt.convertMultiArrayStringToString(tiles);
             _caveMap.loadMap(newMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
-            _blocks.add(_caveMap);
+            
 
 
             _caveMap.setTile((int)(_player1.x) / 16, (int)(_player1.y) / 16, 0, true);
