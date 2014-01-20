@@ -291,62 +291,56 @@ namespace Revvolvver
                     if (Revvolvver_Globals.PLAYERS >=5) Revvolvver_Globals.PLAYERS = 1;
                 }
 
-                if (FlxG.keys.justPressed(Keys.D1) || FlxG.keys.justPressed(Keys.F1) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.One, out pi))
-                {
-                    // VOICE OVER: "One Player";
-                    playersText.text = "<- Players: 1 ->";
-                    FlxG.play(SndGun1, 0.25f);
-                    //_gibs.start(true, 5);
-                    Revvolvver_Globals.PLAYERS = 1;
-                    //FlxG.state = new PlayStateMulti();
-                    //FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
-                    return;
-                }
-                if (FlxG.keys.justPressed(Keys.D2) || FlxG.keys.justPressed(Keys.F2) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Two, out pi))
-                {
-                    // VOICE OVER: "Two Players";
+                //if (FlxG.keys.justPressed(Keys.D1) || FlxG.keys.justPressed(Keys.F1) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.One, out pi))
+                //{
+                //    // VOICE OVER: "One Player";
+                //    playersText.text = "<- Players: 1 ->";
+                //    FlxG.play(SndGun1, 0.25f);
+                //    //_gibs.start(true, 5);
+                //    Revvolvver_Globals.PLAYERS = 1;
+                //    //FlxG.state = new PlayStateMulti();
+                //    //FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
+                //    return;
+                //}
+                //if (FlxG.keys.justPressed(Keys.D2) || FlxG.keys.justPressed(Keys.F2) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Two, out pi))
+                //{
+                //    // VOICE OVER: "Two Players";
 
-                    FlxG.play(SndGun1, 0.25f);
-                    //_gibs.start(true, 5);
-                    Revvolvver_Globals.PLAYERS = 2;
-                    playersText.text = "<- Players: 2 ->";
-                    //FlxG.state = new PlayStateMulti();
-                    //FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
-                    return;
-                }
-                if (FlxG.keys.justPressed(Keys.D3) || FlxG.keys.justPressed(Keys.F3) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Three, out pi))
-                {
-                    // VOICE OVER: "Three Players";
-                    playersText.text = "<- Players: 3 ->";
-                    FlxG.play(SndGun1, 0.25f);
-                    //_gibs.start(true, 5);
-                    Revvolvver_Globals.PLAYERS = 3;
-                    //FlxG.state = new PlayStateMulti();
-                    //FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
-                    return;
-                }
-                if (FlxG.keys.justPressed(Keys.D4) || FlxG.keys.justPressed(Keys.F4) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Four, out pi))
-                {
-                    // VOICE OVER: "Maximum Four Players";
+                //    FlxG.play(SndGun1, 0.25f);
+                //    //_gibs.start(true, 5);
+                //    Revvolvver_Globals.PLAYERS = 2;
+                //    playersText.text = "<- Players: 2 ->";
+                //    //FlxG.state = new PlayStateMulti();
+                //    //FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
+                //    return;
+                //}
+                //if (FlxG.keys.justPressed(Keys.D3) || FlxG.keys.justPressed(Keys.F3) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Three, out pi))
+                //{
+                //    // VOICE OVER: "Three Players";
+                //    playersText.text = "<- Players: 3 ->";
+                //    FlxG.play(SndGun1, 0.25f);
+                //    //_gibs.start(true, 5);
+                //    Revvolvver_Globals.PLAYERS = 3;
+                //    //FlxG.state = new PlayStateMulti();
+                //    //FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
+                //    return;
+                //}
+                //if (FlxG.keys.justPressed(Keys.D4) || FlxG.keys.justPressed(Keys.F4) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.Four, out pi))
+                //{
+                //    // VOICE OVER: "Maximum Four Players";
 
-                    FlxG.play(SndGun1, 0.25f);
-                    //_gibs.start(true, 5);
-                    Revvolvver_Globals.PLAYERS = 4;
-                    playersText.text = "<- Players: 4 ->";
-                    //FlxG.state = new PlayStateMulti();
-                    //FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
-                    return;
-                }
+                //    FlxG.play(SndGun1, 0.25f);
+                //    //_gibs.start(true, 5);
+                //    Revvolvver_Globals.PLAYERS = 4;
+                //    playersText.text = "<- Players: 4 ->";
+                //    //FlxG.state = new PlayStateMulti();
+                //    //FlxG.fade.start(new Color(0x13, 0x1c, 0x1b), 1f, onFade, false);
+                //    return;
+                //}
 
-				bool start = false;
-				GamePadState state = GamePad.GetState (PlayerIndex.One);
-				if (state.Buttons.A == ButtonState.Pressed)
-				{
-					Console.WriteLine ("STARTING");
-					start = true;
-				}
 
-				if (start || FlxG.keys.justPressed(Keys.Enter) || FlxG.gamepads.isNewButtonPress(Buttons.Start) || FlxG.gamepads.isNewButtonPress(Buttons.A))
+
+				if (FlxG.keys.justPressed(Keys.Enter) || FlxG.gamepads.isNewButtonPress(Buttons.Start) || FlxG.gamepads.isNewButtonPress(Buttons.A))
                 {
                     _fading = true;
                     FlxG.play(SndGun2, 0.35f);

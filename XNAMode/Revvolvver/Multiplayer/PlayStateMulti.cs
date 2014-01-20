@@ -313,7 +313,7 @@ namespace Revvolvver
             movingPlatform.@fixed = true;
             //movingPlatform.startFollowingPath();
 
-            movingPlatform = new FlxSprite(640, 0, FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform"));
+            movingPlatform = new FlxSprite(640, 390, FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform"));
             _blocks.add(movingPlatform);
             batpath = new FlxPath(null);
             batpath.addPointsUsingStrings("640,640,640,640,", "390,112,112,390,");
@@ -437,7 +437,7 @@ namespace Revvolvver
                 FlxSprite bulletHUD = new FlxSprite(xp,yp);
                 bulletHUD.loadGraphic(ImgNotch, true);
                 bulletHUD.scrollFactor.X = bulletHUD.scrollFactor.Y = 0;
-                bulletHUD.scale = 3;
+                bulletHUD.scale = 2;
                 bulletHUD.color = xc;
                 bulletHUD.addAnimation("ready", new int[] { 0 });
                 bulletHUD.addAnimation("missed", new int[] { 1 });
@@ -448,53 +448,53 @@ namespace Revvolvver
                 bulletHUD.play("on");
                 FlxG._game.hud.hudGroup.add(bulletHUD);
 
-
-
-                ImgParticles = FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform");
-
-                _littleGibs = new FlxEmitter();
-                _littleGibs.delay = 3;
-                _littleGibs.setXSpeed(-150, 150);
-                _littleGibs.setYSpeed(-200, 0);
-                _littleGibs.setRotation(-720, -720);
-                _littleGibs.createSprites(ImgGibs, 200, true, 0.5f, 0.65f);
-
-                _bigGibs = new FlxEmitter();
-                _bigGibs.setXSpeed(-200, 200);
-                _bigGibs.setYSpeed(-300, 0);
-                _bigGibs.setRotation(-720, -720);
-                _bigGibs.createSprites(ImgSpawnerGibs, 50, true, 0.5f, 0.35f);
-
-                _deathGibs = new FlxEmitter();
-                _deathGibs.delay = 3;
-                _deathGibs.setXSpeed(-150, 150);
-                _deathGibs.setYSpeed(-200, 0);
-                _deathGibs.setRotation(-720, 720);
-                _deathGibs.createSprites(ImgGibs, 200, true, 1.0f, 0.65f);
-
-                _pieces = new FlxEmitter();
-                _pieces.x = 0;
-                _pieces.y = 0;
-                _pieces.width = 16;
-                _pieces.height = 16;
-                _pieces.delay = 0.8f;
-                _pieces.setXSpeed(-50, 50);
-                _pieces.setYSpeed(-150, -50);
-                _pieces.setRotation(0, 0);
-                _pieces.gravity = FourChambers_Globals.GRAVITY;
-                _pieces.createSprites(ImgParticles, 200, true, 1.0f, 0.1f);
-                add(_pieces);
-                _pieces.setScale(0.5f);
-
-                add(_littleGibs);
-                add(_bigGibs);
-                add(_deathGibs);
-
-                _objects.add(_deathGibs);
-                _objects.add(_littleGibs);
-                _objects.add(_bigGibs);
-
             }
+
+            ImgParticles = FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform");
+
+            _littleGibs = new FlxEmitter();
+            _littleGibs.delay = 3;
+            _littleGibs.setXSpeed(-150, 150);
+            _littleGibs.setYSpeed(-200, 0);
+            _littleGibs.setRotation(-720, -720);
+            _littleGibs.createSprites(ImgGibs, 200, true, 0.5f, 0.65f);
+
+            _bigGibs = new FlxEmitter();
+            _bigGibs.setXSpeed(-200, 200);
+            _bigGibs.setYSpeed(-300, 0);
+            _bigGibs.setRotation(-720, -720);
+            _bigGibs.createSprites(ImgSpawnerGibs, 50, true, 0.5f, 0.35f);
+
+            _deathGibs = new FlxEmitter();
+            _deathGibs.delay = 3;
+            _deathGibs.setXSpeed(-150, 150);
+            _deathGibs.setYSpeed(-200, 0);
+            _deathGibs.setRotation(-720, 720);
+            _deathGibs.createSprites(ImgGibs, 200, true, 1.0f, 0.65f);
+
+            _pieces = new FlxEmitter();
+            _pieces.x = 0;
+            _pieces.y = 0;
+            _pieces.width = 16;
+            _pieces.height = 16;
+            _pieces.delay = 0.8f;
+            _pieces.setXSpeed(-50, 50);
+            _pieces.setYSpeed(-150, -50);
+            _pieces.setRotation(0, 0);
+            _pieces.gravity = FourChambers_Globals.GRAVITY;
+            _pieces.createSprites(ImgParticles, 200, true, 1.0f, 0.1f);
+            add(_pieces);
+            _pieces.setScale(0.5f);
+
+            add(_littleGibs);
+            add(_bigGibs);
+            add(_deathGibs);
+
+            _objects.add(_deathGibs);
+            _objects.add(_littleGibs);
+            _objects.add(_bigGibs);
+
+
 
             //FlxG._game.hud.hudGroup.add(hudElements);
 
@@ -516,7 +516,7 @@ namespace Revvolvver
         public void regen()
         {
 			FlxCaveGeneratorExt caveExt = new FlxCaveGeneratorExt(60, 45);
-            caveExt.numSmoothingIterations = 5;
+            caveExt.numSmoothingIterations = 1;
             caveExt.initWallRatio = Revvolvver_Globals.GameSettings[2].GameValue / 100.0f;
             
             _caveMap.auto = FlxTilemap.AUTO;

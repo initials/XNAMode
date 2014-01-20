@@ -85,7 +85,7 @@ namespace org.flixel
             _consoleCommand.text = "Type a command: ";
 
 
-            _consoleFPS = new FlxText(targetLeft + targetWidth - (dx*3), -800, 30, "").setFormat(null, 1, Color.White, FlxJustification.Right, Color.White);
+            _consoleFPS = new FlxText(targetLeft + targetWidth - (dx*3), -800, 30, "").setFormat(null, 2, Color.White, FlxJustification.Right, Color.White);
 
             _consoleLines = new List<string>();
 
