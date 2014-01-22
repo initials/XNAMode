@@ -31,6 +31,7 @@ namespace FourChambers
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/zinger_ss_12x14"), true, false, 12, 14);
 
             addAnimation("fly", new int[] { 0, 1 }, 30);
+            addAnimation("death", new int[] { 0 }, 0);
             play("fly");
 
             //bounding box tweaks
@@ -63,6 +64,12 @@ namespace FourChambers
                     velocity.Y = speedOfWingFlapVelocity;
                 }
             }
+            //else
+            //{
+            //    acceleration.Y = FourChambers_Globals.GRAVITY;
+            //    velocity.X = 0;
+
+            //}
 
             base.update();
 
@@ -85,7 +92,8 @@ namespace FourChambers
 
             play("death");
             dead = true;
-
+            acceleration.Y = FourChambers_Globals.GRAVITY;
+            velocity.X = 0;
 
             //base.kill();
         }

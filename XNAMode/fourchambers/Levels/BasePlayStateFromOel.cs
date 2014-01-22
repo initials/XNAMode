@@ -497,7 +497,8 @@ namespace FourChambers
 
             // build atmospheric effects here
 
-            paletteTexture = FlxG.Content.Load<Texture2D>("fourchambers/" + levelAttrs["timeOfDayPalette"]);
+            //paletteTexture = FlxG.Content.Load<Texture2D>("fourchambers/" + levelAttrs["timeOfDayPalette"]);
+            paletteTexture = FlxG.Content.Load<Texture2D>("fourchambers/skyPalette");
 
             //FlxG.followAdjust(0.5f, 0.0f);
             FlxG.followBounds(0, 0, Convert.ToInt32(levelAttrs["width"]) , Convert.ToInt32(levelAttrs["height"]) );
@@ -576,7 +577,30 @@ namespace FourChambers
 
             Console.WriteLine("Starting at: " + FlxG.level);
 
-            FlxG.playMusic("music/goat");
+            Dictionary<int, string> music = new Dictionary<int, string>();
+            music.Add(-1, "FourChambers_WarmerMoreSynths");
+            music.Add(1, "FourChambers_OffKilterLoop_haspercus");
+            music.Add(2, "FourChambers_OffKilterLoop_haspercus");
+            music.Add(3, "FourChambers_OffKilterLoop_haspercus");
+            music.Add(4, "FourChambers_ColdMoody");
+            music.Add(5, "FourChambers_ColdMoody");
+            music.Add(6, "FourChambers_ColdMoody");
+            music.Add(7, "FourChambers_FlutesMoody_DontLikeThi");
+            music.Add(8, "FourChambers_MoodyExplorationLoop_ha");
+            music.Add(9, "FourChambers_OffKilterLoop_haspercus");
+            music.Add(10, "FourChambers_ScaryInC#Major");
+            music.Add(11, "FourCHambers_SlowedLoop");
+            music.Add(12, "FourChambers_WarmOrgansColdSynths_ha");
+            music.Add(13, "FourChambers_OffKilterLoop_haspercus");
+            music.Add(14, "FourChambers_ColdMoody");
+            music.Add(15, "FourChambers_ColdMoody");
+            music.Add(16, "FourChambers_ColdMoody");
+            music.Add(17, "FourChambers_FlutesMoody_DontLikeThi");
+            music.Add(18, "FourChambers_MoodyExplorationLoop_ha");
+            music.Add(19, "FourChambers_OffKilterLoop_haspercus");
+
+            FlxG.playMusic("music/" + music[FlxG.level], 1.0f);
+
         }
 
         override public void update()
@@ -691,13 +715,13 @@ namespace FourChambers
                 seraphine.velocity.Y = -50;
             }
             timeOfDay += FlxG.elapsed * timeScale;
-            if (timeOfDay > 24.99f) timeOfDay = 0.0f;
+            if (timeOfDay > 239.99f) timeOfDay = 0.0f;
 
             //calculate time of day.
             if (FourChambers_Globals.gif == false)
             {
                 // color whole game.
-                FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, 1));
+                FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, ((FlxG.level-1) * 10) + 5 ));
             }
             
             // bring time back to regular.
@@ -2097,7 +2121,7 @@ namespace FourChambers
                     powerUp.visible = false;
                     powerUps.add(powerUp);
 
-                    if (FlxU.random() < 0.5f)
+                    if (FourChambers_Globals.PIRATE_COPY == true)
                     {
                         ZingerHoming z = new ZingerHoming(x, y, marksman);
                         zingers.add(z);

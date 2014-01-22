@@ -37,6 +37,38 @@ namespace org.flixel
         public const int PLAYER_MISTRESS = 2;
         public const int PLAYER_WARLOCK = 3;
 
+
+        public const string MUSIC_MENU = "FourChambers_Dramatic";
+        public const string MUSIC_TUTORIAL = "FourChambers_WarmerMoreSynths";
+
+        public const string MUSIC_LEVEL1 = "FourChambers_OffKilterLoop_haspercus";
+        public const string MUSIC_LEVEL2 = "FourChambers_OffKilterLoop_haspercus";
+        public const string MUSIC_LEVEL3 = "FourChambers_OffKilterLoop_haspercus";
+
+        public const string MUSIC_LEVEL4 = "FourChambers_ColdMoody";
+        public const string MUSIC_LEVEL5 = "FourChambers_ColdMoody";
+        public const string MUSIC_LEVEL6 = "FourChambers_ColdMoody";
+
+        public const string MUSIC_LEVEL7 = "FourChambers_FlutesMoody_DontLikeThi";
+        public const string MUSIC_LEVEL8 = "FourChambers_MoodyExplorationLoop_ha";
+        public const string MUSIC_LEVEL9 = "FourChambers_OffKilterLoop_haspercus";
+
+        public const string MUSIC_LEVEL10 = "FourChambers_ScaryInC#Major";
+        public const string MUSIC_LEVEL11 = "FourCHambers_SlowedLoop";
+        public const string MUSIC_LEVEL12 = "FourChambers_WarmOrgansColdSynths_ha";
+
+        public const string MUSIC_LEVEL13 = "FourChambers_OffKilterLoop_haspercus";
+
+        public const string MUSIC_LEVEL14 = "FourChambers_ColdMoody";
+        public const string MUSIC_LEVEL15 = "FourChambers_ColdMoody";
+        public const string MUSIC_LEVEL16 = "FourChambers_ColdMoody";
+
+        public const string MUSIC_LEVEL17 = "FourChambers_FlutesMoody_DontLikeThi";
+        public const string MUSIC_LEVEL18 = "FourChambers_MoodyExplorationLoop_ha";
+        public const string MUSIC_LEVEL19 = "FourChambers_OffKilterLoop_haspercus";
+
+
+
         /// <summary>
         /// Releases a lot of Homing Zingers.
         /// </summary>

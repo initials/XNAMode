@@ -557,7 +557,7 @@ namespace org.flixel
                 else
                 {
                     _flicker = !_flicker;
-					// visible = !_flicker;
+					visible = !_flicker;
                 }
             }
         }

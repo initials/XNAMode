@@ -211,7 +211,7 @@ namespace FourChambers
             FlxG.write("Enemy "  + actorName + " is dead");
 
             //flicker(0.25f);
-            velocity.X = 0;
+
             acceleration.X = 0;
         }
     }

@@ -107,7 +107,7 @@ namespace FourChambers
 
             play("death");
             dead = true;
-            base.kill();
+            //base.kill();
         }
         override public void hitSide(FlxObject Contact, float Velocity)
         {
