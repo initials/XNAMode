@@ -498,7 +498,7 @@ namespace FourChambers
             // build atmospheric effects here
 
             //paletteTexture = FlxG.Content.Load<Texture2D>("fourchambers/" + levelAttrs["timeOfDayPalette"]);
-            paletteTexture = FlxG.Content.Load<Texture2D>("fourchambers/skyPalette");
+            paletteTexture = FlxG.Content.Load<Texture2D>("fourchambers/skyPalettes");
 
             //FlxG.followAdjust(0.5f, 0.0f);
             FlxG.followBounds(0, 0, Convert.ToInt32(levelAttrs["width"]) , Convert.ToInt32(levelAttrs["height"]) );
