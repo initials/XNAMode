@@ -167,8 +167,10 @@ namespace org.flixel
         static public uint endProfile(uint Start, string Name, bool Log)
         {
             uint t = FlxG.getTimer;
-            if (Log)
-                FlxG.log(Name + ": " + ((t - Start) / 1000) + "s");
+			if (Log) {
+				FlxG.log (Name + ": " + ((t - Start) / 1000) + "s");
+				Console.WriteLine (Name + ": " + ((t - Start) / 1000) + "s");
+			}
             return t;
         }
 

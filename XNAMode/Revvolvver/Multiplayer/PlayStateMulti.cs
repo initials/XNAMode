@@ -73,7 +73,7 @@ namespace Revvolvver
 
         public FlxGroup hudElements;
 
-        private  Color p1Color = Color.PaleVioletRed;
+		private  Color p1Color = Color.Red;
         private  Color p2Color = Color.MediumSpringGreen;
         private  Color p3Color = Color.MediumSlateBlue;
         private  Color p4Color = Color.Cyan;
@@ -96,6 +96,9 @@ namespace Revvolvver
         private PowerUp powerup;
         private FlxSprite bg;
 
+		private FlxCaveGeneratorExt caveExt;
+
+
         override public void create()
         {
             base.create();
@@ -105,9 +108,9 @@ namespace Revvolvver
             FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[6];
 
             bg = new FlxSprite(0, 0);
-            bg.loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/bg"));
+			bg.loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/bgLarge"));
             bg.boundingBoxOverride = false;
-			bg.scale = 3;
+			//bg.scale = 1;
             add(bg);
 
             ImgTech = FlxG.Content.Load<Texture2D>("Revvolvver/tech_tiles");
@@ -246,7 +249,18 @@ namespace Revvolvver
             _blocks.add(_tileMap);
             //_tileMap.color = new Color(FlxU.random(0, 1), FlxU.random(0, 1), FlxU.random(0, 1));
 
-            regen();
+			caveExt = new FlxCaveGeneratorExt(60, 45);
+			caveExt.numSmoothingIterations = 1;
+			caveExt.initWallRatio = Revvolvver_Globals.GameSettings[2].GameValue / 100.0f;
+			_caveMap.auto = FlxTilemap.AUTO;
+			string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20 }, new int[] { 15, 25 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 37, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 59 });
+			string newMap = caveExt.convertMultiArrayStringToString(tiles);
+			_caveMap.loadMap(newMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
+
+
+
+
+			//regen();
 
             //FlxCaveGeneratorExt caveExt = new FlxCaveGeneratorExt(40, 30);
             //caveExt.numSmoothingIterations = 5;
@@ -309,7 +323,7 @@ namespace Revvolvver
             FlxSprite movingPlatform = new FlxSprite(320, 0, FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform"));
             _blocks.add(movingPlatform);
             FlxPath batpath = new FlxPath(null);
-            batpath.addPointsUsingStrings("320,320,320,320,", "112,390,390,112,");
+			batpath.addPointsUsingStrings("320,320,320,320,", "112,430,430,112,");
             movingPlatform.followPath(batpath, 80, FlxObject.PATH_YOYO, false);
             movingPlatform.pathCornering = 4.0f;
             movingPlatform.solid = true;
@@ -319,7 +333,7 @@ namespace Revvolvver
             movingPlatform = new FlxSprite(640, 390, FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform"));
             _blocks.add(movingPlatform);
             batpath = new FlxPath(null);
-            batpath.addPointsUsingStrings("640,640,640,640,", "390,112,112,390,");
+			batpath.addPointsUsingStrings("640,640,640,640,", "430,112,112,430,");
             movingPlatform.followPath(batpath, 80, FlxObject.PATH_YOYO, false);
             movingPlatform.pathCornering = 4.0f;
             movingPlatform.solid = true;
@@ -384,8 +398,8 @@ namespace Revvolvver
                 //TITLE SAFE
                 //int yp = FlxG.height * 2 - 120;
 
-                int yp = (FlxG.height * FlxG.zoom) - 80;
-                int xo = 120;
+				int yp = (FlxG.height * FlxG.zoom) - 100;
+				int xo = 540;
                 
 
                 if (i < 6)
@@ -513,21 +527,25 @@ namespace Revvolvver
             add(powerup);
 
 
+
         }
 
 
         public void regen()
         {
-			FlxCaveGeneratorExt caveExt = new FlxCaveGeneratorExt(60, 45);
-            caveExt.numSmoothingIterations = 1;
-            caveExt.initWallRatio = Revvolvver_Globals.GameSettings[2].GameValue / 100.0f;
-            
-            _caveMap.auto = FlxTilemap.AUTO;
-            string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20 }, new int[] { 15, 25 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 37, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 59 });
-            string newMap = caveExt.convertMultiArrayStringToString(tiles);
-            _caveMap.loadMap(newMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
-            
 
+
+
+			FlxU.startProfile ();
+
+//			caveExt.numSmoothingIterations = 1;
+//			caveExt.initWallRatio = Revvolvver_Globals.GameSettings[2].GameValue / 100.0f;
+//			_caveMap.auto = FlxTilemap.AUTO;
+//			string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20 }, new int[] { 15, 25 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 37, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 59 });
+//			string newMap = caveExt.convertMultiArrayStringToString(tiles);
+//			_caveMap.loadMap(newMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
+            
+			FlxU.endProfile (1, "Profiler", true);
 
             _caveMap.setTile((int)(_player1.x) / 16, (int)(_player1.y) / 16, 0, true);
             _caveMap.setTile((int)(_player2.x) / 16, (int)(_player2.y) / 16, 0, true);
@@ -548,6 +566,7 @@ namespace Revvolvver
             _caveMap.setTile((int)(_player2.x) / 16, (int)(_player2.y - 16) / 16, 0, true);
             _caveMap.setTile((int)(_player3.x) / 16, (int)(_player3.y - 16) / 16, 0, true);
             _caveMap.setTile((int)(_player4.x) / 16, (int)(_player4.y - 16) / 16, 0, true);
+
 
 
 

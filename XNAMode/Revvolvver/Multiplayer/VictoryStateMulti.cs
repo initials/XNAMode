@@ -20,8 +20,9 @@ namespace Revvolvver
             base.create();
 
             ImgGibs = FlxG.Content.Load<Texture2D>("Revvolvver/spawner_gibs");
+
             FlxSprite bg = new FlxSprite(0, 0);
-            bg.loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/bg"));
+			bg.loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/bgLarge"));
             add(bg);
             _timer = 0;
             _fading = false;
@@ -48,13 +49,13 @@ namespace Revvolvver
             //gibs.start(false, 0.005f);
 
             
-            if (FlxG.scores[0] > Revvolvver_Globals.GameSettings[4].GameValue)
+			if (FlxG.scores[0] > Revvolvver_Globals.GameSettings[4].GameValue - 1)
                 add((new FlxText(0, FlxG.height / 3, FlxG.width, "PLAYER 1 WINS\nSCORE: " + FlxG.scores[0])).setFormat(null, 3, new Color(0xd1, 0x6e, 0x55), FlxJustification.Center, Color.Black));
-            if (FlxG.scores[1] > Revvolvver_Globals.GameSettings[4].GameValue)
+			if (FlxG.scores[1] > Revvolvver_Globals.GameSettings[4].GameValue - 1)
                 add((new FlxText(0, FlxG.height / 3, FlxG.width, "PLAYER 2 WINS\nSCORE: " + FlxG.scores[1])).setFormat(null, 3, new Color(0xd1, 0x6e, 0x55), FlxJustification.Center, Color.Black));
-            if (FlxG.scores[2] > Revvolvver_Globals.GameSettings[4].GameValue)
+			if (FlxG.scores[2] > Revvolvver_Globals.GameSettings[4].GameValue - 1)
                 add((new FlxText(0, FlxG.height / 3, FlxG.width, "PLAYER 3 WINS\nSCORE: " + FlxG.scores[2])).setFormat(null, 3, new Color(0xd1, 0x6e, 0x55), FlxJustification.Center, Color.Black));
-            if (FlxG.scores[3] > Revvolvver_Globals.GameSettings[4].GameValue)
+			if (FlxG.scores[3] > Revvolvver_Globals.GameSettings[4].GameValue - 1)
                 add((new FlxText(0, FlxG.height / 3, FlxG.width, "PLAYER 4 WINS\nSCORE: " + FlxG.scores[3])).setFormat(null, 3, new Color(0xd1, 0x6e, 0x55), FlxJustification.Center, Color.Black));
 
             //string n = "Scores: " + FlxG.scores[0] + FlxG.scores[1] + FlxG.scores[2] + FlxG.scores[3];

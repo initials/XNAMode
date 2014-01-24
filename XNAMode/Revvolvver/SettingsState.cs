@@ -49,7 +49,7 @@ namespace Revvolvver
         private FlxText playersText;
         //private FlxText playersTextx;
 
-        private int currentTextSelected = 9;
+		private int currentTextSelected = 11;
 
         public float timer;
 
@@ -131,7 +131,7 @@ namespace Revvolvver
         {
             string value = "";
 
-            if (Revvolvver_Globals.GameSettings[i].Name == "Play Now" || Revvolvver_Globals.GameSettings[i].Name == "Randomonium")
+			if (Revvolvver_Globals.GameSettings[i].Name == "Play Now" || Revvolvver_Globals.GameSettings[i].Name == "Randomonium" || Revvolvver_Globals.GameSettings[i].Name == "< Presets >")
                 value = Revvolvver_Globals.GameSettings[i].Name;
             else
                 value = Revvolvver_Globals.GameSettings[i].Name + ": " + Revvolvver_Globals.GameSettings[i].GameValue.ToString();
@@ -203,7 +203,9 @@ namespace Revvolvver
 
                 if (Revvolvver_Globals.GameSettings[currentTextSelected].Name == "Play Now")
                 {
-                    FlxG.play(SndGun2, 0.35f);
+					//Revvolvver_Globals.GameSettings [currentTextSelected].Name = "Play Now!!!";
+
+					//FlxG.play(SndGun2, 0.35f);
                     FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onFade, false);
                     return;
                 }

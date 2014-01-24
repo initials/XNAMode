@@ -31,8 +31,11 @@ namespace Revvolvver
             new Revvolvver.GameSettings("Bullet Regen"  ,4,4,  0,  100,1 ), //6
             new Revvolvver.GameSettings("Power Up Time"  ,7,7,  1,  20,1 ), //7
             new Revvolvver.GameSettings("Bullet Velocity",360,360,  100,  600,20 ), //8
-            new Revvolvver.GameSettings("Play Now",0, 0, 0,  0,0 ), //9
+			new Revvolvver.GameSettings("< Presets >",0, 0, 0,  0,0 ), //9
             new Revvolvver.GameSettings("Randomonium",0, 0, 0,  0,0 ), //10
+			new Revvolvver.GameSettings("Play Now",0, 0, 0,  0,0 ), //11
         };
+
+
     }
 }
