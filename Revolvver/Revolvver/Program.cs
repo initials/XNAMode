@@ -25,13 +25,15 @@ namespace Loader_Revvolvver
             : base(game)
         {
 
-            int w = 960;
-            int h = 540;
+            Console.WriteLine("Flixel Entry Point");
+
+            int w = FlxG.resolutionWidth/FlxG.zoom;
+            int h = FlxG.resolutionHeight / FlxG.zoom;
 
             initGame(w, h, new Revvolvver.MenuState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
 
             FlxG.debug = false;
-            FlxG.zoom = 960 / w;
+            //FlxG.zoom = FlxG.resolutionWidth / w;
             FlxG.level = -1;
 
             //FourChambers_Globals.BUILD_TYPE = FourChambers_Globals.BUILD_TYPE_RELEASE;

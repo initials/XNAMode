@@ -95,8 +95,13 @@ namespace Revvolvver
 
         private PowerUp powerup;
         private FlxSprite bg;
+		private string[,] altTiles;
+		private string map;
+		private string altMap;
 
 		private FlxCaveGeneratorExt caveExt;
+
+		private int mapToLoad = 0;
 
 
         override public void create()
@@ -167,7 +172,11 @@ namespace Revvolvver
             _player1.controllerAsInt = 1;
             _player1.color = p1Color;
 
-            FlxG._game.hud.p1HudText.scale = 3;
+            int hudTextScale = 3;
+
+            if (FlxG.zoom == 1) hudTextScale = 1;
+
+            FlxG._game.hud.p1HudText.scale = hudTextScale;
             FlxG._game.hud.p1HudText.x += 40;
             FlxG._game.hud.p1HudText.color = p1Color;
 
@@ -177,7 +186,7 @@ namespace Revvolvver
             _player2.controllerAsInt = 2;
             _player2.color = p2Color;
 
-            FlxG._game.hud.p2HudText.scale = 3;
+            FlxG._game.hud.p2HudText.scale = hudTextScale;
             FlxG._game.hud.p2HudText.x -= 40;
             FlxG._game.hud.p2HudText.color = p2Color;
 
@@ -186,7 +195,7 @@ namespace Revvolvver
             _player3.controllerAsInt = 3;
             _player3.color = p3Color;
 
-            FlxG._game.hud.p3HudText.scale = 3;
+            FlxG._game.hud.p3HudText.scale = hudTextScale;
             FlxG._game.hud.p3HudText.x += 40 ;
             FlxG._game.hud.p3HudText.y -= 20;
             FlxG._game.hud.p3HudText.color = p3Color;
@@ -197,7 +206,7 @@ namespace Revvolvver
             _player4.controllerAsInt = 4;
             _player4.color = p4Color;
 
-            FlxG._game.hud.p4HudText.scale = 3;
+            FlxG._game.hud.p4HudText.scale = hudTextScale;
             FlxG._game.hud.p4HudText.x -= 40;
             FlxG._game.hud.p4HudText.y -= 20;
             FlxG._game.hud.p4HudText.color = p4Color;
@@ -250,14 +259,16 @@ namespace Revvolvver
             //_tileMap.color = new Color(FlxU.random(0, 1), FlxU.random(0, 1), FlxU.random(0, 1));
 
 			caveExt = new FlxCaveGeneratorExt(60, 45);
-			caveExt.numSmoothingIterations = 1;
+			caveExt.numSmoothingIterations = 3;
 			caveExt.initWallRatio = Revvolvver_Globals.GameSettings[2].GameValue / 100.0f;
 			_caveMap.auto = FlxTilemap.AUTO;
 			string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20 }, new int[] { 15, 25 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 37, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 59 });
-			string newMap = caveExt.convertMultiArrayStringToString(tiles);
-			_caveMap.loadMap(newMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
+			map = caveExt.convertMultiArrayStringToString(tiles);
+			_caveMap.loadMap(map, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
 
 
+			altTiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20 }, new int[] { 15, 25 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 37, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 59 });
+			altMap = caveExt.convertMultiArrayStringToString(altTiles);
 
 
 			//regen();
@@ -400,7 +411,12 @@ namespace Revvolvver
 
 				int yp = (FlxG.height * FlxG.zoom) - 100;
 				int xo = 540;
-                
+
+                if (FlxG.zoom == 1)
+                {
+                    yp = (FlxG.height * FlxG.zoom) - 30;
+                    xo = 40;
+                }
 
                 if (i < 6)
                 {
@@ -521,8 +537,8 @@ namespace Revvolvver
             FlxG.setHudText(4, "P4: 0" );
 
 
-            // FlxU.random(0, FlxG.width), FlxU.random(0, FlxG.height)
-            powerup = new PowerUp(300, 300);
+            
+			powerup = new PowerUp( (int)FlxU.random(50, FlxG.width-50), (int)FlxU.random(50, FlxG.height-50));
             
             add(powerup);
 
@@ -536,16 +552,24 @@ namespace Revvolvver
 
 
 
-			FlxU.startProfile ();
+			//FlxU.startProfile ();
 
 //			caveExt.numSmoothingIterations = 1;
 //			caveExt.initWallRatio = Revvolvver_Globals.GameSettings[2].GameValue / 100.0f;
 //			_caveMap.auto = FlxTilemap.AUTO;
 //			string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20 }, new int[] { 15, 25 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 37, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 59 });
 //			string newMap = caveExt.convertMultiArrayStringToString(tiles);
-//			_caveMap.loadMap(newMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
+
+			if (mapToLoad == 0) {
+				_caveMap.loadMap(altMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
+				mapToLoad = 1;
+			} else if (mapToLoad == 1) {
+				_caveMap.loadMap(map, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
+				mapToLoad = 0;
+			}
+
             
-			FlxU.endProfile (1, "Profiler", true);
+			//FlxU.endProfile (1, "Profiler", true);
 
             _caveMap.setTile((int)(_player1.x) / 16, (int)(_player1.y) / 16, 0, true);
             _caveMap.setTile((int)(_player2.x) / 16, (int)(_player2.y) / 16, 0, true);
@@ -761,8 +785,8 @@ namespace Revvolvver
             {
                 _fading = true;
                 //FlxG.play(SndHit2);
-                FlxG.flash.start(Color.White, 0.5f, null, false);
-                FlxG.fade.start(Color.White, 1f, onFade, false);
+				FlxG.flash.start(new Color(0xd1, 0x6e, 0x55), 0.5f, null, false);
+				FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onFade, false);
             }
 
             if (FlxG.scores[0] == Revvolvver_Globals.GameSettings[4].GameValue - 1) 
@@ -795,7 +819,7 @@ namespace Revvolvver
                 (FlxG.scores[2] >= Revvolvver_Globals.GameSettings[4].GameValue) ||
                 (FlxG.scores[3] >= Revvolvver_Globals.GameSettings[4].GameValue))
             {
-                FlxG.fade.start(Color.White, 3, onVictory, false);
+				FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 3, onVictory, false);
             }
 
             adjustHUD();
@@ -868,8 +892,8 @@ namespace Revvolvver
         protected bool checkPowerUp(object Sender, FlxSpriteCollisionEvent e)
         {
             
-            e.Object2.x = FlxU.random(50, 300);
-            e.Object2.y = FlxU.random(50, 300);
+			e.Object2.x = FlxU.random(FlxU.random(50, FlxG.width-50), FlxU.random(50, FlxG.height-50));
+			e.Object2.y = FlxU.random(FlxU.random(50, FlxG.width-50), FlxU.random(50, FlxG.height-50));
             ((PowerUp)(e.Object2)).timerInvisible = 0.0f;
 
             if (((PowerUp)(e.Object2)).powerup == 0)

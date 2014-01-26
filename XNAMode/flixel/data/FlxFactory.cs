@@ -53,6 +53,9 @@ namespace org.flixel
         //nothing much to see here, typical XNA initialization code
         public FlxFactory()
         {
+
+            Console.WriteLine("FlxFactory entry!");
+
             //set up the graphics device and the content manager
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -61,15 +64,15 @@ namespace org.flixel
             {
                 resX = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
                 resY = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-//                if (GraphicsAdapter.DefaultAdapter.IsWideScreen)
-//                {
-//                    //if user has it set to widescreen, let's make sure this
-//                    //is ACTUALLY a widescreen resolution.
-//                    if (((resX / 16) * 9) != resY)
-//                    {
-//                        resX = (resY / 9) * 16;
-//                    }
-//                }
+                if (GraphicsAdapter.DefaultAdapter.IsWideScreen)
+                {
+                    //if user has it set to widescreen, let's make sure this
+                    //is ACTUALLY a widescreen resolution.
+                    if (((resX / 16) * 9) != resY)
+                    {
+                        resX = (resY / 9) * 16;
+                    }
+                }
             }
 
             //we don't need no new-fangled pixel processing

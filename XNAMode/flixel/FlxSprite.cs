@@ -714,8 +714,11 @@ namespace org.flixel
                 }
 
                 //handle reversed sprites
-                if ((_facing2d == Flx2DFacing.Left) && (_flipped > 0))
-                    rx = (_flipped << 1) - rx - (uint)frameWidth;
+
+                // Commented out for breaking multiple Y framed pics.
+
+                //if ((_facing2d == Flx2DFacing.Left) && (_flipped > 0))
+                //    rx = (_flipped << 1) - rx - (uint)frameWidth;
 
                 _flashRect = new Rectangle((int)rx, (int)ry, frameWidth, frameHeight);
 			}

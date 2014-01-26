@@ -114,6 +114,12 @@ namespace org.flixel
         /// </summary>
         static public int zoom;
 
+        static public int resolutionWidth;
+
+        static public int resolutionHeight;
+
+        static public bool fullscreen;
+
         static public bool joystickBeingUsed = false;
 
         /// <summary>

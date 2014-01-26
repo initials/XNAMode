@@ -28,6 +28,8 @@ namespace XNAMode
             textInfo += "7. VCR Test\n";
             textInfo += "8. Rotate Test\n";
 
+            textInfo += "9. Empty Intro\n";
+
             FlxG.showHud();
 
             FlxG.setHudText(1, textInfo );
@@ -78,6 +80,11 @@ namespace XNAMode
             if (FlxG.keys.EIGHT)
             {
                 FlxG.state = new RotateState();
+                //FlxG.hideHud();
+            }
+            if (FlxG.keys.NINE)
+            {
+                FlxG.state = new FourChambers.EmptyIntroTestState();
                 //FlxG.hideHud();
             }
 #endif

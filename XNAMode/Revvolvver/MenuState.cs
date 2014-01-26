@@ -243,7 +243,7 @@ namespace Revvolvver
                     int r = (int)FlxU.random(0, 10);
                     letters.members[r].angle= FlxU.random(-45,45);
                     //letters.members[r].angularDrag = 100;
-                    FlxG.play(SndGun2, 0.15f);
+                    FlxG.play(SndGun2, 0.025f);
                 }
             }
 

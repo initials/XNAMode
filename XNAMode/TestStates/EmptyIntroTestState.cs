@@ -17,27 +17,42 @@ namespace FourChambers
         int timeOfDay;
         public FlxSprite bg;
         int bloomSettingsIndex = 0;
-
+        public FlxSprite spaceman;
 
         override public void create()
         {
             base.create();
 
             bg = new FlxSprite(0, 0);
-            bg.loadGraphic(FlxG.Content.Load<Texture2D>("initials/texture_placement_small"), true, false, 32, 32);
+            bg.loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/texture_placement_small"), true, false, 32, 32);
             bg.addAnimation("first", new int[] { 0,1,2,0,1,2,0,1,2}, 3);
-            bg.addAnimation("second", new int[] { 0, 11, 12, 0, 1, 12, 0, 1, 12 }, 3);
-            bg.play("first");
-            bg.velocity.Y = 20;
+            bg.addAnimation("second", new int[] { 0, 11, 12, 22, 32, 45,1,2,3,4 }, 3);
+            bg.play("second");
+            //bg.velocity.Y = 20;
+            bg.x = 100;
+            bg.y = 100;
             add(bg);
 
-            bg.addAnimationCallback(pr);
+            
 
             FlxG.autoHandlePause = true;
 
             FlxG.playMusic("music/goat");
 
             FlxXMLReader.readOgmoProjectAndLevel("ogmoLevels/ProjectFile.oep", "ogmoLevels/testlevel2.oel");
+
+
+
+            spaceman = new FlxSprite();
+            spaceman.loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/spaceman"), true, true, 16);
+            spaceman.addAnimation("run_up", new int[] { 6, 7, 8, 5 }, 2);
+            spaceman.play("run_up");
+            add(spaceman);
+            spaceman.x = 250;
+            spaceman.y = 250;
+            spaceman.scale = 10;
+
+            spaceman.addAnimationCallback(pr);
 
             //FlxXMLReader.readOgmoV2Level("ogmoLevels/testlevel2.oel");
 
@@ -142,13 +157,19 @@ namespace FourChambers
 
             if (FlxG.keys.M)
             {
-                bg.play("first");
+                //bg.play("first");
                 //FlxG.pause = true;
+
+                bg.facing = Flx2DFacing.Left;
+                spaceman.facing = Flx2DFacing.Left;
+
             }
             if (FlxG.keys.K)
             {
-                bg.play("second");
+                //bg.play("second");
                 //FlxG.pause = false;
+                bg.facing = Flx2DFacing.Right;
+                spaceman.facing = Flx2DFacing.Right;
             }
 
             //Console.WriteLine(FlxG.pause);

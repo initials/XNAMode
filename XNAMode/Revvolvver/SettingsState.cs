@@ -49,7 +49,7 @@ namespace Revvolvver
         private FlxText playersText;
         //private FlxText playersTextx;
 
-		private int currentTextSelected = 11;
+		private int currentTextSelected = 10;
 
         public float timer;
 
@@ -230,8 +230,30 @@ namespace Revvolvver
             }
 
 
-            
+			if (FlxG.gamepads.isNewButtonPress (Buttons.Y)) {
 
+				for (int i = 0; i < textGrp.members.Count; i++) {
+					Revvolvver_Globals.GameSettings[i].GameValue = Revvolvver_Globals.GameSettings[i].DefaultAmount;
+					string value = findMenuString(i);
+					((FlxText)(textGrp.members[i])).text = value;
+				}
+					
+
+
+			}
+
+            if (FlxG.keys.justPressed(Keys.Escape))
+            {
+                FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onExitFade, false);
+                return;
+            }
+
+
+        }
+
+        private void onExitFade(object sender, FlxEffectCompletedEvent e)
+        {
+            FlxG.state = new MenuState();
 
         }
 
