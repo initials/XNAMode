@@ -46,6 +46,9 @@ namespace FourChambers
             addAnimation("climb", new int[] { 20, 21 }, 6, true);
             addAnimation("climbidle", new int[] { 20 }, 0, true);
             addAnimation("death", new int[] { 22,23 }, 4, false);
+
+
+
             //addAnimationCallback(stopAttacking);
 
             //bounding box tweaks

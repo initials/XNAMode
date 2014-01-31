@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
+using System.Diagnostics;
 
 namespace org.flixel
 {
@@ -37,6 +38,9 @@ namespace org.flixel
         static public void openURL(string URL)
         {
             //navigateToURL(new URLRequest(URL), "_blank");
+
+            Process.Start(URL);
+
         }
 
         /// <summary>
