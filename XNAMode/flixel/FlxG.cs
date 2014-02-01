@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 //using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Input;
 using BloomPostprocess;
 
@@ -121,6 +122,8 @@ namespace org.flixel
         static public bool fullscreen;
 
         static public bool joystickBeingUsed = false;
+
+		static public bool android = false;
 
         /// <summary>
         /// A reference or pointer to the current FlxState object being used by the game
@@ -569,6 +572,15 @@ namespace org.flixel
 			music.volume = Volume;
 			music.survive = true;
 			music.play();
+		}
+
+		static public void playAndroidMusic(string Music, float Volume)
+		{
+
+
+			Song x = FlxG.Content.Load<Song>(Music);
+			MediaPlayer.Volume = Volume;
+			MediaPlayer.Play (x);
 		}
 
         /// <summary>

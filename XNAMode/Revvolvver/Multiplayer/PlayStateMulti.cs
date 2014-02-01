@@ -383,7 +383,11 @@ namespace Revvolvver
             _objects.add(_player4);
 
 
-            FlxG.playMusic("Revvolvver/sfx/fullHeavyMetalJacket");
+			//FlxG.playMusic("Revvolvver/sfx/fullHeavyMetalJacket");
+
+			FlxG.playAndroidMusic ("music/heavyMetalJacket", 0.25f);
+
+
             FlxG.flash.start(Color.Black, 0.5f, null, false);
             _fading = false;
 

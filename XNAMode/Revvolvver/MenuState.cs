@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 #endif
 using org.flixel;
+using Microsoft.Xna.Framework.Media;
 
 namespace Revvolvver
 {
@@ -65,10 +66,12 @@ namespace Revvolvver
 
             Snds = new string[8] { SndClick, SndChord1, SndChord2, SndChord3, SndChord4, SndChord5, SndChord6, SndChord7};
             
-            FlxG.playMusic(Music, 1.0f);
+			//FlxG.playMusic(Music, 1.0f);
 
-            if (FlxG.music.playing)
-                FlxG.music.stop();
+			FlxG.playAndroidMusic("music/Intro", 0.5f);
+
+			//if (FlxG.music.playing)
+			//    FlxG.music.stop();
 
             FlxG.backColor = new Color(0xdb, 0xd8, 0xac);
 
@@ -367,6 +370,20 @@ namespace Revvolvver
             }
 
 
+//			if (FlxG.gamepads.isButtonDown (Buttons.LeftTrigger)) {
+//
+//				// works!
+//				//Song x = FlxG.Content.Load<Song>("music/Intro");
+//				//MediaPlayer.Play (x);
+//
+//
+//				Console.WriteLine ("Is music playing?" + FlxG.music.playing);
+//
+//				FlxG.playAndroidMusic ("music/Intro", 0.5f);
+//
+//
+//
+//			}
         }
 
         private void onFade(object sender, FlxEffectCompletedEvent e)

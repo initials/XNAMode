@@ -183,7 +183,7 @@ namespace Revvolvver
             }
 
             // Running pushes walk speed higher.
-            if (FlxG.gamepads.isButtonDown(Buttons.RightTrigger, controller, out pi) || ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][11] == true))
+			if (FlxG.gamepads.isButtonDown(Buttons.RightShoulder, controller, out pi) || ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][11] == true))
             {
                 
                 maxVelocity.X = runSpeed * 2;
@@ -413,8 +413,8 @@ namespace Revvolvver
                 //AIMING
                 _up = false;
                 _down = false;
-                if (((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][0] == true) || (FlxG.keys.UP && controller == PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadUp, controller, out pi)) _up = true;
-                else if (((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][2] == true) || ((FlxG.keys.DOWN && controller == PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadDown, controller, out pi)) && velocity.Y != 0) _down = true;
+				if (((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][0] == true) || (FlxG.keys.UP && controller == PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadUp, controller, out pi)) _up = true;
+				else if (((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][2] == true) || ((FlxG.keys.DOWN && controller == PlayerIndex.One) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadDown, controller, out pi)) && velocity.Y != 0) _down = true;
 
                 //ANIMATION
                 if (speed < 0.2f)
@@ -510,10 +510,10 @@ namespace Revvolvver
 
                 if (speed> 0.2f && ((shoot && timeSinceLastShot > 0.25f) || ((_rec == Recording.Playback || _rec == Recording.Reverse) 
                     && _history[frameCount][6] == true) ||  (FlxG.keys.justPressed(Keys.C) && controller == PlayerIndex.One) ||
-                        FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi) ) )
+					FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi) ) )
                 {
                     /// && machineGun > 6.9999f
-                    if (bulletsLeft <= 0)
+					if (bulletsLeft <= 0 && controllerAsInt <= Revvolvver_Globals.PLAYERS)
                     {
 						FlxG.play(SndClick, 0.25f);
 

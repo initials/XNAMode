@@ -230,6 +230,7 @@ namespace org.flixel
         public bool isButtonDown(Buttons button, PlayerIndex? controllingPlayer,
                                              out PlayerIndex playerIndex)
         {
+
             if (controllingPlayer.HasValue)
             {
                 // Read input from the specified player.
@@ -464,6 +465,8 @@ namespace org.flixel
 
             if (isButtonDown(Buttons.LeftThumbstickLeft, controllingPlayer, out pi))
             {
+
+
                 if ((_curGamepad[(int)pi].ThumbSticks.Left.X < -0.25) &&
                     (_lastGamepad[(int)pi].ThumbSticks.Left.X >= -0.25))
                 {
