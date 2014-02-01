@@ -599,7 +599,7 @@ namespace FourChambers
             music.Add(18, "FourChambers_MoodyExplorationLoop_ha");
             music.Add(19, "FourChambers_OffKilterLoop_haspercus");
 
-            FlxG.playMusic("music/" + music[FlxG.level], 1.0f);
+            //FlxG.playMusic("music/" + music[FlxG.level], 1.0f);
 
         }
 
@@ -667,7 +667,12 @@ namespace FourChambers
 
             #endregion
 
+            localHud.combo.text = FourChambers_Globals.arrowCombo.ToString() + "x Combo";
+            if (FourChambers_Globals.arrowCombo>5) localHud.combo.text += "!";
+
             localHud.score.text = FlxG.score.ToString();
+            
+
             if (marksman != null)
             {
                 localHud.setArrowsRemaining(marksman.arrowsRemaining);
@@ -742,8 +747,8 @@ namespace FourChambers
             FlxU.overlap(actors, ladders, overlapWithLadder);
             FlxU.overlap(marksman.meleeHitBox, destructableTilemap, destroyTileAtMelee);
             // Maybe use the return value of this to reset the combo counter.
-            FlxU.collide(destructableTilemap, bullets);
-            FlxU.collide(blood, destructableTilemap);
+            FlxU.collide(allLevelTiles, bullets);
+            FlxU.collide(blood, allLevelTiles);
             FlxU.overlap(actors, playerControlledActors, actorOverlap);
             FlxU.overlap(powerUps, playerControlledActors, getPowerUp);
             if (seraphine.dead) FlxU.collide(seraphine, allLevelTiles);
@@ -1049,6 +1054,9 @@ namespace FourChambers
                 blood.at(e.Object1);
 
                 blood.start(true, 0, 10);
+
+                FourChambers_Globals.arrowCombo++;
+
             }
 
             return true;

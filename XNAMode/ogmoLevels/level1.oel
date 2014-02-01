@@ -123,5 +123,9 @@
     </movingPlatform>
     <ladder id="7" x="192" y="432" height="112" />
     <_procedurallyGeneratedArea id="8" x="288" y="192" width="384" height="352" />
+    <cow id="9" x="48" y="400" flip="False" />
+    <embersteed id="10" x="64" y="400" flip="False" />
+    <snake id="12" x="80" y="400" flip="False" />
+    <tormentor id="13" x="112" y="400" flip="False" />
   </ActorsLayer>
 </level>

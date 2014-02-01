@@ -24,6 +24,7 @@ namespace FourChambers
         /// Use score.text = "" to set the score.
         /// </summary>
         public FlxText score;
+        public FlxText combo;
 
         public FlxText nestsRemaining;
         
@@ -68,6 +69,11 @@ namespace FourChambers
             arrowsRemaining.setFormat(null, 2, Color.White, FlxJustification.Left, Color.Black);
             arrowsRemaining.text = "00";
             add(arrowsRemaining);
+
+            combo = new FlxText(140, ypos - 10, 100);
+            combo.setFormat(null, 2, Color.White, FlxJustification.Left, Color.Black);
+            combo.text = "0x";
+            add(combo);
 
             score = new FlxText(320, ypos - 10, 100);
             score.setFormat(null, 2, Color.White, FlxJustification.Left, Color.Black);

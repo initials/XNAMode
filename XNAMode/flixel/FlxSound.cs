@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using System.IO;
 
 namespace org.flixel
 {
@@ -316,6 +317,8 @@ namespace org.flixel
         /// <returns></returns>
         public static SoundEffectInstance getSound(string EmbeddedSound)
         {
+            //if (!System.IO.File.Exists(EmbeddedSound)) return;
+
             for (int i = 0; i < _sounds.Count; i++)
             {
                 if (_sounds[i].Name.CompareTo(EmbeddedSound) == 0)

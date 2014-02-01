@@ -309,7 +309,7 @@ namespace FourChambers
             //Console.WriteLine("jump= " + _jump + " " + canClimbLadder);
 
             // Attacking
-            if (FlxG.keys.justPressed(Keys.C))
+            if (FlxG.keys.justPressed(Keys.M))
             {
                 lastAttack = "range";
 

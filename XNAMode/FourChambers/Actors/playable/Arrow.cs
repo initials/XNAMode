@@ -105,6 +105,9 @@ namespace FourChambers
 
         override public void hitSide(FlxObject Contact, float Velocity) 
         {
+            _fire.setXSpeed(50, 100);
+            _fire.setYSpeed(50, 100);
+            _fire.start(true, 0.01f, 0);
             if (explodesOnImpact)
             {
                 _ex.x = x - _ex.width / 2;
@@ -112,12 +115,37 @@ namespace FourChambers
                 _ex.play("explode", true);
             }
             _fire.stop();
-
+            FourChambers_Globals.arrowCombo = 0;
             hasTouched= true;
             kill(); 
         }
+
+        public override void hitLeft(FlxObject Contact, float Velocity)
+        {
+            _fire.setXSpeed(50, 100);
+            _fire.setYSpeed(50, 100);
+            _fire.start(true, 0.01f, 0);
+
+            FourChambers_Globals.arrowCombo = 0;
+            base.hitLeft(Contact, Velocity);
+        }
+
+        public override void hitRight(FlxObject Contact, float Velocity)
+        {
+            _fire.setXSpeed(50, 100);
+            _fire.setYSpeed(50, 100);
+            _fire.start(true, 0.01f, 0);
+
+            FourChambers_Globals.arrowCombo = 0;
+            base.hitRight(Contact, Velocity);
+        }
+
         override public void hitBottom(FlxObject Contact, float Velocity) 
         {
+            _fire.setXSpeed(50, 100);
+            _fire.setYSpeed(50, 100);
+            _fire.start(true, 0.01f, 0);
+
             if (explodesOnImpact)
             {
                 _ex.x = x - _ex.width / 2;
@@ -128,10 +156,15 @@ namespace FourChambers
             hasTouched = true;
             dead = true;
             solid = false;
+            FourChambers_Globals.arrowCombo = 0;
             kill(); 
         }
         override public void hitTop(FlxObject Contact, float Velocity) 
         {
+            _fire.setXSpeed(50, 100);
+            _fire.setYSpeed(50, 100);
+            _fire.start(true, 0.01f, 0);
+
             if (explodesOnImpact)
             {
                 _ex.x = x - _ex.width / 2;
@@ -140,12 +173,17 @@ namespace FourChambers
             }
             _fire.stop();
             hasTouched = true;
+            FourChambers_Globals.arrowCombo = 0;
             kill(); 
         }
         override public void kill()
         {
-
+            
             _fire.stop();
+
+
+
+
             visible = false;
 
             if (dead) return;
@@ -156,6 +194,10 @@ namespace FourChambers
             play("explode");
             dead = true;
 
+
+
+
+
             //base.kill();
             
         }
@@ -163,18 +205,16 @@ namespace FourChambers
         public void shoot(int X, int Y, int VelocityX, int VelocityY)
         {
 
-            
             _fire.start(false, 0.01f, 0);
 
             // Global counter for arrows fired.
             FourChambers_Globals.arrowsFired++;
 
-
             visible = true;
             FlxG.play(SndShoot, 0.05f, false);
 
             play("normal");
-            //FlxG.play(SndShoot);
+            
             base.reset(X, Y);
             solid = true;
             velocity.X = VelocityX;

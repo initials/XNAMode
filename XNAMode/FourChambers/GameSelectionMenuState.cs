@@ -29,7 +29,7 @@ namespace FourChambers
         override public void create()
         {
 
-            FlxG.playMusic("music/" + FourChambers_Globals.MUSIC_MENU, 1.0f);
+            //FlxG.playMusic("music/" + FourChambers_Globals.MUSIC_MENU, 1.0f);
 
             FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[1]; //6 is the super bright.
 
