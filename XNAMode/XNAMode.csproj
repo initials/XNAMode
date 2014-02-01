@@ -235,7 +235,7 @@
     <Compile Include="FourChambers\Actors\enemies\Snake.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Soldier.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Sphinx.cs" />
-    <Compile Include="FourChambers\Actors\nonanimated\Spider.cs" />
+    <Compile Include="FourChambers\Actors\enemies\Spider.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Tauro.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Toad.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Treant.cs" />

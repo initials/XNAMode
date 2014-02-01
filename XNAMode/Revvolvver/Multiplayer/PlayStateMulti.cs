@@ -785,7 +785,24 @@ namespace Revvolvver
             if (FlxG.keys.justPressed(Microsoft.Xna.Framework.Input.Keys.N) && FlxG.debug)
                 regen();
 
-            if (FlxG.gamepads.isNewButtonPress(Buttons.Back) || FlxG.keys.ESCAPE )
+//			if (FlxG.gamepads.isNewButtonPress (Buttons.RightStick)) {
+//				FlxG.pause = true;
+//			}
+//			if (FlxG.gamepads.isNewButtonPress (Buttons.LeftStick)) {
+//				FlxG.pause = false;
+//			}
+//
+//
+			if (FlxG.gamepads.isNewButtonPress(Buttons.RightStick)  && FlxG.gamepads.isNewButtonPress(Buttons.LeftStick) )
+			{
+				_fading = true;
+				//FlxG.play(SndHit2);
+				FlxG.flash.start(new Color(0xd1, 0x6e, 0x55), 0.5f, null, false);
+				FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onFade, false);
+
+			}
+
+			if (FlxG.gamepads.isNewButtonPress(Buttons.Back) || FlxG.keys.ESCAPE || FlxG.gamepads.isButtonDown(Buttons.Start) )
             {
                 _fading = true;
                 //FlxG.play(SndHit2);

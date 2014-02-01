@@ -242,7 +242,7 @@ namespace Revvolvver
 
 			}
 
-            if (FlxG.keys.justPressed(Keys.Escape))
+			if (FlxG.keys.justPressed(Keys.Escape) || FlxG.gamepads.isNewButtonPress(Buttons.RightStick) )
             {
                 FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onExitFade, false);
                 return;

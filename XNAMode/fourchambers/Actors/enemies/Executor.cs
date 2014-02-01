@@ -23,6 +23,7 @@ namespace FourChambers
             addAnimation("run", new int[] { 1, 2, 3, 4, 5,6,7,8 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0, 1, 2 }, 12);
+            addAnimation("death", new int[] { 9 }, 12, false);
 
             //bounding box tweaks
             width = 7;

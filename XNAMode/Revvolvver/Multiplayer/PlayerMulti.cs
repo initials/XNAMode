@@ -508,15 +508,20 @@ namespace Revvolvver
                     }
                 }
 
-                if (speed> 0.2f && ((shoot && timeSinceLastShot > 0.25f) || ((_rec == Recording.Playback || _rec == Recording.Reverse) 
-                    && _history[frameCount][6] == true) ||  (FlxG.keys.justPressed(Keys.C) && controller == PlayerIndex.One) ||
-					FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi) ) )
-                {
-                    /// && machineGun > 6.9999f
-					if (bulletsLeft <= 0 && controllerAsInt <= Revvolvver_Globals.PLAYERS)
-                    {
-						FlxG.play(SndClick, 0.25f);
+				if (speed > 0.2f && ((shoot && timeSinceLastShot > 0.25f) || ((_rec == Recording.Playback || _rec == Recording.Reverse)
+				                && _history [frameCount] [6] == true) || (FlxG.keys.justPressed (Keys.C) && controller == PlayerIndex.One) ||
+				                FlxG.gamepads.isNewButtonPress (Buttons.X, controller, out pi))) {
+					// && machineGun > 6.9999f
+					// && controllerAsInt <= Revvolvver_Globals.PLAYERS;
 
+
+					if (bulletsLeft <= 0 )
+                    {
+						if (_rec == Recording.Playback || _rec == Recording.Reverse) {
+
+						} else {
+							FlxG.play (SndClick, 0.25f);
+						}
                         return;
                     }
                     int bXVel = 0;

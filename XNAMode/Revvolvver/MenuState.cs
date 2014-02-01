@@ -369,6 +369,10 @@ namespace Revvolvver
 
             }
 
+//			if ( FlxG.gamepads.isButtonDown(Buttons.LeftStick) || FlxG.gamepads.isButtonDown(Buttons.Start) || FlxG.gamepads.isButtonDown(Buttons.BigButton) || FlxG.gamepads.isButtonDown(Buttons.Y)   )
+//			{
+//				Console.WriteLine("OK!");
+//			}
 
 //			if (FlxG.gamepads.isButtonDown (Buttons.LeftTrigger)) {
 //
