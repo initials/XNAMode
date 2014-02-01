@@ -601,6 +601,14 @@ namespace FourChambers
 
             //FlxG.playMusic("music/" + music[FlxG.level], 1.0f);
 
+            // Exit the game and open up a webpage for buying the game, if it's a pirate copy.
+            if (FourChambers_Globals.PIRATE_COPY && FlxG.level >= 4)
+            {
+                FlxU.openURL("http://initialsgames.com/fourchambers/purchasecopy.php");
+                
+                FlxG.Game.Exit();
+            }
+
         }
 
         override public void update()

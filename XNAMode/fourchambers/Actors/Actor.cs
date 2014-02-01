@@ -121,10 +121,6 @@ namespace FourChambers
         /// </summary>
         public bool isPlayerControlled;
 
-
-
-
-
         /// <summary>
         /// Deadzone for the joystick on this character.
         /// </summary>
@@ -177,13 +173,16 @@ namespace FourChambers
         /// </summary>
         public float framesSinceLeftGround;
 
-
-
         public float ladderPosX = 0;
 
         public string lastAttack = "range";
 
 
+        /// <summary>
+        /// An actor at x,y
+        /// </summary>
+        /// <param name="xPos"></param>
+        /// <param name="yPos"></param>
         public Actor(int xPos, int yPos)
             : base(xPos,yPos)
 		{
@@ -479,9 +478,9 @@ namespace FourChambers
             updateAnims();
 
             base.update();
+
             if (canClimbLadder == false) isClimbingLadder = false;
             canClimbLadder = false;
-            //isClimbingLadder = false;
 
         }
 

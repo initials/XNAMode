@@ -131,6 +131,11 @@ namespace FourChambers
         override public void update()
         {
 
+            if (FlxG.keys.justPressed(Keys.Escape) || FlxG.gamepads.isNewButtonPress(Buttons.Back))
+            {
+                FlxG.Game.Exit();
+                return;
+            }
 
             if (FlxG.gamepads.isNewButtonPress(Buttons.DPadUp) || FlxG.gamepads.isNewButtonPress(Buttons.LeftThumbstickUp ))
             {

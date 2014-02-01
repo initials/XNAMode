@@ -19,6 +19,7 @@ namespace XNAMode
 
             string textInfo = "";
             textInfo = "Choose:\n";
+            textInfo += "F6. Open initialsgames.com/FourChambers\n";
             textInfo += "1. Level Visualizer\n";
             textInfo += "2. Mode\n";
             textInfo += "3. Path Test\n";
@@ -41,6 +42,14 @@ namespace XNAMode
         override public void update()
         {
 #if !__ANDROID__
+
+            if (FlxG.keys.justPressed(Keys.F6))
+            {
+                FlxU.openURL("http://initialsgames.com/fourchambers/purchasecopy.php");
+                
+                FlxG.Game.Exit();
+                    
+            }
 
             if (FlxG.keys.ONE)
             {
