@@ -107,7 +107,7 @@ namespace FourChambers
         public const int FR_chimera = 79;
         #endregion
 
-
+        public bool flying = false;
         public bool canClimbLadder = false;
         private bool isClimbingLadder = false;
 

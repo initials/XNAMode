@@ -124,5 +124,20 @@
     <cow id="1" x="480" y="224" flip="False" />
     <fireThrower id="8" x="272" y="480" shootEvery="1" angleCounter="0" />
     <fireThrower id="9" x="400" y="480" shootEvery="2" angleCounter="2" />
+    <drone id="10" x="352" y="368" flip="False" />
+    <drone id="12" x="400" y="400" flip="False" />
+    <drone id="13" x="448" y="432" flip="False" />
+    <drone id="14" x="496" y="448" flip="False" />
+    <drone id="15" x="592" y="384" flip="False" />
+    <drone id="16" x="640" y="320" flip="False" />
+    <bat id="17" x="496" y="384" flip="False" pathType="LOOP_FORWARD" pathSpeed="100" pathCornering="3" />
+    <bat id="18" x="448" y="384" flip="False" pathType="LOOP_FORWARD" pathSpeed="100" pathCornering="3" />
+    <bat id="19" x="320" y="448" flip="False" pathType="LOOP_FORWARD" pathSpeed="100" pathCornering="3" />
+    <bat id="21" x="656" y="368" flip="False" pathType="LOOP_FORWARD" pathSpeed="100" pathCornering="3" />
+    <bat id="22" x="720" y="336" flip="False" pathType="LOOP_FORWARD" pathSpeed="100" pathCornering="3" />
+    <zinger id="23" x="304" y="352" flip="False" pathType="FORWARD" pathSpeed="100" />
+    <zinger id="25" x="400" y="96" flip="False" pathType="FORWARD" pathSpeed="100" />
+    <zinger id="26" x="464" y="128" flip="False" pathType="FORWARD" pathSpeed="100" />
+    <zinger id="27" x="640" y="496" flip="False" pathType="FORWARD" pathSpeed="100" />
   </ActorsLayer>
 </level>

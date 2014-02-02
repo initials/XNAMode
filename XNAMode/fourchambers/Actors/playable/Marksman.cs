@@ -312,13 +312,14 @@ namespace FourChambers
                 {
                     velocity.Y = -100;
                     //FlxG.bloom.Visible = true;
+                    flying = true;
 
                 }
                 else
                 {
                     //velocity.Y = FourChambers_Globals.GRAVITY;
                     //FlxG.bloom.Visible = false;
-
+                    flying = false;
                 }
             }
 

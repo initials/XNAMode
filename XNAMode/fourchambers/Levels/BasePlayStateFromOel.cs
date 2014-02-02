@@ -397,8 +397,11 @@ namespace FourChambers
             {
                 fireBall = new FireBall(-1000, -1000);
                 fireBalls.add(fireBall);
+
+                //bullets.add(fireBall);
             }
-            
+
+            //bullets.add(fireBalls);
 
             foreach (Dictionary<string, string> nodes in actorsAttrs)
             {
@@ -765,6 +768,7 @@ namespace FourChambers
             FlxU.collide(actors, allLevelTiles);
             FlxU.collide(powerUps, allLevelTiles);
             FlxU.overlap(actors, bullets, overlapped);
+            FlxU.overlap(actors, fireBalls, overlappFireball);
             FlxU.overlap(seraphine, bullets, overlapped);
             FlxU.overlap(actors, ladders, overlapWithLadder);
             FlxU.overlap(marksman.meleeHitBox, destructableTilemap, destroyTileAtMelee);
@@ -894,8 +898,11 @@ namespace FourChambers
         {
             if (e.Object1 is Actor)
             {
-                ((Actor)(e.Object1)).ladderPosX = e.Object2.x;
-                ((Actor)(e.Object1)).canClimbLadder = true;
+                if (!((Actor)(e.Object1)).flying)
+                {
+                    ((Actor)(e.Object1)).ladderPosX = e.Object2.x;
+                    ((Actor)(e.Object1)).canClimbLadder = true;
+                }
             }
             return true;
         }
@@ -946,6 +953,10 @@ namespace FourChambers
         {
             if (e.Object1.dead == false && e.Object2.dead == false && e.Object1.flickering() == false && e.Object2.flickering() == false)
             {
+                blood.at(e.Object1);
+
+                blood.start(true, 0, 10);
+
                 e.Object2.hurt(1);
                 e.Object1.hurt(1);
             }
@@ -963,6 +974,18 @@ namespace FourChambers
 
             return true;
         }
+
+        protected bool overlappFireball(object Sender, FlxSpriteCollisionEvent e)
+        {
+            blood.at(e.Object1);
+
+            blood.start(true, 0, 10);
+
+            e.Object1.hurt(2);
+            e.Object2.hurt(2);
+            return true;
+        }
+
 
         /// <summary>
         /// e1=actors,
