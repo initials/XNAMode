@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class ZingerNest: FlxSprite
+    class ZingerNest : BaseActor
     {
 
         public ZingerNest(int xPos, int yPos, FlxGroup zingers)

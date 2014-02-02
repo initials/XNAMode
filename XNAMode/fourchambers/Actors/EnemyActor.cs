@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class EnemyActor : FlxSprite
+    class EnemyActor : BaseActor
     {
 
         // A bunch of helpers for the allActors sprite sheet.
@@ -109,15 +109,7 @@ namespace FourChambers
         #endregion
 
 
-        /// <summary>
-        /// Character's name;
-        /// </summary>
-        public string actorName;
 
-        /// <summary>
-        /// The score to recieve when killing this actor
-        /// </summary>
-        public int score = 50;
 
         public float hurtTimer = 550.0f;
 

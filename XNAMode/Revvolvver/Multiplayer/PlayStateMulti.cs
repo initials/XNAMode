@@ -162,7 +162,11 @@ namespace Revvolvver
 
 			prefix = "OUYA.oel";
 
-			#endif
+            //FlxG.playMusic("Revvolvver/sfx/fullHeavyMetalJacket");
+
+			FlxG.playAndroidMusic ("music/heavyMetalJacket", 0.25f);
+
+            #endif
 
             List<Dictionary<string, string>> actorsAttrs = new List<Dictionary<string, string>>();
 			actorsAttrs = FlxXMLReader.readNodesFromOelFile("Revvolvver/level" + FlxG.level.ToString() + prefix, "level/Items");
@@ -383,9 +387,7 @@ namespace Revvolvver
             _objects.add(_player4);
 
 
-			//FlxG.playMusic("Revvolvver/sfx/fullHeavyMetalJacket");
-
-			FlxG.playAndroidMusic ("music/heavyMetalJacket", 0.25f);
+			
 
 
             FlxG.flash.start(Color.Black, 0.5f, null, false);

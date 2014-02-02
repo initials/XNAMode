@@ -68,7 +68,7 @@ namespace Revvolvver
             
 			//FlxG.playMusic(Music, 1.0f);
 
-			FlxG.playAndroidMusic("music/Intro", 0.5f);
+			
 
 			//if (FlxG.music.playing)
 			//    FlxG.music.stop();
@@ -91,9 +91,11 @@ namespace Revvolvver
 
 			#if __ANDROID__
 
+            FlxG.playAndroidMusic("music/Intro", 0.5f);
+
 			level = "Revvolvver/titlescreenOUYA.oel";
 
-			#endif
+#endif
 
             level = "Revvolvver/titlescreenOUYA.oel";
 
@@ -165,7 +167,7 @@ namespace Revvolvver
 			instruct = "Press O to begin the shootout";
 			#endif
 
-
+            instruct = "Press O to begin the shootout";
 
 			playersTextx = new FlxText(0, FlxG.height / 2 + 100, FlxG.width, instruct);
             playersTextx.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Center, new Color(0xff, 0x6e, 0x55));

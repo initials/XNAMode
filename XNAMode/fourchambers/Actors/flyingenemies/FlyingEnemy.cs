@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class FlyingEnemy : FlxSprite
+    class FlyingEnemy : BaseActor
     {
 
         /// <summary>
@@ -24,12 +24,7 @@ namespace FourChambers
 
         protected float speedOfWingFlapVelocity = -40;
 
-        /// <summary>
-        /// The score to recieve when killing this actor
-        /// </summary>
-        public int score = 50;
-
-
+        
         public FlyingEnemy(int xPos, int yPos)
             : base(xPos, yPos)
         {

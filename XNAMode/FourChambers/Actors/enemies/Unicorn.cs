@@ -17,6 +17,8 @@ namespace FourChambers
             : base(xPos, yPos)
         {
             actorName = "Fabulous Diamond Joe";
+            score = 250;
+            health = 5;
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/unicorn_ss_20x40"), true, false, 20, 40);
 
@@ -41,7 +43,7 @@ namespace FourChambers
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
             velocity.X = 32;
-            health = 5;
+            
             
         }
 

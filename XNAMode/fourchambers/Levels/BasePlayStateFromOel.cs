@@ -1086,7 +1086,11 @@ namespace FourChambers
                     comboInfo.x = e.Object1.x + 20;
                     comboInfo.y = e.Object1.y;
 
-                    comboInfo.text = "Combo: " + FourChambers_Globals.arrowCombo + "x";
+
+                    BaseActor zx = ((BaseActor)(e.Object1));
+                    //comboInfo.text = zx.actorName + " " + FourChambers_Globals.arrowCombo + "x" + zx.score.ToString() + "=" + (FourChambers_Globals.arrowCombo * zx.score).ToString();
+                    comboInfo.text = (FourChambers_Globals.arrowCombo * zx.score).ToString();
+                    
                     comboInfo.counter = 0;
 
 

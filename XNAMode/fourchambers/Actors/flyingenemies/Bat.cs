@@ -16,9 +16,9 @@ namespace FourChambers
         public Bat(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            //score = 100;
-
-            //actorName = "Bat";
+            score = 100;
+            health = 1;
+            actorName = "Bat";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/batParticles_12x12"), true, false, 12, 12);
 
@@ -47,9 +47,7 @@ namespace FourChambers
 
             play("fly");
 
-            health = 1;
 
-            score = 60;
 
         }
        

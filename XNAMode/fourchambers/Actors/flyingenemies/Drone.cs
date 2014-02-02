@@ -16,7 +16,10 @@ namespace FourChambers
             : base(xPos, yPos)
         {
 
-            //actorName = "Drone";
+            actorName = "Drone";
+            score = 25;
+
+
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/drone_ss_9x13"), true, false, 9, 13);
 
@@ -34,7 +37,7 @@ namespace FourChambers
 
             speedOfWingFlapVelocity = FlxU.random(-30.0f, -20.0f);
 
-            score = 25;
+            
         }
 
         override public void update()

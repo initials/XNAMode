@@ -10,23 +10,19 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Zinger : FlxSprite
+    class Zinger : BaseActor
     {
         protected float chanceOfWingFlap = 0.023f;
 
         protected float speedOfWingFlapVelocity = -40;
 
-        /// <summary>
-        /// The score to recieve when killing this actor
-        /// </summary>
-        public int score = 50;
-
-
         public Zinger(int xPos, int yPos)
             : base(xPos, yPos)
         {
 
-            //actorName = "Zinger";
+            actorName = "Zinger";
+            health = 1;
+            score = 100;
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/zinger_ss_12x14"), true, false, 12, 14);
 

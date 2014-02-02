@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Actor : FlxSprite
+    class Actor : BaseActor
     {
         // A bunch of helpers for the allActors sprite sheet.
 
@@ -111,10 +111,7 @@ namespace FourChambers
         public bool canClimbLadder = false;
         private bool isClimbingLadder = false;
 
-        /// <summary>
-        /// The score to recieve when killing this actor
-        /// </summary>
-        public int score = 50;
+
 
         /// <summary>
         /// Determines whether or not game inputs affect charactetr.
@@ -126,10 +123,7 @@ namespace FourChambers
         /// </summary>
         public const float DEADZONE = 0.5f;
         
-        /// <summary>
-        /// Character's name;
-        /// </summary>
-        public string actorName;
+
 
         public int runSpeed = 120;
 
