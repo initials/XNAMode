@@ -215,6 +215,15 @@ namespace Revvolvver
             FlxG._game.hud.p4HudText.y -= 20;
             FlxG._game.hud.p4HudText.color = p4Color;
 
+
+            if (Revvolvver_Globals.PLAYERS == 0)
+            {
+                _player1.startPlayingBack();
+                _player2.startPlayingBack();
+                _player3.startPlayingBack();
+                _player4.startPlayingBack();
+            }
+
             if (Revvolvver_Globals.PLAYERS == 1)
             {
                 _player2.startPlayingBack();

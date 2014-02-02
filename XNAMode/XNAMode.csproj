@@ -390,6 +390,9 @@
     <Content Include="Revvolvver\Level1_FourPlayerData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Revvolvver\Level1_OnePlayerData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Revvolvver\Level1_ThreePlayerData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

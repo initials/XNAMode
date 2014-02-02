@@ -281,6 +281,7 @@ namespace Revvolvver
                 return;
             }
 
+            if (Revvolvver_Globals.PLAYERS == 0) playersText.text = "<- Players: 0 ->";
             if (Revvolvver_Globals.PLAYERS == 1) playersText.text = "<- Players: 1 ->";
             if (Revvolvver_Globals.PLAYERS == 2) playersText.text = "<- Players: 2 ->";
             if (Revvolvver_Globals.PLAYERS == 3) playersText.text = "<- Players: 3 ->";
@@ -303,7 +304,11 @@ namespace Revvolvver
 
                     if (Revvolvver_Globals.PLAYERS >=5) Revvolvver_Globals.PLAYERS = 1;
                 }
+                if (FlxG.keys.justPressed(Keys.F8))
+                {
+                    Revvolvver_Globals.PLAYERS=0;
 
+                }
                 //if (FlxG.keys.justPressed(Keys.D1) || FlxG.keys.justPressed(Keys.F1) || FlxG.gamepads.isNewButtonPress(Buttons.A, PlayerIndex.One, out pi))
                 //{
                 //    // VOICE OVER: "One Player";
