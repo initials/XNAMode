@@ -221,6 +221,9 @@ namespace FourChambers
             velocity.Y = VelocityY;
             hasTouched = false;
             dead = false;
+
+            Console.WriteLine("Shooting Arrow " + FlxG.elapsedTotal);
+
         }
 
     }

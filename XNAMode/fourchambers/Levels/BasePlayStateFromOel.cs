@@ -598,6 +598,8 @@ namespace FourChambers
             music.Add(17, "FourChambers_FlutesMoody_DontLikeThi");
             music.Add(18, "FourChambers_MoodyExplorationLoop_ha");
             music.Add(19, "FourChambers_OffKilterLoop_haspercus");
+            music.Add(20, "FourChambers_OffKilterLoop_haspercus");
+            music.Add(21, "FourChambers_OffKilterLoop_haspercus");
 
             FlxG.playMusic("music/" + music[FlxG.level], 1.0f);
 
@@ -863,7 +865,13 @@ namespace FourChambers
         {
             FlxG.level = Level;
 
-            if (FlxG.level > 25) FlxG.level = 1;
+            if (FlxG.level > 21) 
+            { 
+                FlxG.level = 1;
+                FlxG.state = new GameSelectionMenuState();
+
+                return true;
+            }
             else if (FlxG.level < 1) FlxG.level = 10;
             FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
 
@@ -974,8 +982,11 @@ namespace FourChambers
             //Then collide custom objects.
             else if (e.Object1 is ZingerNest)
             {
-                FourChambers_Globals.arrowsHitTarget++;
-                FourChambers_Globals.arrowCombo++;
+                if (e.Object2 is Arrow)
+                {
+                    FourChambers_Globals.arrowsHitTarget++;
+                    FourChambers_Globals.arrowCombo++;
+                }
                 bigEx.x = e.Object1.x;
                 bigEx.y = e.Object1.y;
                 bigEx.play("explode", true);
@@ -1046,8 +1057,11 @@ namespace FourChambers
                     }
                 }
 
-                FourChambers_Globals.arrowsHitTarget++;
-                FourChambers_Globals.arrowCombo++;
+                if (e.Object2 is Arrow)
+                {
+                    FourChambers_Globals.arrowsHitTarget++;
+                    FourChambers_Globals.arrowCombo++;
+                }
                 e.Object1.velocity.X = e.Object2.velocity.X;
                 e.Object1.velocity.Y = e.Object2.velocity.Y;
 
@@ -1064,12 +1078,19 @@ namespace FourChambers
             // Now that it's a kill, spurt some blood and "hurt" both parties.
             else if (e.Object1.dead == false && e.Object2.dead == false)
             {
+                if (e.Object2 is Arrow)
+                {
+                    FourChambers_Globals.arrowsHitTarget++;
+                    FourChambers_Globals.arrowCombo++;
+
+                    comboInfo.x = e.Object1.x + 20;
+                    comboInfo.y = e.Object1.y;
+
+                    comboInfo.text = "Combo: " + FourChambers_Globals.arrowCombo + "x";
+                    comboInfo.counter = 0;
 
 
-
-                FourChambers_Globals.arrowsHitTarget++;
-                //e.Object1.velocity.X = e.Object2.velocity.X;
-                //e.Object1.velocity.Y = e.Object2.velocity.Y;
+                }
 
                 e.Object1.hurt(1);
 
@@ -1081,15 +1102,9 @@ namespace FourChambers
 
                 blood.start(true, 0, 10);
 
-                FourChambers_Globals.arrowCombo++;
+                
 
-                comboInfo.x = e.Object1.x+20;
-                comboInfo.y = e.Object1.y;
 
-                //EnemyActor dead = (EnemyActor)(e.Object1);
-
-                comboInfo.text = "Combo: " + FourChambers_Globals.arrowCombo + "x";
-                comboInfo.counter = 0;
 
 
             }

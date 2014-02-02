@@ -128,9 +128,7 @@ namespace FourChambers
         {
 
             acceleration.Y = FourChambers_Globals.GRAVITY;
-
-
-
+            
         }
         override public void hitSide(FlxObject Contact, float Velocity)
         {

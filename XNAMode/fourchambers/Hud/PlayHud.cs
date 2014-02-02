@@ -71,7 +71,7 @@ namespace FourChambers
             arrowsRemaining.text = "00";
             add(arrowsRemaining);
 
-            healthText = new FlxText(20, ypos - 5, 100);
+            healthText = new FlxText(30, ypos - 5, 100);
             healthText.setFormat(null, 2, Color.White, FlxJustification.Left, Color.Black);
             healthText.text = "00";
             add(healthText);

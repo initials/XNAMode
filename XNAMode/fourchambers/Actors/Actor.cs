@@ -501,6 +501,12 @@ namespace FourChambers
             base.hitSide( Contact,  Velocity);
         }
 
+        public override void hurt(float Damage)
+        {
+            flicker(2);
+
+            base.hurt(Damage);
+        }
 
         public override void kill()
         {

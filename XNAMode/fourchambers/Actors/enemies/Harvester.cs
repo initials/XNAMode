@@ -21,6 +21,7 @@ namespace FourChambers
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/harvester_ss_14x27"), true, false, 14, 27);
 
             addAnimation("run", new int[] { 2, 3, 4, 5, 6, 7 }, 12);
+            addAnimation("walk", new int[] { 2, 3, 4, 5, 6, 7 }, 8);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0,1,2 }, 18);
 

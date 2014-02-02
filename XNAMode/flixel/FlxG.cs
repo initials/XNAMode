@@ -97,6 +97,8 @@ namespace org.flixel
         ///  Represents the amount of time in seconds that passed since last frame.
         /// </summary>
         public static float elapsed = 0f;
+
+        public static float elapsedTotal = 0f;
         /// <summary>
         /// @benbaird compatibility with AS3's getTimer()
         /// </summary>
@@ -863,6 +865,7 @@ namespace org.flixel
             timeScale = 1.0f;
             maxElapsed = 0.0333f;
             FlxG.elapsed = 0;
+            FlxG.elapsedTotal = 0;
             showBounds = false;
 #if !WINDOWS_PHONE
             mobile = false;

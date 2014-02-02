@@ -88,7 +88,7 @@ namespace FourChambers
         }
         public override void kill()
         {
-            FlxG.score += score;
+            FlxG.score += score * FourChambers_Globals.arrowCombo;
 
             play("death");
             dead = true;

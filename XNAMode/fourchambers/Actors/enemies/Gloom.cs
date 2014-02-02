@@ -21,6 +21,7 @@ namespace FourChambers
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/Gloom_13x26"), true, false, 13, 26);
 
             addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5,6,7 }, 12);
+            addAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 8);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0, 1, 2 }, 12);
             addAnimation("death", new int[] { 8 }, 1, false);
