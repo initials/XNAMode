@@ -20,10 +20,14 @@ namespace FourChambers
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/executor_ss_21x21"), true, false, 21, 21);
 
-            addAnimation("run", new int[] { 1, 2, 3, 4, 5,6,7,8 }, 12);
+            addAnimation("run", new int[] { 1, 2, 3, 4, 5, 6, 7, 8 }, 12);
+            addAnimation("walk", new int[] { 1, 2, 3, 4, 5, 6, 7, 8 }, 8);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0, 1, 2 }, 12);
             addAnimation("death", new int[] { 9 }, 12, false);
+            addAnimation("jump", new int[] { 2, 3, 6, 7 }, 3, true);
+
+
 
             //bounding box tweaks
             width = 7;
@@ -33,8 +37,7 @@ namespace FourChambers
 
             //basic player physics
             int runSpeed = 60;
-            //drag.X = runSpeed * 4;
-            acceleration.Y = 820;
+            acceleration.Y = FourChambers_Globals.GRAVITY;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 

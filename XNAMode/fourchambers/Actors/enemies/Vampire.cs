@@ -40,9 +40,10 @@ namespace FourChambers
             int frameRate = (int)FlxU.random(10, 14);
 
             addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6 }, frameRate);
+            addAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6 }, 8);
             addAnimation("idle", new int[] { 0 }, frameRate);
             addAnimation("attack", new int[] { 0, 1, 2 }, frameRate);
-
+            addAnimation("death", new int[] { 7 }, 8, false);
             velocity.X = FlxU.random(30, 50) ;
 
             score = 10000;

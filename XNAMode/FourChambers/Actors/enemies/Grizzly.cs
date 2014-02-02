@@ -18,9 +18,9 @@ namespace FourChambers
 
             actorName = "Grizzly";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/allActors"), true, false, 26, 26);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/Grizzly_20x20"), true, false, 20, 20);
 
-            addAnimation("death", new int[] { 1 }, 1, false);
+            addAnimation("death", new int[] { 1,2,3,4 }, 6, false);
             addAnimation("idle", new int[] { 0 }, 12);
 
             //addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 12);

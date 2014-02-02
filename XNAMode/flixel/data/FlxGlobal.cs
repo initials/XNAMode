@@ -114,6 +114,8 @@ namespace org.flixel
         /// </summary>
         public static bool gif = false;
 
+        public static float health = 3;
+
         /// <summary>
         /// This is called at the beginning of every game. Reset all globals here.
         /// </summary>

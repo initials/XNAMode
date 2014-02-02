@@ -27,6 +27,8 @@ namespace FourChambers
 
         private Vector2 lastJoystickDirection;
 
+        
+
         public Marksman(int xPos, int yPos, List<FlxObject> Bullets)
             : base(xPos, yPos)
         {
@@ -47,7 +49,7 @@ namespace FourChambers
             addAnimation("climbidle", new int[] { 20 }, 0, true);
             addAnimation("death", new int[] { 22,23 }, 4, false);
 
-
+            
 
             //addAnimationCallback(stopAttacking);
 

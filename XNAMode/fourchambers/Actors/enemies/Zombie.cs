@@ -20,9 +20,11 @@ namespace FourChambers
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/zombie_ss_13x19"), true, false, 13, 19);
 
-            addAnimation("run", new int[] {0,1,2,3,4,5,6,7,8,9 }, 18);
+            addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 18);
+            addAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0, 1, 2 }, 12);
+            addAnimation("death", new int[] { 10, 11, 12, 13, 14, 15, 15, 15, 14, 13, 13, 14, 13, 14, 14, 13, 12, 13, 14, 15 }, 6, false);
 
             //bounding box tweaks
             width = 9;

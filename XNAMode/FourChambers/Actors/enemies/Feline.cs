@@ -18,7 +18,7 @@ namespace FourChambers
 
             actorName = "Feline";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/allActors"), true, false, 26, 26);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/Feline_20x20"), true, false, 20, 20);
 
             addAnimation("death", new int[] { 1 }, 1, false);
             addAnimation("idle", new int[] { 0 }, 12);

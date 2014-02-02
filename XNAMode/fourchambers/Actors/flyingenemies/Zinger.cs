@@ -31,7 +31,7 @@ namespace FourChambers
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/zinger_ss_12x14"), true, false, 12, 14);
 
             addAnimation("fly", new int[] { 0, 1 }, 30);
-            addAnimation("death", new int[] { 0 }, 0);
+            addAnimation("death", new int[] { 2,3,4 }, 8, false);
             play("fly");
 
             //bounding box tweaks

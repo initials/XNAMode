@@ -114,7 +114,6 @@
     <cow id="10" x="240" y="736" flip="False" />
     <deer id="11" x="160" y="736" flip="False" />
     <drone id="12" x="96" y="704" flip="False" />
-    <embersteed id="13" x="256" y="736" flip="False" />
     <executor id="14" x="144" y="736" flip="False" />
     <feline id="15" x="112" y="736" flip="False" />
     <gloom id="16" x="128" y="736" flip="False" />
@@ -126,7 +125,6 @@
     <lion id="22" x="336" y="736" flip="False" />
     <medusa id="23" x="352" y="736" flip="False" />
     <mummy id="24" x="368" y="736" flip="False" />
-    <nightmare id="25" x="400" y="736" flip="False" />
     <nymph id="26" x="432" y="736" flip="False" />
     <paladin id="27" x="464" y="736" flip="False" />
     <rat id="28" x="480" y="736" flip="False" />

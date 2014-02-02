@@ -20,6 +20,7 @@ namespace FourChambers
         /// </summary>
         public FlxText arrowsRemaining;
 
+        public FlxText healthText;
         /// <summary>
         /// Use score.text = "" to set the score.
         /// </summary>
@@ -70,19 +71,24 @@ namespace FourChambers
             arrowsRemaining.text = "00";
             add(arrowsRemaining);
 
+            healthText = new FlxText(20, ypos - 5, 100);
+            healthText.setFormat(null, 2, Color.White, FlxJustification.Left, Color.Black);
+            healthText.text = "00";
+            add(healthText);
+
             combo = new FlxText(140, ypos - 10, 100);
             combo.setFormat(null, 2, Color.White, FlxJustification.Left, Color.Black);
-            combo.text = "0x";
+            combo.text = "Combo: 0x";
             add(combo);
 
             score = new FlxText(320, ypos - 10, 100);
             score.setFormat(null, 2, Color.White, FlxJustification.Left, Color.Black);
-            score.text = "000000";
+            score.text = "Score: 000000";
             add(score);
 
-            nestsRemaining = new FlxText(10, ypos - 10, 100);
+            nestsRemaining = new FlxText(520, ypos - 10, 100);
             nestsRemaining.setFormat(null, 2, Color.White, FlxJustification.Left, Color.Black);
-            nestsRemaining.text = "00";
+            nestsRemaining.text = "Nests Remaining: 00";
             add(nestsRemaining);
 
             tweenScale = new Tweener(10, 1, TimeSpan.FromSeconds(1.0f), Linear.EaseOut);

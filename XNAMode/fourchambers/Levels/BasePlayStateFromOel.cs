@@ -111,7 +111,7 @@ namespace FourChambers
 
         private FlxEmitter specialFX;
 
-
+        private LevelBeginText comboInfo;
 
 
         #region Actors
@@ -599,7 +599,7 @@ namespace FourChambers
             music.Add(18, "FourChambers_MoodyExplorationLoop_ha");
             music.Add(19, "FourChambers_OffKilterLoop_haspercus");
 
-            //FlxG.playMusic("music/" + music[FlxG.level], 1.0f);
+            FlxG.playMusic("music/" + music[FlxG.level], 1.0f);
 
             // Exit the game and open up a webpage for buying the game, if it's a pirate copy.
             if (FourChambers_Globals.PIRATE_COPY && FlxG.level >= 4)
@@ -608,6 +608,17 @@ namespace FourChambers
                 
                 FlxG.Game.Exit();
             }
+
+            comboInfo = new LevelBeginText(-100, -100, 200);
+            comboInfo.setFormat(null, 1, Color.White, FlxJustification.Left, Color.Black);
+            comboInfo.scrollFactor.X = 1;
+            comboInfo.scrollFactor.Y = 1;
+            comboInfo.text = "Combo Info!";
+            add(comboInfo);
+
+            comboInfo.limit = 0.74f;
+            comboInfo.style = "up";
+
 
         }
 
@@ -678,14 +689,15 @@ namespace FourChambers
             localHud.combo.text = FourChambers_Globals.arrowCombo.ToString() + "x Combo";
             if (FourChambers_Globals.arrowCombo>5) localHud.combo.text += "!";
 
-            localHud.score.text = FlxG.score.ToString();
-            
+            localHud.score.text = "Score: " + FlxG.score.ToString();
+            localHud.healthText.text = playerControlledActors.members[0].health.ToString();
+
 
             if (marksman != null)
             {
                 localHud.setArrowsRemaining(marksman.arrowsRemaining);
 
-                localHud.nestsRemaining.text = actors.countLivingOfType("FourChambers.ZingerNest").ToString();
+                localHud.nestsRemaining.text = "Nests Remaining: " + actors.countLivingOfType("FourChambers.ZingerNest").ToString();
             }
             if (actors.countLivingOfType("FourChambers.ZingerNest") <= 0)
             {
@@ -731,7 +743,7 @@ namespace FourChambers
             if (timeOfDay > 239.99f) timeOfDay = 0.0f;
 
             //calculate time of day.
-            if (FourChambers_Globals.gif == false)
+            if (FourChambers_Globals.gif == false && FlxG.level >= 1)
             {
                 // color whole game.
                 FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, ((FlxG.level-1) * 10) + 5 ));
@@ -963,7 +975,7 @@ namespace FourChambers
             else if (e.Object1 is ZingerNest)
             {
                 FourChambers_Globals.arrowsHitTarget++;
-
+                FourChambers_Globals.arrowCombo++;
                 bigEx.x = e.Object1.x;
                 bigEx.y = e.Object1.y;
                 bigEx.play("explode", true);
@@ -985,6 +997,9 @@ namespace FourChambers
                     z.velocity.Y = FlxU.random(-20, 20);
                     z.angle = 0;
                     z.visible = true;
+                    z.acceleration.Y = 50;
+                    ((FlxSprite)(z)).play("fly");
+
                 }
                 // throw out a power up.
                 FlxObject p = powerUps.getFirstDead();
@@ -1031,8 +1046,8 @@ namespace FourChambers
                     }
                 }
 
-
                 FourChambers_Globals.arrowsHitTarget++;
+                FourChambers_Globals.arrowCombo++;
                 e.Object1.velocity.X = e.Object2.velocity.X;
                 e.Object1.velocity.Y = e.Object2.velocity.Y;
 
@@ -1049,6 +1064,9 @@ namespace FourChambers
             // Now that it's a kill, spurt some blood and "hurt" both parties.
             else if (e.Object1.dead == false && e.Object2.dead == false)
             {
+
+
+
                 FourChambers_Globals.arrowsHitTarget++;
                 //e.Object1.velocity.X = e.Object2.velocity.X;
                 //e.Object1.velocity.Y = e.Object2.velocity.Y;
@@ -1064,6 +1082,15 @@ namespace FourChambers
                 blood.start(true, 0, 10);
 
                 FourChambers_Globals.arrowCombo++;
+
+                comboInfo.x = e.Object1.x+20;
+                comboInfo.y = e.Object1.y;
+
+                //EnemyActor dead = (EnemyActor)(e.Object1);
+
+                comboInfo.text = "Combo: " + FourChambers_Globals.arrowCombo + "x";
+                comboInfo.counter = 0;
+
 
             }
 

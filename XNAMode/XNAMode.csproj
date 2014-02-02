@@ -199,7 +199,7 @@
     <Compile Include="FourChambers\Actors\flyingenemies\Drone.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Druid.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Dwarf.cs" />
-    <Compile Include="FourChambers\Actors\enemies\Embersteed.cs" />
+    <Compile Include="FourChambers\Actors\nonanimated\Embersteed.cs" />
     <Compile Include="FourChambers\Actors\enemies\Feline.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Floatingeye.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Fungant.cs" />
@@ -211,7 +211,7 @@
     <Compile Include="FourChambers\Actors\nonanimated\Gourmet.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Grimwarrior.cs" />
     <Compile Include="FourChambers\Actors\enemies\Grizzly.cs" />
-    <Compile Include="FourChambers\Actors\enemies\Horse.cs" />
+    <Compile Include="FourChambers\Actors\nonanimated\Horse.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Ifrit.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Imp.cs" />
     <Compile Include="FourChambers\Actors\enemies\Kerberos.cs" />
@@ -223,7 +223,7 @@
     <Compile Include="FourChambers\Actors\nonanimated\Mermaid.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Mimick.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Monk.cs" />
-    <Compile Include="FourChambers\Actors\enemies\Nightmare.cs" />
+    <Compile Include="FourChambers\Actors\nonanimated\Nightmare.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Ogre.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Phantom.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Priest.cs" />
@@ -396,6 +396,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Mode\ModeProject.oep">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ogmoLevels\level21.oel">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Revvolvver\level1.oel">

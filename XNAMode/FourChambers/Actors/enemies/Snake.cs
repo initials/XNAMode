@@ -18,11 +18,14 @@ namespace FourChambers
 
             actorName = "Snake";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/allActors"), true, false, 26, 26);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/Snake_20x20"), true, false, 20, 20);
 
             //addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 12);
-            addAnimation("idle", new int[] { FR_snake }, 0);
-            //addAnimation("attack", new int[] { 2, 4 }, 18);
+            addAnimation("idle", new int[] { 0 }, 0);
+            addAnimation("death", new int[] { 1 }, 4, false);
+
+
+
 
         }
 

@@ -20,7 +20,7 @@ namespace FourChambers
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/Deer_30x30"), true, false, 30, 30);
 
-            addAnimation("death", new int[] { 1 }, 0, false);
+            addAnimation("death", new int[] { 1,2 }, 6, false);
             addAnimation("idle", new int[] { 0 }, 12);
 
             //addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 12);

@@ -987,18 +987,18 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\Rat.png">
-      <Name>Rat</Name>
+    <Compile Include="fourchambers\Rat_20x20.png">
+      <Name>Rat_20x20</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\Snake.png">
-      <Name>Snake</Name>
+    <Compile Include="fourchambers\Snake_20x20.png">
+      <Name>Snake_20x20</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\Spider.png">
-      <Name>Spider</Name>
+    <Compile Include="fourchambers\Spider_20x20.png">
+      <Name>Spider_20x20</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1006,6 +1006,53 @@
       <Name>Wolf</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="music\FourChambers_ColdMoody.wav">
+      <Name>FourChambers_ColdMoody</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="music\FourChambers_Dramatic.wav">
+      <Name>FourChambers_Dramatic</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="music\FourChambers_FlutesMoody_DontLikeThi.wav">
+      <Name>FourChambers_FlutesMoody_DontLikeThi</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="music\FourChambers_MoodyExplorationLoop_ha.wav">
+      <Name>FourChambers_MoodyExplorationLoop_ha</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="music\FourChambers_OffKilterLoop_haspercus.wav">
+      <Name>FourChambers_OffKilterLoop_haspercus</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="music\FourChambers_ScaryInC#Major.wav">
+      <Name>FourChambers_ScaryInC#Major</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="music\FourCHambers_SlowedLoop.wav">
+      <Name>FourCHambers_SlowedLoop</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="music\FourChambers_WarmerMoreSynths.wav">
+      <Name>FourChambers_WarmerMoreSynths</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="music\FourChambers_WarmOrgansColdSynths_ha.wav">
+      <Name>FourChambers_WarmOrgansColdSynths_ha</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

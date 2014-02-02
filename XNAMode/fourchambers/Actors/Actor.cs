@@ -195,7 +195,7 @@ namespace FourChambers
             maxVelocity.Y = 1000;
 
             isPlayerControlled = false;
-
+            health = FourChambers_Globals.health;
         }
 
         public void stopAttacking(string Name, uint Frame, int FrameIndex)
@@ -442,6 +442,8 @@ namespace FourChambers
         {
             if (dead) timeDead += FlxG.elapsed;
             else timeDead = 0;
+
+            FourChambers_Globals.health = health;
 
             // Calculate how many frames since the player left the ground
 
