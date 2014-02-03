@@ -33,6 +33,8 @@ namespace FourChambers
         {
             score = 0;
             actorName="BaseActor";
+            acceleration.Y = FourChambers_Globals.GRAVITY;
+            
 
 
 

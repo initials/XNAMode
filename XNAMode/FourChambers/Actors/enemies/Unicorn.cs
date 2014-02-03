@@ -16,6 +16,7 @@ namespace FourChambers
         public Unicorn(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            // Set up the stats for this actor.
             actorName = "Fabulous Diamond Joe";
             score = 250;
             health = 5;
@@ -24,11 +25,10 @@ namespace FourChambers
             _jumpInitialPower = -110.0f;
             _jumpMaxTime = 0.15f;
             _jumpInitialTime = 0.045f;
+            maxVelocity.X = runSpeed * 4;
+            maxVelocity.Y = 1000;
 
-
-
-
-
+            // Load graphic and create animations.
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/unicorn_ss_20x40"), true, false, 20, 40);
 
             addAnimation("walk", new int[] { 2, 3, 4, 5, 6, 7, 8, 9 }, 10);
@@ -47,14 +47,6 @@ namespace FourChambers
             offset.X = 5;
             offset.Y = 20;
 
-            //basic player physics
-            
-            
-            acceleration.Y = FourChambers_Globals.GRAVITY;
-            maxVelocity.X = runSpeed;
-            maxVelocity.Y = 1000;
-            velocity.X = 32;
-            
             
         }
 
