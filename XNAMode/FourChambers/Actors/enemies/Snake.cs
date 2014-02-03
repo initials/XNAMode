@@ -16,7 +16,21 @@ namespace FourChambers
             : base(xPos, yPos)
         {
 
-            actorName = "Snake";
+            // Set up the stats for this actor.
+            actorName = "Cowan";
+            score = 150;
+            health = 2;
+            runSpeed = 120;
+            _jumpPower = -110.0f;
+            _jumpInitialPower = -110.0f;
+            _jumpMaxTime = 0.15f;
+            _jumpInitialTime = 0.045f;
+            maxVelocity.X = runSpeed * 4;
+            maxVelocity.Y = 1000;
+
+            // Load graphic and create animations.
+            // Required anims:
+            // walk, run, idle, attack, death, hurt, jump
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/Snake_20x20"), true, false, 20, 20);
 

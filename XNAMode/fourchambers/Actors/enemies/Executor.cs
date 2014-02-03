@@ -16,7 +16,22 @@ namespace FourChambers
         public Executor(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            actorName = "Executor";
+
+            // Set up the stats for this actor.
+            actorName = "Master Jaymes";
+            score = 250;
+            health = 5;
+            runSpeed = 120;
+            _jumpPower = -110.0f;
+            _jumpInitialPower = -110.0f;
+            _jumpMaxTime = 0.15f;
+            _jumpInitialTime = 0.045f;
+            maxVelocity.X = runSpeed * 4;
+            maxVelocity.Y = 1000;
+
+            // Load graphic and create animations.
+            // Required anims:
+            // walk, run, idle, attack, death, hurt, jump
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/executor_ss_21x21"), true, false, 21, 21);
 
@@ -27,23 +42,11 @@ namespace FourChambers
             addAnimation("death", new int[] { 9 }, 12, false);
             addAnimation("jump", new int[] { 2, 3, 6, 7 }, 3, true);
 
-
-
             //bounding box tweaks
             width = 7;
             height = 20;
             offset.X = 7;
             offset.Y = 1;
-
-            //basic player physics
-            int runSpeed = 60;
-            acceleration.Y = FourChambers_Globals.GRAVITY;
-            maxVelocity.X = runSpeed;
-            maxVelocity.Y = 1000;
-
-            velocity.X = FlxU.random(12, 22);
-
-            score = 150;
 
         }
 

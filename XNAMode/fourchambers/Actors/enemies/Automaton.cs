@@ -16,7 +16,20 @@ namespace FourChambers
             : base(xPos, yPos)
         {
 
-            actorName = "The Automaton";
+            actorName = "Automatic Gerry";
+            score = 250;
+            health = 2;
+            runSpeed = 120;
+            _jumpPower = -110.0f;
+            _jumpInitialPower = -110.0f;
+            _jumpMaxTime = 0.15f;
+            _jumpInitialTime = 0.045f;
+            maxVelocity.X = runSpeed * 4;
+            maxVelocity.Y = 1000;
+
+            // Load graphic and create animations.
+            // Required anims:
+            // walk, run, idle, attack, death, hurt, jump
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/automaton_ss_11x24"), true, false, 11, 24);
 
@@ -33,20 +46,6 @@ namespace FourChambers
             offset.X = 2;
             offset.Y = 4;
 
-            //basic player physics
-            int runSpeed = 30;
-            //drag.X = runSpeed * 4;
-            drag.X = 0;
-            acceleration.Y = 820;
-            maxVelocity.X = runSpeed;
-            maxVelocity.Y = 1000;
-
-
-            health = 1;
-
-            velocity.X = FlxU.random(30, 50);
-
-            score = 50;
         }
 
         override public void update()

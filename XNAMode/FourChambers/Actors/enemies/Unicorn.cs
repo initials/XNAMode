@@ -29,6 +29,8 @@ namespace FourChambers
             maxVelocity.Y = 1000;
 
             // Load graphic and create animations.
+            // Required anims:
+            // walk, run, idle, attack, death, hurt, jump
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/unicorn_ss_20x40"), true, false, 20, 40);
 
             addAnimation("walk", new int[] { 2, 3, 4, 5, 6, 7, 8, 9 }, 10);

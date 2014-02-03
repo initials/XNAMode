@@ -17,6 +17,19 @@ namespace FourChambers
         {
 
             actorName = "Scott The Rocks";
+            score = 250;
+            health = 1;
+            runSpeed = 120;
+            _jumpPower = -110.0f;
+            _jumpInitialPower = -110.0f;
+            _jumpMaxTime = 0.15f;
+            _jumpInitialTime = 0.045f;
+            maxVelocity.X = runSpeed * 4;
+            maxVelocity.Y = 1000;
+
+            // Load graphic and create animations.
+            // Required anims:
+            // walk, run, idle, attack, death, hurt, jump
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/artist_ss_20x20"), true, false, 20, 20);
 
@@ -31,12 +44,7 @@ namespace FourChambers
             offset.X = 2;
             offset.Y = 4;
 
-            //basic player physics
-            int runSpeed = 30;
-            drag.X = runSpeed * 4;
-            acceleration.Y = FourChambers_Globals.GRAVITY;
-            maxVelocity.X = runSpeed;
-            maxVelocity.Y = 1000;
+
 
         }
 

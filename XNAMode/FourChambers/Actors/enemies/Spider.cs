@@ -10,13 +10,27 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Spider : Actor
+    class Spider : EnemyActor
     {
         public Spider(int xPos, int yPos)
             : base(xPos, yPos)
         {
 
-            actorName = "Spider";
+            // Set up the stats for this actor.
+            actorName = "Tarantulatis";
+            score = 250;
+            health = 5;
+            runSpeed = 120;
+            _jumpPower = -110.0f;
+            _jumpInitialPower = -110.0f;
+            _jumpMaxTime = 0.15f;
+            _jumpInitialTime = 0.045f;
+            maxVelocity.X = runSpeed * 4;
+            maxVelocity.Y = 1000;
+
+            // Load graphic and create animations.
+            // Required anims:
+            // walk, run, idle, attack, death, hurt, jump
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/Spider_20x20"), true, false, 20, 20);
 
@@ -31,13 +45,6 @@ namespace FourChambers
             height = 20;
             offset.X = 3;
             offset.Y = 6;
-
-            //basic player physics
-            int runSpeed = 30;
-            drag.X = runSpeed * 4;
-            acceleration.Y = 820;
-            maxVelocity.X = runSpeed;
-            maxVelocity.Y = 1000;
 
         }
 

@@ -16,7 +16,22 @@ namespace FourChambers
         public Corsair(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            
+            // Set up the stats for this actor.
             actorName = "Sierra";
+            score = 250;
+            health = 5;
+            runSpeed = 120;
+            _jumpPower = -110.0f;
+            _jumpInitialPower = -110.0f;
+            _jumpMaxTime = 0.15f;
+            _jumpInitialTime = 0.045f;
+            maxVelocity.X = runSpeed * 4;
+            maxVelocity.Y = 1000;
+
+            // Load graphic and create animations.
+            // Required anims:
+            // walk, run, idle, attack, death, hurt, jump
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/corsair_18x21"), true, false, 18, 21);
 
@@ -33,16 +48,6 @@ namespace FourChambers
             height = 20;
             offset.X = 4;
             offset.Y = 1;
-
-            //basic player physics
-            int runSpeed = 120;
-            acceleration.Y = FourChambers_Globals.GRAVITY;
-            maxVelocity.X = runSpeed;
-            maxVelocity.Y = 1000;
-
-            velocity.X = FlxU.random(-50, 50);
-
-            score = 250;
 
         }
 

@@ -16,7 +16,21 @@ namespace FourChambers
         public Tormentor(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            // Set up the stats for this actor.
             actorName = "Eddie";
+            score = 250;
+            health = 5;
+            runSpeed = 120;
+            _jumpPower = -110.0f;
+            _jumpInitialPower = -110.0f;
+            _jumpMaxTime = 0.15f;
+            _jumpInitialTime = 0.045f;
+            maxVelocity.X = runSpeed * 4;
+            maxVelocity.Y = 1000;
+
+            // Load graphic and create animations.
+            // Required anims:
+            // walk, run, idle, attack, death, hurt, jump
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/tormentor_ss_13x24"), true, false, 13, 24);
 
@@ -29,17 +43,6 @@ namespace FourChambers
             height = 20;
             offset.X = 2;
             offset.Y = 4;
-
-            //basic player physics
-            int runSpeed = 120;
-            //drag.X = runSpeed * 4;
-            acceleration.Y = 820;
-            maxVelocity.X = runSpeed;
-            maxVelocity.Y = 1000;
-
-            velocity.X = FlxU.random(10, 50);
-
-            score = 500;
 
         }
 

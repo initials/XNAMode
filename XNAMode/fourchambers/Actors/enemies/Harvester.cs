@@ -16,7 +16,21 @@ namespace FourChambers
         public Harvester(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            actorName = "Death";
+            // Set up the stats for this actor.
+            actorName = "Creeping Death";
+            score = 50000;
+            health = 100;
+            runSpeed = 120;
+            _jumpPower = -110.0f;
+            _jumpInitialPower = -110.0f;
+            _jumpMaxTime = 0.15f;
+            _jumpInitialTime = 0.045f;
+            maxVelocity.X = runSpeed * 4;
+            maxVelocity.Y = 1000;
+
+            // Load graphic and create animations.
+            // Required anims:
+            // walk, run, idle, attack, death, hurt, jump
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/harvester_ss_14x27"), true, false, 14, 27);
 
@@ -31,16 +45,7 @@ namespace FourChambers
             offset.X = 3;
             offset.Y = 7;
 
-            //basic player physics
-            int runSpeed = 120;
-            //drag.X = runSpeed * 4;
-            acceleration.Y = 820;
-            maxVelocity.X = runSpeed;
-            maxVelocity.Y = 1000;
 
-            velocity.X = FlxU.random(11, 22);
-
-            score = 50000;
 
         }
 

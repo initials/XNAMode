@@ -16,7 +16,21 @@ namespace FourChambers
             : base(xPos, yPos)
         {
 
-            actorName = "Rat";
+            // Set up the stats for this actor.
+            actorName = "Walkman";
+            score = 50;
+            health = 1;
+            runSpeed = 120;
+            _jumpPower = -110.0f;
+            _jumpInitialPower = -110.0f;
+            _jumpMaxTime = 0.15f;
+            _jumpInitialTime = 0.045f;
+            maxVelocity.X = runSpeed * 4;
+            maxVelocity.Y = 1000;
+
+            // Load graphic and create animations.
+            // Required anims:
+            // walk, run, idle, attack, death, hurt, jump
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/allActors"), true, false, 26, 26);
 

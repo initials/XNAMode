@@ -16,49 +16,43 @@ namespace FourChambers
         public Vampire(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            
+            // Set up the stats for this actor.
             actorName = "Count Esperanza";
+            score = 250;
+            health = 5;
+            runSpeed = 120;
+            _jumpPower = -110.0f;
+            _jumpInitialPower = -110.0f;
+            _jumpMaxTime = 0.15f;
+            _jumpInitialTime = 0.045f;
+            maxVelocity.X = runSpeed * 4;
+            maxVelocity.Y = 1000;
+
+            // Load graphic and create animations.
+            // Required anims:
+            // walk, run, idle, attack, death, hurt, jump
 
             ImgVampire = FlxG.Content.Load<Texture2D>("fourchambers/vampire_ss_14x19");
 
             loadGraphic(ImgVampire, true, false, 14, 19);
+
+            addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6 }, 16);
+            addAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6 }, 8);
+            addAnimation("idle", new int[] { 0 }, 16);
+            addAnimation("attack", new int[] { 0, 1, 2 }, 16);
+            addAnimation("death", new int[] { 7 }, 8, false);
 
             //bounding box tweaks
             width = 6;
             height = 18;
             offset.X = 4;
             offset.Y = 1;
-
-            //basic player physics
-            //int runSpeed = 35;
-            //drag.X = runSpeed * 4;
-            acceleration.Y = FourChambers_Globals.GRAVITY;
-            //maxVelocity.X = runSpeed;
-            maxVelocity.Y = 1000;
-
-            //animations
-
-            int frameRate = (int)FlxU.random(10, 14);
-
-            addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6 }, frameRate);
-            addAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6 }, 8);
-            addAnimation("idle", new int[] { 0 }, frameRate);
-            addAnimation("attack", new int[] { 0, 1, 2 }, frameRate);
-            addAnimation("death", new int[] { 7 }, 8, false);
-            velocity.X = FlxU.random(30, 50) ;
-
-            score = 10000;
-
-
-
         }
 
         override public void update()
         {
-
-
-
             base.update();
-
         }
 
 

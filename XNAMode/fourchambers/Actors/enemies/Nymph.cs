@@ -16,7 +16,22 @@ namespace FourChambers
         public Nymph(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            
+            // Set up the stats for this actor.
             actorName = "Indi Pranesh";
+            score = 250;
+            health = 5;
+            runSpeed = 120;
+            _jumpPower = -110.0f;
+            _jumpInitialPower = -110.0f;
+            _jumpMaxTime = 0.15f;
+            _jumpInitialTime = 0.045f;
+            maxVelocity.X = runSpeed * 4;
+            maxVelocity.Y = 1000;
+
+            // Load graphic and create animations.
+            // Required anims:
+            // walk, run, idle, attack, death, hurt, jump
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/nymph_ss_35x30"), true, false, 35, 30);
 
@@ -30,17 +45,6 @@ namespace FourChambers
             height = 30;
             offset.X = 8;
             offset.Y = 0;
-
-            //basic player physics
-            int runSpeed = 120;
-            //drag.X = runSpeed * 4;
-            acceleration.Y = 820;
-            maxVelocity.X = runSpeed;
-            maxVelocity.Y = 1000;
-
-            velocity.X = FlxU.random(30, 50);
-
-            score = 225;
 
         }
 
