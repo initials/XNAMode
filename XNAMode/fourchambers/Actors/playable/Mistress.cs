@@ -13,9 +13,6 @@ namespace FourChambers
     class Mistress : EnemyActor
     {
         public FlxSprite whipHitBox;
-        public bool attackingJoystick;
-        public bool isPlayerControlled;
-        //public float hurtTimer;
 
         public Mistress(int xPos, int yPos)
             : base(xPos, yPos)

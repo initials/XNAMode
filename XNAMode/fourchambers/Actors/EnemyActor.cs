@@ -110,10 +110,29 @@ namespace FourChambers
 
 
 
-
+        public bool canClimbLadder = false;
+        private bool isClimbingLadder = false;
         public float hurtTimer = 550.0f;
-
         public bool readyForHarvester = false;
+        public bool isPlayerControlled = false;
+        public const float DEADZONE = 0.5f;
+        public int runSpeed = 120;
+        public bool attackingMouse = false;
+        public bool attackingJoystick = false;
+        public bool attackingMelee = false;
+        //public float timeDead;
+        private float _jump = 0.0f;
+
+        public float _jumpPower = -180.0f;
+        public float _jumpInitialPower = -140.0f;
+        public float _jumpMaxTime = 0.25f;
+        public float _jumpInitialTime = 0.065f;
+
+        public float framesSinceLeftGround;
+        public float ladderPosX = 0;
+        public string lastAttack = "range";
+
+
 
         public EnemyActor(int xPos, int yPos)
             : base(xPos, yPos)
@@ -121,6 +140,8 @@ namespace FourChambers
 
             acceleration.Y = FourChambers_Globals.GRAVITY;
             
+
+
         }
         override public void hitSide(FlxObject Contact, float Velocity)
         {
@@ -153,6 +174,10 @@ namespace FourChambers
             {
                 play("death");
             }
+            else if (attackingMouse || attackingJoystick)
+            {
+                play("attack");
+            }
             else if (velocity.Y != 0)
             {
                 play("jump");
@@ -173,6 +198,16 @@ namespace FourChambers
             {
                 play("idle");
             }
+
+
+            if (isPlayerControlled)
+            {
+                drag.X = runSpeed * 4;
+                updateInputs();
+            }
+
+
+
 
             base.update();
 
@@ -204,5 +239,187 @@ namespace FourChambers
 
             acceleration.X = 0;
         }
+
+        public override void hitBottom(FlxObject Contact, float Velocity)
+        {
+            _jump = 0.0f;
+            isClimbingLadder = false;
+            base.hitBottom(Contact, Velocity);
+        }
+
+        public void updateInputs()
+        {
+            PlayerIndex pi;
+
+
+            // Running pushes walk speed higher.
+            if (FlxG.gamepads.isButtonDown(Buttons.RightTrigger, FlxG.controllingPlayer, out pi))
+            {
+                lastAttack = "range";
+                maxVelocity.X = runSpeed * 2;
+                attackingMelee = false;
+            }
+            else
+            {
+                maxVelocity.X = runSpeed;
+
+            }
+
+            //
+            acceleration.X = 0;
+
+            // Walking left.
+            if ((FlxG.keys.A || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadLeft)) && !isClimbingLadder)
+            {
+                lastAttack = "range";
+                attackingJoystick = false;
+                attackingMouse = false;
+                facing = Flx2DFacing.Left;
+                acceleration.X -= runSpeed;
+                attackingMelee = false;
+            }
+            //Walking right.
+            else if ((FlxG.keys.D || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadRight)) && !isClimbingLadder)
+            {
+                lastAttack = "range";
+                attackingJoystick = false;
+                attackingMouse = false;
+                facing = Flx2DFacing.Right;
+                acceleration.X += runSpeed;
+                attackingMelee = false;
+            }
+
+            // ladders
+            if ((FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadUp)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
+            {
+                lastAttack = "range";
+                x = ladderPosX + width;
+
+                velocity.Y = -100;
+                isClimbingLadder = true;
+                attackingMelee = false;
+
+                // on a ladder, snap to nearest 16
+            }
+            else if ((FlxG.keys.S || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadDown)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
+            {
+                lastAttack = "range";
+                x = ladderPosX + width;
+
+                velocity.Y = 100;
+                isClimbingLadder = true;
+                attackingMelee = false;
+            }
+            else
+            {
+                //isClimbingLadder = false;
+            }
+
+            // Jumping.
+            if ((_jump >= 0 || framesSinceLeftGround < 10 || isClimbingLadder) && (FlxG.keys.SPACE || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi)))
+            {
+                lastAttack = "range";
+                if (framesSinceLeftGround < 10)
+                {
+                    _jump = 0.0f;
+                    framesSinceLeftGround = 10000;
+                }
+                if (isClimbingLadder)
+                {
+                    _jump = 0.0f;
+                    isClimbingLadder = false;
+                }
+
+                attackingJoystick = false;
+                attackingMouse = false;
+                attackingMelee = false;
+
+                _jump += FlxG.elapsed;
+                if (_jump > _jumpMaxTime) _jump = -1;
+            }
+            else
+            {
+                _jump = -1;
+            }
+            if (_jump > 0)
+            {
+                if (_jump < _jumpInitialTime)
+                    velocity.Y = _jumpInitialPower;
+                else
+                    velocity.Y = _jumpPower;
+            }
+
+            //Console.WriteLine("jump= " + _jump + " " + canClimbLadder);
+
+            // Attacking
+            if (FlxG.keys.justPressed(Keys.M))
+            {
+                lastAttack = "range";
+
+                attackingMouse = true;
+                attackingMelee = false;
+            }
+            if (FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder, FlxG.controllingPlayer, out pi))
+            {
+                lastAttack = "range";
+
+                attackingJoystick = true;
+                attackingMelee = false;
+            }
+
+
+            //FlxG.gamepads.isButtonDown(Buttons.X, PlayerIndex.One, out pi)
+
+            if ((GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X > DEADZONE ||
+                GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y > DEADZONE ||
+                GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X < DEADZONE * -1.0f ||
+                GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y < DEADZONE * -1.0f) &&
+
+                FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder)
+
+                )
+            {
+                lastAttack = "range";
+                attackingJoystick = true;
+                attackingMelee = false;
+            }
+
+            // Attacking using mouse.
+            if (FlxG.mouse.justPressedLeftButton())
+            {
+                lastAttack = "range";
+                attackingMouse = true;
+                attackingMelee = false;
+            }
+
+
+
+            if (FlxG.keys.P || FlxG.gamepads.isButtonDown(Buttons.X, FlxG.controllingPlayer, out pi) || FlxG.mouse.pressedRightButton())
+            {
+                lastAttack = "melee";
+                attackingMelee = true;
+            }
+
+
+            if (FlxG.keys.C)
+            {
+                lastAttack = "range";
+                attackingMouse = true;
+                attackingMelee = false;
+            }
+
+            // update direction based on attacking direction.
+            if (FlxG.gamepads.isButtonDown(Buttons.RightThumbstickLeft, FlxG.controllingPlayer, out pi))
+            {
+                facing = Flx2DFacing.Left;
+            }
+            if (FlxG.gamepads.isButtonDown(Buttons.RightThumbstickRight, FlxG.controllingPlayer, out pi))
+            {
+                facing = Flx2DFacing.Right;
+            }
+            
+        }
+
+
     }
 }

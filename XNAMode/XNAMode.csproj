@@ -286,6 +286,7 @@
     <Compile Include="TestStates\PathTestState.cs" />
     <Compile Include="TestStates\RotateState.cs" />
     <Compile Include="TestStates\VCRState.cs" />
+    <Compile Include="TestStates\VCRStateLegacy.cs" />
     <Compile Include="XNATweener\Back.cs" />
     <Compile Include="XNATweener\Bounce.cs" />
     <Compile Include="XNATweener\Circular.cs" />

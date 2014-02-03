@@ -19,6 +19,15 @@ namespace FourChambers
             actorName = "Fabulous Diamond Joe";
             score = 250;
             health = 5;
+            runSpeed = 120;
+            _jumpPower = -110.0f;
+            _jumpInitialPower = -110.0f;
+            _jumpMaxTime = 0.15f;
+            _jumpInitialTime = 0.045f;
+
+
+
+
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/unicorn_ss_20x40"), true, false, 20, 40);
 
@@ -28,6 +37,8 @@ namespace FourChambers
             addAnimation("attack", new int[] { 0 }, 12);
             addAnimation("death", new int[] { 10, 11, 12, 13, 14, 14, 14, 14, 14, 14, 13, 14, 11, 12, 13, 14, 14, 14, 14, 14, 14, 13, 14, 15, 15, 14, 14, 15, 15, 14, 14, 15, 15, 14, 14, 15, 14, 15, 14, 15, 14, 15, 14, 15, 16 }, 12, false);
             addAnimation("hurt", new int[] { 17, 1,0,0 }, 8);
+            addAnimation("jump", new int[] { 17, 2,3,4 }, 8,false);
+            
             addAnimationCallback(finishedHurt);
 
             //bounding box tweaks
@@ -37,8 +48,8 @@ namespace FourChambers
             offset.Y = 20;
 
             //basic player physics
-            int runSpeed = 120;
-            drag.X = 0;
+            
+            
             acceleration.Y = FourChambers_Globals.GRAVITY;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
