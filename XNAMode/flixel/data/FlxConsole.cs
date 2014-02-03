@@ -42,7 +42,7 @@ namespace org.flixel
         Color notActionSafeColor = new Color(255, 0, 0, 23); // Red, 50% opacity
         Color notTitleSafeColor = new Color(255, 255, 0, 23); // Yellow, 50% opacity
 
-
+        private FlxRecord vcr;
 
 
         /// <summary>
@@ -91,6 +91,7 @@ namespace org.flixel
 
             MAX_CONSOLE_LINES = (FlxG.spriteBatch.GraphicsDevice.Viewport.Height / (int)(_consoleText.font.MeasureString("Qq").Y)) - 1;
 
+            vcr = new FlxRecord();
 
 
 
@@ -201,6 +202,7 @@ namespace org.flixel
             _consoleText.render(spriteBatch);
             _consoleFPS.render(spriteBatch);
             _consoleCommand.render(spriteBatch);
+            vcr.render(spriteBatch);
 
 
 

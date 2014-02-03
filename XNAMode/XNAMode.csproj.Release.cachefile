@@ -177,6 +177,14 @@ Content\fourchambers\Rat_20x20.xnb
 Content\fourchambers\Snake_20x20.xnb
 Content\fourchambers\Spider_20x20.xnb
 Content\fourchambers\Wolf.xnb
+Content\flixel\vcr\open.xnb
+Content\flixel\vcr\pause.xnb
+Content\flixel\vcr\play.xnb
+Content\flixel\vcr\record_off.xnb
+Content\flixel\vcr\record_on.xnb
+Content\flixel\vcr\restart.xnb
+Content\flixel\vcr\step.xnb
+Content\flixel\vcr\stop.xnb
 Content\mode\button.wma
 Revvolvver\Level1_FourPlayerData.txt
 Revvolvver\Level1_OnePlayerData.txt
