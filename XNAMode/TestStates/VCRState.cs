@@ -809,6 +809,7 @@ namespace FourChambers
                 {
 
                     paladin = new Paladin(x, y);
+                    paladin.isPlayerControlled = true;
                     actors.add(paladin);
                 }
             }
@@ -1030,6 +1031,7 @@ namespace FourChambers
                 {
 
                     vampire = new Vampire(x, y);
+                    vampire.isPlayerControlled = true;
                     actors.add(vampire);
                 }
             }

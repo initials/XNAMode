@@ -21,11 +21,11 @@ namespace FourChambers
             actorName = "Count Esperanza";
             score = 250;
             health = 5;
-            runSpeed = 120;
-            _jumpPower = -110.0f;
-            _jumpInitialPower = -110.0f;
-            _jumpMaxTime = 0.15f;
-            _jumpInitialTime = 0.045f;
+            runSpeed = 40;
+            _jumpPower = -210.0f;
+            _jumpInitialPower = -310.0f;
+            _jumpMaxTime = 0.25f;
+            _jumpInitialTime = 0.095f;
             maxVelocity.X = runSpeed * 4;
             maxVelocity.Y = 1000;
 

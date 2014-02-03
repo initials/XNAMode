@@ -28,7 +28,7 @@ namespace FourChambers
         override public void update()
         {
 
-
+            acceleration.Y = 0;
 
             base.update();
 

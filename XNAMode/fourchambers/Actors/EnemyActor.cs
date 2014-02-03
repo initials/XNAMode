@@ -202,7 +202,7 @@ namespace FourChambers
 
             if (isPlayerControlled)
             {
-                drag.X = runSpeed * 4;
+                drag.X = runSpeed * 10;
                 updateInputs();
             }
 
