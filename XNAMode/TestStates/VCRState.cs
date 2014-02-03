@@ -101,7 +101,7 @@ namespace FourChambers
         private Zombie zombie;
         #endregion
         //Mistress miss;
-        Paladin p;
+        //Paladin p;
         private FlxSprite collider;
         FlxGroup actors;
 

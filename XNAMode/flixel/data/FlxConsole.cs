@@ -146,6 +146,8 @@ namespace org.flixel
             {
                 keyboardEntry();
 
+                vcr.update();
+
                 //_FPS[_curFPS] = (int)(1f / FlxG.elapsed);
                 //if (++_curFPS >= _FPS.Length) _curFPS = 0;
                 //_fpsUpdate = !_fpsUpdate;

@@ -38,7 +38,7 @@ namespace org.flixel
     /// <summary>
     /// The main "game object" class, handles basic physics and animation.
     /// </summary>
-    public class FlxRecord : FlxGroup
+    public class FlxRecord : FlxObject
     {
 
         private List<bool[]> _history = new List<bool[]>();
@@ -48,41 +48,120 @@ namespace org.flixel
         public PlayerIndex? controller;
 
 
-        private FlxButton openBtn;
-        private FlxButton pauseBtn;
-        private FlxButton playBtn;
-        private FlxButton recordBtn;
-        private FlxButton restartBtn;
-        private FlxButton stepBtn;
-        private FlxButton stopBtn;
+        private FlxSprite openSprite;
+        private FlxSprite pauseSprite;
+        private FlxSprite playSprite;
+        private FlxSprite recordSprite;
+        private FlxSprite restartSprite;
+        //private FlxSprite stepSprite;
+        private FlxSprite stopSprite;
+
+        private FlxGroup vcrGroup;
 
         private FlxText infoText;
 
+        public string filename;
+
         public FlxRecord()
         {
-            openBtn = new FlxButton(110, 110, openRecording);
-            openBtn.scrollFactor.X = 0;
-            openBtn.scrollFactor.Y = 0;
-            openBtn.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/open"), false, false, 11, 11), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/open"), false, false, 11, 11));
+            vcrGroup = new FlxGroup();
+            
+            
+            // Customizable things
+            filename = "File";
+            controller = PlayerIndex.One;
 
-            pauseBtn = new FlxButton(110, 130, pause);
-            pauseBtn.scrollFactor.X = 1;
-            pauseBtn.scrollFactor.Y = 1;
-            pauseBtn.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/pause"), false, false, 11, 11), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/pause"), false, false, 11, 11));
-            pauseBtn.x = 100;
 
+            //int xPos = 150;
+            int yPos = 30;
+            
+
+            openSprite = new FlxSprite(130, yPos);
+            openSprite.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/open"));
+            openSprite.setScrollFactors(0, 0);
+            openSprite.debugName = "open";
+            vcrGroup.add(openSprite);
+
+
+            pauseSprite = new FlxSprite(170, yPos);
+            pauseSprite.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/pause"));
+            pauseSprite.setScrollFactors(0, 0);
+            pauseSprite.debugName = "pause";
+            vcrGroup.add(pauseSprite);
+
+            playSprite = new FlxSprite(210, yPos);
+            playSprite.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/play"));
+            playSprite.setScrollFactors(0, 0);
+            playSprite.debugName = "play";
+            vcrGroup.add(playSprite);
+
+            recordSprite = new FlxSprite(250, yPos);
+            recordSprite.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/record_off"));
+            recordSprite.setScrollFactors(0, 0);
+            recordSprite.debugName = "record";
+            vcrGroup.add(recordSprite);
+
+            restartSprite = new FlxSprite(290, yPos);
+            restartSprite.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/restart"));
+            restartSprite.setScrollFactors(0, 0);
+            restartSprite.debugName = "restart";
+            vcrGroup.add(restartSprite);
+
+            stopSprite = new FlxSprite(330, yPos);
+            stopSprite.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/stop"));
+            stopSprite.setScrollFactors(0, 0);
+            stopSprite.debugName = "stop";
+            vcrGroup.add(stopSprite);
 
         }
 
         public override void render(SpriteBatch spriteBatch)
         {
-            openBtn.render(spriteBatch);
-            pauseBtn.render(spriteBatch);
+            openSprite.render(spriteBatch);
+            pauseSprite.render(spriteBatch);
+            playSprite.render(spriteBatch);
+            recordSprite.render(spriteBatch);
+            restartSprite.render(spriteBatch);
+            stopSprite.render(spriteBatch);
+
             base.render(spriteBatch);
         }
+
+        virtual public bool customOverlapsPoint(float X, float Y, FlxObject _point)
+        {
+            if ((X <= _point.x) || (X >= _point.x + _point.width ) || (Y <= _point.y) || (Y >= _point.y + _point.height))
+                return false;
+            return true;
+        }
+
         
         public override void update()
         {
+
+            foreach (FlxSprite item in vcrGroup.members)
+            {
+                if (customOverlapsPoint(FlxG.mouse.screenX, FlxG.mouse.screenY, item))
+                {
+                    if (FlxG.mouse.justPressed())
+                    {
+                        item.alpha = 1.0f;
+
+                        vcrAction(item.debugName);
+                        //FlxG.log(FlxG.mouse.screenX + " " + FlxG.mouse.screenY + " " + pauseSprite.x + " " + pauseSprite.y);
+                    }
+                    else
+                    {
+                        item.alpha = 0.75f;
+                    }
+                }
+                else
+                {
+                    item.alpha = 0.25f;
+                }
+
+
+            }
+
             PlayerIndex pi;
 
             if (_rec == Recording.RecordingController)
@@ -106,7 +185,20 @@ namespace org.flixel
 
             }
 
+            base.update();
+
         }
+
+        public void vcrAction(string Action)
+        {
+            Console.WriteLine(Action);
+
+            if (Action == "stop") saveRecording();
+            else if (Action == "record") _rec = Recording.RecordingController;
+
+
+        }
+
         public void pause()
         {
 
@@ -126,9 +218,10 @@ namespace org.flixel
                     item[4].ToString() + "," + item[5].ToString() + "," + item[6].ToString() + "," + item[7].ToString() + "," +
                     item[8].ToString() + "," + item[9].ToString() + "," + item[10].ToString() + "," + item[11].ToString() + "\n";
             }
+            
+            FlxU.saveToDevice(_historyString, (filename + "_" + DateTime.Now.Ticks.ToString() + ".txt"));
 
-            FlxU.saveToDevice(_historyString, ("Revvolvver/Level" + FlxG.level.ToString() + "_" + controller.ToString() + "PlayerData.txt"));
-
+            _rec = Recording.None;
 
         }
     }

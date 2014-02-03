@@ -168,7 +168,7 @@ namespace org.flixel
         /// </summary>
         /// <param name="X">The initial X position of the sprite.</param>
         /// <param name="Y">The initial Y position of the sprite.</param>
-        /// <param name="SimpleGraphic">The graphic you want to display (OPTIONAL - for simple stuff only, do NOT use for animated images!).</param>
+        /// <param name="SimpleGraphic">The graphic you want to display (OPTIONAL - for simple stuff only, do NOT use for animated images!). FlxG.Content.Load<Texture2D>("Revvolvver/bgLarge")</param>
         public FlxSprite(float X, float Y, Texture2D SimpleGraphic)
         {
             // call our constructor
@@ -224,7 +224,7 @@ namespace org.flixel
         /// <summary>
         /// Load an image from an embedded graphic file.
         /// </summary>
-        /// <param name="Graphic">The image you want to use. </param>
+        /// <param name="Graphic">The image you want to use. FlxG.Content.Load<Texture2D>("Revvolvver/bgLarge")</param>
         /// <returns>This FlxSprite instance (nice for chaining stuff together, if you're into that).</returns>
         public virtual FlxSprite loadGraphic(Texture2D Graphic)
         {
@@ -233,7 +233,7 @@ namespace org.flixel
         /// <summary>
         /// Load an image from an embedded graphic file.
         /// </summary>
-        /// <param name="Graphic">The image you want to use.</param>
+        /// <param name="Graphic">The image you want to use. FlxG.Content.Load<Texture2D>("Revvolvver/bgLarge")</param>
         /// <param name="Animated">Whether the Graphic parameter is a single sprite or a row of sprites.</param>
         /// <returns>This FlxSprite instance (nice for chaining stuff together, if you're into that).</returns>
         public virtual FlxSprite loadGraphic(Texture2D Graphic, bool Animated)
@@ -243,7 +243,7 @@ namespace org.flixel
         /// <summary>
         /// Load an image from an embedded graphic file.
         /// </summary>
-        /// <param name="Graphic">The image you want to use.</param>
+        /// <param name="Graphic">The image you want to use. FlxG.Content.Load<Texture2D>("Revvolvver/bgLarge")</param>
         /// <param name="Animated">Whether the Graphic parameter is a single sprite or a row of sprites.</param>
         /// <param name="Reverse">Whether you need this class to generate horizontally flipped versions of the animation frames.</param>
         /// <param name="Width">OPTIONAL - Specify the width of your sprite (helps FlxSprite figure out what to do with non-square sprites or sprite sheets).</param>
@@ -256,7 +256,7 @@ namespace org.flixel
         /// Load an image from an embedded graphic file.
         /// <para>Load in this fashion : FlxG.Content.Load<Texture2D>("initials/autotiles_16x16")</para>
         /// </summary>
-        /// <param name="Graphic">The image you want to use.</param>
+        /// <param name="Graphic">The image you want to use. FlxG.Content.Load<Texture2D>("Revvolvver/bgLarge")</param>
         /// <param name="Animated">Whether the Graphic parameter is a single sprite or a row of sprites.</param>
         /// <param name="Reverse">Whether you need this class to generate horizontally flipped versions of the animation frames.</param>
         /// <param name="Width">OPTIONAL - Specify the width of your sprite (helps FlxSprite figure out what to do with non-square sprites or sprite sheets).</param>
@@ -313,6 +313,17 @@ namespace org.flixel
 			resetHelpers();
 			return this;
 		}
+
+        /// <summary>
+        /// Convience method to set scrollfactors in one hit.
+        /// </summary>
+        /// <param name="xScroll">X value of the scroll factor.</param>
+        /// <param name="yScroll">Y value of the scroll factor.</param>
+        public void setScrollFactors(float xScroll, float yScroll)
+        {
+            scrollFactor.X = xScroll;
+            scrollFactor.Y = xScroll;
+        }
 
 		/// <summary>
         /// Resets some important variables for sprite optimization and rendering.

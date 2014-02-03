@@ -189,6 +189,10 @@ namespace org.flixel
             cursor.x = x;
             cursor.y = y;
 
+            screenX = _curMouse.X;
+            screenY = _curMouse.Y;
+
+
             if (_mouseEvent != null)
             {
                 if (justPressed())
