@@ -22,6 +22,12 @@ namespace FourChambers
         /// </summary>
         public int score;
 
+        /// <summary>
+        /// Location of the file that holds the attack data.
+        /// </summary>
+        public string playbackFile = "FourChambers/ActorRecording/mistress_Attack.txt";
+
+
         
         /// <summary>
         /// The base for Actors. Should remain pretty empty.

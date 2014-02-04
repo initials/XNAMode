@@ -1159,7 +1159,9 @@ namespace FourChambers
             }
             if (command == "mistress")
             {
-                mistress.mode = "attack";
+                mistress.startPlayingBack();
+
+                //mistress.mode = "attack";
             }
             else
             {

@@ -281,6 +281,11 @@ namespace FourChambers
             }
         }
 
+        public void startPlayingBack()
+        {
+            startPlayingBack(playbackFile);
+        }
+
         public void startPlayingBack(string Filename)
         {
             _history = new List<bool[]>();
