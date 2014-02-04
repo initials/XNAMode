@@ -352,6 +352,12 @@ namespace org.flixel
             }
         }
 
+        public static void setConsoleInfo(string Filename, PlayerIndex pi)
+        {
+            _game._console.vcr.filename = Filename;
+            _game._console.vcr.controller = pi;
+
+        }
         /// <summary>
         /// Move the Hud text around for players 1-4
         /// </summary>

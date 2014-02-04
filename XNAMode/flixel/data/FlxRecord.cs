@@ -7,33 +7,7 @@ using org.flixel;
 
 namespace org.flixel
 {
-    /// <summary>
-    /// Recording style.
-    /// </summary>
-    public enum Recording
-    {
-        None = 0,
-        RecordingController = 1,
-        RecordingPosition = 2,
-        Playback = 3,
-        PlaybackReverse = 4
-    }
 
-    public enum ButtonMap
-    {
-        Up = 0,
-        Right = 1,
-        Down = 2,
-        Left = 3,
-        A = 4,
-        B = 5,
-        X = 6,
-        Y = 7,
-        LeftShoulder = 8,
-        LeftTrigger = 9,
-        RightShoulder = 10,
-        RightTrigger = 11
-    }
 
     /// <summary>
     /// The main "game object" class, handles basic physics and animation.
@@ -42,11 +16,10 @@ namespace org.flixel
     {
 
         private List<bool[]> _history = new List<bool[]>();
-
+        /// <summary>
+        /// State of recording, whether playback or recording etc
+        /// </summary>
         private Recording _rec = Recording.None;
-
-        public PlayerIndex? controller;
-
 
         private FlxSprite openSprite;
         private FlxSprite pauseSprite;
@@ -60,7 +33,39 @@ namespace org.flixel
 
         private FlxText infoText;
 
+
+
         public string filename;
+        public PlayerIndex? controller;
+
+        /// <summary>
+        /// Recording style.
+        /// </summary>
+        public enum Recording
+        {
+            None = 0,
+            RecordingController = 1,
+            RecordingPosition = 2,
+            Playback = 3,
+            PlaybackReverse = 4
+        }
+
+        public enum ButtonMap
+        {
+            Up = 0,
+            Right = 1,
+            Down = 2,
+            Left = 3,
+            A = 4,
+            B = 5,
+            X = 6,
+            Y = 7,
+            LeftShoulder = 8,
+            LeftTrigger = 9,
+            RightShoulder = 10,
+            RightTrigger = 11
+        }
+
 
         public FlxRecord()
         {
@@ -96,7 +101,7 @@ namespace org.flixel
             vcrGroup.add(playSprite);
 
             recordSprite = new FlxSprite(250, yPos);
-            recordSprite.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/record_off"));
+            recordSprite.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/record_on"));
             recordSprite.setScrollFactors(0, 0);
             recordSprite.debugName = "record";
             vcrGroup.add(recordSprite);
@@ -113,6 +118,9 @@ namespace org.flixel
             stopSprite.debugName = "stop";
             vcrGroup.add(stopSprite);
 
+            infoText = new FlxText(360, yPos, FlxG.width);
+
+
         }
 
         public override void render(SpriteBatch spriteBatch)
@@ -123,6 +131,7 @@ namespace org.flixel
             recordSprite.render(spriteBatch);
             restartSprite.render(spriteBatch);
             stopSprite.render(spriteBatch);
+            infoText.render(spriteBatch);
 
             base.render(spriteBatch);
         }
@@ -193,9 +202,22 @@ namespace org.flixel
         {
             Console.WriteLine(Action);
 
-            if (Action == "stop") saveRecording();
-            else if (Action == "record") _rec = Recording.RecordingController;
+            if (Action == "stop") 
+            {
+                saveRecording();
 
+                //Flush history.
+                _history = null;
+                _history = new List<bool[]>();
+
+                infoText.text = "Stopped: " + filename + ".txt";
+            }
+
+            else if (Action == "record")
+            {
+                infoText.text = "Recording: " + filename + ".txt";
+                _rec = Recording.RecordingController;
+            }
 
         }
 

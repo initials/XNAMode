@@ -84,7 +84,7 @@ namespace XNAMode
             if (FlxG.keys.SEVEN)
             {
                 FlxG.state = new FourChambers.VCRState();
-                FlxG.hideHud();
+                
             }
             if (FlxG.keys.EIGHT)
             {

@@ -124,7 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="flixel\FlxRecord.cs" />
+    <Compile Include="flixel\data\FlxRecord.cs" />
     <Compile Include="FourChambers\Actors\BaseActor.cs" />
     <Compile Include="Revvolvver\Bomb.cs" />
     <Compile Include="Revvolvver\Bullet.cs" />

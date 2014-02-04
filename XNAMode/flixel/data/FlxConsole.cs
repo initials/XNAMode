@@ -42,7 +42,7 @@ namespace org.flixel
         Color notActionSafeColor = new Color(255, 0, 0, 23); // Red, 50% opacity
         Color notTitleSafeColor = new Color(255, 255, 0, 23); // Yellow, 50% opacity
 
-        private FlxRecord vcr;
+        public FlxRecord vcr;
 
 
         /// <summary>

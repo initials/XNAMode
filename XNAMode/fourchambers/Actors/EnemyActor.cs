@@ -132,16 +132,36 @@ namespace FourChambers
         public float ladderPosX = 0;
         public string lastAttack = "range";
 
+        /// <summary>
+        /// Holds the recording of the actions
+        /// </summary>
+        private List<bool[]> _history = new List<bool[]>();
 
+        /// <summary>
+        /// Keeps track of where the actor is in the playback.
+        /// </summary>
+        public int frameCount;
+
+        /// <summary>
+        /// Keep track of the state.
+        /// </summary>
+        private Recording _rec = Recording.None;
+
+        public enum Recording
+        {
+            None = 0,
+            Recording = 1,
+            Playback = 2,
+            Reverse = 3,
+            RecordingController = 4
+        }
 
         public EnemyActor(int xPos, int yPos)
             : base(xPos, yPos)
         {
-
             acceleration.Y = FourChambers_Globals.GRAVITY;
+            frameCount = 0;
             
-
-
         }
         override public void hitSide(FlxObject Contact, float Velocity)
         {
@@ -158,14 +178,8 @@ namespace FourChambers
             else if (velocity.X < 0)
             {
                 facing = Flx2DFacing.Left;
-
             }
 
-            //ANIMATION
-            //if (_curAnim.name == "hurt")
-            //{
-
-            //}
             if (hurtTimer < 1.0f)
             {
                 play("hurt");
@@ -198,16 +212,11 @@ namespace FourChambers
             {
                 play("idle");
             }
-
-
             if (isPlayerControlled)
             {
                 drag.X = runSpeed * 10;
                 updateInputs();
             }
-
-
-
 
             base.update();
 
@@ -247,6 +256,64 @@ namespace FourChambers
             base.hitBottom(Contact, Velocity);
         }
 
+        public void updateRecording()
+        {
+            
+            if (_rec == Recording.Playback && !dead)
+            {
+                frameCount++;
+                if (frameCount > _history.Count - 1)
+                {
+                    _rec = Recording.Reverse;
+                    frameCount--;
+                }
+            }
+            else if (_rec == Recording.Reverse && !dead)
+            {
+                frameCount--;
+                if (frameCount < 1)
+                {
+                    _rec = Recording.Playback;
+                    frameCount++;
+                }
+            }
+        }
+
+        public void startPlayingBack(string Filename)
+        {
+            _history = new List<bool[]>();
+            
+            string x = FlxU.loadFromDevice(Filename);
+
+            string[] y = x.Split('\n');
+
+            int line = 0;
+
+            foreach (var item in y)
+            {
+                string[] item1 = item.Split(',');
+                
+                line++;
+                if (item1.Length == 12)
+                {
+                    try
+                    {
+                        _history.Add(new bool[] { bool.Parse(item1[0]), bool.Parse(item1[1]), bool.Parse(item1[2]), bool.Parse(item1[3]), 
+                    bool.Parse(item1[4]), bool.Parse(item1[5]), bool.Parse(item1[6]), bool.Parse(item1[7]),
+                    bool.Parse(item1[8]), bool.Parse(item1[9]), bool.Parse(item1[10]), bool.Parse(item1[11])});
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("History Not Added " + item1.Length + " -- " + item1[1]);
+                    }
+                }
+            }
+            _rec = Recording.Playback;
+            frameCount = 0;
+        }
+
+
+
         public void updateInputs()
         {
             PlayerIndex pi;
@@ -262,14 +329,20 @@ namespace FourChambers
             else
             {
                 maxVelocity.X = runSpeed;
-
             }
 
             //
             acceleration.X = 0;
 
             // Walking left.
-            if ((FlxG.keys.A || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadLeft)) && !isClimbingLadder)
+
+
+            bool left = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Left]);
+            bool right = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Right]);
+            bool up = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Up]);
+            bool down = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Down]);
+
+            if ((left || FlxG.keys.A || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadLeft)) && !isClimbingLadder)
             {
                 lastAttack = "range";
                 attackingJoystick = false;
@@ -278,8 +351,9 @@ namespace FourChambers
                 acceleration.X -= runSpeed;
                 attackingMelee = false;
             }
+
             //Walking right.
-            else if ((FlxG.keys.D || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadRight)) && !isClimbingLadder)
+            else if ((right || FlxG.keys.D || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadRight)) && !isClimbingLadder)
             {
                 lastAttack = "range";
                 attackingJoystick = false;
@@ -314,6 +388,8 @@ namespace FourChambers
             {
                 //isClimbingLadder = false;
             }
+
+            bool buttonA = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.A]);
 
             // Jumping.
             if ((_jump >= 0 || framesSinceLeftGround < 10 || isClimbingLadder) && (FlxG.keys.SPACE || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi)))

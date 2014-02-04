@@ -213,7 +213,7 @@ namespace FourChambers
 
             if (FlxG.keys.F1)
             {
-                FlxG.state = new XNAMode.MenuState();
+                FlxG.state = new XNAMode.DebugMenuState();
 
             }
             if (FlxG.keys.F2)
@@ -231,6 +231,11 @@ namespace FourChambers
             if (FlxG.keys.F4)
             {
                 FlxG.state = new EmptyIntroTestState();
+
+            }
+            if (FlxG.keys.F5)
+            {
+                FlxG.state = new XNAMode.MenuState();
 
             }
 

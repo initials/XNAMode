@@ -104,9 +104,15 @@ namespace FourChambers
         //Paladin p;
         private FlxSprite collider;
         FlxGroup actors;
+        private string lastActorBuilt;
 
         override public void create()
         {
+            FlxG.resetHud();
+            FlxG.showHud();
+            FlxG.showHudGraphic();
+            FlxG.setHudText(3, "Recording!");
+
             actors = new FlxGroup();
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
@@ -129,11 +135,48 @@ namespace FourChambers
 
             add(actors);
 
+            
+
+            lastActorBuilt = "";
+
         }
 
         override public void update()
         {
             FlxU.collide(actors, collider);
+
+            if (FlxG.keys.ONE)
+            {
+                FlxG.setConsoleInfo(lastActorBuilt + "_Attack", PlayerIndex.One);
+                FlxG.setHudText(3, "Recording " + lastActorBuilt + "_Attack");
+
+            }
+            if (FlxG.keys.TWO)
+            {
+                FlxG.setConsoleInfo(lastActorBuilt + "_Defend", PlayerIndex.One);
+                FlxG.setHudText(3, "Recording " + lastActorBuilt + "_Defend");
+
+            }
+
+            if (FlxG.keys.THREE)
+            {
+                //FlxG.setConsoleInfo(lastActorBuilt + "_Defend", PlayerIndex.One);
+                FlxG.setHudText(3, "Playing Back " + lastActorBuilt + "_Defend");
+                ((EnemyActor)(actors.members[0])).startPlayingBack("FourChambers/ActorRecording/paladin_Attack.txt");
+
+            }
+
+
+            if (FlxG.keys.Q)
+            {
+                FlxG.showHud();
+
+            }
+            if (FlxG.keys.W)
+            {
+                FlxG.hideHud();
+
+            }
 
 
             if (FourChambers_Globals.cheatString != null)
@@ -142,6 +185,8 @@ namespace FourChambers
                 {
 
                     string actor = FourChambers_Globals.cheatString.Substring(5);
+
+                    lastActorBuilt = FourChambers_Globals.cheatString.Substring(5);
 
                     buildActor(actor, 1, true, 100, 40, 0, 0, null, null, 0, 0, 0);
 
@@ -158,7 +203,7 @@ namespace FourChambers
 
         public void buildActor(string ActorType,
             int NumberOfActors,
-            bool playerControlled = false,
+            bool PlayerControlled = false,
             int x = 0,
             int y = 0,
             int width = 0,
@@ -241,11 +286,9 @@ namespace FourChambers
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-
                     automaton = new Automaton(x, y);
+                    if (PlayerControlled == true) automaton.isPlayerControlled = true;
                     actors.add(automaton);
-
-
                 }
             }
             #endregion
@@ -809,7 +852,7 @@ namespace FourChambers
                 {
 
                     paladin = new Paladin(x, y);
-                    paladin.isPlayerControlled = true;
+                    if (PlayerControlled == true) paladin.isPlayerControlled = true;
                     actors.add(paladin);
                 }
             }
@@ -953,6 +996,7 @@ namespace FourChambers
                 {
 
                     succubus = new Succubus(x, y);
+                    if (PlayerControlled == true) succubus.isPlayerControlled = true;
                     actors.add(succubus);
                 }
             }
@@ -1031,7 +1075,7 @@ namespace FourChambers
                 {
 
                     vampire = new Vampire(x, y);
-                    vampire.isPlayerControlled = true;
+                    if (PlayerControlled==true) vampire.isPlayerControlled = true;
                     actors.add(vampire);
                 }
             }

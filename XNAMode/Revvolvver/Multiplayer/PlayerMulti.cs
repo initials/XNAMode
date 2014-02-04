@@ -98,8 +98,6 @@ namespace Revvolvver
             //_playback = false;
             frameCount = 0;
 
-
-
             ImgSpaceman = FlxG.Content.Load<Texture2D>("Revvolvver/spaceman");
 
             loadGraphic(ImgSpaceman, true, true, 16);
