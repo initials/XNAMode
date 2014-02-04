@@ -162,7 +162,7 @@ namespace FourChambers
             {
                 //FlxG.setConsoleInfo(lastActorBuilt + "_Defend", PlayerIndex.One);
                 FlxG.setHudText(3, "Playing Back " + lastActorBuilt + "_Defend");
-                ((EnemyActor)(actors.members[0])).startPlayingBack("FourChambers/ActorRecording/paladin_Attack.txt");
+                ((EnemyActor)(actors.members[0])).startPlayingBack("FourChambers/ActorRecording/paladin_Defend.txt");
 
             }
 

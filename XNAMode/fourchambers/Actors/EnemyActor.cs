@@ -218,6 +218,8 @@ namespace FourChambers
                 updateInputs();
             }
 
+            updateRecording();
+
             base.update();
 
         }

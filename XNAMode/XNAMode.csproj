@@ -376,6 +376,12 @@
     <Compile Include="XNATweener\Tweener.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FourChambers\ActorRecording\paladin_Attack.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\paladin_Defend.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
     <Content Include="Lemonade\characters\reference\Andre.h" />
