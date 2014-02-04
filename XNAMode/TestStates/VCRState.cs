@@ -223,7 +223,7 @@ namespace FourChambers
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     marksman = new Marksman(x, y, null);
-                    marksman.flicker(2);
+                    if (PlayerControlled == true) marksman.isPlayerControlled = true;
                     actors.add(marksman);
 
 
@@ -238,6 +238,7 @@ namespace FourChambers
                 {
 
                     mistress = new Mistress(x, y);
+                    if (PlayerControlled == true) mistress.isPlayerControlled = true;
                     actors.add(mistress);
                     
                 }

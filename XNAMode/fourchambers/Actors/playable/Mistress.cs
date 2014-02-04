@@ -17,11 +17,22 @@ namespace FourChambers
         public Mistress(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            //actorName = "Linda Lee";
+            // Set up the stats for this actor.
+            actorName = "Linda Lee";
+            score = 250;
+            health = 5;
+            runSpeed = 120;
+            _jumpPower = -110.0f;
+            _jumpInitialPower = -110.0f;
+            _jumpMaxTime = 0.15f;
+            _jumpInitialTime = 0.045f;
+            maxVelocity.X = runSpeed * 4;
+            maxVelocity.Y = 1000;
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/mistress_ss_35x22"), true, false, 35, 22);
 
             addAnimation("run", new int[] { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }, 12);
+            addAnimation("walk", new int[] { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }, 8);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0, 1, 2, 3, 4, 5, 6, 6 }, 12, false);
             addAnimation("hurt", new int[] { 17 }, 12);
@@ -33,18 +44,12 @@ namespace FourChambers
             offset.X = 13;
             offset.Y = 6;
 
-            //basic player physics
-            int runSpeed = 120;
-            drag.X = runSpeed * 4;
-            acceleration.Y = 820;
-            maxVelocity.X = runSpeed;
-            maxVelocity.Y = 1000;
 
             whipHitBox = new MeleeHitBox(xPos, yPos);
             whipHitBox.width = 5;
             whipHitBox.height = 5;
 
-            health = 10;
+            ///custom stuff
             attackingJoystick = false;
 
             hurtTimer = 10000;

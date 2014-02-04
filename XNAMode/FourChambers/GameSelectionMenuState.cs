@@ -214,29 +214,22 @@ namespace FourChambers
             if (FlxG.keys.F1)
             {
                 FlxG.state = new XNAMode.DebugMenuState();
-
             }
             if (FlxG.keys.F2)
             {
                 FlxG.state = new CaveState();
-
             }
-
             if (FlxG.keys.F3)
             {
                 FlxG.state = new CutsceneState();
-
             }
-
             if (FlxG.keys.F4)
             {
                 FlxG.state = new EmptyIntroTestState();
-
             }
             if (FlxG.keys.F5)
             {
                 FlxG.state = new XNAMode.MenuState();
-
             }
 
             base.update();
@@ -258,8 +251,6 @@ namespace FourChambers
         /// </summary>
         public void playGame()
         {
-            Console.WriteLine("Play Game");
-
             FlxG.level = 1;
             FlxG.score = 0;
             FlxG.hideHud();

@@ -102,7 +102,7 @@
 19,17,18,15,20,16,18,19,17,18,15,17,19,20,16,16,18,20,19,15,17,15,16,17,17,19,19,20,16,19,17,18,17,19,16,17,20,17,17,16,15,15,15,17,17,17,20,16,17,15</IndestructableTerrain>
   <ActorsLayer>
     <priest id="0" x="304" y="448" flip="False" />
-    <_event id="1" x="176" y="656" width="96" height="96" event="Rise against, rise above." value1="0" value2="0" repeat="-1" />
+    <_event id="1" x="176" y="656" width="96" height="96" event="You took a piss in holy water." value1="0" value2="0" repeat="-1" />
     <_event id="2" x="304" y="656" width="96" height="96" event="Vanquish your enemies with the tears of your heroes" value1="0" value2="0" repeat="-1" />
     <_event id="3" x="432" y="656" width="96" height="96" event="A life lived without regret is a lie." value1="0" value2="0" repeat="-1" />
     <_event id="4" x="560" y="656" width="96" height="96" event="And be good. Travel safely." value1="0" value2="0" repeat="-1" />
