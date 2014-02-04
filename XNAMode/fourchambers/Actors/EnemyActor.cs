@@ -170,6 +170,10 @@ namespace FourChambers
         override public void update()
         {
             hurtTimer += FlxG.elapsed;
+            if (hurtTimer >= 0.5f)
+            {
+                color = Color.White;
+            }
 
             if (velocity.X > 0)
             {
@@ -212,11 +216,13 @@ namespace FourChambers
             {
                 play("idle");
             }
-            if (isPlayerControlled)
-            {
+            //if (isPlayerControlled)
+            //{
                
-                updateInputs();
-            }
+            //    updateInputs();
+            //}
+            
+            updateInputs();
 
             updateRecording();
 
@@ -227,7 +233,7 @@ namespace FourChambers
         public override void hurt(float Damage)
         {
             color = Color.PaleVioletRed;
-
+            hurtTimer = 0;
             base.hurt(Damage);
         }
 
@@ -359,8 +365,30 @@ namespace FourChambers
             bool right = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Right]);
             bool up = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Up]);
             bool down = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Down]);
+            bool buttonA = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.A]);
+            bool mouseLeftButton = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.LeftMouse]);
+            bool mouseRightButton = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.RightMouse]);
 
-            if ((left || FlxG.keys.A || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadLeft)) && !isClimbingLadder)
+            bool leftControl = (
+                (FlxG.keys.A 
+                || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi) 
+                || FlxG.gamepads.isButtonDown(Buttons.DPadLeft)) 
+                && isClimbingLadder==false
+                );
+            bool rightControl = (
+                (FlxG.keys.D 
+                || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi) 
+                || FlxG.gamepads.isButtonDown(Buttons.DPadRight)) 
+                && !isClimbingLadder
+                );
+            
+
+            if (isPlayerControlled == false)
+            {
+                leftControl = rightControl = false;
+            }
+
+            if (left || leftControl)
             {
                 lastAttack = "range";
                 attackingJoystick = false;
@@ -371,7 +399,7 @@ namespace FourChambers
             }
 
             //Walking right.
-            else if ((right || FlxG.keys.D || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadRight)) && !isClimbingLadder)
+            else if (right || rightControl)
             {
                 lastAttack = "range";
                 attackingJoystick = false;
@@ -407,7 +435,7 @@ namespace FourChambers
                 //isClimbingLadder = false;
             }
 
-            bool buttonA = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.A]);
+            
 
             // Jumping.
             if ((_jump >= 0 || framesSinceLeftGround < 10 || isClimbingLadder) && (buttonA || FlxG.keys.SPACE || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi)))
@@ -478,7 +506,7 @@ namespace FourChambers
                 attackingMelee = false;
             }
 
-            bool mouseLeftButton = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.LeftMouse]);
+            
 
             // Attacking using mouse.
             if (FlxG.mouse.justPressedLeftButton() || mouseLeftButton)
@@ -488,7 +516,7 @@ namespace FourChambers
                 attackingMelee = false;
             }
 
-            bool mouseRightButton = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.RightMouse]);
+            
 
             if (FlxG.keys.K || FlxG.gamepads.isButtonDown(Buttons.X, FlxG.controllingPlayer, out pi) || FlxG.mouse.pressedRightButton() || mouseRightButton)
             {

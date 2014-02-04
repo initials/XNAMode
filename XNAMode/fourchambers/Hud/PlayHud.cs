@@ -34,7 +34,9 @@ namespace FourChambers
 
         public FlxSprite currentAnimatedObj;
 
-        private float ypos; 
+        private float ypos;
+
+        public FlxText comboOnScreen;
 
         public PlayHud()
         {
@@ -94,6 +96,13 @@ namespace FourChambers
             tweenScale = new Tweener(10, 1, TimeSpan.FromSeconds(1.0f), Linear.EaseOut);
             
             tweenPos = new Tweener(100, ypos, TimeSpan.FromSeconds(2.0f), Bounce.EaseOut);
+
+            comboOnScreen = new FlxText(200, 200, 100);
+            comboOnScreen.setFormat(null, 1, Color.White, FlxJustification.Left, Color.Black);
+            comboOnScreen.text = "0";
+            comboOnScreen.setScrollFactors(1,1);
+            add(comboOnScreen);
+
 
         }
 

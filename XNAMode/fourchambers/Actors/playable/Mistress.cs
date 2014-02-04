@@ -22,10 +22,10 @@ namespace FourChambers
             score = 250;
             health = 5;
             runSpeed = 120;
-            _jumpPower = -110.0f;
-            _jumpInitialPower = -110.0f;
-            _jumpMaxTime = 0.15f;
-            _jumpInitialTime = 0.045f;
+            _jumpPower = -150.0f;
+            _jumpInitialPower = -150.0f;
+            _jumpMaxTime = 0.55f;
+            _jumpInitialTime = 0.065f;
             maxVelocity.X = runSpeed * 4;
             maxVelocity.Y = 1000;
             drag.X = runSpeed * 4;

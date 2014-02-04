@@ -1112,9 +1112,14 @@ namespace FourChambers
                     BaseActor zx = ((BaseActor)(e.Object1));
                     //comboInfo.text = zx.actorName + " " + FourChambers_Globals.arrowCombo + "x" + zx.score.ToString() + "=" + (FourChambers_Globals.arrowCombo * zx.score).ToString();
                     comboInfo.text = (FourChambers_Globals.arrowCombo * zx.score).ToString();
-                    
                     comboInfo.counter = 0;
 
+
+                    localHud.comboOnScreen.x = (e.Object1.x ) + 5;
+                    localHud.comboOnScreen.y = (e.Object1.y );
+                    localHud.comboOnScreen.text = zx.actorName + " " + FourChambers_Globals.arrowCombo + "x" + zx.score.ToString() + "=" + (FourChambers_Globals.arrowCombo * zx.score).ToString();
+
+                    Console.WriteLine(localHud.comboOnScreen.x + " " + localHud.comboOnScreen.y + " " + zx.x + " " + zx.y );
 
                 }
 
@@ -1195,6 +1200,13 @@ namespace FourChambers
                     buildActor(actor, 1, true, 100, 40, 0, 0, null, null, 0, 0, 0);
 
                     
+                }
+                else if (FourChambers_Globals.cheatString.StartsWith("controlmistress"))
+                {
+                    mistress.isPlayerControlled = true;
+                    marksman.isPlayerControlled = false;
+                    FlxG.follow(mistress,1.0f);
+
                 }
                 else if (FourChambers_Globals.cheatString.StartsWith("completelevel")) marksman.x = FlxG.levelWidth + 3;
 
