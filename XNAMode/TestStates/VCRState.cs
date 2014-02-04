@@ -160,8 +160,8 @@ namespace FourChambers
             {
                 //FlxG.setConsoleInfo(lastActorBuilt + "_Defend", PlayerIndex.One);
                 FlxG.setHudText(3, "Playing Back " + lastActorBuilt + "_Attack");
-                ((EnemyActor)(actors.members[0])).startPlayingBack("FourChambers/ActorRecording/" + lastActorBuilt + "_Attack.txt");
-
+                //((EnemyActor)(actors.members[0])).startPlayingBack("FourChambers/ActorRecording/" + lastActorBuilt + "_Attack.txt");
+                ((EnemyActor)(actors.members[0])).startPlayingBack();
             }
 
 

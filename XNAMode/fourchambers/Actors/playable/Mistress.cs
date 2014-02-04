@@ -30,6 +30,7 @@ namespace FourChambers
             maxVelocity.Y = 1000;
             drag.X = runSpeed * 4;
             drag.Y = runSpeed * 4;
+            playbackFile = "FourChambers/ActorRecording/mistress_Attack.txt";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/mistress_ss_35x22"), true, false, 35, 22);
 
