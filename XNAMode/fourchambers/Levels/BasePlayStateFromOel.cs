@@ -517,8 +517,8 @@ namespace FourChambers
             seraphine.play("fly");
             add(seraphine);
 
-            buildActor("imp", 1);
-            buildActor("harvester", 1,false,-100,100,0,0,null,null,0,0,0);
+            //buildActor("imp", 1);
+            //buildActor("harvester", 1,false,-100,100,0,0,null,null,0,0,0);
             
             blood = new FlxEmitter();
             blood.x = 0;
@@ -1109,7 +1109,6 @@ namespace FourChambers
                     comboInfo.x = e.Object1.x + 20;
                     comboInfo.y = e.Object1.y;
 
-
                     BaseActor zx = ((BaseActor)(e.Object1));
                     //comboInfo.text = zx.actorName + " " + FourChambers_Globals.arrowCombo + "x" + zx.score.ToString() + "=" + (FourChambers_Globals.arrowCombo * zx.score).ToString();
                     comboInfo.text = (FourChambers_Globals.arrowCombo * zx.score).ToString();
@@ -1128,11 +1127,6 @@ namespace FourChambers
                 blood.at(e.Object1);
 
                 blood.start(true, 0, 10);
-
-                
-
-
-
 
             }
 
