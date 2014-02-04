@@ -376,6 +376,9 @@
     <Compile Include="XNATweener\Tweener.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FourChambers\ActorRecording\mistress_Attack.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="FourChambers\ActorRecording\paladin_Attack.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

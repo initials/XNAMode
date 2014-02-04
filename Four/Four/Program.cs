@@ -24,6 +24,9 @@ namespace Loader_Four
         public FlixelEntryPoint2(Game game)
             : base(game)
         {
+            ///Post build zipper
+            ///cd ..
+            ///C:\_Files\programs\7-Zip\7z a -tzip FourChambers.zip Release\ -r
 
             int w = 320;
             int h = 180;

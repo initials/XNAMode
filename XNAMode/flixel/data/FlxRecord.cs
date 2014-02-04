@@ -63,7 +63,9 @@ namespace org.flixel
             LeftShoulder = 8,
             LeftTrigger = 9,
             RightShoulder = 10,
-            RightTrigger = 11
+            RightTrigger = 11,
+            LeftMouse = 12,
+            RightMouse = 13
         }
 
 
@@ -181,14 +183,17 @@ namespace org.flixel
                     (FlxG.keys.D || FlxG.gamepads.isButtonDown(Buttons.DPadRight, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight)), //1
                     (FlxG.keys.S || FlxG.gamepads.isButtonDown(Buttons.DPadDown, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown)), //2
                     (FlxG.keys.A || FlxG.gamepads.isButtonDown(Buttons.DPadLeft, controller, out pi) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft)), //3
-                    (FlxG.keys.M || FlxG.gamepads.isButtonDown(Buttons.A, controller, out pi)), //4
+                    (FlxG.keys.SPACE ||FlxG.keys.M || FlxG.gamepads.isButtonDown(Buttons.A, controller, out pi)), //4
                     (FlxG.keys.N || FlxG.gamepads.isButtonDown(Buttons.B, controller, out pi)), //5
                     (FlxG.keys.J || FlxG.gamepads.isNewButtonPress(Buttons.X, controller, out pi)), //6
                     (FlxG.keys.K || FlxG.gamepads.isButtonDown(Buttons.Y, controller, out pi)), //7
                     (FlxG.keys.H || FlxG.gamepads.isButtonDown(Buttons.LeftShoulder, controller, out pi)), //8
                     (FlxG.keys.U || FlxG.gamepads.isButtonDown(Buttons.LeftTrigger, controller, out pi)), //9
                     (FlxG.keys.L || FlxG.gamepads.isButtonDown(Buttons.RightShoulder, controller, out pi)), //10
-                    (FlxG.keys.I || FlxG.gamepads.isButtonDown(Buttons.RightTrigger, controller, out pi)) //11
+                    (FlxG.keys.I || FlxG.gamepads.isButtonDown(Buttons.RightTrigger, controller, out pi)), //11
+                    (FlxG.mouse.pressedLeftButton()), //12
+                    (FlxG.mouse.pressedRightButton()), //13
+
                 });
 
 
@@ -238,7 +243,8 @@ namespace org.flixel
             {
                 _historyString += item[0].ToString() + "," + item[1].ToString() + "," + item[2].ToString() + "," + item[3].ToString() + "," +
                     item[4].ToString() + "," + item[5].ToString() + "," + item[6].ToString() + "," + item[7].ToString() + "," +
-                    item[8].ToString() + "," + item[9].ToString() + "," + item[10].ToString() + "," + item[11].ToString() + "\n";
+                    item[8].ToString() + "," + item[9].ToString() + "," + item[10].ToString() + "," + item[11].ToString() + "," + 
+                    item[12].ToString() + "," + item[13].ToString() + "\n";
             }
             
             FlxU.saveToDevice(_historyString, (filename + "_" + DateTime.Now.Ticks.ToString() + ".txt"));

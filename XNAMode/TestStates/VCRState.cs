@@ -135,8 +135,6 @@ namespace FourChambers
 
             add(actors);
 
-            
-
             lastActorBuilt = "";
 
         }
@@ -161,8 +159,8 @@ namespace FourChambers
             if (FlxG.keys.THREE)
             {
                 //FlxG.setConsoleInfo(lastActorBuilt + "_Defend", PlayerIndex.One);
-                FlxG.setHudText(3, "Playing Back " + lastActorBuilt + "_Defend");
-                ((EnemyActor)(actors.members[0])).startPlayingBack("FourChambers/ActorRecording/paladin_Defend.txt");
+                FlxG.setHudText(3, "Playing Back " + lastActorBuilt + "_Attack");
+                ((EnemyActor)(actors.members[0])).startPlayingBack("FourChambers/ActorRecording/" + lastActorBuilt + "_Attack.txt");
 
             }
 
@@ -189,6 +187,8 @@ namespace FourChambers
                     lastActorBuilt = FourChambers_Globals.cheatString.Substring(5);
 
                     buildActor(actor, 1, true, 100, 40, 0, 0, null, null, 0, 0, 0);
+
+                    FlxG.setConsoleInfo(lastActorBuilt, PlayerIndex.One);
 
                     FourChambers_Globals.cheatString = "";
                 }
@@ -218,17 +218,12 @@ namespace FourChambers
             #region Marksman
             if (ActorType == "marksman")
             {
-
-
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     marksman = new Marksman(x, y, null);
                     if (PlayerControlled == true) marksman.isPlayerControlled = true;
                     actors.add(marksman);
-
-
                 }
-
             }
             #endregion
             #region Mistress
