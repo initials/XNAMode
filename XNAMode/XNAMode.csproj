@@ -182,7 +182,7 @@
     <Compile Include="FourChambers\Levels\FallAwayBridgeBlock.cs" />
     <Compile Include="FourChambers\Levels\LevelBeginText.cs" />
     <Compile Include="TestStates\EmptyIntroTestState.cs" />
-    <Compile Include="FourChambers\Actors\enemies\Artist.cs" />
+    <Compile Include="FourChambers\Actors\nonanimated\Artist.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Assassin.cs" />
     <Compile Include="FourChambers\Actors\flyingenemies\Bat.cs" />
     <Compile Include="FourChambers\Actors\nonanimated\Blight.cs" />
@@ -376,13 +376,82 @@
     <Compile Include="XNATweener\Tweener.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FourChambers\ActorRecording\mistress_Attack.txt">
+    <Content Include="FourChambers\ActorRecording\automaton.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="FourChambers\ActorRecording\paladin_Attack.txt">
+    <Content Include="FourChambers\ActorRecording\chicken.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="FourChambers\ActorRecording\paladin_Defend.txt">
+    <Content Include="FourChambers\ActorRecording\corsair.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\cow.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\deer.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\executor.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\feline.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\gloom.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\grizzly.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\harvester.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\kerberos.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\lion.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\medusa.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\mistress.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\mummy.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\nymph.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\paladin.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\rat.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\snake.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\spider.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\succubus.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\tormentor.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\unicorn.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\vampire.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\wolf.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FourChambers\ActorRecording\zombie.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Game.ico" />
