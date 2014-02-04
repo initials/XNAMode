@@ -60,12 +60,10 @@ namespace org.flixel
 
 		/// <summary>
         /// Current X position of the mouse pointer on the screen.
-        /// I don't believe this works and returns 0 always.
 		/// </summary>
 		public int screenX;
 		/// <summary>
         /// Current Y position of the mouse pointer on the screen.
-        /// I don't believe this works and returns 0 always.
 		/// </summary>
 		public int screenY;
 		/// <summary>

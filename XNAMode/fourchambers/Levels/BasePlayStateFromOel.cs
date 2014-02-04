@@ -1106,20 +1106,27 @@ namespace FourChambers
                     FourChambers_Globals.arrowsHitTarget++;
                     FourChambers_Globals.arrowCombo++;
 
-                    comboInfo.x = e.Object1.x + 20;
-                    comboInfo.y = e.Object1.y;
+                    //comboInfo.x = e.Object1.x + 20;
+                    //comboInfo.y = e.Object1.y;
 
                     BaseActor zx = ((BaseActor)(e.Object1));
                     //comboInfo.text = zx.actorName + " " + FourChambers_Globals.arrowCombo + "x" + zx.score.ToString() + "=" + (FourChambers_Globals.arrowCombo * zx.score).ToString();
-                    comboInfo.text = (FourChambers_Globals.arrowCombo * zx.score).ToString();
-                    comboInfo.counter = 0;
+                    //comboInfo.text = (FourChambers_Globals.arrowCombo * zx.score).ToString();
+                    //comboInfo.counter = 0;
 
 
-                    localHud.comboOnScreen.x = (e.Object1.x ) + 5;
-                    localHud.comboOnScreen.y = (e.Object1.y );
-                    localHud.comboOnScreen.text = zx.actorName + " " + FourChambers_Globals.arrowCombo + "x" + zx.score.ToString() + "=" + (FourChambers_Globals.arrowCombo * zx.score).ToString();
+                    Vector2 p = e.Object1.getScreenXY();
 
-                    Console.WriteLine(localHud.comboOnScreen.x + " " + localHud.comboOnScreen.y + " " + zx.x + " " + zx.y );
+
+                    localHud.comboOnScreen.x = p.X * FlxG.zoom;
+                    localHud.comboOnScreen.y = (p.Y - 20) * FlxG.zoom;
+
+                    localHud.comboOnScreen.counter = 0;
+
+                    localHud.comboOnScreen.text = zx.actorName + "\n" + FourChambers_Globals.arrowCombo + " x " + zx.score.ToString() ;
+                    localHud.comboOnScreen.flyAwayText = zx.actorName+"\n" + (FourChambers_Globals.arrowCombo * zx.score).ToString();
+
+                    //Console.WriteLine(localHud.comboOnScreen.x + " " + localHud.comboOnScreen.y + " " + zx.x + " " + zx.y + " " + FlxG.mouse.x + " " + FlxG.scroll.X);
 
                 }
 

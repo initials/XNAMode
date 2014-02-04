@@ -19,7 +19,7 @@ namespace FourChambers
         /// </summary>
         public int arrowsRemaining = 0;
 
-        public FlxSprite meleeHitBox;
+        public MeleeHitBox meleeHitBox;
 
         public bool hasUsedJoystickToAim = false;
 

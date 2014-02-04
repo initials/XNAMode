@@ -36,7 +36,7 @@ namespace FourChambers
 
         private float ypos;
 
-        public FlxText comboOnScreen;
+        public LevelBeginText comboOnScreen;
 
         public PlayHud()
         {
@@ -97,10 +97,12 @@ namespace FourChambers
             
             tweenPos = new Tweener(100, ypos, TimeSpan.FromSeconds(2.0f), Bounce.EaseOut);
 
-            comboOnScreen = new FlxText(200, 200, 100);
-            comboOnScreen.setFormat(null, 1, Color.White, FlxJustification.Left, Color.Black);
+            comboOnScreen = new LevelBeginText(200, 200, 100);
+            comboOnScreen.setFormat(null, 2, Color.White, FlxJustification.Left, Color.Black);
             comboOnScreen.text = "0";
-            comboOnScreen.setScrollFactors(1,1);
+            comboOnScreen.style = "up";
+            comboOnScreen.limit = 1.2f;
+            //comboOnScreen.setScrollFactors(0,0);
             add(comboOnScreen);
 
 

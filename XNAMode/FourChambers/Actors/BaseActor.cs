@@ -28,6 +28,7 @@ namespace FourChambers
         public string playbackFile = "FourChambers/ActorRecording/mistress_Attack.txt";
 
 
+        public float timeDownAfterHurt = 1.0f;
         
         /// <summary>
         /// The base for Actors. Should remain pretty empty.

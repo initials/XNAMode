@@ -20,7 +20,7 @@ namespace FourChambers
             // Set up the stats for this actor.
             actorName = "Linda Lee";
             score = 250;
-            health = 5;
+            health = 25;
             runSpeed = 120;
             _jumpPower = -150.0f;
             _jumpInitialPower = -150.0f;
@@ -31,6 +31,7 @@ namespace FourChambers
             drag.X = runSpeed * 4;
             drag.Y = runSpeed * 4;
             playbackFile = "FourChambers/ActorRecording/mistress_Attack.txt";
+            timeDownAfterHurt = 2.5f;
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/mistress_ss_35x22"), true, false, 35, 22);
 
@@ -39,6 +40,8 @@ namespace FourChambers
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0, 1, 2, 3, 4, 5, 6, 6,6,0 }, 30, false);
             addAnimation("hurt", new int[] { 17 }, 12);
+            addAnimation("death", new int[] { 17 }, 12);
+
             play("idle");
 
             //bounding box tweaks

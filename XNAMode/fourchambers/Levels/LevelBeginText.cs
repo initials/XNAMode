@@ -15,6 +15,8 @@ namespace FourChambers
         public float counter;
         public string style = "right";
         public float limit = 2.5f;
+        public string flyAwayText = "";
+        public int flyAwayScore = 0;
 
         public LevelBeginText(int xPos, int yPos, int Width)
             : base(xPos, yPos, Width)
@@ -37,7 +39,10 @@ namespace FourChambers
                 if (style=="right")
                     x += 5;
                 if (style == "up")
-                    y -= 5;
+                {
+                    text = flyAwayText;
+                    y -= 3;
+                }
             }
             base.update();
 

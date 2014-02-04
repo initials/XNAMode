@@ -147,6 +147,8 @@ namespace FourChambers
         /// </summary>
         private Recording _rec = Recording.None;
 
+        private FlxBar healthBar;
+
         public enum Recording
         {
             None = 0,
@@ -161,16 +163,37 @@ namespace FourChambers
         {
             acceleration.Y = FourChambers_Globals.GRAVITY;
             frameCount = 0;
+
+            healthBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, 10, 2, this, "health", 0, 25, true);
+
+            
             
         }
+
+        public override void render(SpriteBatch spriteBatch)
+        {
+            
+            base.render(spriteBatch);
+
+            healthBar.emptyBar.render(spriteBatch);
+            healthBar.filledBar.render(spriteBatch);
+
+            
+
+        }
+
         override public void hitSide(FlxObject Contact, float Velocity)
         {
             velocity.X = velocity.X * -1;
         }
         override public void update()
         {
+            //healthBar.x = x;
+            //healthBar.y = y;
+            //healthBar.filledBar.width = (float)((health / 25)*10);
+
             hurtTimer += FlxG.elapsed;
-            if (hurtTimer >= 0.5f)
+            if (hurtTimer >= timeDownAfterHurt)
             {
                 color = Color.White;
             }
@@ -184,7 +207,7 @@ namespace FourChambers
                 facing = Flx2DFacing.Left;
             }
 
-            if (hurtTimer < 1.0f)
+            if (hurtTimer < timeDownAfterHurt)
             {
                 play("hurt");
             }
@@ -224,10 +247,16 @@ namespace FourChambers
             
             updateInputs();
 
-            updateRecording();
-
+            if (color == Color.White) updateRecording();
+            else
+            {
+                velocity.X = 0;
+                velocity.Y = 0;
+                acceleration.X = 0;
+            }
             base.update();
 
+            healthBar.update();
         }
 
         public override void hurt(float Damage)
@@ -381,11 +410,11 @@ namespace FourChambers
                 || FlxG.gamepads.isButtonDown(Buttons.DPadRight)) 
                 && !isClimbingLadder
                 );
-            
+            bool buttonAControl = (_jump >= 0 || framesSinceLeftGround < 10 || isClimbingLadder) && ( FlxG.keys.SPACE || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi));
 
             if (isPlayerControlled == false)
             {
-                leftControl = rightControl = false;
+                leftControl = rightControl = buttonAControl = false;
             }
 
             if (left || leftControl)
@@ -438,7 +467,7 @@ namespace FourChambers
             
 
             // Jumping.
-            if ((_jump >= 0 || framesSinceLeftGround < 10 || isClimbingLadder) && (buttonA || FlxG.keys.SPACE || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi)))
+            if (buttonA || buttonAControl)
             {
                 lastAttack = "range";
                 if (framesSinceLeftGround < 10)
