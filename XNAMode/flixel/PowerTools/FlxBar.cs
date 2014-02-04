@@ -36,7 +36,7 @@ namespace org.flixel
         private uint barWidth;
         private uint barHeight;
 
-        private FlxObject parent;
+        private FlxSprite parent;
 
         private String parentVariable;
 
@@ -82,7 +82,7 @@ namespace org.flixel
 
         public delegate void emptyCallback();
 
-        private FlxSprite emptyBar;
+        public FlxSprite emptyBar;
         public FlxSprite filledBar;
 
         //private var emptyBar:BitmapData;
@@ -145,7 +145,7 @@ namespace org.flixel
                         uint direction = FILL_LEFT_TO_RIGHT,
                         uint width = 100,
                         uint height = 10,
-                        FlxObject parentRef = null,
+                        FlxSprite parentRef = null,
                         string variable = "",
                         float min = 0,
                         float max = 100,
@@ -161,8 +161,8 @@ namespace org.flixel
             //    filledBarPoint = new Point(1, 1);
             //}
 
-            emptyBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.Gray);
-            filledBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.Green);
+            emptyBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.DarkGray);
+            filledBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.HotPink);
 
             if (parentRef!=null)
             {
@@ -187,8 +187,8 @@ namespace org.flixel
                 uint height = 10)
             : base()
         {
-            emptyBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.Gray);
-            filledBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.Green);
+            emptyBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.DarkGray);
+            filledBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.HotPink);
             
 
 
@@ -196,13 +196,17 @@ namespace org.flixel
 
         public override void update()
         {
-            filledBar.width = (int)(percent * pxPerPercent);
+            //filledBar.width = (int)(percent * pxPerPercent);
+
+            //Console.WriteLine(parent.x + "GET " + parent.GetType().ToString() );
+
+            filledBar.width = (float)((parent.health / max) * 10);
 
             emptyBar.x = parent.x;
-            emptyBar.y = parent.y + 10;
+            emptyBar.y = parent.y - 11;
 
             filledBar.x = parent.x;
-            filledBar.y = parent.y + 10;
+            filledBar.y = parent.y - 11;
 
             base.update();
         }

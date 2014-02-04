@@ -51,7 +51,7 @@ namespace FourChambers
 
             // Create an object to follow the path.
             collider = new FlxSprite(10, 10);
-            collider.loadGraphic(FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"), false, false, 8, 8);
+            collider.loadGraphic(FlxG.Content.Load<Texture2D>("initials/initialsLogo"), false, false, 8, 8);
             collider.pathCornering = 2.0f;
             add(collider);
 
@@ -59,7 +59,7 @@ namespace FourChambers
             collider.followPath(path, 40.0f, FlxObject.PATH_YOYO, false);
 
             pather = new FlxSprite(16, 16);
-            pather.loadGraphic(FlxG.Content.Load<Texture2D>("initials/autotiles_16x16"), false, false, 8, 8);
+            pather.loadGraphic(FlxG.Content.Load<Texture2D>("initials/initialsLogo"), false, false, 8, 8);
             pather.color = new Color(1.0f, 0, 0);
             pather.pathCornering = 3.0f;
             add(pather);
