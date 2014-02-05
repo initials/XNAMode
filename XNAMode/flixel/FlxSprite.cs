@@ -424,6 +424,8 @@ namespace org.flixel
             updateMotion();
             updateAnimation();
             updateFlickering();
+            updateRenderFlickering();
+
         }
 
         /// <summary>
@@ -447,9 +449,13 @@ namespace org.flixel
                     _renderFlicker = !_renderFlicker;
 
                     if (_renderFlicker) color = Color.White;
-                    else if (!_renderFlicker) color = new Color(FlxU.random(0, 1), FlxU.random(0, 1), FlxU.random(0, 1));
+                    else if (!_renderFlicker) color = new Color(FlxU.random(0, 1), FlxU.random(0, 0), FlxU.random(0, 0));
 
                 }
+            }
+            else
+            {
+                color = Color.White;
             }
         }
 
