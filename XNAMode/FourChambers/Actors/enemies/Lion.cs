@@ -27,6 +27,11 @@ namespace FourChambers
             _jumpInitialTime = 0.045f;
             maxVelocity.X = runSpeed * 4;
             maxVelocity.Y = 1000;
+            drag.X = runSpeed * 4;
+            drag.Y = runSpeed * 4;
+            playbackFile = "FourChambers/ActorRecording/lion.txt";
+            timeDownAfterHurt = 2.5f;
+            actorType = "lion";
 
             // Load graphic and create animations.
             // Required anims:

@@ -16,6 +16,11 @@ namespace FourChambers
         /// Character's name;
         /// </summary>
         public string actorName;
+
+        /// <summary>
+        /// A quick helper for finding the type of actor. Must be set up manually.
+        /// </summary>
+        public string actorType;
         
         /// <summary>
         /// Score for killing this creature.
@@ -25,10 +30,16 @@ namespace FourChambers
         /// <summary>
         /// Location of the file that holds the attack data.
         /// </summary>
-        public string playbackFile = "FourChambers/ActorRecording/mistress_Attack.txt";
+        public string playbackFile = "FourChambers/ActorRecording/file.txt";
+
 
 
         public float timeDownAfterHurt = 1.0f;
+
+        /// <summary>
+        /// Determines whether or not game inputs affect charactetr.
+        /// </summary>
+        public bool isPlayerControlled;
         
         /// <summary>
         /// The base for Actors. Should remain pretty empty.
@@ -54,6 +65,11 @@ namespace FourChambers
 
 
             base.update();
+
+            if (FourChambers_Globals.cheatString.StartsWith("control"+actorType))
+            {
+                isPlayerControlled = true;
+            }
 
         }
 

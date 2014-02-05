@@ -189,9 +189,6 @@ namespace org.flixel
         {
             emptyBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.DarkGray);
             filledBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.HotPink);
-            
-
-
         }
 
         public override void update()
@@ -200,13 +197,27 @@ namespace org.flixel
 
             //Console.WriteLine(parent.x + "GET " + parent.GetType().ToString() );
 
-            filledBar.width = (float)((parent.health / max) * 10);
+            filledBar.width = (float)((parent.health / max) * barWidth);
+            if (filledBar.width > barWidth) filledBar.width = barWidth;
+            if (filledBar.width < 0) filledBar.width = 0;
 
             emptyBar.x = parent.x;
             emptyBar.y = parent.y - 11;
 
             filledBar.x = parent.x;
             filledBar.y = parent.y - 11;
+
+            if (parent.health <= 0)
+            {
+                filledBar.visible = false;
+                emptyBar.visible = false;
+
+            }
+            else
+            {
+                filledBar.visible = true;
+                emptyBar.visible = true;
+            }
 
             base.update();
         }

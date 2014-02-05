@@ -32,6 +32,8 @@ namespace FourChambers
             drag.Y = runSpeed * 4;
             playbackFile = "FourChambers/ActorRecording/mistress_Attack.txt";
             timeDownAfterHurt = 2.5f;
+            actorType = "mistress";
+
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/mistress_ss_35x22"), true, false, 35, 22);
 

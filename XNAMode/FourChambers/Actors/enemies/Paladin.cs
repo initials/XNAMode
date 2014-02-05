@@ -27,6 +27,11 @@ namespace FourChambers
             _jumpInitialTime = 0.035f;
             maxVelocity.X = runSpeed * 4;
             maxVelocity.Y = 1000;
+            drag.X = runSpeed * 4;
+            drag.Y = runSpeed * 4;
+            playbackFile = "FourChambers/ActorRecording/paladin.txt";
+            timeDownAfterHurt = 2.5f;
+            actorType = "paladin";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/paladin_ss_16x26"), true, false, 16, 26);
 

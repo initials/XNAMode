@@ -113,10 +113,7 @@ namespace FourChambers
 
 
 
-        /// <summary>
-        /// Determines whether or not game inputs affect charactetr.
-        /// </summary>
-        public bool isPlayerControlled;
+
 
         /// <summary>
         /// Deadzone for the joystick on this character.

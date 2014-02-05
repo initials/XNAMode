@@ -20,6 +20,7 @@ namespace XNAMode
             string textInfo = "";
             textInfo = "Choose:\n";
             textInfo += "F6. Open initialsgames.com/FourChambers\n";
+            textInfo += "F7. FlxBar Test\n";
             textInfo += "1. Level Visualizer\n";
             textInfo += "2. Mode\n";
             textInfo += "3. Path Test\n";
@@ -49,6 +50,12 @@ namespace XNAMode
                 
                 FlxG.Game.Exit();
                     
+            }
+
+            if (FlxG.keys.justPressed(Keys.F7))
+            {
+                FlxG.state = new FourChambers.FlxBarTestState();
+
             }
 
             if (FlxG.keys.ONE)

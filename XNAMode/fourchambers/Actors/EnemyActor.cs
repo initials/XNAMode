@@ -107,14 +107,11 @@ namespace FourChambers
         public const int FR_sphinx = 78;
         public const int FR_chimera = 79;
         #endregion
-
-
-
+        
         public bool canClimbLadder = false;
         private bool isClimbingLadder = false;
         public float hurtTimer = 550.0f;
         public bool readyForHarvester = false;
-        public bool isPlayerControlled = false;
         public const float DEADZONE = 0.5f;
         public int runSpeed = 120;
         public bool attackingMouse = false;

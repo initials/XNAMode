@@ -17,6 +17,7 @@ namespace FourChambers
         {
 
             actorName = "Automatic Gerry";
+            actorType = "automaton";
             score = 250;
             health = 2;
             runSpeed = 120;
@@ -26,6 +27,12 @@ namespace FourChambers
             _jumpInitialTime = 0.045f;
             maxVelocity.X = runSpeed * 4;
             maxVelocity.Y = 1000;
+            drag.X = runSpeed * 4;
+            drag.Y = runSpeed * 4;
+            playbackFile = "FourChambers/ActorRecording/automaton.txt";
+            timeDownAfterHurt = 2.5f;
+            actorType = "automaton";
+            
 
             // Load graphic and create animations.
             // Required anims:
@@ -37,8 +44,8 @@ namespace FourChambers
             addAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 2,4 }, 18);
-            addAnimation("death", new int[] { 8,9 }, 12, false);
-
+            addAnimation("hurt", new int[] { 8,9 }, 12, false);
+            addAnimation("death", new int[] { 8, 9 }, 12, false);
 
             //bounding box tweaks
             width = 7;

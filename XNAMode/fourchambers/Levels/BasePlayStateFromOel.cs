@@ -1213,8 +1213,8 @@ namespace FourChambers
                     mistress.isPlayerControlled = true;
                     marksman.isPlayerControlled = false;
                     FlxG.follow(mistress,1.0f);
-
                 }
+
                 else if (FourChambers_Globals.cheatString.StartsWith("completelevel")) marksman.x = FlxG.levelWidth + 3;
 
             }

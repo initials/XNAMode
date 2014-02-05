@@ -20,13 +20,18 @@ namespace FourChambers
             actorName = "Dimitri";
             score = 250;
             health = 5;
-            runSpeed = 120;
+            runSpeed = 30;
             _jumpPower = -110.0f;
             _jumpInitialPower = -110.0f;
             _jumpMaxTime = 0.15f;
             _jumpInitialTime = 0.045f;
             maxVelocity.X = runSpeed * 4;
             maxVelocity.Y = 1000;
+            drag.X = runSpeed * 4;
+            drag.Y = runSpeed * 4;
+            playbackFile = "FourChambers/ActorRecording/grizzly.txt";
+            timeDownAfterHurt = 2.5f;
+            actorType = "grizzly";
 
             // Load graphic and create animations.
             // Required anims:

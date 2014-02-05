@@ -28,6 +28,11 @@ namespace FourChambers
             _jumpInitialTime = 0.045f;
             maxVelocity.X = runSpeed * 4;
             maxVelocity.Y = 1000;
+            drag.X = runSpeed * 4;
+            drag.Y = runSpeed * 4;
+            playbackFile = "FourChambers/ActorRecording/nymph.txt";
+            timeDownAfterHurt = 2.5f;
+            actorType = "nymph";
 
             // Load graphic and create animations.
             // Required anims:
