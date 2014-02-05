@@ -54,8 +54,9 @@ namespace FourChambers
         {
             score = 0;
             actorName="BaseActor";
+            actorType = "BaseActor";
             acceleration.Y = FourChambers_Globals.GRAVITY;
-            
+            FlxG.write("1 New BASE ACTOR");
 
 
 
@@ -69,9 +70,18 @@ namespace FourChambers
 
             base.update();
 
-            if (FourChambers_Globals.cheatString.StartsWith("control"+actorType))
+            if (FourChambers_Globals.cheatString != null)
             {
-                isPlayerControlled = true;
+                if (FourChambers_Globals.cheatString.StartsWith("control" + actorType))
+                {
+                    FlxG.write("Controlling " + actorType);
+
+                    isPlayerControlled = true;
+
+                    FourChambers_Globals.cheatString = "";
+
+                    FlxG.follow(this, 1.0f);
+                }
             }
 
         }

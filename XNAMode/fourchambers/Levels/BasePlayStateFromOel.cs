@@ -1532,7 +1532,7 @@ namespace FourChambers
                 else if (FourChambers_Globals.cheatString.StartsWith("completelevel")) marksman.x = FlxG.levelWidth + 3;
 
             }
-            FourChambers_Globals.cheatString = "";
+            //FourChambers_Globals.cheatString = "";
 
         }
 

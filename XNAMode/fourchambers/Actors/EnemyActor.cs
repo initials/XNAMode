@@ -144,7 +144,7 @@ namespace FourChambers
         /// </summary>
         private Recording _rec = Recording.None;
 
-        private FlxBar healthBar;
+        public FlxBar healthBar;
 
         public enum Recording
         {
@@ -158,12 +158,15 @@ namespace FourChambers
         public EnemyActor(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            FlxG.write("2 New enemy ACTOR");
+
             acceleration.Y = FourChambers_Globals.GRAVITY;
             frameCount = 0;
 
-            healthBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, 10, 2, this, "health", 0, 25, true);
+            healthBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, 10, 2, this, "health", 0, health, true);
             
         }
+
 
         public override void render(SpriteBatch spriteBatch)
         {
@@ -236,7 +239,7 @@ namespace FourChambers
             
             updateInputs();
 
-            if (color == Color.White) updateRecording();
+            if (color == Color.White && !dead) updateRecording();
             else
             {
                 velocity.X = 0;
@@ -250,12 +253,12 @@ namespace FourChambers
 
         public override void hurt(float Damage)
         {
-            if (color == Color.White)
-            {
+            //if (color == Color.White)
+            //{
                 color = Color.PaleVioletRed;
                 hurtTimer = 0;
                 base.hurt(Damage);
-            }
+            //}
         }
 
         public override void kill()
