@@ -140,7 +140,7 @@
     <ladder id="24" x="704" y="544" height="208" />
     <ladder id="25" x="656" y="320" height="224" />
     <ladder id="26" x="480" y="528" height="48" />
-    <_event id="20" x="464" y="48" width="80" height="128" event="mistress" value1="0" value2="0" repeat="1" />
+    <_event id="20" x="464" y="48" width="80" height="128" event="mistress_getaway" value1="0" value2="0" repeat="1" />
     <mistress id="27" x="720" y="160" flip="False" />
     <chicken id="19" x="320" y="560" flip="False" />
     <chicken id="21" x="544" y="640" flip="False" />

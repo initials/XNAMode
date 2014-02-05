@@ -1159,313 +1159,318 @@ namespace FourChambers
 
         public void eventSpriteRun(string command)
         {
-            if (command == "quake")
+            if (command.StartsWith("quake"))
             {
                 FlxG.quake.start(0.01f, 1.0f);
             }
 
-            if (command == "artist")
+            if (command.StartsWith("artist"))
             {
                 artist.startPlayingBack();
             }
-            if (command == "assassin")
+            if (command.StartsWith("assassin"))
             {
                 assassin.startPlayingBack();
             }
-            if (command == "automaton")
+            if (command.StartsWith("automaton"))
             {
                 automaton.startPlayingBack();
             }
-            if (command == "blight")
+            if (command.StartsWith("blight"))
             {
                 blight.startPlayingBack();
             }
-            if (command == "bloatedzombie")
+            if (command.StartsWith("bloatedzombie"))
             {
                 bloatedzombie.startPlayingBack();
             }
-            if (command == "bogbeast")
+            if (command.StartsWith("bogbeast"))
             {
                 bogbeast.startPlayingBack();
             }
-            if (command == "bombling")
+            if (command.StartsWith("bombling"))
             {
                 bombling.startPlayingBack();
             }
-            if (command == "centaur")
+            if (command.StartsWith("centaur"))
             {
                 centaur.startPlayingBack();
             }
-            if (command == "chicken")
+            if (command.StartsWith("chicken"))
             {
                 chicken.startPlayingBack();
             }
-            if (command == "chimaera")
+            if (command.StartsWith("chimaera"))
             {
                 chimaera.startPlayingBack();
             }
-            if (command == "corsair")
+            if (command.StartsWith("corsair"))
             {
                 corsair.startPlayingBack();
             }
-            if (command == "cow")
+            if (command.StartsWith("cow"))
             {
                 cow.startPlayingBack();
             }
-            if (command == "cyclops")
+            if (command.StartsWith("cyclops"))
             {
                 cyclops.startPlayingBack();
             }
-            if (command == "deathclaw")
+            if (command.StartsWith("deathclaw"))
             {
                 deathclaw.startPlayingBack();
             }
-            if (command == "deer")
+            if (command.StartsWith("deer"))
             {
                 deer.startPlayingBack();
             }
-            if (command == "devil")
+            if (command.StartsWith("devil"))
             {
                 devil.startPlayingBack();
             }
-            if (command == "djinn")
+            if (command.StartsWith("djinn"))
             {
                 djinn.startPlayingBack();
             }
-            if (command == "druid")
+            if (command.StartsWith("druid"))
             {
                 druid.startPlayingBack();
             }
-            if (command == "dwarf")
+            if (command.StartsWith("dwarf"))
             {
                 dwarf.startPlayingBack();
             }
-            if (command == "embersteed")
+            if (command.StartsWith("embersteed"))
             {
                 embersteed.startPlayingBack();
             }
-            if (command == "executor")
+            if (command.StartsWith("executor"))
             {
                 executor.startPlayingBack();
             }
-            if (command == "feline")
+            if (command.StartsWith("feline"))
             {
                 feline.startPlayingBack();
             }
-            if (command == "floatingeye")
+            if (command.StartsWith("floatingeye"))
             {
                 floatingeye.startPlayingBack();
             }
-            if (command == "fungant")
+            if (command.StartsWith("fungant"))
             {
                 fungant.startPlayingBack();
             }
-            if (command == "gelatine")
+            if (command.StartsWith("gelatine"))
             {
                 gelatine.startPlayingBack();
             }
-            if (command == "gloom")
+            if (command.StartsWith("gloom"))
             {
                 gloom.startPlayingBack();
             }
-            if (command == "glutton")
+            if (command.StartsWith("glutton"))
             {
                 glutton.startPlayingBack();
             }
-            if (command == "goblin")
+            if (command.StartsWith("goblin"))
             {
                 goblin.startPlayingBack();
             }
-            if (command == "golem")
+            if (command.StartsWith("golem"))
             {
                 golem.startPlayingBack();
             }
-            if (command == "gorgon")
+            if (command.StartsWith("gorgon"))
             {
                 gorgon.startPlayingBack();
             }
-            if (command == "gourmet")
+            if (command.StartsWith("gourmet"))
             {
                 gourmet.startPlayingBack();
             }
-            if (command == "grimwarrior")
+            if (command.StartsWith("grimwarrior"))
             {
                 grimwarrior.startPlayingBack();
             }
-            if (command == "grizzly")
+            if (command.StartsWith("grizzly"))
             {
                 grizzly.startPlayingBack();
             }
-            if (command == "harvester")
+            if (command.StartsWith("harvester"))
             {
                 harvester.startPlayingBack();
             }
-            if (command == "horse")
+            if (command.StartsWith("horse"))
             {
                 horse.startPlayingBack();
             }
-            if (command == "ifrit")
+            if (command.StartsWith("ifrit"))
             {
                 ifrit.startPlayingBack();
             }
-            if (command == "imp")
+            if (command.StartsWith("imp"))
             {
                 imp.startPlayingBack();
             }
-            if (command == "kerberos")
+            if (command.StartsWith("kerberos"))
             {
                 kerberos.startPlayingBack();
             }
-            if (command == "lich")
+            if (command.StartsWith("lich"))
             {
                 lich.startPlayingBack();
             }
-            if (command == "lion")
+            if (command.StartsWith("lion"))
             {
                 lion.startPlayingBack();
             }
-
-            if (command == "mechanic")
+            if (command.StartsWith("mechanic"))
             {
                 mechanic.startPlayingBack();
             }
-            if (command == "mephisto")
+            if (command.StartsWith("mephisto"))
             {
                 mephisto.startPlayingBack();
             }
-            if (command == "merchant")
+            if (command.StartsWith("merchant"))
             {
                 merchant.startPlayingBack();
             }
-            if (command == "mermaid")
+            if (command.StartsWith("mermaid"))
             {
                 mermaid.startPlayingBack();
             }
-            if (command == "mimick")
+            if (command.StartsWith("mimick"))
             {
                 mimick.startPlayingBack();
             }
-            if (command == "mistress")
+            if (command.StartsWith("mistress"))
             {
-                mistress.startPlayingBack();
+                string[] split = command.Split('_');
+                if (split.Length == 1) mistress.startPlayingBack();
+                else mistress.startPlayingBack(split[1]);
             }
-            if (command == "monk")
+            if (command.StartsWith("monk"))
             {
                 monk.startPlayingBack();
             }
-            if (command == "mummy")
+            if (command.StartsWith("mummy"))
             {
                 mummy.startPlayingBack();
             }
-            if (command == "nightmare")
+            if (command.StartsWith("nightmare"))
             {
                 nightmare.startPlayingBack();
             }
-            if (command == "nymph")
+            if (command.StartsWith("nymph"))
             {
                 nymph.startPlayingBack();
             }
-            if (command == "ogre")
+            if (command.StartsWith("ogre"))
             {
                 ogre.startPlayingBack();
             }
-            if (command == "paladin")
+            if (command.StartsWith("paladin"))
             {
-                paladin.startPlayingBack();
+                string[] split = command.Split('_');
+                if (split.Length == 1) paladin.startPlayingBack();
+                else paladin.startPlayingBack(split[1]);
             }
-            if (command == "phantom")
+            if (command.StartsWith("phantom"))
             {
                 phantom.startPlayingBack();
             }
-            if (command == "priest")
+            if (command.StartsWith("priest"))
             {
                 priest.startPlayingBack();
             }
-            if (command == "prism")
+            if (command.StartsWith("prism"))
             {
                 prism.startPlayingBack();
             }
-            if (command == "rat")
+            if (command.StartsWith("rat"))
             {
                 rat.startPlayingBack();
             }
-            if (command == "savage")
+            if (command.StartsWith("savage"))
             {
                 savage.startPlayingBack();
             }
-            if (command == "sheep")
+            if (command.StartsWith("sheep"))
             {
                 sheep.startPlayingBack();
             }
-            if (command == "skeleton")
+            if (command.StartsWith("skeleton"))
             {
                 skeleton.startPlayingBack();
             }
-            if (command == "snake")
+            if (command.StartsWith("snake"))
             {
                 snake.startPlayingBack();
             }
-            if (command == "soldier")
+            if (command.StartsWith("soldier"))
             {
                 soldier.startPlayingBack();
             }
-            if (command == "sphinx")
+            if (command.StartsWith("sphinx"))
             {
                 sphinx.startPlayingBack();
             }
-            if (command == "spider")
+            if (command.StartsWith("spider"))
             {
                 spider.startPlayingBack();
             }
-            if (command == "succubus")
+            if (command.StartsWith("succubus"))
             {
                 succubus.startPlayingBack();
             }
-            if (command == "tauro")
+            if (command.StartsWith("tauro"))
             {
                 tauro.startPlayingBack();
             }
-            if (command == "toad")
+            if (command.StartsWith("toad"))
             {
                 toad.startPlayingBack();
             }
-            if (command == "tormentor")
+            if (command.StartsWith("tormentor"))
             {
                 tormentor.startPlayingBack();
             }
-            if (command == "treant")
+            if (command.StartsWith("treant"))
             {
                 treant.startPlayingBack();
             }
-            if (command == "troll")
+            if (command.StartsWith("troll"))
             {
                 troll.startPlayingBack();
             }
-            if (command == "unicorn")
+            if (command.StartsWith("unicorn"))
             {
-                unicorn.startPlayingBack();
+                string[] split = command.Split('_');
+                if (split.Length == 1) unicorn.startPlayingBack();
+                else unicorn.startPlayingBack(split[1]);
             }
-            if (command == "vampire")
+            if (command.StartsWith("vampire"))
             {
                 vampire.startPlayingBack();
             }
-            //if (command == "warlock")
+            //if (command.StartsWith("warlock"))
             //{
             //    warlock.startPlayingBack();
             //}
-            if (command == "willowisp")
+            if (command.StartsWith("willowisp"))
             {
                 willowisp.startPlayingBack();
             }
-            if (command == "wizard")
+            if (command.StartsWith("wizard"))
             {
                 wizard.startPlayingBack();
             }
-            if (command == "wolf")
+            if (command.StartsWith("wolf"))
             {
                 wolf.startPlayingBack();
             }
-            if (command == "zombie")
+            if (command.StartsWith("zombie"))
             {
                 zombie.startPlayingBack();
             }
