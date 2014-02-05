@@ -55,10 +55,10 @@ namespace org.flixel
          */
         private float min;
 
-        /**
-         * The maximum value the bar can be (can never be <= min)
-         */
-        private float max;
+        /// <summary>
+        /// The maximum value the bar can be (can never be <= min)
+        /// </summary>
+        public float max;
 
         /**
          * How wide is the range of this bar? (max - min)

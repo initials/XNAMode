@@ -16,6 +16,8 @@ namespace FourChambers
         public Unicorn(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            FlxG.write("3 New Unicorn");
+
             // Set up the stats for this actor.
             actorName = "Fabulous Diamond Joe";
             score = 250;
@@ -54,7 +56,7 @@ namespace FourChambers
             offset.X = 5;
             offset.Y = 20;
 
-            
+            healthBar.max = (uint)health;
         }
 
         public void finishedHurt(string Name, uint Frame, int FrameIndex) 
