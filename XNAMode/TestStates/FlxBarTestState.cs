@@ -39,6 +39,7 @@ namespace FourChambers
             bg.y = 100;
             bg.health = 10;
             add(bg);
+            bg.color = Color.Red;
 
             bg2 = new FlxSprite(0, 0);
             bg2.loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/texture_placement_small"), true, false, 32, 32);
@@ -75,9 +76,6 @@ namespace FourChambers
         override public void update()
         {
 
-
-            
-
             base.update();
 
             if (FlxG.keys.justPressed(Keys.A))
@@ -85,6 +83,7 @@ namespace FourChambers
                 bg.hurt(1);
                 bg2.hurt(1);
                 bg3.hurt(1);
+                bg.color = Color.Red;
             }
             if (FlxG.keys.justPressed(Keys.S))
             {
@@ -106,7 +105,7 @@ namespace FourChambers
             }
             if (FlxG.keys.justPressed(Keys.G))
             {
-                bg.renderFlicker(2);
+                bg.colorFlicker(2);
             } 
 
         }

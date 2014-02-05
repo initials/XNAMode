@@ -257,7 +257,6 @@ namespace FourChambers
 
         override public void create()
         {
-            
 
             base.create();
 
@@ -826,18 +825,27 @@ namespace FourChambers
                 //FlxG.setHudText(1, "Press X to go to Menu \n Press Y to restart.");
 
                 FlxG._game.hud.p1HudText.alignment = FlxJustification.Center;
-                FlxG._game.hud.p1HudText.text = "Press B to go to Menu \n Press X to restart.";
+                
+
+                if (marksman.hasUsedJoystickToAim)
+                {
+                    FlxG._game.hud.p1HudText.text = "Press B to go to Menu \n Press X to restart.";
+                }
+                else if (!marksman.hasUsedJoystickToAim)
+                {
+                    FlxG._game.hud.p1HudText.text = "Left Click to go to Menu \n Right Click to restart.";
+                }
                 FlxG.setHudTextScale(1, 2);
                 FlxG.setHudTextPosition(1, 0, FlxG.height / 2);
                 FourChambers_Globals.seraphineHasBeenKilled = false;
 
-                if (FlxG.gamepads.isButtonDown(Buttons.B) || FlxG.mouse.pressed())
+                if (FlxG.gamepads.isButtonDown(Buttons.B) || FlxG.mouse.pressedLeftButton())
                 {
                     FlxOnlineStatCounter.sendStats("fourchambers", "marksman", FlxG.score);
                     goToMenu();
                 }
 
-                if (FlxG.gamepads.isButtonDown(Buttons.X) || FlxG.mouse.pressed())
+                if (FlxG.gamepads.isButtonDown(Buttons.X) || FlxG.mouse.pressedRightButton())
                 {
                     FlxOnlineStatCounter.sendStats("fourchambers", "marksman", FlxG.score);
                     restart();
@@ -1348,7 +1356,7 @@ namespace FourChambers
             {
                 string[] split = command.Split('_');
                 if (split.Length == 1) mistress.startPlayingBack();
-                else mistress.startPlayingBack(split[1]);
+                else mistress.startPlayingBack("FourChambers/ActorRecording/" + command + ".txt");
             }
             if (command.StartsWith("monk"))
             {

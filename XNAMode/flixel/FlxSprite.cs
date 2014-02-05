@@ -79,13 +79,13 @@ namespace org.flixel
 		private uint _flipped;
 
         /// <summary>
-        /// Internal helper used for retro-style flickering. RenderFlicker uses color and alpha, rather than on/off.
+        /// Internal helper used for retro-style flickering. colorFlicker uses color and alpha, rather than on/off.
         /// </summary>
-        protected bool _renderFlicker;
+        protected bool _colorFlicker;
         /// <summary>
-        /// Internal helper used for retro-style flickering. RenderFlicker uses color and alpha, rather than on/off.
+        /// Internal helper used for retro-style flickering. colorFlicker uses color and alpha, rather than on/off.
         /// </summary>
-        protected float _renderFlickerTimer;
+        protected float _colorFlickerTimer;
 
         /// <summary>
         /// _curAnim is the current playing animation.
@@ -123,6 +123,7 @@ namespace org.flixel
         /// internal color used for tinting.
         /// </summary>
         protected Color _color = Color.White;
+        protected Color _lastColor = Color.White;
         private byte _bytealpha = 0xff;
 
         /// <summary>
@@ -203,6 +204,7 @@ namespace org.flixel
             scale = 1f;
             _alpha = 1;
             _color = Color.White;
+            _lastColor = Color.White;
             blend = null;
             antialiasing = false;
 
@@ -216,8 +218,8 @@ namespace org.flixel
             _frameTimer = 0;
             boundingBoxOverride = true;
 
-            _renderFlicker = false;
-            _renderFlickerTimer = -1;
+            _colorFlicker = false;
+            _colorFlickerTimer = -1;
 
             //_mtx = new Matrix();
             _callback = null;
@@ -424,38 +426,34 @@ namespace org.flixel
             updateMotion();
             updateAnimation();
             updateFlickering();
-            updateRenderFlickering();
+            updatecolorFlickering();
 
         }
 
         /// <summary>
         /// Just updates the render-style flickering.
         /// </summary>
-        public virtual void updateRenderFlickering()
+        public virtual void updatecolorFlickering()
         {
-            if (renderFlickering())
+            if (colorFlickering())
             {
-                if (_renderFlickerTimer > 0)
+                if (_colorFlickerTimer > 0)
                 {
-                    _renderFlickerTimer -= FlxG.elapsed;
-                    if (_renderFlickerTimer == 0)
+                    _colorFlickerTimer -= FlxG.elapsed;
+                    if (_colorFlickerTimer == 0)
                     {
-                        _renderFlickerTimer = -1;
+                        _colorFlickerTimer = -1;
                     }
                 }
-                if (_renderFlickerTimer < 0) flicker(-1);
+                if (_colorFlickerTimer < 0) colorFlicker(-1);
                 else
                 {
-                    _renderFlicker = !_renderFlicker;
+                    _colorFlicker = !_colorFlicker;
 
-                    if (_renderFlicker) color = Color.White;
-                    else if (!_renderFlicker) color = new Color(FlxU.random(0, 1), FlxU.random(0, 0), FlxU.random(0, 0));
+                    if (_colorFlicker) color = Color.White;
+                    else if (!_colorFlicker) color = new Color(FlxU.random(0.175f, 0), FlxU.random(0.175f, 1), FlxU.random(0.175f, 0));
 
                 }
-            }
-            else
-            {
-                color = Color.White;
             }
         }
 
@@ -807,13 +805,27 @@ namespace org.flixel
         /// Tells this object to flicker, retro-style.
         /// </summary>
         /// <param name="Duration">How many seconds to flicker for.</param>
-        public void renderFlicker(float Duration) { _renderFlickerTimer = Duration; if (_renderFlickerTimer < 0) { _renderFlicker = false; visible = true; } }
+        public void colorFlicker(float Duration) 
+        {
+            _colorFlickerTimer = Duration;
+
+            if (_colorFlickerTimer < 0)
+            {
+                _colorFlicker = false;
+                visible = true;
+                color = _lastColor;
+            }
+            else
+            {
+                _lastColor = color;
+            }
+        }
 
         /// <summary>
         /// Check to see if the object is still flickering.
         /// </summary>
         /// <returns>Whether the object is flickering or not.</returns>
-        public bool renderFlickering() { return _renderFlickerTimer >= 0; }
+        public bool colorFlickering() { return _colorFlickerTimer >= 0; }
 
 
 
