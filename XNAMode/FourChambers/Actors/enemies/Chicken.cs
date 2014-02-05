@@ -19,7 +19,7 @@ namespace FourChambers
 
             actorName = "Goldie";
             score = 25;
-            health = 1;
+            health = 2;
             runSpeed = 30;
             _jumpPower = -110.0f;
             _jumpInitialPower = -110.0f;
@@ -32,6 +32,9 @@ namespace FourChambers
             playbackFile = "FourChambers/ActorRecording/chicken.txt";
             timeDownAfterHurt = 2.5f;
             actorType = "chicken";
+
+            //Set the health bar max from here now that we know our health starting point.
+            healthBar.max = (uint)health;
 
             // Load graphic and create animations.
             // Required anims:

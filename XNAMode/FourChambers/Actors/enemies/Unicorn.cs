@@ -35,6 +35,9 @@ namespace FourChambers
             timeDownAfterHurt = 2.5f;
             actorType = "unicorn";
 
+            //Set the health bar max from here now that we know our health starting point.
+            healthBar.max = (uint)health;
+
             // Load graphic and create animations.
             // Required anims:
             // walk, run, idle, attack, death, hurt, jump
@@ -56,7 +59,7 @@ namespace FourChambers
             offset.X = 5;
             offset.Y = 20;
 
-            healthBar.max = (uint)health;
+            
         }
 
         public void finishedHurt(string Name, uint Frame, int FrameIndex) 

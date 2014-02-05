@@ -33,6 +33,9 @@ namespace FourChambers
             timeDownAfterHurt = 2.5f;
             actorType = "feline";
 
+            //Set the health bar max from here now that we know our health starting point.
+            healthBar.max = (uint)health;
+
             // Load graphic and create animations.
             // Required anims:
             // walk, run, idle, attack, death, hurt, jump
