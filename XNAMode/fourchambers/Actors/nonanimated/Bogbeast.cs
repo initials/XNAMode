@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Bogbeast : Actor
+    class Bogbeast : EnemyActor
     {
         public Bogbeast(int xPos, int yPos)
             : base(xPos, yPos)

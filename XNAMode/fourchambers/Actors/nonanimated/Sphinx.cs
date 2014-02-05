@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Sphinx : Actor
+    class Sphinx : EnemyActor
     {
         public Sphinx(int xPos, int yPos)
             : base(xPos, yPos)

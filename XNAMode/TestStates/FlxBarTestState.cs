@@ -103,8 +103,11 @@ namespace FourChambers
                 bg.health += 5;
                 bg.dead = false;
                 bg.exists = true;
+            }
+            if (FlxG.keys.justPressed(Keys.G))
+            {
+                bg.renderFlicker(2);
             } 
-
 
         }
     }

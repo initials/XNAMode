@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Glutton : Actor
+    class Glutton : EnemyActor
     {
         public Glutton(int xPos, int yPos)
             : base(xPos, yPos)

@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Floatingeye : Actor
+    class Floatingeye : EnemyActor
     {
         public Floatingeye(int xPos, int yPos)
             : base(xPos, yPos)

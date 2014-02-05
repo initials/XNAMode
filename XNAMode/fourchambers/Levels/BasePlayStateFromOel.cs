@@ -1163,12 +1163,313 @@ namespace FourChambers
             {
                 FlxG.quake.start(0.01f, 1.0f);
             }
+
+            if (command == "artist")
+            {
+                artist.startPlayingBack();
+            }
+            if (command == "assassin")
+            {
+                assassin.startPlayingBack();
+            }
+            if (command == "automaton")
+            {
+                automaton.startPlayingBack();
+            }
+            if (command == "blight")
+            {
+                blight.startPlayingBack();
+            }
+            if (command == "bloatedzombie")
+            {
+                bloatedzombie.startPlayingBack();
+            }
+            if (command == "bogbeast")
+            {
+                bogbeast.startPlayingBack();
+            }
+            if (command == "bombling")
+            {
+                bombling.startPlayingBack();
+            }
+            if (command == "centaur")
+            {
+                centaur.startPlayingBack();
+            }
+            if (command == "chicken")
+            {
+                chicken.startPlayingBack();
+            }
+            if (command == "chimaera")
+            {
+                chimaera.startPlayingBack();
+            }
+            if (command == "corsair")
+            {
+                corsair.startPlayingBack();
+            }
+            if (command == "cow")
+            {
+                cow.startPlayingBack();
+            }
+            if (command == "cyclops")
+            {
+                cyclops.startPlayingBack();
+            }
+            if (command == "deathclaw")
+            {
+                deathclaw.startPlayingBack();
+            }
+            if (command == "deer")
+            {
+                deer.startPlayingBack();
+            }
+            if (command == "devil")
+            {
+                devil.startPlayingBack();
+            }
+            if (command == "djinn")
+            {
+                djinn.startPlayingBack();
+            }
+            if (command == "druid")
+            {
+                druid.startPlayingBack();
+            }
+            if (command == "dwarf")
+            {
+                dwarf.startPlayingBack();
+            }
+            if (command == "embersteed")
+            {
+                embersteed.startPlayingBack();
+            }
+            if (command == "executor")
+            {
+                executor.startPlayingBack();
+            }
+            if (command == "feline")
+            {
+                feline.startPlayingBack();
+            }
+            if (command == "floatingeye")
+            {
+                floatingeye.startPlayingBack();
+            }
+            if (command == "fungant")
+            {
+                fungant.startPlayingBack();
+            }
+            if (command == "gelatine")
+            {
+                gelatine.startPlayingBack();
+            }
+            if (command == "gloom")
+            {
+                gloom.startPlayingBack();
+            }
+            if (command == "glutton")
+            {
+                glutton.startPlayingBack();
+            }
+            if (command == "goblin")
+            {
+                goblin.startPlayingBack();
+            }
+            if (command == "golem")
+            {
+                golem.startPlayingBack();
+            }
+            if (command == "gorgon")
+            {
+                gorgon.startPlayingBack();
+            }
+            if (command == "gourmet")
+            {
+                gourmet.startPlayingBack();
+            }
+            if (command == "grimwarrior")
+            {
+                grimwarrior.startPlayingBack();
+            }
+            if (command == "grizzly")
+            {
+                grizzly.startPlayingBack();
+            }
+            if (command == "harvester")
+            {
+                harvester.startPlayingBack();
+            }
+            if (command == "horse")
+            {
+                horse.startPlayingBack();
+            }
+            if (command == "ifrit")
+            {
+                ifrit.startPlayingBack();
+            }
+            if (command == "imp")
+            {
+                imp.startPlayingBack();
+            }
+            if (command == "kerberos")
+            {
+                kerberos.startPlayingBack();
+            }
+            if (command == "lich")
+            {
+                lich.startPlayingBack();
+            }
+            if (command == "lion")
+            {
+                lion.startPlayingBack();
+            }
+
+            if (command == "mechanic")
+            {
+                mechanic.startPlayingBack();
+            }
+            if (command == "mephisto")
+            {
+                mephisto.startPlayingBack();
+            }
+            if (command == "merchant")
+            {
+                merchant.startPlayingBack();
+            }
+            if (command == "mermaid")
+            {
+                mermaid.startPlayingBack();
+            }
+            if (command == "mimick")
+            {
+                mimick.startPlayingBack();
+            }
             if (command == "mistress")
             {
                 mistress.startPlayingBack();
-
-                //mistress.mode = "attack";
             }
+            if (command == "monk")
+            {
+                monk.startPlayingBack();
+            }
+            if (command == "mummy")
+            {
+                mummy.startPlayingBack();
+            }
+            if (command == "nightmare")
+            {
+                nightmare.startPlayingBack();
+            }
+            if (command == "nymph")
+            {
+                nymph.startPlayingBack();
+            }
+            if (command == "ogre")
+            {
+                ogre.startPlayingBack();
+            }
+            if (command == "paladin")
+            {
+                paladin.startPlayingBack();
+            }
+            if (command == "phantom")
+            {
+                phantom.startPlayingBack();
+            }
+            if (command == "priest")
+            {
+                priest.startPlayingBack();
+            }
+            if (command == "prism")
+            {
+                prism.startPlayingBack();
+            }
+            if (command == "rat")
+            {
+                rat.startPlayingBack();
+            }
+            if (command == "savage")
+            {
+                savage.startPlayingBack();
+            }
+            if (command == "sheep")
+            {
+                sheep.startPlayingBack();
+            }
+            if (command == "skeleton")
+            {
+                skeleton.startPlayingBack();
+            }
+            if (command == "snake")
+            {
+                snake.startPlayingBack();
+            }
+            if (command == "soldier")
+            {
+                soldier.startPlayingBack();
+            }
+            if (command == "sphinx")
+            {
+                sphinx.startPlayingBack();
+            }
+            if (command == "spider")
+            {
+                spider.startPlayingBack();
+            }
+            if (command == "succubus")
+            {
+                succubus.startPlayingBack();
+            }
+            if (command == "tauro")
+            {
+                tauro.startPlayingBack();
+            }
+            if (command == "toad")
+            {
+                toad.startPlayingBack();
+            }
+            if (command == "tormentor")
+            {
+                tormentor.startPlayingBack();
+            }
+            if (command == "treant")
+            {
+                treant.startPlayingBack();
+            }
+            if (command == "troll")
+            {
+                troll.startPlayingBack();
+            }
+            if (command == "unicorn")
+            {
+                unicorn.startPlayingBack();
+            }
+            if (command == "vampire")
+            {
+                vampire.startPlayingBack();
+            }
+            //if (command == "warlock")
+            //{
+            //    warlock.startPlayingBack();
+            //}
+            if (command == "willowisp")
+            {
+                willowisp.startPlayingBack();
+            }
+            if (command == "wizard")
+            {
+                wizard.startPlayingBack();
+            }
+            if (command == "wolf")
+            {
+                wolf.startPlayingBack();
+            }
+            if (command == "zombie")
+            {
+                zombie.startPlayingBack();
+            }
+
             else
             {
                 FlxG.setHudText(1, command);

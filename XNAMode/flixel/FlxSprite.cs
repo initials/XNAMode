@@ -79,6 +79,15 @@ namespace org.flixel
 		private uint _flipped;
 
         /// <summary>
+        /// Internal helper used for retro-style flickering. RenderFlicker uses color and alpha, rather than on/off.
+        /// </summary>
+        protected bool _renderFlicker;
+        /// <summary>
+        /// Internal helper used for retro-style flickering. RenderFlicker uses color and alpha, rather than on/off.
+        /// </summary>
+        protected float _renderFlickerTimer;
+
+        /// <summary>
         /// _curAnim is the current playing animation.
         /// <para>Use _curAnim.name to get the name of the currently playing.</para>
         /// </summary>
@@ -206,6 +215,9 @@ namespace org.flixel
             _caf = 0;
             _frameTimer = 0;
             boundingBoxOverride = true;
+
+            _renderFlicker = false;
+            _renderFlickerTimer = -1;
 
             //_mtx = new Matrix();
             _callback = null;
@@ -414,38 +426,32 @@ namespace org.flixel
             updateFlickering();
         }
 
-		/// <summary>
-		/// Just updates the retro-style flickering.
-		/// Considered update logic rather than rendering because it toggles visibility.
-        /// Previously had this toggling between 0.2 and 1 alpha.
-		/// </summary>
-        //override public void updateFlickering()
-        //{
-        //    if (flickering())
-        //    {
-        //        if (_flickerTimer > 0)
-        //        {
-        //            _flickerTimer -= FlxG.elapsed;
-        //            if (_flickerTimer == 0)
-        //            {
-        //                _flickerTimer = -1;
-        //            }
-        //        }
-        //        if (_flickerTimer < 0) flicker(-1);
-        //        else
-        //        {
-        //            _flicker = !_flicker;
-        //            //visible = !_flicker;
+        /// <summary>
+        /// Just updates the render-style flickering.
+        /// </summary>
+        public virtual void updateRenderFlickering()
+        {
+            if (renderFlickering())
+            {
+                if (_renderFlickerTimer > 0)
+                {
+                    _renderFlickerTimer -= FlxG.elapsed;
+                    if (_renderFlickerTimer == 0)
+                    {
+                        _renderFlickerTimer = -1;
+                    }
+                }
+                if (_renderFlickerTimer < 0) flicker(-1);
+                else
+                {
+                    _renderFlicker = !_renderFlicker;
 
-        //            if (_flicker) {
-        //                alpha = 0.2f;
-        //            } else {
-        //                alpha = 1;
-        //            }
+                    if (_renderFlicker) color = Color.White;
+                    else if (!_renderFlicker) color = new Color(FlxU.random(0, 1), FlxU.random(0, 1), FlxU.random(0, 1));
 
-        //        }
-        //    }
-        //}
+                }
+            }
+        }
 
         /// <summary>
         /// Called by game loop, updates then blits or renders current frame of animation to the screen
@@ -790,8 +796,18 @@ namespace org.flixel
                 }
             }
         }
-                
 
+        /// <summary>
+        /// Tells this object to flicker, retro-style.
+        /// </summary>
+        /// <param name="Duration">How many seconds to flicker for.</param>
+        public void renderFlicker(float Duration) { _renderFlickerTimer = Duration; if (_renderFlickerTimer < 0) { _renderFlicker = false; visible = true; } }
+
+        /// <summary>
+        /// Check to see if the object is still flickering.
+        /// </summary>
+        /// <returns>Whether the object is flickering or not.</returns>
+        public bool renderFlickering() { return _renderFlickerTimer >= 0; }
 
 
 

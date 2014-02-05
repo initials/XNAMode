@@ -40,6 +40,9 @@ namespace FourChambers
         /// Determines whether or not game inputs affect charactetr.
         /// </summary>
         public bool isPlayerControlled;
+
+        public float hurtTimer = 550.0f;
+
         
         /// <summary>
         /// The base for Actors. Should remain pretty empty.
@@ -61,7 +64,7 @@ namespace FourChambers
 
         override public void update()
         {
-
+            hurtTimer += FlxG.elapsed;
 
 
             base.update();

@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Gorgon : Actor
+    class Gorgon : EnemyActor
     {
         public Gorgon(int xPos, int yPos)
             : base(xPos, yPos)

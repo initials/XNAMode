@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Ifrit : Actor
+    class Ifrit : EnemyActor
     {
         public Ifrit(int xPos, int yPos)
             : base(xPos, yPos)

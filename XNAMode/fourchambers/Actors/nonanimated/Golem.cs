@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Golem : Actor
+    class Golem : EnemyActor
     {
         public Golem(int xPos, int yPos)
             : base(xPos, yPos)

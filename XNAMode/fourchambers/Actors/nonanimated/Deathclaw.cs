@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Deathclaw : Actor
+    class Deathclaw : EnemyActor
     {
         public Deathclaw(int xPos, int yPos)
             : base(xPos, yPos)

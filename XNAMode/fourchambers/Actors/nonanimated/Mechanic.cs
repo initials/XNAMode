@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Mechanic : FlxSprite
+    class Mechanic : EnemyActor
     {
         public Mechanic(int xPos, int yPos)
             : base(xPos, yPos)

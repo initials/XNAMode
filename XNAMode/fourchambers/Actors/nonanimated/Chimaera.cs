@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Chimaera : Actor
+    class Chimaera : EnemyActor
     {
         public Chimaera(int xPos, int yPos)
             : base(xPos, yPos)

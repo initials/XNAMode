@@ -110,7 +110,7 @@ namespace FourChambers
         
         public bool canClimbLadder = false;
         private bool isClimbingLadder = false;
-        public float hurtTimer = 550.0f;
+        
         public bool readyForHarvester = false;
         public const float DEADZONE = 0.5f;
         public int runSpeed = 120;
@@ -162,8 +162,6 @@ namespace FourChambers
             frameCount = 0;
 
             healthBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, 10, 2, this, "health", 0, 25, true);
-
-            
             
         }
 
@@ -175,8 +173,6 @@ namespace FourChambers
             healthBar.emptyBar.render(spriteBatch);
             healthBar.filledBar.render(spriteBatch);
 
-            
-
         }
 
         override public void hitSide(FlxObject Contact, float Velocity)
@@ -185,12 +181,8 @@ namespace FourChambers
         }
         override public void update()
         {
-            //healthBar.x = x;
-            //healthBar.y = y;
-            //healthBar.filledBar.width = (float)((health / 25)*10);
-
-            hurtTimer += FlxG.elapsed;
-            if (hurtTimer >= timeDownAfterHurt)
+            
+            if (hurtTimer >= timeDownAfterHurt*2)
             {
                 color = Color.White;
             }
@@ -258,9 +250,12 @@ namespace FourChambers
 
         public override void hurt(float Damage)
         {
-            color = Color.PaleVioletRed;
-            hurtTimer = 0;
-            base.hurt(Damage);
+            if (color == Color.White)
+            {
+                color = Color.PaleVioletRed;
+                hurtTimer = 0;
+                base.hurt(Damage);
+            }
         }
 
         public override void kill()

@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Troll : Actor
+    class Troll : EnemyActor
     {
         public Troll(int xPos, int yPos)
             : base(xPos, yPos)

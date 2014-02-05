@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Bombling : Actor
+    class Bombling : EnemyActor
     {
         public Bombling(int xPos, int yPos)
             : base(xPos, yPos)

@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Priest : Actor
+    class Priest : EnemyActor
     {
         public Priest(int xPos, int yPos)
             : base(xPos, yPos)

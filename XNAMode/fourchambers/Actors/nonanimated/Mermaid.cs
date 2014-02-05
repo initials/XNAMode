@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Mermaid : Actor
+    class Mermaid : EnemyActor
     {
         public Mermaid(int xPos, int yPos)
             : base(xPos, yPos)

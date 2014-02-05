@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Lich : Actor
+    class Lich : EnemyActor
     {
         public Lich(int xPos, int yPos)
             : base(xPos, yPos)

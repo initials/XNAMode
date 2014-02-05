@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Mimick : Actor
+    class Mimick : EnemyActor
     {
         public Mimick(int xPos, int yPos)
             : base(xPos, yPos)

@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Mephisto : Actor
+    class Mephisto : EnemyActor
     {
         public Mephisto(int xPos, int yPos)
             : base(xPos, yPos)

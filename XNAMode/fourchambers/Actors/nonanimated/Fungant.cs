@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Fungant : Actor
+    class Fungant : EnemyActor
     {
         public Fungant(int xPos, int yPos)
             : base(xPos, yPos)

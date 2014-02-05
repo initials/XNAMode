@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Willowisp : Actor
+    class Willowisp : EnemyActor
     {
         public Willowisp(int xPos, int yPos)
             : base(xPos, yPos)

@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Blight : Actor
+    class Blight : EnemyActor
     {
         public Blight(int xPos, int yPos)
             : base(xPos, yPos)
