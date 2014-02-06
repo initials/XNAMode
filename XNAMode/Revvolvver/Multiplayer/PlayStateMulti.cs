@@ -705,9 +705,9 @@ namespace Revvolvver
             }
 
 
-            if (FourChambers_Globals.cheatString == "winegar")
+            if (FlxGlobal.cheatString == "winegar")
             {
-                FourChambers_Globals.cheatString = " ";
+                FlxGlobal.cheatString = " ";
 
                 FlxG.scores[0] = (int)Revvolvver_Globals.GameSettings[4].GameValue - 1;
 

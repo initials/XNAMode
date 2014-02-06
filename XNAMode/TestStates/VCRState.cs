@@ -141,6 +141,8 @@ namespace FourChambers
 
         override public void update()
         {
+            if (FlxGlobal.cheatString!="") FlxG.write("CHEAT " + FlxGlobal.cheatString);
+
             FlxU.collide(actors, collider);
 
             if (FlxG.keys.ONE)
@@ -177,20 +179,20 @@ namespace FourChambers
             }
 
 
-            if (FourChambers_Globals.cheatString != null)
+            if (FlxGlobal.cheatString != null)
             {
-                if (FourChambers_Globals.cheatString.StartsWith("build"))
+                if (FlxGlobal.cheatString.StartsWith("build"))
                 {
 
-                    string actor = FourChambers_Globals.cheatString.Substring(5);
+                    string actor = FlxGlobal.cheatString.Substring(5);
 
-                    lastActorBuilt = FourChambers_Globals.cheatString.Substring(5);
+                    lastActorBuilt = FlxGlobal.cheatString.Substring(5);
 
                     buildActor(actor, 1, true, 100, 40, 0, 0, null, null, 0, 0, 0);
 
                     FlxG.setConsoleInfo(lastActorBuilt, PlayerIndex.One);
 
-                    FourChambers_Globals.cheatString = "";
+                    FlxGlobal.cheatString = "";
                 }
             }
 

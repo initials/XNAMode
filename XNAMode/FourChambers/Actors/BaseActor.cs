@@ -76,15 +76,15 @@ namespace FourChambers
 
             base.update();
 
-            if (FourChambers_Globals.cheatString != null)
+            if (FlxGlobal.cheatString != null)
             {
-                if (FourChambers_Globals.cheatString.StartsWith("control" + actorType))
+                if (FlxGlobal.cheatString.StartsWith("control" + actorType))
                 {
                     FlxG.write("Controlling " + actorType);
 
                     isPlayerControlled = true;
 
-                    FourChambers_Globals.cheatString = "";
+                    FlxGlobal.cheatString = "";
 
                     FlxG.follow(this, 1.0f);
                 }

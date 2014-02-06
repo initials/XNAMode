@@ -410,6 +410,8 @@ namespace org.flixel
                 _quakeOffset.X = FlxG.quake.x;
                 _quakeOffset.Y = FlxG.quake.y;
             }
+
+            FlxGlobal.cheatString = "";
         }
 
 

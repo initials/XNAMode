@@ -292,7 +292,7 @@ namespace org.flixel
             {
 
                 // run command(_consoleCommand.text);
-                FourChambers_Globals.runCheat(_consoleCommand.text);
+                FlxGlobal.runCheat(_consoleCommand.text);
 
 
                 _consoleCommand.text = "";

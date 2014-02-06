@@ -1511,43 +1511,43 @@ namespace FourChambers
         /// </summary>
         public void runCheat()
         {
-            if (FourChambers_Globals.cheatString != null)
+            if (FlxGlobal.cheatString != null)
             {
 
-                if (FourChambers_Globals.cheatString.StartsWith("killzingers"))
+                if (FlxGlobal.cheatString.StartsWith("killzingers"))
                 {
                     foreach (var item in actors.members)
                     {
                         if (item is ZingerNest) item.dead = true;
                     }
                 }
-                else if (FourChambers_Globals.cheatString.StartsWith("killemall"))
+                else if (FlxGlobal.cheatString.StartsWith("killemall"))
                 {
                     foreach (var item in actors.members)
                     {
                         if (!(item is Marksman)) item.dead = true;
                     }
                 }
-                else if (FourChambers_Globals.cheatString.StartsWith("build"))
+                else if (FlxGlobal.cheatString.StartsWith("build"))
                 {
 
-                    string actor = FourChambers_Globals.cheatString.Substring(5);
+                    string actor = FlxGlobal.cheatString.Substring(5);
 
                     buildActor(actor, 1, true, 100, 40, 0, 0, null, null, 0, 0, 0);
 
                     
                 }
-                else if (FourChambers_Globals.cheatString.StartsWith("controlmistress"))
+                else if (FlxGlobal.cheatString.StartsWith("controlmistress"))
                 {
                     mistress.isPlayerControlled = true;
                     marksman.isPlayerControlled = false;
                     FlxG.follow(mistress,1.0f);
                 }
 
-                else if (FourChambers_Globals.cheatString.StartsWith("completelevel")) marksman.x = FlxG.levelWidth + 3;
+                else if (FlxGlobal.cheatString.StartsWith("completelevel")) marksman.x = FlxG.levelWidth + 3;
 
             }
-            //FourChambers_Globals.cheatString = "";
+            //FlxGlobal.cheatString = "";
 
         }
 

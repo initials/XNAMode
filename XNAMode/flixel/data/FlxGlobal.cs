@@ -10,8 +10,30 @@ namespace org.flixel
     /// </summary>
     public class FlxGlobal
     {
+        /// <summary>
+        /// Allows playstates to see what the current cheat to run is.
+        /// </summary>
+        public static string cheatString;
+
         //public const int xTILE_SIZE_X = 16;
         //public const int xTILE_SIZE_Y = 16;
+
+        /// <summary>
+        /// Allows the FlxConsole to run commands.
+        /// </summary>
+        /// <param name="Cheat">Name of the cheat you want to run.</param>
+        public static void runCheat(string Cheat)
+        {
+            if (Cheat == "arrows") FlxG.log("Current Arrows to Fire: " + FourChambers_Globals.arrowsToFire);
+            else if (Cheat.StartsWith("arrows")) FourChambers_Globals.arrowsToFire = Convert.ToInt32(Cheat[Cheat.Length - 1].ToString());
+            else if (Cheat.StartsWith("whatisgame")) FlxG.log("Four Chambers");
+            else if (Cheat.StartsWith("liketheangels")) FourChambers_Globals.seraphineHasBeenKilled = false;
+            else if (Cheat.StartsWith("bigmoney")) FlxG.score += 20000;
+            else if (Cheat.StartsWith("nobugs")) FlxG.debug = false;
+            cheatString = Cheat;
+
+        }
+
     }
 
     /// <summary>
@@ -99,10 +121,7 @@ namespace org.flixel
         /// </summary>
         public static List<int> availableLevels ;
 
-        /// <summary>
-        /// Allows playstates to see what the current cheat to run is.
-        /// </summary>
-        public static string cheatString;
+
 
         /// <summary>
         /// 
@@ -157,21 +176,7 @@ namespace org.flixel
             }
         }
 
-        /// <summary>
-        /// Allows the FlxConsole to run commands.
-        /// </summary>
-        /// <param name="Cheat">Name of the cheat you want to run.</param>
-        public static void runCheat(string Cheat)
-        {
-            if (Cheat == "arrows") FlxG.log("Current Arrows to Fire: " + FourChambers_Globals.arrowsToFire);
-            else if (Cheat.StartsWith("arrows")) FourChambers_Globals.arrowsToFire = Convert.ToInt32(Cheat[Cheat.Length-1].ToString());
-            else if (Cheat.StartsWith("whatisgame")) FlxG.log("Four Chambers");
-            else if (Cheat.StartsWith("liketheangels")) FourChambers_Globals.seraphineHasBeenKilled = false;
-            else if (Cheat.StartsWith("bigmoney")) FlxG.score += 20000;
-            else if (Cheat.StartsWith("nobugs")) FlxG.debug=false;
-            cheatString = Cheat;
 
-        }
     }
 
     public class Mode_Globals

@@ -62,13 +62,13 @@ namespace org.flixel
         /// Assign a major version to your library.
         /// Appears before the decimal in the console.
         /// </summary>
-		static public uint LIBRARY_MAJOR_VERSION = 2;
+		static public uint LIBRARY_MAJOR_VERSION = 3;
 
         /// <summary>
         /// Assign a minor version to your library.
         /// Appears after the decimal in the console.
         /// </summary>
-		static public uint LIBRARY_MINOR_VERSION = 43;
+		static public uint LIBRARY_MINOR_VERSION = 00;
 
         /// <summary>
         /// Internal tracker for game object (so we can pause and unpause)
