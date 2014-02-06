@@ -222,7 +222,7 @@ namespace FourChambers
             hasTouched = false;
             dead = false;
 
-            Console.WriteLine("Shooting Arrow " + FlxG.elapsedTotal);
+            
 
         }
 

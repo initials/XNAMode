@@ -201,6 +201,9 @@ namespace FourChambers
             if (((_curFrame == 8 || _curFrame == 9 || _curFrame == 10) && attackingJoystick) || (FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder) && velocity.X != 0) )
             {
 
+                Console.WriteLine("Shooting Arrow " + FlxG.elapsedTotal + " This is the frame of the Marksman animation" + _curFrame);
+
+
                 float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
                 float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
                 
@@ -216,7 +219,8 @@ namespace FourChambers
                             //else
                             //    ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), -600, -100 + (i * 40));
 
-                            Console.WriteLine(12 * (int)(x - FlxG.mouse.cursor.x) * -1);
+                            //Console.WriteLine(12 * (int)(x - FlxG.mouse.cursor.x) * -1);
+                            
                             int yVel = (int)(12 * (int)(y - FlxG.mouse.cursor.y) * -1);
                             int yVelAdjusted = yVel - (i * 40);
                             ((Arrow)(_bullets[_curArrow])).shoot((int)x, (int)(y + (height / 2)), 12 * (int)(x - FlxG.mouse.cursor.x) * -1, yVelAdjusted);
@@ -259,6 +263,8 @@ namespace FourChambers
             // use the mouse position to fire a bullet.
             if ((_curFrame == 8 || _curFrame == 9 || _curFrame == 10) && (attackingMouse))
             {
+                Console.WriteLine("Shooting Arrow " + FlxG.elapsedTotal + " This is the frame of the Marksman animation" + _curFrame);
+
                 float rightX1 = FlxG.mouse.x;
                 float rightY1 = FlxG.mouse.y;
 

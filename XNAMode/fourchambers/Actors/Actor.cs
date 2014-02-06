@@ -107,20 +107,10 @@ namespace FourChambers
         public const int FR_chimera = 79;
         #endregion
 
-        public bool flying = false;
-        public bool canClimbLadder = false;
-        private bool isClimbingLadder = false;
-
-
-
-
-
         /// <summary>
         /// Deadzone for the joystick on this character.
         /// </summary>
         public const float DEADZONE = 0.5f;
-        
-
 
         public int runSpeed = 120;
 
@@ -163,8 +153,6 @@ namespace FourChambers
         /// How many frames have passed since the character left the ground.
         /// </summary>
         public float framesSinceLeftGround;
-
-        public float ladderPosX = 0;
 
         public string lastAttack = "range";
 

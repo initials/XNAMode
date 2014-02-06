@@ -108,9 +108,6 @@ namespace FourChambers
         public const int FR_chimera = 79;
         #endregion
         
-        public bool canClimbLadder = false;
-        private bool isClimbingLadder = false;
-        
         public bool readyForHarvester = false;
         public const float DEADZONE = 0.5f;
         public int runSpeed = 120;
@@ -126,7 +123,7 @@ namespace FourChambers
         public float _jumpInitialTime = 0.065f;
 
         public float framesSinceLeftGround;
-        public float ladderPosX = 0;
+        
         public string lastAttack = "range";
 
         /// <summary>

@@ -32,9 +32,15 @@ namespace FourChambers
         /// </summary>
         public string playbackFile = "FourChambers/ActorRecording/file.txt";
 
+        public bool flying = false;
 
+        public bool canClimbLadder = false;
+
+        public bool isClimbingLadder = false;
 
         public float timeDownAfterHurt = 1.0f;
+
+        public float ladderPosX = 0;
 
         /// <summary>
         /// Determines whether or not game inputs affect charactetr.

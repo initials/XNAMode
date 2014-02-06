@@ -904,12 +904,12 @@ namespace FourChambers
         /// <returns></returns>
         protected bool overlapWithLadder(object Sender, FlxSpriteCollisionEvent e)
         {
-            if (e.Object1 is Actor)
+            if (e.Object1 is BaseActor)
             {
-                if (!((Actor)(e.Object1)).flying)
+                if (!((BaseActor)(e.Object1)).flying)
                 {
-                    ((Actor)(e.Object1)).ladderPosX = e.Object2.x;
-                    ((Actor)(e.Object1)).canClimbLadder = true;
+                    ((BaseActor)(e.Object1)).ladderPosX = e.Object2.x;
+                    ((BaseActor)(e.Object1)).canClimbLadder = true;
                 }
             }
             return true;
