@@ -71,7 +71,7 @@ namespace org.flixel
 		static public uint LIBRARY_MINOR_VERSION = 43;
 
         /// <summary>
-        /// Internal tracker for game object (so we can pause & unpause)
+        /// Internal tracker for game object (so we can pause and unpause)
         /// </summary>
         static protected internal FlxGame _game;
 		/// <summary>
@@ -197,10 +197,6 @@ namespace org.flixel
         /// Stores the players username, 
         /// </summary>
         public static string username;
-		/**
-		 * <code>FlxG.saves</code> is a generic bucket for storing
-		 * FlxSaves so you can access them whenever you want.
-		 */
 #if !WINDOWS_PHONE
 
         /// <summary>
@@ -302,20 +298,6 @@ namespace org.flixel
         /// </summary>
         static public Vector2 scroll;
 
-		/**
-		 * Reference to the active graphics buffer.
-		 * Can also be referenced via <code>FlxState.screen</code>.
-		 */
-        //static public var buffer:BitmapData;
-		/**
-		 * Internal storage system to prevent graphics from being used repeatedly in memory.
-		 */
-        //static protected var _cache:Object;
-
-		/**
-		 * The support panel (twitter, reddit, stumbleupon, paypal, etc) visor thing
-		 */
-        //static public FlxPanel panel;
 		/// <summary>
         /// A special effect that shakes the screen.  Usage: FlxG.quake.start();
 		/// </summary>
@@ -450,9 +432,6 @@ namespace org.flixel
         /// <param name="Y">Y Position</param>
         public static void setHudGamepadButton(int Button, float X, float Y) { _game.hud.setHudGamepadButton(Button, X , Y); }
 
-        /// <summary>
-        /// Not working yet!
-        /// </summary>
 		//public static void takeScreenshot() { _game.takeScreenshot(); }
 
 

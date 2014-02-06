@@ -57,7 +57,7 @@ namespace FourChambers
             whipHitBox.width = 5;
             whipHitBox.height = 5;
 
-            ///custom stuff
+            //custom stuff
             attackingJoystick = false;
 
             hurtTimer = 10000;

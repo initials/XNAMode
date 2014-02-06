@@ -6,9 +6,9 @@ using System.IO;
 using System.Net;
 using System.Threading;
 
-///
-///http://initialsgames.com/highscores/commands.php?f=addData&levelname=marksman&score=23&gamename=hawksnest
-///
+
+//http://initialsgames.com/highscores/commands.php?f=addData&levelname=marksman&score=23&gamename=hawksnest
+
 
 namespace org.flixel
 {

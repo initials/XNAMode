@@ -1,18 +1,5 @@
-﻿/**
- * FlxBar
- * -- Part of the Flixel Power Tools set
- * 
- * v1.6 Lots of bug fixes, more documentation, 2 new test cases, ability to set currentValue added
- * v1.5 Fixed bug in "get percent" function that allows it to work with any value range
- * v1.4 Added support for min/max callbacks and "kill on min"
- * v1.3 Renamed from FlxHealthBar and made less specific / far more flexible
- * v1.2 Fixed colour values for fill and gradient to include alpha
- * v1.1 Updated for the Flixel 2.5 Plugin system
- * 
- * @version 1.6 - October 10th 2011
- * @link http://www.photonstorm.com
- * @author Richard Davey / Photon Storm
-*/
+﻿// @link http://www.photonstorm.com
+// @author Richard Davey / Photon Storm
 
 using System;
 using System.Collections.Generic;
@@ -56,7 +43,7 @@ namespace org.flixel
         private float min;
 
         /// <summary>
-        /// The maximum value the bar can be (can never be <= min)
+        /// The maximum value the bar can be (can never be less than min)
         /// </summary>
         public float max;
 
@@ -112,34 +99,19 @@ namespace org.flixel
         private  const uint BAR_GRADIENT = 2;
         private  const uint BAR_IMAGE = 3;
 
-        /**
-         * Create a new FlxBar Object
-         * 
-         * @param	x			The x coordinate location of the resulting bar (in world pixels)
-         * @param	y			The y coordinate location of the resulting bar (in world pixels)
-         * @param	direction 	One of the FlxBar.FILL_ constants (such as FILL_LEFT_TO_RIGHT, FILL_TOP_TO_BOTTOM etc)
-         * @param	width		The width of the bar in pixels
-         * @param	height		The height of the bar in pixels
-         * @param	parentRef	A reference to an object in your game that you wish the bar to track
-         * @param	variable	The variable of the object that is used to determine the bar position. For example if the parent was an FlxSprite this could be "health" to track the health value
-         * @param	min			The minimum value. I.e. for a progress bar this would be zero (nothing loaded yet)
-         * @param	max			The maximum value the bar can reach. I.e. for a progress bar this would typically be 100.
-         * @param	border		Include a 1px border around the bar? (if true it adds +2 to width and height to accommodate it)
-         */
-
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="direction"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="parentRef"></param>
-        /// <param name="variable"></param>
-        /// <param name="min"></param>
-        /// <param name="max"></param>
-        /// <param name="border"></param>
+        /// <param name="x">The x coordinate location of the resulting bar (in world pixels)</param>
+        /// <param name="y">The y coordinate location of the resulting bar (in world pixels)</param>
+        /// <param name="direction">One of the FlxBar.FILL_ constants (such as FILL_LEFT_TO_RIGHT, FILL_TOP_TO_BOTTOM etc)</param>
+        /// <param name="width">The width of the bar in pixels</param>
+        /// <param name="height">The height of the bar in pixels</param>
+        /// <param name="parentRef">A reference to an object in your game that you wish the bar to track</param>
+        /// <param name="variable">The variable of the object that is used to determine the bar position. For example if the parent was an FlxSprite this could be "health" to track the health value</param>
+        /// <param name="min">The minimum value. I.e. for a progress bar this would be zero (nothing loaded yet)</param>
+        /// <param name="max">The maximum value the bar can reach. I.e. for a progress bar this would typically be 100.</param>
+        /// <param name="border">Include a 1px border around the bar? (if true it adds +2 to width and height to accommodate it)</param>
         public FlxBar(int x,
                         int y,
                         uint direction = FILL_LEFT_TO_RIGHT,
@@ -181,16 +153,9 @@ namespace org.flixel
 
         }
 
-        public FlxBar(int x,
-                int y,
-                uint width = 100,
-                uint height = 10)
-            : base()
-        {
-            emptyBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.DarkGray);
-            filledBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.HotPink);
-        }
-
+        /// <summary>
+        /// Update.
+        /// </summary>
         public override void update()
         {
             //filledBar.width = (int)(percent * pxPerPercent);
@@ -322,7 +287,7 @@ namespace org.flixel
 
 
 
-///**
+//**
 // * FlxBar
 // * -- Part of the Flixel Power Tools set
 // * 

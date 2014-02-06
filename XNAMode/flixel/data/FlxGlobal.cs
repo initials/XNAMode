@@ -123,7 +123,7 @@ namespace org.flixel
         {
             
             FlxG.score = 0;
-            FourChambers_Globals.seraphineHasBeenKilled = false;
+            FourChambers_Globals.seraphineHasBeenKilled = true;
 
             FlxG.level = 1;
 

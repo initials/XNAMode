@@ -195,11 +195,6 @@ namespace org.flixel
             }
         }
 
-        /**
-         * The color of the text being displayed.
-         */
-        //public Color color;
-
         /// <summary>
         /// The font used for this text.
         /// </summary>

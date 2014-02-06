@@ -22,6 +22,8 @@ namespace org.flixel
         private Rectangle _titleSafeRect;
         private Color _consoleColor;
         private FlxText _consoleText;
+        private FlxSprite _consoleCheatActivated;
+        private bool canTypeCheat = false;
         
         /// <summary>
         /// Text describing frames per second.
@@ -40,7 +42,7 @@ namespace org.flixel
         int dx; // 5% of width
         int dy; // 5% of height
         Color notActionSafeColor = new Color(255, 0, 0, 23); // Red, 50% opacity
-        Color notTitleSafeColor = new Color(255, 255, 0, 23); // Yellow, 50% opacity
+        Color notTitleSafeColor = new Color(255, 255, 0, 8); // Yellow, 50% opacity
 
         public FlxRecord vcr;
 
@@ -81,8 +83,10 @@ namespace org.flixel
             _consoleText = new FlxText(targetLeft+(dx*2), -800, targetWidth, "").setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
             _consoleText.height = FlxG.height; //FlxG.spriteBatch.GraphicsDevice.Viewport.Height;
 
-            _consoleCommand = new FlxText(targetLeft + (dx * 2), -800, targetWidth, "").setFormat(null, 1, Color.Green, FlxJustification.Left, Color.HotPink);
-            _consoleCommand.text = "Type a command: ";
+            _consoleCommand = new FlxText(targetLeft + (dx * 2) + 50, -800, targetWidth, "").setFormat(null, 1, Color.HotPink, FlxJustification.Left, Color.White);
+            _consoleCommand.text = "";
+
+            _consoleCheatActivated = new FlxSprite(targetLeft + (dx * 2), -800, FlxG.Content.Load<Texture2D>("flixel/vcr/cheat_on"));
 
 
             _consoleFPS = new FlxText(targetLeft + targetWidth - (dx*3), -800, 30, "").setFormat(null, 2, Color.White, FlxJustification.Right, Color.White);
@@ -142,9 +146,15 @@ namespace org.flixel
 	
         public void update()
         {
+            _consoleCheatActivated.update();
+
             if (visible)
             {
-                keyboardEntry();
+
+                FlxG._game.Game.IsMouseVisible = true;
+
+                if (FlxG.keys.justPressed(Keys.Tab)) canTypeCheat = !canTypeCheat;
+                if (canTypeCheat) keyboardEntry();
 
                 vcr.update();
 
@@ -161,8 +171,13 @@ namespace org.flixel
 
                 _consoleText.y = (-FlxG.spriteBatch.GraphicsDevice.Viewport.Height + _consoleRect.Height + 70);
                 _consoleFPS.y = _consoleText.y;
-                _consoleCommand.y = _consoleText.y-16;
-                
+                _consoleCommand.y = _consoleText.y - 16;
+                _consoleCheatActivated.y = _consoleText.y - 32;
+
+            }
+            else
+            {
+                FlxG._game.Game.IsMouseVisible = false;
             }
             if (_consoleY < _consoleYT)
                 _consoleY += FlxG.height * 10 * FlxG.elapsed;
@@ -201,11 +216,13 @@ namespace org.flixel
             spriteBatch.Draw(FlxG.XnaSheet, _titleSafeRect,
                 _srcRect, notTitleSafeColor);
 
+            
+
             _consoleText.render(spriteBatch);
             _consoleFPS.render(spriteBatch);
             _consoleCommand.render(spriteBatch);
             vcr.render(spriteBatch);
-
+            if (canTypeCheat) _consoleCheatActivated.render(spriteBatch);
 
 
 
@@ -279,6 +296,8 @@ namespace org.flixel
 
 
                 _consoleCommand.text = "";
+
+                canTypeCheat = false;
             }
         }
 

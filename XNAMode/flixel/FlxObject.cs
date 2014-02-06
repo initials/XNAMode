@@ -8,7 +8,7 @@ namespace org.flixel
     /// <summary>
     /// <para> is the base class for most of the display objects (<code>FlxSprite</code>, <code>FlxText</code>, etc). </para>
     /// <para> It includes some basic attributes about game objects, including retro-style flickering,</para>
-    /// <para> basic state information, sizes, scrolling, and basic physics & motion.</para>
+    /// <para> basic state information, sizes, scrolling, and basic physics and motion.</para>
     /// </summary>
     public class FlxObject
     {
@@ -254,7 +254,7 @@ namespace org.flixel
 
 
         /// <summary>
-        /// Path behavior controls: move from the start of the path to the end then stop.
+        /// Path behavior controls, move from the start of the path to the end then stop.
         /// </summary>
         public const uint PATH_FORWARD = 0x000000;
 
@@ -644,7 +644,7 @@ namespace org.flixel
         /// Just calls <code>FlxU.collide(this,Object);</code>.  Will collide against itself
         /// if Object==null.
         /// </summary>
-        /// <param name="Object">The <FlxObject> you want to collide with.</param>
+        /// <param name="Object">The FlxObject you want to collide with.</param>
         /// <returns>Whether the object collides or not.</returns>
         virtual public bool collide(FlxObject Object)
 		{
@@ -860,7 +860,7 @@ namespace org.flixel
         /// will log a warning message and return.
         /// </summary>
         /// <param name="Path">The <code>FlxPath</code> you want this object to follow.</param>
-        /// <param namwe="Speed">How fast to travel along the path in pixels per second.</param>
+        /// <param name="Speed">How fast to travel along the path in pixels per second.</param>
         /// <param name="Mode">Optional, controls the behavior of the object following the path using the path behavior constants.  Can use multiple flags at once, for example PATH_YOYO|PATH_HORIZONTAL_ONLY will make an object move back and forth along the X axis of the path only.</param>
         /// <param name="AutoRotate">Automatically point the object toward the next node.  Assumes the graphic is pointing upward.  Default behavior is false, or no automatic rotation.</param>
         public void followPath(FlxPath Path, float Speed, uint Mode, bool AutoRotate)
@@ -897,7 +897,7 @@ namespace org.flixel
         /// <summary>
         /// Tells this object to stop following the path its on.
         /// </summary>
-        /// <param name="DdeyPath">Tells this function whether to call destroy on the path object.  Default value is false.</param>
+        /// <param name="DestroyPath">Tells this function whether to call destroy on the path object.  Default value is false.</param>
         public void stopFollowingPath(bool DestroyPath=false)
         {
 

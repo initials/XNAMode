@@ -260,6 +260,8 @@ namespace FourChambers
 
             base.create();
 
+            FlxG.autoHandlePause = true;
+
             bgColor = Color.Black;
 
             // used for tutorial prompts.
@@ -512,9 +514,12 @@ namespace FourChambers
             add(actors);
             add(powerUps);
 
-            seraphine = new Seraphine(0, 0);
-            seraphine.play("fly");
-            add(seraphine);
+            if (seraphine == null)
+            {
+                seraphine = new Seraphine(-100, -100);
+                seraphine.play("fly");
+                add(seraphine);
+            }
 
             //buildActor("imp", 1);
             //buildActor("harvester", 1,false,-100,100,0,0,null,null,0,0,0);
@@ -771,6 +776,9 @@ namespace FourChambers
             FlxU.overlap(seraphine, bullets, overlapped);
             FlxU.overlap(actors, ladders, overlapWithLadder);
             FlxU.overlap(marksman.meleeHitBox, destructableTilemap, destroyTileAtMelee);
+
+            FlxU.overlap(seraphine, playerControlledActors, canNowFly);
+
             // Maybe use the return value of this to reset the combo counter.
             FlxU.collide(allLevelTiles, bullets);
             FlxU.collide(blood, allLevelTiles);
@@ -983,6 +991,13 @@ namespace FourChambers
             return true;
         }
 
+        protected bool canNowFly(object Sender, FlxSpriteCollisionEvent e)
+        {
+            FlxG.write("Player can now fly");
+
+            FourChambers_Globals.seraphineHasBeenKilled = false;
+            return true;
+        }
         protected bool overlappFireball(object Sender, FlxSpriteCollisionEvent e)
         {
             blood.at(e.Object1);

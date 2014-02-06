@@ -428,7 +428,7 @@ namespace FourChambers
             
             buildActor("marksman", 1, true);
 
-            /// Looks through the level dictionary and builds neccessary actors.
+            // Looks through the level dictionary and builds neccessary actors.
             foreach (KeyValuePair<string, string> pair in levelAttrs)
             {
                 int noa = 0;

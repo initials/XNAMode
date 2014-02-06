@@ -76,7 +76,7 @@ namespace org.flixel
         public const int STRING = 4;
 
         /// <summary>
-        /// !! Deprecated !! Now use CollideMin & CollideMax What tile index will you start colliding with (default: 1). 
+        /// !! Deprecated !! Now use CollideMin and CollideMax What tile index will you start colliding with (default: 1). 
         /// </summary>
         public int collideIndex;
 
@@ -494,9 +494,6 @@ namespace org.flixel
         /// <param name="Y">The Y coordinate of the point.</param>
         /// <param name="PerPixel"></param>
         /// <returns>Whether or not the point overlaps this object.</returns>
-        /// 
-
-        ///TODO: adjust for collidemin and max
         override public bool overlapsPoint(float X, float Y, bool PerPixel)
         {
             return getTile((int)((X - x) / _tileWidth), (int)((Y - y) / _tileHeight)) >= this.collideIndex;

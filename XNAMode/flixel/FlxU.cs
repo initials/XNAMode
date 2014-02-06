@@ -194,86 +194,6 @@ namespace org.flixel
             float dy = PivotY - Y;
             return new Vector2((float)(PivotX + Math.Cos(radians) * dx - Math.Sin(radians) * dy), (float)(PivotY - (Math.Sin(radians) * dx + Math.Cos(radians) * dy)));
         }
-        /**
-                * Rotates a point in 2D space around another point by the given angle.
-                * 
-                * @param        X                The X coordinate of the point you want to rotate.
-                * @param        Y                The Y coordinate of the point you want to rotate.
-                * @param        PivotX        The X coordinate of the point you want to rotate around.
-                * @param        PivotY        The Y coordinate of the point you want to rotate around.
-                * @param        Angle        Rotate the point by this many degrees.
-                * @param        Point        Optional <code>FlxPoint</code> to store the results in.
-                * 
-                * @return        A <code>FlxPoint</code> containing the coordinates of the rotated point.
-                */
-
-        /*
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="X"></param>
-        /// <param name="Y"></param>
-        /// <param name="PivotX"></param>
-        /// <param name="PivotY"></param>
-        /// <param name="Angle"></param>
-        /// <param name="Point"></param>
-        /// <returns></returns>
-        static public Vector2 rotatePoint(float X, float Y, float PivotX, float PivotY, float Angle, Vector2 Point)
-        {
-            float sin = 0;
-            float cos = 0;
-            float radians = Angle * -0.017453293f;
-            while (radians < -3.14159265f)
-                    radians += 6.28318531f;
-            while (radians >  3.14159265f)
-                    radians = radians - 6.28318531f;
-                        
-            if (radians < 0)
-            {
-                sin = 1.27323954f * radians + .405284735f * radians * radians;
-                if (sin < 0)
-                    sin = .225f * (sin *-sin - sin) + sin;
-                else
-                    sin = .225f * (sin * sin - sin) + sin;
-            }
-            else
-            {
-                    sin = 1.27323954 * radians - 0.405284735 * radians * radians;
-                    if (sin < 0)
-                            sin = .225 * (sin *-sin - sin) + sin;
-                    else
-                            sin = .225 * (sin * sin - sin) + sin;
-            }
-                        
-            radians += 1.57079632;
-            if (radians >  3.14159265)
-                    radians = radians - 6.28318531;
-            if (radians < 0)
-            {
-                    cos = 1.27323954 * radians + 0.405284735 * radians * radians;
-                    if (cos < 0)
-                            cos = .225 * (cos *-cos - cos) + cos;
-                    else
-                            cos = .225 * (cos * cos - cos) + cos;
-            }
-            else
-            {
-                    cos = 1.27323954 * radians - 0.405284735 * radians * radians;
-                    if (cos < 0)
-                            cos = .225 * (cos *-cos - cos) + cos;
-                    else
-                            cos = .225 * (cos * cos - cos) + cos;
-            }
-                        
-            var dx:Number = X-PivotX;
-            var dy:Number = PivotY+Y; //Y axis is inverted in flash, normally this would be a subtract operation
-            if(Point == null)
-                    Point = new FlxPoint();
-            Point.x = PivotX + cos*dx - sin*dy;
-            Point.y = PivotY - sin*dx - cos*dy;
-            return Point;
-        }
-        */
 
         /// <summary>
         /// Calculates the angle between a point and the origin (0,0).
@@ -463,9 +383,9 @@ namespace org.flixel
         /// <summary>
         /// Get the <code>String</code> name of any <code>Object</code>.
         /// </summary>
-        /// <param name="Obj"The <code>Object</code> object in question.></param>
+        /// <param name="Obj">The Object object in question.</param>
         /// <param name="Simple">Returns only the class name, not the package or packages.</param>
-        /// <returns>The name of the <code>Class</code> as a <code>String</code> object.</returns>
+        /// <returns>The name of the Class as a String object.</returns>
         static public string getClassName(object Obj, bool Simple)
         {
             if (Simple)
@@ -536,8 +456,9 @@ namespace org.flixel
             return Velocity;
         }
 
+        /// <summary>
         /// Call this function to specify a more efficient boundary for your game world.
-        /// This boundary is used by <code>overlap()</code> and <code>collide()</code>, so it
+        /// This boundary is used by overlap() and collide(), so it
         /// can't hurt to have it be the right size!  Flixel will invent a size for you, but
         /// it's pretty huge - 256x the size of the screen, whatever that may be.
         /// Leave width and height empty if you want to just update the game world's position.

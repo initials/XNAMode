@@ -451,12 +451,7 @@ namespace org.flixel
             }
 
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="mat"></param>
-        /// <param name="Chance">0-1 chance.</param>
-        /// <returns></returns>
+
         public string[,] addDecorations(string[,] mat)
         {
             return this.addDecorations(mat, 1.0f);
@@ -466,6 +461,7 @@ namespace org.flixel
         /// Add Decorations such as top, right, etc decorations.
         /// </summary>
         /// <param name="mat">In Matrix</param>
+        /// <param name="Chance">Chance of adding.</param>
         /// <returns>a string[,] matrix cave.</returns>
         public string[,] addDecorations(string[,] mat, float Chance)
         {

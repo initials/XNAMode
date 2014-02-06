@@ -21,7 +21,7 @@ namespace org.flixel
         public FlxList next;
 		
 		/// <summary>
-        /// Creates a new link, and sets <code>object</code> and <code>next</code> to <code>null</null>.
+        /// Creates a new link, and sets object and next to null..
 		/// </summary>
 		public FlxList()
 		{

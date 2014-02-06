@@ -85,7 +85,7 @@ namespace FourChambers
             List<Dictionary<string, string>> actorsAttrs = new List<Dictionary<string, string>>();
 
             // load level 3
-            /// TO DO: create a template test level.
+            // TODO: create a template test level.
             
             actorsAttrs = FlxXMLReader.readNodesFromOelFile("ogmoLevels/PathTesting.oel", "level/ActorsLayer");
 

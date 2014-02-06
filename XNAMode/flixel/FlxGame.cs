@@ -520,9 +520,7 @@ namespace org.flixel
             FlxG.spriteBatch.End();
         }
 
-        /// <summary>
-        /// Not working.
-        /// </summary>
+
 //        public void takeScreenshot()
 //        {
 //

@@ -90,31 +90,31 @@ namespace org.flixel
             vcrGroup.add(openSprite);
 
 
-            pauseSprite = new FlxSprite(170, yPos);
+            pauseSprite = new FlxSprite(230, yPos);
             pauseSprite.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/pause"));
             pauseSprite.setScrollFactors(0, 0);
             pauseSprite.debugName = "pause";
             vcrGroup.add(pauseSprite);
 
-            playSprite = new FlxSprite(210, yPos);
+            playSprite = new FlxSprite(330, yPos);
             playSprite.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/play"));
             playSprite.setScrollFactors(0, 0);
             playSprite.debugName = "play";
             vcrGroup.add(playSprite);
 
-            recordSprite = new FlxSprite(250, yPos);
+            recordSprite = new FlxSprite(430, yPos);
             recordSprite.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/record_on"));
             recordSprite.setScrollFactors(0, 0);
             recordSprite.debugName = "record";
             vcrGroup.add(recordSprite);
 
-            restartSprite = new FlxSprite(290, yPos);
+            restartSprite = new FlxSprite(530, yPos);
             restartSprite.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/restart"));
             restartSprite.setScrollFactors(0, 0);
             restartSprite.debugName = "restart";
             vcrGroup.add(restartSprite);
 
-            stopSprite = new FlxSprite(330, yPos);
+            stopSprite = new FlxSprite(630, yPos);
             stopSprite.loadGraphic(FlxG.Content.Load<Texture2D>("flixel/vcr/stop"));
             stopSprite.setScrollFactors(0, 0);
             stopSprite.debugName = "stop";
@@ -214,8 +214,7 @@ namespace org.flixel
                 //Flush history.
                 _history = null;
                 _history = new List<bool[]>();
-
-                infoText.text = "Stopped: " + filename + ".txt";
+                
             }
 
             else if (Action == "record")
@@ -248,6 +247,8 @@ namespace org.flixel
             }
             
             FlxU.saveToDevice(_historyString, (filename + "_" + DateTime.Now.Ticks.ToString() + ".txt"));
+
+            infoText.text = "Saved file to device: " + filename + "_" + DateTime.Now.Ticks.ToString() + ".txt";
 
             _rec = Recording.None;
 

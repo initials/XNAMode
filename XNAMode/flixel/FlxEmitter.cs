@@ -134,7 +134,6 @@ namespace org.flixel
         /// </summary>
         /// <param name="Graphics">If you opted to not pre-configure an array of FlxSprite objects, you can simply pass in a particle image or sprite sheet.</param>
         /// <param name="Quantity">The number of particles to generate when using the "create from image" option.</param>
-        /// <param name="Multiple">Whether the image in the Graphics param is a single particle or a bunch of particles (if it's a bunch, they need to be square!).</param>
         /// <returns>This FlxEmitter instance (nice for chaining stuff together, if you're into that).</returns>
         public FlxEmitter createSprites(Texture2D Graphics, int Quantity)
         {
