@@ -62,7 +62,7 @@ namespace FourChambers
             actorName="BaseActor";
             actorType = "BaseActor";
             acceleration.Y = FourChambers_Globals.GRAVITY;
-            FlxG.write("1 New BASE ACTOR");
+            //FlxG.write("1 New BASE ACTOR");
 
 
 

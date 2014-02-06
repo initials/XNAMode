@@ -155,7 +155,7 @@ namespace FourChambers
         public EnemyActor(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            FlxG.write("2 New enemy ACTOR");
+            //FlxG.write("2 New enemy ACTOR");
 
             acceleration.Y = FourChambers_Globals.GRAVITY;
             frameCount = 0;
@@ -182,7 +182,7 @@ namespace FourChambers
         override public void update()
         {
             
-            if (hurtTimer >= timeDownAfterHurt*2)
+            if (hurtTimer >= timeDownAfterHurt+0.1f)
             {
                 color = Color.White;
             }
@@ -204,7 +204,7 @@ namespace FourChambers
             {
                 play("death");
             }
-            else if (attackingMouse || attackingJoystick)
+            else if (attackingMouse || attackingJoystick || attackingMelee)
             {
                 play("attack");
             }
@@ -240,7 +240,7 @@ namespace FourChambers
             else
             {
                 velocity.X = 0;
-                velocity.Y = 0;
+                //velocity.Y = 0;
                 acceleration.X = 0;
             }
             base.update();
@@ -250,12 +250,12 @@ namespace FourChambers
 
         public override void hurt(float Damage)
         {
-            //if (color == Color.White)
-            //{
+            if (color == Color.White)
+            {
                 color = Color.PaleVioletRed;
                 hurtTimer = 0;
                 base.hurt(Damage);
-            //}
+            }
         }
 
         public override void kill()
@@ -266,7 +266,7 @@ namespace FourChambers
 
             play("death");
             velocity.X = 0;
-            velocity.Y = 0;
+            //velocity.Y = 0;
             dead = true;
 
             //base.kill();
@@ -382,14 +382,17 @@ namespace FourChambers
             // Walking left.
 
 
-            bool left = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Left]);
-            bool right = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Right]);
-            bool up = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Up]);
-            bool down = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Down]);
+            bool buttonLeft = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Left]);
+            bool buttonRight = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Right]);
+            bool buttonUp = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Up]);
+            bool buttonDown = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Down]);
             bool buttonA = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.A]);
+            bool buttonX = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.X]);
             bool mouseLeftButton = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.LeftMouse]);
             bool mouseRightButton = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.RightMouse]);
+            bool buttonRightShoulder = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.RightShoulder]);
 
+            bool rightShoulderControl = FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder, FlxG.controllingPlayer, out pi);
             bool leftControl = (
                 (FlxG.keys.A 
                 || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, FlxG.controllingPlayer, out pi) 
@@ -402,14 +405,20 @@ namespace FourChambers
                 || FlxG.gamepads.isButtonDown(Buttons.DPadRight)) 
                 && !isClimbingLadder
                 );
+            bool upControl = (FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadUp)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi);
+            bool downControl = (FlxG.keys.S || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadDown)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi);
             bool buttonAControl = (_jump >= 0 || framesSinceLeftGround < 10 || isClimbingLadder) && ( FlxG.keys.SPACE || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi));
+            bool buttonXControl = FlxG.keys.K || FlxG.gamepads.isButtonDown(Buttons.X, FlxG.controllingPlayer, out pi) || FlxG.mouse.pressedRightButton() || mouseRightButton;
+            bool mouseLeftControl = FlxG.mouse.justPressedLeftButton();
+
+
 
             if (isPlayerControlled == false)
             {
-                leftControl = rightControl = buttonAControl = false;
+                mouseLeftControl = rightShoulderControl = upControl = downControl = leftControl = rightControl = buttonAControl = buttonXControl = false;
             }
 
-            if (left || leftControl)
+            if (buttonLeft || leftControl)
             {
                 lastAttack = "range";
                 attackingJoystick = false;
@@ -420,7 +429,7 @@ namespace FourChambers
             }
 
             //Walking right.
-            else if (right || rightControl)
+            else if (buttonRight || rightControl)
             {
                 lastAttack = "range";
                 attackingJoystick = false;
@@ -431,23 +440,23 @@ namespace FourChambers
             }
 
             // ladders
-            if ((FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadUp)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
+            if (buttonUp || upControl)
             {
                 lastAttack = "range";
                 x = ladderPosX + width;
 
-                velocity.Y -= runSpeed;
+                velocity.Y = -100;
                 isClimbingLadder = true;
                 attackingMelee = false;
 
                 // on a ladder, snap to nearest 16
             }
-            else if ((FlxG.keys.S || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown, FlxG.controllingPlayer, out pi) || FlxG.gamepads.isButtonDown(Buttons.DPadDown)) && canClimbLadder && !FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi))
+            else if (buttonDown || downControl)
             {
                 lastAttack = "range";
                 x = ladderPosX + width;
 
-                velocity.Y += runSpeed;
+                velocity.Y = 100;
                 isClimbingLadder = true;
                 attackingMelee = false;
             }
@@ -459,7 +468,7 @@ namespace FourChambers
             
 
             // Jumping.
-            if (buttonA || buttonAControl)
+            if ( (buttonA && color == Color.White) || buttonAControl)
             {
                 lastAttack = "range";
                 if (framesSinceLeftGround < 10)
@@ -502,7 +511,7 @@ namespace FourChambers
                 attackingMouse = true;
                 attackingMelee = false;
             }
-            if (FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder, FlxG.controllingPlayer, out pi))
+            if (buttonRightShoulder || rightShoulderControl)
             {
                 lastAttack = "range";
 
@@ -513,55 +522,39 @@ namespace FourChambers
 
             //FlxG.gamepads.isButtonDown(Buttons.X, PlayerIndex.One, out pi)
 
-            if ((GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X > DEADZONE ||
-                GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y > DEADZONE ||
-                GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X < DEADZONE * -1.0f ||
-                GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y < DEADZONE * -1.0f) &&
+            //if ((GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X > DEADZONE ||
+            //    GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y > DEADZONE ||
+            //    GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X < DEADZONE * -1.0f ||
+            //    GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y < DEADZONE * -1.0f) &&
 
-                FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder)
+            //    FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder)
 
-                )
-            {
-                lastAttack = "range";
-                attackingJoystick = true;
-                attackingMelee = false;
-            }
+            //    )
+            //{
+            //    lastAttack = "range";
+            //    attackingJoystick = true;
+            //    attackingMelee = false;
+            //}
 
             
 
             // Attacking using mouse.
-            if (FlxG.mouse.justPressedLeftButton() || mouseLeftButton)
+            if (mouseLeftControl || mouseLeftButton)
             {
                 lastAttack = "range";
                 attackingMouse = true;
                 attackingMelee = false;
             }
 
-            
 
-            if (FlxG.keys.K || FlxG.gamepads.isButtonDown(Buttons.X, FlxG.controllingPlayer, out pi) || FlxG.mouse.pressedRightButton() || mouseRightButton)
+
+            if (buttonXControl || buttonX)
             {
                 lastAttack = "melee";
                 attackingMelee = true;
             }
 
 
-            if (FlxG.keys.C)
-            {
-                lastAttack = "range";
-                attackingMouse = true;
-                attackingMelee = false;
-            }
-
-            // update direction based on attacking direction.
-            if (FlxG.gamepads.isButtonDown(Buttons.RightThumbstickLeft, FlxG.controllingPlayer, out pi))
-            {
-                facing = Flx2DFacing.Left;
-            }
-            if (FlxG.gamepads.isButtonDown(Buttons.RightThumbstickRight, FlxG.controllingPlayer, out pi))
-            {
-                facing = Flx2DFacing.Right;
-            }
             
         }
 

@@ -422,6 +422,9 @@
     <Content Include="FourChambers\ActorRecording\mistress_getaway.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="FourChambers\ActorRecording\mistress_level3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="FourChambers\ActorRecording\mummy.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

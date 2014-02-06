@@ -13,6 +13,8 @@ namespace FourChambers
     class MeleeHitBox : FlxSprite
     {
 
+        public string belongsTo;
+
         public MeleeHitBox(int xPos, int yPos)
             : base(xPos, yPos)
         {

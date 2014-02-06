@@ -68,6 +68,15 @@
   </LayerDefinitions>
   <Tilesets>
     <Tileset>
+      <Name>RockTiles</Name>
+      <FilePath>..\..\XNAModeContent\fourchambers\RockTiles.png</FilePath>
+      <TileSize>
+        <Width>16</Width>
+        <Height>16</Height>
+      </TileSize>
+      <TileSep>0</TileSep>
+    </Tileset>
+    <Tileset>
       <Name>autotiles_generic_16x16</Name>
       <FilePath>..\..\XNAModeContent\fourchambers\autotiles_generic_16x16.png</FilePath>
       <TileSize>

@@ -87,7 +87,7 @@ namespace org.flixel
             _consoleCommand.text = "";
 
             _consoleCheatActivated = new FlxSprite(targetLeft + (dx * 2), -800, FlxG.Content.Load<Texture2D>("flixel/vcr/cheat_on"));
-
+            _consoleCheatActivated.setScrollFactors(0, 0);
 
             _consoleFPS = new FlxText(targetLeft + targetWidth - (dx*3), -800, 30, "").setFormat(null, 2, Color.White, FlxJustification.Right, Color.White);
 

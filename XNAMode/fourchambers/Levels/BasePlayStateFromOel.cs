@@ -1023,7 +1023,21 @@ namespace FourChambers
             if ((e.Object1 is Warlock) && (e.Object2 is WarlockFireBall)) { }
             else if ((e.Object1 is Marksman) && (e.Object2 is Arrow)) { }
             else if ((e.Object1 is Marksman) && (e.Object2 is MeleeHitBox)) { }
-            else if ((e.Object1 is Mistress) && (e.Object2 is MeleeHitBox)) { }
+            else if ((e.Object1 is Mistress) && (e.Object2 is MeleeHitBox)) 
+            {
+                if (((MeleeHitBox)(e.Object2)).belongsTo == "mistress")
+                {
+
+                }
+                else
+                {
+                    e.Object1.hurt(1);
+                    blood.at(e.Object1);
+                    if (!e.Object1.dead)
+                        blood.start(true, 0, 10);
+                }
+
+            }
             else if ((e.Object1 is Mistress) && (e.Object2 is Arrow) && (e.Object1 as Mistress).hurtTimer < 1.0f) {  }
             //Then collide custom objects.
             else if (e.Object1 is ZingerNest)
@@ -1618,7 +1632,7 @@ namespace FourChambers
                     
                     mistress = new Mistress(x, y );
                     actors.add(mistress);
-                    mistress.flicker(2);
+                    //mistress.flicker(2);
                     //playerControlledActors.add(mistress);
                     bullets.add(mistress.whipHitBox);
 

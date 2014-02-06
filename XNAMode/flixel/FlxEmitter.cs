@@ -462,8 +462,14 @@ namespace org.flixel
         /// <param name="Object">The <code>FlxObject</code> that needs to emit particles.</param>
 		public void at(FlxObject Object)
 		{
-			x = Object.x + Object.origin.X;
-			y = Object.y + Object.origin.Y;
+            //x = Object.x + Object.origin.X;
+            //y = Object.y + Object.origin.Y;
+
+            //x = Object.x + ((FlxSprite)(Object)).offset.X;
+            //y = Object.y + ((FlxSprite)(Object)).offset.Y;
+
+            x = Object.x + ((FlxSprite)(Object)).offset.X/2;
+            y = Object.y + ((FlxSprite)(Object)).offset.Y / 2;
 		}
 		
 		/// <summary>

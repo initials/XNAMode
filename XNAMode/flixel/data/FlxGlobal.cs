@@ -30,6 +30,11 @@ namespace org.flixel
             else if (Cheat.StartsWith("liketheangels")) FourChambers_Globals.seraphineHasBeenKilled = false;
             else if (Cheat.StartsWith("bigmoney")) FlxG.score += 20000;
             else if (Cheat.StartsWith("nobugs")) FlxG.debug = false;
+            else if (Cheat == "level") FlxG.log("Level: " + FlxG.level);
+            else if (Cheat.StartsWith("level"))
+            {
+                FourChambers_Globals.arrowsToFire = Convert.ToInt32(Cheat[Cheat.Length - 1].ToString());
+            }
             cheatString = Cheat;
 
         }
@@ -145,6 +150,8 @@ namespace org.flixel
             FourChambers_Globals.seraphineHasBeenKilled = true;
 
             FlxG.level = 1;
+
+            health = 3;
 
 
             //FourChambers_Globals.availableLevels = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };

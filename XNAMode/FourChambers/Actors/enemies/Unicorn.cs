@@ -16,7 +16,7 @@ namespace FourChambers
         public Unicorn(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            FlxG.write("3 New Unicorn");
+            //FlxG.write("3 New Unicorn");
 
             // Set up the stats for this actor.
             actorName = "Fabulous Diamond Joe";
@@ -104,7 +104,7 @@ namespace FourChambers
 
 
             velocity.X = 0;
-            color = Color.PaleVioletRed;
+            //color = Color.PaleVioletRed;
 
             base.hurt(Damage);
         }

@@ -102,10 +102,8 @@
 16,16,16,16,20,19,20,16,20,18,15,15,18,18,16,16,16,20,16,15,16,20,17,16,16,20,16,18,16,15,18,19,20,16,19,17,18,20,19,20,15,17,17,19,19,19,18,19,19,19,16,20,18,16,18,16,20,15,15,15,18,16,20,19,20,16,15,17,19,20,18,17,15,16,20,20,18,19,18,17,16,17,19,18,20,18,16,18,18,18,18,18,19,19,17,19,17,18,19,17</IndestructableTerrain>
   <ActorsLayer>
     <marksman id="0" x="80" y="368" flip="False" isPlayerControlled="True" />
-    <automaton id="1" x="176" y="496" flip="False" />
     <automaton id="2" x="400" y="208" flip="False" />
     <automaton id="3" x="560" y="256" flip="False" />
-    <zombie id="4" x="624" y="528" flip="False" />
     <bat id="5" x="16" y="16" flip="False" pathType="LOOP_FORWARD" pathSpeed="122" pathCornering="3">
       <node x="16" y="64" />
       <node x="64" y="16" />
@@ -151,6 +149,8 @@
     </zinger>
     <mistress id="39" x="704" y="736" flip="False" />
     <ladder id="15" x="1440" y="176" height="432" />
-    <_event id="41" x="624" y="704" width="48" height="48" event="mistress_getaway" value1="0" value2="0" repeat="1" />
+    <_event id="41" x="624" y="704" width="48" height="48" event="mistress_level3" value1="0" value2="0" repeat="1" />
+    <unicorn id="42" x="960" y="160" flip="False" />
+    <_event id="43" x="1008" y="48" width="32" height="128" event="unicorn" value1="0" value2="0" repeat="1" />
   </ActorsLayer>
 </level>
