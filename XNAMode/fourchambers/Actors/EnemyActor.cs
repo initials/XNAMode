@@ -110,7 +110,7 @@ namespace FourChambers
         
         public bool readyForHarvester = false;
         public const float DEADZONE = 0.5f;
-        public int runSpeed = 120;
+        
         public bool attackingMouse = false;
         public bool attackingJoystick = false;
         public bool attackingMelee = false;
@@ -169,9 +169,10 @@ namespace FourChambers
         {
             
             base.render(spriteBatch);
-
+            //healthBar.outline.render(spriteBatch);
             healthBar.emptyBar.render(spriteBatch);
             healthBar.filledBar.render(spriteBatch);
+            
 
         }
 
@@ -236,7 +237,7 @@ namespace FourChambers
             
             updateInputs();
 
-            if (color == Color.White && !dead) updateRecording();
+            if (!colorFlickering() && !dead) updateRecording();
             else
             {
                 velocity.X = 0;
@@ -250,9 +251,10 @@ namespace FourChambers
 
         public override void hurt(float Damage)
         {
-            if (color == Color.White)
+            if (!colorFlickering())
             {
-                color = Color.PaleVioletRed;
+                colorFlicker(2);
+
                 hurtTimer = 0;
                 base.hurt(Damage);
             }

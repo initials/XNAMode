@@ -10,13 +10,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Seraphine : FlxSprite
+    class Seraphine : BaseActor
     {
 
         public Seraphine(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            //actorName = "Jennifer Twist";
+            actorName = "Jennifer Twist";
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/seraphine_ss_24x30"), true, false, 24, 30);
 
@@ -31,9 +31,9 @@ namespace FourChambers
             addAnimation("death", new int[] { 10,11,12,13,14,15 }, 12, false);
 
             //basic player physics
-            int runSpeed = 120;
+            runSpeed = 120;
             drag.X = runSpeed * 4;
-            acceleration.Y = 600;
+            acceleration.Y = FourChambers_Globals.GRAVITY;
             maxVelocity.X = runSpeed;
             maxVelocity.Y = 1000;
 
@@ -66,7 +66,15 @@ namespace FourChambers
             {
                 play("hurt");
             }
+            else if (!onFloor)
+            {
+                play("fly");
 
+            }
+            else
+            {
+                play("idle");
+            }
 
 
             base.update();

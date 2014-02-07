@@ -516,6 +516,8 @@ namespace FourChambers
 
             if (seraphine == null)
             {
+                FlxG.write("Seraphine is null, making one");
+
                 seraphine = new Seraphine(-100, -100);
                 seraphine.play("fly");
                 add(seraphine);
@@ -721,7 +723,7 @@ namespace FourChambers
 
             }
 
-            if ((FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.W ) && FourChambers_Globals.seraphineHasBeenKilled == false)
+            if ((FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.W) && FourChambers_Globals.seraphineHasBeenKilled == false)
             {
                 //Console.WriteLine("SEREAPHINE");
 
@@ -743,11 +745,18 @@ namespace FourChambers
             {
                 seraphine.acceleration.Y = FourChambers_Globals.GRAVITY;
             }
-            else
+            else if (marksman.canFly)
             {
                 FlxG.bloom.Visible = false;
                 seraphine.velocity.Y = -50;
             }
+            else
+            {
+                FlxG.bloom.Visible = false;
+                
+            }
+
+
             timeOfDay += FlxG.elapsed * timeScale;
             if (timeOfDay > 239.99f) timeOfDay = 0.0f;
 
@@ -774,11 +783,13 @@ namespace FourChambers
             FlxU.overlap(actors, bullets, overlapped);
             FlxU.overlap(actors, fireBalls, overlappFireball);
             FlxU.overlap(seraphine, bullets, overlapped);
+
+
             FlxU.overlap(actors, ladders, overlapWithLadder);
             FlxU.overlap(marksman.meleeHitBox, destructableTilemap, destroyTileAtMelee);
 
             FlxU.overlap(seraphine, playerControlledActors, canNowFly);
-
+            FlxU.collide(seraphine, allLevelTiles);
             // Maybe use the return value of this to reset the combo counter.
             FlxU.collide(allLevelTiles, bullets);
             FlxU.collide(blood, allLevelTiles);
@@ -970,12 +981,15 @@ namespace FourChambers
             // Only do this for object2, which is the player controlled actor.
             if (e.Object1.dead == false && e.Object2.dead == false && e.Object1.flickering() == false && e.Object2.flickering() == false)
             {
+                
+                if (! ((FlxSprite)(e.Object2)).colorFlickering())
+                {
+                    blood.at(e.Object2);
 
-                blood.at(e.Object2);
+                    blood.start(true, 0, 10);
 
-                blood.start(true, 0, 10);
-
-                e.Object2.hurt(1);
+                    e.Object2.hurt(1);
+                }
                 //e.Object1.hurt(1);
             }
 
@@ -997,7 +1011,15 @@ namespace FourChambers
         {
             FlxG.write("Player can now fly");
 
+            if (marksman.canFly == false)
+            {
+                specialFX.at(e.Object1);
+                specialFX.start(true, 0, 30);
+            }
+
             FourChambers_Globals.seraphineHasBeenKilled = false;
+
+            marksman.canFly = true;
             return true;
         }
         protected bool overlappFireball(object Sender, FlxSpriteCollisionEvent e)
@@ -1034,9 +1056,12 @@ namespace FourChambers
                 else
                 {
                     e.Object1.hurt(1);
-                    blood.at(e.Object1);
-                    if (!e.Object1.dead)
+
+                    if (!e.Object1.dead && !((FlxSprite)(e.Object2)).colorFlickering())
+                    {
+                        blood.at(e.Object1);
                         blood.start(true, 0, 10);
+                    }
                 }
 
             }
@@ -1138,7 +1163,7 @@ namespace FourChambers
                 blood.start(true, 0, 50);
             }
             // Now that it's a kill, spurt some blood and "hurt" both parties.
-            else if (e.Object1.dead == false && e.Object2.dead == false)
+            else if (e.Object1.dead == false && e.Object2.dead == false && !((FlxSprite)(e.Object1)).colorFlickering())
             {
                 if (e.Object2 is Arrow)
                 {
@@ -1169,15 +1194,22 @@ namespace FourChambers
 
                 }
 
-                e.Object1.hurt(1);
+                
 
                 e.Object2.x = -1000;
                 e.Object2.y = -1000;
                 e.Object2.kill();
 
-                blood.at(e.Object1);
 
-                blood.start(true, 0, 10);
+                // -- 
+                if (!e.Object1.dead && !((FlxSprite)(e.Object1)).colorFlickering())
+                {
+                    e.Object1.hurt(e.Object2.damage);
+                    blood.at(e.Object1);
+                    blood.start(true, 0, 10);
+                }
+
+                if (!e.Object1.dead) localHud.comboOnScreen.x = -1000;
 
             }
 
@@ -2328,9 +2360,10 @@ namespace FourChambers
             {
                 for (int i = 0; i < NumberOfActors; i++)
                 {
-                    
+                    FlxG.write("Making a seraphine" + x + " " + y);
+
                     seraphine = new Seraphine(x, y);
-                    actors.add(seraphine);
+                    add(seraphine);
                 }
             }
             #endregion

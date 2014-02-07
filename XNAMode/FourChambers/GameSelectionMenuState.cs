@@ -132,6 +132,7 @@ namespace FourChambers
             play.on = false;
             playProcedural.on = false;
             editName.on = false;
+            playMultiPlayer.on = false;
         }
 
         override public void update()
@@ -281,11 +282,11 @@ namespace FourChambers
 
             play = null;
 
-            if (FlxG.debug == false)
-            {
-                FourChambers_Globals.startGame();
-            }
-
+            //if (FlxG.debug == false)
+            //{
+            //    FourChambers_Globals.startGame();
+            //}
+            FourChambers_Globals.startGame();
             FlxG.state = new BasePlayStateFromOel();
             return;
 

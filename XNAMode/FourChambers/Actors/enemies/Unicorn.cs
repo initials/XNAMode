@@ -21,7 +21,7 @@ namespace FourChambers
             // Set up the stats for this actor.
             actorName = "Fabulous Diamond Joe";
             score = 250;
-            health = 5;
+            health = 25;
             runSpeed = 120;
             _jumpPower = -110.0f;
             _jumpInitialPower = -110.0f;
@@ -48,7 +48,7 @@ namespace FourChambers
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0 }, 12);
             addAnimation("death", new int[] { 10, 11, 12, 13, 14, 14, 14, 14, 14, 14, 13, 14, 11, 12, 13, 14, 14, 14, 14, 14, 14, 13, 14, 15, 15, 14, 14, 15, 15, 14, 14, 15, 15, 14, 14, 15, 14, 15, 14, 15, 14, 15, 14, 15, 16 }, 12, false);
-            addAnimation("hurt", new int[] { 17, 1,0,0 }, 8);
+            addAnimation("hurt", new int[] { 17, 1, 14, 13, 12, 11, 17 }, 8, false);
             addAnimation("jump", new int[] { 17, 2,3,4 }, 8,false);
             
             addAnimationCallback(finishedHurt);
@@ -70,7 +70,7 @@ namespace FourChambers
             //{
             //    velocity.X = 0;
             //}
-            if (Name == "hurt" && Frame == 3)
+            if (Name == "hurt" && Frame == _curAnim.frames.Length - 1)
             {
                 //velocity.X = 32;
                 hurtTimer += 55.0f;

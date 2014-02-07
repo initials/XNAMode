@@ -71,6 +71,7 @@ namespace org.flixel
 
         public FlxSprite emptyBar;
         public FlxSprite filledBar;
+        public FlxSprite outline;
 
         //private var emptyBar:BitmapData;
         //private var emptyBarRect:Rectangle;
@@ -99,6 +100,8 @@ namespace org.flixel
         private  const uint BAR_GRADIENT = 2;
         private  const uint BAR_IMAGE = 3;
 
+        private bool _border;
+
         /// <summary>
         /// 
         /// </summary>
@@ -126,16 +129,20 @@ namespace org.flixel
         {
             barWidth = width;
             barHeight = height;
-
+            _border = border;
             //if (border)
             //{
             //    makeGraphic(barWidth + 2, barHeight + 2, 0xffffffff, true);
             //    filledBarPoint = new Point(1, 1);
             //}
 
-            emptyBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.DarkGray);
-            filledBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.HotPink);
+            emptyBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.DarkSlateGray);
+            filledBar = new FlxSprite(x, y).createGraphic((int)width, (int)height, Color.Green);
 
+            if (_border)
+            {
+                outline = new FlxSprite(x - 1, y - 1).createGraphic((int)width + 1, (int)height + 1, Color.LightGray);
+            }
             if (parentRef!=null)
             {
                 parent = parentRef;
@@ -172,16 +179,35 @@ namespace org.flixel
             filledBar.x = parent.x;
             filledBar.y = parent.y - 11;
 
+            if (_border)
+            {
+                outline.x = parent.x-1;
+                outline.y = parent.y - 12;
+            }
+            if (parent.health <= (max*0.21) )
+            {
+                filledBar.color = Color.Red;
+
+            }
+
             if (parent.health <= 0)
             {
                 filledBar.visible = false;
                 emptyBar.visible = false;
 
+                if (_border)
+                {
+                    outline.visible = false;
+                }
             }
             else
             {
                 filledBar.visible = true;
                 emptyBar.visible = true;
+                if (_border)
+                {
+                    outline.visible = true;
+                }
             }
 
             base.update();
@@ -189,8 +215,15 @@ namespace org.flixel
 
         override public void render(SpriteBatch spriteBatch)
         {
+            if (_border)
+            {
+                outline.render(spriteBatch);
+            }
+
             emptyBar.render(spriteBatch);
             filledBar.render(spriteBatch);
+
+            
         }
 
 

@@ -116,5 +116,8 @@
     <zinger id="41" x="624" y="480" flip="False" pathType="FORWARD" pathSpeed="100" />
     <zombie id="44" x="928" y="544" flip="False" />
     <seraphine id="16" x="528" y="736" flip="False" />
+    <executor id="10" x="528" y="208" flip="False" />
+    <_event id="11" x="576" y="176" width="112" height="48" event="executor" value1="0" value2="0" repeat="1" />
+    <ladder id="12" x="448" y="416" height="144" />
   </ActorsLayer>
 </level>

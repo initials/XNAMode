@@ -250,8 +250,8 @@ namespace FourChambers
                 //isClimbingLadder = false;
             }
 
-            // Jumping.
-            if ((_jump >= 0 || framesSinceLeftGround < 10 || isClimbingLadder) && (FlxG.keys.SPACE || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi)))
+            // Jumping. 
+            if ((_jump >= 0 || framesSinceLeftGround < 10 || isClimbingLadder) && ((FlxG.keys.W && canFly == false && !isClimbingLadder) || FlxG.keys.SPACE || FlxG.gamepads.isButtonDown(Buttons.A, FlxG.controllingPlayer, out pi)))
             {
                 lastAttack = "range";
                 if (framesSinceLeftGround < 10)

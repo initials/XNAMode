@@ -152,6 +152,11 @@ namespace org.flixel
         /// Handy for storing health percentage or armor points or whatever.
 		/// </summary>
 		public float health;
+        /// <summary>
+        /// How much to take off health in the event of collision.
+        /// </summary>
+        public float damage;
+
 		/// <summary>
         /// Handy for tracking gameplay or animations.
 		/// </summary>
@@ -412,6 +417,7 @@ namespace org.flixel
             _flicker = false;
             _flickerTimer = -1;
             health = 1;
+            damage = 1;
             dead = false;
             _point = Vector2.Zero;
             _rect = Rectangle.Empty;

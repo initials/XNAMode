@@ -33,6 +33,7 @@ namespace FourChambers
         public string playbackFile = "FourChambers/ActorRecording/file.txt";
 
         public bool flying = false;
+        public bool canFly = false;
 
         public bool canClimbLadder = false;
 
@@ -49,7 +50,7 @@ namespace FourChambers
 
         public float hurtTimer = 550.0f;
 
-        
+        public int runSpeed = 120;
         /// <summary>
         /// The base for Actors. Should remain pretty empty.
         /// </summary>
