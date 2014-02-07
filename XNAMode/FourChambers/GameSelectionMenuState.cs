@@ -21,6 +21,7 @@ namespace FourChambers
         private FlxButton play;
         private FlxButton playProcedural;
         private FlxButton editName;
+        private FlxButton playMultiPlayer;
 
         private FlxSprite bgSprite;
 
@@ -66,14 +67,14 @@ namespace FourChambers
             //_nameEntry.text = "Username";
             //add(_nameEntry);
 
-            play = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 80, playGame, FlxButton.ControlPadA);
+            play = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 105, playGame, FlxButton.ControlPadA);
             play.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButtonPressed"), false,false,100,20));
             play.loadText(new FlxText(2, 2, 100, "Play Game"), new FlxText(2, 2, 100, "Play Game!"));
             add(play);
             play.on = true;
             play.debugName = "playGame";
 
-            playProcedural = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 55, playGameTutorial, FlxButton.ControlPadA);
+            playProcedural = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 80, playGameTutorial, FlxButton.ControlPadA);
             playProcedural.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButtonPressed"), false, false, 100, 20));
             playProcedural.loadText(new FlxText(2, 2, 100, "Tutorial"), new FlxText(2, 2, 100, "Tutorial"));
             add(playProcedural);
@@ -85,9 +86,13 @@ namespace FourChambers
             add(editName);
             editName.debugName = "editName";
 
+            playMultiPlayer = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 55, goToDataEntryState, FlxButton.ControlPadA);
+            playMultiPlayer.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButtonPressed"), false, false, 100, 20));
+            playMultiPlayer.loadText(new FlxText(2, 2, 100, "Multi Player"), new FlxText(2, 2, 100, "Multi Player"));
+            add(playMultiPlayer);
+            playMultiPlayer.debugName = "playMultiPlayer";
 
-
-            FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54 , FlxG.height - 80);
+            FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54 , FlxG.height - 105);
 
             FlxG.flash.start(Color.Black, 1.5f);
 
@@ -144,19 +149,25 @@ namespace FourChambers
                 {
                     setAllButtonsToOff();
                     editName.on = true;
-                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 27);
+                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, editName.y);
                 }
                 else if (playProcedural.on)
                 {
                     setAllButtonsToOff();
                     play.on = true;
-                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 80);
+                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, play.y);
+                }
+                else if (playMultiPlayer.on)
+                {
+                    setAllButtonsToOff();
+                    playProcedural.on = true;
+                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, playProcedural.y);
                 }
                 else if (editName.on)
                 {
                     setAllButtonsToOff();
-                    playProcedural.on = true;
-                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 53);
+                    playMultiPlayer.on = true;
+                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, playMultiPlayer.y);
                 }
             }
             if (FlxG.gamepads.isNewButtonPress(Buttons.DPadDown) || FlxG.gamepads.isNewButtonPress(Buttons.LeftThumbstickDown))
@@ -166,19 +177,25 @@ namespace FourChambers
                 {
                     setAllButtonsToOff();
                     playProcedural.on = true;
-                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 53);
+                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, playProcedural.y);
                 }
                 else if (playProcedural.on)
                 {
                     setAllButtonsToOff();
+                    playMultiPlayer.on = true;
+                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, playMultiPlayer.y);
+                }
+                else if (playMultiPlayer.on)
+                {
+                    setAllButtonsToOff();
                     editName.on = true;
-                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 27);
+                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, editName.y);
                 }
                 else if (editName.on)
                 {
                     setAllButtonsToOff();
                     play.on = true;
-                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 80);
+                    FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, play.y);
                 }
             }
             if (FlxG.gamepads.isNewButtonRelease(Buttons.A) && play._counter > 0.5f)
@@ -195,6 +212,10 @@ namespace FourChambers
                 else if (editName.on)
                 {
                     goToDataEntryState();
+                }
+                else if (playMultiPlayer.on)
+                {
+                    playMultiPlayerGame();
                 }
             }
 
@@ -300,6 +321,11 @@ namespace FourChambers
         {
             FlxG.transition.resetAndStop();
             FlxG.state = new FourChambers.DataEntryState();
+        }
+
+        public void playMultiPlayerGame()
+        {
+            
         }
     }
         
