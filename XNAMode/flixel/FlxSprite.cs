@@ -451,8 +451,8 @@ namespace org.flixel
                 {
                     _colorFlicker = !_colorFlicker;
 
-                    if (_colorFlicker) color = Color.White;
-                    else if (!_colorFlicker) color = new Color(FlxU.random(0.175f, 0), FlxU.random(0.175f, 1), FlxU.random(0.175f, 0));
+                    if (_colorFlicker) color = new Color(0.01f, 0.01f, 0.01f);
+                    else if (!_colorFlicker) color = new Color(FlxU.random(0.175f, 0), FlxU.random(0.175f, 1), FlxU.random(0.175f, 1));
 
                 }
             }

@@ -446,7 +446,7 @@ namespace FourChambers
 
             //MOVEMENT
 
-            if (isPlayerControlled)
+            if (isPlayerControlled && hurtTimer > timeDownAfterHurt)
             {
                 updateInputs();
             }
@@ -482,7 +482,9 @@ namespace FourChambers
 
         public override void hurt(float Damage)
         {
-            flicker(2);
+            hurtTimer = 0.0f;
+
+            colorFlicker(2);
 
             base.hurt(Damage);
         }
