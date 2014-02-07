@@ -325,7 +325,15 @@ namespace FourChambers
 
         public void playMultiPlayerGame()
         {
-            
+            Console.WriteLine("Play MultiPlayer Game Proc");
+
+            FlxG.level = 101;
+            FlxG.score = 0;
+            FlxG.hideHud();
+
+            //FlxG.transition.startFadeOut(0.1f,0,120);
+
+            FlxG.state = new FourChambers.BasePlayState();
         }
     }
         
