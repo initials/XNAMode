@@ -967,14 +967,16 @@ namespace FourChambers
         /// <returns></returns>
         protected bool actorOverlap(object Sender, FlxSpriteCollisionEvent e)
         {
+            // Only do this for object2, which is the player controlled actor.
             if (e.Object1.dead == false && e.Object2.dead == false && e.Object1.flickering() == false && e.Object2.flickering() == false)
             {
-                blood.at(e.Object1);
+
+                blood.at(e.Object2);
 
                 blood.start(true, 0, 10);
 
                 e.Object2.hurt(1);
-                e.Object1.hurt(1);
+                //e.Object1.hurt(1);
             }
 
             if (e.Object1.dead == true && e.Object2.dead == false && 
