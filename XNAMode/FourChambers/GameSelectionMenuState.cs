@@ -34,7 +34,8 @@ namespace FourChambers
 
             FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[1]; //6 is the super bright.
 
-            FlxG.backColor = new Color(0xc2, 0x88, 0x83);
+            FlxG.backColor = new Color(0.2f, 0.2f, 0.2f);
+
 
             base.create();
 
@@ -142,7 +143,7 @@ namespace FourChambers
                 return;
             }
 
-            if (FlxG.gamepads.isNewButtonPress(Buttons.DPadUp) || FlxG.gamepads.isNewButtonPress(Buttons.LeftThumbstickUp ))
+            if (FlxG.keys.justPressed(Keys.Up) || FlxG.gamepads.isNewButtonPress(Buttons.DPadUp) || FlxG.gamepads.isNewButtonPress(Buttons.LeftThumbstickUp ))
             {
 
                 if (play.on)
@@ -170,7 +171,7 @@ namespace FourChambers
                     FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, playMultiPlayer.y);
                 }
             }
-            if (FlxG.gamepads.isNewButtonPress(Buttons.DPadDown) || FlxG.gamepads.isNewButtonPress(Buttons.LeftThumbstickDown))
+            if (FlxG.keys.justPressed(Keys.Down) || FlxG.gamepads.isNewButtonPress(Buttons.DPadDown) || FlxG.gamepads.isNewButtonPress(Buttons.LeftThumbstickDown))
             {
 
                 if (play.on)
