@@ -86,7 +86,7 @@ namespace FourChambers
 
                     FlxGlobal.cheatString = "";
 
-                    FlxG.follow(this, 1.0f);
+                    FlxG.follow(this, 7.0f);
                 }
             }
 
