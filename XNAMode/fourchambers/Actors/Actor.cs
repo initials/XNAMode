@@ -377,6 +377,10 @@ namespace FourChambers
             {
                 play("death");
             }
+            else if (hurtTimer < timeDownAfterHurt)
+            {
+                play("hurt");
+            }
             else if (isClimbingLadder)
             {
                 if (velocity.Y == 0)
@@ -450,10 +454,11 @@ namespace FourChambers
             {
                 updateInputs();
             }
-            else // is not player controlled.
-            {
-                acceleration.Y = 0;
-            }
+            //else // is not player controlled.
+            //{
+            //    acceleration.Y = 0;
+            //}
+
 
             //ANIMATION
             updateAnims();
@@ -474,6 +479,8 @@ namespace FourChambers
 
         override public void hitSide(FlxObject Contact, float Velocity)
         {
+
+
             if (!isPlayerControlled)
                 velocity.X = velocity.X * -1;
 
@@ -482,6 +489,9 @@ namespace FourChambers
 
         public override void hurt(float Damage)
         {
+
+            velocity.X = 0;
+
             hurtTimer = 0.0f;
 
             colorFlicker(2);

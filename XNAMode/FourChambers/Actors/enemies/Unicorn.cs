@@ -48,7 +48,7 @@ namespace FourChambers
             addAnimation("idle", new int[] { 0 }, 12);
             addAnimation("attack", new int[] { 0 }, 12);
             addAnimation("death", new int[] { 10, 11, 12, 13, 14, 14, 14, 14, 14, 14, 13, 14, 11, 12, 13, 14, 14, 14, 14, 14, 14, 13, 14, 15, 15, 14, 14, 15, 15, 14, 14, 15, 15, 14, 14, 15, 14, 15, 14, 15, 14, 15, 14, 15, 16 }, 12, false);
-            addAnimation("hurt", new int[] { 17, 1, 14, 13, 12, 11, 17 }, 8, false);
+            addAnimation("hurt", new int[] { 17, 1, 10, 11, 12, 13, 14, 13, 14, 13, 14, 13, 14, 13, 12 }, 8, false);
             addAnimation("jump", new int[] { 17, 2,3,4 }, 8,false);
             
             addAnimationCallback(finishedHurt);
@@ -73,9 +73,9 @@ namespace FourChambers
             if (Name == "hurt" && Frame == _curAnim.frames.Length - 1)
             {
                 //velocity.X = 32;
-                hurtTimer += 55.0f;
+                //hurtTimer += 55.0f;
                 //Console.WriteLine("Callback {0} {1} {2}", Name, Frame, FrameIndex);
-                color = Color.White;
+                //color = Color.White;
 
                 if (dead)
                 {

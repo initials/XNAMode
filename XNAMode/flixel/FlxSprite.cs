@@ -455,7 +455,7 @@ namespace org.flixel
                     else if (!_colorFlicker)
                     {
                         
-                        color = new Color(FlxU.random(0.55175f, 1), 0,0);
+                        color = new Color(1, FlxU.random(0.8f, 1),FlxU.random(0.8f, 1));
 
 
                     }

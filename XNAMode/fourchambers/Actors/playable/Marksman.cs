@@ -48,7 +48,7 @@ namespace FourChambers
             addAnimation("climb", new int[] { 20, 21 }, 6, true);
             addAnimation("climbidle", new int[] { 20 }, 0, true);
             addAnimation("death", new int[] { 22,23 }, 4, false);
-
+            addAnimation("hurt", new int[] { 22, 23 }, 4, false);
             
 
             //addAnimationCallback(stopAttacking);
@@ -73,6 +73,8 @@ namespace FourChambers
             meleeHitBox.height = 5;
 
             lastJoystickDirection = new Vector2(0, 0);
+
+            timeDownAfterHurt = 2.0f;
 
         }
 

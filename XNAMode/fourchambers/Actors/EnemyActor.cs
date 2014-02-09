@@ -183,10 +183,10 @@ namespace FourChambers
         override public void update()
         {
             
-            if (hurtTimer >= timeDownAfterHurt+0.1f)
-            {
-                color = Color.White;
-            }
+            //if (hurtTimer >= timeDownAfterHurt+0.1f)
+            //{
+            //    color = Color.White;
+            //}
 
             if (velocity.X > 0)
             {
@@ -237,7 +237,9 @@ namespace FourChambers
             
             updateInputs();
 
-            if (!colorFlickering() && !dead) updateRecording();
+            //if (actorType=="unicorn") Console.WriteLine("hurtTimer : " + hurtTimer + " " + _colorFlickerTimer);
+
+            if (hurtTimer >= timeDownAfterHurt && !dead) updateRecording();
             else
             {
                 velocity.X = 0;
@@ -253,7 +255,8 @@ namespace FourChambers
         {
             if (!colorFlickering())
             {
-                colorFlicker(2);
+                // Flicker for the time down and more after it, for an escape.
+                colorFlicker(timeDownAfterHurt*2);
 
                 hurtTimer = 0;
                 base.hurt(Damage);
@@ -365,6 +368,7 @@ namespace FourChambers
         {
             PlayerIndex pi;
 
+            //TODO put this into player controlled.
 
             // Running pushes walk speed higher.
             if (FlxG.gamepads.isButtonDown(Buttons.RightTrigger, FlxG.controllingPlayer, out pi))
