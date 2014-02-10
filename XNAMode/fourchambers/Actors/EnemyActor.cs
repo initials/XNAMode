@@ -368,24 +368,10 @@ namespace FourChambers
         {
             PlayerIndex pi;
 
-            //TODO put this into player controlled.
+            
+            
+            
 
-            // Running pushes walk speed higher.
-            if (FlxG.gamepads.isButtonDown(Buttons.RightTrigger, FlxG.controllingPlayer, out pi))
-            {
-                lastAttack = "range";
-                maxVelocity.X = runSpeed * 2;
-                attackingMelee = false;
-            }
-            else
-            {
-                maxVelocity.X = runSpeed;
-            }
-
-            //
-            acceleration.X = 0;
-
-            // Walking left.
 
 
             bool buttonLeft = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Left]);
@@ -397,7 +383,11 @@ namespace FourChambers
             bool mouseLeftButton = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.LeftMouse]);
             bool mouseRightButton = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.RightMouse]);
             bool buttonRightShoulder = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.RightShoulder]);
+            bool buttonRightTrigger = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.RightTrigger]);
 
+
+
+            bool rightTriggerControl = FlxG.gamepads.isButtonDown(Buttons.RightTrigger, FlxG.controllingPlayer, out pi) || FlxG.keys.CONTROL ;
             bool rightShoulderControl = FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder, FlxG.controllingPlayer, out pi);
             bool leftControl = (
                 (FlxG.keys.A 
@@ -417,12 +407,34 @@ namespace FourChambers
             bool buttonXControl = FlxG.keys.K || FlxG.gamepads.isButtonDown(Buttons.X, FlxG.controllingPlayer, out pi) || FlxG.mouse.pressedRightButton() || mouseRightButton;
             bool mouseLeftControl = FlxG.mouse.justPressedLeftButton();
 
-
-
             if (isPlayerControlled == false)
             {
-                mouseLeftControl = rightShoulderControl = upControl = downControl = leftControl = rightControl = buttonAControl = buttonXControl = false;
+                rightTriggerControl = mouseLeftControl = rightShoulderControl = upControl = downControl = leftControl = rightControl = buttonAControl = buttonXControl = false;
             }
+
+
+            // ----------------------------------------------------------------
+
+
+            // Running pushes walk speed higher.
+            if (buttonRightTrigger || rightTriggerControl)
+            {
+                lastAttack = "range";
+                maxVelocity.X = runSpeed * 2;
+                attackingMelee = false;
+            }
+            else
+            {
+                maxVelocity.X = runSpeed;
+            }
+            acceleration.X = 0;
+
+
+
+
+
+
+
 
             if (buttonLeft || leftControl)
             {
