@@ -368,12 +368,6 @@ namespace FourChambers
         {
             PlayerIndex pi;
 
-            
-            
-            
-
-
-
             bool buttonLeft = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Left]);
             bool buttonRight = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Right]);
             bool buttonUp = ((_rec == Recording.Playback || _rec == Recording.Reverse) && _history[frameCount][(int)FlxRecord.ButtonMap.Up]);
@@ -537,25 +531,6 @@ namespace FourChambers
                 attackingMelee = false;
             }
 
-
-            //FlxG.gamepads.isButtonDown(Buttons.X, PlayerIndex.One, out pi)
-
-            //if ((GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X > DEADZONE ||
-            //    GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y > DEADZONE ||
-            //    GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X < DEADZONE * -1.0f ||
-            //    GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y < DEADZONE * -1.0f) &&
-
-            //    FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder)
-
-            //    )
-            //{
-            //    lastAttack = "range";
-            //    attackingJoystick = true;
-            //    attackingMelee = false;
-            //}
-
-            
-
             // Attacking using mouse.
             if (mouseLeftControl || mouseLeftButton)
             {
@@ -563,7 +538,6 @@ namespace FourChambers
                 attackingMouse = true;
                 attackingMelee = false;
             }
-
 
 
             if (buttonXControl || buttonX)
