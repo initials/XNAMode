@@ -476,6 +476,39 @@ namespace org.flixel
         }
 
         /// <summary>
+        /// Convience method to set scrollfactors in one hit.
+        /// </summary>
+        /// <param name="xScroll">X value of the scroll factor.</param>
+        /// <param name="yScroll">Y value of the scroll factor.</param>
+        public void setScrollFactors(float xScroll, float yScroll)
+        {
+            scrollFactor.X = xScroll;
+            scrollFactor.Y = xScroll;
+        }
+
+        /// <summary>
+        /// Set position in one call.
+        /// </summary>
+        /// <param name="xPos">x position</param>
+        /// <param name="yPos">y position</param>
+        public void setPosition(float xPos, float yPos)
+        {
+            this.x = xPos;
+            this.y = yPos;
+        }
+
+        public void setDrags(float xValue, float yValue)
+        {
+            drag.X = xValue;
+            drag.Y = yValue;
+        }
+
+
+
+
+
+
+        /// <summary>
         /// Called by <code>FlxObject.updateMotion()</code> and some constructors to
         /// rebuild the basic collision data for this object.
         /// </summary>

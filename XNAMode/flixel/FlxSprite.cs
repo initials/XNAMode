@@ -329,16 +329,9 @@ namespace org.flixel
 			return this;
 		}
 
-        /// <summary>
-        /// Convience method to set scrollfactors in one hit.
-        /// </summary>
-        /// <param name="xScroll">X value of the scroll factor.</param>
-        /// <param name="yScroll">Y value of the scroll factor.</param>
-        public void setScrollFactors(float xScroll, float yScroll)
-        {
-            scrollFactor.X = xScroll;
-            scrollFactor.Y = xScroll;
-        }
+
+
+
 
 		/// <summary>
         /// Resets some important variables for sprite optimization and rendering.
@@ -454,10 +447,7 @@ namespace org.flixel
                     if (_colorFlicker) color = new Color(0.01f, 0.01f, 0.01f);
                     else if (!_colorFlicker)
                     {
-                        
                         color = new Color(1, FlxU.random(0.8f, 1),FlxU.random(0.8f, 1));
-
-
                     }
                 }
             }
