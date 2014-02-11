@@ -33,7 +33,7 @@ namespace org.flixel
 
         private FlxText infoText;
 
-        public int frameCount;
+
 
         public string filename;
         public PlayerIndex? controller;
@@ -198,24 +198,6 @@ namespace org.flixel
 
 
             }
-            else if (_rec == Recording.Playback)
-            {
-                frameCount++;
-                if (frameCount > _history.Count - 1)
-                {
-                    _rec = Recording.PlaybackReverse;
-                    frameCount--;
-                }
-            }
-            else if (_rec == Recording.PlaybackReverse)
-            {
-                frameCount--;
-                if (frameCount < 1)
-                {
-                    _rec = Recording.Playback;
-                    frameCount++;
-                }
-            }
 
             base.update();
 
@@ -240,61 +222,17 @@ namespace org.flixel
                 infoText.text = "Recording: " + filename + ".txt";
                 _rec = Recording.RecordingController;
             }
-            else if (Action == "pause")
-            {
-                pause();
-            }
 
         }
-
-        
 
         public void pause()
         {
-            Console.WriteLine("Pause");
-            _rec = Recording.None;
+
         }
 
-        public void openRecording(string Filename)
+        public void openRecording()
         {
-            _history = new List<bool[]>();
 
-            string x = FlxU.loadFromDevice(Filename);
-
-            string[] y = x.Split('\n');
-
-            int line = 0;
-
-            foreach (var item in y)
-            {
-                string[] item1 = item.Split(',');
-
-                line++;
-                if (item1.Length == 14)
-                {
-                    try
-                    {
-                        _history.Add(new bool[] { bool.Parse(item1[0]), 
-                            bool.Parse(item1[1]), 
-                            bool.Parse(item1[2]), 
-                            bool.Parse(item1[3]), 
-                            bool.Parse(item1[4]), 
-                            bool.Parse(item1[5]), 
-                            bool.Parse(item1[6]), 
-                            bool.Parse(item1[7]),
-                            bool.Parse(item1[8]), 
-                            bool.Parse(item1[9]), 
-                            bool.Parse(item1[10]), 
-                            bool.Parse(item1[11]),
-                            bool.Parse(item1[12]),
-                            bool.Parse(item1[13])});
-                    }
-                    catch (Exception)
-                    {
-                        Console.WriteLine("History Not Added " + item1.Length + " -- " + item1[1]);
-                    }
-                }
-            }
         }
 
         public void saveRecording()
