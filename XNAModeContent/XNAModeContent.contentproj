@@ -1057,7 +1057,6 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
-<<<<<<< HEAD
   <ItemGroup>
     <Compile Include="mp3music\ralph\goatmp3.mp3">
       <Name>goatmp3</Name>
@@ -1119,8 +1118,6 @@
       <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
-=======
->>>>>>> parent of 356d8fe... added music as mp3
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
