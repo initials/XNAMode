@@ -388,13 +388,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="music\goat.wav">
-      <Name>goat</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="diagnostic\testpalette.png">
       <Name>testpalette</Name>
       <Importer>TextureImporter</Importer>
@@ -1009,53 +1002,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="music\FourChambers_ColdMoody.wav">
-      <Name>FourChambers_ColdMoody</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="music\FourChambers_Dramatic.wav">
-      <Name>FourChambers_Dramatic</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="music\FourChambers_FlutesMoody_DontLikeThi.wav">
-      <Name>FourChambers_FlutesMoody_DontLikeThi</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="music\FourChambers_MoodyExplorationLoop_ha.wav">
-      <Name>FourChambers_MoodyExplorationLoop_ha</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="music\FourChambers_OffKilterLoop_haspercus.wav">
-      <Name>FourChambers_OffKilterLoop_haspercus</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="music\FourChambers_ScaryInC#Major.wav">
-      <Name>FourChambers_ScaryInC#Major</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="music\FourCHambers_SlowedLoop.wav">
-      <Name>FourCHambers_SlowedLoop</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="music\FourChambers_WarmerMoreSynths.wav">
-      <Name>FourChambers_WarmerMoreSynths</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="music\FourChambers_WarmOrgansColdSynths_ha.wav">
-      <Name>FourChambers_WarmOrgansColdSynths_ha</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="flixel\vcr\open.png">
       <Name>open</Name>
       <Importer>TextureImporter</Importer>
@@ -1111,13 +1057,70 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
-    <Compile Include="mp3music\goatmp3.mp3">
+    <Compile Include="mp3music\ralph\goatmp3.mp3">
       <Name>goatmp3</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="mp3music\ralph\four chambered heart.mp3">
+      <Name>four chambered heart</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="mp3music\gwd\ColdMoody.mp3">
+      <Name>ColdMoody</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="mp3music\gwd\Dramatic.mp3">
+      <Name>Dramatic</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="mp3music\gwd\FlutesMoody_DontLikeThis.mp3">
+      <Name>FlutesMoody_DontLikeThis</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="mp3music\gwd\MoodyExplorationLoop.mp3">
+      <Name>MoodyExplorationLoop</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="mp3music\gwd\OffKilterLoop_haspercus.mp3">
+      <Name>OffKilterLoop_haspercus</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="mp3music\gwd\ScaryInCMajor.mp3">
+      <Name>ScaryInCMajor</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="mp3music\gwd\SlowedLoop.mp3">
+      <Name>SlowedLoop</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="mp3music\gwd\WarmerMoreSynths.mp3">
+      <Name>WarmerMoreSynths</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="mp3music\gwd\WarmOrgansColdSynths_ha.mp3">
+      <Name>WarmOrgansColdSynths_ha</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+=======
+>>>>>>> parent of 356d8fe... added music as mp3
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
