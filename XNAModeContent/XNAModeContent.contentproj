@@ -1057,67 +1057,6 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="mp3music\ralph\goatmp3.mp3">
-      <Name>goatmp3</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="mp3music\ralph\four chambered heart.mp3">
-      <Name>four chambered heart</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="mp3music\gwd\ColdMoody.mp3">
-      <Name>ColdMoody</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="mp3music\gwd\Dramatic.mp3">
-      <Name>Dramatic</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="mp3music\gwd\FlutesMoody_DontLikeThis.mp3">
-      <Name>FlutesMoody_DontLikeThis</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="mp3music\gwd\MoodyExplorationLoop.mp3">
-      <Name>MoodyExplorationLoop</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="mp3music\gwd\OffKilterLoop_haspercus.mp3">
-      <Name>OffKilterLoop_haspercus</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="mp3music\gwd\ScaryInCMajor.mp3">
-      <Name>ScaryInCMajor</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="mp3music\gwd\SlowedLoop.mp3">
-      <Name>SlowedLoop</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="mp3music\gwd\WarmerMoreSynths.mp3">
-      <Name>WarmerMoreSynths</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="mp3music\gwd\WarmOrgansColdSynths_ha.mp3">
-      <Name>WarmOrgansColdSynths_ha</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
