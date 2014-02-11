@@ -65,7 +65,8 @@ local.properties
 .builds
 *.dotCover
 *.wav
-XNAModeContent/music/*.mp3
+XNAModeContent/music/ralph/*.mp3
+XNAModeContent/music/gwd/*.mp3
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 #packages/
