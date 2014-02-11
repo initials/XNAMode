@@ -202,6 +202,7 @@ namespace FourChambers
         private Zombie zombie;
         #endregion
 
+        private MovingPlatform movingPlatform;
         private FireThrower fireThrower;
         private ZingerNest zingerNest;
         private FlxGroup zingers;
@@ -587,30 +588,30 @@ namespace FourChambers
             Console.WriteLine("Starting at: " + FlxG.level);
 
             Dictionary<int, string> music = new Dictionary<int, string>();
-            music.Add(-1, "FourChambers_WarmerMoreSynths");
-            music.Add(1, "FourChambers_OffKilterLoop_haspercus");
-            music.Add(2, "FourChambers_OffKilterLoop_haspercus");
-            music.Add(3, "FourChambers_OffKilterLoop_haspercus");
-            music.Add(4, "FourChambers_ColdMoody");
-            music.Add(5, "FourChambers_ColdMoody");
-            music.Add(6, "FourChambers_ColdMoody");
-            music.Add(7, "FourChambers_FlutesMoody_DontLikeThi");
-            music.Add(8, "FourChambers_MoodyExplorationLoop_ha");
-            music.Add(9, "FourChambers_OffKilterLoop_haspercus");
-            music.Add(10, "FourChambers_ScaryInC#Major");
-            music.Add(11, "FourCHambers_SlowedLoop");
-            music.Add(12, "FourChambers_WarmOrgansColdSynths_ha");
-            music.Add(13, "FourChambers_OffKilterLoop_haspercus");
-            music.Add(14, "FourChambers_ColdMoody");
-            music.Add(15, "FourChambers_ColdMoody");
-            music.Add(16, "FourChambers_ColdMoody");
-            music.Add(17, "FourChambers_FlutesMoody_DontLikeThi");
-            music.Add(18, "FourChambers_MoodyExplorationLoop_ha");
-            music.Add(19, "FourChambers_OffKilterLoop_haspercus");
-            music.Add(20, "FourChambers_OffKilterLoop_haspercus");
-            music.Add(21, "FourChambers_OffKilterLoop_haspercus");
+            music.Add(-1, "WarmerMoreSynths");
+            music.Add(1, "OffKilterLoop_haspercus");
+            music.Add(2, "OffKilterLoop_haspercus");
+            music.Add(3, "OffKilterLoop_haspercus");
+            music.Add(4, "ColdMoody");
+            music.Add(5, "ColdMoody");
+            music.Add(6, "ColdMoody");
+            music.Add(7, "FlutesMoody_DontLikeThi");
+            music.Add(8, "MoodyExplorationLoop_ha");
+            music.Add(9, "OffKilterLoop_haspercus");
+            music.Add(10, "ScaryInC#Major");
+            music.Add(11, "SlowedLoop");
+            music.Add(12, "WarmOrgansColdSynths_ha");
+            music.Add(13, "OffKilterLoop_haspercus");
+            music.Add(14, "ColdMoody");
+            music.Add(15, "ColdMoody");
+            music.Add(16, "ColdMoody");
+            music.Add(17, "FlutesMoody_DontLikeThi");
+            music.Add(18, "MoodyExplorationLoop_ha");
+            music.Add(19, "OffKilterLoop_haspercus");
+            music.Add(20, "OffKilterLoop_haspercus");
+            music.Add(21, "OffKilterLoop_haspercus");
 
-            FlxG.playMusic("music/" + music[FlxG.level], 1.0f);
+            FlxG.playMp3("music/gwd/" + music[FlxG.level], 1.0f);
 
             // Exit the game and open up a webpage for buying the game, if it's a pirate copy.
             if (FourChambers_Globals.PIRATE_COPY && FlxG.level >= 4)
@@ -1227,321 +1228,322 @@ namespace FourChambers
             return true;
         }
 
-
+        
         public void eventSpriteRun(string command)
         {
+            #region commands
+
             if (command.StartsWith("quake"))
             {
                 FlxG.quake.start(0.01f, 1.0f);
             }
-
-            if (command.StartsWith("artist"))
+            else if (command.StartsWith("artist"))
             {
                 artist.startPlayingBack();
             }
-            if (command.StartsWith("assassin"))
+            else if (command.StartsWith("assassin"))
             {
                 assassin.startPlayingBack();
             }
-            if (command.StartsWith("automaton"))
+            else if (command.StartsWith("automaton"))
             {
                 automaton.startPlayingBack();
             }
-            if (command.StartsWith("blight"))
+            else if (command.StartsWith("blight"))
             {
                 blight.startPlayingBack();
             }
-            if (command.StartsWith("bloatedzombie"))
+            else if (command.StartsWith("bloatedzombie"))
             {
                 bloatedzombie.startPlayingBack();
             }
-            if (command.StartsWith("bogbeast"))
+            else if (command.StartsWith("bogbeast"))
             {
                 bogbeast.startPlayingBack();
             }
-            if (command.StartsWith("bombling"))
+            else if (command.StartsWith("bombling"))
             {
                 bombling.startPlayingBack();
             }
-            if (command.StartsWith("centaur"))
+            else if (command.StartsWith("centaur"))
             {
                 centaur.startPlayingBack();
             }
-            if (command.StartsWith("chicken"))
+            else if (command.StartsWith("chicken"))
             {
                 chicken.startPlayingBack();
             }
-            if (command.StartsWith("chimaera"))
+            else if (command.StartsWith("chimaera"))
             {
                 chimaera.startPlayingBack();
             }
-            if (command.StartsWith("corsair"))
+            else if (command.StartsWith("corsair"))
             {
                 corsair.startPlayingBack();
             }
-            if (command.StartsWith("cow"))
+            else if (command.StartsWith("cow"))
             {
                 cow.startPlayingBack();
             }
-            if (command.StartsWith("cyclops"))
+            else if (command.StartsWith("cyclops"))
             {
                 cyclops.startPlayingBack();
             }
-            if (command.StartsWith("deathclaw"))
+            else if (command.StartsWith("deathclaw"))
             {
                 deathclaw.startPlayingBack();
             }
-            if (command.StartsWith("deer"))
+            else if (command.StartsWith("deer"))
             {
                 deer.startPlayingBack();
             }
-            if (command.StartsWith("devil"))
+            else if (command.StartsWith("devil"))
             {
                 devil.startPlayingBack();
             }
-            if (command.StartsWith("djinn"))
+            else if (command.StartsWith("djinn"))
             {
                 djinn.startPlayingBack();
             }
-            if (command.StartsWith("druid"))
+            else if (command.StartsWith("druid"))
             {
                 druid.startPlayingBack();
             }
-            if (command.StartsWith("dwarf"))
+            else if (command.StartsWith("dwarf"))
             {
                 dwarf.startPlayingBack();
             }
-            if (command.StartsWith("embersteed"))
+            else if (command.StartsWith("embersteed"))
             {
                 embersteed.startPlayingBack();
             }
-            if (command.StartsWith("executor"))
+            else if (command.StartsWith("executor"))
             {
                 executor.startPlayingBack();
             }
-            if (command.StartsWith("feline"))
+            else if (command.StartsWith("feline"))
             {
                 feline.startPlayingBack();
             }
-            if (command.StartsWith("floatingeye"))
+            else if (command.StartsWith("floatingeye"))
             {
                 floatingeye.startPlayingBack();
             }
-            if (command.StartsWith("fungant"))
+            else if (command.StartsWith("fungant"))
             {
                 fungant.startPlayingBack();
             }
-            if (command.StartsWith("gelatine"))
+            else if (command.StartsWith("gelatine"))
             {
                 gelatine.startPlayingBack();
             }
-            if (command.StartsWith("gloom"))
+            else if (command.StartsWith("gloom"))
             {
                 gloom.startPlayingBack();
             }
-            if (command.StartsWith("glutton"))
+            else if (command.StartsWith("glutton"))
             {
                 glutton.startPlayingBack();
             }
-            if (command.StartsWith("goblin"))
+            else if (command.StartsWith("goblin"))
             {
                 goblin.startPlayingBack();
             }
-            if (command.StartsWith("golem"))
+            else if (command.StartsWith("golem"))
             {
                 golem.startPlayingBack();
             }
-            if (command.StartsWith("gorgon"))
+            else if (command.StartsWith("gorgon"))
             {
                 gorgon.startPlayingBack();
             }
-            if (command.StartsWith("gourmet"))
+            else if (command.StartsWith("gourmet"))
             {
                 gourmet.startPlayingBack();
             }
-            if (command.StartsWith("grimwarrior"))
+            else if (command.StartsWith("grimwarrior"))
             {
                 grimwarrior.startPlayingBack();
             }
-            if (command.StartsWith("grizzly"))
+            else if (command.StartsWith("grizzly"))
             {
                 grizzly.startPlayingBack();
             }
-            if (command.StartsWith("harvester"))
+            else if (command.StartsWith("harvester"))
             {
                 harvester.startPlayingBack();
             }
-            if (command.StartsWith("horse"))
+            else if (command.StartsWith("horse"))
             {
                 horse.startPlayingBack();
             }
-            if (command.StartsWith("ifrit"))
+            else if (command.StartsWith("ifrit"))
             {
                 ifrit.startPlayingBack();
             }
-            if (command.StartsWith("imp"))
+            else if (command.StartsWith("imp"))
             {
                 imp.startPlayingBack();
             }
-            if (command.StartsWith("kerberos"))
+            else if (command.StartsWith("kerberos"))
             {
                 kerberos.startPlayingBack();
             }
-            if (command.StartsWith("lich"))
+            else if (command.StartsWith("lich"))
             {
                 lich.startPlayingBack();
             }
-            if (command.StartsWith("lion"))
+            else if (command.StartsWith("lion"))
             {
                 lion.startPlayingBack();
             }
-            if (command.StartsWith("mechanic"))
+            else if (command.StartsWith("mechanic"))
             {
                 mechanic.startPlayingBack();
             }
-            if (command.StartsWith("mephisto"))
+            else if (command.StartsWith("mephisto"))
             {
                 mephisto.startPlayingBack();
             }
-            if (command.StartsWith("merchant"))
+            else if (command.StartsWith("merchant"))
             {
                 merchant.startPlayingBack();
             }
-            if (command.StartsWith("mermaid"))
+            else if (command.StartsWith("mermaid"))
             {
                 mermaid.startPlayingBack();
             }
-            if (command.StartsWith("mimick"))
+            else if (command.StartsWith("mimick"))
             {
                 mimick.startPlayingBack();
             }
-            if (command.StartsWith("mistress"))
+            else if (command.StartsWith("mistress"))
             {
                 string[] split = command.Split('_');
                 if (split.Length == 1) mistress.startPlayingBack();
                 else mistress.startPlayingBack("FourChambers/ActorRecording/" + command + ".txt");
             }
-            if (command.StartsWith("monk"))
+            else if (command.StartsWith("monk"))
             {
                 monk.startPlayingBack();
             }
-            if (command.StartsWith("mummy"))
+            else if (command.StartsWith("mummy"))
             {
                 mummy.startPlayingBack();
             }
-            if (command.StartsWith("nightmare"))
+            else if (command.StartsWith("nightmare"))
             {
                 nightmare.startPlayingBack();
             }
-            if (command.StartsWith("nymph"))
+            else if (command.StartsWith("nymph"))
             {
                 nymph.startPlayingBack();
             }
-            if (command.StartsWith("ogre"))
+            else if (command.StartsWith("ogre"))
             {
                 ogre.startPlayingBack();
             }
-            if (command.StartsWith("paladin"))
+            else if (command.StartsWith("paladin"))
             {
                 string[] split = command.Split('_');
                 if (split.Length == 1) paladin.startPlayingBack();
                 else paladin.startPlayingBack(split[1]);
             }
-            if (command.StartsWith("phantom"))
+            else if (command.StartsWith("phantom"))
             {
                 phantom.startPlayingBack();
             }
-            if (command.StartsWith("priest"))
+            else if (command.StartsWith("priest"))
             {
                 priest.startPlayingBack();
             }
-            if (command.StartsWith("prism"))
+            else if (command.StartsWith("prism"))
             {
                 prism.startPlayingBack();
             }
-            if (command.StartsWith("rat"))
+            else if (command.StartsWith("rat"))
             {
                 rat.startPlayingBack();
             }
-            if (command.StartsWith("savage"))
+            else if (command.StartsWith("savage"))
             {
                 savage.startPlayingBack();
             }
-            if (command.StartsWith("sheep"))
+            else if (command.StartsWith("sheep"))
             {
                 sheep.startPlayingBack();
             }
-            if (command.StartsWith("skeleton"))
+            else if (command.StartsWith("skeleton"))
             {
                 skeleton.startPlayingBack();
             }
-            if (command.StartsWith("snake"))
+            else if (command.StartsWith("snake"))
             {
                 snake.startPlayingBack();
             }
-            if (command.StartsWith("soldier"))
+            else if (command.StartsWith("soldier"))
             {
                 soldier.startPlayingBack();
             }
-            if (command.StartsWith("sphinx"))
+            else if (command.StartsWith("sphinx"))
             {
                 sphinx.startPlayingBack();
             }
-            if (command.StartsWith("spider"))
+            else if (command.StartsWith("spider"))
             {
                 spider.startPlayingBack();
             }
-            if (command.StartsWith("succubus"))
+            else if (command.StartsWith("succubus"))
             {
                 succubus.startPlayingBack();
             }
-            if (command.StartsWith("tauro"))
+            else if (command.StartsWith("tauro"))
             {
                 tauro.startPlayingBack();
             }
-            if (command.StartsWith("toad"))
+            else if (command.StartsWith("toad"))
             {
                 toad.startPlayingBack();
             }
-            if (command.StartsWith("tormentor"))
+            else if (command.StartsWith("tormentor"))
             {
                 tormentor.startPlayingBack();
             }
-            if (command.StartsWith("treant"))
+            else if (command.StartsWith("treant"))
             {
                 treant.startPlayingBack();
             }
-            if (command.StartsWith("troll"))
+            else if (command.StartsWith("troll"))
             {
                 troll.startPlayingBack();
             }
-            if (command.StartsWith("unicorn"))
+            else if (command.StartsWith("unicorn"))
             {
                 string[] split = command.Split('_');
                 if (split.Length == 1) unicorn.startPlayingBack();
                 else unicorn.startPlayingBack(split[1]);
             }
-            if (command.StartsWith("vampire"))
+            else if (command.StartsWith("vampire"))
             {
                 vampire.startPlayingBack();
             }
-            //if (command.StartsWith("warlock"))
+            //else if (command.StartsWith("warlock"))
             //{
             //    warlock.startPlayingBack();
             //}
-            if (command.StartsWith("willowisp"))
+            else if (command.StartsWith("willowisp"))
             {
                 willowisp.startPlayingBack();
             }
-            if (command.StartsWith("wizard"))
+            else if (command.StartsWith("wizard"))
             {
                 wizard.startPlayingBack();
             }
-            if (command.StartsWith("wolf"))
+            else if (command.StartsWith("wolf"))
             {
                 wolf.startPlayingBack();
             }
-            if (command.StartsWith("zombie"))
+            else if (command.StartsWith("zombie"))
             {
                 zombie.startPlayingBack();
             }
@@ -1552,6 +1554,8 @@ namespace FourChambers
                 FlxG.setHudTextScale(1, 2);
                 FlxG.setHudTextPosition(1, FlxG._game.hud.p1OriginalPosition.X, 20);
             }
+
+            #endregion
         }
 
         /// <summary>
@@ -1631,6 +1635,32 @@ namespace FourChambers
                 fireThrower.angleCount = width;
                 add(fireThrower);
             }
+            #region movingPlatform
+            if (ActorType == "movingPlatform")
+            {
+                for (int i = 0; i < NumberOfActors; i++)
+                {
+                    movingPlatform = new MovingPlatform(x, y);
+                    movingPlatform.createGraphic(width, height, Color.Red);
+                    allLevelTiles.add(movingPlatform);
+                    Console.WriteLine("Building a movingPlatform {0} {1} {2} {3}", x, y, PathNodesX, PathNodesY);
+
+                    if (PathNodesX != "" && PathNodesY != "")
+                    {
+                        Console.WriteLine("Building a path {0} {1} {2}", PathNodesX, PathNodesY, PathCornering);
+
+                        FlxPath xpath = new FlxPath(null);
+                        xpath.add(x, y);
+                        xpath.addPointsUsingStrings(PathNodesX, PathNodesY);
+                        movingPlatform.followPath(xpath, PathSpeed, PathType, false);
+                        movingPlatform.pathCornering = PathCornering;
+
+
+                    }
+
+                }
+            }
+            #endregion            
             #region Marksman
             if (ActorType == "marksman")
             {

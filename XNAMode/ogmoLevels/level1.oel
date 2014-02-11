@@ -106,7 +106,7 @@
     <zingernest id="3" x="720" y="688" />
     <bat id="11" x="224" y="224" flip="False" pathType="FORWARD" pathSpeed="100" pathCornering="3" />
     <ladder id="24" x="720" y="416" height="128" />
-    <movingPlatform id="6" x="192" y="416" width="16" height="16" pathType="LOOP_FORWARD" pathSpeed="100" pathCornering="3">
+    <movingPlatform id="6" x="192" y="416" width="16" height="16" pathType="LOOP_FORWARD" pathSpeed="100" pathCornering="0">
       <node x="368" y="416" />
       <node x="368" y="480" />
       <node x="224" y="480" />
