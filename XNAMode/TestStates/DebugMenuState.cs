@@ -37,6 +37,7 @@ namespace XNAMode
             FlxG.setHudText(1, textInfo );
             FlxG.setHudGamepadButton(FlxButton.ControlPadA, 120, 120);
 
+            FlxG.playAndroidMusic("mp3music/goatmp3", 1.0f);
 
         }
 
@@ -104,6 +105,12 @@ namespace XNAMode
                 //FlxG.hideHud();
             }
 #endif
+
+            if (FlxG.keys.H) FlxG.playMp3("mp3music/goatmp3", 1.0f);
+            if (FlxG.keys.J) FlxG.stopMp3();
+            if (FlxG.keys.K) FlxG.pauseMp3();
+            if (FlxG.keys.L) FlxG.resumeMp3();
+
             base.update();
         }
 

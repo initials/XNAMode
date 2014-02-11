@@ -249,6 +249,12 @@ namespace org.flixel
         /// A handy container for a background music object.
 		/// </summary>
 		static public FlxSound music;
+
+        /// <summary>
+        /// Storing the music when playing an mp3.
+        /// </summary>
+        static public Song mp3Music;
+
 		/// <summary>
         /// A list of all the sounds being played in the game.
 		/// </summary>
@@ -561,14 +567,51 @@ namespace org.flixel
 			music.play();
 		}
         
+        /// <summary>
+        /// Play music from an mp3 file.
+        /// </summary>
+        /// <param name="Music">String for a mp3 file.</param>
+        /// <param name="Volume">Volume between 0 - 1</param>
 		static public void playAndroidMusic(string Music, float Volume)
 		{
-
-
-			Song x = FlxG.Content.Load<Song>(Music);
-			MediaPlayer.Volume = Volume;
-			MediaPlayer.Play (x);
+            playMp3(Music, Volume);
 		}
+
+        /// <summary>
+        /// Play music from mp3 file.
+        /// </summary>
+        /// <param name="Music">Path to a mp3 file.</param>
+        /// <param name="Volume">Volume between 0 - 1</param>
+        static public void playMp3(string Music, float Volume)
+        {
+            mp3Music = FlxG.Content.Load<Song>(Music);
+            MediaPlayer.Volume = Volume;
+            MediaPlayer.Play(mp3Music);
+        }
+
+        /// <summary>
+        /// Stop music.
+        /// </summary>
+        static public void stopMp3()
+        {
+            MediaPlayer.Stop();
+        }
+
+        /// <summary>
+        /// Pause the music.
+        /// </summary>
+        static public void pauseMp3()
+        {
+            MediaPlayer.Pause();
+        }
+
+        /// <summary>
+        /// Resume playing music.
+        /// </summary>
+        static public void resumeMp3()
+        {
+            MediaPlayer.Resume();
+        }      
 
         /// <summary>
         /// Creates a new sound object from an embedded <code>Class</code> object.
