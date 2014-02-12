@@ -25,7 +25,7 @@ namespace org.flixel
         private static FlxState _nextScreen;
 
         private Texture2D _initialsLogo;
-        private const string SndTag = "initials/initials_empire_tagtone3";
+        private const string SndTag = "initials/FourChambers_IntroTag_03";
 
         private FlxSprite _logo;
 
