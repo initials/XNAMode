@@ -491,6 +491,9 @@
     <None Include="Mode\ModeProject.oep">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ogmoLevels\level101.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ogmoLevels\level21.oel">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

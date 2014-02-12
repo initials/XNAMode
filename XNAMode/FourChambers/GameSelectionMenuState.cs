@@ -87,7 +87,7 @@ namespace FourChambers
             add(editName);
             editName.debugName = "editName";
 
-            playMultiPlayer = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 55, goToDataEntryState, FlxButton.ControlPadA);
+            playMultiPlayer = new FlxButton(FlxG.width / 2 - 50, FlxG.height - 55, playMultiPlayerGame, FlxButton.ControlPadA);
             playMultiPlayer.loadGraphic((new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButton"), false, false, 100, 20), (new FlxSprite()).loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/menuButtonPressed"), false, false, 100, 20));
             playMultiPlayer.loadText(new FlxText(2, 2, 100, "Multi Player"), new FlxText(2, 2, 100, "Multi Player"));
             add(playMultiPlayer);
@@ -335,7 +335,7 @@ namespace FourChambers
 
             //FlxG.transition.startFadeOut(0.1f,0,120);
 
-            FlxG.state = new FourChambers.BasePlayState();
+            FlxG.state = new FourChambers.BasePlayStateFromOel();
         }
     }
         

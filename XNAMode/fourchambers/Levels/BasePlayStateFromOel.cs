@@ -384,6 +384,12 @@ namespace FourChambers
             rightExitBlockerWall.@fixed = true;
             allLevelTiles.add(rightExitBlockerWall);
 
+            if (FlxG.level > 100)
+            {
+                leftExitBlockerWall.x = -1000;
+                rightExitBlockerWall.x = 10000;
+            }
+
             indestructableTilemap = new FlxTilemap();
             indestructableTilemap.auto = FlxTilemap.STRING;
             indestructableTilemap.loadMap(indestructableAttrs["IndestructableTerrain"], FlxG.Content.Load<Texture2D>("fourchambers/" + indestructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
@@ -610,6 +616,7 @@ namespace FourChambers
             music.Add(19, "OffKilterLoop_haspercus");
             music.Add(20, "OffKilterLoop_haspercus");
             music.Add(21, "OffKilterLoop_haspercus");
+            music.Add(101, "OffKilterLoop_haspercus");
 
             FlxG.playMp3("music/gwd/" + music[FlxG.level], 1.0f);
 
@@ -621,7 +628,7 @@ namespace FourChambers
                 FlxG.Game.Exit();
             }
 
-            comboInfo = new LevelBeginText(-100, -100, 200);
+            comboInfo = new LevelBeginText(-1100, -1100, 200);
             comboInfo.setFormat(null, 1, Color.White, FlxJustification.Left, Color.Black);
             comboInfo.scrollFactor.X = 1;
             comboInfo.scrollFactor.Y = 1;
@@ -762,7 +769,7 @@ namespace FourChambers
             if (timeOfDay > 239.99f) timeOfDay = 0.0f;
 
             //calculate time of day.
-            if (FourChambers_Globals.gif == false && FlxG.level >= 1)
+            if (FourChambers_Globals.gif == false && FlxG.level >= 1 && FlxG.level <= 100)
             {
                 // color whole game.
                 FlxG.color(FlxU.getColorFromBitmapAtPoint(paletteTexture, (int)timeOfDay, ((FlxG.level-1) * 10) + 5 ));

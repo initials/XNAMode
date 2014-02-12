@@ -38,7 +38,7 @@ namespace Loader_Four
             FlxG.level = -1;
 
             FourChambers_Globals.gif = false;
-            FourChambers_Globals.BUILD_TYPE = FourChambers_Globals.BUILD_TYPE_RELEASE;
+            FourChambers_Globals.BUILD_TYPE = FourChambers_Globals.BUILD_TYPE_PRESS;
             FourChambers_Globals.DEMO_VERSION = false;
             FourChambers_Globals.PIRATE_COPY = false;
 
