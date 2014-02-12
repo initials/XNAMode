@@ -459,6 +459,11 @@ namespace FourChambers
             //    acceleration.Y = 0;
             //}
 
+            if (hurtTimer < timeDownAfterHurt)
+            {
+                acceleration.X = 0;
+                velocity.X = 0;
+            }
 
             //ANIMATION
             updateAnims();

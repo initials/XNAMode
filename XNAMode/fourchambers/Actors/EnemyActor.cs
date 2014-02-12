@@ -182,11 +182,13 @@ namespace FourChambers
         }
         override public void update()
         {
-            
-            //if (hurtTimer >= timeDownAfterHurt+0.1f)
-            //{
-            //    color = Color.White;
-            //}
+
+            if (hurtTimer >= timeDownAfterHurt)
+            {
+                //if (actorType=="unicorn") FlxG.write("Setting colorFlickerValues");
+
+                setColorFlickerValues(1, 0.175f, 0.175f, 1, 1,1);
+            }
 
             if (velocity.X > 0)
             {
@@ -255,6 +257,8 @@ namespace FourChambers
         {
             if (!colorFlickering())
             {
+                setColorFlickerValues(0.98f, 0.98f, 0.98f, 0.99f, 0.99f, 0.99f);
+
                 // Flicker for the time down and more after it, for an escape.
                 colorFlicker(timeDownAfterHurt*2);
 

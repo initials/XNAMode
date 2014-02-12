@@ -87,6 +87,15 @@ namespace org.flixel
         /// </summary>
         protected float _colorFlickerTimer;
 
+        protected float _colorFlickerRMin = 0.0f;
+        protected float _colorFlickerGMin = 0.0f;
+        protected float _colorFlickerBMin = 0.0f;
+
+        protected float _colorFlickerRMax = 1.0f;
+        protected float _colorFlickerGMax = 1.0f;
+        protected float _colorFlickerBMax = 1.0f;
+
+
         /// <summary>
         /// _curAnim is the current playing animation.
         /// <para>Use _curAnim.name to get the name of the currently playing.</para>
@@ -444,13 +453,31 @@ namespace org.flixel
                 {
                     _colorFlicker = !_colorFlicker;
 
-                    if (_colorFlicker) color = new Color(0.01f, 0.01f, 0.01f);
+                    if (_colorFlicker) color = new Color(0.99f, 0.99f, 0.99f);
                     else if (!_colorFlicker)
                     {
-                        color = new Color(1, FlxU.random(0.8f, 1),FlxU.random(0.8f, 1));
+                        color = new Color(
+                            FlxU.random(_colorFlickerRMin, _colorFlickerRMax), 
+                            FlxU.random(_colorFlickerGMin, _colorFlickerGMax), 
+                            FlxU.random(_colorFlickerBMin, _colorFlickerBMax));
                     }
                 }
             }
+        }
+
+        public void setColorFlickerValues(float rMin, float gMin, float bMin, float rMax, float gMax, float bMax)
+        {
+            _colorFlickerRMin = rMin;
+            _colorFlickerGMin = gMin;
+            _colorFlickerBMin = bMin;
+
+            _colorFlickerRMax = rMax;
+            _colorFlickerGMax = gMax;
+            _colorFlickerBMax = bMax;
+
+
+
+
         }
 
         /// <summary>

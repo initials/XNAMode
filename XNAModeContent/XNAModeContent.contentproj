@@ -1069,7 +1069,9 @@
       <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="music\gwd\ColdMoody.mp3">
       <Name>ColdMoody</Name>

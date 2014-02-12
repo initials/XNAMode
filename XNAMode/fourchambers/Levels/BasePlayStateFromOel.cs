@@ -1642,12 +1642,15 @@ namespace FourChambers
                 {
                     movingPlatform = new MovingPlatform(x, y);
                     movingPlatform.createGraphic(width, height, Color.Red);
+                    movingPlatform.solid = true;
+                    movingPlatform.@fixed = true;
+
                     allLevelTiles.add(movingPlatform);
-                    Console.WriteLine("Building a movingPlatform {0} {1} {2} {3}", x, y, PathNodesX, PathNodesY);
+                    //Console.WriteLine("Building a movingPlatform {0} {1} {2} {3}", x, y, PathNodesX, PathNodesY);
 
                     if (PathNodesX != "" && PathNodesY != "")
                     {
-                        Console.WriteLine("Building a path {0} {1} {2}", PathNodesX, PathNodesY, PathCornering);
+                        //Console.WriteLine("Building a path {0} {1} {2}", PathNodesX, PathNodesY, PathCornering);
 
                         FlxPath xpath = new FlxPath(null);
                         xpath.add(x, y);
