@@ -367,6 +367,12 @@ namespace org.flixel
         {
         }
 
+        public override void update()
+        {
+
+            base.update();
+        }
+
         /// <summary>
         /// Draws the tilemap.
         /// </summary>
