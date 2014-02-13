@@ -33,7 +33,7 @@ namespace Loader_Four
 
             initGame(w, h, new FourChambers.GameSelectionMenuState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
 
-            FlxG.debug = true;
+            FlxG.debug = false;
             FlxG.zoom = 1280 / w;
             FlxG.level = -1;
 

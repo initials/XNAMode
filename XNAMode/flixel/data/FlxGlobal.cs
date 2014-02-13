@@ -115,6 +115,8 @@ namespace org.flixel
 
         public static int arrowsHitTarget = 0;
 
+        public static bool canDestroyTerrain = false;
+
         /// <summary>
         /// 
         /// </summary>

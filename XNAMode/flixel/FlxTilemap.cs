@@ -642,33 +642,40 @@ namespace org.flixel
 
             refresh = true;
 
-            if (auto == OFF || auto == RANDOM)
+            if (auto == OFF || auto == RANDOM || auto==STRING)
             {
                 updateTile(Index);
                 return ok;
             }
 
             //If this map is autotiled and it changes, locally update the arrangement
-            int i;
-            int r = (int)(Index / widthInTiles) - 1;
-            int rl = r + 3;
-            int c = Index % widthInTiles - 1;
-            int cl = c + 3;
-            while (r < rl)
+            if (auto == AUTO || auto == ALT)
             {
-                c = cl - 3;
-                while (c < cl)
+                int i;
+                int r = (int)(Index / widthInTiles) - 1;
+                int rl = r + 3;
+                int c = Index % widthInTiles - 1;
+                int cl = c + 3;
+                while (r < rl)
                 {
-                    if ((r >= 0) && (r < heightInTiles) && (c >= 0) && (c < widthInTiles))
+                    c = cl - 3;
+                    while (c < cl)
                     {
-                        i = r * widthInTiles + c;
-                        autoTile(i);
-                        updateTile(i);
+                        if ((r >= 0) && (r < heightInTiles) && (c >= 0) && (c < widthInTiles))
+                        {
+                            i = r * widthInTiles + c;
+                            autoTile(i);
+                            updateTile(i);
+                        }
+                        c++;
                     }
-                    c++;
+                    r++;
                 }
-                r++;
             }
+
+            
+
+
 
             return ok;
         }

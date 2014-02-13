@@ -794,7 +794,11 @@ namespace FourChambers
 
 
             FlxU.overlap(actors, ladders, overlapWithLadder);
-            FlxU.overlap(marksman.meleeHitBox, destructableTilemap, destroyTileAtMelee);
+
+            if (FourChambers_Globals.canDestroyTerrain)
+            {
+                FlxU.overlap(marksman.meleeHitBox, destructableTilemap, destroyTileAtMelee);
+            }
 
             FlxU.overlap(seraphine, playerControlledActors, canNowFly);
             FlxU.collide(seraphine, allLevelTiles);
@@ -946,9 +950,28 @@ namespace FourChambers
         protected bool destroyTileAtMelee(object Sender, FlxSpriteCollisionEvent e)
         {
             if (destructableTilemap.getTile((int)marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X, (int)marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y) > destructableTilemap.collideMin &&
-                destructableTilemap.getTile((int)marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X, (int)marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y) < destructableTilemap.collideMax)
+                destructableTilemap.getTile((int)marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X, (int)marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y) <= destructableTilemap.collideMax)
             {
+                if (destructableTilemap.getTile((int)marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X, (int)(marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y) - 1) > destructableTilemap.collideMax)
+                {
+                    destructableTilemap.setTile((int)marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X, (int)(marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y) - 1, 0, true);
+                }
+                if (destructableTilemap.getTile((int)marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X, (int)(marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y) + 1) > destructableTilemap.collideMax)
+                {
+                    destructableTilemap.setTile((int)marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X, (int)(marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y) + 1, 0, true);
+                }
+                if (destructableTilemap.getTile((int)(marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X)-1, (int)(marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y)) > destructableTilemap.collideMax)
+                {
+                    destructableTilemap.setTile((int)(marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X)-1, (int)(marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y), 0, true);
+                }
+                if (destructableTilemap.getTile((int)(marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X) + 1, (int)(marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y)) > destructableTilemap.collideMax)
+                {
+                    destructableTilemap.setTile((int)(marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X) + 1, (int)(marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y), 0, true);
+                }
+
                 destructableTilemap.setTile((int)marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X, (int)marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y, 0, true);
+
+
 
                 tilesExplode.x = (int)marksman.meleeHitBox.x;
                 tilesExplode.y = (int)marksman.meleeHitBox.y;
