@@ -14,6 +14,8 @@ namespace Lemonade
         public Andre(int xPos, int yPos)
             : base(xPos, yPos)
         {
+            loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/chars_50x80"), true, false, 50, 80);
+
             addAnimation("piggyback_run", new int [] {72,73,74,75,76,77} ,12, true);
             addAnimation("piggyback_idle", new int [] {78} , 0 );
             addAnimation("piggyback_jump", new int [] {76,77,76} ,4, true);
