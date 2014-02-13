@@ -945,7 +945,8 @@ namespace FourChambers
 
         protected bool destroyTileAtMelee(object Sender, FlxSpriteCollisionEvent e)
         {
-            if (destructableTilemap.getTile((int)marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X, (int)marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y) != 0)
+            if (destructableTilemap.getTile((int)marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X, (int)marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y) > destructableTilemap.collideMin &&
+                destructableTilemap.getTile((int)marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X, (int)marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y) < destructableTilemap.collideMax)
             {
                 destructableTilemap.setTile((int)marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X, (int)marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y, 0, true);
 
