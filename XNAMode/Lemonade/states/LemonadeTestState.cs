@@ -29,6 +29,7 @@ namespace Lemonade
         private Worker worker;
         private Inspector inspector;
         private Chef chef;
+        private Trampoline trampoline;
 
         public void buildTileset() //string LevelFile, string Tiles
         {
@@ -88,7 +89,7 @@ namespace Lemonade
         public void buildActors()
         {
 
-            actorsString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/military_level1.tmx", "map", "dontAutoLoad_sprites");
+            actorsString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/" + Lemonade_Globals.location + "_level" + FlxG.level.ToString() + ".tmx", "map", "dontAutoLoad_sprites");
             foreach (Dictionary<string, string> nodes in actorsString)
             {
                 foreach (KeyValuePair<string, string> kvp in nodes)
@@ -137,6 +138,10 @@ namespace Lemonade
                 {
                     buildActor("chef", xPos, yPos);
                 }
+                if (item == "388")
+                {
+                    buildActor("trampoline", xPos, yPos);
+                }
 
                 count++;
             }
@@ -176,24 +181,31 @@ namespace Lemonade
                 worker = new Worker(xPos, yPos);
                 actors.add(worker);
             }
-
+            else if (actor == "trampoline")
+            {
+                trampoline = new Trampoline(xPos, yPos);
+                trampolines.add(trampoline);
+            }
 
         }
 
         override public void create()
         {
-            FlxG.level = 1;
+            FlxG.level = 6;
+            Lemonade_Globals.location = "sydney";
 
             base.create();
 
             FlxG.autoHandlePause = true;
 
             actors = new FlxGroup();
+            trampolines = new FlxGroup(); 
 
             buildTileset();
             buildActors();
 
             add(actors);
+            add(trampolines);
 
             // follow.
             FlxG.followBounds(0, 
@@ -210,6 +222,7 @@ namespace Lemonade
             FlxU.collide(destructableTilemap, actors);
 
             FlxU.overlap(actors, actors, actorOverlap);
+            FlxU.overlap(actors, trampolines, trampolinesOverlap);
 
             base.update();
 
@@ -219,12 +232,22 @@ namespace Lemonade
             }
         }
 
+
+
+        protected bool trampolinesOverlap(object Sender, FlxSpriteCollisionEvent e)
+        {
+            ((Actor)(e.Object1)).overlapped(e.Object2);
+            ((Trampoline)(e.Object2)).overlapped(e.Object1);
+            return true;
+        }
+
         protected bool actorOverlap(object Sender, FlxSpriteCollisionEvent e)
         {
             ((Actor)(e.Object1)).overlapped(e.Object2);
             ((Actor)(e.Object2)).overlapped(e.Object1);
             return true;
         }
+
 
     }
 }

@@ -60,7 +60,11 @@ namespace Lemonade
                 velocity.Y = -30;
                 colorFlicker(2);
             }
-            
+            else if (overlappedWith == "Lemonade.Trampoline")
+            {
+                velocity.Y = -5230;
+                
+            }
 
         }
 

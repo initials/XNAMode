@@ -23,6 +23,8 @@ namespace Lemonade
 
             play("stuck");
 
+            x -= 2;
+            y -= 2;
 
         }
 
@@ -34,6 +36,16 @@ namespace Lemonade
 
         }
 
+        public void overlapped(FlxObject obj)
+        {
+            string overlappedWith = obj.GetType().ToString();
+
+            if (overlappedWith == "Lemonade.Andre")
+            {
+                play("boing", true);
+            }
+
+        }
 
     }
 }

@@ -9,8 +9,6 @@ namespace Lemonade
     {
         public static string location = "military";
 
-
-
         public Lemonade_Globals()
         {
 
