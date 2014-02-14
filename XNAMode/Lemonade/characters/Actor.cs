@@ -11,13 +11,13 @@ namespace Lemonade
 {
     class Actor : FlxPlatformActor
     {
+        public float trampolineTimer;
+        private const float trampolineMaxLimit = 0.464f;
 
         public Actor(int xPos, int yPos)
             : base(xPos, yPos)
         {
-
-            acceleration.Y = FourChambers_Globals.GRAVITY;
-
+            trampolineTimer = float.MaxValue;
 
             play("idle");
 
@@ -25,6 +25,17 @@ namespace Lemonade
 
         override public void update()
         {
+            trampolineTimer += FlxG.elapsed;
+
+            if (trampolineTimer < trampolineMaxLimit)
+            {
+                acceleration.Y = FourChambers_Globals.GRAVITY * -1;
+            }
+            else
+            {
+                acceleration.Y = FourChambers_Globals.GRAVITY;
+            }
+
             base.update();
         }
 

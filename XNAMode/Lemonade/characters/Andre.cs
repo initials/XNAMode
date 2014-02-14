@@ -63,7 +63,7 @@ namespace Lemonade
             else if (overlappedWith == "Lemonade.Trampoline")
             {
                 velocity.Y = -5230;
-                
+                trampolineTimer = 0.0f;
             }
 
         }
