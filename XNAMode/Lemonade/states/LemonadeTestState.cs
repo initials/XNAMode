@@ -30,18 +30,36 @@ namespace Lemonade
         private Inspector inspector;
         private Chef chef;
 
-        public void buildTileset()
+        public void buildTileset() //string LevelFile, string Tiles
         {
-            levelAttrs = new Dictionary<string, string>();
+            List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/bg" + Lemonade_Globals.location + ".tmx", "map", "bg");
+            
+            // TMX fixes. kill newlines.
+            string ext = bgString[0]["csvData"].Replace(",\n", "\n");
+            ext = ext.Remove(0, 1);
+            ext = ext.Remove(ext.Length - 1);
 
-            levelAttrs = FlxXMLReader.readAttributesFromTmxFile("Lemonade/levels/slf2/military_level1.tmx", "map");
+
+            FlxTilemap bgMap = new FlxTilemap();
+            bgMap.auto = FlxTilemap.STRING;
+            bgMap.indexOffset = -1;
+            bgMap.loadMap(ext, FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_"  + Lemonade_Globals.location), 20, 20);
+            bgMap.boundingBoxOverride = true;
+            bgMap.setScrollFactors(0, 0);
+            add(bgMap);
+
+
+            
+            
+            levelAttrs = new Dictionary<string, string>();
+            levelAttrs = FlxXMLReader.readAttributesFromTmxFile("Lemonade/levels/slf2/" + Lemonade_Globals.location + "_level"+FlxG.level.ToString()+".tmx", "map");
 
             foreach (KeyValuePair<string, string> kvp in levelAttrs)
             {
                 Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
             }
 
-            levelString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/military_level1.tmx", "map", "bg");
+            levelString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/" + Lemonade_Globals.location + "_level" + FlxG.level.ToString() + ".tmx", "map", "bg");
             foreach (Dictionary<string, string> nodes in levelString)
             {
                 foreach (KeyValuePair<string, string> kvp in nodes)
@@ -62,7 +80,7 @@ namespace Lemonade
 
             // TMX maps have indexOffset of -1;
             destructableTilemap.indexOffset = -1;
-            destructableTilemap.loadMap(newStringx, FlxG.Content.Load<Texture2D>("Lemonade/tiles_military"), 20, 20);
+            destructableTilemap.loadMap(newStringx, FlxG.Content.Load<Texture2D>("Lemonade/tiles_" + Lemonade_Globals.location), 20, 20);
             destructableTilemap.boundingBoxOverride = true;
             add(destructableTilemap);
         }
@@ -164,6 +182,8 @@ namespace Lemonade
 
         override public void create()
         {
+            FlxG.level = 1;
+
             base.create();
 
             FlxG.autoHandlePause = true;
@@ -201,7 +221,8 @@ namespace Lemonade
 
         protected bool actorOverlap(object Sender, FlxSpriteCollisionEvent e)
         {
-
+            ((Actor)(e.Object1)).overlapped(e.Object2);
+            ((Actor)(e.Object2)).overlapped(e.Object1);
             return true;
         }
 

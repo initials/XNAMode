@@ -119,11 +119,11 @@ namespace org.flixel
 
         private void leftPressed()
         {
-            acceleration.X -= runSpeed;
+            velocity.X -= runSpeed;
         }
         private void rightPressed()
         {
-            acceleration.X += runSpeed;
+            velocity.X += runSpeed;
         }
 
         /// <summary>

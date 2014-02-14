@@ -31,16 +31,16 @@ namespace Lemonade
 
             play("idle");
 
-            runSpeed = 120;
+            runSpeed = 50;
 
             width = 10;
             height = 41;
             setOffset(20, 39);
-            setDrags(1900, 1900);
+            setDrags(1251, 1251);
 
             maxVelocity.X = 530;
             maxVelocity.Y = 430;
-
+            
             
 
         }
@@ -49,5 +49,21 @@ namespace Lemonade
         {
             base.update();
         }
+
+
+        override public void overlapped(FlxObject obj)
+        {
+            string overlappedWith = obj.GetType().ToString();
+
+            if (overlappedWith == "Lemonade.Army")
+            {
+                velocity.Y = -30;
+                colorFlicker(2);
+            }
+            
+
+        }
+
+
     }
 }

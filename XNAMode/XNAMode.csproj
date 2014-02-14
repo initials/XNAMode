@@ -130,6 +130,10 @@
     <Compile Include="FourChambers\Levels\MovingPlatform.cs" />
     <Compile Include="FourChambers\Levels\MultiPlayerPlayState.cs" />
     <Compile Include="Lemonade\extra\Exit.cs" />
+    <Compile Include="Lemonade\extra\LargeCrate.cs" />
+    <Compile Include="Lemonade\extra\SmallCrate.cs" />
+    <Compile Include="Lemonade\extra\Trampoline.cs" />
+    <Compile Include="Lemonade\Lemonade_Globals.cs" />
     <Compile Include="Revvolvver\Bomb.cs" />
     <Compile Include="Revvolvver\Bullet.cs" />
     <Compile Include="Revvolvver\Cloud.cs" />
@@ -166,7 +170,7 @@
     <Compile Include="Lemonade\characters\Inspector.cs" />
     <Compile Include="Lemonade\characters\Liselot.cs" />
     <Compile Include="Lemonade\characters\Worker.cs" />
-    <Compile Include="Lemonade\testStates\LemonadeTestState.cs" />
+    <Compile Include="Lemonade\states\LemonadeTestState.cs" />
     <Compile Include="Mode\Multiplayer\BulletMulti.cs" />
     <Compile Include="Mode\Multiplayer\PlayerMulti.cs" />
     <Compile Include="Mode\Multiplayer\PlayStateMulti.cs" />
@@ -299,7 +303,7 @@
     <Compile Include="XNATweener\Cubic.cs" />
     <Compile Include="XNATweener\Elastic.cs" />
     <Compile Include="XNATweener\Exponential.cs" />
-    <Compile Include="FlixelEntryPoint.cs" />
+    <Compile Include="XNATweener\FlixelEntryPoint.cs" />
     <Compile Include="flixel\data\FlxHud.cs" />
     <Compile Include="flixel\FlxCaveGenerator.cs" />
     <Compile Include="flixel\FlxXMLReader.cs" />
@@ -490,6 +494,11 @@
     <Content Include="Revvolvver\Level1_TwoPlayerData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Lemonade\characters\reference\Crate.m" />
+    <None Include="Lemonade\characters\reference\Exit.m" />
+    <None Include="Lemonade\characters\reference\LargeCrate.m" />
+    <None Include="Lemonade\characters\reference\SugarBag.m" />
+    <None Include="Lemonade\characters\reference\Trampoline.m" />
     <None Include="Lemonade\levels\slf\hclevel1.oel" />
     <None Include="Lemonade\levels\slf\hclevel10.oel" />
     <None Include="Lemonade\levels\slf\hclevel101.oel" />
@@ -630,10 +639,10 @@
     <None Include="Lemonade\characters\reference\Liselot %282%29.m" />
     <None Include="Lemonade\characters\reference\Liselot.m" />
     <None Include="Lemonade\characters\reference\Player.m" />
-    <None Include="Lemonade\levels\slf2\bgmilita.tmx">
+    <None Include="Lemonade\levels\slf2\bgmilitary.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Lemonade\levels\slf2\bgnewyor.tmx">
+    <None Include="Lemonade\levels\slf2\bgnewyork.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Lemonade\levels\slf2\bgsydney.tmx">

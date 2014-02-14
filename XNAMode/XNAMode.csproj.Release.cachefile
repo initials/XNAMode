@@ -195,6 +195,15 @@ Content\Lemonade\tiles_military.xnb
 Content\Lemonade\tiles_newyork.xnb
 Content\Lemonade\tiles_warehouse.xnb
 Content\initials\FourChambers_IntroTag_03.xnb
+Content\Lemonade\crateShards.xnb
+Content\Lemonade\CrateWithLabel.xnb
+Content\Lemonade\CrateWithLabelBlank.xnb
+Content\Lemonade\LargeCrate.xnb
+Content\Lemonade\trampoline.xnb
+Content\Lemonade\exit.xnb
+Content\Lemonade\bgtiles_military.xnb
+Content\Lemonade\bgtiles_newyork.xnb
+Content\Lemonade\bgtiles_sydney.xnb
 Content\mode\button.wma
 Content\music\ralph\four chambered heart.wma
 Content\music\ralph\goatmp3.wma
@@ -243,7 +252,7 @@ Mode\ModeProject.oep
 ogmoLevels\level101.oel
 ogmoLevels\level21.oel
 Revvolvver\level1.oel
-Lemonade\levels\slf2\bgnewyor.tmx
+Lemonade\levels\slf2\bgnewyork.tmx
 Lemonade\levels\slf2\bgsydney.tmx
 Lemonade\levels\slf2\military_cutscene.tmx
 Lemonade\levels\slf2\military_level1.tmx
@@ -329,4 +338,4 @@ Revvolvver\level9.oel
 Revvolvver\RevvolvverProject.oep
 Revvolvver\titlescreen.oel
 Revvolvver\titlescreenOUYA.oel
-Lemonade\levels\slf2\bgmilita.tmx
+Lemonade\levels\slf2\bgmilitary.tmx

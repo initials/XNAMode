@@ -28,7 +28,7 @@ namespace Lemonade
             base.update();
         }
 
-        public void overlapped(FlxObject obj)
+        virtual public void overlapped(FlxObject obj)
         {
 
         }
