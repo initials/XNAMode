@@ -112,7 +112,7 @@ namespace FourChambers
         /// </summary>
         public const float DEADZONE = 0.5f;
 
-        public int runSpeed = 120;
+        //public int runSpeed = 120;
 
         public List<FlxObject> _bullets;
         public int _curBullet;

@@ -8,9 +8,9 @@ using org.flixel;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace XNAMode
+namespace $rootnamespace$
 {
-    public class TemplateState : FlxState
+    public class $safeitemname$ : FlxState
     {
 
         override public void create()

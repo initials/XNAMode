@@ -21,6 +21,8 @@ namespace Lemonade
             addAnimation("talk", new int[] { 0, 53, 52, 54 }, 6);
             addAnimation("death", new int[] { 91, 92, 93, 94, 95, 95, 95, 95 }, 12, false);
 
+            play("idle");
+
 
         }
 

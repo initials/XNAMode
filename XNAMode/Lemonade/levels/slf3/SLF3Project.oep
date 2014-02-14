@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <OgmoVersion>1.0</OgmoVersion>
+  <Name>New Project</Name>
+  <BackgroundColor A="255" R="125" G="160" B="255" />
+  <GridColor A="255" R="255" G="240" B="90" />
+  <LevelDefaultSize>
+    <Width>960</Width>
+    <Height>540</Height>
+  </LevelDefaultSize>
+  <LevelMinimumSize>
+    <Width>20</Width>
+    <Height>20</Height>
+  </LevelMinimumSize>
+  <LevelMaximumSize>
+    <Width>20000</Width>
+    <Height>20000</Height>
+  </LevelMaximumSize>
+  <Filename>C:\Users\User\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\Lemonade\levels\slf3\SLF3Project.oep</Filename>
+  <AngleMode>Radians</AngleMode>
+  <CameraEnabled>false</CameraEnabled>
+  <CameraSize>
+    <Width>640</Width>
+    <Height>480</Height>
+  </CameraSize>
+  <ExportCameraPosition>false</ExportCameraPosition>
+  <LevelValueDefinitions />
+  <LayerDefinitions>
+    <LayerDefinition xsi:type="TileLayerDefinition">
+      <Name>bg</Name>
+      <Grid>
+        <Width>20</Width>
+        <Height>20</Height>
+      </Grid>
+      <ScrollFactor>
+        <X>1</X>
+        <Y>1</Y>
+      </ScrollFactor>
+      <ExportMode>CSV</ExportMode>
+    </LayerDefinition>
+    <LayerDefinition xsi:type="EntityLayerDefinition">
+      <Name>actors</Name>
+      <Grid>
+        <Width>20</Width>
+        <Height>20</Height>
+      </Grid>
+      <ScrollFactor>
+        <X>1</X>
+        <Y>1</Y>
+      </ScrollFactor>
+    </LayerDefinition>
+  </LayerDefinitions>
+  <Tilesets>
+    <Tileset>
+      <Name>tiles_factory</Name>
+      <FilePath>..\..\..\..\XNAModeContent\Lemonade\tiles_factory.png</FilePath>
+      <TileSize>
+        <Width>20</Width>
+        <Height>20</Height>
+      </TileSize>
+      <TileSep>0</TileSep>
+    </Tileset>
+    <Tileset>
+      <Name>tiles_management</Name>
+      <FilePath>..\..\..\..\XNAModeContent\Lemonade\tiles_management.png</FilePath>
+      <TileSize>
+        <Width>20</Width>
+        <Height>20</Height>
+      </TileSize>
+      <TileSep>0</TileSep>
+    </Tileset>
+    <Tileset>
+      <Name>tiles_military</Name>
+      <FilePath>..\..\..\..\XNAModeContent\Lemonade\tiles_military.png</FilePath>
+      <TileSize>
+        <Width>20</Width>
+        <Height>20</Height>
+      </TileSize>
+      <TileSep>0</TileSep>
+    </Tileset>
+  </Tilesets>
+  <EntityDefinitions>
+    <EntityDefinition Name="andre" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>20</Width>
+        <Height>20</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\..\..\..\XNAModeContent\Lemonade\chars_50x80.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+  </EntityDefinitions>
+</project>

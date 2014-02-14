@@ -183,11 +183,12 @@ namespace FourChambers
         override public void update()
         {
 
-            if (hurtTimer >= timeDownAfterHurt)
+            if (hurtTimer >= timeDownAfterHurt && !dead )
             {
                 //if (actorType=="unicorn") FlxG.write("Setting colorFlickerValues");
 
-                setColorFlickerValues(1, 0.175f, 0.175f, 1, 1,1);
+                setColorFlickerValues(1, 0.175f, 0.175f, 1, 0.2f, 0.2f);
+
             }
 
             if (velocity.X > 0)

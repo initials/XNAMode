@@ -29,6 +29,8 @@ namespace Lemonade
             addAnimation("jump", new int [] {15,16,17} ,4 , true);
             addAnimation("death", new int [] {64,64,65,65,66,66,67,67} ,12 , false);
 
+            play("idle");
+
         }
 
         override public void update()

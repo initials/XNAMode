@@ -20,7 +20,8 @@ namespace Lemonade
             addAnimation("idle", new int[] { 4 }, 0);
             addAnimation("talk", new int[] { 4,57 }, 12);
             addAnimation("death", new int[] { 84,85,86,87,88,89,90,88 }, 12, false);
-        
+
+            play("idle");
         }
 
         override public void update()

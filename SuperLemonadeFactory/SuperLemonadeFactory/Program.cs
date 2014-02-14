@@ -25,13 +25,15 @@ namespace Loader_SuperLemonadeFactory
             : base(game)
         {
 
-            int w = 320;
-            int h = 180;
+            Console.WriteLine("Flixel Entry Point");
+
+            int w = FlxG.resolutionWidth / FlxG.zoom;
+            int h = FlxG.resolutionHeight / FlxG.zoom;
 
             initGame(w, h, new Lemonade.LemonadeTestState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
 
             FlxG.debug = true;
-            FlxG.zoom = 1280 / w;
+            //FlxG.zoom = FlxG.resolutionWidth / w;
             FlxG.level = -1;
 
             //FourChambers_Globals.BUILD_TYPE = FourChambers_Globals.BUILD_TYPE_RELEASE;

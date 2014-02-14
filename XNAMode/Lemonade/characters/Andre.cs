@@ -28,6 +28,21 @@ namespace Lemonade
             addAnimation("talk", new int [] {51,48,51,49,51,50} ,12);
             addAnimation("jump", new int [] {46,47,46} ,4 , true);
             addAnimation("death", new int [] {60,60,61,61,62,62,63,63} ,12 , false);
+
+            play("idle");
+
+            runSpeed = 120;
+
+            width = 10;
+            height = 41;
+            setOffset(20, 39);
+            setDrags(1900, 1900);
+
+            maxVelocity.X = 530;
+            maxVelocity.Y = 430;
+
+            
+
         }
 
         override public void update()

@@ -16,7 +16,7 @@
     <Width>3200</Width>
     <Height>3200</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Shane\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
+  <Filename>C:\Users\User\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>true</CameraEnabled>
   <CameraSize>
@@ -68,8 +68,8 @@
   </LayerDefinitions>
   <Tilesets>
     <Tileset>
-      <Name>RockTiles</Name>
-      <FilePath>..\..\XNAModeContent\fourchambers\RockTiles.png</FilePath>
+      <Name>autotiles_16x16</Name>
+      <FilePath>..\..\XNAModeContent\fourchambers\autotiles_16x16.png</FilePath>
       <TileSize>
         <Width>16</Width>
         <Height>16</Height>
@@ -86,8 +86,8 @@
       <TileSep>0</TileSep>
     </Tileset>
     <Tileset>
-      <Name>autotiles_16x16</Name>
-      <FilePath>..\..\XNAModeContent\fourchambers\autotiles_16x16.png</FilePath>
+      <Name>RockTiles</Name>
+      <FilePath>..\..\XNAModeContent\fourchambers\RockTiles.png</FilePath>
       <TileSize>
         <Width>16</Width>
         <Height>16</Height>
@@ -118,15 +118,6 @@
       <TileSize>
         <Width>16</Width>
         <Height>16</Height>
-      </TileSize>
-      <TileSep>0</TileSep>
-    </Tileset>
-    <Tileset>
-      <Name>tiles_sydney</Name>
-      <FilePath>..\..\..\OgmoEditor2\OgmoEditor\ExampleProject\tiles_sydney.png</FilePath>
-      <TileSize>
-        <Width>20</Width>
-        <Height>20</Height>
       </TileSize>
       <TileSep>0</TileSep>
     </Tileset>
