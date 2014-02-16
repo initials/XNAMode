@@ -38,7 +38,7 @@ namespace FourChambers
                 //Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
             }
 
-            actorsAttrs = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/military_level1.tmx", "map", "bg");
+            actorsAttrs = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/military_level1.tmx", "map", "bg", FlxXMLReader.TILES);
             foreach (Dictionary<string, string> nodes in actorsAttrs)
             {
                 foreach (KeyValuePair<string, string> kvp in nodes)

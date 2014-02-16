@@ -18,6 +18,9 @@ namespace org.flixel
     public class FlxXMLReader
     {
 
+        public const int TILES = 0;
+        public const int ACTORS = 1;
+
         public static void readOgmoProjectAndLevel(string projectFilename, string levelFilename)
         {
             XDocument project = XDocument.Load(projectFilename);
@@ -255,7 +258,15 @@ namespace org.flixel
             return nodeList;
         }
 
-        public static List<Dictionary<string, string>> readNodesFromTmxFile(string filename, string element, string name)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="element"></param>
+        /// <param name="name"></param>
+        /// <param name="type">Use either FlxXMLReader.TILES or FlxXMLReader.ACTORS</param>
+        /// <returns></returns>
+        public static List<Dictionary<string, string>> readNodesFromTmxFile(string filename, string element, string name, int type)
         {
             List<Dictionary<string, string>> nodeList = new List<Dictionary<string, string>>();
 
@@ -302,10 +313,20 @@ namespace org.flixel
                             {
                                 //Console.WriteLine("xn3 Name: {0} -- {1}", xn3.Name.ToString(), xn3.InnerText.ToString());
 
-                                string ext = xn3.InnerText.ToString().Replace(",\n", "\n");
+                                string ext = "";
 
-                                ext = ext.Remove(0, 1);
-                                ext = ext.Remove(ext.Length - 1);
+                                if (type == TILES)
+                                {
+                                    ext = xn3.InnerText.ToString().Replace(",\n", "\n");
+                                    ext = ext.Remove(0, 1);
+                                    ext = ext.Remove(ext.Length - 1);
+                                }
+                                else if (type == ACTORS)
+                                {
+                                    ext = xn3.InnerText.ToString().Replace(",\n", ",");
+                                    ext = ext.Remove(0, 1);
+                                    ext = ext.Remove(ext.Length - 1);
+                                }
 
 
 
