@@ -134,6 +134,7 @@
     <Compile Include="Lemonade\extra\SmallCrate.cs" />
     <Compile Include="Lemonade\extra\Trampoline.cs" />
     <Compile Include="Lemonade\Lemonade_Globals.cs" />
+    <Compile Include="Lemonade\states\MenuState.cs" />
     <Compile Include="Revvolvver\Bomb.cs" />
     <Compile Include="Revvolvver\Bullet.cs" />
     <Compile Include="Revvolvver\Cloud.cs" />
@@ -640,7 +641,7 @@
     <None Include="Lemonade\characters\reference\Liselot.m" />
     <None Include="Lemonade\characters\reference\Player.m" />
     <None Include="Lemonade\levels\slf2\bgmilitary.tmx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Lemonade\levels\slf2\bgnewyork.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

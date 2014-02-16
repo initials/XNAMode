@@ -191,8 +191,8 @@ namespace Lemonade
 
         override public void create()
         {
-            FlxG.level = 6;
-            Lemonade_Globals.location = "sydney";
+            FlxG.level = 1;
+            Lemonade_Globals.location = "military";
 
             base.create();
 
