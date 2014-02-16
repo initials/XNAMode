@@ -36,10 +36,10 @@ namespace Lemonade
             width = 10;
             height = 41;
             setOffset(20, 39);
-            setDrags(1251, 1251);
+            setDrags(1251, 0);
 
             maxVelocity.X = 530;
-            maxVelocity.Y = 430;
+            maxVelocity.Y = 2830;
             
             
 
@@ -57,12 +57,12 @@ namespace Lemonade
 
             if (overlappedWith == "Lemonade.Army")
             {
-                velocity.Y = -30;
+                //velocity.Y = -30;
                 colorFlicker(2);
             }
             else if (overlappedWith == "Lemonade.Trampoline")
             {
-                velocity.Y = -5230;
+                velocity.Y = -1000;
                 trampolineTimer = 0.0f;
             }
 

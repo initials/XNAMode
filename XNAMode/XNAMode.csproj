@@ -134,6 +134,7 @@
     <Compile Include="Lemonade\extra\SmallCrate.cs" />
     <Compile Include="Lemonade\extra\Trampoline.cs" />
     <Compile Include="Lemonade\Lemonade_Globals.cs" />
+    <Compile Include="Lemonade\states\Lemonade.cs" />
     <Compile Include="Lemonade\states\MenuState.cs" />
     <Compile Include="Revvolvver\Bomb.cs" />
     <Compile Include="Revvolvver\Bullet.cs" />

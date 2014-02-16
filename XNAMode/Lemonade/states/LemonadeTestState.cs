@@ -59,7 +59,7 @@ namespace Lemonade
 
             foreach (KeyValuePair<string, string> kvp in levelAttrs)
             {
-                Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+                //Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
             }
 
             levelString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/" + Lemonade_Globals.location + "_level" + FlxG.level.ToString() + ".tmx", "map", "bg");
@@ -75,15 +75,8 @@ namespace Lemonade
             // TMX fixes. kill newlines.
             string newStringx = levelString[0]["csvData"].Replace(",\n", "\n");
 
-            //Console.WriteLine(newStringx);
-            //System.Threading.Thread.Sleep(5000);
-
-
             newStringx = newStringx.Remove(0, 1);
             newStringx = newStringx.Remove(newStringx.Length - 1);
-
-            //Console.WriteLine(newStringx);
-            //System.Threading.Thread.Sleep(5000);
 
             destructableTilemap = new FlxTilemap();
             destructableTilemap.auto = FlxTilemap.STRING;

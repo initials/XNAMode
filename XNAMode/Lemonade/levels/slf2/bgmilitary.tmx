@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <map version="1.0" orientation="orthogonal" width="50" height="30" tilewidth="20" tileheight="20">
  <tileset firstgid="1" name="bgtiles_military" tilewidth="20" tileheight="20">
   <image source="../../../../XNAModeContent/Lemonade/bgtiles_military.png" width="700" height="500"/>

@@ -29,11 +29,11 @@ namespace Lemonade
 
             if (trampolineTimer < trampolineMaxLimit)
             {
-                acceleration.Y = FourChambers_Globals.GRAVITY * -1;
+                acceleration.Y = Lemonade_Globals.GRAVITY *-1;
             }
             else
             {
-                acceleration.Y = FourChambers_Globals.GRAVITY;
+                acceleration.Y = Lemonade_Globals.GRAVITY;
             }
 
             base.update();

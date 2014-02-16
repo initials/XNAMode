@@ -258,6 +258,14 @@ namespace org.flixel
 
             cols = rows[r].Split(',');
             _data = new int[rows.Length * cols.Length];
+
+            //Console.WriteLine(rows.Length + " " + cols.Length);
+
+            //foreach (var item in _data)
+            //    Console.Write(item.ToString() + ",");
+            //Console.WriteLine("\n");
+
+
             while (r < heightInTiles)
             {
                 cols = rows[r++].Split(',');
@@ -276,16 +284,14 @@ namespace org.flixel
                 {
                     
 
-                    int ff = ((r - 1) * widthInTiles) + c;
-                    Console.WriteLine(r + " " + c + " " + ff);
+                    //int ff = ((r - 1) * widthInTiles) + c;
+                    //Console.WriteLine(r + " " + c + " " + ff);
                     _data[((r - 1) * widthInTiles) + c] = int.Parse(cols[c++]); //.push(uint(cols[c++]));
                     
                 }
             }
 
-            //foreach (var item in _data)
-            //    Console.Write(item.ToString() + ",");
-            //Console.WriteLine("\n");
+
 
             //now that height and width have been determined, find how many extra 
             //"filler tiles" are at the end of your map.
