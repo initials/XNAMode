@@ -36,17 +36,15 @@ namespace Lemonade
             List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/bg" + Lemonade_Globals.location + ".tmx", "map", "bg");
 
             // TMX fixes. kill newlines.
-            string ext = bgString[0]["csvData"].Replace(",\n", "\n");
+            //string ext = bgString[0]["csvData"].Replace(",\n", "\n");
 
-            ext = ext.Remove(0, 1);
-            ext = ext.Remove(ext.Length - 1);
-
-
+            //ext = ext.Remove(0, 1);
+            //ext = ext.Remove(ext.Length - 1);
 
             FlxTilemap bgMap = new FlxTilemap();
             bgMap.auto = FlxTilemap.STRING;
             bgMap.indexOffset = -1;
-            bgMap.loadMap(ext, FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_" + Lemonade_Globals.location), 20, 20);
+            bgMap.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_" + Lemonade_Globals.location), 20, 20);
             bgMap.boundingBoxOverride = true;
             bgMap.setScrollFactors(0, 0);
             add(bgMap);
@@ -73,17 +71,17 @@ namespace Lemonade
             }
 
             // TMX fixes. kill newlines.
-            string newStringx = levelString[0]["csvData"].Replace(",\n", "\n");
+            //string newStringx = levelString[0]["csvData"].Replace(",\n", "\n");
 
-            newStringx = newStringx.Remove(0, 1);
-            newStringx = newStringx.Remove(newStringx.Length - 1);
+            //newStringx = newStringx.Remove(0, 1);
+            //newStringx = newStringx.Remove(newStringx.Length - 1);
 
             destructableTilemap = new FlxTilemap();
             destructableTilemap.auto = FlxTilemap.STRING;
 
             // TMX maps have indexOffset of -1;
             destructableTilemap.indexOffset = -1;
-            destructableTilemap.loadMap(newStringx, FlxG.Content.Load<Texture2D>("Lemonade/tiles_" + Lemonade_Globals.location), 20, 20);
+            destructableTilemap.loadMap(levelString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/tiles_" + Lemonade_Globals.location), 20, 20);
             destructableTilemap.boundingBoxOverride = true;
             add(destructableTilemap);
         }
@@ -102,8 +100,6 @@ namespace Lemonade
             }
 
             string actorsStr = actorsString[0]["csvData"].Replace(",\n", ",");
-            //actorsStr = actorsStr.Remove(0, 1);
-            //actorsStr = actorsStr.Remove(actorsStr.Length - 1);
 
             string[] actorsSpl = actorsStr.Split(',');
             int count = 0;
@@ -117,7 +113,7 @@ namespace Lemonade
 
                 if (item == "381")
                 {
-                    //Console.WriteLine("OK HERES AN ANDRE {0} x{1} y{2}", andre, xPos, yPos);
+                    Console.WriteLine("OK HERES AN ANDRE {0} x{1} y{2}", andre, xPos, yPos);
                     buildActor("andre", xPos, yPos);
                 }
                 if (item == "382")

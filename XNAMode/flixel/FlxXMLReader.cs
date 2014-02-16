@@ -302,7 +302,14 @@ namespace org.flixel
                             {
                                 //Console.WriteLine("xn3 Name: {0} -- {1}", xn3.Name.ToString(), xn3.InnerText.ToString());
 
-                                levelAttrs.Add("csvData", xn3.InnerText.ToString());
+                                string ext = xn3.InnerText.ToString().Replace(",\n", "\n");
+
+                                ext = ext.Remove(0, 1);
+                                ext = ext.Remove(ext.Length - 1);
+
+
+
+                                levelAttrs.Add("csvData", ext);
                             }
 
                             nodeList.Add(levelAttrs);

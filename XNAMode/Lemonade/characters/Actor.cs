@@ -12,7 +12,7 @@ namespace Lemonade
     class Actor : FlxPlatformActor
     {
         public float trampolineTimer;
-        private const float trampolineMaxLimit = 0.464f;
+        private const float trampolineMaxLimit = 0.164f;
 
         public Actor(int xPos, int yPos)
             : base(xPos, yPos)
