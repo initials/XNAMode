@@ -274,15 +274,11 @@ namespace org.flixel
 
                 while (c < widthInTiles)
                 {
-                    try
-                    {
-                        _data[((r - 1) * widthInTiles) + c] = int.Parse(cols[c++]); //.push(uint(cols[c++]));
-                    }
-                    catch (Exception)
-                    {
-                        Console.WriteLine("Something broke " + c + " " + widthInTiles);
-                        throw;
-                    }
+                    
+
+                    int ff = ((r - 1) * widthInTiles) + c;
+                    Console.WriteLine(r + " " + c + " " + ff);
+                    _data[((r - 1) * widthInTiles) + c] = int.Parse(cols[c++]); //.push(uint(cols[c++]));
                     
                 }
             }

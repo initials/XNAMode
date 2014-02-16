@@ -34,17 +34,19 @@ namespace Lemonade
         public void buildTileset() //string LevelFile, string Tiles
         {
             List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/bg" + Lemonade_Globals.location + ".tmx", "map", "bg");
-            
+
             // TMX fixes. kill newlines.
             string ext = bgString[0]["csvData"].Replace(",\n", "\n");
+
             ext = ext.Remove(0, 1);
             ext = ext.Remove(ext.Length - 1);
+
 
 
             FlxTilemap bgMap = new FlxTilemap();
             bgMap.auto = FlxTilemap.STRING;
             bgMap.indexOffset = -1;
-            bgMap.loadMap(ext, FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_"  + Lemonade_Globals.location), 20, 20);
+            bgMap.loadMap(ext, FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_" + Lemonade_Globals.location), 20, 20);
             bgMap.boundingBoxOverride = true;
             bgMap.setScrollFactors(0, 0);
             add(bgMap);
@@ -72,9 +74,16 @@ namespace Lemonade
 
             // TMX fixes. kill newlines.
             string newStringx = levelString[0]["csvData"].Replace(",\n", "\n");
+
+            //Console.WriteLine(newStringx);
+            //System.Threading.Thread.Sleep(5000);
+
+
             newStringx = newStringx.Remove(0, 1);
             newStringx = newStringx.Remove(newStringx.Length - 1);
 
+            //Console.WriteLine(newStringx);
+            //System.Threading.Thread.Sleep(5000);
 
             destructableTilemap = new FlxTilemap();
             destructableTilemap.auto = FlxTilemap.STRING;
