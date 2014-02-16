@@ -30,7 +30,7 @@ namespace Loader_SuperLemonadeFactory
             int w = FlxG.resolutionWidth / FlxG.zoom;
             int h = FlxG.resolutionHeight / FlxG.zoom;
 
-            initGame(w, h, new Lemonade.LemonadeTestState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
+            initGame(w, h, new Lemonade.Lemonade(), new Color(15, 15, 15), true, new Color(5, 5, 5));
 
             FlxG.debug = true;
             //FlxG.zoom = FlxG.resolutionWidth / w;
