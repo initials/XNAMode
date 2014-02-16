@@ -99,9 +99,9 @@ namespace Lemonade
                 //Console.Write("\r\n");
             }
 
-            string actorsStr = actorsString[0]["csvData"].Replace(",\n", ",");
+            //string actorsStr = actorsString[0]["csvData"].Replace(",\n", ",");
 
-            string[] actorsSpl = actorsStr.Split(',');
+            string[] actorsSpl = actorsString[0]["csvData"].Split(',');
             int count = 0;
             foreach (string item in actorsSpl)
             {
@@ -115,7 +115,12 @@ namespace Lemonade
 
                 if (item == "381")
                 {
-                    Console.WriteLine("OK HERES AN ANDRE {0} x{1} y{2}", andre, xPos, yPos);
+                    Console.WriteLine("OK HERES AN ANDRE {0} x{1} y{2}  {3} {4}   count {5}", 
+                        andre, 
+                        xPos, 
+                        yPos, 
+                        Convert.ToInt32(levelAttrs["tilewidth"]), 
+                        Convert.ToInt32(levelAttrs["width"]) , count);
                     buildActor("andre", xPos, yPos);
                 }
                 if (item == "382")
