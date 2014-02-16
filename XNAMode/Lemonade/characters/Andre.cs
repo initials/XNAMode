@@ -40,7 +40,11 @@ namespace Lemonade
 
             maxVelocity.X = 530;
             maxVelocity.Y = 2830;
-            
+
+            setJumpValues(-400.0f, -550.0f, 0.45f, 0.075f);
+
+
+
             
 
         }

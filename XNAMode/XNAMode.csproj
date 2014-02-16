@@ -125,7 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="flixel\data\FlxRecord.cs" />
-    <Compile Include="flixel\FlxPlatformActor.cs" />
+    <Compile Include="flixel\presets\FlxPlatformActor.cs" />
     <Compile Include="FourChambers\Actors\BaseActor.cs" />
     <Compile Include="FourChambers\Levels\MovingPlatform.cs" />
     <Compile Include="FourChambers\Levels\MultiPlayerPlayState.cs" />

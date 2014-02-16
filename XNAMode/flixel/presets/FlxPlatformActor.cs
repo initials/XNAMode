@@ -62,6 +62,29 @@ namespace org.flixel
 
         public int runSpeed;
 
+        // JUMP PHYSICS
+
+        /// <summary>
+        /// holds the amount of time character has been jumping.
+        /// </summary>
+        private float _jump = 0.0f;
+
+        /// <summary>
+        /// How high the character will jump.
+        /// </summary>
+        private float _jumpPower = -180.0f;
+
+        private float _jumpInitialPower = -140.0f;
+
+        private float _jumpMaxTime = 0.25f;
+
+        private float _jumpInitialTime = 0.065f;
+
+        /// <summary>
+        /// How many frames have passed since the character left the ground.
+        /// </summary>
+        public float framesSinceLeftGround;
+
         public PlayerIndex ControllingPlayer
         {
                get 
@@ -85,13 +108,19 @@ namespace org.flixel
         public FlxPlatformActor(int xPos, int yPos)
             : base(xPos, yPos)
         {
-
+            playerIndexAsInt = 1;
+            if (playerIndex == PlayerIndex.One) playerIndexAsInt = 1;
+            else if (playerIndex == PlayerIndex.Two) playerIndexAsInt = 2;
+            else if (playerIndex == PlayerIndex.Three) playerIndexAsInt = 3;
+            else if (playerIndex == PlayerIndex.Four) playerIndexAsInt = 4;
 
         }
 
         override public void update()
         {
             PlayerIndex pi;
+
+            updateFramesSinceLeftFloor();
 
             if (control == Controls.player)
             {
@@ -103,6 +132,12 @@ namespace org.flixel
                 if (FlxG.gamepads.isButtonDown(Buttons.DPadRight, ControllingPlayer, out pi)) rightPressed();
                 if (FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, ControllingPlayer, out pi)) rightPressed();
 
+                if (FlxG.keys.W) jump();
+                else
+                {
+                    _jump = -1;
+                }
+                
 
             }
             else if (control == Controls.file)
@@ -113,7 +148,66 @@ namespace org.flixel
 
             updateAnims();
 
+            
+
             base.update();
+        }
+
+        private void updateFramesSinceLeftFloor()
+        {
+            if (onFloor)
+            {
+                framesSinceLeftGround = 0;
+            }
+            else
+            {
+                framesSinceLeftGround++;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="JumpPower"></param>
+        /// <param name="JumpInitialPower"></param>
+        /// <param name="JumpMaxTime"></param>
+        /// <param name="JumpInitialTime"></param>
+        protected void setJumpValues(float JumpPower, float JumpInitialPower, float JumpMaxTime, float JumpInitialTime)
+        {
+            _jumpPower = JumpPower;
+            _jumpInitialPower = JumpInitialPower;
+            _jumpMaxTime = JumpMaxTime;
+            _jumpInitialTime = JumpInitialTime;
+        }
+
+        private void jump()
+        {
+            Console.WriteLine("Jump() " + _jump + " Frames since left floor " + framesSinceLeftGround + " {0} ", _jumpInitialPower);
+
+            if (_jump >= 0 || framesSinceLeftGround < 10 )
+            {
+                
+                if (framesSinceLeftGround < 10)
+                {
+                    _jump = 0.0f;
+                    framesSinceLeftGround = 10000;
+                }
+
+                _jump += FlxG.elapsed;
+                if (_jump > _jumpMaxTime) _jump = -1;
+            }
+            else
+            {
+                _jump = -1;
+            }
+            if (_jump > 0)
+            {
+                if (_jump < _jumpInitialTime)
+                    velocity.Y = _jumpInitialPower;
+                else
+                    velocity.Y = _jumpPower;
+            }
+
         }
 
 
@@ -156,5 +250,12 @@ namespace org.flixel
 
 
         }
+
+        public override void hitBottom(FlxObject Contact, float Velocity)
+        {
+            _jump = 0.0f;
+            base.hitBottom(Contact, Velocity);
+        }
+
     }
 }
