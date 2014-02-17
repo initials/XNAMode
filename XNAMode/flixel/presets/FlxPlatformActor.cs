@@ -57,7 +57,7 @@ namespace org.flixel
         /// </summary>
         private PlayerIndex playerIndex;
 
-        private int playerIndexAsInt = 0;
+        private int playerIndexAsInt;
 
         //Player Physics
 

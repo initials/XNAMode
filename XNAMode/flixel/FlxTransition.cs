@@ -19,6 +19,8 @@ namespace org.flixel
 
         public bool complete;
 
+        public bool hasStarted;
+
         public FlxTransition()
         {
             _speed = 0.05f;
@@ -26,7 +28,7 @@ namespace org.flixel
             //scrollFactor = Vector2.Zero;
             scrollFactor.X = 0;
             scrollFactor.Y = 0;
-
+            hasStarted = false;
         }
 
         /// <summary>
@@ -217,7 +219,7 @@ namespace org.flixel
                 {
                     o.scale += _speed;
 
-                    if (o.scale > FlxG.zoom + 1.0f)
+                    if (o.scale > 3 / FlxG.zoom + 2 / FlxG.zoom)
                     {
                         complete = true;
                         transitionForward = false;
@@ -263,10 +265,12 @@ namespace org.flixel
 
             if (transitionBackward || transitionForward)
             {
+                hasStarted = true;
                 updateTransition();
             }
             else 
             {
+                hasStarted = false;
                 FlxSprite o;
                 int i = 0;
                 int l = members.Count;

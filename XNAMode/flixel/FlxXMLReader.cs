@@ -317,7 +317,7 @@ namespace org.flixel
 
                                 if (xn3.InnerText.ToString().Contains('\r'))
                                 {
-                                    Console.WriteLine("!! - ERROR - !! This XML file contains Windows style new lines: File-> "+ filename + "Solution: Convert to UNIX style line endings");
+                                    Console.WriteLine("!! - ERROR - !! This XML file contains Windows style new lines: File-> "+ filename + " - Solution: Convert to UNIX style line endings");
                                 }
 
                                 if (type == TILES)

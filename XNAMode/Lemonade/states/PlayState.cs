@@ -262,8 +262,9 @@ namespace Lemonade
             bubbleParticle = new FlxEmitter();
             bubbleParticle.delay = 3;
             bubbleParticle.setXSpeed(-150, 150);
-            bubbleParticle.setYSpeed(50, 200);
+            bubbleParticle.setYSpeed(-200, -50);
             bubbleParticle.setRotation(-720, 720);
+            bubbleParticle.gravity = Lemonade_Globals.GRAVITY * -1;
             bubbleParticle.createSprites(FlxG.Content.Load<Texture2D>("Lemonade/bubble"), 200, true, 1.0f, 0.65f);
             add(bubbleParticle);
 
@@ -349,12 +350,20 @@ namespace Lemonade
                     FlxG.follow(andre, LERP);
                     andre.control = FlxPlatformActor.Controls.player;
                     liselot.control = FlxPlatformActor.Controls.none;
+                    
+                    bubbleParticle.at(andre);
+                    bubbleParticle.start(true, 0, 30);
+
                 }
                 else if (FlxG.followTarget.GetType().ToString() == "Lemonade.Andre")
                 {
                     FlxG.follow(liselot, LERP);
                     andre.control = FlxPlatformActor.Controls.none;
                     liselot.control = FlxPlatformActor.Controls.player;
+
+                    bubbleParticle.at(liselot);
+                    bubbleParticle.start(true, 0, 30);
+
                 }
             }
 
@@ -362,6 +371,16 @@ namespace Lemonade
             {
                 FlxG.state = new MenuState();
             }
+
+            if (levelComplete == true && ! FlxG.transition.hasStarted)
+            {
+                FlxG.transition.startFadeOut(0.05f, -90, 150);
+            }
+            if (FlxG.transition.complete)
+            {
+                FlxG.state = new MenuState();
+            }
+
         }
 
 

@@ -33,12 +33,8 @@ namespace Loader_SuperLemonadeFactory
             initGame(w, h, new Lemonade.MenuState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
 
             FlxG.debug = false;
-            //FlxG.zoom = FlxG.resolutionWidth / w;
-            FlxG.level = -1;
+            FlxG.level = 1;
 
-            //FourChambers_Globals.BUILD_TYPE = FourChambers_Globals.BUILD_TYPE_RELEASE;
-            //FourChambers_Globals.DEMO_VERSION = false;
-            //FourChambers_Globals.PIRATE_COPY = false;
 
         }
     }
