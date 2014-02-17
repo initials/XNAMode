@@ -282,16 +282,12 @@ namespace org.flixel
 
                 while (c < widthInTiles)
                 {
-                    
-
                     //int ff = ((r - 1) * widthInTiles) + c;
                     //Console.WriteLine(r + " " + c + " " + ff);
                     _data[((r - 1) * widthInTiles) + c] = int.Parse(cols[c++]); //.push(uint(cols[c++]));
                     
                 }
             }
-
-
 
             //now that height and width have been determined, find how many extra 
             //"filler tiles" are at the end of your map.

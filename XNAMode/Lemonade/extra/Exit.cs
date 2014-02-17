@@ -18,9 +18,6 @@ namespace Lemonade
         {
             loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/exit"), true, false, 66, 110);
         
-
-
-        
             if ((FlxG.level>=1 && FlxG.level <= 12) ||  FlxG.level==37 || FlxG.level==38 || FlxG.level==39 || FlxG.level==40 ) {
                 addAnimation("open", new int[] { 0,0,0,1,0,0,1,0,1,0 }, 12, true);
                 addAnimation("closed", new int[] {2,2,2,3,2,2,3,2,3,2 }, 12, true);

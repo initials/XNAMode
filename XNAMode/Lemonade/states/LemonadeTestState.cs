@@ -22,6 +22,7 @@ namespace Lemonade
 
         private FlxGroup actors;
         private FlxGroup trampolines;
+        private FlxGroup levelItems;
 
         private Andre andre;
         private Liselot liselot;
@@ -30,6 +31,9 @@ namespace Lemonade
         private Inspector inspector;
         private Chef chef;
         private Trampoline trampoline;
+        private LargeCrate largeCrate;
+        private SmallCrate smallCrate;
+        private Exit exit;
 
         public void buildTileset() //string LevelFile, string Tiles
         {
@@ -113,6 +117,10 @@ namespace Lemonade
 
                 //Console.WriteLine(" x{0} y{1}", xPos, yPos);
 
+                if (item == "357")
+                {
+                    buildActor("largeCrate", xPos, yPos);
+                }
                 if (item == "381")
                 {
                     //Console.WriteLine("OK HERES AN ANDRE {0} x{1} y{2}  {3} {4}   count {5}", 
@@ -148,11 +156,19 @@ namespace Lemonade
                     //Console.WriteLine("OK HERES AN chef {0} {1} ", xPos, yPos);
                     buildActor("chef", xPos, yPos);
                 }
+                if (item == "387")
+                {
+                    //Console.WriteLine("OK HERES AN chef {0} {1} ", xPos, yPos);
+                    buildActor("exit", xPos, yPos);
+                }
                 if (item == "388")
                 {
                     buildActor("trampoline", xPos, yPos);
                 }
-
+                if (item == "389")
+                {
+                    buildActor("smallCrate", xPos, yPos);
+                }
                 count++;
             }
         }
@@ -196,6 +212,21 @@ namespace Lemonade
                 trampoline = new Trampoline(xPos, yPos);
                 trampolines.add(trampoline);
             }
+            else if (actor == "largeCrate")
+            {
+                largeCrate = new LargeCrate(xPos, yPos);
+                levelItems.add(largeCrate);
+            }
+            else if (actor == "smallCrate")
+            {
+                smallCrate = new SmallCrate(xPos, yPos);
+                add(smallCrate);
+            }
+            else if (actor == "exit")
+            {
+                exit = new Exit(xPos, yPos);
+                add(exit);
+            }
 
         }
 
@@ -209,7 +240,8 @@ namespace Lemonade
             FlxG.autoHandlePause = true;
 
             actors = new FlxGroup();
-            trampolines = new FlxGroup(); 
+            trampolines = new FlxGroup();
+            levelItems = new FlxGroup();
 
             buildTileset();
             buildActors();

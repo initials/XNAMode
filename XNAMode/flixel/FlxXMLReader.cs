@@ -315,6 +315,11 @@ namespace org.flixel
 
                                 string ext = "";
 
+                                if (xn3.InnerText.ToString().Contains('\r'))
+                                {
+                                    Console.WriteLine("!! - ERROR - !! This XML file contains Windows style new lines: File-> "+ filename + "Solution: Convert to UNIX style line endings");
+                                }
+
                                 if (type == TILES)
                                 {
                                     ext = xn3.InnerText.ToString().Replace(",\n", "\n");

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 
-namespace Flixel.Lemonade.extra
+namespace Lemonade
 {
     class LargeCrate : FlxSprite
     {
@@ -16,11 +16,9 @@ namespace Flixel.Lemonade.extra
         public LargeCrate(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/"), true, false, 50, 80);
+            loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/LargeCrate"), true, false, 80, 60);
 
-            addAnimation("animation", new int[] { 72, 73, 74, 75, 76, 77 }, 12, true);
-
-            play("animation");
+            
         }
 
         override public void update()
