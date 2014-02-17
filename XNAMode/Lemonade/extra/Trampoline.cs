@@ -23,8 +23,7 @@ namespace Lemonade
 
             play("stuck");
 
-            x -= 2;
-            y -= 2;
+
 
         }
 

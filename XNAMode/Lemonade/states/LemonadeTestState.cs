@@ -209,6 +209,9 @@ namespace Lemonade
             }
             else if (actor == "trampoline")
             {
+                xPos -= 2;
+                yPos -= 2;
+
                 trampoline = new Trampoline(xPos, yPos);
                 trampolines.add(trampoline);
             }
@@ -224,6 +227,7 @@ namespace Lemonade
             }
             else if (actor == "exit")
             {
+                yPos -= 90 ;
                 exit = new Exit(xPos, yPos);
                 add(exit);
             }
