@@ -13,6 +13,8 @@ namespace Lemonade
     public class MenuState : FlxMenuState
     {
 
+        FlxText location;
+
         override public void create()
         {
 
@@ -45,6 +47,10 @@ namespace Lemonade
             }
 
 
+            location = new FlxText(0, 50, FlxG.width);
+            location.setFormat(FlxG.Content.Load<SpriteFont>("Lemonade/SMALL_PIXEL"), 3, Color.White, FlxJustification.Center, Color.Black);
+            location.text = "";
+            add(location);
 
 
             addButtons();
@@ -59,6 +65,18 @@ namespace Lemonade
                 startGame();
             }
 
+            if (Lemonade_Globals.location == "newyork")
+            {
+                location.text = "New York City";
+            }
+            if (Lemonade_Globals.location == "sydney")
+            {
+                location.text = "Sydney, Australia";
+            }
+            if (Lemonade_Globals.location == "military")
+            {
+                location.text = "Military Complex";
+            }
 
             base.update();
         }
