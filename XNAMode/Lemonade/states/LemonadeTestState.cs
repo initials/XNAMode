@@ -35,6 +35,8 @@ namespace Lemonade
         private SmallCrate smallCrate;
         private Exit exit;
 
+        private const float LERP = 6.0f;
+
         public void buildTileset() //string LevelFile, string Tiles
         {
             List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/bg" + Lemonade_Globals.location + ".tmx", "map", "bg", FlxXMLReader.TILES);
@@ -258,7 +260,7 @@ namespace Lemonade
                 (int)(Convert.ToInt32(levelAttrs["tilewidth"])) * (Convert.ToInt32(levelAttrs["width"])), 
                 (int)(Convert.ToInt32(levelAttrs["tileheight"])) * (Convert.ToInt32(levelAttrs["height"])));
 
-            FlxG.follow(andre, 11.0f);
+            FlxG.follow(andre, LERP);
 
         }
 
@@ -272,6 +274,23 @@ namespace Lemonade
 
 
             base.update();
+
+            // Switch Controlling Character.
+            if (FlxG.keys.justPressed(Keys.V) || FlxG.gamepads.isNewButtonPress(Buttons.Y))
+            {
+                if (FlxG.followTarget.GetType().ToString() == "Lemonade.Liselot")
+                {
+                    FlxG.follow(andre, LERP);
+                    andre.control = FlxPlatformActor.Controls.player;
+                    liselot.control = FlxPlatformActor.Controls.none;
+                }
+                else if (FlxG.followTarget.GetType().ToString() == "Lemonade.Andre")
+                {
+                    FlxG.follow(liselot, LERP);
+                    andre.control = FlxPlatformActor.Controls.none;
+                    liselot.control = FlxPlatformActor.Controls.player;
+                }
+            }
 
             if (FlxG.keys.justPressed(Keys.Escape))
             {

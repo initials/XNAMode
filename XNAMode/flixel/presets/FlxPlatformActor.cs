@@ -81,6 +81,13 @@ namespace org.flixel
         private float _jumpInitialTime = 0.065f;
 
         /// <summary>
+        /// set this for double jumps etc.
+        /// </summary>
+        public int numberOfJumps = 1;
+
+        private int _jumpCounter = 0;
+
+        /// <summary>
         /// How many frames have passed since the character left the ground.
         /// </summary>
         public float framesSinceLeftGround;
@@ -124,15 +131,15 @@ namespace org.flixel
 
             if (control == Controls.player)
             {
-                if (FlxG.keys.A) leftPressed();
+                if (FlxG.keys.A || FlxG.keys.LEFT) leftPressed();
                 if (FlxG.gamepads.isButtonDown(Buttons.DPadLeft, ControllingPlayer, out pi)) leftPressed();
                 if (FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft, ControllingPlayer, out pi)) leftPressed();
 
-                if (FlxG.keys.D) rightPressed();
+                if (FlxG.keys.D || FlxG.keys.RIGHT) rightPressed();
                 if (FlxG.gamepads.isButtonDown(Buttons.DPadRight, ControllingPlayer, out pi)) rightPressed();
                 if (FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, ControllingPlayer, out pi)) rightPressed();
 
-                if (FlxG.keys.W) jump();
+                if (FlxG.keys.W || FlxG.keys.SPACE || FlxG.keys.X) jump();
                 else
                 {
                     _jump = -1;
