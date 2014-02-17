@@ -15,10 +15,44 @@ namespace Lemonade
 
         FlxText location;
 
+        FlxTilemap ny;
+        FlxTilemap miltary;
+        FlxTilemap sydney;
+
         override public void create()
         {
 
             base.create();
+
+            List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/bgnewyork.tmx", "map", "bg", FlxXMLReader.TILES);
+            ny = new FlxTilemap();
+            ny.auto = FlxTilemap.STRING;
+            ny.indexOffset = -1;
+            ny.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_newyork"), 20, 20);
+            ny.boundingBoxOverride = true;
+            ny.setScrollFactors(0, 0);
+            ny.visible = false;
+            add(ny);
+
+            bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/bgsydney.tmx", "map", "bg", FlxXMLReader.TILES);
+            sydney = new FlxTilemap();
+            sydney.auto = FlxTilemap.STRING;
+            sydney.indexOffset = -1;
+            sydney.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_sydney"), 20, 20);
+            sydney.boundingBoxOverride = true;
+            sydney.setScrollFactors(0, 0);
+            sydney.visible = false;
+            add(sydney);
+
+            bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/bgmilitary.tmx", "map", "bg", FlxXMLReader.TILES);
+            miltary = new FlxTilemap();
+            miltary.auto = FlxTilemap.STRING;
+            miltary.indexOffset = -1;
+            miltary.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_military"), 20, 20);
+            miltary.boundingBoxOverride = true;
+            miltary.setScrollFactors(0, 0);
+            miltary.visible = false;
+            add(miltary);
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
@@ -68,14 +102,23 @@ namespace Lemonade
             if (Lemonade_Globals.location == "newyork")
             {
                 location.text = "New York City";
+                ny.visible = true;
+                miltary.visible = false;
+                sydney.visible = false;
             }
             if (Lemonade_Globals.location == "sydney")
             {
                 location.text = "Sydney, Australia";
+                ny.visible = false;
+                miltary.visible = false;
+                sydney.visible = true;
             }
             if (Lemonade_Globals.location == "military")
             {
                 location.text = "Military Complex";
+                ny.visible = false;
+                miltary.visible = true;
+                sydney.visible = false;
             }
 
             base.update();
