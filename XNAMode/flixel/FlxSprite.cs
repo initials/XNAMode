@@ -339,7 +339,15 @@ namespace org.flixel
 		}
 
 
-
+        /// <summary>
+        /// Places this object at the specified object.
+        /// </summary>
+        /// <param name="obj"></param>
+        public void at(FlxObject obj)
+        {
+            x = obj.x;
+            y = obj.y;
+        }
 
 
 		/// <summary>

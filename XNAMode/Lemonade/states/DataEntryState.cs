@@ -21,7 +21,6 @@ namespace Lemonade
     public class DataEntryState : FlxState
     {
         FlxText _nameEntry;
-        FlxButton play;
 
         //PlayHud localHud;
 
@@ -40,8 +39,8 @@ namespace Lemonade
             FlxG.resetHud();
             FlxG.showHud();
 
-            _nameEntry = new FlxText(30, 60, FlxG.width);
-            _nameEntry.setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
+            _nameEntry = new FlxText(60, 150, FlxG.width);
+            _nameEntry.setFormat(null, 2, Color.White, FlxJustification.Left, Color.White);
             _nameEntry.text = "";
             add(_nameEntry);
 
@@ -56,8 +55,8 @@ namespace Lemonade
 
             FlxG.showHud();
             FlxG.setHudText(1, "Enter name, use @ symbol to specify Twitter handle.\nPress enter when complete.");
-            FlxG.setHudTextScale(1, 4);
-            FlxG.setHudTextScale(3, 4);
+            FlxG.setHudTextScale(1, 2);
+            FlxG.setHudTextScale(3, 2);
             FlxG.setHudTextPosition(1, 30 * 2, 40 * 2);
             FlxG.setHudTextPosition(3, 10 * 2, 20 * 2);
 
@@ -69,7 +68,7 @@ namespace Lemonade
             //play.loadText(new FlxText(2, 2, 100, "Enter"), new FlxText(2, 2, 100, "ENTER"));
             //add(play);
 
-            FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 27);
+            FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 100);
 
             FlxG.flash.start(Color.Black, 1.5f);
 

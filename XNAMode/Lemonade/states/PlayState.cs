@@ -275,10 +275,40 @@ namespace Lemonade
 
             FlxG.follow(andre, LERP);
 
+            playSong();
+
+        }
+
+        public void playSong()
+        {
+
+            if (Lemonade_Globals.location == "sydney")
+            {
+                FlxG.playMp3("Lemonade/music/cave", 0.75f);
+            }
+            else if (Lemonade_Globals.location == "newyork")
+            {
+                FlxG.playMp3("Lemonade/music/here", 0.75f);
+            }
+            else if (Lemonade_Globals.location == "military")
+            {
+                FlxG.playMp3("Lemonade/music/join", 0.75f);
+            }
+            else
+            {
+                FlxG.playMp3("Lemonade/music/join", 0.75f);
+            }
+
         }
 
         override public void update()
         {
+
+            if (FlxGlobal.cheatString == "exits")
+            {
+                
+            }
+
             FlxU.collide(destructableTilemap, actors);
 
             FlxU.overlap(actors, actors, actorOverlap);
