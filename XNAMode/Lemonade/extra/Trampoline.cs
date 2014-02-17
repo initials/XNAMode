@@ -35,7 +35,7 @@ namespace Lemonade
 
         }
 
-        public void overlapped(FlxObject obj)
+        public override void overlapped(FlxObject obj)
         {
             string overlappedWith = obj.GetType().ToString();
 

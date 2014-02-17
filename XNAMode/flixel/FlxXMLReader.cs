@@ -314,26 +314,53 @@ namespace org.flixel
                                 //Console.WriteLine("xn3 Name: {0} -- {1}", xn3.Name.ToString(), xn3.InnerText.ToString());
 
                                 string ext = "";
+                                bool lineEnding = xn3.InnerText.ToString().Contains('\r');
 
-                                if (xn3.InnerText.ToString().Contains('\r'))
+                                if (lineEnding)
                                 {
                                     Console.WriteLine("!! - ERROR - !! This XML file contains Windows style new lines: File-> "+ filename + " - Solution: Convert to UNIX style line endings");
                                 }
 
-                                if (type == TILES)
+                                //unix
+                                if (lineEnding == false)
                                 {
-                                    ext = xn3.InnerText.ToString().Replace(",\n", "\n");
-                                    ext = ext.Remove(0, 1);
-                                    ext = ext.Remove(ext.Length - 1);
+                                    if (type == TILES)
+                                    {
+                                        ext = xn3.InnerText.ToString().Replace(",\n", "\n");
+                                        ext = ext.Remove(0, 1);
+                                        ext = ext.Remove(ext.Length - 1);
+                                    }
+                                    else if (type == ACTORS)
+                                    {
+                                        ext = xn3.InnerText.ToString().Replace(",\n", ",");
+                                        ext = ext.Remove(0, 1);
+                                        ext = ext.Remove(ext.Length - 1);
+                                    }
+
+                                    //Console.WriteLine("Unix " + ext);
                                 }
-                                else if (type == ACTORS)
+                                //Windows
+                                else if (lineEnding == true)
                                 {
-                                    ext = xn3.InnerText.ToString().Replace(",\n", ",");
-                                    ext = ext.Remove(0, 1);
-                                    ext = ext.Remove(ext.Length - 1);
+                                    if (type == TILES)
+                                    {
+                                        ext = xn3.InnerText.ToString().Replace("\r\n", "\n");
+                                        ext = ext.Replace(",\n", "\n");
+                                        ext = ext.Remove(0, 1);
+                                        ext = ext.Remove(ext.Length - 1);
+                                    }
+                                    else if (type == ACTORS)
+                                    {
+                                        ext = xn3.InnerText.ToString().Replace("\r\n", "\n");
+                                        ext = ext.Replace(",\n", ",");
+                                        ext = ext.Remove(0, 1);
+                                        ext = ext.Remove(ext.Length - 1);
+                                    }
+
+                                    //Console.WriteLine("Windows " + ext);
                                 }
 
-
+                                
 
                                 levelAttrs.Add("csvData", ext);
                             }

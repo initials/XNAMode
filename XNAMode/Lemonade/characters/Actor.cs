@@ -51,9 +51,5 @@ namespace Lemonade
             base.hitBottom(Contact, Velocity);
         }
 
-        virtual public void overlapped(FlxObject obj)
-        {
-
-        }
     }
 }

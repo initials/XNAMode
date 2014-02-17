@@ -648,6 +648,7 @@ namespace org.flixel
             _point = Object.getScreenXY();
 			if((_point.X <= tx-Object.width) || (_point.X >= tx+width) || (_point.Y <= ty-Object.height) || (_point.Y >= ty+height))
 				return false;
+            
 			return true;
 		}
 
@@ -1190,6 +1191,18 @@ namespace org.flixel
                 }
             }
         }
+
+        /// <summary>
+        /// Overlapped with trigger
+        /// </summary>
+        /// <param name="obj"></param>
+        virtual public void overlapped(FlxObject obj)
+        {
+            //Console.WriteLine("Obj overlapped " + obj.GetType().ToString());
+
+
+        }
+
 
         // end
     }

@@ -504,6 +504,7 @@ namespace org.flixel
         /// check for overlaps.  For maximum performance try bundling a lot of objects
         /// together using a <code>FlxGroup</code> (even bundling groups together!)
         /// NOTE: does NOT take objects' scrollfactor into account.
+        /// <para>Sending null to callback will kill both objects.</para>
         /// </summary>
         /// <param name="Object1">The first object or group you want to check.</param>
         /// <param name="Object2">The second object or group you want to check.  If it is the same as the first, flixel knows to just do a comparison within that group.</param>
@@ -520,7 +521,17 @@ namespace org.flixel
             if (Object1 == Object2)
                 return quadTree.overlap(false, Callback);
             quadTree.add(Object2, FlxQuadTree.B_LIST);
+            //bool overlaps = quadTree.overlap(true, Callback);
+            //if (overlaps)
+            //{
+            //    Console.WriteLine("overlapps in flxU");
+            //    Object1.overlapped(Object2);
+            //    Object2.overlapped(Object1);
+
+            //}
+            //return overlaps;
             return quadTree.overlap(true, Callback);
+
         }
 
         /// <summary>

@@ -465,11 +465,15 @@ namespace org.flixel
                     else if (!_colorFlicker)
                     {
                         color = new Color(
-                            FlxU.random(_colorFlickerRMin, _colorFlickerRMax), 
-                            FlxU.random(_colorFlickerGMin, _colorFlickerGMax), 
+                            FlxU.random(_colorFlickerRMin, _colorFlickerRMax),
+                            FlxU.random(_colorFlickerGMin, _colorFlickerGMax),
                             FlxU.random(_colorFlickerBMin, _colorFlickerBMax));
                     }
                 }
+            }
+            else
+            {
+                color = _lastColor;
             }
         }
 
@@ -482,11 +486,33 @@ namespace org.flixel
             _colorFlickerRMax = rMax;
             _colorFlickerGMax = gMax;
             _colorFlickerBMax = bMax;
-
-
-
-
         }
+
+        /// <summary>
+        /// Tells this object to flicker, retro-style.
+        /// </summary>
+        /// <param name="Duration">How many seconds to flicker for.</param>
+        public void colorFlicker(float Duration)
+        {
+            _colorFlickerTimer = Duration;
+
+            if (_colorFlickerTimer < 0)
+            {
+                _colorFlicker = false;
+                visible = true;
+                color = _lastColor;
+            }
+            else
+            {
+                _lastColor = color;
+            }
+        }
+
+        /// <summary>
+        /// Check to see if the object is still flickering.
+        /// </summary>
+        /// <returns>Whether the object is flickering or not.</returns>
+        public bool colorFlickering() { return _colorFlickerTimer >= 0; }
 
         /// <summary>
         /// Called by game loop, updates then blits or renders current frame of animation to the screen
@@ -832,31 +858,7 @@ namespace org.flixel
             }
         }
 
-        /// <summary>
-        /// Tells this object to flicker, retro-style.
-        /// </summary>
-        /// <param name="Duration">How many seconds to flicker for.</param>
-        public void colorFlicker(float Duration) 
-        {
-            _colorFlickerTimer = Duration;
-
-            if (_colorFlickerTimer < 0)
-            {
-                _colorFlicker = false;
-                visible = true;
-                color = _lastColor;
-            }
-            else
-            {
-                _lastColor = color;
-            }
-        }
-
-        /// <summary>
-        /// Check to see if the object is still flickering.
-        /// </summary>
-        /// <returns>Whether the object is flickering or not.</returns>
-        public bool colorFlickering() { return _colorFlickerTimer >= 0; }
+ 
 
 
 

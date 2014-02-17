@@ -57,12 +57,19 @@ namespace Lemonade
 
         override public void overlapped(FlxObject obj)
         {
+            base.overlapped(obj);
+
             string overlappedWith = obj.GetType().ToString();
 
-            if (overlappedWith == "Lemonade.Army")
+            if (overlappedWith == "Lemonade.Army" || 
+                overlappedWith == "Lemonade.Inspector" ||
+                overlappedWith == "Lemonade.Chef" ||
+                overlappedWith == "Lemonade.Worker" )
             {
                 //velocity.Y = -30;
                 colorFlicker(2);
+                //hurt(1);
+
             }
             else if (overlappedWith == "Lemonade.Trampoline")
             {
@@ -81,8 +88,18 @@ namespace Lemonade
                     obj.y = -1000;
                 }
             }
+            else if (overlappedWith == "Lemonade.Spike")
+            {
+                //Console.WriteLine("Spike overlapp");
+                hurt(1);
+            }
         }
-
+        public override void kill()
+        {
+            control = Controls.none;
+            dead = true;
+            //base.kill();
+        }
 
     }
 }

@@ -23,6 +23,7 @@ namespace Lemonade
         private FlxGroup actors;
         private FlxGroup trampolines;
         private FlxGroup levelItems;
+        private FlxGroup hazards;
 
         private Andre andre;
         private Liselot liselot;
@@ -35,6 +36,7 @@ namespace Lemonade
         private SmallCrate smallCrate;
         private Exit exit;
         private bool levelComplete = false;
+        private Spike spike;
 
         private FlxEmitter bubbleParticle;
 
@@ -54,7 +56,7 @@ namespace Lemonade
             bgMap.auto = FlxTilemap.STRING;
             bgMap.indexOffset = -1;
             bgMap.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_" + Lemonade_Globals.location), 20, 20);
-            bgMap.boundingBoxOverride = true;
+            bgMap.boundingBoxOverride = false;
             bgMap.setScrollFactors(0, 0);
             add(bgMap);
 
@@ -91,7 +93,7 @@ namespace Lemonade
             // TMX maps have indexOffset of -1;
             destructableTilemap.indexOffset = -1;
             destructableTilemap.loadMap(levelString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/tiles_" + Lemonade_Globals.location), 20, 20);
-            destructableTilemap.boundingBoxOverride = true;
+            destructableTilemap.boundingBoxOverride = false;
             add(destructableTilemap);
         }
 
@@ -174,6 +176,24 @@ namespace Lemonade
                 {
                     buildActor("smallCrate", xPos, yPos);
                 }
+                if (item == "391")
+                {
+                    buildActor("spike_up", xPos, yPos+10);
+                }
+                if (item == "392")
+                {
+                    buildActor("spike_right", xPos, yPos);
+                }
+                if (item == "393")
+                {
+                    buildActor("spike_down", xPos, yPos);
+                }
+                if (item == "394")
+                {
+                    buildActor("spike_left", xPos+10, yPos);
+                }
+
+
                 count++;
             }
         }
@@ -236,7 +256,26 @@ namespace Lemonade
                 exit = new Exit(xPos, yPos);
                 add(exit);
             }
-
+            else if (actor == "spike_up")
+            {
+                spike = new Spike(xPos, yPos,0);
+                hazards.add(spike);
+            }
+            else if (actor == "spike_right")
+            {
+                spike = new Spike(xPos, yPos, 1);
+                hazards.add(spike);
+            }
+            else if (actor == "spike_down")
+            {
+                spike = new Spike(xPos, yPos, 2);
+                hazards.add(spike);
+            }
+            else if (actor == "spike_left")
+            {
+                spike = new Spike(xPos, yPos, 3);
+                hazards.add(spike);
+            }
         }
 
         override public void create()
@@ -249,6 +288,7 @@ namespace Lemonade
             actors = new FlxGroup();
             trampolines = new FlxGroup();
             levelItems = new FlxGroup();
+            hazards = new FlxGroup();
 
             buildTileset();
             buildActors();
@@ -256,15 +296,16 @@ namespace Lemonade
             add(actors);
             add(trampolines);
             add(levelItems);
+            add(hazards);
 
             //set up a little bubble particle system.
 
             bubbleParticle = new FlxEmitter();
             bubbleParticle.delay = 3;
             bubbleParticle.setXSpeed(-150, 150);
-            bubbleParticle.setYSpeed(-200, -50);
+            bubbleParticle.setYSpeed(-40, 100);
             bubbleParticle.setRotation(-720, 720);
-            bubbleParticle.gravity = Lemonade_Globals.GRAVITY * -1;
+            bubbleParticle.gravity = Lemonade_Globals.GRAVITY * -0.25f;
             bubbleParticle.createSprites(FlxG.Content.Load<Texture2D>("Lemonade/bubble"), 200, true, 1.0f, 0.65f);
             add(bubbleParticle);
 
@@ -317,6 +358,39 @@ namespace Lemonade
                     andre.at(exit);
                     liselot.at(exit);
                 }
+
+                if (FlxG.keys.justPressed(Keys.F9))
+                {
+                    FlxG.level++;
+
+                    FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
+
+                    FlxG.transition.startFadeIn(0.2f);
+
+                    FlxG.state = new PlayState();
+
+                    return;
+                }
+                else if (FlxG.keys.justPressed(Keys.F7) )
+                {
+                    FlxG.level--;
+                    //if (FlxG.level < 1) FlxG.level = 25;
+
+                    FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
+
+                    FlxG.transition.startFadeIn(0.2f);
+
+                    FlxG.state = new PlayState();
+
+                    return;
+                }
+                else if (FlxG.keys.justPressed(Keys.F8) )
+                {
+                    FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
+                    FlxG.transition.startFadeIn(0.2f);
+                    FlxG.state = new PlayState();
+                    return;
+                }
             }
             #endregion
 
@@ -324,10 +398,11 @@ namespace Lemonade
 
             FlxU.collide(destructableTilemap, actors);
 
-            FlxU.overlap(actors, actors, actorOverlap);
+            FlxU.overlap(actors, actors, genericOverlap);
             FlxU.overlap(actors, trampolines, trampolinesOverlap);
             FlxU.overlap(actors, levelItems, actorCrateOverlap);
-            
+            FlxU.overlap(actors, hazards, genericOverlap);
+
             
             bool andreExit = FlxU.overlap(andre, exit, exitOverlap);
             bool liselotExit = FlxU.overlap(liselot, exit, exitOverlap);
@@ -389,7 +464,11 @@ namespace Lemonade
             ((Exit)(e.Object2)).play("open", true);
 	        return true;
         }
-
+        protected bool genericOverlap(object Sender, FlxSpriteCollisionEvent e)
+        {
+            
+            return true;
+        }
 
         protected bool trampolinesOverlap(object Sender, FlxSpriteCollisionEvent e)
         {

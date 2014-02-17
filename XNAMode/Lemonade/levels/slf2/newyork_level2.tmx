@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="60" height="40" tilewidth="20" tileheight="20">
  <tileset firstgid="1" name="tiles_newyork" tilewidth="20" tileheight="20">
-  <image source="../Art/tiles_newyork.png" width="400" height="400"/>
+  <image source="../../../../XNAModeContent/Lemonade/tiles_newyork.png" width="400" height="400"/>
   <terraintypes>
    <terrain name="solid" tile="-1"/>
   </terraintypes>
@@ -178,16 +178,6 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="boxes" width="60" height="40">
-  <object x="0" y="600" width="1200" height="200"/>
-  <object x="240" y="480" width="760" height="120"/>
-  <object x="0" y="280" width="240" height="80"/>
-  <object x="1000" y="280" width="200" height="80"/>
-  <object x="400" y="280" width="120" height="140"/>
-  <object x="720" y="280" width="120" height="140"/>
-  <object x="520" y="160" width="200" height="220"/>
-  <object x="240" y="320" width="40" height="40"/>
- </objectgroup>
  <layer name="dontAutoLoad_sprites" width="60" height="40">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
