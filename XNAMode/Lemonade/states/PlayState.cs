@@ -280,6 +280,9 @@ namespace Lemonade
 
         }
 
+        /// <summary>
+        /// Play a song based on the location.
+        /// </summary>
         public void playSong()
         {
 
@@ -304,6 +307,7 @@ namespace Lemonade
 
         override public void update()
         {
+            #region cheats
             // Run cheats.
             if (FlxG.debug == true)
             {
@@ -313,6 +317,7 @@ namespace Lemonade
                     liselot.at(exit);
                 }
             }
+            #endregion
 
 
 

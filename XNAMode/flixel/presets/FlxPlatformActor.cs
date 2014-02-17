@@ -143,7 +143,14 @@ namespace org.flixel
                 if (FlxG.keys.W || FlxG.keys.SPACE || FlxG.keys.X) jump();
                 else
                 {
-                    _jump = -1;
+                    if (_jumpCounter < numberOfJumps)
+                    {
+                        _jump = 0.0f;
+                    }
+                    else
+                    {
+                        _jump = -1;
+                    }
                 }
                 
 
@@ -191,7 +198,10 @@ namespace org.flixel
         private void jump()
         {
             //Console.WriteLine("Jump() " + _jump + " Frames since left floor " + framesSinceLeftGround + " {0} ", _jumpInitialPower);
-
+            if (_jump == 0)
+            {
+                _jumpCounter++;
+            }
             if (_jump >= 0 || framesSinceLeftGround < 10 )
             {
                 
@@ -262,6 +272,7 @@ namespace org.flixel
 
         public override void hitBottom(FlxObject Contact, float Velocity)
         {
+            _jumpCounter = 0;
             _jump = 0.0f;
             base.hitBottom(Contact, Velocity);
         }
