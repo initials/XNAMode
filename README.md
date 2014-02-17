@@ -44,3 +44,24 @@ Revvolvver:
 
 Cheats
 
+Flixel Global Cheats.
+
+On the Flixel splash screen type "BUGGS" to enter debug mode.
+
+In debug mode
+Press ` to bring up the console.
+Press TAB to enter a cheat.
+
+Flixel Global
+whatisgame = Log the name of the game.
+
+
+Four Chambers Cheats:
+arrows% 		= fire % arrows at a time.
+liketheangels 	= Bring Seraphine back
+bigmoney 		= +20000 to FlxG.score
+nobugs			= debug mode off
+level 			= print level
+bounds 			= show bounderies
+nobounds 		= turn off boundaries. 
+level%			= not working.

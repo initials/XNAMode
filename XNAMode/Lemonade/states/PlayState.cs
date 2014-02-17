@@ -34,6 +34,7 @@ namespace Lemonade
         private LargeCrate largeCrate;
         private SmallCrate smallCrate;
         private Exit exit;
+        private bool levelComplete = false;
 
         private FlxEmitter bubbleParticle;
 
@@ -320,6 +321,16 @@ namespace Lemonade
             FlxU.overlap(actors, actors, actorOverlap);
             FlxU.overlap(actors, trampolines, trampolinesOverlap);
             FlxU.overlap(actors, levelItems, actorCrateOverlap);
+            
+            
+            bool andreExit = FlxU.overlap(andre, exit, exitOverlap);
+            bool liselotExit = FlxU.overlap(liselot, exit, exitOverlap);
+
+            if (andreExit && liselotExit)
+            {
+                levelComplete = true;
+            }
+
             FlxU.collide(actors, levelItems);
 
 
@@ -348,6 +359,12 @@ namespace Lemonade
             }
         }
 
+
+        protected bool exitOverlap(object Sender, FlxSpriteCollisionEvent e)
+        {
+            ((Exit)(e.Object2)).play("open", true);
+	        return true;
+        }
 
 
         protected bool trampolinesOverlap(object Sender, FlxSpriteCollisionEvent e)
