@@ -211,6 +211,11 @@ Content\Lemonade\bubble.xnb
 Content\Lemonade\buttonPressed_ny.xnb
 Content\Lemonade\button_ny.xnb
 Content\Lemonade\SMALL_PIXEL.xnb
+Content\Lemonade\music\cave.xnb
+Content\Lemonade\music\here.xnb
+Content\Lemonade\music\join.xnb
+Content\Lemonade\music\minifigs_full.xnb
+Content\Lemonade\music\music_menu_1.xnb
 Content\mode\button.wma
 Content\music\ralph\four chambered heart.wma
 Content\music\ralph\goatmp3.wma
@@ -223,6 +228,11 @@ Content\music\gwd\ScaryInCMajor.wma
 Content\music\gwd\SlowedLoop.wma
 Content\music\gwd\WarmerMoreSynths.wma
 Content\music\gwd\WarmOrgansColdSynths_ha.wma
+Content\Lemonade\music\cave.wma
+Content\Lemonade\music\here.wma
+Content\Lemonade\music\join.wma
+Content\Lemonade\music\minifigs_full.wma
+Content\Lemonade\music\music_menu_1.wma
 FourChambers\ActorRecording\automaton.txt
 FourChambers\ActorRecording\chicken.txt
 FourChambers\ActorRecording\corsair.txt

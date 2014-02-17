@@ -24,6 +24,12 @@ namespace Lemonade
 
             base.create();
 
+            // play some music
+
+            FlxG.playMp3("Lemonade/music/music_menu_1", 0.75f);
+
+            // load some tile maps
+
             List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/bgnewyork.tmx", "map", "bg", FlxXMLReader.TILES);
             ny = new FlxTilemap();
             ny.auto = FlxTilemap.STRING;
@@ -56,17 +62,17 @@ namespace Lemonade
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
-            FlxButton b = new FlxButton(100, 50, startGame);
+            FlxButton b = new FlxButton((FlxG.width / 2) - 100, 150, startGame);
             b.loadGraphic(new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/button_ny")), new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/buttonPressed_ny")));
             b.loadText(new FlxText(-20, 10, 100, "Sydney"), new FlxText(-20, 10, 100, "Sydney!"));
             buttons.add(b);
 
-            b = new FlxButton(200, 50, startGame);
+            b = new FlxButton(FlxG.width / 2, 150, startGame);
             b.loadGraphic(new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/button_ny")), new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/buttonPressed_ny")));
             b.loadText(new FlxText(-20, 10, 100, "New York"), new FlxText(-20, 10, 100, "New York!"));
             buttons.add(b);
 
-            b = new FlxButton(300, 50, startGame);
+            b = new FlxButton((FlxG.width / 2) + 100, 150, startGame);
             b.loadGraphic(new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/button_ny")), new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/buttonPressed_ny")));
             b.loadText(new FlxText(-20, 10, 100, "Military"), new FlxText(-20, 10, 100, "Military!"));
             buttons.add(b);
@@ -74,9 +80,9 @@ namespace Lemonade
 
             for (int i = 1; i < 13; i++)
             {
-                FlxButton a = new FlxButton(100+(i*45), 100, startGame);
+                FlxButton a = new FlxButton(175+(i*45), 300, startGame);
                 a.loadGraphic(new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/button_ny")), new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/buttonPressed_ny")));
-                a.loadText(new FlxText(-20, 10, 100, i.ToString()), new FlxText(-20, 10, 100, i.ToString()+"!"));
+                a.loadText(new FlxText(-40, 10, 100, i.ToString()), new FlxText(-40, 10, 100, i.ToString()+"!"));
                 buttons.add(a);
             }
 

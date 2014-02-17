@@ -67,6 +67,7 @@ local.properties
 *.wav
 XNAModeContent/music/ralph/*.mp3
 XNAModeContent/music/gwd/*.mp3
+XNAModeContent/Lemonade/music/*.mp3
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 #packages/
