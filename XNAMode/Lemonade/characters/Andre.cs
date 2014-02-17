@@ -73,10 +73,13 @@ namespace Lemonade
             {
                 Console.WriteLine("crate overlapp");
 
-                obj.dead = true;
-                obj.exists = false;
-                obj.x = -1000;
-                obj.y = -1000;
+                if (dashTimer > dashMaxLimit)
+                {
+                    obj.dead = true;
+                    obj.exists = false;
+                    obj.x = -1000;
+                    obj.y = -1000;
+                }
             }
         }
 

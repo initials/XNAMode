@@ -135,6 +135,7 @@
     <Compile Include="Lemonade\extra\SmallCrate.cs" />
     <Compile Include="Lemonade\extra\Trampoline.cs" />
     <Compile Include="Lemonade\Lemonade_Globals.cs" />
+    <Compile Include="Lemonade\states\DataEntryState.cs" />
     <Compile Include="Lemonade\states\Lemonade.cs" />
     <Compile Include="Lemonade\states\MenuState.cs" />
     <Compile Include="Revvolvver\Bomb.cs" />
@@ -173,7 +174,7 @@
     <Compile Include="Lemonade\characters\Inspector.cs" />
     <Compile Include="Lemonade\characters\Liselot.cs" />
     <Compile Include="Lemonade\characters\Worker.cs" />
-    <Compile Include="Lemonade\states\LemonadeTestState.cs" />
+    <Compile Include="Lemonade\states\PlayState.cs" />
     <Compile Include="Mode\Multiplayer\BulletMulti.cs" />
     <Compile Include="Mode\Multiplayer\PlayerMulti.cs" />
     <Compile Include="Mode\Multiplayer\PlayStateMulti.cs" />

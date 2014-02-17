@@ -118,6 +118,9 @@ namespace XNATweener
             }
         }
 
+        public bool Loop = false;
+        public bool PingPong = false;
+
         private TweeningFunction _tweeningFunction;
         protected TweeningFunction tweeningFunction
         {
@@ -161,6 +164,20 @@ namespace XNATweener
 
         protected void OnEnd()
         {
+            if (Loop == true)
+            {
+                _elapsed = 0.0f;
+                _position = from;
+                Start();
+                return;
+
+            }
+            else if (PingPong == true)
+            {
+                Reverse();
+                return;
+            }
+
             if (Ended != null)
             {
                 Ended();

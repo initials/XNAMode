@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace Lemonade
 {
-    public class LemonadeTestState : FlxState
+    public class PlayState : FlxState
     {
 
         Dictionary<string, string> levelAttrs;
@@ -34,6 +34,8 @@ namespace Lemonade
         private LargeCrate largeCrate;
         private SmallCrate smallCrate;
         private Exit exit;
+
+        private FlxEmitter bubbleParticle;
 
         private const float LERP = 6.0f;
 
@@ -254,6 +256,17 @@ namespace Lemonade
             add(trampolines);
             add(levelItems);
 
+            //set up a little bubble particle system.
+
+            bubbleParticle = new FlxEmitter();
+            bubbleParticle.delay = 3;
+            bubbleParticle.setXSpeed(-150, 150);
+            bubbleParticle.setYSpeed(50, 200);
+            bubbleParticle.setRotation(-720, 720);
+            bubbleParticle.createSprites(FlxG.Content.Load<Texture2D>("Lemonade/bubble"), 200, true, 1.0f, 0.65f);
+            add(bubbleParticle);
+
+
             // follow.
             FlxG.followBounds(0, 
                 0, 
@@ -270,6 +283,7 @@ namespace Lemonade
 
             FlxU.overlap(actors, actors, actorOverlap);
             FlxU.overlap(actors, trampolines, trampolinesOverlap);
+            FlxU.overlap(actors, levelItems, actorCrateOverlap);
             FlxU.collide(actors, levelItems);
 
 
@@ -302,6 +316,8 @@ namespace Lemonade
 
         protected bool trampolinesOverlap(object Sender, FlxSpriteCollisionEvent e)
         {
+            bubbleParticle.at(e.Object1);
+            bubbleParticle.start(true, 0, 30);
             ((Actor)(e.Object1)).overlapped(e.Object2);
             ((Trampoline)(e.Object2)).overlapped(e.Object1);
             return true;
@@ -313,7 +329,14 @@ namespace Lemonade
             ((Actor)(e.Object2)).overlapped(e.Object1);
             return true;
         }
+        protected bool actorCrateOverlap(object Sender, FlxSpriteCollisionEvent e)
+        {
+            ((Actor)(e.Object1)).overlapped(e.Object2);
+            //((Actor)(e.Object2)).overlapped(e.Object1);
+            return true;
+        }
 
+        
 
     }
 }

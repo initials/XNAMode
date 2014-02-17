@@ -85,7 +85,7 @@ namespace XNAMode
             }
             if (FlxG.keys.SIX)
             {
-                FlxG.state = new Lemonade.LemonadeTestState();
+                FlxG.state = new Lemonade.MenuState();
                 FlxG.hideHud();
             }
             if (FlxG.keys.SEVEN)

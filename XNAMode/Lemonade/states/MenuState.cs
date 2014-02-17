@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,6 +8,7 @@ using org.flixel;
 
 using System.Linq;
 using System.Xml.Linq;
+using XNATweener;
 
 namespace Lemonade
 {
@@ -18,6 +20,13 @@ namespace Lemonade
         FlxTilemap ny;
         FlxTilemap miltary;
         FlxTilemap sydney;
+
+        FlxSprite badge1;
+        FlxSprite badge2;
+        FlxSprite badge3;
+        FlxSprite badge4;
+
+        Tweener tweenBounce;
 
         override public void create()
         {
@@ -80,7 +89,7 @@ namespace Lemonade
 
             for (int i = 1; i < 13; i++)
             {
-                FlxButton a = new FlxButton(175+(i*45), 300, startGame);
+                FlxButton a = new FlxButton(175+(i*45), 225, startGame);
                 a.loadGraphic(new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/button_ny")), new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/buttonPressed_ny")));
                 a.loadText(new FlxText(-40, 10, 100, i.ToString()), new FlxText(-40, 10, 100, i.ToString()+"!"));
                 buttons.add(a);
@@ -95,10 +104,77 @@ namespace Lemonade
 
             addButtons();
 
+            FlxText badges = new FlxText(0, 330, 0, "Badges");
+            badges.setFormat(FlxG.Content.Load<SpriteFont>("Lemonade/SMALL_PIXEL"), 3, Color.White, FlxJustification.Left, Color.Black);
+            add(badges);
+
+            Color notDone = new Color(0.1f, 0.1f, 0.1f);
+            
+
+            badge1 = new FlxSprite((FlxG.width/2) - 150, 330);
+            badge1.loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/offscreenIcons"), true, false, 12, 12);
+            badge1.frame = 2;
+            badge1.color = notDone;
+            add(badge1);
+
+            badge2 = new FlxSprite((FlxG.width/2) - 50, 330);
+            badge2.loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/offscreenIcons"), true, false, 12, 12);
+            badge2.frame = 3;
+            badge2.color = notDone;
+            add(badge2);
+
+            badge3 = new FlxSprite((FlxG.width/2) + 50, 330);
+            badge3.loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/offscreenIcons"), true, false, 12, 12);
+            badge3.frame = 4;
+            badge3.color = notDone;
+            add(badge3);
+
+            badge4 = new FlxSprite((FlxG.width/2) + 150, 330);
+            badge4.loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/offscreenIcons"), true, false, 12, 12);
+            badge4.frame = 5;
+            badge4.color = notDone;
+            add(badge4);
+
+            tweenBounce = new Tweener(5.0f, 8.0f, TimeSpan.FromSeconds(1.12f), Elastic.EaseOut);
+            tweenBounce.PingPong = true;
+
+
+            try
+            {
+                FlxG.username = LoadFromDevice();
+            }
+            catch
+            {
+                Console.WriteLine("Cannot load name from file");
+            }
+
+            if (FlxG.username != "")
+            {
+                //_nameEntry.text = FlxG.username;
+                FlxG.setHudText(3, "Username:\n"+FlxG.username);
+                FlxG.setHudTextPosition(3, 50, FlxG.height - 30);
+                FlxG.setHudTextScale(3, 2);
+
+
+
+            }
+
+        }
+
+        public string LoadFromDevice()
+        {
+            string value1 = File.ReadAllText("nameinfo.txt");
+            return value1.Substring(0, value1.Length - 1);
         }
 
         override public void update()
         {
+            tweenBounce.Update(FlxG.elapsedAsGameTime);
+
+            badge1.scale = tweenBounce.Position;
+            badge2.scale = tweenBounce.Position;
+            badge3.scale = tweenBounce.Position;
+            badge4.scale = tweenBounce.Position;
 
             if (FlxG.keys.justPressed(Keys.Enter))
             {
@@ -128,6 +204,11 @@ namespace Lemonade
             }
 
             base.update();
+
+            if (FlxG.username == "" || FlxG.username==null)
+            {
+                FlxG.state = new DataEntryState();
+            }
         }
 
         public void startGame()
@@ -150,7 +231,7 @@ namespace Lemonade
             {
                 FlxG.level = sel - 2;
 
-                FlxG.state = new LemonadeTestState();
+                FlxG.state = new PlayState();
                 return;
             }
 

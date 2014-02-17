@@ -23,6 +23,7 @@ namespace org.flixel
             hurt = 4,
             death = 5,
             talk = 6,
+            dash = 7,
         }
 
         /// <summary>
@@ -236,6 +237,7 @@ namespace org.flixel
             {
                 play("death");
             }
+            
             else if (velocity.Y != 0)
             {
                 play("jump");
