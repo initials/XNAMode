@@ -31,6 +31,8 @@ namespace org.flixel
 
         private Tweener _logoTweener;
 
+        private FlxText debugMode;
+        private string cheatStorage = "";
 
         public FlxSplash()
             : base()
@@ -59,6 +61,11 @@ namespace org.flixel
             FlxG.play(SndTag,1.0f);
 
             FlxG.transition.startFadeIn(0.1f);
+
+            debugMode = new FlxText(10, 90, 200, "DEBUG MODE!");
+            debugMode.visible = false;
+            add(debugMode);
+
         }
 
         public static void setSplashInfo(Color flixelColor, FlxState nextScreen)
@@ -69,6 +76,17 @@ namespace org.flixel
 
         public override void update()
         {
+            if (FlxG.keys.justPressed(Keys.B)) { cheatStorage+="B";}
+            if (FlxG.keys.justPressed(Keys.U)) { cheatStorage+="U";}
+            if (FlxG.keys.justPressed(Keys.G)) { cheatStorage+="G";}
+            if (FlxG.keys.justPressed(Keys.S)) { cheatStorage += "S"; }
+
+            if (cheatStorage=="BUGGS")
+            {
+                debugMode.visible = true;
+                FlxG.debug = true;
+            }
+
             _logoTweener.Update(FlxG.elapsedAsGameTime);
             _logo.y = _logoTweener.Position;
 

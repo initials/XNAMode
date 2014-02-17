@@ -40,3 +40,7 @@ Mode:
 Revvolvver:
 - [ ] Switch to OpenGameArt graphics by kenney.nl
 - [x] Revvolvver - switch to 16x16 tiles.
+
+
+Cheats
+

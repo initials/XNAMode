@@ -303,11 +303,17 @@ namespace Lemonade
 
         override public void update()
         {
-
-            if (FlxGlobal.cheatString == "exits")
+            // Run cheats.
+            if (FlxG.debug == true)
             {
-                
+                if (FlxGlobal.cheatString == "exits")
+                {
+                    andre.at(exit);
+                    liselot.at(exit);
+                }
             }
+
+
 
             FlxU.collide(destructableTilemap, actors);
 
