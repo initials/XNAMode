@@ -18,7 +18,8 @@ namespace Lemonade
         {
             loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/LargeCrate"), true, false, 80, 60);
 
-            
+            @fixed = true;
+            solid = true;
         }
 
         override public void update()

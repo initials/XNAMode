@@ -30,13 +30,24 @@ namespace Lemonade
             if (trampolineTimer < trampolineMaxLimit)
             {
                 acceleration.Y = Lemonade_Globals.GRAVITY *-1;
+                angularVelocity = 750;
+                //angularDrag = 0;
             }
             else
             {
                 acceleration.Y = Lemonade_Globals.GRAVITY;
+                //angularVelocity = 0;
+                //angle = 0;
             }
 
             base.update();
+        }
+
+        public override void hitBottom(FlxObject Contact, float Velocity)
+        {
+            angularVelocity = 0;
+            angle = 0;
+            base.hitBottom(Contact, Velocity);
         }
 
         virtual public void overlapped(FlxObject obj)

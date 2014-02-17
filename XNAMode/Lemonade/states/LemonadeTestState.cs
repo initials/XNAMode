@@ -248,6 +248,7 @@ namespace Lemonade
 
             add(actors);
             add(trampolines);
+            add(levelItems);
 
             // follow.
             FlxG.followBounds(0, 
@@ -265,6 +266,8 @@ namespace Lemonade
 
             FlxU.overlap(actors, actors, actorOverlap);
             FlxU.overlap(actors, trampolines, trampolinesOverlap);
+            FlxU.collide(actors, levelItems);
+
 
             base.update();
 

@@ -41,7 +41,7 @@ namespace Lemonade
             maxVelocity.X = 530;
             maxVelocity.Y = 2830;
 
-            setJumpValues(-400.0f, -550.0f, 0.45f, 0.075f);
+            setJumpValues(-340.0f, -410.0f, 0.35f, 0.075f);
 
 
 
@@ -69,7 +69,15 @@ namespace Lemonade
                 velocity.Y = -1000;
                 trampolineTimer = 0.0f;
             }
+            else if (overlappedWith == "Lemonade.LargeCrate")
+            {
+                Console.WriteLine("crate overlapp");
 
+                obj.dead = true;
+                obj.exists = false;
+                obj.x = -1000;
+                obj.y = -1000;
+            }
         }
 
 

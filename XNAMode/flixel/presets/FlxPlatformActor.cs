@@ -182,7 +182,7 @@ namespace org.flixel
 
         private void jump()
         {
-            Console.WriteLine("Jump() " + _jump + " Frames since left floor " + framesSinceLeftGround + " {0} ", _jumpInitialPower);
+            //Console.WriteLine("Jump() " + _jump + " Frames since left floor " + framesSinceLeftGround + " {0} ", _jumpInitialPower);
 
             if (_jump >= 0 || framesSinceLeftGround < 10 )
             {

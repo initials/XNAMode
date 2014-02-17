@@ -9,7 +9,7 @@ namespace Lemonade
     {
         public static string location = "military";
 
-        public const float GRAVITY = 1640.0f;
+        public const float GRAVITY = 2040.0f;
 
         public Lemonade_Globals()
         {
