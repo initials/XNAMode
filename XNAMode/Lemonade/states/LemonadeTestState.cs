@@ -236,8 +236,6 @@ namespace Lemonade
 
         override public void create()
         {
-            FlxG.level = 1;
-            Lemonade_Globals.location = "military";
 
             base.create();
 
@@ -277,7 +275,7 @@ namespace Lemonade
 
             if (FlxG.keys.justPressed(Keys.Escape))
             {
-                FlxG.state = new FourChambers.CleanTestState();
+                FlxG.state = new MenuState();
             }
         }
 

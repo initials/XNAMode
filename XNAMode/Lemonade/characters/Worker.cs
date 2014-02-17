@@ -23,6 +23,18 @@ namespace Lemonade
 
             play("idle");
 
+            runSpeed = 50;
+
+            width = 10;
+            height = 41;
+            setOffset(20, 39);
+            setDrags(1251, 0);
+
+            maxVelocity.X = 530;
+            maxVelocity.Y = 2830;
+
+            setJumpValues(-340.0f, -410.0f, 0.35f, 0.075f);
+
 
         }
 

@@ -34,34 +34,54 @@ namespace org.flixel
 
         public void moveSelected(string direction)
         {
-            int cur = getCurrentSelected();
+            int[] cur = getCurrentSelected();
 
             if (direction == "forward")
             {
-                ((FlxButton)(buttons.members[cur])).on = false;
-                ((FlxButton)(buttons.members[cur + 1])).on = true;
+                ((FlxButton)(buttons.members[cur[0]])).on = false;
+                ((FlxButton)(buttons.members[cur[2]])).on = true;
             }
             else if (direction == "backward")
             {
-                ((FlxButton)(buttons.members[cur])).on = false;
-                ((FlxButton)(buttons.members[cur - 1])).on = true;
+                ((FlxButton)(buttons.members[cur[0]])).on = false;
+                ((FlxButton)(buttons.members[cur[1]])).on = true;
             }
         }
+        
 
-        public int getCurrentSelected()
+        /// <summary>
+        /// current, previous, next
+        /// </summary>
+        /// <returns></returns>
+        public int[] getCurrentSelected()
         {
             int count = 0;
             foreach (var item in buttons.members)
             {
                 if (((FlxButton)(buttons.members[count])).on == true)
                 {
-                    FlxG.write(count.ToString());
 
-                    return count;
+                    int[] three = new int[] { count, 0, 0 };
+
+                    if (count == 0) three[1] = buttons.members.Count-1;
+                    else
+                    {
+                        int nx = count - 1;
+                        three[1] = nx;
+                    }
+
+                    if (count == buttons.members.Count - 1) three[2] = 0;
+                    else
+                    {
+                        int nx = count + 1;
+                        three[2] = nx;
+                    }
+
+                    return three;
                 }
                 count++;
             }
-            return -1;
+            return new int[] {-1, -1, -1};
         }
 
         override public void update()

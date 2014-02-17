@@ -485,6 +485,9 @@
     <Content Include="Lemonade\characters\reference\Liselot %282%29.h" />
     <Content Include="Lemonade\characters\reference\Liselot.h" />
     <Content Include="Lemonade\characters\reference\Player.h" />
+    <Content Include="Lemonade\levels\custom\PLACE_CUSTOM_LEVELS_HERE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Lemonade\LineEndingsUnix.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
