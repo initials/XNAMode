@@ -25,6 +25,8 @@ namespace Lemonade
         private FlxGroup trampolines;
         private FlxGroup levelItems;
         private FlxGroup hazards;
+        private FlxGroup ramps;
+        private FlxGroup smallCrates;
 
         private Andre andre;
         private Liselot liselot;
@@ -38,8 +40,10 @@ namespace Lemonade
         private Exit exit;
         private bool levelComplete = false;
         private Spike spike;
+        private Ramp ramp;
 
         private FlxEmitter bubbleParticle;
+        private FlxEmitter crateParticle;
 
         private const float LERP = 6.0f;
 
@@ -60,9 +64,6 @@ namespace Lemonade
             bgMap.boundingBoxOverride = false;
             bgMap.setScrollFactors(0, 0);
             add(bgMap);
-
-
-            
             
             levelAttrs = new Dictionary<string, string>();
             levelAttrs = FlxXMLReader.readAttributesFromTmxFile("Lemonade/levels/slf2/" + Lemonade_Globals.location + "_level" + FlxG.level.ToString() + ".tmx", "map");
@@ -86,7 +87,7 @@ namespace Lemonade
             bgElementsTilemap.auto = FlxTilemap.STRING;
             bgElementsTilemap.indexOffset = -1;
             bgElementsTilemap.stringTileMin = 201;
-            bgElementsTilemap.stringTileMax = 381;
+            bgElementsTilemap.stringTileMax = 341;
             bgElementsTilemap.loadMap(levelString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/tiles_" + Lemonade_Globals.location), 20, 20);
             bgElementsTilemap.boundingBoxOverride = false;
             add(bgElementsTilemap);
@@ -198,7 +199,14 @@ namespace Lemonade
                 {
                     buildActor("spike_left", xPos+10, yPos);
                 }
-
+                if (item == "341")
+                {
+                    buildActor("rampLeft", xPos , yPos);
+                }
+                if (item == "342")
+                {
+                    buildActor("rampRight", xPos, yPos);
+                }
 
                 count++;
             }
@@ -254,7 +262,7 @@ namespace Lemonade
             else if (actor == "smallCrate")
             {
                 smallCrate = new SmallCrate(xPos, yPos);
-                levelItems.add(smallCrate);
+                smallCrates.add(smallCrate);
             }
             else if (actor == "exit")
             {
@@ -282,6 +290,17 @@ namespace Lemonade
                 spike = new Spike(xPos, yPos, 3);
                 hazards.add(spike);
             }
+            else if (actor == "rampLeft")
+            {
+                ramp = new Ramp(xPos, yPos);
+                ramps.add(ramp);
+
+            }
+            else if (actor == "rampRight")
+            {
+                ramp = new Ramp(xPos, yPos);
+                ramps.add(ramp);
+            }
         }
 
         public void buildBoxes()
@@ -290,14 +309,14 @@ namespace Lemonade
                 "map", 
                 "boxes", 
                 FlxXMLReader.NONE);
-            //foreach (Dictionary<string, string> nodes in levelString)
-            //{
-            //    foreach (KeyValuePair<string, string> kvp in nodes)
-            //    {
-            //        Console.Write("Level String -- Key = {0}, Value = {1}, ", kvp.Key, kvp.Value);
-            //    }
-            //    Console.Write("\r\n");
-            //}
+            foreach (Dictionary<string, string> nodes in levelString)
+            {
+                foreach (KeyValuePair<string, string> kvp in nodes)
+                {
+                    Console.Write("Level String -- Key = {0}, Value = {1}, ", kvp.Key, kvp.Value);
+                }
+                Console.Write("\r\n");
+            }
 
             foreach (var item in levelString)
             {
@@ -309,7 +328,7 @@ namespace Lemonade
                 add(movingPlatform);
 
                 FlxPath xpath = new FlxPath(null);
-                xpath.add(Int32.Parse(item["x"]), Int32.Parse(item["y"]));
+                //xpath.add(Int32.Parse(item["x"]), Int32.Parse(item["y"]));
                 xpath.addPointsUsingStrings(item["pointsX"], item["pointsY"]);
                 movingPlatform.followPath(xpath, 150, FlxSprite.PATH_LOOP_FORWARD, false);
                 movingPlatform.pathCornering = 0.0f;
@@ -329,6 +348,8 @@ namespace Lemonade
             trampolines = new FlxGroup();
             levelItems = new FlxGroup();
             hazards = new FlxGroup();
+            ramps = new FlxGroup();
+            smallCrates = new FlxGroup();
 
             buildTileset();
             buildActors();
@@ -339,6 +360,8 @@ namespace Lemonade
             add(trampolines);
             add(levelItems);
             add(hazards);
+            add(ramps);
+            add(smallCrates);
 
             //set up a little bubble particle system.
 
@@ -351,6 +374,15 @@ namespace Lemonade
             bubbleParticle.createSprites(FlxG.Content.Load<Texture2D>("Lemonade/bubble"), 200, true, 1.0f, 0.65f);
             add(bubbleParticle);
 
+            crateParticle = new FlxEmitter();
+            crateParticle.delay = 0;
+            crateParticle.setSize(80, 60);
+            crateParticle.setXSpeed(-350, 350);
+            crateParticle.setYSpeed(-200, 200);
+            crateParticle.setRotation(-720, 720);
+            crateParticle.gravity = Lemonade_Globals.GRAVITY;
+            crateParticle.createSprites(FlxG.Content.Load<Texture2D>("Lemonade/crateShards"), 200, true, 1.0f, 0.65f);
+            add(crateParticle);
 
             // follow.
             FlxG.followBounds(0, 
@@ -442,10 +474,14 @@ namespace Lemonade
 
             FlxU.overlap(actors, actors, genericOverlap);
             FlxU.overlap(actors, trampolines, trampolinesOverlap);
-            FlxU.overlap(actors, levelItems, actorCrateOverlap);
+            FlxU.overlap(actors, levelItems, genericOverlap);
             FlxU.overlap(actors, hazards, genericOverlap);
+            FlxU.overlap(actors, smallCrates, genericOverlap);
+            FlxU.overlap(smallCrates, trampolines, trampolinesOverlap);
+            FlxU.collide(crateParticle, collidableTilemap);
+            FlxU.collide(levelItems, collidableTilemap);
+            FlxU.collide(smallCrates, collidableTilemap);
 
-            
             bool andreExit = FlxU.overlap(andre, exit, exitOverlap);
             bool liselotExit = FlxU.overlap(liselot, exit, exitOverlap);
 
@@ -456,8 +492,24 @@ namespace Lemonade
 
             FlxU.collide(actors, levelItems);
 
+            foreach (FlxObject crate in levelItems.members)
+            {
+                if (crate.GetType().ToString() == "Lemonade.LargeCrate")
+                {
+                    if (((LargeCrate)(crate)).canExplode && !crate.dead)
+                    {
+                        crateParticle.at(crate);
+                        crateParticle.start(true, 0.0f, 50);
+                        crate.kill();
+                    }
+                }
+            }
+
 
             base.update();
+            //FlxU.overlap(actors, ramps, rampOverlap);
+
+
 
             // Switch Controlling Character.
             if (FlxG.keys.justPressed(Keys.V) || FlxG.gamepads.isNewButtonPress(Buttons.Y))
@@ -506,6 +558,14 @@ namespace Lemonade
             ((Exit)(e.Object2)).play("open", true);
 	        return true;
         }
+
+        protected bool rampOverlap(object Sender, FlxSpriteCollisionEvent e)
+        {
+            e.Object1.overlapped(e.Object2);
+            //e.Object2.overlapped(e.Object1);
+            return true;
+        }
+
         protected bool genericOverlap(object Sender, FlxSpriteCollisionEvent e)
         {
             e.Object1.overlapped(e.Object2);
@@ -517,17 +577,11 @@ namespace Lemonade
         {
             bubbleParticle.at(e.Object1);
             bubbleParticle.start(true, 0, 30);
-            ((Actor)(e.Object1)).overlapped(e.Object2);
-            ((Trampoline)(e.Object2)).overlapped(e.Object1);
+            e.Object1.overlapped(e.Object2);
+            e.Object2.overlapped(e.Object1);
             return true;
         }
 
-        protected bool actorCrateOverlap(object Sender, FlxSpriteCollisionEvent e)
-        {
-            ((Actor)(e.Object1)).overlapped(e.Object2);
-            //((Actor)(e.Object2)).overlapped(e.Object1);
-            return true;
-        }
 
         
 

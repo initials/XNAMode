@@ -132,6 +132,7 @@
     <Compile Include="FourChambers\Levels\MultiPlayerPlayState.cs" />
     <Compile Include="Lemonade\extra\Exit.cs" />
     <Compile Include="Lemonade\extra\LargeCrate.cs" />
+    <Compile Include="Lemonade\extra\Ramp.cs" />
     <Compile Include="Lemonade\extra\SmallCrate.cs" />
     <Compile Include="Lemonade\extra\Spike.cs" />
     <Compile Include="Lemonade\extra\Trampoline.cs" />

@@ -93,7 +93,9 @@ namespace Lemonade
 
             base.update();
 
-            if (follower.y > 2200 && follower.x == 0)
+            if ((follower.y > 2200 && follower.x == 0) || 
+                (FlxG.keys.justPressed(Keys.Space) && follower.y > 200) || 
+                (FlxG.gamepads.isNewButtonPress(Buttons.A) && follower.y > 200))
             {
                 FlxG.transition.startFadeOut(0.15f, -90, 150);
                 follower.x = 1;

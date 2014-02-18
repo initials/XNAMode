@@ -1289,8 +1289,20 @@
     <Folder Include="Lemonade\sfx\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lemonade\spikes.png">
-      <Name>spikes</Name>
+    <Compile Include="Lemonade\spikes_newyork.png">
+      <Name>spikes_newyork</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lemonade\spikes_military.png">
+      <Name>spikes_military</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\spikes_sydney.png">
+      <Name>spikes_sydney</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

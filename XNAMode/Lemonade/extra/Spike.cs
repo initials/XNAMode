@@ -19,7 +19,7 @@ namespace Lemonade
             @fixed = true;
 
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/spikes"), true, false, 20, 20);
+            loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/spikes_"+Lemonade_Globals.location), true, false, 20, 20);
 
             addAnimation("up", new int[] { 0 }, 0);
             addAnimation("right", new int[] { 1 }, 0);

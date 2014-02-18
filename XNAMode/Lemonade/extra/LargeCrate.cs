@@ -12,6 +12,7 @@ namespace Lemonade
 {
     class LargeCrate : FlxSprite
     {
+        public bool canExplode;
 
         public LargeCrate(int xPos, int yPos)
             : base(xPos, yPos)
@@ -20,6 +21,8 @@ namespace Lemonade
 
             @fixed = true;
             solid = true;
+
+            canExplode = false;
         }
 
         override public void update()
@@ -28,8 +31,21 @@ namespace Lemonade
 
             base.update();
 
+            if (dead){
+                canExplode = false;
+                x = -1000;
+            }
+
         }
 
+        //public override void kill()
+        //{
+        //    Console.WriteLine("Large Crate Kill() ");
 
+        //    if (canExplode)
+        //        base.kill();
+
+        //    canExplode = true;
+        //}
     }
 }

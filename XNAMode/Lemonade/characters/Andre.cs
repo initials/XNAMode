@@ -72,22 +72,19 @@ namespace Lemonade
                 //hurt(1);
 
             }
-            else if (overlappedWith == "Lemonade.Trampoline")
-            {
-                velocity.Y = -1000;
-                trampolineTimer = 0.0f;
-            }
+
             else if (overlappedWith == "Lemonade.LargeCrate")
             {
                 Console.WriteLine("crate overlapp");
 
-                if (dashTimer > dashMaxLimit)
-                {
-                    obj.dead = true;
-                    obj.exists = false;
-                    obj.x = -1000;
-                    obj.y = -1000;
-                }
+                ((LargeCrate)(obj)).canExplode = true;
+
+                //if (dashTimer > dashMaxLimit)
+                //{
+                //    obj.kill();
+                //    obj.x = -1000;
+                //    obj.y = -1000;
+                //}
             }
             else if (overlappedWith == "Lemonade.Spike")
             {

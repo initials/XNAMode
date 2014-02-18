@@ -231,10 +231,12 @@ namespace org.flixel
 
         private void leftPressed()
         {
+            facing = Flx2DFacing.Left;
             velocity.X -= runSpeed;
         }
         private void rightPressed()
         {
+            facing = Flx2DFacing.Right;
             velocity.X += runSpeed;
         }
 
@@ -258,12 +260,12 @@ namespace org.flixel
             }
             else if (velocity.X > 1)
             {
-                facing = Flx2DFacing.Right;
+                
                 play("run");
             }
             else if (velocity.X < 1)
             {
-                facing = Flx2DFacing.Left;
+                
                 play("run");
             }
 

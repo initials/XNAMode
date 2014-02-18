@@ -51,5 +51,22 @@ namespace Lemonade
             base.hitBottom(Contact, Velocity);
         }
 
+        public override void overlapped(FlxObject obj)
+        {
+            base.overlapped(obj);
+            if (obj.GetType().ToString() == "Lemonade.Trampoline")
+            {
+                velocity.Y = -1000;
+                trampolineTimer = 0.0f;
+            }
+            else if (obj.GetType().ToString() == "Lemonade.Ramp")
+            {
+                float delta = x % 20;
+
+                //FlxU.solveXCollision(obj, null);
+
+            }
+        }
+
     }
 }

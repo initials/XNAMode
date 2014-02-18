@@ -440,7 +440,7 @@ namespace org.flixel
                                     string[] b = point.Split(',');
 
                                     int compensatedX = xPos + Int32.Parse(b[0]);
-                                    int compensatedY = xPos + Int32.Parse(b[1]);
+                                    int compensatedY = yPos + Int32.Parse(b[1]);
 
                                     pointsX += compensatedX.ToString() + ",";
                                     pointsY += compensatedY.ToString() + ",";
