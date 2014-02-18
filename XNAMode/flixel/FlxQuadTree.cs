@@ -479,9 +479,11 @@ namespace org.flixel
 					}
 					if(_oc == null)
 					{
-						_o.kill();
-						co.kill();
+						//_o.kill();
+						//co.kill();
+
 						c = true;
+
                         _o.overlapped(co);
                         co.overlapped(_o);
 					}
@@ -489,6 +491,7 @@ namespace org.flixel
                     else if (_oc(this, new FlxSpriteCollisionEvent(_o, co)))
                     {
                         c = true;
+
                         _o.overlapped(co);
                         co.overlapped(_o);
                     }

@@ -18,7 +18,8 @@ namespace Lemonade
 
         List<Dictionary<string, string>> actorsString;
 
-        private FlxTilemap destructableTilemap;
+        private FlxTilemap collidableTilemap;
+        private FlxTilemap bgElementsTilemap;
 
         private FlxGroup actors;
         private FlxGroup trampolines;
@@ -81,26 +82,31 @@ namespace Lemonade
                 //Console.Write("\r\n");
             }
 
-            // TMX fixes. kill newlines.
-            //string newStringx = levelString[0]["csvData"].Replace(",\n", "\n");
+            bgElementsTilemap = new FlxTilemap();
+            bgElementsTilemap.auto = FlxTilemap.STRING;
+            bgElementsTilemap.indexOffset = -1;
+            bgElementsTilemap.stringTileMin = 201;
+            bgElementsTilemap.stringTileMax = 381;
+            bgElementsTilemap.loadMap(levelString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/tiles_" + Lemonade_Globals.location), 20, 20);
+            bgElementsTilemap.boundingBoxOverride = false;
+            add(bgElementsTilemap);
 
-            //newStringx = newStringx.Remove(0, 1);
-            //newStringx = newStringx.Remove(newStringx.Length - 1);
 
-            destructableTilemap = new FlxTilemap();
-            destructableTilemap.auto = FlxTilemap.STRING;
+            collidableTilemap = new FlxTilemap();
+            collidableTilemap.auto = FlxTilemap.STRING;
 
             // TMX maps have indexOffset of -1;
-            destructableTilemap.indexOffset = -1;
-            destructableTilemap.loadMap(levelString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/tiles_" + Lemonade_Globals.location), 20, 20);
-            destructableTilemap.boundingBoxOverride = false;
-            add(destructableTilemap);
+            collidableTilemap.indexOffset = -1;
+            collidableTilemap.stringTileMax = 201;
+            collidableTilemap.loadMap(levelString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/tiles_" + Lemonade_Globals.location), 20, 20);
+            collidableTilemap.boundingBoxOverride = false;
+            add(collidableTilemap);
         }
 
         public void buildActors()
         {
 
-            actorsString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/" + Lemonade_Globals.location + "_level" + FlxG.level.ToString() + ".tmx", "map", "dontAutoLoad_sprites", FlxXMLReader.ACTORS);
+            actorsString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/" + Lemonade_Globals.location + "_level" + FlxG.level.ToString() + ".tmx", "map", "bg", FlxXMLReader.ACTORS);
             foreach (Dictionary<string, string> nodes in actorsString)
             {
                 foreach (KeyValuePair<string, string> kvp in nodes)
@@ -248,7 +254,7 @@ namespace Lemonade
             else if (actor == "smallCrate")
             {
                 smallCrate = new SmallCrate(xPos, yPos);
-                add(smallCrate);
+                levelItems.add(smallCrate);
             }
             else if (actor == "exit")
             {
@@ -278,6 +284,40 @@ namespace Lemonade
             }
         }
 
+        public void buildBoxes()
+        {
+            List<Dictionary<string, string>> levelString = FlxXMLReader.readObjectsFromTmxFile("Lemonade/levels/slf2/" + Lemonade_Globals.location + "_level" + FlxG.level.ToString() + ".tmx", 
+                "map", 
+                "boxes", 
+                FlxXMLReader.NONE);
+            //foreach (Dictionary<string, string> nodes in levelString)
+            //{
+            //    foreach (KeyValuePair<string, string> kvp in nodes)
+            //    {
+            //        Console.Write("Level String -- Key = {0}, Value = {1}, ", kvp.Key, kvp.Value);
+            //    }
+            //    Console.Write("\r\n");
+            //}
+
+            foreach (var item in levelString)
+            {
+                FlxSprite movingPlatform = new FlxSprite(Int32.Parse(item["x"]), Int32.Parse(item["y"]));
+                movingPlatform.createGraphic(40, 20, Color.Red);
+                movingPlatform.solid = true;
+                movingPlatform.@fixed = true;
+
+                add(movingPlatform);
+
+                FlxPath xpath = new FlxPath(null);
+                xpath.add(Int32.Parse(item["x"]), Int32.Parse(item["y"]));
+                xpath.addPointsUsingStrings(item["pointsX"], item["pointsY"]);
+                movingPlatform.followPath(xpath, 150, FlxSprite.PATH_LOOP_FORWARD, false);
+                movingPlatform.pathCornering = 0.0f;
+
+
+            }
+        }
+
         override public void create()
         {
 
@@ -292,6 +332,8 @@ namespace Lemonade
 
             buildTileset();
             buildActors();
+
+            buildBoxes();
 
             add(actors);
             add(trampolines);
@@ -396,7 +438,7 @@ namespace Lemonade
 
 
 
-            FlxU.collide(destructableTilemap, actors);
+            FlxU.collide(collidableTilemap, actors);
 
             FlxU.overlap(actors, actors, genericOverlap);
             FlxU.overlap(actors, trampolines, trampolinesOverlap);
@@ -466,7 +508,8 @@ namespace Lemonade
         }
         protected bool genericOverlap(object Sender, FlxSpriteCollisionEvent e)
         {
-            
+            e.Object1.overlapped(e.Object2);
+            e.Object2.overlapped(e.Object1);
             return true;
         }
 
@@ -479,12 +522,6 @@ namespace Lemonade
             return true;
         }
 
-        protected bool actorOverlap(object Sender, FlxSpriteCollisionEvent e)
-        {
-            ((Actor)(e.Object1)).overlapped(e.Object2);
-            ((Actor)(e.Object2)).overlapped(e.Object1);
-            return true;
-        }
         protected bool actorCrateOverlap(object Sender, FlxSpriteCollisionEvent e)
         {
             ((Actor)(e.Object1)).overlapped(e.Object2);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="40" height="40" tilewidth="20" tileheight="20">
  <tileset firstgid="1" name="tiles_military" tilewidth="20" tileheight="20">
-  <image source="../Art/tiles_military.png" width="400" height="400"/>
+  <image source="../../../../XNAModeContent/Lemonade/tiles_military.png" width="400" height="400"/>
   <terraintypes>
    <terrain name="solid" tile="151"/>
    <terrain name="hollow" tile="94"/>

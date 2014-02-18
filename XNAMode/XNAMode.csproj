@@ -137,6 +137,7 @@
     <Compile Include="Lemonade\extra\Trampoline.cs" />
     <Compile Include="Lemonade\Lemonade_Globals.cs" />
     <Compile Include="Lemonade\states\DataEntryState.cs" />
+    <Compile Include="Lemonade\states\IntroState.cs" />
     <Compile Include="Lemonade\states\Lemonade.cs" />
     <Compile Include="Lemonade\states\MenuState.cs" />
     <Compile Include="Revvolvver\Bomb.cs" />

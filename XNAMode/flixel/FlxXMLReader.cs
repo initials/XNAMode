@@ -17,9 +17,10 @@ namespace org.flixel
     /// </summary>
     public class FlxXMLReader
     {
-
+        public const int NONE = -1;
         public const int TILES = 0;
         public const int ACTORS = 1;
+        
 
         public static void readOgmoProjectAndLevel(string projectFilename, string levelFilename)
         {
@@ -258,8 +259,11 @@ namespace org.flixel
             return nodeList;
         }
 
+
+
+
         /// <summary>
-        /// 
+        /// Reads a tileset node from a TMX (Tiled) File.
         /// </summary>
         /// <param name="filename"></param>
         /// <param name="element"></param>
@@ -379,6 +383,85 @@ namespace org.flixel
             return nodeList;
         }
         
+
+
+        public static List<Dictionary<string, string>> readObjectsFromTmxFile(string filename, string element, string name, int type)
+        {
+            List<Dictionary<string, string>> nodeList = new List<Dictionary<string, string>>();
+
+            XmlDocument xml = new XmlDocument();
+            xml.Load(filename);
+
+            XmlNodeList xnList = xml.SelectNodes(element);
+            int count = 0;
+
+            foreach (XmlNode xn in xnList)
+            {
+                foreach (XmlNode xn2 in xn)
+                {
+                    foreach (XmlAttribute item in xn2.Attributes)
+                    {
+                        if (item.Value.ToString() == name)
+                        {
+                            
+
+                            foreach (XmlNode xn3 in xn2)
+                            {
+                                Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
+                                //Console.WriteLine("xn3 Name: {0} Points {1} x {2} y {3} count = {4} ", 
+                                //    xn3.Name.ToString(),
+                                //    xn3.FirstChild.Attributes.GetNamedItem("points").Value.ToString(), 
+                                //    xn3.Attributes.GetNamedItem("x").Value.ToString(),
+                                //    xn3.Attributes.GetNamedItem("y").Value.ToString(), count);
+
+                                //foreach (var xxxx in nodeList)
+                                //{
+                                //    Console.WriteLine(xxxx.ToString());
+                                //}
+
+                                levelAttrs.Add("x", xn3.Attributes.GetNamedItem("x").Value.ToString());
+                                levelAttrs.Add("y", xn3.Attributes.GetNamedItem("y").Value.ToString());
+                                
+                                levelAttrs.Add("points", xn3.FirstChild.Attributes.GetNamedItem("points").Value.ToString());
+
+                                // split points into X/Y strings;
+
+                                string[] splitter = xn3.FirstChild.Attributes.GetNamedItem("points").Value.ToString().Split(' ');
+                                string pointsX = "";
+                                string pointsY = "";
+
+                                int xPos = Int32.Parse(xn3.Attributes.GetNamedItem("x").Value);
+                                int yPos = Int32.Parse(xn3.Attributes.GetNamedItem("y").Value);
+
+
+
+                                foreach (var point in splitter)
+                                {
+                                    string[] b = point.Split(',');
+
+                                    int compensatedX = xPos + Int32.Parse(b[0]);
+                                    int compensatedY = xPos + Int32.Parse(b[1]);
+
+                                    pointsX += compensatedX.ToString() + ",";
+                                    pointsY += compensatedY.ToString() + ",";
+
+                                }
+                                levelAttrs.Add("pointsX",pointsX);
+                                levelAttrs.Add("pointsY", pointsY);
+
+
+                                count++;
+
+                                nodeList.Add(levelAttrs);
+
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            return nodeList;
+        }
 
 
         /// <summary>

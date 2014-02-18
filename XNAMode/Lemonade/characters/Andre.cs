@@ -66,6 +66,7 @@ namespace Lemonade
                 overlappedWith == "Lemonade.Chef" ||
                 overlappedWith == "Lemonade.Worker" )
             {
+                //Console.WriteLine("Hitting an enemy.");
                 //velocity.Y = -30;
                 colorFlicker(2);
                 //hurt(1);

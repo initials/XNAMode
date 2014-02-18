@@ -1193,13 +1193,13 @@ namespace org.flixel
         }
 
         /// <summary>
-        /// Overlapped with trigger
+        /// Use this to trigger overlaps from your callback as defined in a FlxState.
         /// </summary>
         /// <param name="obj"></param>
         virtual public void overlapped(FlxObject obj)
         {
             //Console.WriteLine("Obj overlapped " + obj.GetType().ToString());
-
+            //this.overlapped(obj);
 
         }
 

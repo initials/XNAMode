@@ -166,7 +166,20 @@ namespace org.flixel
 
         protected Texture2D _tileBitmap;
 
+        /// <summary>
+        /// Used to offset numbers, for instance Tiled uses a non-zero based index system.
+        /// </summary>
         public int indexOffset;
+
+        /// <summary>
+        /// If the number is below this value, it will be set to 0.
+        /// </summary>
+        public int stringTileMin;
+
+        /// <summary>
+        /// If the number is above this value, it will be set to 0.
+        /// </summary>
+        public int stringTileMax;
 
         /// <summary>
         /// color will tint the entire tilemap
@@ -194,7 +207,10 @@ namespace org.flixel
             auto = OFF;
             collideIndex = 1;
             collideMin = 1;
-            collideMax = 9999999;
+            collideMax = int.MaxValue;
+
+            stringTileMax = int.MaxValue;
+
             startingIndex = 0;
             drawIndex = 1;
             widthInTiles = 0;
@@ -959,7 +975,16 @@ namespace org.flixel
                 _data[Index] = 0;
                 return;
             }
-            
+            if (_data[Index] >= stringTileMax)
+            {
+                _data[Index] = 0;
+                return;
+            }
+            if (_data[Index] <= stringTileMin)
+            {
+                _data[Index] = 0;
+                return;
+            }
             _data[Index] += 1;
             _data[Index] += indexOffset;
         }
