@@ -437,7 +437,7 @@ namespace org.flixel
             updateMotion();
             updateAnimation();
             updateFlickering();
-            updatecolorFlickering();
+            //updatecolorFlickering();
 
         }
 

@@ -12,7 +12,7 @@ namespace Lemonade
 {
     public class IntroState : FlxState
     {
-
+        FlxSprite follower;
         override public void create()
         {
             base.create();
@@ -38,7 +38,7 @@ namespace Lemonade
             bgMap3.indexOffset = -1;
             bgMap3.loadTMXMap("Lemonade/levels/slf2/newyork_intro.tmx", "map", "stars", FlxXMLReader.TILES, FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_newyork"), 20, 20);
             bgMap3.boundingBoxOverride = false;
-            bgMap3.setScrollFactors(1, 1);
+            bgMap3.setScrollFactors(2, 2);
             add(bgMap3);
 
             FlxTilemap bgMap4 = new FlxTilemap();
@@ -49,7 +49,7 @@ namespace Lemonade
             bgMap4.setScrollFactors(1, 1);
             add(bgMap4);
 
-            FlxSprite follower = new FlxSprite(0, 0);
+            follower = new FlxSprite(0, -100);
             follower.visible = false;
             add(follower);
             follower.velocity.Y = 450;
@@ -72,12 +72,12 @@ namespace Lemonade
                     logoText.alpha = 0 ;
              */
 
-            //FlxG.Content.Load<SpriteFont>("Lemonade/SMALL_PIXEL")
+            //
 
             FlxText text1 = new FlxText(0, FlxG.height / 2, FlxG.width, "Initials Video Games Presents");
-            text1.setFormat(null, 3, Color.Pink, FlxJustification.Center, Color.Black);
+            text1.setFormat(FlxG.Content.Load<SpriteFont>("Lemonade/SMALL_PIXEL"), 3, new Color(237, 0, 142), FlxJustification.Center, Color.Black);
             text1.setScrollFactors(1.5f, 1.5f);
-            text1.color = new Color(237, 0, 142);
+           
             add(text1);
 
             //rgb(237, 0, 142)
@@ -92,6 +92,19 @@ namespace Lemonade
 
 
             base.update();
+
+            if (follower.y > 2200 && follower.x == 0)
+            {
+                FlxG.transition.startFadeOut(0.15f, -90, 150);
+                follower.x = 1;
+            }
+            if (FlxG.transition.complete)
+            {
+                FlxG.state = new MenuState();
+                return;
+            }
+
+
         }
 
 
