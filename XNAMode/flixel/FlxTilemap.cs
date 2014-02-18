@@ -244,6 +244,28 @@ namespace org.flixel
         }
 
         /// <summary>
+        /// Load a TMX Map (Tiled file)
+        /// </summary>
+        /// <param name="Filename"></param>
+        /// <param name="Element"></param>
+        /// <param name="Name"></param>
+        /// <param name="Type"></param>
+        /// <param name="TileGraphic"></param>
+        /// <param name="TileWidth"></param>
+        /// <param name="TileHeight"></param>
+        /// <returns></returns>
+        public FlxTilemap loadTMXMap(string Filename, string Element, string Name, int Type, Texture2D TileGraphic, int TileWidth, int TileHeight)
+        {
+            List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile(Filename,
+                Element, 
+                Name, 
+                Type);
+
+
+            return loadMap(bgString[0]["csvData"], TileGraphic, TileWidth, TileHeight);
+        }
+
+        /// <summary>
         /// Load the tilemap with string data and a tile graphic.
         /// </summary>
         /// <param name="MapData">A string of comma and line-return delineated indices indicating what order the tiles should go in. <para>If you want to use 0,1,0,1... use FlxTilemap.OFF, FlxTilemap.AUTO or FlxTilemap.ALT</para><para>If you are using tile ids such as 0,23,12,4,1... use FlxTilemap.STRING</para></param>
