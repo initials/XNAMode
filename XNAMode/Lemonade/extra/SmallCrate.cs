@@ -81,25 +81,36 @@ namespace Lemonade
             if (obj.GetType().ToString()=="Lemonade.Andre" ||
                 obj.GetType().ToString()=="Lemonade.Liselot")
             {
-                if (FlxG.keys.justPressed(Keys.C))
+                if (
+                    (FlxG.keys.justPressed(Keys.C) && FlxG.keys.DOWN) || 
+                    (FlxG.gamepads.isNewButtonPress(Buttons.X) && (FlxG.gamepads.isButtonDown(Buttons.DPadDown) || (FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown)  )))
+                    )
                 {
+
                     if (parent == null)
                     {
                         Console.WriteLine("Parent == null " + FlxG.elapsedTotal);
                         parent = obj;
                     }
-                    else if (parent != null)
+                }
+
+                else if (FlxG.keys.justPressed(Keys.C) || (FlxG.gamepads.isNewButtonPress(Buttons.X)))
+                {
+
+                    if (parent != null)
                     {
                         Console.WriteLine("Parent != null " + FlxG.elapsedTotal);
-                        velocity.X = 500;
+                        //velocity.X = 500;
                         parent = null;
                     
                         if ( ((FlxSprite)(obj)).facing == Flx2DFacing.Left) {
                             velocity.X = -500;
                             velocity.Y = -200;
+                            x -= width;
                         }
                         else if (((FlxSprite)(obj)).facing == Flx2DFacing.Right)
                         {
+                            x += width;
                             velocity.X = 500;
                             velocity.Y = -200;
                         }

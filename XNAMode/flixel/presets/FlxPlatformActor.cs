@@ -148,7 +148,7 @@ namespace org.flixel
                 if (FlxG.gamepads.isButtonDown(Buttons.DPadRight, ControllingPlayer, out pi)) rightPressed();
                 if (FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, ControllingPlayer, out pi)) rightPressed();
 
-                if (FlxG.keys.W || FlxG.keys.SPACE || FlxG.keys.X) jump();
+                if (FlxG.keys.W || FlxG.keys.SPACE || FlxG.keys.X || FlxG.gamepads.isButtonDown(Buttons.A, ControllingPlayer, out pi)) jump();
                 else
                 {
                     if (_jumpCounter < numberOfJumps)

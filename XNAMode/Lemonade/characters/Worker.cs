@@ -42,5 +42,16 @@ namespace Lemonade
         {
             base.update();
         }
+
+        public override void overlapped(FlxObject obj)
+        {
+            base.overlapped(obj);
+
+            if (obj.GetType().ToString() == "Lemonade.SmallCrate")
+            {
+                kill();
+            }
+
+        }
     }
 }

@@ -68,5 +68,13 @@ namespace Lemonade
             }
         }
 
+        public override void kill()
+        {
+            control = Controls.none;
+            dead = true;
+            //base.kill();
+        }
+
+
     }
 }

@@ -211,6 +211,8 @@ namespace Lemonade
             else if (actor == "liselot")
             {
                 liselot = new Liselot(xPos, yPos);
+                liselot.control = FlxPlatformActor.Controls.none;
+                liselot.ControllingPlayer = PlayerIndex.One;
                 actors.add(liselot);
             }
             else if (actor == "army")
@@ -365,7 +367,7 @@ namespace Lemonade
             add(bubbleParticle);
 
             crateParticle = new FlxEmitter();
-            crateParticle.delay = 0;
+            crateParticle.delay = float.MaxValue;
             crateParticle.setSize(80, 60);
             crateParticle.setXSpeed(-350, 350);
             crateParticle.setYSpeed(-200, 200);
@@ -473,6 +475,9 @@ namespace Lemonade
             FlxU.collide(levelItems, collidableTilemap);
             FlxU.collide(smallCrates, collidableTilemap);
             FlxU.collide(actors, movingPlatforms);
+            FlxU.collide(smallCrates, levelItems);
+
+
 
             bool andreExit = FlxU.overlap(andre, exit, exitOverlap);
             bool liselotExit = FlxU.overlap(liselot, exit, exitOverlap);
