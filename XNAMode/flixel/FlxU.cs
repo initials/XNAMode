@@ -1117,21 +1117,21 @@ namespace org.flixel
 
                 if (((FlxRamp)(e.Object2)).direction == FlxRamp.LOW_SIDE_RIGHT)
                 {
-                    float rampOffset = ((float)(obj1Hull.x % 20.0f));
+                    float rampOffset = ((float)(obj1Hull.x % 20.0f)) - 5;
 
-                    //Console.WriteLine("Ramp % 20 {0} {1}", e.Object1.x, rampOffset);
+                    Console.WriteLine("Ramp % 20 {0} {1}", e.Object1.x, rampOffset);
 
-                    obj2Hull.y += rampOffset;
+                    obj2Hull.y += (rampOffset*1.0f);
                 }
                 else if (((FlxRamp)(e.Object2)).direction == FlxRamp.LOW_SIDE_LEFT)
                 {
-                    float rampOffset = 20 - ((float)((obj1Hull.x + obj1Hull.width) % 20.0f));
+                    float rampOffset = 15 - ((float)((obj1Hull.x + obj1Hull.width) % 20.0f));
 
                     
 
-                    //Console.WriteLine("Ramp % 20 {0} {1}", e.Object1.x, rampOffset);
+                    Console.WriteLine("Ramp % 20 {0} {1}", e.Object1.x, rampOffset);
 
-                    obj2Hull.y += rampOffset;
+                    obj2Hull.y += (rampOffset * 1.0f);
                 }
 
 

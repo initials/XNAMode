@@ -22,6 +22,10 @@ namespace org.flixel
             : base(xPos, yPos)
         {
             direction = Direction;
+
+            @fixed = true;
+            solid = true;
+
         }
 
         override public void update()
