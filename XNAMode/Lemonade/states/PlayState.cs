@@ -27,6 +27,7 @@ namespace Lemonade
         private FlxGroup hazards;
         private FlxGroup ramps;
         private FlxGroup smallCrates;
+        private FlxGroup movingPlatforms;
 
         private Andre andre;
         private Liselot liselot;
@@ -310,7 +311,7 @@ namespace Lemonade
                 movingPlatform.solid = true;
                 movingPlatform.@fixed = true;
 
-                add(movingPlatform);
+                movingPlatforms.add(movingPlatform);
 
                 FlxPath xpath = new FlxPath(null);
                 //xpath.add(Int32.Parse(item["x"]), Int32.Parse(item["y"]));
@@ -337,6 +338,7 @@ namespace Lemonade
             hazards = new FlxGroup();
             ramps = new FlxGroup();
             smallCrates = new FlxGroup();
+            movingPlatforms = new FlxGroup();
 
             buildTileset();
             buildActors();
@@ -349,6 +351,7 @@ namespace Lemonade
             add(hazards);
             add(ramps);
             add(smallCrates);
+            add(movingPlatforms);
 
             //set up a little bubble particle system.
 
@@ -469,6 +472,7 @@ namespace Lemonade
             FlxU.collide(crateParticle, collidableTilemap);
             FlxU.collide(levelItems, collidableTilemap);
             FlxU.collide(smallCrates, collidableTilemap);
+            FlxU.collide(actors, movingPlatforms);
 
             bool andreExit = FlxU.overlap(andre, exit, exitOverlap);
             bool liselotExit = FlxU.overlap(liselot, exit, exitOverlap);
