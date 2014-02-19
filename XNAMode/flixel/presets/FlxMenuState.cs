@@ -47,7 +47,14 @@ namespace org.flixel
                 ((FlxButton)(buttons.members[cur[1]])).on = true;
             }
         }
-        
+
+        public void setAllButtonsToOff()
+        {
+            foreach (FlxButton b in buttons.members)
+            {
+                b.on = false;
+            }
+        }
 
         /// <summary>
         /// current, previous, next
@@ -86,7 +93,11 @@ namespace org.flixel
 
         override public void update()
         {
-            
+            if (FlxG.mouse.pressed())
+            {
+                setAllButtonsToOff();
+            }
+
             if (FlxG.keys.justPressed(Keys.Left))
             {
                 moveSelected("backward");

@@ -143,6 +143,7 @@
     <Compile Include="Lemonade\states\IntroState.cs" />
     <Compile Include="Lemonade\states\Lemonade.cs" />
     <Compile Include="Lemonade\states\MenuState.cs" />
+    <Compile Include="Lemonade\states\MultiplayerPlayerState.cs" />
     <Compile Include="Revvolvver\Bomb.cs" />
     <Compile Include="Revvolvver\Bullet.cs" />
     <Compile Include="Revvolvver\Cloud.cs" />
@@ -492,12 +493,6 @@
     <Content Include="Lemonade\characters\reference\Liselot.h" />
     <Content Include="Lemonade\characters\reference\Player.h" />
     <Content Include="Lemonade\levels\custom\PLACE_CUSTOM_LEVELS_HERE.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Lemonade\LineEndingsUnix.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Lemonade\LineEndingsWindows.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Lemonade\script\script.xml" />

@@ -11,6 +11,12 @@ namespace Lemonade
 
         public const float GRAVITY = 2040.0f;
 
+
+        public static string[] characterSelected;
+        public static bool[] isPlayerControlled;
+
+
+
         public Lemonade_Globals()
         {
 

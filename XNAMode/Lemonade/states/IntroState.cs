@@ -13,6 +13,8 @@ namespace Lemonade
     public class IntroState : FlxState
     {
         FlxSprite follower;
+        FlxText credits;
+
         override public void create()
         {
             base.create();
@@ -38,7 +40,7 @@ namespace Lemonade
             bgMap3.indexOffset = -1;
             bgMap3.loadTMXMap("Lemonade/levels/slf2/newyork_intro.tmx", "map", "stars", FlxXMLReader.TILES, FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_newyork"), 20, 20);
             bgMap3.boundingBoxOverride = false;
-            bgMap3.setScrollFactors(2, 2);
+            bgMap3.setScrollFactors(0.5f, 0.5f);
             add(bgMap3);
 
             FlxTilemap bgMap4 = new FlxTilemap();
@@ -80,6 +82,12 @@ namespace Lemonade
            
             add(text1);
 
+            credits = new FlxText(0, FlxG.height / 2, FlxG.width, "A Game By Shane Brouwer");
+            credits.setFormat(FlxG.Content.Load<SpriteFont>("Lemonade/SMALL_PIXEL"), 3, new Color(237, 0, 142), FlxJustification.Center, Color.Black);
+            credits.setScrollFactors(0,0);
+            credits.visible = false;
+            add(credits);
+
             //rgb(237, 0, 142)
 
 
@@ -93,9 +101,31 @@ namespace Lemonade
 
             base.update();
 
-            if ((follower.y > 2200 && follower.x == 0) || 
-                (FlxG.keys.justPressed(Keys.Space) && follower.y > 200) || 
-                (FlxG.gamepads.isNewButtonPress(Buttons.A) && follower.y > 200))
+            if (follower.y > 2100 )
+            {
+                credits.visible = true;
+            }
+            if (follower.y > 2300)
+            {
+                credits.text = "Pixel Art By Miguelito";
+            }
+            if (follower.y > 2500)
+            {
+                credits.text = "Music by Go Exploring";
+            }
+            if (follower.y > 2700)
+            {
+                credits.text = "Illustration by Jessica Mao";
+            }
+            if (follower.y > 2900)
+            {
+                credits.text = "Icons/Avatars by Olsonmabob";
+            }
+
+
+            if ((follower.y > 3100 && follower.x == 0) || 
+                (FlxG.keys.justPressed(Keys.Space) && follower.y > 100) || 
+                (FlxG.gamepads.isNewButtonPress(Buttons.A) && follower.y > 100))
             {
                 FlxG.transition.startFadeOut(0.15f, -90, 150);
                 follower.x = 1;

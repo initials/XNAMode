@@ -92,8 +92,15 @@ namespace Lemonade
                 FlxButton a = new FlxButton(175+(i*45), 225, startGame);
                 a.loadGraphic(new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/button_ny")), new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/buttonPressed_ny")));
                 a.loadText(new FlxText(-40, 10, 100, i.ToString()), new FlxText(-40, 10, 100, i.ToString()+"!"));
+                
                 buttons.add(a);
+
             }
+
+            b = new FlxButton((FlxG.width / 2) - 100, 275, startMultiplayerGame);
+            b.loadGraphic(new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/button_ny")), new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/buttonPressed_ny")));
+            b.loadText(new FlxText(-20, 10, 100, "Multiplayer"), new FlxText(-20, 10, 100, "Multiplayer!"));
+            buttons.add(b);
 
 
             location = new FlxText(0, 50, FlxG.width);
@@ -211,6 +218,10 @@ namespace Lemonade
             }
         }
 
+        public void startMultiplayerGame()
+        {
+
+        }
         public void startGame()
         {
             int sel = getCurrentSelected()[0];

@@ -403,21 +403,9 @@ namespace org.flixel
                     {
                         if (item.Value.ToString() == name)
                         {
-                            
-
                             foreach (XmlNode xn3 in xn2)
                             {
                                 Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
-                                //Console.WriteLine("xn3 Name: {0} Points {1} x {2} y {3} count = {4} ", 
-                                //    xn3.Name.ToString(),
-                                //    xn3.FirstChild.Attributes.GetNamedItem("points").Value.ToString(), 
-                                //    xn3.Attributes.GetNamedItem("x").Value.ToString(),
-                                //    xn3.Attributes.GetNamedItem("y").Value.ToString(), count);
-
-                                //foreach (var xxxx in nodeList)
-                                //{
-                                //    Console.WriteLine(xxxx.ToString());
-                                //}
 
                                 levelAttrs.Add("x", xn3.Attributes.GetNamedItem("x").Value.ToString());
                                 levelAttrs.Add("y", xn3.Attributes.GetNamedItem("y").Value.ToString());
@@ -433,8 +421,6 @@ namespace org.flixel
                                 int xPos = Int32.Parse(xn3.Attributes.GetNamedItem("x").Value);
                                 int yPos = Int32.Parse(xn3.Attributes.GetNamedItem("y").Value);
 
-
-
                                 foreach (var point in splitter)
                                 {
                                     string[] b = point.Split(',');
@@ -449,13 +435,11 @@ namespace org.flixel
                                 levelAttrs.Add("pointsX",pointsX);
                                 levelAttrs.Add("pointsY", pointsY);
 
-
                                 count++;
 
                                 nodeList.Add(levelAttrs);
 
                             }
-                            
                         }
                     }
                 }

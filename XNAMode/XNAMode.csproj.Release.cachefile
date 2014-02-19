@@ -220,6 +220,10 @@ Content\fx\GaussianBlur.xnb
 Content\Lemonade\spikes_newyork.xnb
 Content\Lemonade\spikes_military.xnb
 Content\Lemonade\spikes_sydney.xnb
+Content\Lemonade\illustration\andre_drawing.xnb
+Content\Lemonade\illustration\army_drawing.xnb
+Content\Lemonade\illustration\liselot_drawing.xnb
+Content\Lemonade\illustration\worker_drawing.xnb
 Content\mode\button.wma
 Content\music\ralph\four chambered heart.wma
 Content\music\ralph\goatmp3.wma
@@ -266,8 +270,6 @@ FourChambers\ActorRecording\vampire.txt
 FourChambers\ActorRecording\wolf.txt
 FourChambers\ActorRecording\zombie.txt
 Lemonade\levels\custom\PLACE_CUSTOM_LEVELS_HERE.txt
-Lemonade\LineEndingsUnix.txt
-Lemonade\LineEndingsWindows.txt
 Revvolvver\Level1_FourPlayerData.txt
 Revvolvver\Level1_OnePlayerData.txt
 Revvolvver\Level1_ThreePlayerData.txt

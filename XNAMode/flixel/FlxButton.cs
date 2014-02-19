@@ -374,7 +374,8 @@ namespace org.flixel
             if (!exists || !visible || !active || !FlxG.mouse.justReleased() || (FlxG.pause && !pauseProof) || (_callback == null)) return;
             if (overlapsPoint(FlxG.mouse.x, FlxG.mouse.y) && _counter > 0.5f)
             {
-                Console.WriteLine("calling back from mouse press ");
+                Console.WriteLine("calling back from mouse press");
+                on = true;
                 _callback();
             }
 

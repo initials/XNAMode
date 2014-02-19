@@ -129,50 +129,36 @@ namespace Lemonade
                 xPos *= Convert.ToInt32(levelAttrs["tilewidth"]);
                 yPos *= Convert.ToInt32(levelAttrs["tilewidth"]);
 
-                //Console.WriteLine(" x{0} y{1}", xPos, yPos);
-
                 if (item == "357")
                 {
                     buildActor("largeCrate", xPos, yPos);
                 }
                 if (item == "381")
                 {
-                    //Console.WriteLine("OK HERES AN ANDRE {0} x{1} y{2}  {3} {4}   count {5}", 
-                    //    andre, 
-                    //    xPos, 
-                    //    yPos, 
-                    //    Convert.ToInt32(levelAttrs["tilewidth"]), 
-                    //    Convert.ToInt32(levelAttrs["width"]) , count);
                     buildActor("andre", xPos, yPos);
                 }
                 if (item == "382")
                 {
-                    //Console.WriteLine("OK HERES AN liselot {0} {1} " , xPos, yPos);
                     buildActor("liselot", xPos, yPos);
                 }
                 if (item == "383")
                 {
-                    //Console.WriteLine("OK HERES AN army {0} {1} ", xPos, yPos);
                     buildActor("army", xPos, yPos);
                 }
                 if (item == "384")
                 {
-                    //Console.WriteLine("OK HERES AN worker {0} {1} ", xPos, yPos);
                     buildActor("worker", xPos, yPos);
                 }
                 if (item == "385")
                 {
-                    //Console.WriteLine("OK HERES AN inspector {0} {1} ", xPos, yPos);
                     buildActor("inspector", xPos, yPos);
                 }
                 if (item == "386")
                 {
-                    //Console.WriteLine("OK HERES AN chef {0} {1} ", xPos, yPos);
                     buildActor("chef", xPos, yPos);
                 }
                 if (item == "387")
                 {
-                    //Console.WriteLine("OK HERES AN chef {0} {1} ", xPos, yPos);
                     buildActor("exit", xPos, yPos);
                 }
                 if (item == "388")
@@ -341,6 +327,8 @@ namespace Lemonade
         {
 
             base.create();
+
+            FlxG.mouse.hide();
 
             FlxG.autoHandlePause = true;
 
