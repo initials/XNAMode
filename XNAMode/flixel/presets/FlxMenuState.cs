@@ -93,10 +93,10 @@ namespace org.flixel
 
         override public void update()
         {
-            if (FlxG.mouse.pressed())
-            {
-                setAllButtonsToOff();
-            }
+            //if (FlxG.mouse.pressed())
+            //{
+            //    setAllButtonsToOff();
+            //}
 
             if (FlxG.keys.justPressed(Keys.Left))
             {

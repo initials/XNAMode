@@ -538,11 +538,9 @@ namespace org.flixel
 
             // BROKEN WHEN USING OFFSETS!
             vc = new Vector2(_flashRect.Width, _flashRect.Height);
-            if (debugName == "toybox") Console.WriteLine("1. VC: " + vc + " Origin: " + origin);
             if (!_stretchToFit)
             {
                 vc *= (origin / new Vector2(width, height));
-                if (debugName=="toybox") Console.WriteLine("2. VC: "+vc+" Origin: "+origin);
             }
             else
             {

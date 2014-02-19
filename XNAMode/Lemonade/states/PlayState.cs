@@ -306,8 +306,7 @@ namespace Lemonade
 
             foreach (var item in levelString)
             {
-                FlxSprite movingPlatform = new FlxSprite(Int32.Parse(item["x"]), Int32.Parse(item["y"]));
-                movingPlatform.createGraphic(40, 20, Color.Red);
+                MovingPlatform movingPlatform = new MovingPlatform(Int32.Parse(item["x"]), Int32.Parse(item["y"]));
                 movingPlatform.solid = true;
                 movingPlatform.@fixed = true;
 
