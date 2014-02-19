@@ -19,8 +19,30 @@ namespace Lemonade
             //createGraphic(20, 20, Color.DarkRed);
             loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/tiles_" + Lemonade_Globals.location), true, false, 20, 20);
 
-            if (direction == FlxRamp.LOW_SIDE_LEFT) frame = 340;
-            else if (direction == FlxRamp.LOW_SIDE_RIGHT) frame = 341;
+            width = 30;
+            height = 30;
+
+            //x -= 5;
+            
+
+            if (direction == FlxRamp.LOW_SIDE_LEFT)
+            {
+                frame = 340;
+                y -= 2;
+                setOffset(0, -2);
+                
+
+            }
+            else if (direction == FlxRamp.LOW_SIDE_RIGHT)
+            {
+                frame = 341;
+                y -= 2;
+                x -= 10;
+                setOffset(-10, -2);
+            }
+
+
+
 
 
         }

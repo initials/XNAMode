@@ -134,7 +134,7 @@ namespace org.flixel
             {
                 if (FlxGlobal.cheatString.StartsWith("slowdown") )
                 {
-                    runSpeed = 44;
+                    runSpeed = 22;
                 }
             }
 
@@ -258,13 +258,14 @@ namespace org.flixel
                 play("death");
             }
             
-            else if (velocity.Y != 0)
-            {
-                play("jump");
-            }
+
             else if (velocity.X == 0)
             {
                 play("idle");
+            }
+            else if (velocity.Y != 0)
+            {
+                play("jump");
             }
             else if (velocity.X > 1)
             {

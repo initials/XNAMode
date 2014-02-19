@@ -26,6 +26,11 @@ namespace org.flixel
             @fixed = true;
             solid = true;
 
+            //width += 2;
+            //height += 2;
+
+            //setOffset(1, 1);
+
         }
 
         override public void update()

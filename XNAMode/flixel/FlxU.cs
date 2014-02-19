@@ -1041,6 +1041,7 @@ namespace org.flixel
         /// <returns></returns>
         static public bool solveXCollisionRamp(object sender, FlxSpriteCollisionEvent e)
         {
+            //e.Object1.colHullX.x += 0.25f;
             return false;
         }
 
@@ -1117,19 +1118,26 @@ namespace org.flixel
 
                 if (((FlxRamp)(e.Object2)).direction == FlxRamp.LOW_SIDE_RIGHT)
                 {
-                    float rampOffset = ((float)(obj1Hull.x % 20.0f)) - 5;
+                    float rampOffsetGOOD = ((float)(obj1Hull.x % 20.0f));
+                    float rampOffset = 20 - (obj1Hull.x - (obj2Hull.x + 20));
+                    //Console.WriteLine("Ramp % 20 {0} {1}", obj1Hull.x, rampOffset);
+                    Console.WriteLine("obj1 hull x {0} obj2 hull x {1} rampOffset {2} rampOffsetGOOD {3}", (obj1Hull.x ), (obj2Hull.x), rampOffset, rampOffsetGOOD);
 
-                    Console.WriteLine("Ramp % 20 {0} {1}", e.Object1.x, rampOffset);
+                    
+                    //if (rampOffset <= 0) rampOffset = 0;
 
                     obj2Hull.y += (rampOffset*1.0f);
                 }
                 else if (((FlxRamp)(e.Object2)).direction == FlxRamp.LOW_SIDE_LEFT)
                 {
-                    float rampOffset = 15 - ((float)((obj1Hull.x + obj1Hull.width) % 20.0f));
+                    //float rampOffsetGOOD =  (20.00f - ((float)((obj1Hull.x + obj1Hull.width) % 20.0f))) ;
 
-                    
+                    float rampOffset = 20 - ( (obj1Hull.x + obj1Hull.width) - obj2Hull.x);
+                    if (rampOffset <= 0) rampOffset = 0;
 
-                    Console.WriteLine("Ramp % 20 {0} {1}", e.Object1.x, rampOffset);
+                    //Console.WriteLine("obj1 hull x {0} obj2 hull x {1} rampOffset {2} rampOffsetGOOD {3}", (obj1Hull.x + obj1Hull.width), (obj2Hull.x), rampOffset, rampOffsetGOOD);
+
+
 
                     obj2Hull.y += (rampOffset * 1.0f);
                 }
