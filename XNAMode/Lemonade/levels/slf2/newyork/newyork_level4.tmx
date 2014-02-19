@@ -4,7 +4,7 @@
   <property name="liselotStart" value="YES"/>
  </properties>
  <tileset firstgid="1" name="tiles_newyork" tilewidth="20" tileheight="20">
-  <image source="../../../../XNAModeContent/Lemonade/tiles_newyork.png" width="400" height="400"/>
+  <image source="../../../../../XNAModeContent/Lemonade/tiles_newyork.png" width="400" height="400"/>
   <terraintypes>
    <terrain name="solid" tile="-1"/>
   </terraintypes>

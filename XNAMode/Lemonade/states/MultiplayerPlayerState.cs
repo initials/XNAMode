@@ -17,6 +17,8 @@ namespace Lemonade
         {
             base.create();
 
+            //buildActor("andre", 20, 20);
+
 
         }
 

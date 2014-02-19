@@ -39,7 +39,7 @@ namespace Lemonade
 
             // load some tile maps
 
-            List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/bgnewyork.tmx", "map", "bg", FlxXMLReader.TILES);
+            List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/newyork/bgnewyork.tmx", "map", "bg", FlxXMLReader.TILES);
             ny = new FlxTilemap();
             ny.auto = FlxTilemap.STRING;
             ny.indexOffset = -1;
@@ -49,7 +49,7 @@ namespace Lemonade
             ny.visible = false;
             add(ny);
 
-            bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/bgsydney.tmx", "map", "bg", FlxXMLReader.TILES);
+            bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/sydney/bgsydney.tmx", "map", "bg", FlxXMLReader.TILES);
             sydney = new FlxTilemap();
             sydney.auto = FlxTilemap.STRING;
             sydney.indexOffset = -1;
@@ -59,7 +59,7 @@ namespace Lemonade
             sydney.visible = false;
             add(sydney);
 
-            bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/bgmilitary.tmx", "map", "bg", FlxXMLReader.TILES);
+            bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/military/bgmilitary.tmx", "map", "bg", FlxXMLReader.TILES);
             miltary = new FlxTilemap();
             miltary.auto = FlxTilemap.STRING;
             miltary.indexOffset = -1;
@@ -220,8 +220,10 @@ namespace Lemonade
 
         public void startMultiplayerGame()
         {
-
+            FlxG.state = new MultiplayerMenuState();
+            return;
         }
+
         public void startGame()
         {
             int sel = getCurrentSelected()[0];

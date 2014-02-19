@@ -1119,9 +1119,9 @@ namespace org.flixel
                 {
                     float rampOffset = ((float)(obj1Hull.x % 20.0f));
 
-                    Console.WriteLine("Ramp % 20 {0} {1}", e.Object1.x, rampOffset);
+                    //Console.WriteLine("Ramp % 20 {0} {1}", e.Object1.x, rampOffset);
 
-                    obj2Hull.y -= rampOffset;
+                    obj2Hull.y += rampOffset;
                 }
                 else if (((FlxRamp)(e.Object2)).direction == FlxRamp.LOW_SIDE_LEFT)
                 {
@@ -1129,9 +1129,9 @@ namespace org.flixel
 
                     
 
-                    Console.WriteLine("Ramp % 20 {0} {1}", e.Object1.x, rampOffset);
+                    //Console.WriteLine("Ramp % 20 {0} {1}", e.Object1.x, rampOffset);
 
-                    obj2Hull.y -= rampOffset;
+                    obj2Hull.y += rampOffset;
                 }
 
 

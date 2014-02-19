@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="50" height="40" tilewidth="20" tileheight="20">
  <tileset firstgid="1" name="tiles_newyork" tilewidth="20" tileheight="20">
-  <image source="../../../../XNAModeContent/Lemonade/tiles_newyork.png" width="400" height="400"/>
+  <image source="../../../../../XNAModeContent/Lemonade/tiles_newyork.png" width="400" height="400"/>
   <terraintypes>
    <terrain name="solid" tile="-1"/>
   </terraintypes>

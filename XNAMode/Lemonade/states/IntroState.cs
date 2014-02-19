@@ -22,7 +22,7 @@ namespace Lemonade
             FlxTilemap bgMap = new FlxTilemap();
             bgMap.auto = FlxTilemap.STRING;
             bgMap.indexOffset = -1;
-            bgMap.loadTMXMap("Lemonade/levels/slf2/newyork_intro.tmx", "map", "bg", FlxXMLReader.TILES, FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_newyork"), 20, 20);
+            bgMap.loadTMXMap("Lemonade/levels/slf2/newyork/newyork_intro.tmx", "map", "bg", FlxXMLReader.TILES, FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_newyork"), 20, 20);
             bgMap.boundingBoxOverride = false;
             bgMap.setScrollFactors(1, 1);
             add(bgMap);
@@ -30,7 +30,7 @@ namespace Lemonade
             bgMap = new FlxTilemap();
             bgMap.auto = FlxTilemap.STRING;
             bgMap.indexOffset = -1;
-            bgMap.loadTMXMap("Lemonade/levels/slf2/newyork_intro.tmx", "map", "bg2", FlxXMLReader.TILES, FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_newyork"), 20, 20);
+            bgMap.loadTMXMap("Lemonade/levels/slf2/newyork/newyork_intro.tmx", "map", "bg2", FlxXMLReader.TILES, FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_newyork"), 20, 20);
             bgMap.boundingBoxOverride = false;
             bgMap.setScrollFactors(1, 1);
             add(bgMap);
@@ -38,7 +38,7 @@ namespace Lemonade
             FlxTilemap bgMap3 = new FlxTilemap();
             bgMap3.auto = FlxTilemap.STRING;
             bgMap3.indexOffset = -1;
-            bgMap3.loadTMXMap("Lemonade/levels/slf2/newyork_intro.tmx", "map", "stars", FlxXMLReader.TILES, FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_newyork"), 20, 20);
+            bgMap3.loadTMXMap("Lemonade/levels/slf2/newyork/newyork_intro.tmx", "map", "stars", FlxXMLReader.TILES, FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_newyork"), 20, 20);
             bgMap3.boundingBoxOverride = false;
             bgMap3.setScrollFactors(0.5f, 0.5f);
             add(bgMap3);
@@ -46,7 +46,7 @@ namespace Lemonade
             FlxTilemap bgMap4 = new FlxTilemap();
             bgMap4.auto = FlxTilemap.STRING;
             bgMap4.indexOffset = -1;
-            bgMap4.loadTMXMap("Lemonade/levels/slf2/newyork_intro.tmx", "map", "city", FlxXMLReader.TILES, FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_newyork"), 20, 20);
+            bgMap4.loadTMXMap("Lemonade/levels/slf2/newyork/newyork_intro.tmx", "map", "city", FlxXMLReader.TILES, FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_newyork"), 20, 20);
             bgMap4.boundingBoxOverride = false;
             bgMap4.setScrollFactors(1, 1);
             add(bgMap4);
