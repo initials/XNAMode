@@ -497,12 +497,81 @@
     <Content Include="Lemonade\levels\custom\PLACE_CUSTOM_LEVELS_HERE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Lemonade\levels\slf2\management\management_level1.tmx" />
+    <None Include="Lemonade\levels\slf2\factory\factory_level10.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\factory\factory_level11.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\factory\factory_level12.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\factory\factory_level2.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\factory\factory_level3.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\factory\factory_level4.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\factory\factory_level5.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\factory\factory_level6.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\factory\factory_level7.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\factory\factory_level8.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\factory\factory_level9.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\management\management_level1.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\management\management_level10.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\management\management_level11.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\management\management_level12.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\management\management_level2.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\management\management_level3.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\management\management_level4.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\management\management_level5.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\management\management_level6.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\management\management_level7.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\management\management_level8.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\management\management_level9.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Lemonade\levels\slf2\newyork\newyork_level101.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Lemonade\levels\slf2\factory\factory_level1.tmx">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Content Include="Lemonade\script\script.xml" />
     <Content Include="Revvolvver\Level1_FourPlayerData.txt">
@@ -522,7 +591,42 @@
     <None Include="Lemonade\characters\reference\LargeCrate.m" />
     <None Include="Lemonade\characters\reference\SugarBag.m" />
     <None Include="Lemonade\characters\reference\Trampoline.m" />
-    <None Include="Lemonade\levels\slf2\warehouse\warehouse_level1.tmx" />
+    <None Include="Lemonade\levels\slf2\warehouse\warehouse_level1.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\warehouse\warehouse_level10.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\warehouse\warehouse_level11.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\warehouse\warehouse_level12.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\warehouse\warehouse_level2.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\warehouse\warehouse_level3.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\warehouse\warehouse_level4.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\warehouse\warehouse_level5.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\warehouse\warehouse_level6.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\warehouse\warehouse_level7.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\warehouse\warehouse_level8.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\warehouse\warehouse_level9.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Lemonade\levels\slf\hclevel1.oel" />
     <None Include="Lemonade\levels\slf\hclevel10.oel" />
     <None Include="Lemonade\levels\slf\hclevel101.oel" />
