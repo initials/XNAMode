@@ -562,6 +562,24 @@ namespace org.flixel
 
 
 
+        static public bool collideRamp(FlxObject Object1, FlxObject Object2)
+        {
+            if ((Object1 == null) || !Object1.exists ||
+                (Object2 == null) || !Object2.exists)
+                return false;
+            quadTree = new FlxQuadTree(FlxQuadTree.bounds.x, FlxQuadTree.bounds.y, FlxQuadTree.bounds.width, FlxQuadTree.bounds.height, null);
+            quadTree.add(Object1, FlxQuadTree.A_LIST);
+            bool match = Object1 == Object2;
+            if (!match)
+                quadTree.add(Object2, FlxQuadTree.B_LIST);
+            bool cx = quadTree.overlap(!match, solveXCollisionRamp);
+            bool cy = quadTree.overlap(!match, solveYCollisionRamp);
+            return cx || cy;
+        }
+
+
+
+
         /// <summary>
         /// This quad tree callback function can be used externally as well.
         /// Takes two objects and separates them along their X axis (if possible/reasonable).
@@ -1010,6 +1028,284 @@ namespace org.flixel
 
             return hit;
         }
+
+
+
+
+        /// <summary>
+        /// This quad tree callback function can be used externally as well.
+        /// Takes two objects and separates them along their X axis (if possible/reasonable).
+        /// </summary>
+        /// <param name="sender">The first object or group you want to check.</param>
+        /// <param name="e">The second object or group you want to check.</param>
+        /// <returns></returns>
+        static public bool solveXCollisionRamp(object sender, FlxSpriteCollisionEvent e)
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// This quad tree callback function can be used externally as well.
+        /// Takes two objects and separates them along their Y axis (if possible/reasonable).
+        /// </summary>
+        /// <param name="sender">The first object or group you want to check.</param>
+        /// <param name="e">The second object or group you want to check.</param>
+        /// <returns></returns>
+        static public bool solveYCollisionRamp(object sender, FlxSpriteCollisionEvent e)
+        {
+            //Avoid messed up collisions ahead of time
+            float o1 = e.Object1.colVector.Y;
+            float o2 = e.Object2.colVector.Y;
+            if (o1 == o2)
+                return false;
+
+            //Give the objects a heads up that we're about to resolve some collisions
+            e.Object1.preCollide(e.Object2);
+            e.Object2.preCollide(e.Object1);
+
+            //Basic resolution variables
+            bool f1;
+            bool f2;
+            float overlap;
+            bool hit = false;
+            bool p1hn2;
+
+            //Directional variables
+            bool obj1Stopped = o1 == 0;
+            bool obj1MoveNeg = o1 < 0;
+            bool obj1MovePos = o1 > 0;
+            bool obj2Stopped = o2 == 0;
+            bool obj2MoveNeg = o2 < 0;
+            bool obj2MovePos = o2 > 0;
+
+            //Offset loop variables
+            int i1;
+            int i2;
+            FlxRect obj1Hull = e.Object1.colHullY;
+            FlxRect obj2Hull = e.Object2.colHullY;
+            List<Vector2> co1 = e.Object1.colOffsets;
+            List<Vector2> co2 = e.Object2.colOffsets;
+            int l1 = co1.Count;
+            int l2 = co2.Count;
+            float ox1;
+            float oy1;
+            float ox2;
+            float oy2;
+            float r1;
+            float r2;
+            float sv1;
+            float sv2;
+
+            //Decide based on object's movement patterns if it was a top or bottom collision
+            p1hn2 = ((obj1Stopped && obj2MoveNeg) || (obj1MovePos && obj2Stopped) || (obj1MovePos && obj2MoveNeg) || //the obvious cases
+                (obj1MoveNeg && obj2MoveNeg && (((o1 > 0) ? o1 : -o1) < ((o2 > 0) ? o2 : -o2))) || //both moving up, obj2 overtakes obj1
+                (obj1MovePos && obj2MovePos && (((o1 > 0) ? o1 : -o1) > ((o2 > 0) ? o2 : -o2)))); //both moving down, obj1 overtakes obj2
+
+            //Check to see if these objects allow these collisions
+            if (p1hn2 ? (!e.Object1.collideBottom || !e.Object2.collideTop) : (!e.Object1.collideTop || !e.Object2.collideBottom))
+                return false;
+
+            //this looks insane, but we're just looping through collision offsets on each object
+            i1 = 0;
+            while (i1 < l1)
+            {
+                ox1 = co1[i1].X;
+                oy1 = co1[i1].Y;
+                obj1Hull.x += ox1;
+                obj1Hull.y += oy1;
+
+
+                if (((FlxRamp)(e.Object2)).direction == FlxRamp.LOW_SIDE_RIGHT)
+                {
+                    float rampOffset = ((float)(obj1Hull.x % 20.0f));
+
+                    Console.WriteLine("Ramp % 20 {0} {1}", e.Object1.x, rampOffset);
+
+                    obj1Hull.y -= rampOffset;
+                }
+                else if (((FlxRamp)(e.Object2)).direction == FlxRamp.LOW_SIDE_LEFT)
+                {
+                    float rampOffset = 20 - ((float)((obj1Hull.x + obj1Hull.width) % 20.0f));
+
+                    
+
+                    Console.WriteLine("Ramp % 20 {0} {1}", e.Object1.x, rampOffset);
+
+                    obj1Hull.y -= rampOffset;
+                }
+
+
+                i2 = 0;
+                while (i2 < l2)
+                {
+                    ox2 = co2[i2].X;
+                    oy2 = co2[i2].Y;
+                    obj2Hull.x += ox2;
+                    obj2Hull.y += oy2;
+
+                    //See if it's a actually a valid collision
+                    if ((obj1Hull.x + obj1Hull.width < obj2Hull.x + roundingError) ||
+                        (obj1Hull.x + roundingError > obj2Hull.x + obj2Hull.width) ||
+                        (obj1Hull.y + obj1Hull.height < obj2Hull.y + roundingError) ||
+                        (obj1Hull.y + roundingError > obj2Hull.y + obj2Hull.height))
+                    {
+                        obj2Hull.x = obj2Hull.x - ox2;
+                        obj2Hull.y = obj2Hull.y - oy2;
+                        i2++;
+                        continue;
+                    }
+
+                    //Calculate the overlap between the objects
+                    if (p1hn2)
+                    {
+                        if (obj1MoveNeg)
+                            r1 = obj1Hull.y + e.Object1.colHullX.height;
+                        else
+                            r1 = obj1Hull.y + obj1Hull.height;
+                        if (obj2MoveNeg)
+                            r2 = obj2Hull.y;
+                        else
+                            r2 = obj2Hull.y + obj2Hull.height - e.Object2.colHullX.height;
+                    }
+                    else
+                    {
+                        if (obj2MoveNeg)
+                            r1 = -obj2Hull.y - e.Object2.colHullX.height;
+                        else
+                            r1 = -obj2Hull.y - obj2Hull.height;
+                        if (obj1MoveNeg)
+                            r2 = -obj1Hull.y;
+                        else
+                            r2 = -obj1Hull.y - obj1Hull.height + e.Object1.colHullX.height;
+                    }
+                    overlap = r1 - r2;
+
+                    //Slightly smarter version of checking if objects are 'fixed' in space or not
+                    f1 = e.Object1.@fixed;
+                    f2 = e.Object2.@fixed;
+                    if (f1 && f2)
+                    {
+                        f1 &= (e.Object1.colVector.X == 0) && (o1 == 0);
+                        f2 &= (e.Object2.colVector.X == 0) && (o2 == 0);
+                    }
+
+                    //Last chance to skip out on a bogus collision resolution
+                    if ((overlap == 0) ||
+                        ((!f1 && ((overlap > 0) ? overlap : -overlap) > obj1Hull.height * 0.8)) ||
+                        ((!f2 && ((overlap > 0) ? overlap : -overlap) > obj2Hull.height * 0.8)))
+                    {
+                        obj2Hull.x = obj2Hull.x - ox2;
+                        obj2Hull.y = obj2Hull.y - oy2;
+                        i2++;
+                        continue;
+                    }
+                    hit = true;
+
+                    //Adjust the objects according to their flags and stuff
+                    sv1 = e.Object2.velocity.Y;
+                    sv2 = e.Object1.velocity.Y;
+                    if (!f1 && f2)
+                    {
+                        if (e.Object1._group)
+                            e.Object1.reset(e.Object1.x, (e.Object1.y - overlap));
+                        else
+                            e.Object1.y = e.Object1.y - overlap;
+                    }
+                    else if (f1 && !f2)
+                    {
+                        if (e.Object2._group)
+                            e.Object2.reset(e.Object2.x, (e.Object2.y + overlap));
+                        else
+                            e.Object2.y += overlap;
+                    }
+                    else if (!f1 && !f2)
+                    {
+                        overlap /= 2;
+                        if (e.Object1._group)
+                            e.Object1.reset(e.Object1.x, (e.Object1.y - overlap));
+                        else
+                            e.Object1.y = e.Object1.y - overlap;
+                        if (e.Object2._group)
+                            e.Object2.reset(e.Object2.x, (e.Object2.y + overlap));
+                        else
+                            e.Object2.y += overlap;
+                        sv1 *= 0.5f;
+                        sv2 *= 0.5f;
+                    }
+                    if (p1hn2)
+                    {
+                        e.Object1.hitBottom(e.Object2, sv1);
+                        e.Object2.hitTop(e.Object1, sv2);
+                    }
+                    else
+                    {
+                        e.Object1.hitTop(e.Object2, sv1);
+                        e.Object2.hitBottom(e.Object1, sv2);
+                    }
+
+                    //Adjust collision hulls if necessary
+                    if (!f1 && (overlap != 0))
+                    {
+                        if (p1hn2)
+                        {
+                            obj1Hull.y = obj1Hull.y - overlap;
+
+                            //This code helps stuff ride horizontally moving platforms.
+                            if (f2 && e.Object2.moves)
+                            {
+                                sv1 = e.Object2.colVector.X;
+                                e.Object1.x += sv1;
+                                obj1Hull.x += sv1;
+                                e.Object1.colHullX.x += sv1;
+                            }
+                        }
+                        else
+                        {
+                            obj1Hull.y = obj1Hull.y - overlap;
+                            obj1Hull.height += overlap;
+                        }
+                    }
+                    if (!f2 && (overlap != 0))
+                    {
+                        if (p1hn2)
+                        {
+                            obj2Hull.y += overlap;
+                            obj2Hull.height = obj2Hull.height - overlap;
+                        }
+                        else
+                        {
+                            obj2Hull.height += overlap;
+
+                            //This code helps stuff ride horizontally moving platforms.
+                            if (f1 && e.Object1.moves)
+                            {
+                                sv2 = e.Object1.colVector.X;
+                                e.Object2.x += sv2;
+                                obj2Hull.x += sv2;
+                                e.Object2.colHullX.x += sv2;
+                            }
+                        }
+                    }
+                    obj2Hull.x = obj2Hull.x - ox2;
+                    obj2Hull.y = obj2Hull.y - oy2;
+                    i2++;
+                }
+                obj1Hull.x = obj1Hull.x - ox1;
+                
+                
+                obj1Hull.y = obj1Hull.y - oy1;
+
+                
+
+
+                i1++;
+            }
+
+            return hit;
+        }
+
+
+
         /// <summary>
         /// 
         /// </summary>

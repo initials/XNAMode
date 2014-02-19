@@ -130,6 +130,14 @@ namespace org.flixel
 
             updateFramesSinceLeftFloor();
 
+            if (FlxG.debug)
+            {
+                if (FlxGlobal.cheatString.StartsWith("slowdown") )
+                {
+                    runSpeed = 44;
+                }
+            }
+
             if (control == Controls.player)
             {
                 if (FlxG.keys.A || FlxG.keys.LEFT) leftPressed();

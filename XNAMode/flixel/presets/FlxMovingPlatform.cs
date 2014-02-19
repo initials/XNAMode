@@ -8,18 +8,21 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 
-namespace Lemonade
+namespace org.flixel
 {
-    class Ramp : FlxRamp
+    /// <summary>
+    /// FlxMovingPlatform is just so you don't forget to set to solid and @fixed
+    /// </summary>
+    class FlxMovingPlatform : FlxSprite
     {
 
-        public Ramp(int xPos, int yPos, int Direction)
-            : base(xPos, yPos, Direction)
+        public FlxMovingPlatform(int xPos, int yPos)
+            : base(xPos, yPos)
         {
-            createGraphic(20, 20, Color.DarkRed);
 
-            @fixed = true;
             solid = true;
+            @fixed = true;
+
         }
 
         override public void update()

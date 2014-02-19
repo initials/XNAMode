@@ -30,7 +30,6 @@ namespace org.flixel
             else if (Cheat.StartsWith("liketheangels")) FourChambers_Globals.seraphineHasBeenKilled = false;
             else if (Cheat.StartsWith("bigmoney")) FlxG.score += 20000;
             else if (Cheat.StartsWith("nobugs")) FlxG.debug = false;
-            else if (Cheat == "level") FlxG.log("Level: " + FlxG.level);
             else if (Cheat == "bounds") FlxG.showBounds = true;
             else if (Cheat == "nobounds") FlxG.showBounds = false;
             else if (Cheat.StartsWith("level"))

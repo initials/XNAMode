@@ -292,13 +292,13 @@ namespace Lemonade
             }
             else if (actor == "rampLeft")
             {
-                ramp = new Ramp(xPos, yPos);
+                ramp = new Ramp(xPos, yPos, FlxRamp.LOW_SIDE_LEFT);
                 ramps.add(ramp);
 
             }
             else if (actor == "rampRight")
             {
-                ramp = new Ramp(xPos, yPos);
+                ramp = new Ramp(xPos, yPos, FlxRamp.LOW_SIDE_RIGHT);
                 ramps.add(ramp);
             }
         }
@@ -470,6 +470,7 @@ namespace Lemonade
 
 
 
+            FlxU.collideRamp(actors, ramps);
             FlxU.collide(collidableTilemap, actors);
 
             FlxU.overlap(actors, actors, genericOverlap);
@@ -492,6 +493,8 @@ namespace Lemonade
 
             FlxU.collide(actors, levelItems);
 
+            
+
             foreach (FlxObject crate in levelItems.members)
             {
                 if (crate.GetType().ToString() == "Lemonade.LargeCrate")
@@ -505,11 +508,7 @@ namespace Lemonade
                 }
             }
 
-
             base.update();
-            //FlxU.overlap(actors, ramps, rampOverlap);
-
-
 
             // Switch Controlling Character.
             if (FlxG.keys.justPressed(Keys.V) || FlxG.gamepads.isNewButtonPress(Buttons.Y))

@@ -8,18 +8,20 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 
-namespace Lemonade
+namespace org.flixel
 {
-    class Ramp : FlxRamp
+    class FlxRamp : FlxSprite
     {
 
-        public Ramp(int xPos, int yPos, int Direction)
-            : base(xPos, yPos, Direction)
-        {
-            createGraphic(20, 20, Color.DarkRed);
+        public int direction;
 
-            @fixed = true;
-            solid = true;
+        public const int LOW_SIDE_LEFT = 1;
+        public const int LOW_SIDE_RIGHT = 2;
+
+        public FlxRamp(int xPos, int yPos, int Direction)
+            : base(xPos, yPos)
+        {
+            direction = Direction;
         }
 
         override public void update()

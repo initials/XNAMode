@@ -1,0 +1,459 @@
+﻿<!--
+ use setup to add a new FlxCutSceneActor to the stage.
+ Remember to add an entry into FlxCutSceneActor with animations.
+ 
+ use size to set text size. default is 16.
+ 
+ Acceptable colors for text are RED GREEN BLUE. Use Common.h to set these values
+ 
+ First element should be a <setup> element.
+ 
+ <dialog character="Liselot" size="24">It's time to destroy them.</dialog>
+ <dialog character="Liselot" size="8" color="RED">Some text</dialog>
+ <animation character="Liselot" play="Death"/>
+ <action character="Worker" moveX="0" moveY="0" duration="0.01"></action>
+
+ 
+ locations: sydney, newyork, military
+ 
+ 
+ tiles:
+    1. 45, 135
+    2. 65, 135
+    3. 85, 135
+    4. 105, 135
+    5. 125, 135
+ --
+    6. 145, 135
+    7. 165, 135
+    8. 185, 135
+    9. 205, 135
+    10. 225, 135
+    11. 245, 135
+    12. 265, 135
+    13. 285, 135
+ --
+    14. 305, 135
+    15. 325, 135
+    16. 345, 135
+    17. 365, 135
+    18. 385, 135
+ -->
+<script>
+	<sydney_scene1 name="Introduction to Destruction" location="sydney" >
+        <setup character="Liselot" x="160" y="135" facing="RIGHT"/>
+        <setup character="Andre" x="130" y="135" facing="RIGHT"/>        
+        <setup character="Mr Amsterdaam" x="190" y="135" facing="LEFT"/>
+        <setup character="Chef" x="220" y="135" facing="LEFT"/>
+        <setup character="Inspector" x="255" y="135" facing="LEFT"/>
+        <setup character="Worker" x="299" y="135" facing="LEFT"/>
+        <!--<dialog character="">This game is brought to you by a falling bomb.</dialog>-->
+		<dialog character="Andre">The city is enveloped with chaos.</dialog>
+		<dialog character="Liselot">There are children screaming in the streets!</dialog>
+        <dialog character="Andre">We've got to get out, and we've got to move now.</dialog>
+        <dialog character="Worker">I told you it would come to this.</dialog>
+        <dialog character="Andre">You wanted this anarchy and now you have it.</dialog>
+        <dialog character="Mr Amsterdaam">Hold on there, cowboy.</dialog>
+        <dialog character="Mr Amsterdaam">I've got an entire nation in lockdown.</dialog>
+        <dialog character="Mr Amsterdaam">How do you propose getting your sorry caboose out of here?</dialog>
+		<dialog character="Andre">The power of the people has traditionally been stronger than the armed forced, once mobilized.</dialog>
+        <action character="Mr Amsterdaam" moveX="-40" moveY="0" duration="0.13"></action>
+        <action character="Liselot" moveX="-20" moveY="0" duration="0.13"></action>
+        <dialog character="Mr Amsterdaam">Do not question me, son.</dialog>
+        <dialog character="Andre">We've got to get out, and we've got to move now.</dialog>        
+	</sydney_scene1>
+	<sydney_scene2 name="Strange Land, Strangers" location="sydney" >
+        <setup character="Andre" x="190" y="135" facing="RIGHT"/>
+        <setup character="Worker" x="230" y="135" facing="LEFT"/>
+		<dialog character="Andre">So, what do you make of this place?</dialog>
+        <dialog character="Worker">The people seem wary of us.</dialog>
+		<dialog character="Andre">I was beginning to wonder if it was just me...</dialog>
+        <dialog character="Worker">It's not just you, boss. There is a paranoia in the air.</dialog>
+        <dialog character="Worker">I can't quite put my finger on it.</dialog>
+		<dialog character="Andre">A minor complaint, but something to keep an eye on.</dialog>
+	</sydney_scene2>
+	<sydney_scene3 name="Eight Hour Climb" location="sydney" >
+        <setup character="Andre" x="170" y="135" facing="RIGHT"/>
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+		<dialog character="Andre">Have you even been in the city streets?</dialog>
+		<dialog character="Andre">Have you talked to the people you represent?</dialog>
+        <action character="Mr Amsterdaam" moveX="-30" moveY="0" duration="0.13"></action>
+		<dialog character="Mr Amsterdaam">You profit just as much as we do. You know that.</dialog>
+		<dialog character="Andre">We're not hoarding the food supply to create a state of unrest.</dialog>
+        <action character="Mr Amsterdaam" moveX="-30" moveY="0" duration="0.13"></action>
+		<dialog character="Mr Amsterdaam">All you do it add sugar to water. Any idiot could do that.</dialog>
+		<dialog character="Andre">What we do is moral. The people want it.</dialog>
+		<dialog character="Andre">They don't want to starve. To stink. To drink dirty water.</dialog>
+		<dialog character="Mr Amsterdaam">Then share some of your water with them.</dialog>
+		<dialog character="Mr Amsterdaam">You know, the water we provide safe passage for.</dialog>
+		<dialog character="Mr Amsterdaam">We're in this together.</dialog>
+        <action character="Andre" moveX="-20" moveY="0" duration="0.33"></action>
+		<dialog character="Andre">Not for long, square-jaw.</dialog>
+	</sydney_scene3>
+	<sydney_scene4 name="Elusive Brass Razoo" location="sydney" >
+        <setup character="Andre" x="170" y="135" facing="RIGHT"/>
+        <setup character="Liselot" x="250" y="135" facing="LEFT"/>
+		<dialog character="Liselot">How are you coping with doing something you hate for money?</dialog>
+		<dialog character="Andre">I never hated running the factory. </dialog>
+		<dialog character="Andre">Every day, building something special.</dialog>
+		<dialog character="Andre">Building something I was proud of.</dialog>
+		<dialog character="Andre">Now my back aches as I make someone else rich.</dialog>
+        <dialog character="Liselot">We've had everything taken from us. We can work our way back to the top.</dialog>
+		<dialog character="Andre">Bootstraps will be pulled.</dialog> 
+	</sydney_scene4>
+	<sydney_scene5 name="The Opulance" location="sydney" >
+        <setup character="Mr Amsterdaam" x="170" y="135" facing="RIGHT"/>
+        <setup character="Worker" x="250" y="135" facing="LEFT"/>
+		<dialog character="Mr Amsterdaam">You're still on board, right?</dialog>
+        <dialog character="Worker">If the money is right.</dialog>
+        <dialog character="Mr Amsterdaam">You know the deal. The money stays the same.</dialog>
+        <dialog character="Worker">Paid upfront?</dialog>
+        <dialog character="Mr Amsterdaam">You know this! I have already explained this to you.</dialog>
+        <dialog character="Worker">Do you have a contract?</dialog>
+        <dialog character="Mr Amsterdaam">Yes! I have already given it to you. Sign it and give it back to me.</dialog>
+        <dialog character="Worker">When?</dialog>
+        <dialog character="Mr Amsterdaam">Last time I saw you. For goodness sake, you weirdo blue collar slob.</dialog>
+        <dialog character="Worker">You uncouth foul mouthed money hungry...</dialog>
+        <dialog character="Mr Amsterdaam">Deal is off the table.</dialog>
+        <action character="Mr Amsterdaam" moveX="15" moveY="0" duration="0.3"></action>
+	</sydney_scene5>
+	<sydney_scene6 name="Incredible Machinations" location="sydney" >
+        <setup character="Liselot" x="190" y="135" facing="RIGHT"/>
+        <setup character="Worker" x="290" y="135" facing="LEFT"/>
+        <dialog character="Liselot">Do you enjoy your work?</dialog>
+        <dialog character="Worker">Fixing the machines comes naturally.</dialog>
+        <dialog character="Worker">For me the pistons are a heartbeat.</dialog>       
+        <dialog character="Worker">The gears grind out an imperial pulse.</dialog>        
+        <dialog character="Liselot">You really love machines.</dialog>
+        <dialog character="Worker">You really love your husband?</dialog>       
+        <dialog character="Liselot">Of course I do. What sort of a question is that?</dialog>
+		<dialog character="Worker">The same question you asked me about my love.</dialog>
+	</sydney_scene6>
+	<sydney_scene7 name="Professional Crastination" location="sydney" >
+        <setup character="Worker" x="290" y="135" facing="LEFT"/>
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+        <dialog character="Mr Amsterdaam">Are you in?</dialog>
+        <dialog character="Worker">In for what?</dialog>
+        <dialog character="Mr Amsterdaam">You know exactly what, little boy.</dialog>
+        <action character="Mr Amsterdaam" moveX="50" moveY="0" duration="0.10"></action>
+        <dialog character="Worker">You're a real class act, you know.</dialog>
+        <dialog character="Mr Amsterdaam">You're required to be part of this.</dialog>
+        <dialog character="Worker">I will not be part of your wretched conspriracy.</dialog>
+        <dialog character="Mr Amsterdaam">It's already begun. You're in whether you like it or not.</dialog>
+        <dialog character="Worker">I'm in against my will.</dialog>
+        <dialog character="Mr Amsterdaam">Your free will is a fantastical notion.</dialog>
+	</sydney_scene7>
+	<sydney_scene8 name="Warning Siren" location="sydney" >
+        <setup character="Andre" x="170" y="135" facing="RIGHT"/>
+        <dialog character="Andre">Warning sirens sound out across the city.</dialog>
+        <dialog character="Andre">I wonder if I made the right decision.</dialog>
+        <dialog character="Andre">Moving here, to Sydney, with my wife and kids.</dialog>
+        <action character="Andre" moveX="30" moveY="0" duration="0.01"></action>
+        <dialog character="Andre">On board the shipping vessels, life was different.</dialog>
+        <dialog character="Andre">It may have clouded my judgement, but the harbour was so beautiful.</dialog>
+        <dialog character="Andre">The water so pristine.</dialog>
+        <action character="Andre" moveX="-30" moveY="0" duration="0.01"></action>
+        <dialog character="Andre">The buildings full of character and incredible workmanship.</dialog>
+        <dialog character="Andre">It was a city I knew I belonged in.</dialog>
+        <dialog character="Andre">At least I think I did.</dialog>
+        <action character="Andre" moveX="15" moveY="0" duration="0.01"></action>
+        <dialog character="Andre">Now I dont know what to think.</dialog>
+	</sydney_scene8>
+	<sydney_scene9 name="Winter Comes" location="sydney" >
+        <setup character="Liselot" x="190" y="135" facing="RIGHT"/>
+        <dialog character="Liselot">This city, this city.</dialog>
+        <dialog character="Liselot">So beautiful.</dialog>
+        <action character="Liselot" moveX="15" moveY="0" duration="0.01"></action>
+        <dialog character="Liselot">Beneath the sandstone exterior.</dialog>
+        <action character="Liselot" moveX="15" moveY="0" duration="0.01"></action>
+        <dialog character="Liselot">I feel gawked at. I feel peoples eyes on me constantly.</dialog>
+        <action character="Liselot" moveX="15" moveY="0" duration="0.01"></action>
+        <dialog character="Liselot">Do they stare because I'm different?</dialog>
+        <action character="Liselot" moveX="15" moveY="0" duration="0.01"></action>
+        <dialog character="Liselot">What are they all looking at?</dialog>
+        <action character="Liselot" moveX="-45" moveY="0" duration="0.03"></action>
+        <dialog character="Liselot">And why should I care anyway?</dialog>
+	</sydney_scene9>
+	<sydney_scene10 name="From The Basement" location="sydney" >
+        <setup character="Andre" x="170" y="135" facing="RIGHT"/>
+        <setup character="Liselot" x="190" y="135" facing="LEFT"/>
+        <dialog character="Liselot">While you were the Father from the church came by.</dialog>
+        <dialog character="Liselot">He came across a couple who have just arrived here.</dialog>
+        <dialog character="Liselot">They don't speak much English, and he could really use our help.</dialog>
+        <dialog character="Andre">This couple also speak Dutch?</dialog>
+        <dialog character="Liselot">Yes! They are staying in temporary residence.</dialog>
+        <dialog character="Andre">Let's get down there and visit.</dialog>
+        <action character="Liselot" moveX="-45" moveY="0" duration="0.03"></action>
+        <action character="Liselot" moveX="-45" moveY="0" duration="0.03"></action>
+
+	</sydney_scene10>
+	<sydney_scene11 name="The Rowdy And The Wicked" location="sydney" >
+        <setup character="Andre" x="170" y="135" facing="RIGHT"/>
+        <setup character="Liselot" x="190" y="135" facing="LEFT"/>
+        <dialog character="Liselot">While you were the Father from the church came by.</dialog>
+        <dialog character="Liselot">He came across a couple who have just arrived here.</dialog>
+        <dialog character="Liselot">They don't speak much English, and he could really use our help.</dialog>
+        <dialog character="Andre">This couple also speak Dutch?</dialog>
+        <dialog character="Liselot">Yes! They are staying in temporary residence.</dialog>
+        <dialog character="Andre">Let's get down there and visit.</dialog>
+	</sydney_scene11>
+	<sydney_scene12 name="On The Outside" location="sydney" >
+        <setup character="Andre" x="170" y="135" facing="RIGHT"/>
+        <setup character="Liselot" x="190" y="135" facing="LEFT"/>
+        <dialog character="Liselot">That place is disgusting!</dialog>
+        <dialog character="Liselot">Temporary residence? No! That is not residential anything.</dialog>
+        <dialog character="Liselot">It was a room with a small sink at the side of a bar.</dialog>
+        <dialog character="Liselot">Drunks roam past and in and out of the laundry room.</dialog>
+        <dialog character="Liselot">They cannot stay there.</dialog>
+        <dialog character="Andre">Let's go get them.</dialog>
+        <dialog character="Andre">They can have the spare room.</dialog>
+        <dialog character="Liselot">They are total strangers.</dialog>
+        <dialog character="Liselot">But it was horrible.</dialog>
+        <dialog character="Andre">I won't have it.</dialog>
+        <dialog character="Andre">I will not sleep knowing they are living like that.</dialog>
+        <dialog character="Andre">Let's go get them.</dialog>
+	</sydney_scene12>
+	<sydney_scene13 name="The End" location="sydney" >
+        <setup character="Andre" x="170" y="135" facing="RIGHT"/>
+        <setup character="Liselot" x="190" y="135" facing="LEFT"/>
+        <dialog character="Andre">What luck! Our buddy having an apartment for rent.</dialog>
+		<dialog character="Liselot">We helped our new friends find a place to stay.</dialog>
+        <dialog character="Liselot">I'm sure they could have done it on their own.</dialog>
+        <dialog character="Liselot">It just would have been so much harder.</dialog>
+        <dialog character="Andre">I was happy to help.</dialog>
+        <dialog character="Liselot">I think the biggest way you helped was by explaining some of local jargon.</dialog>
+        <dialog character="Andre">They were quite confused when asked to "bring a plate".</dialog>
+	</sydney_scene13>
+	<newyork_scene1 name="Breaking Baddies" location="newyork" >
+        <setup character="Andre" x="135" y="135" facing="RIGHT"/>
+        <setup character="Liselot" x="160" y="135" facing="LEFT"/>
+        <setup character="Chef" x="200" y="135" facing="RIGHT"/>
+        <setup character="Inspector" x="230" y="135" facing="LEFT"/>
+        <setup character="Worker" x="260" y="135" facing="RIGHT"/>
+        <setup character="Mr Amsterdaam" x="290" y="135" facing="LEFT"/>
+
+
+		<dialog character="Andre">There's not much we can do.</dialog>
+		<dialog character="Andre">As much as it pains me to say it, we need to run.</dialog>
+		<dialog character="Liselot">This isn't about doing what's best or what is right.</dialog>
+		<dialog character="Liselot">This isn't about doing what we have to do.</dialog>
+        <!--
+        <dialog character="Andre">This line is 96 characters.123456789 123456789 123456789 1234567890123456789 123456789 123456789</dialog>
+        <dialog character="Andre">This line is 107 characters.123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789</dialog>
+        <dialog character="Andre">This line is 117 characters.123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789</dialog>
+        <dialog character="Andre">This line is 66 characters.123456789 123456789 123456789 123456789</dialog>
+        <dialog character="Andre">This line is 137 characters.123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789</dialog>
+        <dialog character="Andre">This line is 147 characters.123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789</dialog>
+        -->
+
+	</newyork_scene1>
+	<newyork_scene2 name="The 212" location="newyork" >
+        <setup character="Andre" x="170" y="135" facing="RIGHT"/>
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+        <dialog character="Andre">Your fingers in every pie.</dialog>
+        <dialog character="Andre">Literally halfway around the world, and I find you again.</dialog>
+        <dialog character="Andre">Squeezing every last dollar from every business.</dialog>
+        <dialog character="Mr Amsterdaam">I daresay you're out of your depth, little man.</dialog>
+        <dialog character="Andre">From the first time I met you, I knew it would be no good.</dialog>
+        <dialog character="Andre">The involvement, the quotas, the supposed tax breaks.</dialog>
+        <dialog character="Andre">That was all small time amateur hour on your end.</dialog>
+        <dialog character="Andre">This is America.</dialog>
+		<dialog character="Andre">Those same tricks won't fly here.</dialog>
+        <dialog character="Mr Amsterdaam">I'll make whatever I want fly. You'll see.</dialog>
+	</newyork_scene2>
+	<newyork_scene3 name="Crooklyn" location="newyork" >
+        <setup character="Andre" x="170" y="135" facing="RIGHT"/>
+        <setup character="Liselot" x="190" y="135" facing="RIGHT"/>
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+        <setup character="Chef" x="250" y="135" facing="LEFT"/>
+        <setup character="Inspector" x="270" y="135" facing="LEFT"/>
+        <setup character="Worker" x="290" y="135" facing="LEFT"/>
+        <dialog character="Andre">New York, New York,</dialog>
+        <dialog character="Liselot">This is one hell of a town.</dialog>
+        <dialog character="Mr Amsterdaam">This town will bow before once I'm done.</dialog>
+        <dialog character="Chef">I'm going to be checking out the culinary delights.</dialog>
+        <dialog character="Inspector">Good luck buddy.</dialog>
+        <dialog character="Worker">It runs like clockwork.</dialog>
+        <dialog character="Worker">But in a grid.</dialog>
+		<dialog character="Worker">A square clock.</dialog>
+	</newyork_scene3>
+	<newyork_scene4 name="Manhattan, West Bound" location="newyork" >
+        <setup character="Andre" x="170" y="135" facing="RIGHT"/>
+        <setup character="Liselot" x="190" y="135" facing="RIGHT"/>
+        <setup character="Worker" x="290" y="135" facing="LEFT"/>
+        <dialog character="Andre">The public transport here is a sight to behold.</dialog>
+        <dialog character="Andre">The investment to infrastructure is amazing.</dialog>
+        <dialog character="Worker">Don't kid yourself.</dialog>
+        <dialog character="Worker">The sheer amount of work was done by many but very few profited.</dialog>
+        <dialog character="Liselot">I'd say the community profits with access to such wonderfully designed transportation.</dialog>
+        <dialog character="Worker">The community can benefit but it's the powerful few who profit.</dialog>
+        <dialog character="Liselot">Not everything is about money.</dialog>
+	</newyork_scene4>
+	<newyork_scene5 name="Our Lady Peace" location="newyork" >
+        <setup character="Andre" x="220" y="135" facing="LEFT"/>
+        <dialog character="Andre">The Statue of Liberty stands so tall.</dialog>
+        <dialog character="Andre">You never really know until you stand beneath her.</dialog>
+        <action character="Andre" moveX="10" moveY="0" duration="0.10"></action>
+        <dialog character="Andre">The feeling of being so small.</dialog>
+        <dialog character="Andre">Being part of something bigger than yourself.</dialog>
+        <action character="Andre" moveX="-10" moveY="0" duration="0.10"></action>
+
+        <dialog character="Andre">Even bigger than our family.</dialog>
+        <dialog character="Andre">Being part of the human civilisation.</dialog>
+        <action character="Andre" moveX="20" moveY="0" duration="0.10"></action>
+
+        <dialog character="Andre">The human experience.</dialog>
+        <dialog character="Andre">Lady Liberty inspires us all.</dialog>
+        <action character="Andre" moveX="20" moveY="0" duration="0.10"></action>
+        <dialog character="Andre">We could all be better people after staring into her eyes.</dialog>
+        <dialog character="Andre">We could all hold a torch.</dialog>
+	</newyork_scene5>
+	<newyork_scene6 name="Hot Dog Stand" location="newyork" >
+        <setup character="Chef" x="170" y="135" facing="RIGHT"/>
+        <dialog character="Chef">I had a hot dog from a street vendor.</dialog>
+        <dialog character="Chef">It was wild.</dialog>
+        <dialog character="Chef">It was a flavour sensation.</dialog>
+        <dialog character="Chef">It was everything I wanted and more.</dialog>
+        <dialog character="Chef">I think this could really take off back home.</dialog>
+	</newyork_scene6>
+	<newyork_scene7 name="To The East" location="newyork" >
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="RIGHT"/>
+        <setup character="Worker" x="290" y="135" facing="LEFT"/>
+		<dialog character="Mr Amsterdaam">You're preparing the machinary to specification?</dialog>
+        <dialog character="Worker">It's going to plan.</dialog>
+        <dialog character="Worker">There machines arrived in good shape.</dialog>
+        <dialog character="Worker">Some came with spare parts.</dialog>
+        <dialog character="Mr Amsterdaam">So you'll be done by Monday?</dialog>
+        <dialog character="Worker">Depends if those Lemonade jerks interupt us.</dialog>
+        <dialog character="Mr Amsterdaam">I'll make sure they stay away.</dialog>
+	</newyork_scene7>
+	<newyork_scene8 name="Grid Lock" location="newyork" >
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+		<dialog character="Mr Amsterdaam">As I walk through to dark alleys of New York City.</dialog>
+        <dialog character="Mr Amsterdaam">I'm often reminded of something my dad said to me.</dialog>
+        <dialog character="Mr Amsterdaam">He said Son, you're still young,</dialog>
+        <dialog character="Mr Amsterdaam">and you always jump the gun.</dialog>
+        <dialog character="Mr Amsterdaam">And I no longer wanted to be the guy who jumped the gun.</dialog>
+	</newyork_scene8>
+	<newyork_scene9 name="Beneath City Hall" location="newyork" >
+        <setup character="Andre" x="170" y="135" facing="RIGHT"/>
+        <setup character="Liselot" x="250" y="135" facing="LEFT"/>
+		<dialog character="Andre">Take the well light streets home.</dialog>
+        <dialog character="Liselot">You really needn't worry about me.</dialog>
+        <dialog character="Liselot">Streets, well lit or not, are no more dangerous here than back home.</dialog>
+        <dialog character="Liselot">There's just more cars on the road.</dialog>
+        <dialog character="Andre">The cars are not the problems, the shifty cretins might enjoy your diamond wedding ring.</dialog>
+        <dialog character="Liselot">Maybe you should teach me some judo moves if I'm so helpless.</dialog>
+	</newyork_scene9>
+	<newyork_scene10 name="Bodega" location="newyork" >
+        <setup character="Chef" x="250" y="135" facing="LEFT"/>
+		<dialog character="Chef">I made a desert called a Cronut.</dialog>
+        <dialog character="Chef">A mix between a croisant and a donut.</dialog>
+        <dialog character="Chef">The French called me a sellout.</dialog>
+        <dialog character="Chef">The Americans called me weirdo.</dialog>
+        <dialog character="Chef">And the food critics declared me dead on arrival.</dialog>
+	</newyork_scene10>
+	<newyork_scene11 name="Alright Already" location="newyork" >
+        <setup character="Andre" x="250" y="135" facing="RIGHT"/>
+		<dialog character="Andre">I keep chasing that elusive brass razoo.</dialog>
+	</newyork_scene11>
+	<newyork_scene12 name="Kopek" location="newyork" >
+        <setup character="Liselot" x="210" y="135" facing="RIGHT"/>
+		<dialog character="Liselot">...and we danced</dialog>
+        <dialog character="Liselot">and danced</dialog>
+        <dialog character="Liselot">and danced</dialog>
+        <dialog character="Liselot">and danced the night away.</dialog>
+	</newyork_scene12>
+	<newyork_scene13 name="End Sequence For NY" location="newyork" >
+        <setup character="Andre" x="170" y="135" facing="RIGHT"/>
+        <setup character="Liselot" x="190" y="135" facing="RIGHT"/>
+		<dialog character="Andre">The jukebox at the soda shop plays all my favorite songs.</dialog>
+        <dialog character="Andre">And all I can think of is the business we left behind.</dialog>
+        <dialog character="Andre">The soda bottles clink and I am reminded of home.</dialog>
+        <dialog character="Liselot">It's ok to be homesick.</dialog>
+        <dialog character="Liselot">I can't even buy a durian in this city.</dialog>
+        <dialog character="Liselot">Let alone a dragonfruit or a good plate of gado gado.</dialog>
+        <dialog character="Andre">The things I would do for a fresh durian.</dialog>
+	</newyork_scene13>
+    <military_scene1 name="No Innocent Victim" location="military"  >
+        <setup character="Andre" x="150" y="135" facing="RIGHT"/>
+        <setup character="Liselot" x="170" y="135" facing="LEFT"/>
+        <setup character="Chef" x="190" y="135" facing="RIGHT"/>
+        <setup character="Inspector" x="210" y="135" facing="LEFT"/>
+        <setup character="Worker" x="230" y="135" facing="RIGHT"/>
+        <setup character="Mr Amsterdaam" x="240" y="135" facing="LEFT"/>
+		<dialog character="Andre">Behind enemy lines is often the safest place to be.</dialog>
+        <dialog character="Liselot">Only with the right disguise.</dialog>
+		<dialog character="Andre">From base to base, every one feels the same.</dialog>
+        <dialog character="Andre">They never feel like home.</dialog>
+        <dialog character="Liselot">Only with the right disguise.</dialog>
+        <dialog character="Mr Amsterdaam">Alright lovebirds. Enough!</dialog>
+        <dialog character="Mr Amsterdaam">To get through here we'll need you two to keep your eyes open...</dialog>
+        <dialog character="Mr Amsterdaam">And aware of your surroundings.</dialog>
+	</military_scene1>
+	<military_scene2 name="Emergency Panic" location="military" >
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+        <dialog character="Mr Amsterdaam">Nobody panic!</dialog>
+        <dialog character="Mr Amsterdaam">Panicking carries a penalty.</dialog>
+        <dialog character="Mr Amsterdaam">Stay calm...</dialog>
+        <dialog character="Mr Amsterdaam">and nobody gets hurt.</dialog>
+	</military_scene2>
+	<military_scene3 name="Big Money" location="military" >
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+        <dialog character="Mr Amsterdaam">With the military in charge of many local businesses, </dialog>
+        <dialog character="Mr Amsterdaam">I was offerred bonuses.</dialog>
+        <dialog character="Mr Amsterdaam">Big money bonuses for destroying competitors.</dialog>
+        <dialog character="Mr Amsterdaam">And I spent it all!</dialog>
+	</military_scene3>
+	<military_scene4 name="Walled City" location="military" >
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+        <dialog character="Mr Amsterdaam">The entire city will be walled and we will be the owners.</dialog>
+	</military_scene4>
+	<military_scene5 name="Broken Nose" location="military" >
+        <setup character="Mr Amsterdaam" x="220" y="135" facing="LEFT"/>
+        <dialog character="Mr Amsterdaam">The last business to fall was the national airline business.</dialog>
+        <dialog character="Mr Amsterdaam">I broke the pilots nose.</dialog>
+        <dialog character="Mr Amsterdaam">And they still didn't budge.</dialog>
+	</military_scene5>
+	<military_scene6 name="Dirty Silence" location="military" >
+        <setup character="Worker" x="170" y="135" facing="RIGHT"/>
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+        <dialog character="Mr Amsterdaam">I'm in the business of making money first and foremost.</dialog>
+        <dialog character="Mr Amsterdaam">Pain is the second business I'm in.</dialog>
+        <dialog character="Worker">Aren't all businesses in the business of making money?</dialog>
+        <dialog character="Mr Amsterdaam">Silence.</dialog>
+	</military_scene6>
+	<military_scene7 name="Butter Bing" location="military" >
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+        <dialog character="Mr Amsterdaam">Fresh butter, how sweet do you smell.</dialog>
+	</military_scene7>
+	<military_scene8 name="Air Raid Siren" location="military" >
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+        <dialog character="Mr Amsterdaam">Sound the alarm.</dialog>
+        <dialog character="Mr Amsterdaam">We've got business to take care of.</dialog>
+	</military_scene8>
+	<military_scene9 name="Ten Of The Best" location="military" >
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+        <dialog character="Mr Amsterdaam">Our airforce has the toughest squadron on the planet.</dialog>
+	</military_scene9>
+	<military_scene10 name="Their Finest Hour" location="military" >
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+        <dialog character="Mr Amsterdaam">Their finest hour was also their last.</dialog>
+	</military_scene10>
+	<military_scene11 name="Break Point" location="military" >
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+        <dialog character="Mr Amsterdaam">Bugs in the system.</dialog>
+	</military_scene11>
+	<military_scene12 name="Boom!" location="military" >
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+        <dialog character="Mr Amsterdaam">Boom!</dialog>
+	</military_scene12>
+    <military_scene13 name="Military End Cut Scene" location="military" >
+        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
+        <dialog character="Mr Amsterdaam">This is the end.</dialog>
+        <dialog character="Mr Amsterdaam">We are done here.</dialog>
+        <dialog character="Mr Amsterdaam">You can go home now.</dialog>
+        <dialog character="Mr Amsterdaam">Back to your families.</dialog>
+        <dialog character="Mr Amsterdaam">And their warm embrace.</dialog>
+    </military_scene13>
+</script>
