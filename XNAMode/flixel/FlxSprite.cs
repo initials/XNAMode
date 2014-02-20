@@ -206,6 +206,9 @@ namespace org.flixel
             x = X;
             y = Y;
 
+            originalPosition.X = X;
+            originalPosition.Y = Y;
+
             _flashRect = new Rectangle();
             _flashRect2 = new Rectangle();
             _flashPointZero = new Point();
