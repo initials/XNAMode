@@ -44,9 +44,18 @@ namespace Lemonade
 
             if (parent != null)
             {
-                x = parent.x-width/2;
-                y = parent.y;
+                if (((FlxSprite)(parent)).facing == Flx2DFacing.Right)
+                {
 
+                    x = (parent.x-width/2) + width;
+                    y = parent.y;
+                }
+                else if (((FlxSprite)(parent)).facing == Flx2DFacing.Left)
+                {
+
+                    x = (parent.x - width / 2) - width;
+                    y = parent.y;
+                }
 
                 acceleration.Y = 0;
             }
@@ -59,17 +68,17 @@ namespace Lemonade
                 acceleration.Y = Lemonade_Globals.GRAVITY;
             }
 
-            //Console.WriteLine("VelocityY? + " + velocity.Y);
-
             base.update();
 
-            //if (FlxG.keys.justPressed(Keys.C))
-            //{
-            //    if (parent != null)
-            //    {
+        }
 
-            //    }
-            //}
+        public override void kill()
+        {
+            //base.kill();
+
+            reset(originalPosition.X, originalPosition.Y);
+
+
         }
 
         public override void overlapped(FlxObject obj)
@@ -77,7 +86,14 @@ namespace Lemonade
             base.overlapped(obj);
 
             //
+            if (obj.GetType().ToString() == "Lemonade.Worker" ||
+                obj.GetType().ToString() == "Lemonade.Army" || 
+                obj.GetType().ToString() == "Lemonade.Inspector" ||
+                obj.GetType().ToString() == "Lemonade.Chef" )
+            {
+                kill();
 
+            }
             if (obj.GetType().ToString()=="Lemonade.Andre" ||
                 obj.GetType().ToString()=="Lemonade.Liselot")
             {
@@ -89,7 +105,7 @@ namespace Lemonade
 
                     if (parent == null)
                     {
-                        Console.WriteLine("Parent == null " + FlxG.elapsedTotal);
+                        //Console.WriteLine("Parent == null " + FlxG.elapsedTotal);
                         parent = obj;
                     }
                 }
@@ -99,7 +115,7 @@ namespace Lemonade
 
                     if (parent != null)
                     {
-                        Console.WriteLine("Parent != null " + FlxG.elapsedTotal);
+                        //Console.WriteLine("Parent != null " + FlxG.elapsedTotal);
                         //velocity.X = 500;
                         parent = null;
                     
@@ -119,7 +135,8 @@ namespace Lemonade
             }
             if (obj.GetType().ToString() == "Lemonade.Trampoline")
             {
-                Console.WriteLine("small craete is overlapping?? + + " + obj.GetType().ToString());
+                //Console.WriteLine("small craete is overlapping?? + + " + obj.GetType().ToString());
+                
                 trampolineTimer = 0;
                 //velocity.X = 100;
                 velocity.Y = -1000;

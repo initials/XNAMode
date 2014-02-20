@@ -74,6 +74,10 @@ namespace Lemonade
                 //Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
             }
 
+            FlxG.levelWidth = Convert.ToInt32(levelAttrs["width"]);
+            FlxG.levelHeight = Convert.ToInt32(levelAttrs["height"]);
+
+
             levelString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/" + Lemonade_Globals.location + "/" + Lemonade_Globals.location + "_level" + FlxG.level.ToString() + ".tmx", "map", "bg", FlxXMLReader.TILES);
             foreach (Dictionary<string, string> nodes in levelString)
             {
