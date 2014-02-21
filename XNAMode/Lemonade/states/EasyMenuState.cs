@@ -220,8 +220,8 @@ namespace Lemonade
 
             
 
-            if (FlxControl.RIGHTJUSTPRESSED) {currentLocation++;bubbleParticle.start(false, 5, 50);}
-            if (FlxControl.LEFTJUSTPRESSED) { currentLocation--; bubbleParticle.start(); }
+            if (FlxControl.RIGHTJUSTPRESSED) {currentLocation++;bubbleParticle.start(false, 0.01f, 0);}
+            if (FlxControl.LEFTJUSTPRESSED) { currentLocation--; bubbleParticle.start(false, 0.001f); }
             if (currentLocation <= -1) currentLocation = possibleLocations.Count - 1;
             if (currentLocation >= possibleLocations.Count) currentLocation = 0;
 
