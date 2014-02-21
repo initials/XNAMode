@@ -35,6 +35,8 @@ namespace Lemonade
 
             // play some music
 
+            
+
             FlxG.playMp3("Lemonade/music/music_menu_1", 0.75f);
 
             // load some tile maps
@@ -176,6 +178,9 @@ namespace Lemonade
 
         override public void update()
         {
+
+            if (FlxControl.LEFT() )
+
             tweenBounce.Update(FlxG.elapsedAsGameTime);
 
             badge1.scale = tweenBounce.Position;
