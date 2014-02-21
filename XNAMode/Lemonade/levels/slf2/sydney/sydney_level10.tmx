@@ -90,7 +90,7 @@
    </properties>
   </tile>
  </tileset>
- <layer name="bg" width="40" height="25">
+ <layer name="bg" width="40" height="25" visible="0">
   <data encoding="csv">
 9,12,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,394,9,13,10,11,13,14,12,12,10,13,14,12,12,15,
 29,195,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,394,49,195,195,195,195,195,195,195,195,195,195,195,195,35,
@@ -119,15 +119,5 @@
 129,133,132,132,134,132,134,133,131,131,131,131,132,133,132,130,132,134,131,131,133,130,130,133,130,130,134,132,133,132,134,134,132,132,132,133,130,133,133,135
 </data>
  </layer>
- <objectgroup name="boxes" width="40" height="25">
-  <object x="0" y="400" width="300" height="100"/>
-  <object x="300" y="220" width="80" height="280"/>
-  <object x="380" y="400" width="120" height="100"/>
-  <object x="0" y="0" width="60" height="400"/>
-  <object x="500" y="220" width="300" height="280"/>
-  <object x="520" y="0" width="100" height="160"/>
-  <object x="620" y="0" width="180" height="60"/>
-  <object x="740" y="60" width="60" height="160"/>
-  <object x="60" y="140" width="140" height="60"/>
- </objectgroup>
+ <objectgroup name="boxes" width="40" height="25"/>
 </map>

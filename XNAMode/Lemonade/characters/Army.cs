@@ -36,7 +36,7 @@ namespace Lemonade
             numberOfJumps = 1;
 
             controlFile = "Lemonade/characters/control/army.txt";
-
+            _runningMax = maxVelocity.X;
 
 
         }

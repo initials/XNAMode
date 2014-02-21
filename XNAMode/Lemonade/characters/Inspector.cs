@@ -28,14 +28,15 @@ namespace Lemonade
             setOffset(10, 40);
             setDrags(500, 0);
 
-            maxVelocity.X = 530;
+            maxVelocity.X = 330;
             maxVelocity.Y = 2830;
 
-            runSpeed = 18;
+            runSpeed = 12;
             setJumpValues(-250.0f, -250.0f, 0.315f, 0.0715f);
             numberOfJumps = 1;
 
             controlFile = "Lemonade/characters/control/inspector.txt";
+            _runningMax = maxVelocity.X;
         }
 
         override public void update()

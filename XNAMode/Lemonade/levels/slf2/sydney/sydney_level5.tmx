@@ -90,7 +90,7 @@
    </properties>
   </tile>
  </tileset>
- <layer name="bg" width="60" height="30">
+ <layer name="bg" width="60" height="30" visible="0">
   <data encoding="csv">
 9,12,13,14,11,12,12,10,12,13,11,12,10,14,14,12,14,12,13,12,14,11,14,10,12,10,14,14,10,12,13,10,13,11,12,14,14,10,13,14,14,10,10,10,10,14,10,13,10,12,12,10,14,12,13,11,13,11,11,15,
 89,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,195,55,
@@ -125,18 +125,6 @@
 </data>
  </layer>
  <objectgroup name="boxes" width="60" height="30">
-  <object x="0" y="0" width="80" height="440"/>
-  <object x="0" y="440" width="1200" height="160"/>
-  <object x="1140" y="0" width="60" height="440"/>
-  <object x="80" y="0" width="1060" height="60"/>
-  <object x="220" y="380" width="200" height="60"/>
-  <object x="420" y="320" width="120" height="120"/>
-  <object x="720" y="320" width="120" height="120"/>
-  <object x="600" y="320" width="60" height="60"/>
-  <object x="840" y="260" width="140" height="180"/>
-  <object x="980" y="200" width="160" height="240"/>
-  <object x="80" y="160" width="280" height="60"/>
-  <object x="980" y="60" width="80" height="80"/>
   <object x="360" y="160">
    <properties>
     <property name="speed" value="120"/>

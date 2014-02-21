@@ -347,10 +347,12 @@ namespace Lemonade
             actors = new FlxGroup();
             trampolines = new FlxGroup();
             levelItems = new FlxGroup();
-            hazards = new FlxGroup();
+            
             ramps = new FlxGroup();
             smallCrates = new FlxGroup();
             movingPlatforms = new FlxGroup();
+
+            hazards = new FlxGroup();
 
             buildTileset();
             buildActors();
@@ -554,6 +556,8 @@ namespace Lemonade
             {
                 FlxG.level++;
                 FlxG.state = new PlayState();
+                FlxG.transition.resetAndStop() ;
+                return;
             }
 
         }

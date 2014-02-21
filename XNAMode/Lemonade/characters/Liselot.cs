@@ -44,7 +44,7 @@ namespace Lemonade
             setJumpValues(-340.0f, -410.0f, 0.35f, 0.075f);
             numberOfJumps = 2;
 
-
+            _runningMax = maxVelocity.X;
 
         }
 

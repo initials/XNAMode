@@ -28,7 +28,7 @@ namespace Lemonade
             width = 10;
             height = 41;
             setOffset(20, 39);
-            setDrags(600, 0);
+            setDrags(800, 0);
 
             maxVelocity.X = 530;
             maxVelocity.Y = 2830;
@@ -36,7 +36,7 @@ namespace Lemonade
             setJumpValues(-340.0f, -410.0f, 0.35f, 0.075f);
 
             controlFile = "Lemonade/characters/control/worker.txt";
-
+            _runningMax = maxVelocity.X;
         }
 
         override public void update()

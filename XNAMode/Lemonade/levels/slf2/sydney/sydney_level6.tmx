@@ -155,22 +155,9 @@
 </data>
  </layer>
  <objectgroup name="boxes" width="60" height="60">
-  <object x="0" y="1020" width="1200" height="180"/>
-  <object x="0" y="760" width="200" height="260"/>
-  <object x="200" y="900" width="560" height="120"/>
-  <object x="880" y="700" width="140" height="80"/>
-  <object x="1140" y="0" width="60" height="840"/>
-  <object x="1080" y="840" width="120" height="180"/>
-  <object x="540" y="500" width="160" height="100"/>
-  <object x="0" y="0" width="60" height="760"/>
-  <object x="240" y="360" width="140" height="100"/>
-  <object x="60" y="180" width="120" height="80"/>
-  <object x="60" y="0" width="1080" height="60"/>
   <object x="180" y="180">
    <polyline points="0,0 700,0"/>
   </object>
-  <object x="940" y="180" width="200" height="80"/>
-  <object x="560" y="780" width="140" height="120"/>
   <object x="760" y="500">
    <polyline points="0,0 0,160"/>
   </object>

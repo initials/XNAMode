@@ -96,6 +96,8 @@ namespace org.flixel
         private List<bool[]> _history = new List<bool[]>();
         public int frameCount;
 
+        protected float _runningMax;
+
         public PlayerIndex ControllingPlayer
         {
                get 
@@ -164,6 +166,15 @@ namespace org.flixel
                 if (FlxG.keys.D || FlxG.keys.RIGHT) rightPressed();
                 if (FlxG.gamepads.isButtonDown(Buttons.DPadRight, ControllingPlayer, out pi)) rightPressed();
                 if (FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight, ControllingPlayer, out pi)) rightPressed();
+
+                if (FlxG.keys.B || FlxG.gamepads.isButtonDown(Buttons.RightTrigger))
+                {
+                    maxVelocity.X = _runningMax * 2;
+                }
+                else
+                {
+                    maxVelocity.X = _runningMax;
+                }
 
                 if (FlxG.keys.W || FlxG.keys.SPACE || FlxG.keys.X || FlxG.gamepads.isButtonDown(Buttons.A, ControllingPlayer, out pi)) jump();
                 else

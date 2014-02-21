@@ -36,6 +36,7 @@ namespace Lemonade
             numberOfJumps = 1;
 
             controlFile = "Lemonade/characters/control/chef.txt";
+            _runningMax = maxVelocity.X;
 
         }
 
