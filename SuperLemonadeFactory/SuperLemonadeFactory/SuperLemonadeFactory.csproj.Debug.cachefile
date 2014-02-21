@@ -269,6 +269,10 @@ FourChambers\ActorRecording\unicorn.txt
 FourChambers\ActorRecording\vampire.txt
 FourChambers\ActorRecording\wolf.txt
 FourChambers\ActorRecording\zombie.txt
+Lemonade\characters\control\army.txt
+Lemonade\characters\control\chef.txt
+Lemonade\characters\control\inspector.txt
+Lemonade\characters\control\worker.txt
 Lemonade\levels\custom\PLACE_CUSTOM_LEVELS_HERE.txt
 Revvolvver\Level1_FourPlayerData.txt
 Revvolvver\Level1_OnePlayerData.txt

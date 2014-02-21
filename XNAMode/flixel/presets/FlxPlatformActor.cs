@@ -93,6 +93,9 @@ namespace org.flixel
         /// </summary>
         public float framesSinceLeftGround;
 
+        private List<bool[]> _history = new List<bool[]>();
+        public int frameCount;
+
         public PlayerIndex ControllingPlayer
         {
                get 
@@ -121,6 +124,7 @@ namespace org.flixel
             else if (playerIndex == PlayerIndex.Two) playerIndexAsInt = 2;
             else if (playerIndex == PlayerIndex.Three) playerIndexAsInt = 3;
             else if (playerIndex == PlayerIndex.Four) playerIndexAsInt = 4;
+            frameCount = 0;
 
         }
 
@@ -135,6 +139,19 @@ namespace org.flixel
                 if (FlxGlobal.cheatString.StartsWith("slowdown") )
                 {
                     runSpeed = 22;
+                }
+                if (FlxGlobal.cheatString=="control"+GetType().ToString().Split('.')[1] )
+                {
+                    control = Controls.player;
+                    FlxG.follow(this, 11.0f);
+
+                }
+                if (FlxGlobal.cheatString == "controlFile" + GetType().ToString().Split('.')[1])
+                {
+                    
+                    control = Controls.file;
+                    FlxG.follow(this, 11.0f);
+                    startPlayingBack();
                 }
             }
 
@@ -166,6 +183,21 @@ namespace org.flixel
             else if (control == Controls.file)
             {
 
+                if (frameCount > _history.Count - 2)
+                {
+                    frameCount=0;
+                    return;
+                }
+
+                frameCount++;
+
+                if (_history[frameCount][3]) leftPressed();
+                if (_history[frameCount][1]) rightPressed();
+
+                if (_history[frameCount][4]) jump();
+
+
+             
             }
 
 
@@ -175,6 +207,59 @@ namespace org.flixel
 
             base.update();
         }
+
+        public void startPlayingBack()
+        {
+            startPlayingBack(controlFile);
+        }
+
+        public void startPlayingBack(string Filename)
+        {
+            _history = new List<bool[]>();
+
+            string x = FlxU.loadFromDevice(Filename);
+
+            string[] y = x.Split('\n');
+
+            int line = 0;
+
+            foreach (var item in y)
+            {
+                string[] item1 = item.Split(',');
+
+                line++;
+                if (item1.Length == 14)
+                {
+                    try
+                    {
+                        _history.Add(new bool[] { bool.Parse(item1[0]), 
+                            bool.Parse(item1[1]), 
+                            bool.Parse(item1[2]), 
+                            bool.Parse(item1[3]), 
+                            bool.Parse(item1[4]), 
+                            bool.Parse(item1[5]), 
+                            bool.Parse(item1[6]), 
+                            bool.Parse(item1[7]),
+                            bool.Parse(item1[8]), 
+                            bool.Parse(item1[9]), 
+                            bool.Parse(item1[10]), 
+                            bool.Parse(item1[11]),
+                            bool.Parse(item1[12]),
+                            bool.Parse(item1[13])});
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("History Not Added " + item1.Length + " -- " + item1[1]);
+                    }
+                }
+            }
+            //_rec = Recording.Playback;
+
+            control = Controls.file;
+
+            frameCount = 0;
+        }
+
 
         private void updateFramesSinceLeftFloor()
         {

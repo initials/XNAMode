@@ -39,6 +39,11 @@ namespace Lemonade
         int currentLocation;
         List<string> possibleLocations = new List<string>();
 
+        int currentLevel = 1;
+
+        int currentSelected;
+
+
         override public void create()
         {
 
@@ -47,6 +52,7 @@ namespace Lemonade
             // play some music
 
             currentLocation = 0;
+            currentSelected = 0;
             
             possibleLocations.Add("military");
             possibleLocations.Add("sydney");
@@ -129,16 +135,19 @@ namespace Lemonade
             bubbleParticle.setYSpeed(-40, 100);
             bubbleParticle.setRotation(-720, 720);
             bubbleParticle.gravity = Lemonade_Globals.GRAVITY * -0.25f;
-            bubbleParticle.createSprites(FlxG.Content.Load<Texture2D>("Lemonade/bubble"), 200, true, 1.0f, 0.65f);
-            add(bubbleParticle);
-            bubbleParticle.start(true, 0, 50);
-            bubbleParticle.x = FlxG.width / 2;
+            bubbleParticle.createSprites(FlxG.Content.Load<Texture2D>("Lemonade/bubble"), 1500, true, 1, 1);
+            bubbleParticle.x = FlxG.width / 2 - 80;
             bubbleParticle.y = 50;
+            bubbleParticle.setSize(160, 20);
+            bubbleParticle.start(false, 0.055f, 1500);
+            add(bubbleParticle);
+
 
 
             location = new FlxText(0, 50, FlxG.width);
             location.setFormat(FlxG.Content.Load<SpriteFont>("Lemonade/SMALL_PIXEL"), 3, Color.White, FlxJustification.Center, Color.Black);
             location.text = "< - LOCATION - >";
+            location.color = selected;
             add(location);
 
             
@@ -146,11 +155,13 @@ namespace Lemonade
             levelText = new FlxText(0, 150, FlxG.width);
             levelText.setFormat(FlxG.Content.Load<SpriteFont>("Lemonade/SMALL_PIXEL"), 3, Color.White, FlxJustification.Center, Color.Black);
             levelText.text = "< -LEVEL #- >";
+            location.color = notSelected;
             add(levelText);
 
             multiplayerText = new FlxText(0, 250, FlxG.width);
             multiplayerText.setFormat(FlxG.Content.Load<SpriteFont>("Lemonade/SMALL_PIXEL"), 3, Color.White, FlxJustification.Center, Color.Black);
             multiplayerText.text = "-multiplayer-";
+            multiplayerText.color = notSelected;
             add(multiplayerText);
 
 
@@ -218,53 +229,97 @@ namespace Lemonade
             badge3.scale = tweenBounce.Position;
             badge4.scale = tweenBounce.Position;
 
+            if (FlxControl.UPJUSTPRESSED) { currentSelected--; bubbleParticle.start(false, 0.0101f, 1500); }
+            if (FlxControl.DOWNJUSTPRESSED) { currentSelected++; bubbleParticle.start(false, 0.0101f, 1500); }
+            if (currentSelected <= -1) currentSelected = 3;
+            if (currentSelected >= 3) currentSelected = 0;
+
+
+
+            if (currentSelected == 0)
+            {
+                location.color = selected;
+                levelText.color = notSelected;
+                multiplayerText.color = notSelected;
+
+                bubbleParticle.y = location.y;
+
+                if (FlxControl.RIGHTJUSTPRESSED) { currentLocation++; }
+                if (FlxControl.LEFTJUSTPRESSED) { currentLocation--; }
+                if (currentLocation <= -1) currentLocation = possibleLocations.Count - 1;
+                if (currentLocation >= possibleLocations.Count) currentLocation = 0;
+            }
+            if (currentSelected == 1)
+            {
+                levelText.color = selected;
+                location.color = notSelected;
+                multiplayerText.color = notSelected;
+
+                bubbleParticle.y = levelText.y;
+
+                if (FlxControl.RIGHTJUSTPRESSED) { currentLevel++; }
+                if (FlxControl.LEFTJUSTPRESSED) { currentLevel--; }
+                if (currentLevel <= 0) currentLevel = 13;
+                if (currentLevel >= 13) currentLevel = 1;
+            }
+            if (currentSelected == 2)
+            {
+                levelText.color = notSelected;
+                location.color = notSelected;
+                multiplayerText.color = selected;
+
+                bubbleParticle.y = multiplayerText.y;
+            }
+
             
 
-            if (FlxControl.RIGHTJUSTPRESSED) {currentLocation++;bubbleParticle.start(false, 0.01f, 0);}
-            if (FlxControl.LEFTJUSTPRESSED) { currentLocation--; bubbleParticle.start(false, 0.001f); }
-            if (currentLocation <= -1) currentLocation = possibleLocations.Count - 1;
-            if (currentLocation >= possibleLocations.Count) currentLocation = 0;
-
             Lemonade_Globals.location = possibleLocations[currentLocation];
+            levelText.text = "<- Level " + currentLevel.ToString() + " ->";
 
             if (Lemonade_Globals.location == "newyork")
             {
-                location.text = "New York City";
+                location.text = "<- New York City ->";
                 setAllTilemapsToOff();
                 ny.visible = true;
             }
             if (Lemonade_Globals.location == "sydney")
             {
-                location.text = "Sydney, Australia";
+                location.text = "<- Sydney, Australia ->";
                 setAllTilemapsToOff();
                 sydney.visible = true;
             }
             if (Lemonade_Globals.location == "military")
             {
-                location.text = "Military Complex";
+                location.text = "<- Military Complex ->";
                 setAllTilemapsToOff();
                 miltary.visible = true;
             }
             if (Lemonade_Globals.location == "warehouse")
             {
-                location.text = "Warehouse";
+                location.text = "<- Warehouse ->";
                 setAllTilemapsToOff();
                 warehouse.visible = true;
             }
             if (Lemonade_Globals.location == "factory")
             {
-                location.text = "Factory";
+                location.text = "<- Factory ->";
                 setAllTilemapsToOff();
                 factory.visible = true;
             }
             if (Lemonade_Globals.location == "management")
             {
-                location.text = "Management";
+                location.text = "<- Management ->";
                 setAllTilemapsToOff();
                 management.visible = true;
             }
 
+            if (FlxControl.ACTIONJUSTPRESSED)
+            {
+                FlxG.level = currentLevel;
+                FlxG.state = new PlayState();
 
+
+            }
 
             base.update();
 

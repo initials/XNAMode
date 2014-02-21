@@ -71,11 +71,11 @@ namespace Lemonade
 
             foreach (KeyValuePair<string, string> kvp in levelAttrs)
             {
-                //Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+                Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
             }
 
-            FlxG.levelWidth = Convert.ToInt32(levelAttrs["width"]);
-            FlxG.levelHeight = Convert.ToInt32(levelAttrs["height"]);
+            FlxG.levelWidth = Convert.ToInt32(levelAttrs["width"]) * Convert.ToInt32(levelAttrs["tilewidth"]);
+            FlxG.levelHeight = Convert.ToInt32(levelAttrs["height"]) * Convert.ToInt32(levelAttrs["tileheight"]);
 
 
             levelString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/" + Lemonade_Globals.location + "/" + Lemonade_Globals.location + "_level" + FlxG.level.ToString() + ".tmx", "map", "bg", FlxXMLReader.TILES);
@@ -223,21 +223,27 @@ namespace Lemonade
             {
                 army = new Army(xPos, yPos);
                 actors.add(army);
+                army.startPlayingBack();
             }
             else if (actor == "chef")
             {
                 chef = new Chef(xPos, yPos);
                 actors.add(chef);
+                chef.startPlayingBack();
+
             }
             else if (actor == "inspector")
             {
                 inspector = new Inspector(xPos, yPos);
                 actors.add(inspector);
+                inspector.startPlayingBack();
             }
             else if (actor == "worker")
             {
                 worker = new Worker(xPos, yPos);
                 actors.add(worker);
+                worker.startPlayingBack();
+
             }
             else if (actor == "trampoline")
             {
@@ -537,7 +543,7 @@ namespace Lemonade
 
             if (FlxG.keys.justPressed(Keys.Escape))
             {
-                FlxG.state = new MenuState();
+                FlxG.state = new EasyMenuState();
             }
 
             if (levelComplete == true && ! FlxG.transition.hasStarted)
@@ -546,7 +552,8 @@ namespace Lemonade
             }
             if (FlxG.transition.complete)
             {
-                FlxG.state = new MenuState();
+                FlxG.level++;
+                FlxG.state = new PlayState();
             }
 
         }

@@ -22,6 +22,23 @@ namespace Lemonade
             addAnimation("death", new int[] { 84,85,86,87,88,89,90,88 }, 12, false);
 
             play("idle");
+
+            width = 30;
+            height = 40;
+            setOffset(10, 40);
+            setDrags(600, 0);
+
+            maxVelocity.X = 530;
+            maxVelocity.Y = 2830;
+
+            runSpeed = 22;
+            setJumpValues(-250.0f, -250.0f, 0.315f, 0.0715f);
+            numberOfJumps = 1;
+
+            controlFile = "Lemonade/characters/control/army.txt";
+
+
+
         }
 
         override public void update()
@@ -33,7 +50,7 @@ namespace Lemonade
         {
             base.overlapped(obj);
 
-            if (obj.GetType().ToString() == "Lemonade.SmallCrate")
+            if (obj.GetType().ToString() == "Lemonade.SmallCrate" && (Math.Abs(obj.velocity.X)>1 || Math.Abs(obj.velocity.Y)>1) )
             {
                 kill();
             }

@@ -485,6 +485,18 @@
     </Content>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
+    <Content Include="Lemonade\characters\control\army.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Lemonade\characters\control\chef.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Lemonade\characters\control\inspector.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Lemonade\characters\control\worker.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Lemonade\characters\reference\Andre.h" />
     <Content Include="Lemonade\characters\reference\BaseCharacter.h" />
     <Content Include="Lemonade\characters\reference\Enemy.h" />

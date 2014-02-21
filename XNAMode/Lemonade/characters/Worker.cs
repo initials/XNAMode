@@ -23,18 +23,19 @@ namespace Lemonade
 
             play("idle");
 
-            runSpeed = 50;
+            runSpeed = 15;
 
             width = 10;
             height = 41;
             setOffset(20, 39);
-            setDrags(1251, 0);
+            setDrags(600, 0);
 
             maxVelocity.X = 530;
             maxVelocity.Y = 2830;
 
             setJumpValues(-340.0f, -410.0f, 0.35f, 0.075f);
 
+            controlFile = "Lemonade/characters/control/worker.txt";
 
         }
 
@@ -47,7 +48,7 @@ namespace Lemonade
         {
             base.overlapped(obj);
 
-            if (obj.GetType().ToString() == "Lemonade.SmallCrate")
+            if (obj.GetType().ToString() == "Lemonade.SmallCrate" && (Math.Abs(obj.velocity.X) > 1 || Math.Abs(obj.velocity.Y) > 1))
             {
                 kill();
             }
