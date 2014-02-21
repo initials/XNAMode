@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="flixel\data\FlxRecord.cs" />
+    <Compile Include="flixel\presets\FlxControl.cs" />
     <Compile Include="flixel\presets\FlxMenuState.cs" />
     <Compile Include="flixel\presets\FlxMovingPlatform.cs" />
     <Compile Include="flixel\presets\FlxPlatformActor.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Lemonade\extra\Trampoline.cs" />
     <Compile Include="Lemonade\Lemonade_Globals.cs" />
     <Compile Include="Lemonade\states\DataEntryState.cs" />
+    <Compile Include="Lemonade\states\EasyMenuState.cs" />
     <Compile Include="Lemonade\states\IntroState.cs" />
     <Compile Include="Lemonade\states\Lemonade.cs" />
     <Compile Include="Lemonade\states\MenuState.cs" />

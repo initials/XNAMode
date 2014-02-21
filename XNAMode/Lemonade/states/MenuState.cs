@@ -163,9 +163,6 @@ namespace Lemonade
                 FlxG.setHudText(3, "Username:\n"+FlxG.username);
                 FlxG.setHudTextPosition(3, 50, FlxG.height - 30);
                 FlxG.setHudTextScale(3, 2);
-
-
-
             }
 
         }
@@ -179,7 +176,7 @@ namespace Lemonade
         override public void update()
         {
 
-            if (FlxControl.LEFT() )
+            
 
             tweenBounce.Update(FlxG.elapsedAsGameTime);
 

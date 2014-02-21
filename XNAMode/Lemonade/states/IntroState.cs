@@ -125,14 +125,14 @@ namespace Lemonade
 
             if ((follower.y > 3100 && follower.x == 0) || 
                 (FlxG.keys.justPressed(Keys.Space) && follower.y > 100) || 
-                (FlxG.gamepads.isNewButtonPress(Buttons.A) && follower.y > 100))
+                (FlxG.gamepads.isNewButtonPress(Buttons.A) && follower.y > 100) ||  (FlxControl.ACTIONJUSTPRESSED && follower.y > 100))
             {
                 FlxG.transition.startFadeOut(0.15f, -90, 150);
                 follower.x = 1;
             }
             if (FlxG.transition.complete)
             {
-                FlxG.state = new MenuState();
+                FlxG.state = new EasyMenuState();
                 return;
             }
 
