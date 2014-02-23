@@ -31,7 +31,8 @@ namespace Lemonade
 
             play("idle");
 
-            
+            addAnimationCallback(resetAfterDeath);
+
 
             width = 10;
             height = 41;
@@ -48,6 +49,16 @@ namespace Lemonade
             _runningMax = maxVelocity.X;
             
 
+        }
+
+        public void resetAfterDeath(string Name, uint Frame, int FrameIndex)
+        {
+            if (Name == "death" && Frame == _curAnim.frames.Length - 1)
+            {
+                reset(originalPosition.X, originalPosition.Y);
+                dead = false;
+                control = Controls.player;
+            }
         }
 
         override public void update()

@@ -98,6 +98,8 @@ namespace org.flixel
 
         protected float _runningMax;
 
+        public bool reverseControls;
+
         public PlayerIndex ControllingPlayer
         {
                get 
@@ -127,6 +129,7 @@ namespace org.flixel
             else if (playerIndex == PlayerIndex.Three) playerIndexAsInt = 3;
             else if (playerIndex == PlayerIndex.Four) playerIndexAsInt = 4;
             frameCount = 0;
+            reverseControls = false;
 
         }
 
@@ -202,8 +205,17 @@ namespace org.flixel
 
                 frameCount++;
 
-                if (_history[frameCount][3]) leftPressed();
-                if (_history[frameCount][1]) rightPressed();
+                int left = 3;
+                int right = 1;
+
+                if (reverseControls)
+                {
+                    left = 1;
+                    right = 3;
+                }
+
+                if (_history[frameCount][left]) leftPressed();
+                if (_history[frameCount][right]) rightPressed();
 
                 if (_history[frameCount][4]) jump();
 
@@ -382,6 +394,13 @@ namespace org.flixel
             _jumpCounter = 0;
             _jump = 0.0f;
             base.hitBottom(Contact, Velocity);
+        }
+
+        public override void hitSide(FlxObject Contact, float Velocity)
+        {
+            reverseControls = !reverseControls;
+
+            base.hitSide(Contact, Velocity);
         }
 
     }

@@ -23,7 +23,7 @@ namespace Lemonade
 
             play("idle");
 
-            runSpeed = 15;
+            runSpeed = 25;
 
             width = 10;
             height = 41;
