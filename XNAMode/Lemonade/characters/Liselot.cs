@@ -30,7 +30,7 @@ namespace Lemonade
             addAnimation("death", new int [] {64,64,65,65,66,66,67,67} ,12 , false);
 
             play("idle");
-
+            addAnimationCallback(resetAfterDeath);
             runSpeed = 50;
 
             width = 10;
@@ -51,6 +51,16 @@ namespace Lemonade
         override public void update()
         {
             base.update();
+        }
+
+        public void resetAfterDeath(string Name, uint Frame, int FrameIndex)
+        {
+            if (Name == "death" && Frame == _curAnim.frames.Length - 1)
+            {
+                reset(originalPosition.X, originalPosition.Y);
+                dead = false;
+                control = Controls.player;
+            }
         }
 
         override public void overlapped(FlxObject obj)
