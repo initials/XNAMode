@@ -531,25 +531,32 @@ namespace Lemonade
             // Switch Controlling Character.
             if (FlxG.keys.justPressed(Keys.V) || FlxG.gamepads.isNewButtonPress(Buttons.Y))
             {
-                if (FlxG.followTarget.GetType().ToString() == "Lemonade.Liselot")
+                if (andre.piggyBacking)
                 {
-                    FlxG.follow(andre, LERP);
-                    andre.control = FlxPlatformActor.Controls.player;
-                    liselot.control = FlxPlatformActor.Controls.none;
-                    
-                    bubbleParticle.at(andre);
-                    bubbleParticle.start(true, 0, 30);
 
                 }
-                else if (FlxG.followTarget.GetType().ToString() == "Lemonade.Andre")
+                else
                 {
-                    FlxG.follow(liselot, LERP);
-                    andre.control = FlxPlatformActor.Controls.none;
-                    liselot.control = FlxPlatformActor.Controls.player;
+                    if (FlxG.followTarget.GetType().ToString() == "Lemonade.Liselot")
+                    {
+                        FlxG.follow(andre, LERP);
+                        andre.control = FlxPlatformActor.Controls.player;
+                        liselot.control = FlxPlatformActor.Controls.none;
 
-                    bubbleParticle.at(liselot);
-                    bubbleParticle.start(true, 0, 30);
+                        bubbleParticle.at(andre);
+                        bubbleParticle.start(true, 0, 30);
 
+                    }
+                    else if (FlxG.followTarget.GetType().ToString() == "Lemonade.Andre")
+                    {
+                        FlxG.follow(liselot, LERP);
+                        andre.control = FlxPlatformActor.Controls.none;
+                        liselot.control = FlxPlatformActor.Controls.player;
+
+                        bubbleParticle.at(liselot);
+                        bubbleParticle.start(true, 0, 30);
+
+                    }
                 }
             }
 

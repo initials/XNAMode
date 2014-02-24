@@ -100,10 +100,11 @@ namespace Lemonade
                 if (piggyBacking == false && dead == false)
                 {
                     Console.WriteLine("Piggybacking is GO!");
-
+                    control = Controls.player;
                     piggyBacking = true;
                     ((Liselot)(obj)).piggyBacking = true;
                     ((Liselot)(obj)).parent = this;
+                    ((Liselot)(obj)).control = Controls.none;
                 }
                 
             }

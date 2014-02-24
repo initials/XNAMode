@@ -71,6 +71,13 @@ namespace Lemonade
                 x = parent.x;
                 y = parent.y;
 
+                
+                if (parent.dead == true)
+                {
+                    piggyBacking = false;
+                    parent = null;
+                }
+
                 if (FlxG.keys.justPressed(Keys.B) || FlxG.gamepads.isNewButtonPress(Buttons.Y))
                 {
                     if (((FlxSprite)(parent)).facing == Flx2DFacing.Right)
@@ -94,11 +101,6 @@ namespace Lemonade
                     parent = null;
 
 
-                }
-                if (parent.dead == true)
-                {
-                    piggyBacking = false;
-                    parent = null;
                 }
 
             }
@@ -153,7 +155,7 @@ namespace Lemonade
         }
         public override void kill()
         {
-            if (piggyBacking == true)
+            if (piggyBacking == true || control == Controls.none)
             {
                 piggybackingAtTimeOfDeath = true;
             }

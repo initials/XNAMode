@@ -997,7 +997,7 @@ namespace org.flixel
                 _data[Index] = 0;
                 return;
             }
-            if (_data[Index] >= stringTileMax)
+            if (_data[Index] > stringTileMax)
             {
                 _data[Index] = 0;
                 return;

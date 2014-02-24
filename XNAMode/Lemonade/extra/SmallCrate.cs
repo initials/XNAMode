@@ -57,8 +57,6 @@ namespace Lemonade
 
             if (parent != null)
             {
-                if (parent.dead == true) parent = null;
-
                 if (((FlxSprite)(parent)).facing == Flx2DFacing.Right)
                 {
 
@@ -71,7 +69,7 @@ namespace Lemonade
                     x = (parent.x - width / 2);
                     y = parent.y;
                 }
-
+                if (parent.dead == true) parent = null;
                 acceleration.Y = 0;
             }
             else if (trampolineTimer < 0.5f)
@@ -99,40 +97,42 @@ namespace Lemonade
 
         public override void overlapped(FlxObject obj)
         {
-            
 
-            //
-            if (obj.GetType().ToString() == "Lemonade.Worker" && obj.dead == false)
+
+            if (Math.Abs(velocity.X) > 1)
             {
-                Console.WriteLine(" Original X {0} {1}   dead {2}" , originalPosition.X, originalPosition.Y, obj.dead);
-                Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledWorker = true;
-                obj.kill();
-                play("explode");
-                velocity.X = 0;
-            }
-            else if (obj.GetType().ToString() == "Lemonade.Army" && obj.dead == false)
-            {
-                Console.WriteLine(" Original X {0} {1}   dead {2}", originalPosition.X, originalPosition.Y, obj.dead);
-                Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledArmy = true;
-                obj.kill();
-                play("explode");
-                velocity.X = 0;
-            }
-            else if (obj.GetType().ToString() == "Lemonade.Chef" && obj.dead == false)
-            {
-                Console.WriteLine(" Original X {0} {1}   dead {2}", originalPosition.X, originalPosition.Y, obj.dead);
-                Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledChef = true;
-                obj.kill();
-                play("explode");
-                velocity.X = 0;
-            }
-            else if (obj.GetType().ToString() == "Lemonade.Inspector" && obj.dead == false)
-            {
-                Console.WriteLine(" Original X {0} {1}   dead {2}", originalPosition.X, originalPosition.Y, obj.dead);
-                Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledInspector = true;
-                obj.kill();
-                play("explode");
-                velocity.X = 0;
+                if (obj.GetType().ToString() == "Lemonade.Worker" && obj.dead == false)
+                {
+                    Console.WriteLine(" Original X {0} {1}   dead {2}", originalPosition.X, originalPosition.Y, obj.dead);
+                    Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledWorker = true;
+                    obj.kill();
+                    play("explode");
+                    velocity.X = 0;
+                }
+                else if (obj.GetType().ToString() == "Lemonade.Army" && obj.dead == false)
+                {
+                    Console.WriteLine(" Original X {0} {1}   dead {2}", originalPosition.X, originalPosition.Y, obj.dead);
+                    Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledArmy = true;
+                    obj.kill();
+                    play("explode");
+                    velocity.X = 0;
+                }
+                else if (obj.GetType().ToString() == "Lemonade.Chef" && obj.dead == false)
+                {
+                    Console.WriteLine(" Original X {0} {1}   dead {2}", originalPosition.X, originalPosition.Y, obj.dead);
+                    Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledChef = true;
+                    obj.kill();
+                    play("explode");
+                    velocity.X = 0;
+                }
+                else if (obj.GetType().ToString() == "Lemonade.Inspector" && obj.dead == false)
+                {
+                    Console.WriteLine(" Original X {0} {1}   dead {2}", originalPosition.X, originalPosition.Y, obj.dead);
+                    Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledInspector = true;
+                    obj.kill();
+                    play("explode");
+                    velocity.X = 0;
+                }
             }
 
             if (obj.GetType().ToString()=="Lemonade.Andre" ||
