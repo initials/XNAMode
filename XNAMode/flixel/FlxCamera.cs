@@ -82,7 +82,32 @@ namespace org.flixel
         /// Stores the basic parallax scrolling values.
 		/// </summary>
 		public Vector2 scroll;
-		
+
+        /// <summary>
+        /// Tells the camera to follow this <code>FlxCore</code> object around.
+        /// </summary>
+        static public FlxObject followTarget;
+        /// <summary>
+        /// Used to force the camera to look ahead of the <code>followTarget</code>.
+        /// </summary>
+        static public Vector2 followLead;
+        /// <summary>
+        /// Used to smoothly track the camera as it follows.
+        /// </summary>
+        static public float followLerp;
+        /// <summary>
+        /// Stores the top and left edges of the camera area.
+        /// </summary>
+        static public Point followMin;
+        /// <summary>
+        /// Stores the bottom and right edges of the camera area.
+        /// </summary>
+        static public Point followMax;
+        /// <summary>
+        /// Internal, used to assist camera and scrolling.
+        /// </summary>
+        static protected Vector2 _scrollTarget;
+
         /// <summary>
         /// The natural background color of the camera. Defaults to FlxG.bgColor.
         /// NOTE: can be transparent for crazy FX!

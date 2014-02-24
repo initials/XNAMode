@@ -14,6 +14,7 @@ namespace Lemonade
     {
 
         public FlxObject parent;
+        private bool piggybackingAtTimeOfDeath;
 
         public Liselot(int xPos, int yPos)
             : base(xPos, yPos)
@@ -50,7 +51,7 @@ namespace Lemonade
             _runningMax = maxVelocity.X;
 
             parent = null;
-            
+            piggybackingAtTimeOfDeath = false;
 
         }
 
@@ -78,13 +79,28 @@ namespace Lemonade
 
             }
 
-            if (FlxG.keys.justPressed(Keys.B))
+            if (FlxG.keys.justPressed(Keys.B) || FlxG.gamepads.isNewButtonPress(Buttons.Y) )
             {
+                if (((FlxSprite)(parent)).facing == Flx2DFacing.Right)
+                {
+                    facing = Flx2DFacing.Right;
+                    y -= 20;
+                    x -= 20;
+                    velocity.Y = -300;
+                    velocity.X = -150;
+                }
+                else
+                {
+                    facing = Flx2DFacing.Left;
+                    y -= 20;
+                    x += 20;
+                    velocity.Y = -300;
+                    velocity.X = 150;
+                }
+
                 piggyBacking = false;
                 parent = null;
-                x -= 20;
-                velocity.Y = -200;
-                velocity.X = -50;
+
 
             }
 
@@ -99,7 +115,10 @@ namespace Lemonade
             {
                 reset(originalPosition.X, originalPosition.Y);
                 dead = false;
-                control = Controls.player;
+                if (piggybackingAtTimeOfDeath)
+                    control = Controls.none;
+                else
+                    control = Controls.player;
             }
         }
 
@@ -127,6 +146,14 @@ namespace Lemonade
         }
         public override void kill()
         {
+            if (piggyBacking == true)
+            {
+                piggybackingAtTimeOfDeath = true;
+            }
+            else
+            {
+                piggybackingAtTimeOfDeath = false;
+            }
             control = Controls.none;
             dead = true;
             //base.kill();

@@ -224,6 +224,8 @@ Content\Revvolvver\sfx\chord_07.xnb
 Content\fx\BloomCombine.xnb
 Content\fx\BloomExtract.xnb
 Content\fx\GaussianBlur.xnb
+Content\music\gwd\ColdMoody_EnergyRemix.xnb
+Content\music\gwd\Energy.xnb
 Content\mode\button.wma
 Content\music\ralph\four chambered heart.wma
 Content\music\ralph\goatmp3.wma
@@ -241,6 +243,8 @@ Content\Lemonade\music\here.wma
 Content\Lemonade\music\join.wma
 Content\Lemonade\music\minifigs_full.wma
 Content\Lemonade\music\music_menu_1.wma
+Content\music\gwd\ColdMoody_EnergyRemix.wma
+Content\music\gwd\Energy.wma
 FourChambers\ActorRecording\automaton.txt
 FourChambers\ActorRecording\chicken.txt
 FourChambers\ActorRecording\corsair.txt
@@ -633,6 +637,8 @@ Content\Revvolvver\sfx\chord_07.xnb
 Content\fx\BloomCombine.xnb
 Content\fx\BloomExtract.xnb
 Content\fx\GaussianBlur.xnb
+Content\music\gwd\ColdMoody_EnergyRemix.xnb
+Content\music\gwd\Energy.xnb
 Content\mode\button.wma
 Content\music\ralph\four chambered heart.wma
 Content\music\ralph\goatmp3.wma
@@ -650,3 +656,5 @@ Content\Lemonade\music\here.wma
 Content\Lemonade\music\join.wma
 Content\Lemonade\music\minifigs_full.wma
 Content\Lemonade\music\music_menu_1.wma
+Content\music\gwd\ColdMoody_EnergyRemix.wma
+Content\music\gwd\Energy.wma
