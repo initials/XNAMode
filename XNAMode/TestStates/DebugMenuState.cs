@@ -21,6 +21,7 @@ namespace XNAMode
             textInfo = "Choose:\n";
             textInfo += "F6. Open initialsgames.com/FourChambers\n";
             textInfo += "F7. FlxBar Test\n";
+            textInfo += "F8. Victory State\n";
             textInfo += "1. Level Visualizer\n";
             textInfo += "2. Mode\n";
             textInfo += "3. Path Test\n";
@@ -55,6 +56,13 @@ namespace XNAMode
             if (FlxG.keys.justPressed(Keys.F7))
             {
                 FlxG.state = new FourChambers.FlxBarTestState();
+
+            }
+            if (FlxG.keys.justPressed(Keys.F8))
+            {
+                Lemonade.Lemonade_Globals.location = "military";
+                FlxG.level = 12;
+                FlxG.state = new Lemonade.VictoryState();
 
             }
 

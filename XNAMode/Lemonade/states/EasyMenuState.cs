@@ -478,6 +478,10 @@ namespace Lemonade
                     FlxG.level = currentLevel;
                     FlxG.state = new PlayState();
                 }
+                else
+                {
+                    FlxG.quake.start(0.005f, 0.5f);
+                }
 
             }
 

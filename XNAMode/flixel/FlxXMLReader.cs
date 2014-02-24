@@ -458,11 +458,9 @@ namespace org.flixel
         {
             List<Dictionary<string, string>> completeSet = new List<Dictionary<string, string>>();
 
-            string currentLevel = "l" + FlxG.level.ToString();
-
             XElement xelement = XElement.Load(filename);
 
-            foreach (XElement xEle in xelement.Descendants(baseNode).Elements(currentLevel))
+            foreach (XElement xEle in xelement.Descendants(baseNode))
             {
                 foreach (XElement xEle2 in xEle.Descendants())
                 {
