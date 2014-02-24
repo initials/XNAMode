@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="flixel\data\FlxRecord.cs" />
+    <Compile Include="flixel\FlxCamera.cs" />
     <Compile Include="flixel\presets\FlxControl.cs" />
     <Compile Include="flixel\presets\FlxMenuState.cs" />
     <Compile Include="flixel\presets\FlxMovingPlatform.cs" />

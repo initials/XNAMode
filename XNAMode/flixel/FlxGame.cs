@@ -493,15 +493,54 @@ namespace org.flixel
             //    new Rectangle(targetLeft + _quakeOffset.X, _quakeOffset.Y, targetWidth, GraphicsDevice.Viewport.Height),
             //    Color.White);
 
-            // This is the new SpriteBatch.Draw the draws with the FlxG.angle
+            // If there are no cameras in the array, render the normal spriteBatch.
+            if (FlxG.cameras.Count == 0)
+            {
+                // This is the new SpriteBatch.Draw the draws with the FlxG.angle
+                FlxG.spriteBatch.Draw(backRender,
+                    new Rectangle(targetLeft + _quakeOffset.X + FlxG.width, _quakeOffset.Y + FlxG.height, targetWidth, GraphicsDevice.Viewport.Height),
+                    null,
+                    _color,
+                    FlxG.angle,
+                    new Vector2(FlxG.width / FlxG.zoom, FlxG.height / FlxG.zoom),
+                    SpriteEffects.None,
+                    0f);
+            }
+            // if there are cameras in the FlxG.cameras array, render them here.
+            else
+            {
+                foreach (FlxCamera cam in FlxG.cameras)
+                {
+                    FlxG.spriteBatch.Draw(backRender,
+                    new Rectangle(
+                        (int)cam.x + (targetLeft + _quakeOffset.X + cam.width), 
+                        (int)cam.y + (_quakeOffset.Y + cam.height), 
+                        targetWidth, 
+                        GraphicsDevice.Viewport.Height),
+                    null,
+                    cam.color,
+                    cam.angle,
+                    new Vector2(FlxG.width / FlxG.zoom, FlxG.height / FlxG.zoom),
+                    SpriteEffects.None,
+                    0f);
+                }
+
+                
+            }
+
+            // Add cameras here.
+            /*
             FlxG.spriteBatch.Draw(backRender,
-                new Rectangle(targetLeft + _quakeOffset.X + FlxG.width, _quakeOffset.Y + FlxG.height, targetWidth, GraphicsDevice.Viewport.Height),
+                new Rectangle((targetLeft + _quakeOffset.X + FlxG.width)/2, (_quakeOffset.Y + FlxG.height)/2, (targetWidth)/2, (GraphicsDevice.Viewport.Height)/2),
                 null,
                 _color,
                 FlxG.angle,
                 new Vector2(FlxG.width / FlxG.zoom, FlxG.height / FlxG.zoom),
                 SpriteEffects.None,
                 0f);
+            */
+
+
 
             //Render console if necessary
             if (_console.visible)

@@ -33,6 +33,8 @@ namespace org.flixel
         // to access from anywhere. (As read-only properties, generally.)
         public static Game Game;
 
+        public static List<FlxCamera> cameras;
+
         /// <summary>
         /// Content Manager
         /// </summary>
@@ -126,6 +128,7 @@ namespace org.flixel
         static public bool joystickBeingUsed = false;
 
 		static public bool android = false;
+
 
         /// <summary>
         /// A reference or pointer to the current FlxState object being used by the game
@@ -528,6 +531,8 @@ namespace org.flixel
             FlxG.fade = new FlxFade();
             FlxG.transition = new FlxTransition();
             FlxG.transition.createSprites(null, Color.DarkViolet, 12, 7, 30, 30, 0, 20, 0.03f);
+
+            FlxG.cameras = new List<FlxCamera>();
 
         }
         //@benbaird End XNA-specific public static properties
