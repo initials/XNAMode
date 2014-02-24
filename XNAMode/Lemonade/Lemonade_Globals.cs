@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using org.flixel;
 
 namespace Lemonade
 {
@@ -22,7 +23,22 @@ namespace Lemonade
 
         }
 
+        public  static  void writeGameProgressToFile()
+        {
+            string progress = "";
+            foreach (var item in gameProgress)
+            {
+                progress += item.Key.ToString() + ","
+                    + item.Value.KilledArmy.ToString().ToLower() + ","
+                    + item.Value.KilledChef.ToString().ToLower() + ","
+                    + item.Value.KilledInspector.ToString().ToLower() + ","
+                    + item.Value.KilledWorker.ToString().ToLower() + ","
+                    + item.Value.LevelComplete.ToString().ToLower() + "\n";
+            }
+            FlxU.saveToDevice(progress, "gameProgress.slf");
 
+            
+        }
 
     }
 }

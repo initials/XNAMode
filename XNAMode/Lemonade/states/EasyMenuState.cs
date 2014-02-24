@@ -44,9 +44,11 @@ namespace Lemonade
         int currentSelected;
         Color notDone;
         Color done;
+        bool locked;
 
         override public void create()
         {
+            locked = false;
 
             base.create();
 
@@ -245,13 +247,16 @@ namespace Lemonade
                             new GameProgress(bool.Parse(leve[1]),
                             bool.Parse(leve[2]),
                             bool.Parse(leve[3]),
-                            bool.Parse(leve[4])));
+                            bool.Parse(leve[4]), 
+                            bool.Parse(leve[5])));
                     }
                 }
 
             }
             catch
             {
+                // ------------ Save new;
+
                 Console.WriteLine("Cannot load game progress");
                 string newProgressString = "";
 
@@ -259,12 +264,38 @@ namespace Lemonade
                 {
                     for (int i = 1; i < 13; i++)
                     {
-                        newProgressString += item + "_" + i.ToString() + ",false,false,false,false\n";
+                        newProgressString += item + "_" + i.ToString() + ",false,false,false,false,false\n";
                     }
                 }
 
                 FlxU.saveToDevice(newProgressString, "gameProgress.slf");
 
+                // ---------------- End Save
+
+                // Read new/
+                prog = FlxU.loadFromDevice("gameProgress.slf");
+
+                Lemonade_Globals.gameProgress = new Dictionary<string, GameProgress>();
+
+                string[] lev = prog.Split('\n');
+                foreach (var item in lev)
+                {
+                    string[] leve = item.Split(',');
+
+                    //
+
+                    if (leve.Length > 1)
+                    {
+                        Lemonade_Globals.gameProgress.Add(leve[0],
+                            new GameProgress(bool.Parse(leve[1]),
+                            bool.Parse(leve[2]),
+                            bool.Parse(leve[3]),
+                            bool.Parse(leve[4]),
+                            bool.Parse(leve[5])));
+                    }
+                }
+
+                // end read.
             }
 
             
@@ -336,6 +367,22 @@ namespace Lemonade
                 badge4.color = done;
             }
 
+            if (currentLevel != 1)
+            {
+                if (Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + (currentLevel - 1).ToString()].LevelComplete == false)
+                {
+                    locked = true;
+                }
+                else
+                {
+                    locked = false;
+                }
+            }
+            else
+            {
+                locked = false;
+            }
+
             if (FlxControl.UPJUSTPRESSED) { currentSelected--; bubbleParticle.start(false, 0.0101f, 1500); }
             if (FlxControl.DOWNJUSTPRESSED) { currentSelected++; bubbleParticle.start(false, 0.0101f, 1500); }
             if (currentSelected <= -1) currentSelected = 3;
@@ -376,10 +423,16 @@ namespace Lemonade
                 bubbleParticle.y = multiplayerText.y;
             }
 
-            
+
 
             Lemonade_Globals.location = possibleLocations[currentLocation];
-            levelText.text = "<- Level " + currentLevel.ToString() + " ->";
+
+            if (locked == false)
+                levelText.text = "<- Level " + currentLevel.ToString() + " ->";
+            else
+            {
+                levelText.text = "<- Level " + currentLevel.ToString() + " is Locked ->";
+            }
 
             if (Lemonade_Globals.location == "newyork")
             {
@@ -420,9 +473,11 @@ namespace Lemonade
 
             if (FlxControl.ACTIONJUSTPRESSED)
             {
-                FlxG.level = currentLevel;
-                FlxG.state = new PlayState();
-
+                if (locked == false)
+                {
+                    FlxG.level = currentLevel;
+                    FlxG.state = new PlayState();
+                }
 
             }
 

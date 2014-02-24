@@ -554,6 +554,12 @@ namespace Lemonade
             }
             if (FlxG.transition.complete)
             {
+
+                Lemonade_Globals.gameProgress[Lemonade_Globals.location+"_"+FlxG.level.ToString()].LevelComplete = true;
+
+                Lemonade_Globals.writeGameProgressToFile();
+
+
                 FlxG.level++;
                 FlxG.state = new PlayState();
                 FlxG.transition.resetAndStop() ;

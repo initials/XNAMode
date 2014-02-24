@@ -8,6 +8,7 @@
         public bool KilledChef;
         public bool KilledInspector;
         public bool KilledWorker;
+        public bool LevelComplete;
 
         #endregion
 
@@ -18,12 +19,13 @@
         public GameProgress(bool killedArmy,
             bool killedChef,
             bool killedInspector,
-            bool killedWorker)
+            bool killedWorker, bool levelComplete)
         {
             KilledArmy = killedArmy;
             KilledChef = killedChef;
             KilledInspector = killedInspector;
             KilledWorker = killedWorker;
+            LevelComplete = levelComplete;
 
         }
     }
