@@ -88,8 +88,11 @@ namespace Lemonade
                 overlappedWith == "Lemonade.Chef" ||
                 overlappedWith == "Lemonade.Worker" )
             {
-                colorFlicker(2);
-                kill();
+                if (obj.dead == false)
+                {
+                    colorFlicker(2);
+                    kill();
+                }
 
             }
             else if (overlappedWith == "Lemonade.Liselot")

@@ -44,7 +44,10 @@ namespace Lemonade
         public void killAfterAnimation(string Name, uint Frame, int FrameIndex) 
         {
             if (Name == "explode" && Frame == _curAnim.frames.Length - 1) {
-                kill();
+                //kill();
+                reset(originalPosition.X, originalPosition.Y);
+                play("blink");
+
 
             }
         }
@@ -54,6 +57,8 @@ namespace Lemonade
 
             if (parent != null)
             {
+                if (parent.dead == true) parent = null;
+
                 if (((FlxSprite)(parent)).facing == Flx2DFacing.Right)
                 {
 
@@ -94,22 +99,42 @@ namespace Lemonade
 
         public override void overlapped(FlxObject obj)
         {
-            base.overlapped(obj);
+            
 
             //
-            if (obj.GetType().ToString() == "Lemonade.Worker" ||
-                obj.GetType().ToString() == "Lemonade.Army" || 
-                obj.GetType().ToString() == "Lemonade.Inspector" ||
-                obj.GetType().ToString() == "Lemonade.Chef" )
+            if (obj.GetType().ToString() == "Lemonade.Worker" && obj.dead == false)
             {
-                //Console.WriteLine(" Original X {0} {1} " , originalPosition.X, originalPosition.Y);
+                Console.WriteLine(" Original X {0} {1}   dead {2}" , originalPosition.X, originalPosition.Y, obj.dead);
+                Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledWorker = true;
+                obj.kill();
                 play("explode");
-                //velocity.Y = 0;
                 velocity.X = 0;
-
-                //reset(originalPosition.X, originalPosition.Y);
-
             }
+            else if (obj.GetType().ToString() == "Lemonade.Army" && obj.dead == false)
+            {
+                Console.WriteLine(" Original X {0} {1}   dead {2}", originalPosition.X, originalPosition.Y, obj.dead);
+                Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledArmy = true;
+                obj.kill();
+                play("explode");
+                velocity.X = 0;
+            }
+            else if (obj.GetType().ToString() == "Lemonade.Chef" && obj.dead == false)
+            {
+                Console.WriteLine(" Original X {0} {1}   dead {2}", originalPosition.X, originalPosition.Y, obj.dead);
+                Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledChef = true;
+                obj.kill();
+                play("explode");
+                velocity.X = 0;
+            }
+            else if (obj.GetType().ToString() == "Lemonade.Inspector" && obj.dead == false)
+            {
+                Console.WriteLine(" Original X {0} {1}   dead {2}", originalPosition.X, originalPosition.Y, obj.dead);
+                Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledInspector = true;
+                obj.kill();
+                play("explode");
+                velocity.X = 0;
+            }
+
             if (obj.GetType().ToString()=="Lemonade.Andre" ||
                 obj.GetType().ToString()=="Lemonade.Liselot")
             {
@@ -163,7 +188,7 @@ namespace Lemonade
                 velocity.Y = -1000;
                 
             }
-            
+            base.overlapped(obj);
 
         }
         // end

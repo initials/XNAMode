@@ -29,7 +29,7 @@ namespace Lemonade
             setOffset(10, 40);
             setDrags(500, 0);
 
-            maxVelocity.X = 330;
+            maxVelocity.X = 130;
             maxVelocity.Y = 2830;
 
             runSpeed = 12;
@@ -49,11 +49,11 @@ namespace Lemonade
         {
             base.overlapped(obj);
 
-            if (obj.GetType().ToString() == "Lemonade.SmallCrate" && (Math.Abs(obj.velocity.X) > 1 || Math.Abs(obj.velocity.Y) > 1))
-            {
-                Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledInspector = true;
-                kill();
-            }
+            //if (obj.GetType().ToString() == "Lemonade.SmallCrate" && (Math.Abs(obj.velocity.X) > 1 || Math.Abs(obj.velocity.Y) > 1))
+            //{
+            //    Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledInspector = true;
+            //    kill();
+            //}
 
         }
     }

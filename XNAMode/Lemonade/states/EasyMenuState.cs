@@ -99,31 +99,31 @@ namespace Lemonade
             miltary.visible = false;
             add(miltary);
 
-            bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/newyork/bgnewyork.tmx", "map", "bg", FlxXMLReader.TILES);
+            bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/warehouse/bgwarehouse.tmx", "map", "bg", FlxXMLReader.TILES);
             warehouse = new FlxTilemap();
             warehouse.auto = FlxTilemap.STRING;
             warehouse.indexOffset = -1;
-            warehouse.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_newyork"), 20, 20);
+            warehouse.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_warehouse"), 20, 20);
             warehouse.boundingBoxOverride = true;
             warehouse.setScrollFactors(0, 0);
             warehouse.visible = false;
             add(warehouse);
 
-            bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/sydney/bgsydney.tmx", "map", "bg", FlxXMLReader.TILES);
+            bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/management/bgmanagement.tmx", "map", "bg", FlxXMLReader.TILES);
             management = new FlxTilemap();
             management.auto = FlxTilemap.STRING;
             management.indexOffset = -1;
-            management.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_sydney"), 20, 20);
+            management.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_management"), 20, 20);
             management.boundingBoxOverride = true;
             management.setScrollFactors(0, 0);
             management.visible = false;
             add(management);
 
-            bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/military/bgmilitary.tmx", "map", "bg", FlxXMLReader.TILES);
+            bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/factory/bgfactory.tmx", "map", "bg", FlxXMLReader.TILES);
             factory = new FlxTilemap();
             factory.auto = FlxTilemap.STRING;
             factory.indexOffset = -1;
-            factory.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_military"), 20, 20);
+            factory.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_factory"), 20, 20);
             factory.boundingBoxOverride = true;
             factory.setScrollFactors(0, 0);
             factory.visible = false;
@@ -197,7 +197,7 @@ namespace Lemonade
             badge4.color = notDone;
             add(badge4);
 
-            tweenBounce = new Tweener(3.0f, 4.0f, TimeSpan.FromSeconds(0.85f), Elastic.EaseOut);
+            tweenBounce = new Tweener(2.0f, 3.0f, TimeSpan.FromSeconds(0.85f), Elastic.EaseOut);
             tweenBounce.PingPong = true;
 
 

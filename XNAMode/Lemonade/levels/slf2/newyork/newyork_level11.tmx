@@ -90,7 +90,7 @@
    </properties>
   </tile>
  </tileset>
- <layer name="bg" width="60" height="40">
+ <layer name="bg" width="60" height="40" visible="0">
   <data encoding="csv">
 9,12,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,12,15,
 29,195,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,195,55,
@@ -135,33 +135,8 @@
 </data>
  </layer>
  <objectgroup name="boxes" width="60" height="40">
-  <object x="0" y="680" width="1200" height="120"/>
-  <object x="0" y="0" width="60" height="680"/>
-  <object x="1140" y="0" width="60" height="680"/>
-  <object x="260" y="160" width="60" height="520"/>
-  <object x="480" y="140" width="60" height="420"/>
-  <object x="720" y="140" width="60" height="540"/>
-  <object x="900" y="140" width="60" height="420"/>
-  <object x="440" y="560" width="200" height="60"/>
-  <object x="320" y="560" width="40" height="40"/>
-  <object x="220" y="580" width="40" height="40"/>
-  <object x="60" y="520" width="40" height="40"/>
-  <object x="220" y="420" width="40" height="40"/>
-  <object x="60" y="320" width="40" height="40"/>
-  <object x="220" y="240" width="40" height="40"/>
-  <object x="320" y="240" width="40" height="40"/>
-  <object x="440" y="340" width="40" height="40"/>
   <object x="640" y="200">
    <polyline points="0,0 0,360"/>
   </object>
-  <object x="680" y="200" width="40" height="40"/>
-  <object x="780" y="240" width="40" height="40"/>
-  <object x="860" y="400" width="40" height="40"/>
-  <object x="780" y="580" width="40" height="100"/>
-  <object x="1040" y="240" width="100" height="60"/>
-  <object x="1100" y="580" width="40" height="40"/>
-  <object x="1100" y="420" width="40" height="40"/>
-  <object x="960" y="500" width="40" height="40"/>
-  <object x="960" y="340" width="40" height="40"/>
  </objectgroup>
 </map>

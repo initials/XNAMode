@@ -55,7 +55,7 @@ namespace Lemonade
 
             if (x < 0) x = FlxG.levelWidth;
             if (x > FlxG.levelWidth) x = 10;
-            if (y < 0) y = FlxG.levelHeight;
+            //if (y < 0) y = FlxG.levelHeight;
             if (y > FlxG.levelHeight) y = 0;
 
 

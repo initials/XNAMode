@@ -18,6 +18,7 @@ namespace Lemonade
 
             addAnimation("run", new int[] { 36,37,38,39,40,41 }, 16);
             addAnimation("idle", new int[] { 4 }, 0);
+            addAnimation("jump", new int[] { 4 }, 0);
             addAnimation("talk", new int[] { 4,57 }, 12);
             addAnimation("death", new int[] { 84,85,86,87,88,89,90,88 }, 12, false);
 
@@ -28,10 +29,10 @@ namespace Lemonade
             setOffset(10, 40);
             setDrags(600, 0);
 
-            maxVelocity.X = 530;
+            maxVelocity.X = 150;
             maxVelocity.Y = 2830;
 
-            runSpeed = 22;
+            runSpeed = 35;
             setJumpValues(-250.0f, -250.0f, 0.315f, 0.0715f);
             numberOfJumps = 1;
 
@@ -48,14 +49,14 @@ namespace Lemonade
 
         public override void overlapped(FlxObject obj)
         {
+            
+
+            //if (obj.GetType().ToString() == "Lemonade.SmallCrate" && (Math.Abs(obj.velocity.X)>1 || Math.Abs(obj.velocity.Y)>1) )
+            //{
+            //    Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledArmy = true;
+            //    kill();
+            //}
             base.overlapped(obj);
-
-            if (obj.GetType().ToString() == "Lemonade.SmallCrate" && (Math.Abs(obj.velocity.X)>1 || Math.Abs(obj.velocity.Y)>1) )
-            {
-                Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledArmy = true;
-                kill();
-            }
-
         }
     }
 }

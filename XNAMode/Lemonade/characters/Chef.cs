@@ -18,6 +18,7 @@ namespace Lemonade
 
             addAnimation("run", new int[] { 30,31,32,33,34,35 }, 14);
             addAnimation("idle", new int[] { 5 }, 0);
+            addAnimation("jump", new int[] { 5 }, 0);
             addAnimation("talk", new int[] { 5, 58 }, 12);
             addAnimation("death", new int[] {101,102,103,104,105,106,107,107 }, 12, false);
 
@@ -28,7 +29,7 @@ namespace Lemonade
             setOffset(10, 40);
             setDrags(1251, 0);
 
-            maxVelocity.X = 530;
+            maxVelocity.X = 230;
             maxVelocity.Y = 2830;
 
             runSpeed = 35;
@@ -49,11 +50,11 @@ namespace Lemonade
         {
             base.overlapped(obj);
 
-            if (obj.GetType().ToString() == "Lemonade.SmallCrate" && (Math.Abs(obj.velocity.X) > 1 || Math.Abs(obj.velocity.Y) > 1))
-            {
-                Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledChef = true;
-                kill();
-            }
+            //if (obj.GetType().ToString() == "Lemonade.SmallCrate" && (Math.Abs(obj.velocity.X) > 1 || Math.Abs(obj.velocity.Y) > 1))
+            //{
+            //    Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledChef = true;
+            //    kill();
+            //}
 
         }
     }

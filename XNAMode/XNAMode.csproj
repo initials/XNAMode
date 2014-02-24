@@ -147,7 +147,7 @@
     <Compile Include="Lemonade\states\EasyMenuState.cs" />
     <Compile Include="Lemonade\states\IntroState.cs" />
     <Compile Include="Lemonade\states\Lemonade.cs" />
-    <Compile Include="Lemonade\states\MenuState.cs" />
+    <Compile Include="Lemonade\states\_____MenuState.cs" />
     <Compile Include="Lemonade\states\MultiplayerMenuState.cs" />
     <Compile Include="Lemonade\states\MultiplayerPlayerState.cs" />
     <Compile Include="Lemonade\states\VictoryState.cs" />
@@ -514,6 +514,9 @@
     <Content Include="Lemonade\levels\custom\PLACE_CUSTOM_LEVELS_HERE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Lemonade\levels\slf2\factory\bgfactory.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Lemonade\levels\slf2\factory\factory_level10.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -545,6 +548,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Lemonade\levels\slf2\factory\factory_level9.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf2\management\bgmanagement.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Lemonade\levels\slf2\management\management_level1.tmx">
@@ -610,6 +616,9 @@
     <None Include="Lemonade\characters\reference\LargeCrate.m" />
     <None Include="Lemonade\characters\reference\SugarBag.m" />
     <None Include="Lemonade\characters\reference\Trampoline.m" />
+    <None Include="Lemonade\levels\slf2\warehouse\bgwarehouse.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Lemonade\levels\slf2\warehouse\warehouse_level1.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

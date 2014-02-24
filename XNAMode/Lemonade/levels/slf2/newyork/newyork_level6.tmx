@@ -128,15 +128,6 @@
 </data>
  </layer>
  <objectgroup name="boxes" width="80" height="30">
-  <object x="0" y="500" width="1600" height="100"/>
-  <object x="0" y="0" width="60" height="500"/>
-  <object x="240" y="420" width="420" height="80"/>
-  <object x="780" y="420" width="220" height="80"/>
-  <object x="1240" y="420" width="360" height="80"/>
-  <object x="1540" y="0" width="60" height="420"/>
-  <object x="1300" y="300" width="80" height="120"/>
-  <object x="360" y="380" width="100" height="40"/>
-  <object x="580" y="380" width="40" height="40"/>
   <object x="1000" y="360">
    <polyline points="0,0 180,0"/>
   </object>

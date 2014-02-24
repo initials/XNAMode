@@ -224,6 +224,11 @@ Content\Lemonade\illustration\andre_drawing.xnb
 Content\Lemonade\illustration\army_drawing.xnb
 Content\Lemonade\illustration\liselot_drawing.xnb
 Content\Lemonade\illustration\worker_drawing.xnb
+Content\music\gwd\ColdMoody_EnergyRemix.xnb
+Content\music\gwd\Energy.xnb
+Content\Lemonade\bgtiles_factory.xnb
+Content\Lemonade\bgtiles_management.xnb
+Content\Lemonade\bgtiles_warehouse.xnb
 Content\mode\button.wma
 Content\music\ralph\four chambered heart.wma
 Content\music\ralph\goatmp3.wma
@@ -241,6 +246,8 @@ Content\Lemonade\music\here.wma
 Content\Lemonade\music\join.wma
 Content\Lemonade\music\minifigs_full.wma
 Content\Lemonade\music\music_menu_1.wma
+Content\music\gwd\ColdMoody_EnergyRemix.wma
+Content\music\gwd\Energy.wma
 FourChambers\ActorRecording\automaton.txt
 FourChambers\ActorRecording\chicken.txt
 FourChambers\ActorRecording\corsair.txt
@@ -274,10 +281,12 @@ Lemonade\characters\control\chef.txt
 Lemonade\characters\control\inspector.txt
 Lemonade\characters\control\worker.txt
 Lemonade\levels\custom\PLACE_CUSTOM_LEVELS_HERE.txt
+Lemonade\script\script.xml
 Revvolvver\Level1_FourPlayerData.txt
 Revvolvver\Level1_OnePlayerData.txt
 Revvolvver\Level1_ThreePlayerData.txt
 Revvolvver\Level1_TwoPlayerData.txt
+Lemonade\levels\slf2\factory\bgfactory.tmx
 Lemonade\levels\slf2\factory\factory_level10.tmx
 Lemonade\levels\slf2\factory\factory_level11.tmx
 Lemonade\levels\slf2\factory\factory_level12.tmx
@@ -289,6 +298,7 @@ Lemonade\levels\slf2\factory\factory_level6.tmx
 Lemonade\levels\slf2\factory\factory_level7.tmx
 Lemonade\levels\slf2\factory\factory_level8.tmx
 Lemonade\levels\slf2\factory\factory_level9.tmx
+Lemonade\levels\slf2\management\bgmanagement.tmx
 Lemonade\levels\slf2\management\management_level1.tmx
 Lemonade\levels\slf2\management\management_level10.tmx
 Lemonade\levels\slf2\management\management_level11.tmx
@@ -303,6 +313,7 @@ Lemonade\levels\slf2\management\management_level8.tmx
 Lemonade\levels\slf2\management\management_level9.tmx
 Lemonade\levels\slf2\newyork\newyork_level101.tmx
 Lemonade\levels\slf2\factory\factory_level1.tmx
+Lemonade\levels\slf2\warehouse\bgwarehouse.tmx
 Lemonade\levels\slf2\warehouse\warehouse_level1.tmx
 Lemonade\levels\slf2\warehouse\warehouse_level10.tmx
 Lemonade\levels\slf2\warehouse\warehouse_level11.tmx

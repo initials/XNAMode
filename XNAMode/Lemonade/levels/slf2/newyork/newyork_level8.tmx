@@ -90,7 +90,7 @@
    </properties>
   </tile>
  </tileset>
- <layer name="bg" width="80" height="40">
+ <layer name="bg" width="80" height="40" visible="0">
   <data encoding="csv">
 393,393,393,393,393,393,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,211,212,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -135,13 +135,6 @@
 </data>
  </layer>
  <objectgroup name="boxes" width="80" height="40">
-  <object x="0" y="600" width="1600" height="200"/>
-  <object x="240" y="480" width="760" height="120"/>
-  <object x="0" y="280" width="240" height="80"/>
-  <object x="1000" y="280" width="200" height="120"/>
-  <object x="400" y="280" width="120" height="140"/>
-  <object x="720" y="240" width="120" height="240"/>
-  <object x="520" y="160" width="200" height="220"/>
   <object x="1200" y="280">
    <polyline points="0,0 0,240"/>
   </object>

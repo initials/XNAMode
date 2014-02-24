@@ -71,6 +71,30 @@ namespace Lemonade
                 x = parent.x;
                 y = parent.y;
 
+                if (FlxG.keys.justPressed(Keys.B) || FlxG.gamepads.isNewButtonPress(Buttons.Y))
+                {
+                    if (((FlxSprite)(parent)).facing == Flx2DFacing.Right)
+                    {
+                        facing = Flx2DFacing.Right;
+                        y -= 20;
+                        x -= 20;
+                        velocity.Y = -300;
+                        velocity.X = -150;
+                    }
+                    else
+                    {
+                        facing = Flx2DFacing.Left;
+                        y -= 20;
+                        x += 20;
+                        velocity.Y = -300;
+                        velocity.X = 150;
+                    }
+
+                    piggyBacking = false;
+                    parent = null;
+
+
+                }
                 if (parent.dead == true)
                 {
                     piggyBacking = false;
@@ -79,30 +103,7 @@ namespace Lemonade
 
             }
 
-            if (FlxG.keys.justPressed(Keys.B) || FlxG.gamepads.isNewButtonPress(Buttons.Y) )
-            {
-                if (((FlxSprite)(parent)).facing == Flx2DFacing.Right)
-                {
-                    facing = Flx2DFacing.Right;
-                    y -= 20;
-                    x -= 20;
-                    velocity.Y = -300;
-                    velocity.X = -150;
-                }
-                else
-                {
-                    facing = Flx2DFacing.Left;
-                    y -= 20;
-                    x += 20;
-                    velocity.Y = -300;
-                    velocity.X = 150;
-                }
 
-                piggyBacking = false;
-                parent = null;
-
-
-            }
 
 
 
@@ -133,9 +134,11 @@ namespace Lemonade
                 overlappedWith == "Lemonade.Chef" ||
                 overlappedWith == "Lemonade.Worker")
             {
-                colorFlicker(2);
-                kill();
-
+                if (obj.dead == false)
+                {
+                    colorFlicker(2);
+                    kill();
+                }
             }
             else if (overlappedWith == "Lemonade.Trampoline")
             {

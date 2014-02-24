@@ -429,7 +429,7 @@ namespace Lemonade
         {
             #region cheats
             // Run cheats.
-            if (FlxG.debug == true)
+            if (FlxG.debug == true && elapsedInState>0.2f)
             {
                 if (FlxGlobal.cheatString == "exits")
                 {
