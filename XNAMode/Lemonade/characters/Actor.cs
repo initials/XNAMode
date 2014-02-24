@@ -11,6 +11,7 @@ namespace Lemonade
 {
     class Actor : FlxPlatformActor
     {
+        public bool piggyBacking;
         public float trampolineTimer = 200000;
         protected const float trampolineMaxLimit = 0.164f;
         public float dashTimer = 200000;
@@ -24,10 +25,22 @@ namespace Lemonade
 
             play("idle");
 
+            piggyBacking = false;
+
         }
 
         override public void update()
         {
+
+            if (piggyBacking == true)
+            {
+                animationPrefix = "piggyback_";
+            }
+            else
+            {
+                animationPrefix = "";
+            }
+
             trampolineTimer += FlxG.elapsed;
             dashTimer += FlxG.elapsed;
 

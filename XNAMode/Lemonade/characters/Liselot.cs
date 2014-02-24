@@ -12,6 +12,9 @@ namespace Lemonade
 {
     class Liselot : Actor
     {
+
+        public FlxObject parent;
+
         public Liselot(int xPos, int yPos)
             : base(xPos, yPos)
         {
@@ -46,10 +49,47 @@ namespace Lemonade
 
             _runningMax = maxVelocity.X;
 
+            parent = null;
+            
+
         }
 
         override public void update()
         {
+            if (piggyBacking)
+            {
+                visible = false;
+            }
+            else
+            {
+                visible = true;
+            }
+
+            if (parent != null)
+            {
+                x = parent.x;
+                y = parent.y;
+
+                if (parent.dead == true)
+                {
+                    piggyBacking = false;
+                    parent = null;
+                }
+
+            }
+
+            if (FlxG.keys.justPressed(Keys.B))
+            {
+                piggyBacking = false;
+                parent = null;
+                x -= 20;
+                velocity.Y = -200;
+                velocity.X = -50;
+
+            }
+
+
+
             base.update();
         }
 

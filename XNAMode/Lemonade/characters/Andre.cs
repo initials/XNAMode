@@ -11,6 +11,9 @@ namespace Lemonade
 {
     class Andre : Actor
     {
+
+
+
         public Andre(int xPos, int yPos)
             : base(xPos, yPos)
         {
@@ -63,6 +66,13 @@ namespace Lemonade
 
         override public void update()
         {
+
+            if (FlxG.keys.justPressed(Keys.B))
+            {
+                piggyBacking = false;
+
+            }
+
             base.update();
         }
 
@@ -78,11 +88,19 @@ namespace Lemonade
                 overlappedWith == "Lemonade.Chef" ||
                 overlappedWith == "Lemonade.Worker" )
             {
-                //Console.WriteLine("Hitting an enemy.");
-                //velocity.Y = -30;
                 colorFlicker(2);
-                //hurt(1);
+            }
+            else if (overlappedWith == "Lemonade.Liselot")
+            {
+                if (piggyBacking == false && dead == false)
+                {
+                    Console.WriteLine("Piggybacking is GO!");
 
+                    piggyBacking = true;
+                    ((Liselot)(obj)).piggyBacking = true;
+                    ((Liselot)(obj)).parent = this;
+                }
+                
             }
 
             else if (overlappedWith == "Lemonade.LargeCrate")
@@ -108,6 +126,9 @@ namespace Lemonade
         {
             control = Controls.none;
             dead = true;
+
+            piggyBacking = false;
+
             //base.kill();
         }
 

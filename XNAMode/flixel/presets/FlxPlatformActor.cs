@@ -12,6 +12,8 @@ namespace org.flixel
     class FlxPlatformActor : FlxSprite
     {
 
+        public string animationPrefix = "";
+
         /// <summary>
         /// A set of Actions to determine what animation to play.
         /// </summary>
@@ -363,27 +365,23 @@ namespace org.flixel
         {
             if (dead)
             {
-                play("death");
+                play(animationPrefix + "death");
             }
-            
-
             else if (velocity.X == 0)
             {
-                play("idle");
+                play(animationPrefix + "idle");
             }
             else if (velocity.Y != 0)
             {
-                play("jump");
+                play(animationPrefix + "jump");
             }
             else if (velocity.X > 1)
             {
-                
-                play("run");
+                play(animationPrefix + "run");
             }
             else if (velocity.X < 1)
             {
-                
-                play("run");
+                play(animationPrefix + "run");
             }
 
 
