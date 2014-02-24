@@ -15,7 +15,7 @@ namespace Lemonade
         public static string[] characterSelected;
         public static bool[] isPlayerControlled;
 
-
+        public static Dictionary<string, GameProgress> gameProgress;
 
         public Lemonade_Globals()
         {

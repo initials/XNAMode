@@ -76,7 +76,7 @@ namespace Lemonade
 
             //
 
-            FlxText text1 = new FlxText(0, FlxG.height / 2, FlxG.width, "Initials Video Games Presents");
+            FlxText text1 = new FlxText(0, FlxG.height / 2 - 50, FlxG.width, "Initials Video Games Presents");
             text1.setFormat(FlxG.Content.Load<SpriteFont>("Lemonade/SMALL_PIXEL"), 3, new Color(237, 0, 142), FlxJustification.Center, Color.Black);
             text1.setScrollFactors(1.5f, 1.5f);
            
@@ -95,9 +95,6 @@ namespace Lemonade
 
         override public void update()
         {
-
-
-
 
             base.update();
 

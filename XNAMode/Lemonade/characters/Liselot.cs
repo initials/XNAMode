@@ -128,12 +128,16 @@ namespace Lemonade
 
             string overlappedWith = obj.GetType().ToString();
 
-            if (overlappedWith == "Lemonade.Army")
+            if (overlappedWith == "Lemonade.Army" ||
+                overlappedWith == "Lemonade.Inspector" ||
+                overlappedWith == "Lemonade.Chef" ||
+                overlappedWith == "Lemonade.Worker")
             {
-                //velocity.Y = -30;
                 colorFlicker(2);
+                kill();
+
             }
-            if (overlappedWith == "Lemonade.Trampoline")
+            else if (overlappedWith == "Lemonade.Trampoline")
             {
                 velocity.Y = -1000;
                 trampolineTimer = 0.0f;

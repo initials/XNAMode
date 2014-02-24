@@ -89,6 +89,8 @@ namespace Lemonade
                 overlappedWith == "Lemonade.Worker" )
             {
                 colorFlicker(2);
+                kill();
+
             }
             else if (overlappedWith == "Lemonade.Liselot")
             {

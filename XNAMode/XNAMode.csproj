@@ -141,6 +141,7 @@
     <Compile Include="Lemonade\extra\SmallCrate.cs" />
     <Compile Include="Lemonade\extra\Spike.cs" />
     <Compile Include="Lemonade\extra\Trampoline.cs" />
+    <Compile Include="Lemonade\GameProgress.cs" />
     <Compile Include="Lemonade\Lemonade_Globals.cs" />
     <Compile Include="Lemonade\states\DataEntryState.cs" />
     <Compile Include="Lemonade\states\EasyMenuState.cs" />
