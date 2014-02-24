@@ -439,15 +439,25 @@ namespace Lemonade
 
                 if (FlxG.keys.justPressed(Keys.F9))
                 {
-                    FlxG.level++;
+                    if (FlxG.level == 12)
+                    {
 
-                    FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
+                        FlxG.state = new VictoryState();
 
-                    FlxG.transition.startFadeIn(0.2f);
+                        return;
+                    }
+                    else
+                    {
+                        FlxG.level++;
 
-                    FlxG.state = new PlayState();
+                        FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
 
-                    return;
+                        FlxG.transition.startFadeIn(0.2f);
+
+                        FlxG.state = new PlayState();
+
+                        return;
+                    }
                 }
                 else if (FlxG.keys.justPressed(Keys.F7) )
                 {
@@ -559,11 +569,19 @@ namespace Lemonade
 
                 Lemonade_Globals.writeGameProgressToFile();
 
-
-                FlxG.level++;
-                FlxG.state = new PlayState();
-                FlxG.transition.resetAndStop() ;
-                return;
+                if (FlxG.level != 12)
+                {
+                    FlxG.level++;
+                    FlxG.state = new PlayState();
+                    FlxG.transition.resetAndStop();
+                    return;
+                }
+                else if (FlxG.level == 12)
+                {
+                    FlxG.state = new VictoryState();
+                    FlxG.transition.resetAndStop();
+                    return;
+                }
             }
 
         }

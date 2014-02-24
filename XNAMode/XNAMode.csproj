@@ -150,6 +150,7 @@
     <Compile Include="Lemonade\states\MenuState.cs" />
     <Compile Include="Lemonade\states\MultiplayerMenuState.cs" />
     <Compile Include="Lemonade\states\MultiplayerPlayerState.cs" />
+    <Compile Include="Lemonade\states\VictoryState.cs" />
     <Compile Include="Revvolvver\Bomb.cs" />
     <Compile Include="Revvolvver\Bullet.cs" />
     <Compile Include="Revvolvver\Cloud.cs" />
