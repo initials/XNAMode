@@ -213,13 +213,13 @@ namespace Lemonade
             }
 
 
-            FlxCamera cam1 = new FlxCamera(0, 0, FlxG.width/2, FlxG.height, 1);
-            cam1.color = Color.Blue;
-            FlxG.cameras.Add(cam1);
+            //FlxCamera cam1 = new FlxCamera(0, 0, FlxG.width/2, FlxG.height, 1);
+            //cam1.color = Color.Blue;
+            //FlxG.cameras.Add(cam1);
 
-            FlxCamera cam2 = new FlxCamera(FlxG.width , 0, FlxG.width / 2, FlxG.height, 1);
-            cam2.color = Color.GreenYellow;
-            FlxG.cameras.Add(cam2);
+            //FlxCamera cam2 = new FlxCamera(FlxG.width , 0, FlxG.width / 2, FlxG.height, 1);
+            //cam2.color = Color.GreenYellow;
+            //FlxG.cameras.Add(cam2);
 
 
 
