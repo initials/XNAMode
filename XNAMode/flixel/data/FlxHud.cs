@@ -18,14 +18,32 @@ namespace org.flixel
         private Rectangle _consoleRect;
         private Color _consoleColor;
 
+        /// <summary>
+        /// A text box that appears in top left
+        /// </summary>
         public FlxText p1HudText;
+        /// <summary>
+        /// A text box that appears in top right
+        /// </summary>
         public FlxText p2HudText;
+        /// <summary>
+        /// A text box that appears in bottom left
+        /// </summary>
         public FlxText p3HudText;
+        /// <summary>
+        /// A text box that appears in buttom right
+        /// </summary>
         public FlxText p4HudText;
 
+        /// <summary>
+        /// The hudGroup can be used to push a whole FlxGroup into the hud and have control of it.
+        /// </summary>
         public FlxGroup hudGroup;
-
-
+        /// <summary>
+        /// Set this for how long you want to leave up the hud Button.
+        /// </summary>
+        public float timeToShowButton;
+        private float _elapsedSinceLastButtonNeeded;
 
         /// <summary>
         /// used to display a game pad button at regular resolution.
@@ -100,6 +118,9 @@ namespace org.flixel
 
             //add(_gamePadButton, true);
 
+            timeToShowButton = float.MaxValue;
+            _elapsedSinceLastButtonNeeded = 0.0f;
+
         }
 
         /// <summary>
@@ -160,6 +181,13 @@ namespace org.flixel
         /// </summary>
         public void update()
         {
+            _elapsedSinceLastButtonNeeded += FlxG.elapsed;
+
+            if ( _elapsedSinceLastButtonNeeded > timeToShowButton )
+            {
+                _gamePadButton.visible = false;
+            }
+
             if (visible)
             {
                 hudGroup.update();

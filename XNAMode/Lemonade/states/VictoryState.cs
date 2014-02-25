@@ -34,20 +34,19 @@ namespace Lemonade
             talkText.alignment = FlxJustification.Left;
             add(talkText);
 
-
-
             scripts = FlxXMLReader.readCustomXML( Lemonade_Globals.location + "_scene13", "Lemonade/script/script.xml");
-            Console.WriteLine(scripts.ToString() + "  " + scripts.Count.ToString());
+            
+            //Console.WriteLine(scripts.ToString() + "  " + scripts.Count.ToString());
 
-            foreach (var item in scripts)
-            {
-                Console.WriteLine("-------------------");
-                foreach (var item2 in item)
-                {
+            //foreach (var item in scripts)
+            //{
+            //    Console.WriteLine("-------------------");
+            //    foreach (var item2 in item)
+            //    {
                     
-                    Console.WriteLine(item2.Key.ToString() + " " + item2.Value.ToString());
-                }
-            }
+            //        Console.WriteLine(item2.Key.ToString() + " " + item2.Value.ToString());
+            //    }
+            //}
 
             FlxG.hideHud();
             FlxG.resetHud();

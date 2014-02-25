@@ -135,12 +135,19 @@ namespace Lemonade
                 }
             }
 
-            if (obj.GetType().ToString()=="Lemonade.Andre" ||
-                obj.GetType().ToString()=="Lemonade.Liselot")
+            if (obj.GetType().ToString() == "Lemonade.Andre" ||
+                obj.GetType().ToString() == "Lemonade.Liselot")
             {
+                if (parent == null)
+                {
+                    FlxG.showHud();
+                    FlxG._game.hud.setHudGamepadButton(FlxButton.ControlPadX, x, y - 100);
+                    FlxG._game.hud.timeToShowButton = 1.0f;
+                }
+
                 if (
-                    (FlxG.keys.justPressed(Keys.C) && FlxG.keys.DOWN) || 
-                    (FlxG.gamepads.isNewButtonPress(Buttons.X) && (FlxG.gamepads.isButtonDown(Buttons.DPadDown) || (FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown)  )))
+                    (FlxG.keys.justPressed(Keys.C) && FlxG.keys.DOWN) ||
+                    (FlxG.gamepads.isNewButtonPress(Buttons.X) && (FlxG.gamepads.isButtonDown(Buttons.DPadDown) || (FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown))))
                     )
                 {
 
@@ -164,8 +171,9 @@ namespace Lemonade
                         Console.WriteLine("Parent != null " + FlxG.elapsedTotal);
                         //velocity.X = 500;
                         parent = null;
-                    
-                        if ( ((FlxSprite)(obj)).facing == Flx2DFacing.Left) {
+
+                        if (((FlxSprite)(obj)).facing == Flx2DFacing.Left)
+                        {
                             velocity.X = -500;
                             velocity.Y = velY;
                             x -= width;
@@ -179,6 +187,7 @@ namespace Lemonade
                     }
                 }
             }
+
             if (obj.GetType().ToString() == "Lemonade.Trampoline")
             {
                 //Console.WriteLine("small craete is overlapping?? + + " + obj.GetType().ToString());

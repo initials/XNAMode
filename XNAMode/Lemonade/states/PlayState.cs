@@ -482,7 +482,20 @@ namespace Lemonade
             }
             #endregion
 
+            #region pirateVersion
 
+            if (Lemonade_Globals.PAID_VERSION == Lemonade_Globals.PIRATE_MODE)
+            {
+                if (elapsedInState > 3.0 && FlxG.level > 2)
+                {
+                    foreach (var item in actors.members)
+                    {
+                        ((FlxPlatformActor)(item)).maxVelocity.X += 0.5f;
+                    }
+                }
+            }
+
+            #endregion
 
             FlxU.collideRamp(actors, ramps);
             FlxU.collide(collidableTilemap, actors);
@@ -567,6 +580,12 @@ namespace Lemonade
 
             if (levelComplete == true && ! FlxG.transition.hasStarted)
             {
+                andre.alpha -= 0.1f;
+                liselot.alpha -= 0.1f;
+
+                andre.control = FlxPlatformActor.Controls.none;
+                liselot.control = FlxPlatformActor.Controls.none;
+
                 FlxG.transition.startFadeOut(0.05f, -90, 150);
             }
             if (FlxG.transition.complete)

@@ -806,6 +806,7 @@
     </None>
     <None Include="Lemonade\levels\slf2\military\military_cutscene.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Lemonade\levels\slf2\military\military_level1.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -852,12 +853,14 @@
     </None>
     <None Include="Lemonade\levels\slf2\newyork\newyork_cutscene.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Lemonade\levels\slf2\newyork\newyork_intro.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Lemonade\levels\slf2\newyork\newyork_level1.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Lemonade\levels\slf2\newyork\newyork_level10.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

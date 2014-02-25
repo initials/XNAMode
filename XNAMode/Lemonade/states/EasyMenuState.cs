@@ -382,6 +382,10 @@ namespace Lemonade
             {
                 locked = false;
             }
+            if (currentLevel > 3 && Lemonade_Globals.PAID_VERSION == Lemonade_Globals.DEMO_MODE)
+            {
+                locked = true;
+            }
 
             if (FlxControl.UPJUSTPRESSED) { currentSelected--; bubbleParticle.start(false, 0.0101f, 1500); }
             if (FlxControl.DOWNJUSTPRESSED) { currentSelected++; bubbleParticle.start(false, 0.0101f, 1500); }

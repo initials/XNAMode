@@ -18,6 +18,13 @@ namespace Lemonade
 
         public static Dictionary<string, GameProgress> gameProgress;
 
+        public const int DEMO_MODE = 0;
+        public const int FULL_MODE = 1;
+        public const int PIRATE_MODE = 2;
+
+
+        public static int PAID_VERSION;
+
         public Lemonade_Globals()
         {
 
