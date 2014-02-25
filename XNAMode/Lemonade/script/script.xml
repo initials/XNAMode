@@ -456,4 +456,13 @@
         <dialog character="Mr Amsterdaam">Back to your families.</dialog>
         <dialog character="Mr Amsterdaam">And their warm embrace.</dialog>
     </military_scene13>
+  <warehouse_scene13 name="Warehouse End Cut Scene" location="warehouse" >
+    <dialog character="Mr Amsterdaam">This is the end.</dialog>
+  </warehouse_scene13>
+  <factory_scene13 name="Factory End Cut Scene" location="factory" >
+    <dialog character="Mr Amsterdaam">This is the end.</dialog>
+  </factory_scene13>
+  <management_scene13 name="Warehouse End Cut Scene" location="management" >
+    <dialog character="Mr Amsterdaam">This is the end.</dialog>
+  </management_scene13>
 </script>
