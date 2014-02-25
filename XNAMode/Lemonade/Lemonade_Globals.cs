@@ -25,6 +25,9 @@ namespace Lemonade
 
         public static int PAID_VERSION;
 
+        public static int LAST_LOCATION;
+        public static int LAST_SELECTED_ON_MENU;
+
         public Lemonade_Globals()
         {
 

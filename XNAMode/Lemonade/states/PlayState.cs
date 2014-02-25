@@ -71,7 +71,7 @@ namespace Lemonade
 
             foreach (KeyValuePair<string, string> kvp in levelAttrs)
             {
-                Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+                //Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
             }
 
             FlxG.levelWidth = Convert.ToInt32(levelAttrs["width"]) * Convert.ToInt32(levelAttrs["tilewidth"]);
@@ -91,7 +91,7 @@ namespace Lemonade
             bgElementsTilemap = new FlxTilemap();
             bgElementsTilemap.auto = FlxTilemap.STRING;
             bgElementsTilemap.indexOffset = -1;
-            bgElementsTilemap.stringTileMin = 201;
+            bgElementsTilemap.stringTileMin = 200;
             bgElementsTilemap.stringTileMax = 341;
             bgElementsTilemap.loadMap(levelString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/tiles_" + Lemonade_Globals.location), 20, 20);
             bgElementsTilemap.boundingBoxOverride = false;
@@ -103,7 +103,7 @@ namespace Lemonade
 
             // TMX maps have indexOffset of -1;
             collidableTilemap.indexOffset = -1;
-            collidableTilemap.stringTileMax = 201;
+            collidableTilemap.stringTileMax = 200;
             collidableTilemap.loadMap(levelString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/tiles_" + Lemonade_Globals.location), 20, 20);
             collidableTilemap.boundingBoxOverride = false;
             add(collidableTilemap);
@@ -312,9 +312,9 @@ namespace Lemonade
             {
                 foreach (KeyValuePair<string, string> kvp in nodes)
                 {
-                    Console.Write("Level String -- Key = {0}, Value = {1}, ", kvp.Key, kvp.Value);
+                    //Console.Write("Level String -- Key = {0}, Value = {1}, ", kvp.Key, kvp.Value);
                 }
-                Console.Write("\r\n");
+                //Console.Write("\r\n");
             }
 
             foreach (var item in levelString)
@@ -442,6 +442,10 @@ namespace Lemonade
                 }
                 if (FlxG.keys.justPressed(Keys.F9))
                 {
+                    Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].LevelComplete = true;
+
+                    Lemonade_Globals.writeGameProgressToFile();
+
                     if (FlxG.level == 12)
                     {
                         FlxG.state = new VictoryState();
@@ -568,11 +572,13 @@ namespace Lemonade
             {
                 FlxG.state = new EasyMenuState();
             }
-
-            if (levelComplete == true && ! FlxG.transition.hasStarted)
+            if (levelComplete == true)
             {
                 andre.alpha -= 0.1f;
                 liselot.alpha -= 0.1f;
+            }
+            if (levelComplete == true && ! FlxG.transition.hasStarted)
+            {
 
                 andre.control = FlxPlatformActor.Controls.none;
                 liselot.control = FlxPlatformActor.Controls.none;

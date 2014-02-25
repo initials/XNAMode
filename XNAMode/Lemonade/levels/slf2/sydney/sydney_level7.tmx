@@ -138,15 +138,9 @@
  </layer>
  <objectgroup name="boxes" width="40" height="42">
   <object x="340" y="120">
-   <properties>
-    <property name="speed" value="100"/>
-   </properties>
    <polyline points="0,0 0,300"/>
   </object>
   <object x="600" y="320">
-   <properties>
-    <property name="speed" value="150"/>
-   </properties>
    <polyline points="0,0 0,180"/>
   </object>
  </objectgroup>

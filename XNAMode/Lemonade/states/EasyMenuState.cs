@@ -39,23 +39,23 @@ namespace Lemonade
         int currentLocation;
         List<string> possibleLocations = new List<string>();
 
-        int currentLevel = 1;
+        int currentLevel = FlxG.level;
 
         int currentSelected;
         Color notDone;
         Color done;
         bool locked;
+        string lockedPhrase;
 
         override public void create()
         {
             locked = false;
+            lockedPhrase = "";
 
             base.create();
 
-            
-
-            currentLocation = 0;
-            currentSelected = 0;
+            currentLocation = Lemonade_Globals.LAST_LOCATION ;
+            currentSelected = Lemonade_Globals.LAST_SELECTED_ON_MENU;
             
             possibleLocations.Add("military");
             possibleLocations.Add("sydney");
@@ -372,6 +372,7 @@ namespace Lemonade
                 if (Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + (currentLevel - 1).ToString()].LevelComplete == false)
                 {
                     locked = true;
+                    lockedPhrase = "is Locked";
                 }
                 else
                 {
@@ -382,9 +383,10 @@ namespace Lemonade
             {
                 locked = false;
             }
-            if (currentLevel > 3 && Lemonade_Globals.PAID_VERSION == Lemonade_Globals.DEMO_MODE)
+            if (currentLevel > 2 && Lemonade_Globals.PAID_VERSION == Lemonade_Globals.DEMO_MODE)
             {
                 locked = true;
+                lockedPhrase = "is Locked. Buy the game to play it";
             }
 
             if (FlxControl.UPJUSTPRESSED) { currentSelected--; bubbleParticle.start(false, 0.0101f, 1500); }
@@ -435,7 +437,7 @@ namespace Lemonade
                 levelText.text = "<- Level " + currentLevel.ToString() + " ->";
             else
             {
-                levelText.text = "<- Level " + currentLevel.ToString() + " is Locked ->";
+                levelText.text = "<- Level " + currentLevel.ToString() + " " + lockedPhrase +" ->";
             }
 
             if (Lemonade_Globals.location == "newyork")
@@ -479,6 +481,8 @@ namespace Lemonade
             {
                 if (locked == false)
                 {
+                    Lemonade_Globals.LAST_SELECTED_ON_MENU = currentSelected;
+                    Lemonade_Globals.LAST_LOCATION = currentLocation;
                     FlxG.level = currentLevel;
                     FlxG.state = new PlayState();
                 }

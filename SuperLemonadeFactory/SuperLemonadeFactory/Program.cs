@@ -35,7 +35,7 @@ namespace Loader_SuperLemonadeFactory
             FlxG.debug = true;
             FlxG.level = 1;
 
-            Lemonade.Lemonade_Globals.PAID_VERSION = Lemonade.Lemonade_Globals.DEMO_MODE;
+            Lemonade.Lemonade_Globals.PAID_VERSION = Lemonade.Lemonade_Globals.FULL_MODE;
 
 
 
