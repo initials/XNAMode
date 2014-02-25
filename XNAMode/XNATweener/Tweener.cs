@@ -197,7 +197,7 @@ namespace XNATweener
         public void Reset()
         {
             elapsed = 0.0f;
-            from = Position;
+            //from = Position;
         }
 
         public void Reset(float to)

@@ -436,24 +436,21 @@ namespace Lemonade
                     andre.at(exit);
                     liselot.at(exit);
                 }
-
+                if (FlxGlobal.cheatString == "pirate")
+                {
+                    Lemonade_Globals.PAID_VERSION = Lemonade_Globals.PIRATE_MODE;
+                }
                 if (FlxG.keys.justPressed(Keys.F9))
                 {
                     if (FlxG.level == 12)
                     {
-
                         FlxG.state = new VictoryState();
-
                         return;
                     }
                     else
                     {
                         FlxG.level++;
-
                         FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
-
-                        FlxG.transition.startFadeIn(0.2f);
-
                         FlxG.state = new PlayState();
 
                         return;
@@ -462,12 +459,7 @@ namespace Lemonade
                 else if (FlxG.keys.justPressed(Keys.F7) )
                 {
                     FlxG.level--;
-                    //if (FlxG.level < 1) FlxG.level = 25;
-
                     FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
-
-                    FlxG.transition.startFadeIn(0.2f);
-
                     FlxG.state = new PlayState();
 
                     return;
@@ -475,7 +467,6 @@ namespace Lemonade
                 else if (FlxG.keys.justPressed(Keys.F8) )
                 {
                     FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
-                    FlxG.transition.startFadeIn(0.2f);
                     FlxG.state = new PlayState();
                     return;
                 }

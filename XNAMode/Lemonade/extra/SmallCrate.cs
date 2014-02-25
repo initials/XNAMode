@@ -197,6 +197,12 @@ namespace Lemonade
                 velocity.Y = -1000;
                 
             }
+
+            if (obj.GetType().ToString() == "Lemonade.Spike")
+            {
+                play("explode");
+            }
+
             base.overlapped(obj);
 
         }

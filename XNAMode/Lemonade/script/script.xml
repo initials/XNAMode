@@ -457,12 +457,25 @@
         <dialog character="Mr Amsterdaam">And their warm embrace.</dialog>
     </military_scene13>
   <warehouse_scene13 name="Warehouse End Cut Scene" location="warehouse" >
-    <dialog character="Mr Amsterdaam">This is the end.</dialog>
+    <dialog character="Andre">Nothing has changed here since I was a kid.</dialog>
+    <dialog character="Andre">You know what Thomas Wolfe said about going home?</dialog>
+    <dialog character="Andre">He had valid points but I'm not George Webber...</dialog>
+    <dialog character="Andre">...and I'm not interested in re-living my youth.</dialog>
+    <dialog character="Andre">The future is ours.</dialog>
   </warehouse_scene13>
   <factory_scene13 name="Factory End Cut Scene" location="factory" >
-    <dialog character="Mr Amsterdaam">This is the end.</dialog>
+    <dialog character="Liselot">Fresh ingredients in, refreshing drinks out.</dialog>
+    <dialog character="Liselot">Yuck, I am drenched in sweat. It's disgusting in here.</dialog>
+    <dialog character="Liselot">Let's get out of here, it's time to go home.</dialog>
+    <dialog character="Liselot">The day escapes.</dialog>
   </factory_scene13>
   <management_scene13 name="Warehouse End Cut Scene" location="management" >
-    <dialog character="Mr Amsterdaam">This is the end.</dialog>
+    <dialog character="Andre">Owning this factory will be a honor and a challenge.</dialog>
+    <dialog character="Andre">I think we'll do a great job.</dialog>
+    <dialog character="Andre">We signed on to supply the military with soft drinks for their rations.</dialog>
+    <dialog character="Andre">I quite liked the new durian flavor we are now producing.</dialog>
+    <dialog character="Andre">We won't be adopting our handyman's anarchist ideals.</dialog>
+    <dialog character="Andre">We've managed to avoid the food inspector's wrath this time.</dialog>
+    <dialog character="Andre">And us? We're still wildly in love.</dialog>
   </management_scene13>
 </script>
