@@ -83,6 +83,11 @@ namespace Lemonade
                 //FlxU.solveXCollision(obj, null);
 
             }
+            else if (obj.GetType().ToString() == "Lemonade.Spike")
+            {
+                //Console.WriteLine("Spike overlapp");
+                hurt(1);
+            }
         }
 
         public override void kill()

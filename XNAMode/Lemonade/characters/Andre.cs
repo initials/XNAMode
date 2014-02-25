@@ -122,11 +122,11 @@ namespace Lemonade
                 //    obj.y = -1000;
                 //}
             }
-            else if (overlappedWith == "Lemonade.Spike")
-            {
-                //Console.WriteLine("Spike overlapp");
-                hurt(1);
-            }
+            //else if (overlappedWith == "Lemonade.Spike")
+            //{
+            //    //Console.WriteLine("Spike overlapp");
+            //    hurt(1);
+            //}
         }
         public override void kill()
         {

@@ -147,11 +147,7 @@ namespace Lemonade
                 velocity.Y = -1000;
                 trampolineTimer = 0.0f;
             }
-            else if (overlappedWith == "Lemonade.Spike")
-            {
-                //Console.WriteLine("Spike overlapp");
-                hurt(1);
-            }
+
         }
         public override void kill()
         {
