@@ -326,7 +326,7 @@ namespace Lemonade
             if (Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + currentLevel.ToString()].KilledArmy == false)
             {
                 badge1.scale = incompleteScale;
-                badge1.color = notDone; ;
+                badge1.color = notDone;
             }
             else
             {
@@ -337,7 +337,7 @@ namespace Lemonade
             if (Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + currentLevel.ToString()].KilledChef == false)
             {
                 badge2.scale = incompleteScale;
-                badge2.color = notDone; ;
+                badge2.color = notDone;
             }
             else
             {
@@ -348,7 +348,7 @@ namespace Lemonade
             if (Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + currentLevel.ToString()].KilledInspector == false)
             {
                 badge3.scale = incompleteScale;
-                badge3.color = notDone; ;
+                badge3.color = notDone;
             }
             else
             {
@@ -359,7 +359,7 @@ namespace Lemonade
             if (Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + currentLevel.ToString()].KilledWorker == false)
             {
                 badge4.scale = incompleteScale;
-                badge4.color = notDone; ;
+                badge4.color = notDone;
             }
             else
             {
