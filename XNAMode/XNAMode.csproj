@@ -135,8 +135,10 @@
     <Compile Include="FourChambers\Levels\MovingPlatform.cs" />
     <Compile Include="FourChambers\Levels\MultiPlayerPlayState.cs" />
     <Compile Include="Lemonade\extra\Exit.cs" />
+    <Compile Include="Lemonade\extra\FilingCabinet.cs" />
     <Compile Include="Lemonade\extra\LargeCrate.cs" />
     <Compile Include="Lemonade\extra\MovingPlatform.cs" />
+    <Compile Include="Lemonade\extra\Plant.cs" />
     <Compile Include="Lemonade\extra\Ramp.cs" />
     <Compile Include="Lemonade\extra\SmallCrate.cs" />
     <Compile Include="Lemonade\extra\Spike.cs" />
@@ -514,6 +516,8 @@
     <Content Include="Lemonade\levels\custom\PLACE_CUSTOM_LEVELS_HERE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Lemonade\extra\FilingCabinet.as" />
+    <None Include="Lemonade\extra\Plant.as" />
     <None Include="Lemonade\levels\slf2\factory\bgfactory.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

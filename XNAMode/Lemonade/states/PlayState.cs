@@ -198,7 +198,10 @@ namespace Lemonade
                 {
                     buildActor("rampRight", xPos, yPos);
                 }
-
+                if (item == "4000")
+                {
+                    buildActor("plant", xPos, yPos);
+                }
                 count++;
             }
         }
@@ -299,6 +302,11 @@ namespace Lemonade
             {
                 ramp = new Ramp(xPos, yPos, FlxRamp.LOW_SIDE_RIGHT);
                 ramps.add(ramp);
+            }
+            if (actor == "plant")
+            {
+                FlxSprite plant = new Plant(xPos, yPos, 1);
+                levelItems.add(plant);
             }
         }
 
