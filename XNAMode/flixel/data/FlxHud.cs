@@ -185,7 +185,7 @@ namespace org.flixel
 
             if ( _elapsedSinceLastButtonNeeded > timeToShowButton )
             {
-                _gamePadButton.visible = false;
+                hudGroup.visible = false;
             }
 
             if (visible)

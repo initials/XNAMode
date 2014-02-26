@@ -639,6 +639,7 @@
     </None>
     <None Include="Lemonade\levels\slf2\warehouse\warehouse_level4.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Lemonade\levels\slf2\warehouse\warehouse_level5.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

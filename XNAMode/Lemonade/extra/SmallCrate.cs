@@ -141,7 +141,17 @@ namespace Lemonade
                 if (parent == null)
                 {
                     FlxG.showHud();
-                    FlxG._game.hud.setHudGamepadButton(FlxButton.ControlPadX, x, y - 100);
+                    
+                    //FlxG._game.hud.setHudGamepadButton(FlxButton.ControlPadX, x, y - 100);
+
+                    FlxG._game.hud.hudGroup.visible = true;
+                    
+                    FlxG._game.hud.hudGroup.members[0].x = x-30;
+                    FlxG._game.hud.hudGroup.members[0].y = y - 30;
+
+                    FlxG._game.hud.hudGroup.members[1].x = x + 30;
+                    FlxG._game.hud.hudGroup.members[1].y = y - 30;
+                    
                     FlxG._game.hud.timeToShowButton = 1.0f;
                 }
 

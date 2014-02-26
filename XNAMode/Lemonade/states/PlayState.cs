@@ -340,6 +340,39 @@ namespace Lemonade
 
             base.create();
 
+            FlxSprite _gamePadButton = new FlxSprite(0, 0);
+            _gamePadButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_64"), true, false, 63, 64);
+            _gamePadButton.width = 61;
+            _gamePadButton.height = 62;
+            _gamePadButton.offset.X = 1;
+            _gamePadButton.offset.Y = 1;
+            _gamePadButton.addAnimation("frame", new int[] { FlxButton.ControlPadX });
+            _gamePadButton.play("frame");
+            _gamePadButton.solid = false;
+            _gamePadButton.visible = true;
+            _gamePadButton.scrollFactor.X = 1;
+            _gamePadButton.scrollFactor.Y = 1;
+            _gamePadButton.boundingBoxOverride = false;
+            FlxG._game.hud.hudGroup.add(_gamePadButton);
+
+            FlxSprite _gamePadDirection = new FlxSprite(0, 0);
+            _gamePadDirection.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_64"), true, false, 63, 64);
+            _gamePadDirection.width = 61;
+            _gamePadDirection.height = 62;
+            _gamePadDirection.offset.X = 1;
+            _gamePadDirection.offset.Y = 1;
+            _gamePadDirection.addAnimation("frame", new int[] { FlxButton.ControlPadLStick });
+            _gamePadDirection.play("frame");
+            _gamePadDirection.solid = false;
+            _gamePadDirection.visible = true;
+            _gamePadDirection.scrollFactor.X = 1;
+            _gamePadDirection.scrollFactor.Y = 1;
+            _gamePadDirection.boundingBoxOverride = false;
+            FlxG._game.hud.hudGroup.add(_gamePadDirection);
+
+
+
+
             FlxG.mouse.hide();
 
             FlxG.autoHandlePause = true;
