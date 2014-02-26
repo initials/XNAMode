@@ -341,7 +341,7 @@ namespace Lemonade
             base.create();
 
             FlxSprite _gamePadButton = new FlxSprite(0, 0);
-            _gamePadButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_64"), true, false, 63, 64);
+            _gamePadButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_32"), true, false, 63, 64);
             _gamePadButton.width = 61;
             _gamePadButton.height = 62;
             _gamePadButton.offset.X = 1;
@@ -356,7 +356,7 @@ namespace Lemonade
             FlxG._game.hud.hudGroup.add(_gamePadButton);
 
             FlxSprite _gamePadDirection = new FlxSprite(0, 0);
-            _gamePadDirection.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_64"), true, false, 63, 64);
+            _gamePadDirection.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_32"), true, false, 63, 64);
             _gamePadDirection.width = 61;
             _gamePadDirection.height = 62;
             _gamePadDirection.offset.X = 1;

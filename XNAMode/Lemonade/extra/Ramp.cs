@@ -10,6 +10,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Lemonade
 {
+    /// <summary>
+    /// RAMP is not yet implemented.
+    /// </summary>
     class Ramp : FlxRamp
     {
 
@@ -41,20 +44,11 @@ namespace Lemonade
                 setOffset(-10, -2);
             }
 
-
-
-
-
         }
 
         override public void update()
         {
-
-
             base.update();
-
         }
-
-
     }
 }

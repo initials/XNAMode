@@ -41,6 +41,12 @@ namespace Lemonade
 
         }
 
+        /// <summary>
+        /// Animation call back resets the crate after exploding.
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="Frame"></param>
+        /// <param name="FrameIndex"></param>
         public void killAfterAnimation(string Name, uint Frame, int FrameIndex) 
         {
             if (Name == "explode" && Frame == _curAnim.frames.Length - 1) {
@@ -85,14 +91,12 @@ namespace Lemonade
 
         }
 
+        /// <summary>
+        /// Kill the small crate.
+        /// </summary>
         public override void kill()
         {
             base.kill();
-
-            
-
-
-
         }
 
         public override void overlapped(FlxObject obj)
@@ -146,13 +150,13 @@ namespace Lemonade
 
                     FlxG._game.hud.hudGroup.visible = true;
                     
-                    FlxG._game.hud.hudGroup.members[0].x = x-30;
+                    FlxG._game.hud.hudGroup.members[0].x = x+30;
                     FlxG._game.hud.hudGroup.members[0].y = y - 30;
 
-                    FlxG._game.hud.hudGroup.members[1].x = x + 30;
+                    FlxG._game.hud.hudGroup.members[1].x = x - 30;
                     FlxG._game.hud.hudGroup.members[1].y = y - 30;
                     
-                    FlxG._game.hud.timeToShowButton = 1.0f;
+                    FlxG._game.hud.timeToShowButton = 2.0f;
                 }
 
                 if (
