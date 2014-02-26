@@ -560,7 +560,20 @@ namespace org.flixel
             return cx || cy;
         }
 
-
+        static public bool collideOnY(FlxObject Object1, FlxObject Object2)
+        {
+            if ((Object1 == null) || !Object1.exists ||
+                (Object2 == null) || !Object2.exists)
+                return false;
+            quadTree = new FlxQuadTree(FlxQuadTree.bounds.x, FlxQuadTree.bounds.y, FlxQuadTree.bounds.width, FlxQuadTree.bounds.height, null);
+            quadTree.add(Object1, FlxQuadTree.A_LIST);
+            bool match = Object1 == Object2;
+            if (!match)
+                quadTree.add(Object2, FlxQuadTree.B_LIST);
+            //bool cx = quadTree.overlap(!match, solveXCollision);
+            bool cy = quadTree.overlap(!match, solveYCollision);
+            return cy;
+        }
 
         static public bool collideRamp(FlxObject Object1, FlxObject Object2)
         {

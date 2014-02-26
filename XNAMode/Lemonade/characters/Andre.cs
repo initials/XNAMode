@@ -76,7 +76,6 @@ namespace Lemonade
             base.update();
         }
 
-
         override public void overlapped(FlxObject obj)
         {
             base.overlapped(obj);

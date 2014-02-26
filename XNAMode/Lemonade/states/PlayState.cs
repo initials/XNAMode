@@ -328,7 +328,7 @@ namespace Lemonade
                 FlxPath xpath = new FlxPath(null);
                 //xpath.add(Int32.Parse(item["x"]), Int32.Parse(item["y"]));
                 xpath.addPointsUsingStrings(item["pointsX"], item["pointsY"]);
-                movingPlatform.followPath(xpath, 150, FlxSprite.PATH_LOOP_FORWARD, false);
+                movingPlatform.followPath(xpath, 150, FlxSprite.PATH_YOYO, false);
                 movingPlatform.pathCornering = 0.0f;
 
 
@@ -341,7 +341,7 @@ namespace Lemonade
             base.create();
 
             FlxSprite _gamePadButton = new FlxSprite(0, 0);
-            _gamePadButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_32"), true, false, 63, 64);
+            _gamePadButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_64"), true, false, 63, 64);
             _gamePadButton.width = 61;
             _gamePadButton.height = 62;
             _gamePadButton.offset.X = 1;
@@ -355,20 +355,20 @@ namespace Lemonade
             _gamePadButton.boundingBoxOverride = false;
             FlxG._game.hud.hudGroup.add(_gamePadButton);
 
-            FlxSprite _gamePadDirection = new FlxSprite(0, 0);
-            _gamePadDirection.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_32"), true, false, 63, 64);
-            _gamePadDirection.width = 61;
-            _gamePadDirection.height = 62;
-            _gamePadDirection.offset.X = 1;
-            _gamePadDirection.offset.Y = 1;
-            _gamePadDirection.addAnimation("frame", new int[] { FlxButton.ControlPadLStick });
-            _gamePadDirection.play("frame");
-            _gamePadDirection.solid = false;
-            _gamePadDirection.visible = true;
-            _gamePadDirection.scrollFactor.X = 1;
-            _gamePadDirection.scrollFactor.Y = 1;
-            _gamePadDirection.boundingBoxOverride = false;
-            FlxG._game.hud.hudGroup.add(_gamePadDirection);
+            //FlxSprite _gamePadDirection = new FlxSprite(0, 0);
+            //_gamePadDirection.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_32"), true, false, 63, 64);
+            //_gamePadDirection.width = 61;
+            //_gamePadDirection.height = 62;
+            //_gamePadDirection.offset.X = 1;
+            //_gamePadDirection.offset.Y = 1;
+            //_gamePadDirection.addAnimation("frame", new int[] { FlxButton.ControlPadLStick });
+            //_gamePadDirection.play("frame");
+            //_gamePadDirection.solid = false;
+            //_gamePadDirection.visible = true;
+            //_gamePadDirection.scrollFactor.X = 1;
+            //_gamePadDirection.scrollFactor.Y = 1;
+            //_gamePadDirection.boundingBoxOverride = false;
+            //FlxG._game.hud.hudGroup.add(_gamePadDirection);
 
 
 
@@ -525,7 +525,8 @@ namespace Lemonade
 
             #endregion
 
-            FlxU.collideRamp(actors, ramps);
+            //FlxU.collideRamp(actors, ramps);
+
             FlxU.collide(collidableTilemap, actors);
 
             FlxU.overlap(actors, actors, genericOverlap);
@@ -540,7 +541,8 @@ namespace Lemonade
             FlxU.collide(actors, movingPlatforms);
             FlxU.collide(smallCrates, levelItems);
 
-
+            //FlxU.collideOnY(smallCrates, andre);
+            //FlxU.collideOnY(smallCrates, liselot);
 
             bool andreExit = FlxU.overlap(andre, exit, exitOverlap);
             bool liselotExit = FlxU.overlap(liselot, exit, exitOverlap);

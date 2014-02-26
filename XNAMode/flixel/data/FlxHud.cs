@@ -176,6 +176,10 @@ namespace org.flixel
 
         }
 
+        public void resetTime()
+        {
+            _elapsedSinceLastButtonNeeded = 0.0f;
+        }
         /// <summary>
         /// Left over from FlxConsole
         /// </summary>
@@ -185,7 +189,7 @@ namespace org.flixel
 
             if ( _elapsedSinceLastButtonNeeded > timeToShowButton )
             {
-                hudGroup.visible = false;
+                hudGroup.members[0].visible = false;
             }
 
             if (visible)

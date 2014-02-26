@@ -98,6 +98,8 @@ namespace Lemonade
 
         public override void overlapped(FlxObject obj)
         {
+            base.overlapped(obj);
+
             if (Math.Abs(velocity.X) > 1)
             {
                 if (obj.GetType().ToString() == "Lemonade.Worker" && obj.dead == false)
@@ -133,45 +135,60 @@ namespace Lemonade
             if (obj.GetType().ToString() == "Lemonade.Andre" ||
                 obj.GetType().ToString() == "Lemonade.Liselot")
             {
+                //Console.WriteLine("---------------------------------------------------" + FlxG.elapsedTotal + obj.GetType().ToString());
+
                 if (parent == null)
                 {
-                    FlxG.showHud();
                     
-                    //FlxG._game.hud.setHudGamepadButton(FlxButton.ControlPadX, x, y - 100);
 
-                    FlxG._game.hud.hudGroup.visible = true;
-                    
-                    FlxG._game.hud.hudGroup.members[0].x = x+30;
-                    FlxG._game.hud.hudGroup.members[0].y = y - 30;
-
-                    FlxG._game.hud.hudGroup.members[1].x = x - 30;
-                    FlxG._game.hud.hudGroup.members[1].y = y - 30;
-                    
-                    FlxG._game.hud.timeToShowButton = 2.0f;
-                }
-
-                if (
-                    (FlxG.keys.justPressed(Keys.C) && FlxG.keys.DOWN) ||
-                    (FlxG.gamepads.isNewButtonPress(Buttons.X) && (FlxG.gamepads.isButtonDown(Buttons.DPadDown) || (FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown))))
-                    )
-                {
-
-                    if (parent == null)
+                    if (((FlxPlatformActor)(obj)).control == FlxPlatformActor.Controls.player)
                     {
+
+                        FlxG.showHud();
+
+                        //FlxG._game.hud.setHudGamepadButton(FlxButton.ControlPadX, x, y - 100);
+
+                        FlxG._game.hud.hudGroup.members[0].visible = true;
+
+                        FlxG._game.hud.hudGroup.members[0].x = x - 15;
+                        FlxG._game.hud.hudGroup.members[0].y = y - 150;
+
+                        //FlxG._game.hud.hudGroup.members[1].x = x - 30;
+                        //FlxG._game.hud.hudGroup.members[1].y = y - 30;
+
+                        FlxG._game.hud.resetTime();
+                        FlxG._game.hud.timeToShowButton = 0.05f;
+                    }
+
+                    if (
+                        (FlxG.keys.justPressed(Keys.C)) ||
+                        (FlxG.gamepads.isNewButtonPress(Buttons.X))
+                        )
+                    {
+                        //Console.WriteLine("Pressed X" + FlxG.elapsedTotal);
+                        //Console.WriteLine("parent == null -- X");
                         parent = obj;
+
                     }
                 }
-
-                else if (FlxG.keys.justPressed(Keys.C) || (FlxG.gamepads.isNewButtonPress(Buttons.X)))
+                else
                 {
-                    int velY = -200;
+                    //Console.WriteLine("---------------------------------------------------");
 
-                    if (FlxG.keys.UP || FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.DPadUp) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp))
+                    if (
+                (FlxG.keys.justPressed(Keys.C)) ||
+                (FlxG.gamepads.isNewButtonPress(Buttons.X))
+                )
                     {
-                        velY -= 400;
-                    }
-                    if (parent != null)
-                    {
+
+                        //Console.WriteLine("Pressed X {0}", parent.ToString());
+
+                        int velY = -200;
+
+                        if (FlxG.keys.UP || FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.DPadUp) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp))
+                        {
+                            velY -= 400;
+                        }
                         parent = null;
 
                         if (((FlxSprite)(obj)).facing == Flx2DFacing.Left)
@@ -186,8 +203,22 @@ namespace Lemonade
                             velocity.X = 500;
                             velocity.Y = velY;
                         }
+                        
+
+                        
                     }
                 }
+                //if (
+                //    (FlxG.keys.justPressed(Keys.C) && FlxG.keys.DOWN) ||
+                //    (FlxG.gamepads.isNewButtonPress(Buttons.X) && (FlxG.gamepads.isButtonDown(Buttons.DPadDown) || (FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown))))
+                //    )
+                
+
+                //else if ((FlxG.keys.justPressed(Keys.C) || (FlxG.gamepads.isNewButtonPress(Buttons.X))) && parent!=null)
+                //{
+                    
+                //}
+                
             }
 
             if (obj.GetType().ToString() == "Lemonade.Trampoline")
@@ -205,7 +236,7 @@ namespace Lemonade
                 play("explode");
             }
 
-            base.overlapped(obj);
+            
 
         }
         // end

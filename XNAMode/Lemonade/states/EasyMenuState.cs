@@ -417,8 +417,8 @@ namespace Lemonade
 
                 if (FlxControl.RIGHTJUSTPRESSED) { currentLevel++; }
                 if (FlxControl.LEFTJUSTPRESSED) { currentLevel--; }
-                if (currentLevel <= 0) currentLevel = 13;
-                if (currentLevel >= 13) currentLevel = 1;
+                if (currentLevel <= 0) currentLevel = 12;
+                else if (currentLevel >= 13) currentLevel = 1;
             }
             if (currentSelected == 2)
             {
