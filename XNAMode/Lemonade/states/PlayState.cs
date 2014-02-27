@@ -375,7 +375,15 @@ namespace Lemonade
 
             base.create();
 
-            FlxSprite _gamePadButton = new FlxSprite(0, 0);
+            FlxG._game.hud.p1HudText.x = -1000;
+            FlxG._game.hud.p2HudText.x = -1000;
+            FlxG._game.hud.p3HudText.x = -1000;
+            FlxG._game.hud.p4HudText.x = -1000;
+
+            FlxG._game.hud.setHudGamepadButton(0, -1000, -1000);
+
+
+            FlxSprite _gamePadButton = new FlxSprite(-1110, -1110);
             _gamePadButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_64"), true, false, 63, 64);
             _gamePadButton.width = 61;
             _gamePadButton.height = 62;
@@ -389,24 +397,6 @@ namespace Lemonade
             _gamePadButton.scrollFactor.Y = 1;
             _gamePadButton.boundingBoxOverride = false;
             FlxG._game.hud.hudGroup.add(_gamePadButton);
-
-            //FlxSprite _gamePadDirection = new FlxSprite(0, 0);
-            //_gamePadDirection.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_32"), true, false, 63, 64);
-            //_gamePadDirection.width = 61;
-            //_gamePadDirection.height = 62;
-            //_gamePadDirection.offset.X = 1;
-            //_gamePadDirection.offset.Y = 1;
-            //_gamePadDirection.addAnimation("frame", new int[] { FlxButton.ControlPadLStick });
-            //_gamePadDirection.play("frame");
-            //_gamePadDirection.solid = false;
-            //_gamePadDirection.visible = true;
-            //_gamePadDirection.scrollFactor.X = 1;
-            //_gamePadDirection.scrollFactor.Y = 1;
-            //_gamePadDirection.boundingBoxOverride = false;
-            //FlxG._game.hud.hudGroup.add(_gamePadDirection);
-
-
-
 
             FlxG.mouse.hide();
 
@@ -560,6 +550,18 @@ namespace Lemonade
 
             #endregion
 
+            //if (liselot.control == FlxPlatformActor.Controls.player && andre.control == FlxPlatformActor.Controls.player)
+            //{
+            //    andre.control = FlxPlatformActor.Controls.player;
+            //    liselot.control = FlxPlatformActor.Controls.none;
+
+            //}
+            //if (liselot.control == FlxPlatformActor.Controls.none && andre.control == FlxPlatformActor.Controls.none)
+            //{
+            //    andre.control = FlxPlatformActor.Controls.player;
+            //    liselot.control = FlxPlatformActor.Controls.none;
+
+            //}
             //FlxU.collideRamp(actors, ramps);
 
             FlxU.collide(collidableTilemap, actors);
@@ -589,8 +591,6 @@ namespace Lemonade
 
             FlxU.collide(actors, levelItems);
 
-            
-
             foreach (FlxObject crate in levelItems.members)
             {
                 if (crate.GetType().ToString() == "Lemonade.LargeCrate")
@@ -606,8 +606,10 @@ namespace Lemonade
 
             base.update();
 
+
+
             // Switch Controlling Character.
-            if (FlxG.keys.justPressed(Keys.V) || FlxG.gamepads.isNewButtonPress(Buttons.Y))
+            if (FlxG.keys.justPressed(Keys.V) || FlxG.gamepads.isNewButtonPress(Buttons.B))
             {
                 if (andre.piggyBacking)
                 {

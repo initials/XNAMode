@@ -14,6 +14,7 @@ namespace Lemonade
     {
         public FlxObject parent;
         private float trampolineTimer;
+        private float throwTimer;
 
         public SmallCrate(int xPos, int yPos)
             : base(xPos, yPos)
@@ -37,6 +38,7 @@ namespace Lemonade
 
             parent = null;
             trampolineTimer = float.MaxValue;
+            throwTimer = float.MaxValue;
 
         }
 
@@ -57,25 +59,26 @@ namespace Lemonade
         override public void update()
         {
             trampolineTimer += FlxG.elapsed;
+            throwTimer += FlxG.elapsed;
 
             if (parent != null)
             {
                 if (((FlxSprite)(parent)).facing == Flx2DFacing.Right)
                 {
 
-                    x = (parent.x-width/2);
+                    x = (parent.x-width/2) + 24;
                     y = parent.y;
                 }
                 else if (((FlxSprite)(parent)).facing == Flx2DFacing.Left)
                 {
 
-                    x = (parent.x - width / 2);
+                    x = (parent.x - width / 2) - 12;
                     y = parent.y;
                 }
                 if (parent.dead == true) parent = null;
                 acceleration.Y = 0;
             }
-            else if (trampolineTimer < 0.5f)
+            else if (trampolineTimer < 0.155f)
             {
                 acceleration.Y = 0;
             }
@@ -132,14 +135,13 @@ namespace Lemonade
                 }
             }
 
-            if (obj.GetType().ToString() == "Lemonade.Andre" ||
-                obj.GetType().ToString() == "Lemonade.Liselot")
+            if (obj.GetType().ToString() == "Lemonade.Liselot")
             {
                 //Console.WriteLine("---------------------------------------------------" + FlxG.elapsedTotal + obj.GetType().ToString());
 
                 if (parent == null)
                 {
-                    
+                    throwTimer = 0;
 
                     if (((FlxPlatformActor)(obj)).control == FlxPlatformActor.Controls.player)
                     {
@@ -177,7 +179,7 @@ namespace Lemonade
 
                     if (
                 (FlxG.keys.justPressed(Keys.C)) ||
-                (FlxG.gamepads.isNewButtonPress(Buttons.X))
+                (FlxG.gamepads.isNewButtonPress(Buttons.X)) && throwTimer> 0.025f
                 )
                     {
 

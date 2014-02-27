@@ -13,7 +13,7 @@ namespace Lemonade
     {
         public bool piggyBacking;
         public float trampolineTimer = 200000;
-        protected const float trampolineMaxLimit = 0.164f;
+        protected const float trampolineMaxLimit = 0.065f;
         public float dashTimer = 200000;
         protected const float dashMaxLimit = 0.075f;
 
@@ -31,6 +31,9 @@ namespace Lemonade
 
         override public void update()
         {
+            if (control == Controls.none) alpha = 0.5f;
+            else alpha = 1.0f;
+
 
             if (piggyBacking == true)
             {

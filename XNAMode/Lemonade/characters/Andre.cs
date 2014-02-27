@@ -67,10 +67,10 @@ namespace Lemonade
         override public void update()
         {
 
-            if (FlxG.keys.justPressed(Keys.B))
+            if (FlxG.keys.justPressed(Keys.B) || FlxG.gamepads.isNewButtonPress(Buttons.Y))
             {
                 piggyBacking = false;
-
+                FlxG.follow(this, 11.0f);
             }
 
             base.update();
@@ -87,7 +87,7 @@ namespace Lemonade
                 overlappedWith == "Lemonade.Chef" ||
                 overlappedWith == "Lemonade.Worker" )
             {
-                if (obj.dead == false)
+                if (obj.dead == false && control == Controls.player)
                 {
                     colorFlicker(2);
                     kill();
@@ -105,7 +105,6 @@ namespace Lemonade
                     ((Liselot)(obj)).parent = this;
                     ((Liselot)(obj)).control = Controls.none;
                 }
-                
             }
 
             else if (overlappedWith == "Lemonade.LargeCrate")

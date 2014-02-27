@@ -116,6 +116,8 @@ namespace Lemonade
         {
             if (Name == "death" && Frame == _curAnim.frames.Length - 1)
             {
+                //Console.WriteLine("RESEST piggyBacking {0} {1} control {2}", piggyBacking, piggybackingAtTimeOfDeath,  control.ToString());
+
                 reset(originalPosition.X, originalPosition.Y);
                 dead = false;
                 if (piggybackingAtTimeOfDeath)
@@ -136,7 +138,7 @@ namespace Lemonade
                 overlappedWith == "Lemonade.Chef" ||
                 overlappedWith == "Lemonade.Worker")
             {
-                if (obj.dead == false)
+                if (obj.dead == false && control == Controls.player)
                 {
                     colorFlicker(2);
                     kill();
@@ -151,7 +153,9 @@ namespace Lemonade
         }
         public override void kill()
         {
-            if (piggyBacking == true || control == Controls.none)
+            //Console.WriteLine("piggyBacking {0} {1} control {2}", piggyBacking,piggybackingAtTimeOfDeath, control.ToString());
+
+            if ((piggyBacking == true || control == Controls.none) && dead==false)
             {
                 piggybackingAtTimeOfDeath = true;
             }
