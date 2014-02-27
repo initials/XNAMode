@@ -135,7 +135,7 @@ namespace Lemonade
                 }
             }
 
-            if (obj.GetType().ToString() == "Lemonade.Liselot")
+            if (obj.GetType().ToString() == "Lemonade.Liselot" || obj.GetType().ToString() == "Lemonade.Andre")
             {
                 //Console.WriteLine("---------------------------------------------------" + FlxG.elapsedTotal + obj.GetType().ToString());
 

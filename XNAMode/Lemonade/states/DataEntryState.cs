@@ -135,7 +135,7 @@ namespace Lemonade
             FlxG.score = 0;
             FlxG.hideHud();
 
-            FlxG.state = new MenuState();
+            FlxG.state = new EasyMenuState();
             return;
         }
 

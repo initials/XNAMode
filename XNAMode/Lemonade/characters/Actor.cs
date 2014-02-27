@@ -74,7 +74,7 @@ namespace Lemonade
         public override void overlapped(FlxObject obj)
         {
             base.overlapped(obj);
-            if (obj.GetType().ToString() == "Lemonade.Trampoline")
+            if (obj.GetType().ToString() == "Lemonade.Trampoline" && !dead)
             {
                 velocity.Y = -1000;
                 trampolineTimer = 0.0f;
