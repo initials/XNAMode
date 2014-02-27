@@ -12,22 +12,45 @@ namespace Flixel.Lemonade.extra
 {
     class FilingCabinet : FlxSprite
     {
+        public float canClose;
 
-        public FilingCabinet(int xPos, int yPos)
+        public FilingCabinet(int xPos, int yPos, int type)
             : base(xPos, yPos)
         {
-            loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/"), true, false, 50, 80);
+			
+            if (type==1)
+                loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/FilingCab1"), true, false, 34, 90);
 
-            addAnimation("animation", new int[] { 72, 73, 74, 75, 76, 77 }, 12, true);
+		    else if (type == 2)
+                loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/FilingCab2"), true, false, 34, 60);
+				
+            addAnimation("open", new int[] { 0 }, 0, false);
+            addAnimation("closed", new int[] { 0,1,2,3,4,3,3,2,2,1,1,0 }, 12, false);
 
-            play("animation");
+            play("open");
+
+            canClose = 100;
         }
 
         override public void update()
         {
-
+            canClose += FlxG.elapsed;
 
             base.update();
+
+        }
+
+        public override void overlapped(FlxObject obj)
+        {
+            base.overlapped(obj);
+
+			if (canClose > 10){
+				play("closed", true);
+				
+				canClose = 0;
+				
+			}
+
 
         }
 

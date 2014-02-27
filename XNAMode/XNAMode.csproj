@@ -516,8 +516,6 @@
     <Content Include="Lemonade\levels\custom\PLACE_CUSTOM_LEVELS_HERE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Lemonade\extra\FilingCabinet.as" />
-    <None Include="Lemonade\extra\Plant.as" />
     <None Include="Lemonade\levels\slf2\factory\bgfactory.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

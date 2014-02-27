@@ -12,6 +12,9 @@ using XNATweener;
 
 namespace Lemonade
 {
+    /// <summary>
+    /// Cheat codes: likeyouroldstuff - brings up Warehouse, Factory & Management.
+    /// </summary>
     public class EasyMenuState : FlxState
     {
         FlxEmitter bubbleParticle;
@@ -60,9 +63,9 @@ namespace Lemonade
             possibleLocations.Add("military");
             possibleLocations.Add("sydney");
             possibleLocations.Add("newyork");
-            possibleLocations.Add("warehouse");
-            possibleLocations.Add("factory");
-            possibleLocations.Add("management");
+            //possibleLocations.Add("warehouse");
+            //possibleLocations.Add("factory");
+            //possibleLocations.Add("management");
 
             // play some music
             FlxG.playMp3("Lemonade/music/music_menu_1", 0.75f);
@@ -310,6 +313,15 @@ namespace Lemonade
 
         override public void update()
         {
+            if (FlxG.debug && FlxGlobal.cheatString == "likeyouroldstuff")
+            {
+                if (!possibleLocations.Contains("warehouse"))
+                {
+                    possibleLocations.Add("warehouse");
+                    possibleLocations.Add("factory");
+                    possibleLocations.Add("management");
+                }
+            }
 
             //FlxG.cameras[0].angle += 5;
 
@@ -477,7 +489,7 @@ namespace Lemonade
                 management.visible = true;
             }
 
-            if (FlxControl.ACTIONJUSTPRESSED)
+            if (FlxControl.ACTIONJUSTPRESSED && !FlxG._game._console.visible)
             {
                 if (locked == false)
                 {
