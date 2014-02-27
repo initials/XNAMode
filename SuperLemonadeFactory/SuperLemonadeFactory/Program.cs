@@ -32,10 +32,10 @@ namespace Loader_SuperLemonadeFactory
 
             initGame(w, h, new Lemonade.IntroState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
 
-            FlxG.debug = true;
+            FlxG.debug = false;
             FlxG.level = 1;
 
-            Lemonade.Lemonade_Globals.PAID_VERSION = Lemonade.Lemonade_Globals.FULL_MODE;
+            Lemonade.Lemonade_Globals.PAID_VERSION = Lemonade.Lemonade_Globals.DEMO_MODE;
 
 
 
