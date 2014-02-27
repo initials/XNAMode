@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 
-namespace Flixel.Lemonade.extra
+namespace Lemonade
 {
     class FilingCabinet : FlxSprite
     {

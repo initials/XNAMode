@@ -23,10 +23,20 @@ namespace Lemonade
         FlxText multiplayerText;
 
         FlxTilemap ny;
-        FlxTilemap miltary;
+        FlxTilemap ny2;
+
+        FlxTilemap military;
+        FlxTilemap military2;
+        FlxTilemap military3;
+
         FlxTilemap sydney;
+        FlxTilemap sydney2;
+        FlxTilemap sydney3;
+
         FlxTilemap management;
+
         FlxTilemap factory;
+
         FlxTilemap warehouse;
 
         FlxSprite badge1;
@@ -72,37 +82,38 @@ namespace Lemonade
 
             // load some tile maps
 
-            List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/newyork/bgnewyork.tmx", "map", "bg", FlxXMLReader.TILES);
-            ny = new FlxTilemap();
-            ny.auto = FlxTilemap.STRING;
-            ny.indexOffset = -1;
-            ny.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_newyork"), 20, 20);
-            ny.boundingBoxOverride = true;
-            ny.setScrollFactors(0, 0);
-            ny.visible = false;
-            add(ny);
+            //List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/newyork/bgnewyork.tmx", "map", "bg", FlxXMLReader.TILES);
+            //ny = new FlxTilemap();
+            //ny.auto = FlxTilemap.STRING;
+            //ny.indexOffset = -1;
+            //ny.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_newyork"), 20, 20);
+            //ny.boundingBoxOverride = true;
+            //ny.setScrollFactors(0, 0);
+            //ny.visible = false;
+            //add(ny);
 
-            bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/sydney/bgsydney.tmx", "map", "bg", FlxXMLReader.TILES);
-            sydney = new FlxTilemap();
-            sydney.auto = FlxTilemap.STRING;
-            sydney.indexOffset = -1;
-            sydney.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_sydney"), 20, 20);
-            sydney.boundingBoxOverride = true;
-            sydney.setScrollFactors(0, 0);
-            sydney.visible = false;
-            add(sydney);
+            add(ny = createMap("Lemonade/levels/slf2/newyork/bgnewyork.tmx", "bg", "newyork"));
+            add(ny2 = createMap("Lemonade/levels/slf2/newyork/bgnewyork.tmx", "bg2", "newyork"));
 
-            bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/military/bgmilitary.tmx", "map", "bg", FlxXMLReader.TILES);
-            miltary = new FlxTilemap();
-            miltary.auto = FlxTilemap.STRING;
-            miltary.indexOffset = -1;
-            miltary.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_military"), 20, 20);
-            miltary.boundingBoxOverride = true;
-            miltary.setScrollFactors(0, 0);
-            miltary.visible = false;
-            add(miltary);
+            add(sydney = createMap("Lemonade/levels/slf2/sydney/bgsydney.tmx", "bg", "sydney"));
+            add(sydney2 = createMap("Lemonade/levels/slf2/sydney/bgsydney.tmx", "bg2", "sydney"));
+            add(sydney3 = createMap("Lemonade/levels/slf2/sydney/bgsydney.tmx", "bg3", "sydney"));
 
-            bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/warehouse/bgwarehouse.tmx", "map", "bg", FlxXMLReader.TILES);
+            add(military = createMap("Lemonade/levels/slf2/military/bgmilitary.tmx", "bg", "military"));
+            add(military2 = createMap("Lemonade/levels/slf2/military/bgmilitary.tmx", "bg2", "military"));
+            add(military3 = createMap("Lemonade/levels/slf2/military/bgmilitary.tmx", "bg3", "military"));
+
+            //List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/military/bgmilitary.tmx", "map", "bg", FlxXMLReader.TILES);
+            //miltary = new FlxTilemap();
+            //miltary.auto = FlxTilemap.STRING;
+            //miltary.indexOffset = -1;
+            //miltary.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_military"), 20, 20);
+            //miltary.boundingBoxOverride = true;
+            //miltary.setScrollFactors(0, 0);
+            //miltary.visible = false;
+            //add(miltary);
+
+            List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/warehouse/bgwarehouse.tmx", "map", "bg", FlxXMLReader.TILES);
             warehouse = new FlxTilemap();
             warehouse.auto = FlxTilemap.STRING;
             warehouse.indexOffset = -1;
@@ -305,6 +316,19 @@ namespace Lemonade
 
         }
 
+        public FlxTilemap createMap(string MapFile, string Layer, string Tiles)
+        {
+            List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile(MapFile, "map", Layer, FlxXMLReader.TILES);
+            FlxTilemap ny = new FlxTilemap();
+            ny.auto = FlxTilemap.STRING;
+            ny.indexOffset = -1;
+            ny.loadMap(bgString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/bgtiles_"+ Tiles), 20, 20);
+            ny.boundingBoxOverride = true;
+            ny.setScrollFactors(0, 0);
+            ny.visible = false;
+            return ny;
+        }
+
         public string LoadFromDevice()
         {
             string value1 = File.ReadAllText("nameinfo.txt");
@@ -457,18 +481,25 @@ namespace Lemonade
                 location.text = "<- New York City ->";
                 setAllTilemapsToOff();
                 ny.visible = true;
+                ny2.visible = true;
             }
             if (Lemonade_Globals.location == "sydney")
             {
                 location.text = "<- Sydney, Australia ->";
                 setAllTilemapsToOff();
                 sydney.visible = true;
+                sydney2.visible = true;
+                sydney3.visible = true;
+
+
             }
             if (Lemonade_Globals.location == "military")
             {
                 location.text = "<- Military Complex ->";
                 setAllTilemapsToOff();
-                miltary.visible = true;
+                military.visible = true;
+                military2.visible = true;
+                military3.visible = true;
             }
             if (Lemonade_Globals.location == "warehouse")
             {
@@ -516,8 +547,15 @@ namespace Lemonade
         public void setAllTilemapsToOff()
         {
             ny.visible = false;
-            miltary.visible = false;
+            ny2.visible = false;
+
+            military.visible = false;
+            military2.visible = false;
+            military3.visible = false;
+
             sydney.visible = false;
+            sydney2.visible = false;
+            sydney3.visible = false;
 
             warehouse.visible = false;
             factory.visible = false;

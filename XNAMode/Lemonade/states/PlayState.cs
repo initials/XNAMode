@@ -198,9 +198,21 @@ namespace Lemonade
                 {
                     buildActor("rampRight", xPos, yPos);
                 }
-                if (item == "4000")
+                if (item == "363")
                 {
-                    buildActor("plant", xPos, yPos);
+                    buildActor("plant1", xPos, yPos);
+                }
+                if (item == "364")
+                {
+                    buildActor("plant2", xPos, yPos);
+                }
+                if (item == "365")
+                {
+                    buildActor("filing1", xPos, yPos);
+                }
+                if (item == "366")
+                {
+                    buildActor("filing1", xPos, yPos);
                 }
                 count++;
             }
@@ -303,10 +315,25 @@ namespace Lemonade
                 ramp = new Ramp(xPos, yPos, FlxRamp.LOW_SIDE_RIGHT);
                 ramps.add(ramp);
             }
-            if (actor == "plant")
+            else if (actor == "plant1")
             {
-                FlxSprite plant = new Plant(xPos, yPos, 1);
-                levelItems.add(plant);
+                Plant plant = new Plant(xPos, yPos-90, 1);
+                hazards.add(plant);
+            }
+            else if (actor == "plant2")
+            {
+                Plant plant = new Plant(xPos, yPos - 90, 2);
+                hazards.add(plant);
+            }
+            else if (actor == "filing1")
+            {
+                FilingCabinet filing = new FilingCabinet(xPos, yPos - 70, 1);
+                hazards.add(filing);
+            }
+            else if (actor == "filing2")
+            {
+                FilingCabinet filing = new FilingCabinet(xPos, yPos - 40, 2);
+                hazards.add(filing);
             }
         }
 
