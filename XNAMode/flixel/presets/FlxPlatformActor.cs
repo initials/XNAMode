@@ -194,6 +194,9 @@ namespace org.flixel
                     }
                 }
                 
+                if (FlxG.keys.N || FlxG.gamepads.isButtonDown(Buttons.LeftTrigger)) action = Actions.talk;
+                else action = Actions.idle;
+
 
             }
             else if (control == Controls.file)
@@ -220,6 +223,9 @@ namespace org.flixel
                 if (_history[frameCount][right]) rightPressed();
 
                 if (_history[frameCount][4]) jump();
+                
+                if (_history[frameCount][10]) action = Actions.talk;
+                else action = Actions.idle;
 
 
              
@@ -369,7 +375,8 @@ namespace org.flixel
             }
             else if (velocity.X == 0)
             {
-                play(animationPrefix + "idle");
+                if (action == Actions.talk) play(animationPrefix + "talk");
+                else play(animationPrefix + "idle");
             }
             else if (velocity.Y != 0)
             {

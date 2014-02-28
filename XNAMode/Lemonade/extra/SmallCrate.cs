@@ -65,13 +65,11 @@ namespace Lemonade
             {
                 if (((FlxSprite)(parent)).facing == Flx2DFacing.Right)
                 {
-
                     x = (parent.x-width/2) + 24;
                     y = parent.y;
                 }
                 else if (((FlxSprite)(parent)).facing == Flx2DFacing.Left)
                 {
-
                     x = (parent.x - width / 2) - 12;
                     y = parent.y;
                 }
@@ -145,7 +143,6 @@ namespace Lemonade
 
                     if (((FlxPlatformActor)(obj)).control == FlxPlatformActor.Controls.player)
                     {
-
                         FlxG.showHud();
 
                         //FlxG._game.hud.setHudGamepadButton(FlxButton.ControlPadX, x, y - 100);

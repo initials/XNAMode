@@ -19,7 +19,7 @@ namespace Lemonade
             addAnimation("run", new int[] { 30,31,32,33,34,35 }, 14);
             addAnimation("idle", new int[] { 5 }, 0);
             addAnimation("jump", new int[] { 5 }, 0);
-            addAnimation("talk", new int[] { 5, 58 }, 12);
+            addAnimation("talk", new int[] { 5, 58 }, 6);
             addAnimation("death", new int[] {101,102,103,104,105,106,107,107 }, 12, false);
 
             play("idle");

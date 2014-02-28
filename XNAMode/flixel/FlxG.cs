@@ -129,6 +129,10 @@ namespace org.flixel
 
 		static public bool android = false;
 
+        static public int BUILD_TYPE;
+
+        public const int BUILD_TYPE_PC = 0;
+        public const int BUILD_TYPE_OUYA = 1;
 
         /// <summary>
         /// A reference or pointer to the current FlxState object being used by the game
