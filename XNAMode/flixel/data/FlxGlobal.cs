@@ -7,6 +7,7 @@ namespace org.flixel
 {
     /// <summary>
     /// FlxGlobals stores a bunch of constants
+    /// TODO : Move Four Chambers things into another class.
     /// </summary>
     public class FlxGlobal
     {
