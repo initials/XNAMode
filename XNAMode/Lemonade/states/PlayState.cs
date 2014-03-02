@@ -691,8 +691,11 @@ namespace Lemonade
 
         protected bool trampolinesOverlap(object Sender, FlxSpriteCollisionEvent e)
         {
-            bubbleParticle.at(e.Object1);
-            bubbleParticle.start(true, 0, 30);
+            if (e.Object1.dead == false)
+            {
+                bubbleParticle.at(e.Object1);
+                bubbleParticle.start(true, 0, 30);
+            }
             e.Object1.overlapped(e.Object2);
             e.Object2.overlapped(e.Object1);
             return true;
