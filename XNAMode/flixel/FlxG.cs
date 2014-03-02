@@ -134,6 +134,12 @@ namespace org.flixel
         public const int BUILD_TYPE_PC = 0;
         public const int BUILD_TYPE_OUYA = 1;
 
+        public static int lastControlTypeUsed;
+        public const int CONTROL_TYPE_KEYBOARD = 0;
+        public const int CONTROL_TYPE_GAMEPAD = 1;
+
+
+
         /// <summary>
         /// A reference or pointer to the current FlxState object being used by the game
         /// </summary>
@@ -538,6 +544,9 @@ namespace org.flixel
 
             FlxG.cameras = new List<FlxCamera>();
 
+            lastControlTypeUsed = CONTROL_TYPE_KEYBOARD;
+
+
         }
         //@benbaird End XNA-specific public static properties
 
@@ -593,9 +602,10 @@ namespace org.flixel
         /// <param name="Volume">Volume between 0 - 1</param>
         static public void playMp3(string Music, float Volume)
         {
-        mp3Music = FlxG.Content.Load<Song>(Music);
-        MediaPlayer.Volume = Volume;
-        MediaPlayer.Play(mp3Music);
+            mp3Music = FlxG.Content.Load<Song>(Music);
+            MediaPlayer.Volume = Volume;
+            MediaPlayer.Play(mp3Music);
+            MediaPlayer.IsRepeating = true;
         }
 
         /// <summary>

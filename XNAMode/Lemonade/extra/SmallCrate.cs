@@ -63,6 +63,7 @@ namespace Lemonade
 
             if (parent != null)
             {
+                @fixed = false;
                 if (((FlxSprite)(parent)).facing == Flx2DFacing.Right)
                 {
                     x = (parent.x-width/2) + 24;
@@ -83,6 +84,7 @@ namespace Lemonade
             else
             {
                 acceleration.Y = Lemonade_Globals.GRAVITY;
+                @fixed = true;
             }
 
             base.update();
@@ -145,15 +147,16 @@ namespace Lemonade
                     {
                         FlxG.showHud();
 
-                        //FlxG._game.hud.setHudGamepadButton(FlxButton.ControlPadX, x, y - 100);
+                        //FlxG._game.hud.setHudGamepadButton(FlxButton.ControlPadX, x, y - 55);
 
-                        FlxG._game.hud.hudGroup.members[0].visible = true;
-
-                        FlxG._game.hud.hudGroup.members[0].x = x - 15;
-                        FlxG._game.hud.hudGroup.members[0].y = y - 150;
-
-                        //FlxG._game.hud.hudGroup.members[1].x = x - 30;
-                        //FlxG._game.hud.hudGroup.members[1].y = y - 30;
+                        if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_KEYBOARD)
+                        {
+                            FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_KEYBOARD, 28, x - width / 2, y - 150);
+                        }
+                        else if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_GAMEPAD)
+                        {
+                            FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_XBOX, 17, x - width/2, y-150);
+                        }
 
                         FlxG._game.hud.resetTime();
                         FlxG._game.hud.timeToShowButton = 0.05f;

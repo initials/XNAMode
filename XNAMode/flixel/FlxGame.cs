@@ -343,6 +343,11 @@ namespace org.flixel
             FlxG.keys.update();
             FlxG.gamepads.update();
             FlxG.mouse.update();
+
+            //set a helper for last control type used.
+            updateLastUsedControl();
+
+
             FlxG.updateSounds();
             if (FlxG.keys.isNewKeyPress(Keys.OemPipe, null, out pi))
             {
@@ -610,5 +615,50 @@ namespace org.flixel
 				else _soundTrayBars[i].alpha = 0.5f;
 			}
 		}
+
+        private void updateLastUsedControl()
+        {
+            if (FlxG.keys.A||
+                FlxG.keys.B||
+                FlxG.keys.C||
+                FlxG.keys.D||
+                FlxG.keys.E||
+                FlxG.keys.F||
+                FlxG.keys.G||
+                FlxG.keys.H||
+                FlxG.keys.I||
+                FlxG.keys.J||
+                FlxG.keys.K||
+                FlxG.keys.L||
+                FlxG.keys.M||
+                FlxG.keys.N||
+                FlxG.keys.O||
+                FlxG.keys.P||
+                FlxG.keys.Q||
+                FlxG.keys.R||
+                FlxG.keys.S||
+                FlxG.keys.T||
+                FlxG.keys.U||
+                FlxG.keys.V||
+                FlxG.keys.W||
+                FlxG.keys.X||
+                FlxG.keys.Y||
+                FlxG.keys.Z || FlxG.keys.SPACE || FlxG.keys.ENTER )  
+            {
+                FlxG.lastControlTypeUsed = FlxG.CONTROL_TYPE_KEYBOARD;
+            }
+            else if (FlxG.gamepads.isButtonDown(Buttons.A) || 
+                FlxG.gamepads.isButtonDown(Buttons.B) || 
+                FlxG.gamepads.isButtonDown(Buttons.X) || 
+                FlxG.gamepads.isButtonDown(Buttons.Y) || 
+                FlxG.gamepads.isButtonDown(Buttons.LeftShoulder) ||
+                FlxG.gamepads.isButtonDown(Buttons.RightShoulder) ||
+                FlxG.gamepads.isButtonDown(Buttons.LeftTrigger) ||
+                FlxG.gamepads.isButtonDown(Buttons.RightTrigger))
+            {
+                FlxG.lastControlTypeUsed = FlxG.CONTROL_TYPE_GAMEPAD;
+            }
+
+        }
     }
 }

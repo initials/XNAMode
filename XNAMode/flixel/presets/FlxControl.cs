@@ -11,12 +11,10 @@ namespace org.flixel
     /// </summary>
     public class FlxControl
     {
-        public static int lastControlTypeUsed;
-        public const int CONTROL_TYPE_KEYBOARD = 0;
-        public const int CONTROL_TYPE_GAMEPAD = 1;
 
 
 
+        
         public static bool LEFT
         {
             get { return FlxG.keys.A || FlxG.keys.LEFT || FlxG.gamepads.isButtonDown(Buttons.DPadLeft) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft); }

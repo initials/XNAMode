@@ -50,6 +50,16 @@ namespace org.flixel
         /// </summary>
         private FlxSprite _gamePadButton;
 
+
+        public FlxSprite xboxButton;
+        public FlxSprite ouyaButton;
+        public FlxSprite keyboardButton;
+
+        public const int TYPE_KEYBOARD = 0;
+        public const int TYPE_XBOX= 1;
+        public const int TYPE_OUYA = 2;
+        
+
         /// <summary>
         /// Original positions are used in the <code>reset()</code>
         /// method to reset positions of the text boxes if moved.
@@ -116,6 +126,42 @@ namespace org.flixel
             _gamePadButton.scrollFactor.Y = 0;
             _gamePadButton.boundingBoxOverride = false;
 
+
+            keyboardButton = new FlxSprite(targetLeft, 0);
+            keyboardButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/MapWhite"), true, false, 100, 100);
+            keyboardButton.addAnimation("frame", new int[] { FlxButton.ControlPadA });
+            keyboardButton.play("frame");
+            keyboardButton.solid = false;
+            keyboardButton.visible = true;
+            keyboardButton.scrollFactor.X = 1;
+            keyboardButton.scrollFactor.Y = 1;
+            keyboardButton.boundingBoxOverride = false;
+
+
+            xboxButton = new FlxSprite(targetLeft, 0);
+            xboxButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/Map360"), true, false, 100, 100);
+            xboxButton.addAnimation("frame", new int[] { FlxButton.ControlPadA });
+            xboxButton.play("frame");
+            xboxButton.solid = false;
+            xboxButton.visible = true;
+            xboxButton.scrollFactor.X = 1;
+            xboxButton.scrollFactor.Y = 1;
+            xboxButton.boundingBoxOverride = false;
+
+
+            ouyaButton = new FlxSprite(targetLeft, 0);
+            ouyaButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/MapOuya"), true, false, 100, 100);
+            ouyaButton.addAnimation("frame", new int[] { FlxButton.ControlPadA });
+            ouyaButton.play("frame");
+            ouyaButton.solid = false;
+            ouyaButton.visible = true;
+            ouyaButton.scrollFactor.X = 1;
+            ouyaButton.scrollFactor.Y = 1;
+            ouyaButton.boundingBoxOverride = false;
+
+
+
+
             //add(_gamePadButton, true);
 
             timeToShowButton = float.MaxValue;
@@ -158,6 +204,33 @@ namespace org.flixel
             _gamePadButton.visible = true;
         }
 
+        public void setHudGamepadButton(int Type, int Button, float X, float Y)
+        {
+            if (Type == TYPE_KEYBOARD)
+            {
+                keyboardButton.frame = Button;
+                keyboardButton.x = X * FlxG.zoom;
+                keyboardButton.y = Y * FlxG.zoom;
+                keyboardButton.visible = true;
+            }
+            else if (Type == TYPE_XBOX)
+            {
+                xboxButton.frame = Button;
+                xboxButton.x = X * FlxG.zoom;
+                xboxButton.y = Y * FlxG.zoom;
+                xboxButton.visible = true;
+            }
+            else if (Type == TYPE_OUYA)
+            {
+                ouyaButton.frame = Button;
+                ouyaButton.x = X * FlxG.zoom;
+                ouyaButton.y = Y * FlxG.zoom;
+                ouyaButton.visible = true;
+                
+            }
+            
+        }
+
         /// <summary>
         /// Shows the Hud
         /// </summary>
@@ -189,7 +262,11 @@ namespace org.flixel
 
             if ( _elapsedSinceLastButtonNeeded > timeToShowButton )
             {
-                hudGroup.members[0].visible = false;
+                //hudGroup.members[0].visible = false;
+                xboxButton.visible = false;
+                keyboardButton.visible = false;
+                ouyaButton.visible = false;
+
             }
 
             if (visible)
@@ -247,7 +324,11 @@ namespace org.flixel
             p4HudText.render(spriteBatch);
 
             _gamePadButton.render(spriteBatch);
-            
+
+            keyboardButton.render(spriteBatch);
+            ouyaButton.render(spriteBatch);
+            xboxButton.render(spriteBatch);
+
 
 
         }

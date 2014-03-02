@@ -405,39 +405,59 @@ namespace org.flixel
                         {
                             foreach (XmlNode xn3 in xn2)
                             {
-                                Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
 
-                                levelAttrs.Add("x", xn3.Attributes.GetNamedItem("x").Value.ToString());
-                                levelAttrs.Add("y", xn3.Attributes.GetNamedItem("y").Value.ToString());
-                                
-                                levelAttrs.Add("points", xn3.FirstChild.Attributes.GetNamedItem("points").Value.ToString());
+                                //Console.WriteLine("OK THIS OBJECT IS {0}", xn3.FirstChild.ToString());
 
-                                // split points into X/Y strings;
-
-                                string[] splitter = xn3.FirstChild.Attributes.GetNamedItem("points").Value.ToString().Split(' ');
-                                string pointsX = "";
-                                string pointsY = "";
-
-                                int xPos = Int32.Parse(xn3.Attributes.GetNamedItem("x").Value);
-                                int yPos = Int32.Parse(xn3.Attributes.GetNamedItem("y").Value);
-
-                                foreach (var point in splitter)
+                                if (xn3.FirstChild != null)
                                 {
-                                    string[] b = point.Split(',');
+                                    Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
 
-                                    int compensatedX = xPos + Int32.Parse(b[0]);
-                                    int compensatedY = yPos + Int32.Parse(b[1]);
+                                    levelAttrs.Add("x", xn3.Attributes.GetNamedItem("x").Value.ToString());
+                                    levelAttrs.Add("y", xn3.Attributes.GetNamedItem("y").Value.ToString());
 
-                                    pointsX += compensatedX.ToString() + ",";
-                                    pointsY += compensatedY.ToString() + ",";
+                                    levelAttrs.Add("points", xn3.FirstChild.Attributes.GetNamedItem("points").Value.ToString());
 
+                                    // split points into X/Y strings;
+
+                                    string[] splitter = xn3.FirstChild.Attributes.GetNamedItem("points").Value.ToString().Split(' ');
+                                    string pointsX = "";
+                                    string pointsY = "";
+
+                                    int xPos = Int32.Parse(xn3.Attributes.GetNamedItem("x").Value);
+                                    int yPos = Int32.Parse(xn3.Attributes.GetNamedItem("y").Value);
+
+                                    foreach (var point in splitter)
+                                    {
+                                        string[] b = point.Split(',');
+
+                                        int compensatedX = xPos + Int32.Parse(b[0]);
+                                        int compensatedY = yPos + Int32.Parse(b[1]);
+
+                                        pointsX += compensatedX.ToString() + ",";
+                                        pointsY += compensatedY.ToString() + ",";
+
+                                    }
+                                    levelAttrs.Add("pointsX", pointsX);
+                                    levelAttrs.Add("pointsY", pointsY);
+
+                                    count++;
+
+                                    nodeList.Add(levelAttrs);
                                 }
-                                levelAttrs.Add("pointsX",pointsX);
-                                levelAttrs.Add("pointsY", pointsY);
+                                else
+                                {
+                                    Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
 
-                                count++;
+                                    levelAttrs.Add("x", xn3.Attributes.GetNamedItem("x").Value.ToString());
+                                    levelAttrs.Add("y", xn3.Attributes.GetNamedItem("y").Value.ToString());
+                                    levelAttrs.Add("width", xn3.Attributes.GetNamedItem("width").Value.ToString());
+                                    levelAttrs.Add("height", xn3.Attributes.GetNamedItem("height").Value.ToString());
+                                    
 
-                                nodeList.Add(levelAttrs);
+                                    count++;
+
+                                    nodeList.Add(levelAttrs);
+                                }
 
                             }
                         }

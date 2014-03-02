@@ -347,24 +347,27 @@ namespace Lemonade
             {
                 foreach (KeyValuePair<string, string> kvp in nodes)
                 {
-                    //Console.Write("Level String -- Key = {0}, Value = {1}, ", kvp.Key, kvp.Value);
+                    Console.Write("Level String -- Key = {0}, Value = {1}, ", kvp.Key, kvp.Value);
                 }
-                //Console.Write("\r\n");
+                Console.Write("\r\n");
             }
 
             foreach (var item in levelString)
             {
-                MovingPlatform movingPlatform = new MovingPlatform(Int32.Parse(item["x"]), Int32.Parse(item["y"]));
-                movingPlatform.solid = true;
-                movingPlatform.@fixed = true;
+                if (item.ContainsKey("pointsX"))
+                {
+                    MovingPlatform movingPlatform = new MovingPlatform(Int32.Parse(item["x"]), Int32.Parse(item["y"]));
+                    movingPlatform.solid = true;
+                    movingPlatform.@fixed = true;
 
-                movingPlatforms.add(movingPlatform);
+                    movingPlatforms.add(movingPlatform);
 
-                FlxPath xpath = new FlxPath(null);
-                //xpath.add(Int32.Parse(item["x"]), Int32.Parse(item["y"]));
-                xpath.addPointsUsingStrings(item["pointsX"], item["pointsY"]);
-                movingPlatform.followPath(xpath, 150, FlxSprite.PATH_YOYO, false);
-                movingPlatform.pathCornering = 0.0f;
+                    FlxPath xpath = new FlxPath(null);
+                    //xpath.add(Int32.Parse(item["x"]), Int32.Parse(item["y"]));
+                    xpath.addPointsUsingStrings(item["pointsX"], item["pointsY"]);
+                    movingPlatform.followPath(xpath, 150, FlxSprite.PATH_YOYO, false);
+                    movingPlatform.pathCornering = 0.0f;
+                }
 
 
             }
@@ -381,22 +384,6 @@ namespace Lemonade
             FlxG._game.hud.p4HudText.x = -1000;
 
             FlxG._game.hud.setHudGamepadButton(0, -1000, -1000);
-
-
-            FlxSprite _gamePadButton = new FlxSprite(-1110, -1110);
-            _gamePadButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_64"), true, false, 63, 64);
-            _gamePadButton.width = 61;
-            _gamePadButton.height = 62;
-            _gamePadButton.offset.X = 1;
-            _gamePadButton.offset.Y = 1;
-            _gamePadButton.addAnimation("frame", new int[] { FlxButton.ControlPadX });
-            _gamePadButton.play("frame");
-            _gamePadButton.solid = false;
-            _gamePadButton.visible = true;
-            _gamePadButton.scrollFactor.X = 1;
-            _gamePadButton.scrollFactor.Y = 1;
-            _gamePadButton.boundingBoxOverride = false;
-            FlxG._game.hud.hudGroup.add(_gamePadButton);
 
             FlxG.mouse.hide();
 
@@ -578,8 +565,8 @@ namespace Lemonade
             FlxU.collide(actors, movingPlatforms);
             FlxU.collide(smallCrates, levelItems);
 
-            //FlxU.collideOnY(smallCrates, andre);
-            //FlxU.collideOnY(smallCrates, liselot);
+            FlxU.collideOnY(smallCrates, andre);
+            FlxU.collideOnY(smallCrates, liselot);
 
             bool andreExit = FlxU.overlap(andre, exit, exitOverlap);
             bool liselotExit = FlxU.overlap(liselot, exit, exitOverlap);
