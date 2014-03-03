@@ -421,15 +421,10 @@ namespace org.flixel
         /// public access to showing the hud
         /// </summary>
         public static void showHud() { _game.hud.showHud(); }
-
         /// <summary>
         /// public access to hiding the hud
         /// </summary>
         public static void hideHud() { _game.hud.hideHud(); }
-
-        public static void showHudGraphic() { _game.hud.showHudGraphic(); }
-        public static void hideHudGraphic() { _game.hud.hideHudGraphic(); }
-
         /// <summary>
         /// Set's the hud text to, for the player number
         /// </summary>
@@ -449,7 +444,7 @@ namespace org.flixel
         /// <param name="Button">The button you'd like, use FlxButton.GamePad** to choose.</param>
         /// <param name="X">X Position</param>
         /// <param name="Y">Y Position</param>
-        public static void setHudGamepadButton(int Button, float X, float Y) { _game.hud.setHudGamepadButton(Button, X , Y); }
+        public static void setHudGamepadButton(int Type, int Button, float X, float Y) { _game.hud.setHudGamepadButton(Type, Button, X , Y); }
 
 		//public static void takeScreenshot() { _game.takeScreenshot(); }
 

@@ -68,7 +68,7 @@ namespace Lemonade
             //play.loadText(new FlxText(2, 2, 100, "Enter"), new FlxText(2, 2, 100, "ENTER"));
             //add(play);
 
-            FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 100);
+            FlxG.setHudGamepadButton(FlxHud.TYPE_XBOX, FlxButton.ControlPadA, FlxG.width / 2 + 54, FlxG.height - 100);
 
             FlxG.flash.start(Color.Black, 1.5f);
 

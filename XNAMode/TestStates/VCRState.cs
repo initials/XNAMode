@@ -110,7 +110,6 @@ namespace FourChambers
         {
             FlxG.resetHud();
             FlxG.showHud();
-            FlxG.showHudGraphic();
             FlxG.setHudText(3, "Recording!");
 
             actors = new FlxGroup();

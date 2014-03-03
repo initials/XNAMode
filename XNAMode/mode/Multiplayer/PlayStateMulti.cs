@@ -210,7 +210,7 @@ namespace XNAMode
             FlxG.scores.Add(0);
 
             FlxG.showHud();
-            FlxG.setHudGamepadButton(0, -200, -200);
+            FlxG.setHudGamepadButton(FlxHud.TYPE_XBOX, 0, -200, -200);
 
             FlxG.setHudText(1, FlxG.scores[0].ToString() );
 

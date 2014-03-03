@@ -36,7 +36,7 @@ namespace XNAMode
             FlxG.showHud();
 
             FlxG.setHudText(1, textInfo );
-            FlxG.setHudGamepadButton(FlxButton.ControlPadA, 120, 120);
+            FlxG.setHudGamepadButton(FlxHud.TYPE_KEYBOARD, FlxButton.ControlPadA, 120, 120);
 
 
         }

@@ -13,12 +13,9 @@ namespace org.flixel
     public class FlxHud
     {
         public bool visible = false;
-
         private Rectangle _srcRect = new Rectangle(1, 1, 1, 1);
         private Rectangle _consoleRect;
         private Color _consoleColor;
-
-        
 
         /// <summary>
         /// A text box that appears in top left
@@ -46,19 +43,29 @@ namespace org.flixel
         /// </summary>
         public float timeToShowButton;
         private float _elapsedSinceLastButtonNeeded;
-
         /// <summary>
-        /// used to display a game pad button at regular resolution.
+        /// A Sprite that holds the Xbox HUD Buttons. We have two so that you can display a direction and a button at the same time.
         /// </summary>
-        private FlxSprite _gamePadButton;
-
-
         public FlxSprite xboxButton;
+        /// <summary>
+        /// A Sprite that holds the Ouya HUD Buttons. We have two so that you can display a direction and a button at the same time.
+        /// </summary>
         public FlxSprite ouyaButton;
+        /// <summary>
+        /// A Sprite that holds the Keyboard HUD Buttons. We have two so that you can display a direction and a button at the same time.
+        /// </summary>
         public FlxSprite keyboardButton;
-
+        /// <summary>
+        /// A Sprite that holds the Xbox HUD Buttons. We have two so that you can display a direction and a button at the same time.
+        /// </summary>
         public FlxSprite xboxDirection;
+        /// <summary>
+        /// A Sprite that holds the Ouya HUD Buttons. We have two so that you can display a direction and a button at the same time.
+        /// </summary>
         public FlxSprite ouyaDirection;
+        /// <summary>
+        /// A Sprite that holds the Keyboard HUD Buttons. We have two so that you can display a direction and a button at the same time.
+        /// </summary>
         public FlxSprite keyboardDirection;
 
         /// <summary>
@@ -193,11 +200,31 @@ namespace org.flixel
         public const int Keyboard_Z = 85;
 
 
-
+        /// <summary>
+        /// Indictates the sprite that carries Keyboard controls.
+        /// </summary>
         public const int TYPE_KEYBOARD = 0;
+        /// <summary>
+        /// Indictates the sprite that carries Xbox controls.
+        /// </summary>
         public const int TYPE_XBOX= 1;
+        /// <summary>
+        /// Indictates the sprite that carries Ouya controls.
+        /// </summary>
         public const int TYPE_OUYA = 2;
-        
+        /// <summary>
+        /// Indictates the sprite that carries Keyboard controls.
+        /// </summary>
+        public const int TYPE_KEYBOARD_DIRECTION = 3;
+        /// <summary>
+        /// Indictates the sprite that carries Xbox controls.
+        /// </summary>
+        public const int TYPE_XBOX_DIRECTION = 4;
+        /// <summary>
+        /// Indictates the sprite that carries Ouya controls.
+        /// </summary>
+        public const int TYPE_OUYA_DIRECTION = 5;
+
 
         /// <summary>
         /// Original positions are used in the <code>reset()</code>
@@ -207,11 +234,6 @@ namespace org.flixel
         public Vector2 p2OriginalPosition;
         public Vector2 p3OriginalPosition;
         public Vector2 p4OriginalPosition;
-
-        //private FlxSprite p1HudSprite;
-        //private FlxSprite p2HudSprite;
-        //private FlxSprite p3HudSprite;
-        //private FlxSprite p4HudSprite;
 
         public Color color
         {
@@ -230,13 +252,6 @@ namespace org.flixel
 
             visible = false;
 
-            //hudGraphic = new FlxSprite(targetLeft+76, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 36, FlxG.Content.Load<Texture2D>("fourchambers/hudElements"));
-            //hudGraphic = new FlxSprite();
-            //hudGraphic.visible = false;
-            //hudGraphic.scrollFactor.X = 0;
-            //hudGraphic.scrollFactor.Y = 0;
-            //hudGraphic.scale = 2;
-
             hudGroup = new FlxGroup();
             hudGroup.scrollFactor.X = 0;
             hudGroup.scrollFactor.Y = 0;
@@ -251,21 +266,6 @@ namespace org.flixel
             p3HudText = new FlxText(targetLeft, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 20, targetWidth, "p3HudText").setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
             p4HudText = new FlxText(targetLeft, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 20, targetWidth, "p4HudText").setFormat(null, 1, Color.White, FlxJustification.Right, Color.White);
 
-            _gamePadButton = new FlxSprite(targetLeft,0);
-            _gamePadButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/BP3_SSTRIP_64"), true, false, 63, 64);
-            _gamePadButton.width = 61;
-            _gamePadButton.height = 62;
-            _gamePadButton.offset.X = 1;
-            _gamePadButton.offset.Y = 1;
-            _gamePadButton.addAnimation("frame", new int[] { FlxButton.ControlPadA });
-            _gamePadButton.play("frame");
-            _gamePadButton.solid = false;
-            _gamePadButton.visible = true;
-            _gamePadButton.scrollFactor.X = 0;
-            _gamePadButton.scrollFactor.Y = 0;
-            _gamePadButton.boundingBoxOverride = false;
-
-
             keyboardButton = new FlxSprite(targetLeft, 0);
             keyboardButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/MapWhite"), true, false, 100, 100);
             keyboardButton.addAnimation("frame", new int[] { FlxButton.ControlPadA });
@@ -275,7 +275,6 @@ namespace org.flixel
             keyboardButton.scrollFactor.X = 1;
             keyboardButton.scrollFactor.Y = 1;
             keyboardButton.boundingBoxOverride = false;
-
 
             xboxButton = new FlxSprite(targetLeft, 0);
             xboxButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/Map360"), true, false, 100, 100);
@@ -361,20 +360,6 @@ namespace org.flixel
 
         }
 
-        /// <summary>
-        /// Sets the non scaled gamePad button to an image and a position.
-        /// </summary>
-        /// <param name="Button">Use FlxButton.gamePad**</param>
-        /// <param name="X">x pos</param>
-        /// <param name="Y">y pos</param>
-        public void setHudGamepadButton(int Button, float X, float Y)
-        {
-            _gamePadButton.frame = Button;
-            _gamePadButton.x = X * FlxG.zoom ;
-            _gamePadButton.y = Y * FlxG.zoom ;
-            _gamePadButton.visible = true;
-        }
-
         public void setHudGamepadButton(int Type, int Button, float X, float Y)
         {
             if (Type == TYPE_KEYBOARD)
@@ -397,9 +382,28 @@ namespace org.flixel
                 ouyaButton.x = X * FlxG.zoom;
                 ouyaButton.y = Y * FlxG.zoom;
                 ouyaButton.visible = true;
-                
             }
-            
+            else if (Type == TYPE_KEYBOARD_DIRECTION)
+            {
+                keyboardDirection.frame = Button;
+                keyboardDirection.x = X * FlxG.zoom;
+                keyboardDirection.y = Y * FlxG.zoom;
+                keyboardDirection.visible = true;
+            }
+            else if (Type == TYPE_XBOX_DIRECTION)
+            {
+                xboxDirection.frame = Button;
+                xboxDirection.x = X * FlxG.zoom;
+                xboxDirection.y = Y * FlxG.zoom;
+                xboxDirection.visible = true;
+            }
+            else if (Type == TYPE_OUYA_DIRECTION)
+            {
+                ouyaDirection.frame = Button;
+                ouyaDirection.x = X * FlxG.zoom;
+                ouyaDirection.y = Y * FlxG.zoom;
+                ouyaDirection.visible = true;
+            }
         }
 
         /// <summary>
@@ -408,7 +412,6 @@ namespace org.flixel
         public void showHud()
         {
             visible = true;
-            //_gamePadButton.visible = true;
         }
 
         /// <summary>
@@ -417,7 +420,6 @@ namespace org.flixel
         public void hideHud()
         {
             visible = false;
-
         }
 
         public void resetTime()
@@ -433,7 +435,6 @@ namespace org.flixel
 
             if ( _elapsedSinceLastButtonNeeded > timeToShowButton )
             {
-                //hudGroup.members[0].visible = false;
                 xboxButton.visible = false;
                 keyboardButton.visible = false;
                 ouyaButton.visible = false;
@@ -470,21 +471,8 @@ namespace org.flixel
             p4HudText.x = p4OriginalPosition.X;
             p4HudText.y = p4OriginalPosition.Y;
             p4HudText.scale = 1;
-
-
-            _gamePadButton.visible = false;
         }
-
-        public void showHudGraphic()
-        {
-            //hudGraphic.visible = true;
-        }
-        public void hideHudGraphic()
-        {
-            //hudGraphic.visible = false;
-        }
-
-
+        
         public void render(SpriteBatch spriteBatch)
         {
 
@@ -496,8 +484,6 @@ namespace org.flixel
             p2HudText.render(spriteBatch);
             p3HudText.render(spriteBatch);
             p4HudText.render(spriteBatch);
-
-            _gamePadButton.render(spriteBatch);
 
             keyboardButton.render(spriteBatch);
             ouyaButton.render(spriteBatch);

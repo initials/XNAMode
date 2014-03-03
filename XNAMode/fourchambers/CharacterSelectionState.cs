@@ -66,7 +66,7 @@ namespace FourChambers
             FlxG.setHudTextPosition(3, 80, 150);
             FlxG.setHudTextScale(3, 2);
 
-            FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width - 30, 160);
+            FlxG.setHudGamepadButton(FlxHud.TYPE_KEYBOARD, FlxButton.ControlPadA, FlxG.width - 30, 160);
             
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
@@ -94,7 +94,7 @@ namespace FourChambers
 
             btncorsair.on = true;
 
-            FlxG.setHudGamepadButton(FlxButton.ControlPadA, btncorsair.x,(btncorsair.y+corsairOff.height*1.5f));
+            FlxG.setHudGamepadButton(FlxHud.TYPE_XBOX, FlxButton.ControlPadA, btncorsair.x, (btncorsair.y + corsairOff.height * 1.5f));
             
             //Marksman
             marksmanOff = new FlxSprite(0, 0, null);

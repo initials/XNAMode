@@ -383,7 +383,7 @@ namespace Lemonade
             FlxG._game.hud.p3HudText.x = -1000;
             FlxG._game.hud.p4HudText.x = -1000;
 
-            FlxG._game.hud.setHudGamepadButton(0, -1000, -1000);
+            FlxG._game.hud.setHudGamepadButton( FlxHud.TYPE_KEYBOARD ,0, -1000, -1000);
 
             FlxG.mouse.hide();
 

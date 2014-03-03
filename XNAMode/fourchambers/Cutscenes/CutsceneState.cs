@@ -50,7 +50,7 @@ namespace FourChambers
             FlxG.setHudTextPosition(3, 80, 150);
             FlxG.setHudTextScale(3,1);
 
-            FlxG.setHudGamepadButton(FlxButton.ControlPadA, FlxG.width - 30, 160);
+            FlxG.setHudGamepadButton(FlxHud.TYPE_XBOX, FlxButton.ControlPadA, FlxG.width - 30, 160);
 
 
 

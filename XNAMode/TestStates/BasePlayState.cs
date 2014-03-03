@@ -235,7 +235,6 @@ namespace FourChambers
             //important to reset the hud to get the text, gamepad buttons out.
             FlxG.resetHud();
             FlxG.showHud();
-            FlxG.showHudGraphic();
 
             //FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
