@@ -185,29 +185,33 @@ namespace Lemonade
 
                         //Console.WriteLine("Pressed X {0}", parent.ToString());
 
+                        int velX = 500;
                         int velY = -200;
 
                         if (FlxG.keys.UP || FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.DPadUp) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp))
                         {
                             velY -= 400;
                         }
+                        else if (FlxG.keys.DOWN || FlxG.keys.S || FlxG.gamepads.isButtonDown(Buttons.DPadDown) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown))
+                        {
+                            velY = 10;
+                            velX = 10;
+                        }
+
                         parent = null;
 
                         if (((FlxSprite)(obj)).facing == Flx2DFacing.Left)
                         {
-                            velocity.X = -500;
+                            velocity.X = velX * -1;
                             velocity.Y = velY;
                             x -= width;
                         }
                         else if (((FlxSprite)(obj)).facing == Flx2DFacing.Right)
                         {
                             x += width;
-                            velocity.X = 500;
+                            velocity.X = velX;
                             velocity.Y = velY;
                         }
-                        
-
-                        
                     }
                 }
                 //if (
@@ -225,12 +229,8 @@ namespace Lemonade
 
             if (obj.GetType().ToString() == "Lemonade.Trampoline")
             {
-                //Console.WriteLine("small craete is overlapping?? + + " + obj.GetType().ToString());
-                
                 trampolineTimer = 0;
-                //velocity.X = 100;
                 velocity.Y = -1000;
-                
             }
 
             if (obj.GetType().ToString() == "Lemonade.Spike")

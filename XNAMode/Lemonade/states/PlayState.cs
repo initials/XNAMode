@@ -593,8 +593,6 @@ namespace Lemonade
 
             base.update();
 
-
-
             // Switch Controlling Character.
             if (FlxG.keys.justPressed(Keys.V) || FlxG.gamepads.isNewButtonPress(Buttons.B))
             {
@@ -633,14 +631,17 @@ namespace Lemonade
             }
             if (levelComplete == true)
             {
-                andre.alpha -= 0.1f;
-                liselot.alpha -= 0.1f;
+                //andre.alpha -= 0.1f;
+                //liselot.alpha -= 0.1f;
             }
             if (levelComplete == true && ! FlxG.transition.hasStarted)
             {
 
                 andre.control = FlxPlatformActor.Controls.none;
                 liselot.control = FlxPlatformActor.Controls.none;
+
+                andre.visible = false;
+                liselot.visible = false;
 
                 FlxG.transition.startFadeOut(0.05f, -90, 150);
             }
@@ -665,7 +666,6 @@ namespace Lemonade
                     return;
                 }
             }
-
         }
 
 
