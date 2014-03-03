@@ -18,6 +18,8 @@ namespace org.flixel
         private Rectangle _consoleRect;
         private Color _consoleColor;
 
+        
+
         /// <summary>
         /// A text box that appears in top left
         /// </summary>
@@ -54,6 +56,143 @@ namespace org.flixel
         public FlxSprite xboxButton;
         public FlxSprite ouyaButton;
         public FlxSprite keyboardButton;
+
+        public FlxSprite xboxDirection;
+        public FlxSprite ouyaDirection;
+        public FlxSprite keyboardDirection;
+
+        /// <summary>
+        /// Xbox Button A
+        /// </summary>
+        public const int xboxButtonA = 0;
+        /// <summary>
+        /// Xbox Button B
+        /// </summary>
+        public const int xboxButtonB = 1;
+        public const int xboxButtonBack1 = 2;
+        public const int xboxButtonBack2 = 3;
+        public const int xboxDPad = 4;
+        public const int xboxDPadDown = 5;
+        public const int xboxDPadLeft = 6;
+        public const int xboxDPadRight = 7;
+        public const int xboxDPadUp = 8;
+        public const int xboxButtonLeftBumper = 9;
+        public const int xboxButtonLeftTrigger = 10;
+        public const int xboxJoystickLeftStick = 11;
+        public const int xboxButtonRightBumper = 12;
+        public const int xboxButtonRightTrigger = 13;
+        public const int xboxJoystickRightStick = 14;
+        public const int xboxButtonStart1 = 15;
+        public const int xboxButtonStart2 = 16;
+        public const int xboxButtonX = 17;
+        public const int xboxButtonY = 18;
+
+        public const int ouyaButtonA = 0;
+        public const int ouyaDPad = 1;
+        public const int ouyaDPadDown = 2;
+        public const int ouyaDPadLeft = 3;
+        public const int ouyaDPadRight = 4;
+        public const int ouyaDPadUp = 5;
+        public const int ouyaButtonLeftBumper = 6;
+        public const int ouyaButtonLeftTrigger = 7;
+        public const int ouyaJoystickLeftStick = 8;
+        public const int ouyaButtonStart = 9;
+        public const int ouyaButtonO = 10;
+        public const int ouyaButtonRightBumper = 11;
+        public const int ouyaButtonRightTrigger = 12;
+        public const int ouyaJoystickRightStick = 13;
+        public const int ouyaPad = 14;
+        public const int ouyaButtonU = 15;
+        public const int ouyaButtonY = 16;
+
+        public const int Keyboard_Blank_Enter = 0;
+        public const int Keyboard_Blank_Mouse = 1;
+        public const int Keyboard_Blank_Normal = 2;
+        public const int Keyboard_Blank_Super_Wide = 3;
+        public const int Keyboard_Blank_Tall = 4;
+        public const int Keyboard_Blank_Wide = 5;
+        public const int Keyboard_0 = 6;
+        public const int Keyboard_1 = 7;
+        public const int Keyboard_2 = 8;
+        public const int Keyboard_3 = 9;
+        public const int Keyboard_4 = 10;
+        public const int Keyboard_5 = 11;
+        public const int Keyboard_6 = 12;
+        public const int Keyboard_7 = 13;
+        public const int Keyboard_8 = 14;
+        public const int Keyboard_9 = 15;
+        public const int Keyboard_A = 16;
+        public const int Keyboard_Alt = 17;
+        public const int Keyboard_Arrow_Down = 18;
+        public const int Keyboard_Arrow_Left = 19;
+        public const int Keyboard_Arrow_Right = 20;
+        public const int Keyboard_Arrow_Up = 21;
+        public const int Keyboard_Asterisk = 22;
+        public const int Keyboard_B = 23;
+        public const int Keyboard_Backspace = 24;
+        public const int Keyboard_Backspace_Alt = 25;
+        public const int Keyboard_Bracket_Left = 26;
+        public const int Keyboard_Bracket_Right = 27;
+        public const int Keyboard_C = 28;
+        public const int Keyboard_Caps_Lock = 29;
+        public const int Keyboard_Command = 30;
+        public const int Keyboard_Ctrl = 31;
+        public const int Keyboard_D = 32;
+        public const int Keyboard_Del = 33;
+        public const int Keyboard_E = 34;
+        public const int Keyboard_End = 35;
+        public const int Keyboard_Enter = 36;
+        public const int Keyboard_Enter_Alt = 37;
+        public const int Keyboard_Enter_Tall = 38;
+        public const int Keyboard_Esc = 39;
+        public const int Keyboard_F = 40;
+        public const int Keyboard_G = 41;
+        public const int Keyboard_H = 42;
+        public const int Keyboard_Home = 43;
+        public const int Keyboard_I = 44;
+        public const int Keyboard_Insert = 45;
+        public const int Keyboard_J = 46;
+        public const int Keyboard_K = 47;
+        public const int Keyboard_L = 48;
+        public const int Keyboard_M = 49;
+        public const int Keyboard_Mark_Left = 50;
+        public const int Keyboard_Mark_Right = 51;
+        public const int Keyboard_Minus = 52;
+        public const int Keyboard_Mouse_Left = 53;
+        public const int Keyboard_Mouse_Middle = 54;
+        public const int Keyboard_Mouse_Right = 55;
+        public const int Keyboard_Mouse_Simple = 56;
+        public const int Keyboard_N = 57;
+        public const int Keyboard_Num_Lock = 58;
+        public const int Keyboard_O = 59;
+        public const int Keyboard_P = 60;
+        public const int Keyboard_Page_Down = 61;
+        public const int Keyboard_Page_Up = 62;
+        public const int Keyboard_Plus = 63;
+        public const int Keyboard_Plus_Tall = 64;
+        public const int Keyboard_Print_Screen = 65;
+        public const int Keyboard_Q = 66;
+        public const int Keyboard_Question = 67;
+        public const int Keyboard_Quote = 68;
+        public const int Keyboard_R = 69;
+        public const int Keyboard_S = 70;
+        public const int Keyboard_Semicolon = 71;
+        public const int Keyboard_Shift = 72;
+        public const int Keyboard_Shift_Alt = 73;
+        public const int Keyboard_Slash = 74;
+        public const int Keyboard_Space = 75;
+        public const int Keyboard_T = 76;
+        public const int Keyboard_Tab = 77;
+        public const int Keyboard_Tilda = 78;
+        public const int Keyboard_U = 79;
+        public const int Keyboard_V = 80;
+        public const int Keyboard_W = 81;
+        public const int Keyboard_Win = 82;
+        public const int Keyboard_X = 83;
+        public const int Keyboard_Y = 84;
+        public const int Keyboard_Z = 85;
+
+
 
         public const int TYPE_KEYBOARD = 0;
         public const int TYPE_XBOX= 1;
@@ -159,6 +298,38 @@ namespace org.flixel
             ouyaButton.scrollFactor.Y = 1;
             ouyaButton.boundingBoxOverride = false;
 
+
+            keyboardDirection = new FlxSprite(targetLeft, 0);
+            keyboardDirection.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/MapWhite"), true, false, 100, 100);
+            keyboardDirection.addAnimation("frame", new int[] { Keyboard_Arrow_Up });
+            keyboardDirection.play("frame");
+            keyboardDirection.solid = false;
+            keyboardDirection.visible = true;
+            keyboardDirection.scrollFactor.X = 1;
+            keyboardDirection.scrollFactor.Y = 1;
+            keyboardDirection.boundingBoxOverride = false;
+
+
+            xboxDirection= new FlxSprite(targetLeft, 0);
+            xboxDirection.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/Map360"), true, false, 100, 100);
+            xboxDirection.addAnimation("frame", new int[] { FlxButton.ControlPadA });
+            xboxDirection.play("frame");
+            xboxDirection.solid = false;
+            xboxDirection.visible = true;
+            xboxDirection.scrollFactor.X = 1;
+            xboxDirection.scrollFactor.Y = 1;
+            xboxDirection.boundingBoxOverride = false;
+
+
+            ouyaDirection = new FlxSprite(targetLeft, 0);
+            ouyaDirection.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/MapOuya"), true, false, 100, 100);
+            ouyaDirection.addAnimation("frame", new int[] { FlxButton.ControlPadA });
+            ouyaDirection.play("frame");
+            ouyaDirection.solid = false;
+            ouyaDirection.visible = true;
+            ouyaDirection.scrollFactor.X = 1;
+            ouyaDirection.scrollFactor.Y = 1;
+            ouyaDirection.boundingBoxOverride = false;
 
 
 
@@ -267,6 +438,9 @@ namespace org.flixel
                 keyboardButton.visible = false;
                 ouyaButton.visible = false;
 
+                xboxDirection.visible = false;
+                keyboardDirection.visible = false;
+                ouyaDirection.visible = false;
             }
 
             if (visible)
@@ -329,7 +503,9 @@ namespace org.flixel
             ouyaButton.render(spriteBatch);
             xboxButton.render(spriteBatch);
 
-
+            keyboardDirection.render(spriteBatch);
+            ouyaDirection.render(spriteBatch);
+            xboxDirection.render(spriteBatch);
 
         }
 
