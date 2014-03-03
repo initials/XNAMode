@@ -266,7 +266,7 @@ namespace org.flixel
             p3HudText = new FlxText(targetLeft, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 20, targetWidth, "p3HudText").setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
             p4HudText = new FlxText(targetLeft, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 20, targetWidth, "p4HudText").setFormat(null, 1, Color.White, FlxJustification.Right, Color.White);
 
-            keyboardButton = new FlxSprite(targetLeft, 0);
+            keyboardButton = new FlxSprite(targetLeft, -1000);
             keyboardButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/MapWhite"), true, false, 100, 100);
             keyboardButton.addAnimation("frame", new int[] { FlxButton.ControlPadA });
             keyboardButton.play("frame");
@@ -276,7 +276,7 @@ namespace org.flixel
             keyboardButton.scrollFactor.Y = 1;
             keyboardButton.boundingBoxOverride = false;
 
-            xboxButton = new FlxSprite(targetLeft, 0);
+            xboxButton = new FlxSprite(targetLeft, -1000);
             xboxButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/Map360"), true, false, 100, 100);
             xboxButton.addAnimation("frame", new int[] { FlxButton.ControlPadA });
             xboxButton.play("frame");
@@ -287,7 +287,7 @@ namespace org.flixel
             xboxButton.boundingBoxOverride = false;
 
 
-            ouyaButton = new FlxSprite(targetLeft, 0);
+            ouyaButton = new FlxSprite(targetLeft, -1000);
             ouyaButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/MapOuya"), true, false, 100, 100);
             ouyaButton.addAnimation("frame", new int[] { FlxButton.ControlPadA });
             ouyaButton.play("frame");
@@ -298,7 +298,7 @@ namespace org.flixel
             ouyaButton.boundingBoxOverride = false;
 
 
-            keyboardDirection = new FlxSprite(targetLeft, 0);
+            keyboardDirection = new FlxSprite(targetLeft, -1000);
             keyboardDirection.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/MapWhite"), true, false, 100, 100);
             keyboardDirection.addAnimation("frame", new int[] { Keyboard_Arrow_Up });
             keyboardDirection.play("frame");
@@ -309,7 +309,7 @@ namespace org.flixel
             keyboardDirection.boundingBoxOverride = false;
 
 
-            xboxDirection= new FlxSprite(targetLeft, 0);
+            xboxDirection = new FlxSprite(targetLeft, -1000);
             xboxDirection.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/Map360"), true, false, 100, 100);
             xboxDirection.addAnimation("frame", new int[] { FlxButton.ControlPadA });
             xboxDirection.play("frame");
@@ -320,7 +320,7 @@ namespace org.flixel
             xboxDirection.boundingBoxOverride = false;
 
 
-            ouyaDirection = new FlxSprite(targetLeft, 0);
+            ouyaDirection = new FlxSprite(targetLeft, -1000);
             ouyaDirection.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/MapOuya"), true, false, 100, 100);
             ouyaDirection.addAnimation("frame", new int[] { FlxButton.ControlPadA });
             ouyaDirection.play("frame");

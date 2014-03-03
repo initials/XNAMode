@@ -404,13 +404,14 @@ namespace Lemonade
 
             buildBoxes();
 
-            add(actors);
+            
             add(trampolines);
             add(levelItems);
             add(hazards);
             add(ramps);
             add(smallCrates);
             add(movingPlatforms);
+            add(actors);
 
             //set up a little bubble particle system.
 

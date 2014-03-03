@@ -149,6 +149,12 @@ namespace Lemonade
                 velocity.Y = -1000;
                 trampolineTimer = 0.0f;
             }
+            else if (overlappedWith == "Lemonade.FilingCabinet")
+            {
+                originalPosition.X = obj.x;
+                originalPosition.Y = obj.y;
+
+            }
 
         }
         public override void kill()

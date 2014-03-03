@@ -24,8 +24,8 @@ namespace Lemonade
 		    else if (type == 2)
                 loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/FilingCab2"), true, false, 34, 60);
 				
-            addAnimation("open", new int[] { 0 }, 0, false);
-            addAnimation("closed", new int[] { 0,1,2,3,4,3,3,2,2,1,1,0 }, 12, false);
+            addAnimation("open", new int[] { 4 }, 0, false);
+            addAnimation("closed", new int[] { 4,3,3,2,2,1,1,0 }, 12, false);
 
             play("open");
 

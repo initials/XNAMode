@@ -373,14 +373,14 @@ namespace org.flixel
             {
                 play(animationPrefix + "death");
             }
+            else if (velocity.Y != 0)
+            {
+                play(animationPrefix + "jump");
+            }
             else if (velocity.X == 0)
             {
                 if (action == Actions.talk) play(animationPrefix + "talk");
                 else play(animationPrefix + "idle");
-            }
-            else if (velocity.Y != 0)
-            {
-                play(animationPrefix + "jump");
             }
             else if (velocity.X > 1)
             {

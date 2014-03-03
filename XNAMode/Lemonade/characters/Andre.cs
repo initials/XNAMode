@@ -106,7 +106,12 @@ namespace Lemonade
                     ((Liselot)(obj)).control = Controls.none;
                 }
             }
+            else if (overlappedWith == "Lemonade.FilingCabinet")
+            {
+                originalPosition.X = obj.x;
+                originalPosition.Y = obj.y;
 
+            }
             else if (overlappedWith == "Lemonade.LargeCrate")
             {
                 Console.WriteLine("crate overlapp");

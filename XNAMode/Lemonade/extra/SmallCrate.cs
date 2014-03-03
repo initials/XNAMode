@@ -15,6 +15,7 @@ namespace Lemonade
         public FlxObject parent;
         private float trampolineTimer;
         private float throwTimer;
+        private bool canParent;
 
         public SmallCrate(int xPos, int yPos)
             : base(xPos, yPos)
@@ -39,7 +40,7 @@ namespace Lemonade
             parent = null;
             trampolineTimer = float.MaxValue;
             throwTimer = float.MaxValue;
-
+            canParent = false;
         }
 
         /// <summary>
@@ -58,8 +59,17 @@ namespace Lemonade
         }
         override public void update()
         {
+            
             trampolineTimer += FlxG.elapsed;
             throwTimer += FlxG.elapsed;
+
+            if (FlxG.keys.justPressed(Keys.C) &&
+                (FlxG.keys.DOWN || FlxG.keys.S))
+            {
+                canParent = true;
+                Console.WriteLine("Pressed!");
+            }
+
 
             if (parent != null)
             {
@@ -68,12 +78,28 @@ namespace Lemonade
                 {
                     x = (parent.x-width/2) + 24;
                     y = parent.y;
+
+                    if (FlxG.keys.justPressed(Keys.C))
+                    {
+                        throwCrate("Right");
+                        return;
+                    }
                 }
                 else if (((FlxSprite)(parent)).facing == Flx2DFacing.Left)
                 {
                     x = (parent.x - width / 2) - 12;
                     y = parent.y;
+
+                    if (FlxG.keys.justPressed(Keys.C))
+                    {
+                        throwCrate("Left");
+                        return;
+                    }
+
                 }
+
+
+
                 if (parent.dead == true) parent = null;
                 acceleration.Y = 0;
             }
@@ -83,6 +109,9 @@ namespace Lemonade
             }
             else
             {
+
+
+
                 acceleration.Y = Lemonade_Globals.GRAVITY;
                 @fixed = true;
             }
@@ -99,6 +128,36 @@ namespace Lemonade
             base.kill();
         }
 
+        public void throwCrate(string Direction)
+        {
+            int velX = 500;
+            int velY = -200;
+
+            if (FlxG.keys.UP || FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.DPadUp) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp))
+            {
+                velY -= 400;
+            }
+            else if (FlxG.keys.DOWN || FlxG.keys.S || FlxG.gamepads.isButtonDown(Buttons.DPadDown) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown))
+            {
+                velY = 10;
+                velX = 10;
+            }
+
+            parent = null;
+
+            if (Direction == "Left")
+            {
+                velocity.X = velX * -1;
+                velocity.Y = velY;
+                x -= width;
+            }
+            else if (Direction == "Right")
+            {
+                x += width;
+                velocity.X = velX;
+                velocity.Y = velY;
+            }
+        }
         public override void overlapped(FlxObject obj)
         {
             base.overlapped(obj);
@@ -137,94 +196,40 @@ namespace Lemonade
 
             if (obj.GetType().ToString() == "Lemonade.Liselot" || obj.GetType().ToString() == "Lemonade.Andre")
             {
-                //Console.WriteLine("---------------------------------------------------" + FlxG.elapsedTotal + obj.GetType().ToString());
-
-                if (parent == null)
+                if (((FlxPlatformActor)(obj)).control == FlxPlatformActor.Controls.player && parent == null)
                 {
+                    FlxG.showHud();
+
+                    if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_KEYBOARD)
+                    {
+                        FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_KEYBOARD_DIRECTION, FlxHud.Keyboard_Arrow_Down, x - 60, y - 150);
+                        FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_KEYBOARD, FlxHud.Keyboard_C, x + 60, y - 150);
+                    }
+                    else if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_GAMEPAD)
+                    {
+                        FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_XBOX, 17, x - width / 2, y - 150);
+                    }
+
+                    FlxG._game.hud.resetTime();
+                    FlxG._game.hud.timeToShowButton = 0.05f;
+
                     throwTimer = 0;
 
-                    if (((FlxPlatformActor)(obj)).control == FlxPlatformActor.Controls.player)
+
+
+                    if (canParent)
                     {
-                        FlxG.showHud();
-
-                        //FlxG._game.hud.setHudGamepadButton(FlxButton.ControlPadX, x, y - 55);
-
-                        if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_KEYBOARD)
-                        {
-                            FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_KEYBOARD, 28, x - width / 2, y - 150);
-                        }
-                        else if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_GAMEPAD)
-                        {
-                            FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_XBOX, 17, x - width/2, y-150);
-                        }
-
-                        FlxG._game.hud.resetTime();
-                        FlxG._game.hud.timeToShowButton = 0.05f;
-                    }
-
-                    if (
-                        (FlxG.keys.justPressed(Keys.C)) ||
-                        (FlxG.gamepads.isNewButtonPress(Buttons.X))
-                        )
-                    {
-                        //Console.WriteLine("Pressed X" + FlxG.elapsedTotal);
-                        //Console.WriteLine("parent == null -- X");
                         parent = obj;
+                        Console.WriteLine("can parent == True);");
 
                     }
+
+                    canParent = false;
                 }
-                else
-                {
-                    //Console.WriteLine("---------------------------------------------------");
-
-                    if (
-                (FlxG.keys.justPressed(Keys.C)) ||
-                (FlxG.gamepads.isNewButtonPress(Buttons.X)) && throwTimer> 0.025f
-                )
-                    {
-
-                        //Console.WriteLine("Pressed X {0}", parent.ToString());
-
-                        int velX = 500;
-                        int velY = -200;
-
-                        if (FlxG.keys.UP || FlxG.keys.W || FlxG.gamepads.isButtonDown(Buttons.DPadUp) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp))
-                        {
-                            velY -= 400;
-                        }
-                        else if (FlxG.keys.DOWN || FlxG.keys.S || FlxG.gamepads.isButtonDown(Buttons.DPadDown) || FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown))
-                        {
-                            velY = 10;
-                            velX = 10;
-                        }
-
-                        parent = null;
-
-                        if (((FlxSprite)(obj)).facing == Flx2DFacing.Left)
-                        {
-                            velocity.X = velX * -1;
-                            velocity.Y = velY;
-                            x -= width;
-                        }
-                        else if (((FlxSprite)(obj)).facing == Flx2DFacing.Right)
-                        {
-                            x += width;
-                            velocity.X = velX;
-                            velocity.Y = velY;
-                        }
-                    }
-                }
-                //if (
-                //    (FlxG.keys.justPressed(Keys.C) && FlxG.keys.DOWN) ||
-                //    (FlxG.gamepads.isNewButtonPress(Buttons.X) && (FlxG.gamepads.isButtonDown(Buttons.DPadDown) || (FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown))))
-                //    )
-                
-
-                //else if ((FlxG.keys.justPressed(Keys.C) || (FlxG.gamepads.isNewButtonPress(Buttons.X))) && parent!=null)
-                //{
-                    
-                //}
-                
+            }
+            else
+            {
+                canParent = false;
             }
 
             if (obj.GetType().ToString() == "Lemonade.Trampoline")
