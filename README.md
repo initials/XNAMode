@@ -8,8 +8,8 @@ Other games included in the huge pack are:
 
 Mode
 Revvolvver - 4 player death match.
-Super Lemonade Factory - 1% complete
-Four Chambers
+Super Lemonade Factory - 80% complete
+The Four Chambers of the Human Heart
 
 
 To Do:
