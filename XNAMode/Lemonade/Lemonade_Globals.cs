@@ -28,6 +28,8 @@ namespace Lemonade
         public static int LAST_LOCATION;
         public static int LAST_SELECTED_ON_MENU;
 
+        public static bool restartMusic = true;
+
         public Lemonade_Globals()
         {
 

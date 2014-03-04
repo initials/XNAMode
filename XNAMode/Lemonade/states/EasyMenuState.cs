@@ -527,6 +527,7 @@ namespace Lemonade
                     Lemonade_Globals.LAST_SELECTED_ON_MENU = currentSelected;
                     Lemonade_Globals.LAST_LOCATION = currentLocation;
                     FlxG.level = currentLevel;
+                    Lemonade_Globals.restartMusic = true;
                     FlxG.state = new PlayState();
                 }
                 else

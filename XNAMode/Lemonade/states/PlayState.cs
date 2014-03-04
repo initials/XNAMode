@@ -347,9 +347,9 @@ namespace Lemonade
             {
                 foreach (KeyValuePair<string, string> kvp in nodes)
                 {
-                    Console.Write("Level String -- Key = {0}, Value = {1}, ", kvp.Key, kvp.Value);
+                    //Console.Write("Level String -- Key = {0}, Value = {1}, ", kvp.Key, kvp.Value);
                 }
-                Console.Write("\r\n");
+                //Console.Write("\r\n");
             }
 
             foreach (var item in levelString)
@@ -451,22 +451,28 @@ namespace Lemonade
         /// </summary>
         public void playSong()
         {
-
-            if (Lemonade_Globals.location == "sydney")
+            if (Lemonade_Globals.restartMusic == false)
             {
-                FlxG.playMp3("Lemonade/music/cave", 0.75f);
-            }
-            else if (Lemonade_Globals.location == "newyork")
-            {
-                FlxG.playMp3("Lemonade/music/here", 0.75f);
-            }
-            else if (Lemonade_Globals.location == "military")
-            {
-                FlxG.playMp3("Lemonade/music/join", 0.75f);
+                FlxG.resumeMp3();
             }
             else
             {
-                FlxG.playMp3("Lemonade/music/join", 0.75f);
+                if (Lemonade_Globals.location == "sydney")
+                {
+                    FlxG.playMp3("Lemonade/music/cave", 0.75f);
+                }
+                else if (Lemonade_Globals.location == "newyork")
+                {
+                    FlxG.playMp3("Lemonade/music/here", 0.75f);
+                }
+                else if (Lemonade_Globals.location == "military")
+                {
+                    FlxG.playMp3("Lemonade/music/join", 0.75f);
+                }
+                else
+                {
+                    FlxG.playMp3("Lemonade/music/join", 0.75f);
+                }
             }
 
         }
@@ -488,6 +494,7 @@ namespace Lemonade
                 }
                 if (FlxG.keys.justPressed(Keys.F9))
                 {
+                    Lemonade_Globals.restartMusic = false;
                     Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].LevelComplete = true;
 
                     Lemonade_Globals.writeGameProgressToFile();
@@ -508,6 +515,7 @@ namespace Lemonade
                 }
                 else if (FlxG.keys.justPressed(Keys.F7) )
                 {
+                    Lemonade_Globals.restartMusic = false;
                     FlxG.level--;
                     FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
                     FlxG.state = new PlayState();
@@ -516,6 +524,7 @@ namespace Lemonade
                 }
                 else if (FlxG.keys.justPressed(Keys.F8) )
                 {
+                    Lemonade_Globals.restartMusic = false;
                     FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
                     FlxG.state = new PlayState();
                     return;
@@ -531,7 +540,12 @@ namespace Lemonade
                 {
                     foreach (var item in actors.members)
                     {
-                        ((FlxPlatformActor)(item)).maxVelocity.X += 0.5f;
+                        ((FlxPlatformActor)(item)).maxVelocity.X += 2.5f;
+                    }
+
+                    foreach (var mov in movingPlatforms.members)
+                    {
+                        mov.pathSpeed += 0.25f;
                     }
                 }
             }
@@ -637,6 +651,7 @@ namespace Lemonade
             }
             if (levelComplete == true && ! FlxG.transition.hasStarted)
             {
+                FlxG.pauseMp3();
 
                 andre.control = FlxPlatformActor.Controls.none;
                 liselot.control = FlxPlatformActor.Controls.none;
@@ -656,6 +671,7 @@ namespace Lemonade
                 if (FlxG.level != 12)
                 {
                     FlxG.level++;
+                    Lemonade_Globals.restartMusic = false;
                     FlxG.state = new PlayState();
                     FlxG.transition.resetAndStop();
                     return;
