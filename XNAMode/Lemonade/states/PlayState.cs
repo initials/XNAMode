@@ -52,12 +52,6 @@ namespace Lemonade
         {
             List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/" + Lemonade_Globals.location + "/bg" + Lemonade_Globals.location + ".tmx", "map", "bg", FlxXMLReader.TILES);
 
-            // TMX fixes. kill newlines.
-            //string ext = bgString[0]["csvData"].Replace(",\n", "\n");
-
-            //ext = ext.Remove(0, 1);
-            //ext = ext.Remove(ext.Length - 1);
-
             FlxTilemap bgMap = new FlxTilemap();
             bgMap.auto = FlxTilemap.STRING;
             bgMap.indexOffset = -1;
@@ -373,6 +367,21 @@ namespace Lemonade
             }
         }
 
+        public void buildTilesetForOgmo1() //string LevelFile, string Tiles
+        {
+            List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf/level1.oel", "map", "bg", FlxXMLReader.TILES);
+
+            collidableTilemap = new FlxTilemap();
+            collidableTilemap.auto = FlxTilemap.STRING;
+
+            // TMX maps have indexOffset of -1;
+            collidableTilemap.indexOffset = -1;
+            collidableTilemap.stringTileMax = 200;
+            collidableTilemap.loadMap(levelString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/tiles_" + Lemonade_Globals.location), 20, 20);
+            collidableTilemap.boundingBoxOverride = false;
+            add(collidableTilemap);
+        }
+
         override public void create()
         {
 
@@ -399,11 +408,23 @@ namespace Lemonade
 
             hazards = new FlxGroup();
 
-            buildTileset();
-            buildActors();
-
-            buildBoxes();
-
+            // Build for slf2 (Tiled Maps)
+            if (Lemonade_Globals.location == "military" ||
+                Lemonade_Globals.location == "newyork" ||
+                Lemonade_Globals.location == "sydney")
+            {
+                buildTileset();
+                buildActors();
+                buildBoxes();
+            }
+            else if (   Lemonade_Globals.location == "warehouse" ||
+                        Lemonade_Globals.location == "factory" ||
+                        Lemonade_Globals.location == "management")
+            {
+                buildTileset();
+                buildActors();
+                buildBoxes();
+            }
             
             add(trampolines);
             add(levelItems);

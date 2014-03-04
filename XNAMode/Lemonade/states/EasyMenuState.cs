@@ -312,7 +312,18 @@ namespace Lemonade
                 // end read.
             }
 
-            
+            if (Lemonade_Globals.gameProgress["newyork_12"].LevelComplete==true)
+            {
+                possibleLocations.Add("warehouse");
+            }
+            if (Lemonade_Globals.gameProgress["sydney_12"].LevelComplete == true)
+            {
+                possibleLocations.Add("factory");
+            }
+            if (Lemonade_Globals.gameProgress["military_12"].LevelComplete == true)
+            {
+                possibleLocations.Add("management");
+            }
 
         }
 
@@ -425,8 +436,21 @@ namespace Lemonade
                 lockedPhrase = "is Locked. Buy the game to play it";
             }
 
-            if (FlxControl.UPJUSTPRESSED) { currentSelected--; bubbleParticle.start(false, 0.0101f, 1500); }
-            if (FlxControl.DOWNJUSTPRESSED) { currentSelected++; bubbleParticle.start(false, 0.0101f, 1500); }
+            if (FlxControl.UPJUSTPRESSED) 
+            { 
+                currentSelected--; 
+                bubbleParticle.start(false, 0.0101f, 1500);
+                FlxG.play("Lemonade/sfx/Blip_Select", 0.7f, false);
+
+            }
+            if (FlxControl.DOWNJUSTPRESSED) 
+            { 
+                currentSelected++; 
+                bubbleParticle.start(false, 0.0101f, 1500);
+                FlxG.play("Lemonade/sfx/Blip_Select", 0.7f, false);
+
+            }
+
             if (currentSelected <= -1) currentSelected = 3;
             if (currentSelected >= 3) currentSelected = 0;
 
@@ -438,8 +462,14 @@ namespace Lemonade
 
                 bubbleParticle.y = location.y;
 
-                if (FlxControl.RIGHTJUSTPRESSED) { currentLocation++; tweenBounce.Reset(); }
-                if (FlxControl.LEFTJUSTPRESSED) { currentLocation--; tweenBounce.Reset(); }
+                if (FlxControl.RIGHTJUSTPRESSED)
+                {
+                    currentLocation++; tweenBounce.Reset(); FlxG.play("Lemonade/sfx/Blip_Select", 0.7f, false);
+                }
+                if (FlxControl.LEFTJUSTPRESSED)
+                {
+                    currentLocation--; tweenBounce.Reset(); FlxG.play("Lemonade/sfx/Blip_Select", 0.7f, false);
+                }
                 if (currentLocation <= -1) currentLocation = possibleLocations.Count - 1;
                 if (currentLocation >= possibleLocations.Count) currentLocation = 0;
             }
@@ -451,8 +481,14 @@ namespace Lemonade
 
                 bubbleParticle.y = levelText.y;
 
-                if (FlxControl.RIGHTJUSTPRESSED) { currentLevel++; }
-                if (FlxControl.LEFTJUSTPRESSED) { currentLevel--; }
+                if (FlxControl.RIGHTJUSTPRESSED)
+                {
+                    currentLevel++; FlxG.play("Lemonade/sfx/Blip_Select", 0.7f, false);
+                }
+                if (FlxControl.LEFTJUSTPRESSED)
+                {
+                    currentLevel--; FlxG.play("Lemonade/sfx/Blip_Select", 0.7f, false);
+                }
                 if (currentLevel <= 0) currentLevel = 12;
                 else if (currentLevel >= 13) currentLevel = 1;
             }
@@ -524,6 +560,8 @@ namespace Lemonade
             {
                 if (locked == false)
                 {
+                    FlxG.play("Lemonade/sfx/ping", 0.8f, false);
+
                     Lemonade_Globals.LAST_SELECTED_ON_MENU = currentSelected;
                     Lemonade_Globals.LAST_LOCATION = currentLocation;
                     FlxG.level = currentLevel;
@@ -532,6 +570,8 @@ namespace Lemonade
                 }
                 else
                 {
+                    FlxG.play("Lemonade/sfx/deathSFX", 0.7f, false);
+
                     FlxG.quake.start(0.005f, 0.5f);
                 }
 

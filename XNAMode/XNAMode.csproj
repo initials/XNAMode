@@ -658,122 +658,354 @@
     <None Include="Lemonade\levels\slf2\warehouse\warehouse_level9.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Lemonade\levels\slf\hclevel1.oel" />
-    <None Include="Lemonade\levels\slf\hclevel10.oel" />
-    <None Include="Lemonade\levels\slf\hclevel101.oel" />
-    <None Include="Lemonade\levels\slf\hclevel11.oel" />
-    <None Include="Lemonade\levels\slf\hclevel113.oel" />
-    <None Include="Lemonade\levels\slf\hclevel12.oel" />
-    <None Include="Lemonade\levels\slf\hclevel125.oel" />
-    <None Include="Lemonade\levels\slf\hclevel13.oel" />
-    <None Include="Lemonade\levels\slf\hclevel14.oel" />
-    <None Include="Lemonade\levels\slf\hclevel15.oel" />
-    <None Include="Lemonade\levels\slf\hclevel16.oel" />
-    <None Include="Lemonade\levels\slf\hclevel17.oel" />
-    <None Include="Lemonade\levels\slf\hclevel18.oel" />
-    <None Include="Lemonade\levels\slf\hclevel19.oel" />
-    <None Include="Lemonade\levels\slf\hclevel2.oel" />
-    <None Include="Lemonade\levels\slf\hclevel20.oel" />
-    <None Include="Lemonade\levels\slf\hclevel21.oel" />
-    <None Include="Lemonade\levels\slf\hclevel22.oel" />
-    <None Include="Lemonade\levels\slf\hclevel23.oel" />
-    <None Include="Lemonade\levels\slf\hclevel24.oel" />
-    <None Include="Lemonade\levels\slf\hclevel25.oel" />
-    <None Include="Lemonade\levels\slf\hclevel26.oel" />
-    <None Include="Lemonade\levels\slf\hclevel27.oel" />
-    <None Include="Lemonade\levels\slf\hclevel28.oel" />
-    <None Include="Lemonade\levels\slf\hclevel29.oel" />
-    <None Include="Lemonade\levels\slf\hclevel3.oel" />
-    <None Include="Lemonade\levels\slf\hclevel30.oel" />
-    <None Include="Lemonade\levels\slf\hclevel31.oel" />
-    <None Include="Lemonade\levels\slf\hclevel32.oel" />
-    <None Include="Lemonade\levels\slf\hclevel33.oel" />
-    <None Include="Lemonade\levels\slf\hclevel34.oel" />
-    <None Include="Lemonade\levels\slf\hclevel35.oel" />
-    <None Include="Lemonade\levels\slf\hclevel36.oel" />
-    <None Include="Lemonade\levels\slf\hclevel4.oel" />
-    <None Include="Lemonade\levels\slf\hclevel49997.oel" />
-    <None Include="Lemonade\levels\slf\hclevel49998.oel" />
-    <None Include="Lemonade\levels\slf\hclevel49999.oel" />
-    <None Include="Lemonade\levels\slf\hclevel5.oel" />
-    <None Include="Lemonade\levels\slf\hclevel59997.oel" />
-    <None Include="Lemonade\levels\slf\hclevel59998.oel" />
-    <None Include="Lemonade\levels\slf\hclevel59999.oel" />
-    <None Include="Lemonade\levels\slf\hclevel6.oel" />
-    <None Include="Lemonade\levels\slf\hclevel7.oel" />
-    <None Include="Lemonade\levels\slf\hclevel8.oel" />
-    <None Include="Lemonade\levels\slf\hclevel9.oel" />
-    <None Include="Lemonade\levels\slf\level0.oel" />
-    <None Include="Lemonade\levels\slf\level1.oel" />
-    <None Include="Lemonade\levels\slf\level10.oel" />
-    <None Include="Lemonade\levels\slf\level1001.oel" />
-    <None Include="Lemonade\levels\slf\level101.oel" />
-    <None Include="Lemonade\levels\slf\level11.oel" />
-    <None Include="Lemonade\levels\slf\level113.oel" />
-    <None Include="Lemonade\levels\slf\level12.oel" />
-    <None Include="Lemonade\levels\slf\level125.oel" />
-    <None Include="Lemonade\levels\slf\level13.oel" />
-    <None Include="Lemonade\levels\slf\level14.oel" />
-    <None Include="Lemonade\levels\slf\level15.oel" />
-    <None Include="Lemonade\levels\slf\level16.oel" />
-    <None Include="Lemonade\levels\slf\level17.oel" />
-    <None Include="Lemonade\levels\slf\level18.oel" />
-    <None Include="Lemonade\levels\slf\level19.oel" />
-    <None Include="Lemonade\levels\slf\level2.oel" />
-    <None Include="Lemonade\levels\slf\level20.oel" />
-    <None Include="Lemonade\levels\slf\level21.oel" />
-    <None Include="Lemonade\levels\slf\level22.oel" />
-    <None Include="Lemonade\levels\slf\level23.oel" />
-    <None Include="Lemonade\levels\slf\level24.oel" />
-    <None Include="Lemonade\levels\slf\level25.oel" />
-    <None Include="Lemonade\levels\slf\level26.oel" />
-    <None Include="Lemonade\levels\slf\level27.oel" />
-    <None Include="Lemonade\levels\slf\level28.oel" />
-    <None Include="Lemonade\levels\slf\level29.oel" />
-    <None Include="Lemonade\levels\slf\level3.oel" />
-    <None Include="Lemonade\levels\slf\level30.oel" />
-    <None Include="Lemonade\levels\slf\level31.oel" />
-    <None Include="Lemonade\levels\slf\level32.oel" />
-    <None Include="Lemonade\levels\slf\level33.oel" />
-    <None Include="Lemonade\levels\slf\level34.oel" />
-    <None Include="Lemonade\levels\slf\level35.oel" />
-    <None Include="Lemonade\levels\slf\level36.oel" />
-    <None Include="Lemonade\levels\slf\level37.oel" />
-    <None Include="Lemonade\levels\slf\level38.oel" />
-    <None Include="Lemonade\levels\slf\level39.oel" />
-    <None Include="Lemonade\levels\slf\level4.oel" />
-    <None Include="Lemonade\levels\slf\level40.oel" />
-    <None Include="Lemonade\levels\slf\level41.oel" />
-    <None Include="Lemonade\levels\slf\level42.oel" />
-    <None Include="Lemonade\levels\slf\level43.oel" />
-    <None Include="Lemonade\levels\slf\level44.oel" />
-    <None Include="Lemonade\levels\slf\level45.oel" />
-    <None Include="Lemonade\levels\slf\level46.oel" />
-    <None Include="Lemonade\levels\slf\level47.oel" />
-    <None Include="Lemonade\levels\slf\level48.oel" />
-    <None Include="Lemonade\levels\slf\level49.oel" />
-    <None Include="Lemonade\levels\slf\level49997.oel" />
-    <None Include="Lemonade\levels\slf\level49998.oel" />
-    <None Include="Lemonade\levels\slf\level49999.oel" />
-    <None Include="Lemonade\levels\slf\level5.oel" />
-    <None Include="Lemonade\levels\slf\level59997.oel" />
-    <None Include="Lemonade\levels\slf\level59998.oel" />
-    <None Include="Lemonade\levels\slf\level59999.oel" />
-    <None Include="Lemonade\levels\slf\level6.oel" />
-    <None Include="Lemonade\levels\slf\level7.oel" />
-    <None Include="Lemonade\levels\slf\level8.oel" />
-    <None Include="Lemonade\levels\slf\level9.oel" />
-    <None Include="Lemonade\levels\slf\level99.oel" />
-    <None Include="Lemonade\levels\slf\SuperLemonadeFactory.oep" />
-    <None Include="Lemonade\levels\slf\SuperLemonadeFactoryBackup.oep" />
-    <None Include="Lemonade\levels\slf\tempProject.oep" />
-    <None Include="Lemonade\levels\slf\TheFrost.oel" />
-    <None Include="Lemonade\levels\slf\w_level1.oel" />
-    <None Include="Lemonade\levels\slf\w_level2.oel" />
-    <None Include="Lemonade\levels\slf\w_level3.oel" />
-    <None Include="Lemonade\levels\slf\w_level4.oel" />
-    <None Include="Lemonade\levels\slf\w_level5.oel" />
-    <None Include="Lemonade\levels\slf\w_level6.oel" />
+    <None Include="Lemonade\levels\slf\hclevel1.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel10.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel101.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel11.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel113.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel12.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel125.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel13.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel14.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel15.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel16.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel17.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel18.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel19.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel2.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel20.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel21.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel22.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel23.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel24.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel25.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel26.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel27.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel28.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel29.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel3.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel30.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel31.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel32.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel33.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel34.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel35.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel36.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel4.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel49997.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel49998.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel49999.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel5.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel59997.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel59998.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel59999.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel6.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel7.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel8.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\hclevel9.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level0.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level1.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level10.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level1001.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level101.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level11.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level113.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level12.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level125.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level13.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level14.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level15.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level16.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level17.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level18.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level19.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level2.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level20.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level21.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level22.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level23.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level24.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level25.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level26.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level27.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level28.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level29.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level3.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level30.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level31.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level32.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level33.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level34.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level35.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level36.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level37.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level38.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level39.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level4.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level40.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level41.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level42.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level43.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level44.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level45.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level46.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level47.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level48.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level49.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level49997.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level49998.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level49999.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level5.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level59997.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level59998.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level59999.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level6.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level7.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level8.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level9.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\level99.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\SuperLemonadeFactory.oep">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\SuperLemonadeFactoryBackup.oep">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\tempProject.oep">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\TheFrost.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\w_level1.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\w_level2.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\w_level3.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\w_level4.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\w_level5.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lemonade\levels\slf\w_level6.oel">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Mode\ModeProject.oep">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

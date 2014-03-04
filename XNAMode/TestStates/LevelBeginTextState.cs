@@ -25,7 +25,16 @@ namespace FourChambers
             t.text = "START OF LEVELS";
             add(t);
 
+            List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromOelFile("Lemonade/levels/slf/level1.oel", "solids");
 
+            foreach (Dictionary<string, string> nodes in bgString)
+            {
+                foreach (KeyValuePair<string, string> kvp in nodes)
+                {
+                    Console.Write("Actors Key = {0}, Value = {1}, ", kvp.Key, kvp.Value);
+                }
+                Console.Write("\r\n");
+            }
 
         }
 
