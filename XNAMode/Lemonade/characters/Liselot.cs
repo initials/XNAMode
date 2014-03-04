@@ -140,6 +140,7 @@ namespace Lemonade
             {
                 if (obj.dead == false && control == Controls.player)
                 {
+                    if (dead == false) FlxG.play("Lemonade/sfx/deathSFX", 0.8f, false);
                     colorFlicker(2);
                     kill();
                 }

@@ -652,6 +652,7 @@ namespace Lemonade
             if (levelComplete == true && ! FlxG.transition.hasStarted)
             {
                 FlxG.pauseMp3();
+                FlxG.play("initials/initials_empire_tagtone4", 0.8f, false);
 
                 andre.control = FlxPlatformActor.Controls.none;
                 liselot.control = FlxPlatformActor.Controls.none;

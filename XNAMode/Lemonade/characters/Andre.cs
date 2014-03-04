@@ -89,6 +89,7 @@ namespace Lemonade
             {
                 if (obj.dead == false && control == Controls.player)
                 {
+                    if (dead == false) FlxG.play("Lemonade/sfx/deathSFX", 0.8f, false);
                     colorFlicker(2);
                     kill();
                 }
@@ -98,6 +99,8 @@ namespace Lemonade
             {
                 if (piggyBacking == false && dead == false)
                 {
+                    FlxG.play("Lemonade/sfx/SndOnShoulders", 0.8f, false);
+
                     Console.WriteLine("Piggybacking is GO!");
                     control = Controls.player;
                     piggyBacking = true;
