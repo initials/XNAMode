@@ -33,8 +33,9 @@ Four Chambers:
 - [ ] Clear cheat string after using.
 
 Lemonade:
-- [ ] Make BGs bigger, need to be HD 1920x1080
-
+- [x] Make BGs bigger, need to be HD 1920x1080
+- [ ] Need to texture pack control buttons.
+- [ ] Make .nfo
 Mode:
 
 Revvolvver:
@@ -49,14 +50,17 @@ Flixel Global Cheats.
 On the Flixel splash screen type "BUGGS" to enter debug mode.
 
 In debug mode
-Press ` to bring up the console.
-Press TAB to enter a cheat.
+Press [`]   to bring up the console.
+Press [TAB] to enter a cheat.
 
 Flixel Global
 whatisgame = Log the name of the game.
 
 
 Four Chambers Cheats:
+
+Type buggs on the flixel splash screen to enter debug mode.
+
 arrows% 		= fire % arrows at a time.
 liketheangels 	= Bring Seraphine back
 bigmoney 		= +20000 to FlxG.score

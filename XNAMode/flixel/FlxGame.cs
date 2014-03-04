@@ -643,18 +643,29 @@ namespace org.flixel
                 FlxG.keys.W||
                 FlxG.keys.X||
                 FlxG.keys.Y||
-                FlxG.keys.Z || FlxG.keys.SPACE || FlxG.keys.ENTER )  
+                FlxG.keys.Z || FlxG.keys.SPACE || FlxG.keys.ENTER
+                || FlxG.keys.LEFT || FlxG.keys.RIGHT || FlxG.keys.UP || FlxG.keys.DOWN)  
             {
                 FlxG.lastControlTypeUsed = FlxG.CONTROL_TYPE_KEYBOARD;
             }
-            else if (FlxG.gamepads.isButtonDown(Buttons.A) || 
+            else if (
+                FlxG.gamepads.isButtonDown(Buttons.A) || 
                 FlxG.gamepads.isButtonDown(Buttons.B) || 
                 FlxG.gamepads.isButtonDown(Buttons.X) || 
                 FlxG.gamepads.isButtonDown(Buttons.Y) || 
                 FlxG.gamepads.isButtonDown(Buttons.LeftShoulder) ||
                 FlxG.gamepads.isButtonDown(Buttons.RightShoulder) ||
                 FlxG.gamepads.isButtonDown(Buttons.LeftTrigger) ||
-                FlxG.gamepads.isButtonDown(Buttons.RightTrigger))
+                FlxG.gamepads.isButtonDown(Buttons.RightTrigger) ||
+                FlxG.gamepads.isButtonDown(Buttons.DPadDown) ||
+                FlxG.gamepads.isButtonDown(Buttons.DPadUp) ||
+                FlxG.gamepads.isButtonDown(Buttons.DPadLeft) ||
+                FlxG.gamepads.isButtonDown(Buttons.DPadRight) ||
+                FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickDown) ||
+                FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickUp) ||
+                FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickLeft) ||
+                FlxG.gamepads.isButtonDown(Buttons.LeftThumbstickRight)
+                )
             {
                 FlxG.lastControlTypeUsed = FlxG.CONTROL_TYPE_GAMEPAD;
             }

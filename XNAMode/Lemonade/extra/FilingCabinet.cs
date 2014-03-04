@@ -44,12 +44,15 @@ namespace Lemonade
         {
             base.overlapped(obj);
 
-			if (canClose > 10){
-				play("closed", true);
+            if (obj.GetType().ToString() == "Lemonade.Liselot" || obj.GetType().ToString() == "Lemonade.Andre")
+            {
+		        if (canClose > 2){
+			        play("closed", true);
 				
-				canClose = 0;
+			        canClose = 0;
 				
-			}
+		        }
+            }
 
 
         }
