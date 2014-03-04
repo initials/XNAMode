@@ -149,6 +149,7 @@ namespace Lemonade
             }
 
             parent = null;
+            canParent = false;
 
             if (Direction == "Left")
             {
