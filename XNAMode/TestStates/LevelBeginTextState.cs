@@ -25,23 +25,51 @@ namespace FourChambers
             t.text = "START OF LEVELS";
             add(t);
 
-            List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromOelFile("Lemonade/levels/slf/level1.oel", "solids");
+            List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromOel1File("Lemonade/levels/slf/level1.oel", "level/solids");
 
             foreach (Dictionary<string, string> nodes in bgString)
             {
                 foreach (KeyValuePair<string, string> kvp in nodes)
                 {
-                    Console.Write("Actors Key = {0}, Value = {1}, ", kvp.Key, kvp.Value);
+                    //Console.Write("Actors Key = {0}, Value = {1}, ", kvp.Key, kvp.Value);
+                    
                 }
-                Console.Write("\r\n");
+                FlxTileblock ta = new FlxTileblock(Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]), Convert.ToInt32(nodes["w"]), Convert.ToInt32(nodes["h"]));
+                ta.loadTiles(FlxG.Content.Load<Texture2D>("Lemonade/slf1/level1/level1_tiles"),10,10,0);
+                ta.auto = FlxTileblock.AUTO;
+                add(ta);
+
+                //Console.Write("\r\n");
             }
+            FlxG.username = "@mramsterdaam";
 
         }
 
         override public void update()
         {
-            
 
+            if (FlxG.keys.A)
+            {
+                FlxOnlineStatCounter.sendStats("SLF2", "level1", (int)FlxG.elapsedTotal);
+            }
+
+            if (FlxG.keys.S)
+            {
+                FlxOnlineStatCounter.getAllStats("SLF2");
+                //FlxG.write(FlxOnlineStatCounter.lastRecievedStat.ToString());
+                
+            }
+
+
+            if (FlxG.keys.D)
+            {
+                //foreach (var item in FlxOnlineStatCounter.currentOnlineStats)
+                //{
+                //    Console.WriteLine(item.Key.ToString() + " " + item.Value.ToString());
+
+                //}
+
+            }
 
 
             base.update();

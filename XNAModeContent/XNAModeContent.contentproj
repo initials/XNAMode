@@ -1429,6 +1429,361 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lemonade\slf1\level1\cratesBox.png">
+      <Name>cratesBox</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\CrateWithLabel.png">
+      <Name>CrateWithLabel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\CrateWithLabelBlank.png">
+      <Name>CrateWithLabelBlank</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\L1_Shelf.png">
+      <Name>L1_Shelf</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\LargeCrate.png">
+      <Name>LargeCrate</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\level1_bgSmoothGrad.png">
+      <Name>level1_bgSmoothGrad</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\level1_shelfTile.png">
+      <Name>level1_shelfTile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\level1_specialBlock.png">
+      <Name>level1_specialBlock</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\level1_specialPlatform.png">
+      <Name>level1_specialPlatform</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\level1_specialPlatformSmall.png">
+      <Name>level1_specialPlatformSmall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\level1_tiles.png">
+      <Name>level1_tiles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\level1_windows.png">
+      <Name>level1_windows</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\noticeBoard.png">
+      <Name>noticeBoard</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\palettes.png">
+      <Name>palettes</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\sodaPack.png">
+      <Name>sodaPack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\spike0.png">
+      <Name>spike0</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\spike1.png">
+      <Name>spike1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\spike2.png">
+      <Name>spike2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\spike3.png">
+      <Name>spike3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\sugarBags.png">
+      <Name>sugarBags</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level1\sugarBagsAndCrates.png">
+      <Name>sugarBagsAndCrates</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lemonade\slf1\level2\level2_BG.png">
+      <Name>level2_BG</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_braceLeft.png">
+      <Name>level2_braceLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_braceRight.png">
+      <Name>level2_braceRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_chainTile.png">
+      <Name>level2_chainTile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_FMG3.png">
+      <Name>level2_FMG3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_gradient.png">
+      <Name>level2_gradient</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_greenPipe.png">
+      <Name>level2_greenPipe</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_metalPipe.png">
+      <Name>level2_metalPipe</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_MG2.png">
+      <Name>level2_MG2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_pipe1.png">
+      <Name>level2_pipe1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_specialBlock.png">
+      <Name>level2_specialBlock</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_specialPlatform.png">
+      <Name>level2_specialPlatform</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_specialPlatformSmall.png">
+      <Name>level2_specialPlatformSmall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_spike0.png">
+      <Name>level2_spike0</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_spike1.png">
+      <Name>level2_spike1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_spike2.png">
+      <Name>level2_spike2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_spike3.png">
+      <Name>level2_spike3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_tank.png">
+      <Name>level2_tank</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_tiles.png">
+      <Name>level2_tiles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level2\level2_window.png">
+      <Name>level2_window</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lemonade\slf1\level3\bookCase.png">
+      <Name>bookCase</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\filingCab1.png">
+      <Name>filingCab1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\filingCab2.png">
+      <Name>filingCab2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\leaves.png">
+      <Name>leaves</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_cloud.png">
+      <Name>level3_cloud</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_desk1.png">
+      <Name>level3_desk1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_desk2.png">
+      <Name>level3_desk2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_desk3.png">
+      <Name>level3_desk3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_gradient.png">
+      <Name>level3_gradient</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_MG.png">
+      <Name>level3_MG</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_MG_pylon.png">
+      <Name>level3_MG_pylon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_painting1.png">
+      <Name>level3_painting1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_painting2.png">
+      <Name>level3_painting2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_painting3.png">
+      <Name>level3_painting3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_salesChart.png">
+      <Name>level3_salesChart</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_specialBlock.png">
+      <Name>level3_specialBlock</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_specialPlatform.png">
+      <Name>level3_specialPlatform</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_specialPlatformSmall.png">
+      <Name>level3_specialPlatformSmall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_spike0.png">
+      <Name>level3_spike0</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_spike1.png">
+      <Name>level3_spike1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_spike2.png">
+      <Name>level3_spike2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_spike3.png">
+      <Name>level3_spike3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_tiles.png">
+      <Name>level3_tiles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\level3_window.png">
+      <Name>level3_window</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\plant1.png">
+      <Name>plant1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Lemonade\slf1\level3\plant2.png">
+      <Name>plant2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lemonade\slf1\icons.png">
+      <Name>icons</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lemonade\slf1\levelCompleteGraphic.png">
+      <Name>levelCompleteGraphic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

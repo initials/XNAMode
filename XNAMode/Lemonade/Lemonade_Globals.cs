@@ -9,6 +9,7 @@ namespace Lemonade
     public class Lemonade_Globals
     {
         public static string location = "military";
+        public static int game_version = 2;
 
         public const float GRAVITY = 2040.0f;
 

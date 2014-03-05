@@ -181,6 +181,68 @@ namespace org.flixel
             return levelAttrs;
         }
 
+        /// <summary>
+        /// FlxXMLReader.readNodesFromOel1File("Lemonade/levels/slf/level1.oel", "level/solids");
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static List<Dictionary<string, string>> readNodesFromOel1File(string filename, string element)
+        {
+
+            XmlDocument xml = new XmlDocument();
+            //Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
+
+#if __ANDROID__
+
+			string content;
+			using (StreamReader sr = new StreamReader (Game.Activity.Assets.Open(filename)))
+			{
+				content = sr.ReadToEnd();
+			}
+			xml.LoadXml(content);
+
+#endif
+#if !__ANDROID__
+            xml.Load(filename);
+#endif
+
+
+            List<Dictionary<string, string>> nodeList = new List<Dictionary<string, string>>();
+
+            //XmlDocument xml = new XmlDocument();
+            //xml.Load(filename);
+
+            XmlNodeList xnList = xml.SelectNodes(element);
+
+            foreach (XmlNode xn in xnList)
+            {
+                // cycle through characters.
+
+                foreach (XmlNode xn2 in xn)
+                {
+
+                    Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
+                    Console.WriteLine("xn2 Name: {0} -- {1}", xn2.Name.ToString(), xn2.Attributes.ToString());
+
+                    //add characters name
+                    levelAttrs.Add("Name", xn2.Name.ToString());
+
+                    //cycle attributes.
+                    foreach (XmlAttribute item in xn2.Attributes)
+                    {
+                        //Console.WriteLine("attr: {0}", item.Name.ToString());
+                        levelAttrs.Add(item.Name.ToString(), item.Value.ToString());
+
+                    }
+                    nodeList.Add(levelAttrs);
+                }
+            }
+            return nodeList;
+        }
+
+
+
         public static List<Dictionary<string, string>> readNodesFromOelFile(string filename, string element)
         {
 

@@ -218,6 +218,8 @@ namespace Lemonade
             try
             {
                 FlxG.username = LoadFromDevice();
+                Console.WriteLine("Your username is: {0}", FlxG.username);
+ 
             }
             catch
             {
@@ -227,6 +229,7 @@ namespace Lemonade
             if (FlxG.username != "")
             {
                 //_nameEntry.text = FlxG.username;
+
                 FlxG.setHudText(3, "Username:\n" + FlxG.username);
                 FlxG.setHudTextPosition(3, 50, FlxG.height - 30);
                 FlxG.setHudTextScale(3, 2);

@@ -278,7 +278,9 @@ namespace org.flixel
                     else
                     {
                         currentOnlineStats = new Dictionary<string, int>();
-                        //Console.WriteLine("Pushing to dict");
+
+                        Console.WriteLine("Pushing to dict {0}", strContent);
+                        
                         string[] words = strContent.Split(',');
                         foreach (string word in words)
                         {
@@ -313,7 +315,7 @@ namespace org.flixel
         static public void getAllStats(string game)
         {
 
-            string uri = "http://initialsgames.com/highscores/commands.php?f=getCompleteStats&gamename=" + game;
+            string uri = "http://initialsgames.com/highscores/commands.php?f=getCompleteStats&orderby=highscore&gamename=" + game;
 
             clientGetAsyncEntry(uri, true);
 
@@ -344,6 +346,8 @@ namespace org.flixel
         /// <returns></returns>
         static public void sendStats(string game, string levelname, int score)
         {
+            Console.WriteLine("Sending stats as {0} {1} {2}", levelname, FlxG.score.ToString(), FlxG.username);
+
             string uri = "http://initialsgames.com/highscores/commands.php?f=addData&levelname=" + levelname + "&score=" + score.ToString() + "&gamename=" + game + "&user=" + FlxG.username;
 
             clientGetAsyncEntry(uri, false);

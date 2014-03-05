@@ -17,7 +17,38 @@ namespace org.flixel
         protected int _tileHeight;
         protected int _empties;
         protected Vector2 _p;
-        protected bool _autoTile;
+
+        /// <summary>
+        /// No auto-tiling.
+        /// </summary>
+        public const int OFF = 0;
+
+        /// <summary>
+        /// Platformer-friendly auto-tiling.
+        /// </summary>
+        public const int AUTO = 1;
+
+        /// <summary>
+        /// Top-down auto-tiling.
+        /// </summary>
+        public const int ALT = 2;
+
+        /// <summary>
+        /// Random pick from tilesheet
+        /// </summary>
+        public const int RANDOM = 3;
+
+        /// <summary>
+        /// Uses a string to choose tiles.
+        /// </summary>
+        public const int STRING = 4;
+
+        /// <summary>
+        /// Set this flag to use one of the 16-tile binary auto-tile algorithms (OFF, AUTO, or ALT).
+        /// </summary>
+        public int auto;
+
+
 
         /// <summary>
         /// Creates a new <code>FlxBlock</code> object with the specified position and size.
@@ -31,7 +62,7 @@ namespace org.flixel
 		{
 			createGraphic(Width,Height,Color.Black);		
 			@fixed = true;
-            _autoTile = true;
+            auto = AUTO;
             _color = Color.White;
 
 		}
@@ -92,7 +123,7 @@ namespace org.flixel
                 if ((FlxU.random() * (numGraphics + _empties)) > _empties)
                 {
 
-                    if (_autoTile)
+                    if (auto==RANDOM)
                     {
 
                         _rects[i] = new Rectangle(_tileWidth * (int)(FlxU.random() * numGraphics), 0, _tileWidth, _tileHeight);
@@ -110,11 +141,79 @@ namespace org.flixel
                         }
                          */ 
                     }
-                    else
+                    else if (auto==OFF)
                     {
-                        _rects[i] = new Rectangle(_tileWidth * (int)(FlxU.random() * numGraphics), 0, _tileWidth, _tileHeight);
+                        _rects[i] = new Rectangle(0, 0, _tileWidth, _tileHeight);
                     }
+                    else if (auto == AUTO)
+                    {
 
+                        int m = widthInTiles;
+                        int n = heightInTiles;
+                        int x = i / widthInTiles;
+                        int y = i % heightInTiles;
+
+                        int gi = 14;
+                        if (x == 0 && y == 0)
+                        { //top left
+                            gi = 0;
+                        }
+                        else if (x == 0 && y == m - 1)
+                        { //top right
+                            gi = 1;
+                        }
+                        else if (x == n - 1 && y == 0)
+                        { //bottom left
+                            gi = 2;
+                        }
+                        else if (x == n - 1 && y == m - 1)
+                        { //bottom right
+                            gi = 3;
+                        }
+                        else if (x == 0 && y != 0 && y != m - 1)
+                        { //straight top
+                            gi = 4;
+                        }
+                        else if (x == n - 1 && y != 0 && y != m - 1)
+                        { //straight bottom
+                            gi = 5;
+                        }
+                        else if (i == 0 && x != 0 && x != n - 1)
+                        { //left down straight
+                            gi = 6;
+                        }
+                        else if (i == m - 1 && x != 0 && x != n - 1)
+                        { //right down straight
+                            gi = 7;
+                        }
+
+                        if (m == 1 && x == 0)
+                        { //top single down.
+                            gi = 12;
+                        }
+                        else if (m == 1 && x == n - 1)
+                        { //bottom single down.
+                            gi = 13;
+                        }
+                        else if (m == 1)
+                        { // single straight down
+                            gi = 11;
+                        }
+                        else if (n == 1 && y == 0)
+                        { //single flat first
+                            gi = 9;
+                        }
+                        else if (n == 1 && y == m - 1)
+                        { //single flat horizontal last.
+                            gi = 10;
+                        }
+                        else if (n == 1)
+                        { // single flat horizontal middle
+                            gi = 8;
+                        }
+
+                        _rects[i] = new Rectangle(_tileWidth * gi, 0, _tileWidth, _tileHeight);
+                    }
                     
                     //to do: create auto tile tileblocks.
 

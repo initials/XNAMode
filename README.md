@@ -6,10 +6,11 @@ Fork of X-Flixel, the Mode port that went with it, and other games.
 
 Other games included in the huge pack are:
 
-Mode
+Mode - A game by Adam Atomic, ported by the original X-Flixel author
 Revvolvver - 4 player death match.
 Super Lemonade Factory - 80% complete
 The Four Chambers of the Human Heart
+
 
 
 To Do:

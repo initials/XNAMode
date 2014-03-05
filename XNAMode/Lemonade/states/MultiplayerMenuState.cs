@@ -30,7 +30,7 @@ namespace Lemonade
 
             base.update();
 
-            if (FlxG.keys.ESCAPE)
+            if (FlxG.keys.ESCAPE || FlxG.gamepads.isButtonDown(Buttons.Back))
             {
                 FlxG.state = new MenuState();
             }

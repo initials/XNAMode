@@ -126,6 +126,7 @@
   <ItemGroup>
     <Compile Include="flixel\data\FlxRecord.cs" />
     <Compile Include="flixel\FlxCamera.cs" />
+    <None Include="flixel\php\commands.php" />
     <Compile Include="flixel\presets\FlxControl.cs" />
     <Compile Include="flixel\presets\FlxMenuState.cs" />
     <Compile Include="flixel\presets\FlxMovingPlatform.cs" />

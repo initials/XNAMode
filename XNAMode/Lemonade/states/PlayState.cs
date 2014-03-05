@@ -416,6 +416,9 @@ namespace Lemonade
                 buildTileset();
                 buildActors();
                 buildBoxes();
+                
+                Lemonade_Globals.game_version = 2;
+
             }
             else if (   Lemonade_Globals.location == "warehouse" ||
                         Lemonade_Globals.location == "factory" ||
@@ -424,6 +427,8 @@ namespace Lemonade
                 buildTileset();
                 buildActors();
                 buildBoxes();
+
+                Lemonade_Globals.game_version = 1;
             }
             
             add(trampolines);
@@ -661,7 +666,7 @@ namespace Lemonade
                 }
             }
 
-            if (FlxG.keys.justPressed(Keys.Escape))
+            if (FlxG.keys.justPressed(Keys.Escape) || FlxG.gamepads.isButtonDown(Buttons.Back))
             {
                 FlxG.state = new EasyMenuState();
             }
