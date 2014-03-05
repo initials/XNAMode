@@ -135,10 +135,12 @@
     <Compile Include="FourChambers\Actors\BaseActor.cs" />
     <Compile Include="FourChambers\Levels\MovingPlatform.cs" />
     <Compile Include="FourChambers\Levels\MultiPlayerPlayState.cs" />
+    <Compile Include="Lemonade\extra\CratesBox.cs" />
     <Compile Include="Lemonade\extra\Exit.cs" />
     <Compile Include="Lemonade\extra\FilingCabinet.cs" />
     <Compile Include="Lemonade\extra\LargeCrate.cs" />
     <Compile Include="Lemonade\extra\MovingPlatform.cs" />
+    <Compile Include="Lemonade\extra\Palettes.cs" />
     <Compile Include="Lemonade\extra\Plant.cs" />
     <Compile Include="Lemonade\extra\Ramp.cs" />
     <Compile Include="Lemonade\extra\SmallCrate.cs" />

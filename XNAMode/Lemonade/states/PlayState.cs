@@ -399,13 +399,10 @@ namespace Lemonade
 
         public void buildActorsForOgmo1()
         {
-
             List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromOel1File("Lemonade/levels/slf/level" + FlxG.level + ".oel", "level/characters");
 
             foreach (Dictionary<string, string> nodes in bgString)
             {
-                Console.WriteLine("Making {0} at {1} {2}", nodes["Name"], Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]));
-
                 if (nodes["Name"] == "player")
                 {
                     buildActor("andre", Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]));
@@ -414,8 +411,26 @@ namespace Lemonade
                 {
                     buildActor("liselot", Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]));
                 }
-
+                if (nodes["Name"] == "worker")
+                {
+                    buildActor("worker", Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]));
+                }
+                if (nodes["Name"] == "army")
+                {
+                    buildActor("army", Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]));
+                }
+                if (nodes["Name"] == "inspector")
+                {
+                    buildActor("inspector", Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]));
+                }
+                if (nodes["Name"] == "chef")
+                {
+                    buildActor("chef", Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]));
+                }
             }
+
+            List<Dictionary<string, string>> objects = FlxXMLReader.readNodesFromOel1File("Lemonade/levels/slf/level" + FlxG.level + ".oel", "level/objects");
+
         }
 
         override public void create()
