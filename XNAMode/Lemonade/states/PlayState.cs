@@ -369,17 +369,36 @@ namespace Lemonade
 
         public void buildTilesetForOgmo1() //string LevelFile, string Tiles
         {
-            List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf/level1.oel", "map", "bg", FlxXMLReader.TILES);
+            List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromOel1File("Lemonade/levels/slf/level" + FlxG.level + ".oel", "level/solids");
 
-            collidableTilemap = new FlxTilemap();
-            collidableTilemap.auto = FlxTilemap.STRING;
+            foreach (Dictionary<string, string> nodes in bgString)
+            {
+                FlxTileblock ta = new FlxTileblock(Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]), Convert.ToInt32(nodes["w"]), Convert.ToInt32(nodes["h"]));
+                ta.loadTiles(FlxG.Content.Load<Texture2D>("Lemonade/slf1/level1/level1_tiles"), 10, 10, 0);
+                ta.auto = FlxTileblock.AUTO;
+                add(ta);
+            }
 
-            // TMX maps have indexOffset of -1;
-            collidableTilemap.indexOffset = -1;
-            collidableTilemap.stringTileMax = 200;
-            collidableTilemap.loadMap(levelString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/tiles_" + Lemonade_Globals.location), 20, 20);
-            collidableTilemap.boundingBoxOverride = false;
-            add(collidableTilemap);
+
+        }
+
+        public void buildActorsForOgmo1()
+        {
+
+            List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromOel1File("Lemonade/levels/slf/level" + FlxG.level + ".oel", "level/characters");
+
+            foreach (Dictionary<string, string> nodes in actorsString)
+            {
+                if (nodes["Name"] == "player")
+                {
+                    buildActor("andre", Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]));
+                }
+                if (nodes["Name"] == "liselot")
+                {
+                    buildActor("liselot", Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]));
+                }
+
+            }
         }
 
         override public void create()
@@ -424,9 +443,7 @@ namespace Lemonade
                         Lemonade_Globals.location == "factory" ||
                         Lemonade_Globals.location == "management")
             {
-                buildTileset();
-                buildActors();
-                buildBoxes();
+                buildTilesetForOgmo1();
 
                 Lemonade_Globals.game_version = 1;
             }
