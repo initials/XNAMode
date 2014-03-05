@@ -562,9 +562,14 @@ namespace Lemonade
 
                     Lemonade_Globals.writeGameProgressToFile();
 
-                    if (FlxG.level == 12)
+                    if (FlxG.level == 12 && Lemonade_Globals.game_version == 2)
                     {
                         FlxG.state = new VictoryState();
+                        return;
+                    }
+                    else if (FlxG.level == 12 && Lemonade_Globals.game_version == 1)
+                    {
+                        FlxG.state = new EasyMenuState();
                         return;
                     }
                     else
@@ -739,9 +744,15 @@ namespace Lemonade
                     FlxG.transition.resetAndStop();
                     return;
                 }
-                else if (FlxG.level == 12)
+                if (FlxG.level == 12 && Lemonade_Globals.game_version == 2)
                 {
                     FlxG.state = new VictoryState();
+                    FlxG.transition.resetAndStop();
+                    return;
+                }
+                else if (FlxG.level == 12 && Lemonade_Globals.game_version == 1)
+                {
+                    FlxG.state = new EasyMenuState();
                     FlxG.transition.resetAndStop();
                     return;
                 }
