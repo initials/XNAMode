@@ -51,6 +51,7 @@ namespace Lemonade
 
         int currentLocation;
         List<string> possibleLocations = new List<string>();
+        List<string> totalLocations = new List<string>();
 
         int currentLevel = FlxG.level;
 
@@ -76,6 +77,14 @@ namespace Lemonade
             //possibleLocations.Add("warehouse");
             //possibleLocations.Add("factory");
             //possibleLocations.Add("management");
+
+
+            totalLocations.Add("military");
+            totalLocations.Add("sydney");
+            totalLocations.Add("newyork");
+            totalLocations.Add("warehouse");
+            totalLocations.Add("factory");
+            totalLocations.Add("management");
 
             // play some music
             FlxG.playMp3("Lemonade/music/music_menu_1", 0.75f);
@@ -277,10 +286,11 @@ namespace Lemonade
                 Console.WriteLine("Cannot load game progress");
                 string newProgressString = "";
 
-                foreach (var item in possibleLocations)
+                foreach (var item in totalLocations)
                 {
                     for (int i = 1; i < 13; i++)
                     {
+                        // army, chef, insp, worker, level complete.
                         newProgressString += item + "_" + i.ToString() + ",false,false,false,false,false\n";
                     }
                 }
@@ -455,7 +465,7 @@ namespace Lemonade
             }
 
             if (currentSelected <= -1) currentSelected = 3;
-            if (currentSelected >= 3) currentSelected = 0;
+            else if (currentSelected >= 3) currentSelected = 0;
 
             if (currentSelected == 0)
             {
