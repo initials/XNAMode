@@ -379,7 +379,10 @@ namespace Lemonade
             Dictionary<string, string> w = FlxXMLReader.readAttributesFromOelFile("Lemonade/levels/slf/level1.oel", "level/width");
             FlxG.levelWidth = Convert.ToInt32( w["width"]);
             Dictionary<string, string> h = FlxXMLReader.readAttributesFromOelFile("Lemonade/levels/slf/level1.oel", "level/height");
-            FlxG.levelWidth = Convert.ToInt32(h["height"]);
+            FlxG.levelHeight = Convert.ToInt32(h["height"]);
+
+            Console.WriteLine("FlxG.lw = {0} {1}", FlxG.levelWidth, FlxG.levelHeight);
+
 
             // ------------------------------------------
 
@@ -440,6 +443,11 @@ namespace Lemonade
             hazards = new FlxGroup();
             collidableTileblocks = new FlxGroup();
 
+            //Level Adjust
+
+            if (Lemonade_Globals.location == "factory") FlxG.level += 12;
+            if (Lemonade_Globals.location == "management") FlxG.level += 24;
+
             // Build for slf2 (Tiled Maps)
             if (Lemonade_Globals.location == "military" ||
                 Lemonade_Globals.location == "newyork" ||
@@ -461,7 +469,7 @@ namespace Lemonade
 
                 Lemonade_Globals.game_version = 1;
             }
-            
+
             add(trampolines);
             add(levelItems);
             add(hazards);
@@ -607,18 +615,6 @@ namespace Lemonade
 
             #endregion
 
-            //if (liselot.control == FlxPlatformActor.Controls.player && andre.control == FlxPlatformActor.Controls.player)
-            //{
-            //    andre.control = FlxPlatformActor.Controls.player;
-            //    liselot.control = FlxPlatformActor.Controls.none;
-
-            //}
-            //if (liselot.control == FlxPlatformActor.Controls.none && andre.control == FlxPlatformActor.Controls.none)
-            //{
-            //    andre.control = FlxPlatformActor.Controls.player;
-            //    liselot.control = FlxPlatformActor.Controls.none;
-
-            //}
             //FlxU.collideRamp(actors, ramps);
 
             if (Lemonade_Globals.game_version == 2)
