@@ -56,6 +56,18 @@ namespace FourChambers
                 Console.Write("\r\n");
             }
 
+            Dictionary<string, string> bgString3 = FlxXMLReader.readAttributesFromOelFile("Lemonade/levels/slf/level1.oel", "level/width");
+
+            foreach (KeyValuePair<string, string> kvp in bgString3)
+                {
+                    Console.Write("Actors Key = {0}, Value = {1}, ", kvp.Key, kvp.Value);
+
+                }
+
+
+            
+
+
 
             FlxG.username = "@mramsterdaam";
 

@@ -29,6 +29,11 @@ namespace Lemonade
         private FlxGroup smallCrates;
         private FlxGroup movingPlatforms;
 
+        /// <summary>
+        /// Use for SLF1 style Ogmo1 levels; Collide only on version 1 style.
+        /// </summary>
+        private FlxGroup collidableTileblocks;
+
         private Andre andre;
         private Liselot liselot;
         private Army army;
@@ -62,7 +67,7 @@ namespace Lemonade
             
             levelAttrs = new Dictionary<string, string>();
             levelAttrs = FlxXMLReader.readAttributesFromTmxFile("Lemonade/levels/slf2/" + Lemonade_Globals.location + "/" + Lemonade_Globals.location + "_level" + FlxG.level.ToString() + ".tmx", "map");
-
+            
             foreach (KeyValuePair<string, string> kvp in levelAttrs)
             {
                 //Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
@@ -369,6 +374,15 @@ namespace Lemonade
 
         public void buildTilesetForOgmo1() //string LevelFile, string Tiles
         {
+            //push width / height to flxg.levelheight;
+
+            Dictionary<string, string> w = FlxXMLReader.readAttributesFromOelFile("Lemonade/levels/slf/level1.oel", "level/width");
+            FlxG.levelWidth = Convert.ToInt32( w["width"]);
+
+
+            Dictionary<string, string> h = FlxXMLReader.readAttributesFromOelFile("Lemonade/levels/slf/level1.oel", "level/height");
+            FlxG.levelWidth = Convert.ToInt32(h["height"]);
+
             List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromOel1File("Lemonade/levels/slf/level" + FlxG.level + ".oel", "level/solids");
 
             foreach (Dictionary<string, string> nodes in bgString)
@@ -376,7 +390,7 @@ namespace Lemonade
                 FlxTileblock ta = new FlxTileblock(Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]), Convert.ToInt32(nodes["w"]), Convert.ToInt32(nodes["h"]));
                 ta.loadTiles(FlxG.Content.Load<Texture2D>("Lemonade/slf1/level1/level1_tiles"), 10, 10, 0);
                 ta.auto = FlxTileblock.AUTO;
-                add(ta);
+                collidableTileblocks.add(ta);
             }
 
 
@@ -387,8 +401,10 @@ namespace Lemonade
 
             List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromOel1File("Lemonade/levels/slf/level" + FlxG.level + ".oel", "level/characters");
 
-            foreach (Dictionary<string, string> nodes in actorsString)
+            foreach (Dictionary<string, string> nodes in bgString)
             {
+                Console.WriteLine("Making {0} at {1} {2}", nodes["Name"], Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]));
+
                 if (nodes["Name"] == "player")
                 {
                     buildActor("andre", Convert.ToInt32(nodes["x"]), Convert.ToInt32(nodes["y"]));
@@ -420,12 +436,11 @@ namespace Lemonade
             actors = new FlxGroup();
             trampolines = new FlxGroup();
             levelItems = new FlxGroup();
-            
             ramps = new FlxGroup();
             smallCrates = new FlxGroup();
             movingPlatforms = new FlxGroup();
-
             hazards = new FlxGroup();
+            collidableTileblocks = new FlxGroup();
 
             // Build for slf2 (Tiled Maps)
             if (Lemonade_Globals.location == "military" ||
@@ -444,6 +459,7 @@ namespace Lemonade
                         Lemonade_Globals.location == "management")
             {
                 buildTilesetForOgmo1();
+                buildActorsForOgmo1();
 
                 Lemonade_Globals.game_version = 1;
             }
@@ -455,6 +471,7 @@ namespace Lemonade
             add(smallCrates);
             add(movingPlatforms);
             add(actors);
+            add(collidableTileblocks);
 
             //set up a little bubble particle system.
 
@@ -478,10 +495,7 @@ namespace Lemonade
             add(crateParticle);
 
             // follow.
-            FlxG.followBounds(0, 
-                0, 
-                (int)(Convert.ToInt32(levelAttrs["tilewidth"])) * (Convert.ToInt32(levelAttrs["width"])), 
-                (int)(Convert.ToInt32(levelAttrs["tileheight"])) * (Convert.ToInt32(levelAttrs["height"])));
+            FlxG.followBounds(0,0,FlxG.levelWidth, FlxG.levelHeight);
 
             FlxG.follow(andre, LERP);
 
@@ -609,7 +623,20 @@ namespace Lemonade
             //}
             //FlxU.collideRamp(actors, ramps);
 
-            FlxU.collide(collidableTilemap, actors);
+            if (Lemonade_Globals.game_version == 2)
+            {
+                FlxU.collide(collidableTilemap, actors);
+                FlxU.collide(crateParticle, collidableTilemap);
+                FlxU.collide(levelItems, collidableTilemap);
+                FlxU.collide(smallCrates, collidableTilemap);
+            }
+            else
+            {
+                FlxU.collide(collidableTileblocks, actors);
+                FlxU.collide(crateParticle, collidableTileblocks);
+                FlxU.collide(levelItems, collidableTileblocks);
+                FlxU.collide(smallCrates, collidableTileblocks);
+            }
 
             FlxU.overlap(actors, actors, genericOverlap);
             FlxU.overlap(actors, trampolines, trampolinesOverlap);
@@ -617,9 +644,7 @@ namespace Lemonade
             FlxU.overlap(actors, hazards, genericOverlap);
             FlxU.overlap(actors, smallCrates, genericOverlap);
             FlxU.overlap(smallCrates, trampolines, trampolinesOverlap);
-            FlxU.collide(crateParticle, collidableTilemap);
-            FlxU.collide(levelItems, collidableTilemap);
-            FlxU.collide(smallCrates, collidableTilemap);
+
             FlxU.collide(actors, movingPlatforms);
             FlxU.collide(smallCrates, levelItems);
 

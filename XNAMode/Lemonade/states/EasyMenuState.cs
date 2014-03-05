@@ -351,7 +351,7 @@ namespace Lemonade
 
         override public void update()
         {
-            if (FlxG.debug && FlxGlobal.cheatString == "likeyouroldstuff")
+            if (FlxG.debug && FlxGlobal.cheatString == "ol")
             {
                 if (!possibleLocations.Contains("warehouse"))
                 {

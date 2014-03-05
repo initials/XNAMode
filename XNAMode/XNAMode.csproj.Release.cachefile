@@ -310,6 +310,17 @@ Content\Lemonade\slf1\level3\plant1.xnb
 Content\Lemonade\slf1\level3\plant2.xnb
 Content\Lemonade\slf1\icons.xnb
 Content\Lemonade\slf1\levelCompleteGraphic.xnb
+Content\Lemonade\sfx\Blip_Select.xnb
+Content\Lemonade\sfx\checkPoint.xnb
+Content\Lemonade\sfx\deathSFX.xnb
+Content\Lemonade\sfx\jump.xnb
+Content\Lemonade\sfx\ping.xnb
+Content\Lemonade\sfx\ping2.xnb
+Content\Lemonade\sfx\powerUp.xnb
+Content\Lemonade\sfx\SndExp.xnb
+Content\Lemonade\sfx\SndOnShoulders.xnb
+Content\Lemonade\sfx\SwitchCharacters.xnb
+Content\Lemonade\sfx\whoosh.xnb
 Content\mode\button.wma
 Content\music\ralph\four chambered heart.wma
 Content\music\ralph\goatmp3.wma
