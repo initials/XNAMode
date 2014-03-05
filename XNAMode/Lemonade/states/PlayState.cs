@@ -91,7 +91,7 @@ namespace Lemonade
             bgElementsTilemap.auto = FlxTilemap.STRING;
             bgElementsTilemap.indexOffset = -1;
             bgElementsTilemap.stringTileMin = 200;
-            bgElementsTilemap.stringTileMax = 341;
+            bgElementsTilemap.stringTileMax = 354;
             bgElementsTilemap.loadMap(levelString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/tiles_" + Lemonade_Globals.location), 20, 20);
             bgElementsTilemap.boundingBoxOverride = false;
             add(bgElementsTilemap);
@@ -577,9 +577,14 @@ namespace Lemonade
 
                     Lemonade_Globals.writeGameProgressToFile();
 
-                    if (FlxG.level == 12)
+                    if (FlxG.level == 12 && Lemonade_Globals.game_version == 2)
                     {
                         FlxG.state = new VictoryState();
+                        return;
+                    }
+                    else if (FlxG.level == 12 && Lemonade_Globals.game_version == 1)
+                    {
+                        FlxG.state = new EasyMenuState();
                         return;
                     }
                     else
@@ -754,9 +759,15 @@ namespace Lemonade
                     FlxG.transition.resetAndStop();
                     return;
                 }
-                else if (FlxG.level == 12)
+                if (FlxG.level == 12 && Lemonade_Globals.game_version == 2)
                 {
                     FlxG.state = new VictoryState();
+                    FlxG.transition.resetAndStop();
+                    return;
+                }
+                else if (FlxG.level == 12 && Lemonade_Globals.game_version == 1)
+                {
+                    FlxG.state = new EasyMenuState();
                     FlxG.transition.resetAndStop();
                     return;
                 }

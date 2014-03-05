@@ -139,19 +139,19 @@
  </layer>
  <objectgroup name="boxes" width="60" height="40">
   <object x="340" y="200">
-   <polyline points="0,0 0,260"/>
+   <polyline points="40,0 40,260"/>
   </object>
   <object x="400" y="200">
-   <polyline points="0,0 680,0"/>
+   <polyline points="0,0 700,0"/>
   </object>
   <object x="1060" y="260">
-   <polyline points="0,0 0,120"/>
+   <polyline points="40,0 40,120"/>
   </object>
   <object x="380" y="460">
-   <polyline points="0,0 0,-220 700,-220 700,-80"/>
+   <polyline points="0,0 0,-220 720,-220 720,-80"/>
   </object>
   <object x="1080" y="380">
-   <polyline points="0,0 0,-160 -260,-160 -260,-120 -380,-120 -680,-120 -680,-40 -800,-40 -800,60 -940,60"/>
+   <polyline points="20,0 20,-160 -260,-160 -260,-120 -380,-120 -680,-120 -680,-40 -800,-40 -800,60 -940,60"/>
   </object>
  </objectgroup>
 </map>

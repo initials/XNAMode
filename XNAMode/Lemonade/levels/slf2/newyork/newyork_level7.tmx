@@ -159,7 +159,7 @@
    <polyline points="0,0 0,140"/>
   </object>
   <object x="940" y="400">
-   <polyline points="0,0 0,280"/>
+   <polyline points="40,0 40,280"/>
   </object>
  </objectgroup>
 </map>
