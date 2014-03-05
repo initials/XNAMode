@@ -378,10 +378,10 @@ namespace Lemonade
 
             Dictionary<string, string> w = FlxXMLReader.readAttributesFromOelFile("Lemonade/levels/slf/level1.oel", "level/width");
             FlxG.levelWidth = Convert.ToInt32( w["width"]);
-
-
             Dictionary<string, string> h = FlxXMLReader.readAttributesFromOelFile("Lemonade/levels/slf/level1.oel", "level/height");
             FlxG.levelWidth = Convert.ToInt32(h["height"]);
+
+            // ------------------------------------------
 
             List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromOel1File("Lemonade/levels/slf/level" + FlxG.level + ".oel", "level/solids");
 
@@ -392,8 +392,6 @@ namespace Lemonade
                 ta.auto = FlxTileblock.AUTO;
                 collidableTileblocks.add(ta);
             }
-
-
         }
 
         public void buildActorsForOgmo1()
