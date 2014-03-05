@@ -142,7 +142,7 @@
    <polyline points="0,0 200,0"/>
   </object>
   <object x="980" y="420">
-   <polyline points="0,0 0,240"/>
+   <polyline points="20,20 20,240"/>
   </object>
   <object x="500" y="260">
    <polyline points="0,0 300,0"/>

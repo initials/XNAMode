@@ -91,7 +91,7 @@ namespace Lemonade
             bgElementsTilemap.auto = FlxTilemap.STRING;
             bgElementsTilemap.indexOffset = -1;
             bgElementsTilemap.stringTileMin = 200;
-            bgElementsTilemap.stringTileMax = 341;
+            bgElementsTilemap.stringTileMax = 354;
             bgElementsTilemap.loadMap(levelString[0]["csvData"], FlxG.Content.Load<Texture2D>("Lemonade/tiles_" + Lemonade_Globals.location), 20, 20);
             bgElementsTilemap.boundingBoxOverride = false;
             add(bgElementsTilemap);

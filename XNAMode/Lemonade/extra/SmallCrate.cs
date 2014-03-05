@@ -74,7 +74,10 @@ namespace Lemonade
                 canParent = true;
                 Console.WriteLine("Pressed!");
             }
-
+            else
+            {
+                canParent = false;
+            }
 
             if (parent != null)
             {

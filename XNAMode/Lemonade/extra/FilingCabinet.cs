@@ -46,7 +46,7 @@ namespace Lemonade
 
             if (obj.GetType().ToString() == "Lemonade.Liselot" || obj.GetType().ToString() == "Lemonade.Andre")
             {
-		        if (canClose > 2){
+		        if (canClose > 4){
 
                     FlxG.play("Lemonade/sfx/checkPoint", 0.8f, false);
 

@@ -464,8 +464,8 @@ namespace Lemonade
 
             }
 
-            if (currentSelected <= -1) currentSelected = 3;
-            else if (currentSelected >= 3) currentSelected = 0;
+            if (currentSelected <= -1) currentSelected = 2;
+            if (currentSelected >= 3) currentSelected = 0;
 
             if (currentSelected == 0)
             {
