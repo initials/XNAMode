@@ -42,6 +42,10 @@ namespace org.flixel
         public override void create()
         {
             base.create();
+
+            //XNAMode.Grid x = new XNAMode.Grid(2, (int)FlxU.random(5,50));
+            //add(x);
+
             _f = null;
             _poweredBy = FlxG.Content.Load<Texture2D>("flixel/poweredby");
             _fSound = FlxG.Content.Load<SoundEffect>("flixel/flixel");
@@ -133,6 +137,8 @@ namespace org.flixel
             if (_logoTimer > 5.5f || FlxG.keys.SPACE || FlxG.keys.ENTER || FlxG.gamepads.isButtonDown(Buttons.A))
             {
                 FlxG.destroySounds(true);
+
+                FlxG.bloom.Visible = false;
 
                 FlxG.state = _nextScreen;
             }

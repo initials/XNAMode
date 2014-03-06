@@ -22,6 +22,7 @@ namespace XNAMode
             textInfo += "F6. Open initialsgames.com/FourChambers\n";
             textInfo += "F7. FlxBar Test\n";
             textInfo += "F8. Victory State\n";
+            textInfo += "F9. Grid\n";
             textInfo += "1. Level Visualizer\n";
             textInfo += "2. Mode\n";
             textInfo += "3. Path Test\n";
@@ -65,7 +66,10 @@ namespace XNAMode
                 FlxG.state = new Lemonade.VictoryState();
 
             }
-
+            if (FlxG.keys.justPressed(Keys.F9))
+            {
+                FlxG.state = new Grid();
+            }
             if (FlxG.keys.ONE)
             {
                 FlxG.state = new FourChambers.LevelVisualizerState();

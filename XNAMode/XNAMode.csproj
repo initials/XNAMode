@@ -200,6 +200,7 @@
     <Compile Include="TestStates\CleanTestState.cs" />
     <Compile Include="TestStates\DebugMenuState.cs" />
     <Compile Include="TestStates\FlxBarTestState.cs" />
+    <Compile Include="TestStates\Grid.cs" />
     <Compile Include="TestStates\LevelBeginTextState.cs" />
     <Compile Include="TestStates\LevelVisualizerState.cs" />
     <Compile Include="FourChambers\Actors\playable\BigExplosion.cs" />
