@@ -23,6 +23,8 @@ namespace XNAMode
 
             FlxSprite bg = new FlxSprite(0, 0);
             bg.createGraphic(FlxG.width, FlxG.height, Color.Black);
+            bg.setScrollFactors(0, 0);
+
             add(bg);
 
             
@@ -50,43 +52,64 @@ namespace XNAMode
             FlxG.bloom.Visible = true;
             FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[1];
 
-            player = new FlxSprite(50, 50);
-            player.createGraphic(10, 10, Color.HotPink);
+            player = new FlxSprite(150, 150);
+            player.createGraphic(30, 10, Color.HotPink);
+            player.thrust = 300;
+            player.maxAngular = 120;
+            player.angularDrag = 400;
+            player.maxThrust = 500;
+            player.drag.X = 480;
+            player.drag.Y = 480;
+            player.angle = 180;
             add(player);
+
+            FlxG.follow(player, 11.0f);
+            FlxG.followBounds(0, 0, int.MaxValue, int.MaxValue);
+
 
         }
 
         override public void update()
         {
+            if (player.x < 0 || player.y < 0)
+            {
+                //player.angle += 180;
+                player.x += 20;
+                player.y += 20;
+            }
 
             foreach (FlxSprite item in grids.members)
             {
-                if (FlxG.elapsedTotal < 5)
+                if (FlxG.elapsedTotal < 35)
                 {
                     if (item.debugName == "w")
-                        item.height += 5;
+                        item.height += 10;
                     if (item.debugName == "h")
-                        item.width += 10;
+                        item.width += 5;
                 }
             }
-
+            player.thrust +=15;
             if (FlxG.keys.Z)
             {
-                player.angle += 2.5f;
-                player.thrust = 510;
+                player.angle += 4.5f;
+                if (player.thrust > 200)
+                    player.thrust -= 200;
+                else player.thrust = 0;
             }
             else if (FlxG.keys.M)
             {
-                player.angle -= 2.5f;
-                player.thrust = 510;
+                player.angle -= 4.5f;
+                if (player.thrust > 200)
+                    player.thrust -= 200;
+                else player.thrust = 0;
             }
             else if (FlxG.keys.SPACE)
             {
-                player.thrust = 5510;
+                player.thrust = 0;
             }
             else
             {
-                player.thrust = 0;
+                //player.thrust = 0;
             }
             base.update();
         }
