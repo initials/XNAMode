@@ -56,11 +56,15 @@ namespace Lemonade
 
         public void resetAfterDeath(string Name, uint Frame, int FrameIndex)
         {
-            if (Name == "death" && Frame == _curAnim.frames.Length - 1)
+            Console.WriteLine("Name {0} Frame {1}",Name, Frame);
+            
+            if (Name == "death" && Frame >= _curAnim.frames.Length - 1)
             {
                 reset(originalPosition.X, originalPosition.Y);
                 dead = false;
                 control = Controls.player;
+                play("idle");
+
             }
         }
 
