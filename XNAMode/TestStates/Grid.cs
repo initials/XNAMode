@@ -72,8 +72,9 @@ namespace XNAMode
             FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[3];
 
             player = new FlxSprite(150, 150);
-            player.createGraphic(30, 10, Color.HotPink);
-            
+            //player.createGraphic(30, 10, Color.HotPink);
+            player.loadGraphic(FlxG.Content.Load<Texture2D>("frictionGrid/oryx_roguelike_16x24"),true, false,16,24);
+            player.frame = 100;
             player.maxAngular = 120;
             player.angularDrag = 400;
             player.maxThrust = 500;
