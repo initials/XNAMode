@@ -41,7 +41,7 @@ namespace FourChambers
             // Required anims:
             // walk, run, idle, attack, death, hurt, jump
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/corsair_18x21"), true, false, 18, 21);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/characterSpriteSheets/Corsair_18x21"), true, false, 18, 21);
 
             addAnimation("run", new int[] { 1, 2, 3, 4, 5}, 12);
             addAnimation("walk", new int[] { 1, 2, 3, 4, 5 }, 8);

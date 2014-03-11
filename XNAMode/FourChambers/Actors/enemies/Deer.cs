@@ -40,7 +40,7 @@ namespace FourChambers
             // Required anims:
             // walk, run, idle, attack, death, hurt, jump
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/Deer_30x30"), true, false, 30, 30);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/characterSpriteSheets/Deer_30x30"), true, false, 30, 30);
 
             addAnimation("death", new int[] { 1,2 }, 6, false);
             addAnimation("idle", new int[] { 0 }, 12);

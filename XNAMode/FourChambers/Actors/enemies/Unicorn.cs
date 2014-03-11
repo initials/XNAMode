@@ -41,7 +41,7 @@ namespace FourChambers
             // Load graphic and create animations.
             // Required anims:
             // walk, run, idle, attack, death, hurt, jump
-            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/unicorn_ss_20x40"), true, false, 20, 40);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/characterSpriteSheets/Unicorn_ss_20x40"), true, false, 20, 40);
 
             addAnimation("walk", new int[] { 2, 3, 4, 5, 6, 7, 8, 9 }, 10);
             addAnimation("run", new int[] {2, 3, 4, 5, 6, 7,8,9 }, 18);

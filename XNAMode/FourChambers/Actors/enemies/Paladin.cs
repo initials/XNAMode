@@ -36,7 +36,7 @@ namespace FourChambers
             //Set the health bar max from here now that we know our health starting point.
             healthBar.max = (uint)health;
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/paladin_ss_16x26"), true, false, 16, 26);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/characterSpriteSheets/Paladin_ss_16x26"), true, false, 16, 26);
 
             addAnimation("run", new int[] {0, 1, 2, 3, 4, 5, 6, 7 }, 18);
             addAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 12);

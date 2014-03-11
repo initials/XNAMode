@@ -40,7 +40,7 @@ namespace FourChambers
             // Required anims:
             // walk, run, idle, attack, death, hurt, jump
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/tormentor_ss_13x24"), true, false, 13, 24);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/characterSpriteSheets/Tormentor_ss_13x24"), true, false, 13, 24);
 
             addAnimation("run", new int[] {6,7,8 }, 18);
             addAnimation("idle", new int[] { 0 }, 12);

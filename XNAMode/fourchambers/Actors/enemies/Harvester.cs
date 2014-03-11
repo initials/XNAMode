@@ -40,7 +40,7 @@ namespace FourChambers
             // Required anims:
             // walk, run, idle, attack, death, hurt, jump
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/harvester_ss_14x27"), true, false, 14, 27);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/characterSpriteSheets/Harvester_ss_14x27"), true, false, 14, 27);
 
             addAnimation("run", new int[] { 2, 3, 4, 5, 6, 7 }, 12);
             addAnimation("walk", new int[] { 2, 3, 4, 5, 6, 7 }, 8);

@@ -41,7 +41,7 @@ namespace FourChambers
             // Required anims:
             // walk, run, idle, attack, death, hurt, jump
 
-            ImgVampire = FlxG.Content.Load<Texture2D>("fourchambers/vampire_ss_14x19");
+            ImgVampire = FlxG.Content.Load<Texture2D>("fourchambers/characterSpriteSheets/Vampire_ss_14x19");
 
             loadGraphic(ImgVampire, true, false, 14, 19);
 

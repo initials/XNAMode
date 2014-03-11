@@ -24,7 +24,7 @@ namespace FourChambers
             health = 1;
             score = 100;
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/zinger_ss_12x14"), true, false, 12, 14);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/characterSpriteSheets/Zinger_ss_12x14"), true, false, 12, 14);
 
             addAnimation("fly", new int[] { 0, 1 }, 30);
             addAnimation("death", new int[] { 2,3,4 }, 8, false);

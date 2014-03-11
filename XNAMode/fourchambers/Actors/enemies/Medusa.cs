@@ -41,7 +41,7 @@ namespace FourChambers
             // Required anims:
             // walk, run, idle, attack, death, hurt, jump
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/medusa_ss_35x30"), true, false, 35, 30);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/characterSpriteSheets/Medusa_ss_35x30"), true, false, 35, 30);
 
             addAnimation("run", new int[] { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);

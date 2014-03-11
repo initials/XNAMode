@@ -40,7 +40,7 @@ namespace FourChambers
             // Required anims:
             // walk, run, idle, attack, death, hurt, jump
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/automaton_ss_11x24"), true, false, 11, 24);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/characterSpriteSheets/Automaton_ss_11x24"), true, false, 11, 24);
 
             addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6,7 }, 18);
             addAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 12);

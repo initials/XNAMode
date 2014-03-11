@@ -37,7 +37,7 @@ namespace FourChambers
             //Set the health bar max from here now that we know our health starting point.
             healthBar.max = (uint)health;
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/mistress_ss_35x22"), true, false, 35, 22);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/characterSpriteSheets/Mistress_ss_35x22"), true, false, 35, 22);
 
             addAnimation("run", new int[] { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }, 12);
             addAnimation("walk", new int[] { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }, 8);

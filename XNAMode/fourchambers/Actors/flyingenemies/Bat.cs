@@ -20,7 +20,7 @@ namespace FourChambers
             health = 1;
             actorName = "Bat";
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/batParticles_12x12"), true, false, 12, 12);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/characterSpriteSheets/Bat_12x12"), true, false, 12, 12);
 
             addAnimation("fly", new int[] { 0, 1, 2 }, 12);
             addAnimation("idle", new int[] { 0 }, 12);

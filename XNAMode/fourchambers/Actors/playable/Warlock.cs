@@ -22,7 +22,7 @@ namespace FourChambers
 
             isPlayerControlled = false;
 
-            ImgWarlock = FlxG.Content.Load<Texture2D>("fourchambers/warlock_ss_29x29");
+            ImgWarlock = FlxG.Content.Load<Texture2D>("fourchambers/characterSpriteSheets/Warlock_ss_29x29");
 
             loadGraphic(ImgWarlock, true, false, 29, 29);
 

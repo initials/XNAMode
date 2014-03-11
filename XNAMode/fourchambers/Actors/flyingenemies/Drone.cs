@@ -21,7 +21,7 @@ namespace FourChambers
 
 
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/drone_ss_9x13"), true, false, 9, 13);
+            loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/characterSpriteSheets/Drone_ss_9x13"), true, false, 9, 13);
 
             addAnimation("fly", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 7, 6, 5, 4, 3, 2, 1 }, 30);
             addAnimation("dead", new int[] { 0 }, 30);
