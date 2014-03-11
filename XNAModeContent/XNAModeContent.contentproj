@@ -642,16 +642,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\artist_ss_20x20.png">
-      <Name>artist_ss_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\automaton_ss_11x24.png">
-      <Name>automaton_ss_11x24</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="fourchambers\autotiles_16x16.png">
       <Name>autotiles_16x16</Name>
       <Importer>TextureImporter</Importer>
@@ -664,11 +654,6 @@
     </Compile>
     <Compile Include="fourchambers\autotiles_ice_16x16.png">
       <Name>autotiles_ice_16x16</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\batParticles_12x12.png">
-      <Name>batParticles_12x12</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -687,11 +672,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\corsair_18x21.png">
-      <Name>corsair_18x21</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="fourchambers\decorationsBack_16x16.png">
       <Name>decorationsBack_16x16</Name>
       <Importer>TextureImporter</Importer>
@@ -702,23 +682,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\door_24x24.png">
-      <Name>door_24x24</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\drone_ss_9x13.png">
-      <Name>drone_ss_9x13</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="fourchambers\envir_dusk.png">
       <Name>envir_dusk</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\executor_ss_21x21.png">
-      <Name>executor_ss_21x21</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -757,21 +722,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\Gloom_13x26.png">
-      <Name>Gloom_13x26</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\harvester_ss_14x27.png">
-      <Name>harvester_ss_14x27</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\horse_ss_20x25.png">
-      <Name>horse_ss_20x25</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="fourchambers\hudelements.png">
       <Name>hudelements</Name>
       <Importer>TextureImporter</Importer>
@@ -787,16 +737,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\marksman_ss_31x24.png">
-      <Name>marksman_ss_31x24</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\medusa_ss_35x30.png">
-      <Name>medusa_ss_35x30</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="fourchambers\menuButton.png">
       <Name>menuButton</Name>
       <Importer>TextureImporter</Importer>
@@ -804,26 +744,6 @@
     </Compile>
     <Compile Include="fourchambers\menuButtonPressed.png">
       <Name>menuButtonPressed</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\mistress_ss_35x22.png">
-      <Name>mistress_ss_35x22</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\mummy_ss_13x19.png">
-      <Name>mummy_ss_13x19</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\nymph_ss_35x30.png">
-      <Name>nymph_ss_35x30</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\paladin_ss_16x26.png">
-      <Name>paladin_ss_16x26</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -842,8 +762,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\prism_ss_14x20.png">
-      <Name>prism_ss_14x20</Name>
+    <Compile Include="fourchambers\characterSpriteSheets\Prism_ss_14x20.png">
+      <Name>Prism_ss_14x20</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -852,8 +772,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\seraphine_ss_24x30.png">
-      <Name>seraphine_ss_24x30</Name>
+    <Compile Include="fourchambers\characterSpriteSheets\Seraphine_ss_24x30.png">
+      <Name>Seraphine_ss_24x30</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -877,8 +797,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\succubus_ss_35x30.png">
-      <Name>succubus_ss_35x30</Name>
+    <Compile Include="fourchambers\characterSpriteSheets\Succubus_ss_35x30.png">
+      <Name>Succubus_ss_35x30</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -887,8 +807,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\tormentor_ss_13x24.png">
-      <Name>tormentor_ss_13x24</Name>
+    <Compile Include="fourchambers\characterSpriteSheets\Tormentor_ss_13x24.png">
+      <Name>Tormentor_ss_13x24</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -897,8 +817,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\vampire_ss_14x19.png">
-      <Name>vampire_ss_14x19</Name>
+    <Compile Include="fourchambers\characterSpriteSheets\Vampire_ss_14x19.png">
+      <Name>Vampire_ss_14x19</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -907,18 +827,18 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\warlock_ss_29x29.png">
-      <Name>warlock_ss_29x29</Name>
+    <Compile Include="fourchambers\characterSpriteSheets\Warlock_ss_29x29.png">
+      <Name>Warlock_ss_29x29</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\zinger_ss_12x14.png">
-      <Name>zinger_ss_12x14</Name>
+    <Compile Include="fourchambers\characterSpriteSheets\Zinger_ss_12x14.png">
+      <Name>Zinger_ss_12x14</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\zombie_ss_13x19.png">
-      <Name>zombie_ss_13x19</Name>
+    <Compile Include="fourchambers\characterSpriteSheets\Zombie_ss_13x19.png">
+      <Name>Zombie_ss_13x19</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -931,8 +851,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fourchambers\unicorn_ss_20x40.png">
-      <Name>unicorn_ss_20x40</Name>
+    <Compile Include="fourchambers\characterSpriteSheets\Unicorn_ss_20x40.png">
+      <Name>Unicorn_ss_20x40</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -945,58 +865,28 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fourchambers\chicken_20x20.png">
-      <Name>chicken_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\Cow_20x20.png">
-      <Name>Cow_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\Deer_30x30.png">
-      <Name>Deer_30x30</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\Feline_20x20.png">
-      <Name>Feline_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\Grizzly_20x20.png">
-      <Name>Grizzly_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\Kerberos_30x30.png">
+    <Compile Include="fourchambers\characterSpriteSheets\Kerberos_30x30.png">
       <Name>Kerberos_30x30</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\Lion_20x20.png">
-      <Name>Lion_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\Rat_20x20.png">
+    <Compile Include="fourchambers\characterSpriteSheets\Rat_20x20.png">
       <Name>Rat_20x20</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\Snake_20x20.png">
+    <Compile Include="fourchambers\characterSpriteSheets\Snake_20x20.png">
       <Name>Snake_20x20</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\Spider_20x20.png">
+    <Compile Include="fourchambers\characterSpriteSheets\Spider_20x20.png">
       <Name>Spider_20x20</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\Wolf.png">
-      <Name>Wolf</Name>
+    <Compile Include="fourchambers\characterSpriteSheets\Wolf_20x20.png">
+      <Name>Wolf_20x20</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1286,7 +1176,118 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="fourchambers\characterSpriteSheets\Artist_ss_20x20.png">
+      <Name>Artist_ss_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Automaton_ss_11x24.png">
+      <Name>Automaton_ss_11x24</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Bat_12x12.png">
+      <Name>Bat_12x12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Chicken_20x20.png">
+      <Name>Chicken_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Corsair_18x21.png">
+      <Name>Corsair_18x21</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Cow_20x20.png">
+      <Name>Cow_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Deer_30x30.png">
+      <Name>Deer_30x30</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\door_24x24.png">
+      <Name>door_24x24</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Drone_ss_9x13.png">
+      <Name>Drone_ss_9x13</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Executor_ss_21x21.png">
+      <Name>Executor_ss_21x21</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Feline_20x20.png">
+      <Name>Feline_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Gloom_13x26.png">
+      <Name>Gloom_13x26</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Grizzly_20x20.png">
+      <Name>Grizzly_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Harvester_ss_14x27.png">
+      <Name>Harvester_ss_14x27</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Horse_ss_20x25.png">
+      <Name>Horse_ss_20x25</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Lion_20x20.png">
+      <Name>Lion_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Marksman_ss_31x24.png">
+      <Name>Marksman_ss_31x24</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Medusa_ss_35x30.png">
+      <Name>Medusa_ss_35x30</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Mistress_ss_35x22.png">
+      <Name>Mistress_ss_35x22</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Mummy_ss_13x19.png">
+      <Name>Mummy_ss_13x19</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Nymph_ss_35x30.png">
+      <Name>Nymph_ss_35x30</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Paladin_ss_16x26.png">
+      <Name>Paladin_ss_16x26</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Lemonade\spikes_newyork.png">
       <Name>spikes_newyork</Name>
@@ -1840,8 +1841,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frictionGrid\oryx_roguelike_16x24.png">
-      <Name>oryx_roguelike_16x24</Name>
+    <Compile Include="frictionGrid\circle_40x40.png">
+      <Name>circle_40x40</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
