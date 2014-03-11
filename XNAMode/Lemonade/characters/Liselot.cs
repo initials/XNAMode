@@ -124,6 +124,9 @@ namespace Lemonade
 
                 reset(originalPosition.X, originalPosition.Y);
                 dead = false;
+
+                control = Controls.player;
+
                 //if (piggybackingAtTimeOfDeath)
                 //    control = Controls.none;
                 //else

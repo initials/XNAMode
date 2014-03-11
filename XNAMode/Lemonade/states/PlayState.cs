@@ -693,8 +693,11 @@ namespace Lemonade
             // Switch Controlling Character.
             if (FlxG.keys.justPressed(Keys.V) || FlxG.gamepads.isNewButtonPress(Buttons.B))
             {
-                if (andre.piggyBacking)
+                Console.WriteLine("The current follow target is : {0} ", FlxG.followTarget.GetType().ToString());
+
+                if (andre.piggyBacking || andre.dead || liselot.dead)
                 {
+                    // do nothing.
 
                 }
                 else
