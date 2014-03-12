@@ -56,7 +56,7 @@ namespace Lemonade
 
         public void resetAfterDeath(string Name, uint Frame, int FrameIndex)
         {
-            Console.WriteLine("Name {0} Frame {1}",Name, Frame);
+            //Console.WriteLine("Name {0} Frame {1}",Name, Frame);
             
             if (Name == "death" && Frame >= _curAnim.frames.Length - 1)
             {
@@ -109,12 +109,18 @@ namespace Lemonade
                 {
                     FlxG.play("Lemonade/sfx/SndOnShoulders", 0.8f, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 443d41589a35dd022eeaf7fdba1a1656d6ad357f
                     
                     //FlxG.follow(this, 11.0f);
                     f.currentFollow = 1;
 
+<<<<<<< HEAD
 =======
 >>>>>>> parent of e5ac0ae... character stays on right follow
+=======
+>>>>>>> 443d41589a35dd022eeaf7fdba1a1656d6ad357f
 
                     Console.WriteLine("Piggybacking is GO!");
                     control = Controls.player;
