@@ -31,7 +31,7 @@ namespace Lemonade
 
         override public void update()
         {
-            if (control == Controls.none) alpha = 0.5f;
+            if (control == Controls.none) alpha = 0.95f;
             else alpha = 1.0f;
 
 

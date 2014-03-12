@@ -5,8 +5,12 @@ namespace XNATweener
 {
     public delegate float TweeningFunction(float timeElapsed, float start, float change, float duration);
 
+    
+
     public class Tweener
     {
+        public bool hasEnded;
+
         public Tweener(float from, float to, float duration, TweeningFunction tweeningFunction)
         {
             _from = from;
@@ -14,6 +18,8 @@ namespace XNATweener
             _change = to - from;
             _tweeningFunction = tweeningFunction;
             _duration = duration;
+            hasEnded = false;
+
         }
 
         public Tweener(float from, float to, TimeSpan duration, TweeningFunction tweeningFunction)
@@ -164,6 +170,8 @@ namespace XNATweener
 
         protected void OnEnd()
         {
+            Running = false;
+
             if (Loop == true)
             {
                 _elapsed = 0.0f;
@@ -180,6 +188,7 @@ namespace XNATweener
 
             if (Ended != null)
             {
+                
                 Ended();
             }
         }

@@ -12,7 +12,7 @@ namespace Lemonade
     class Andre : Actor
     {
 
-
+        public Follower f;
 
         public Andre(int xPos, int yPos)
             : base(xPos, yPos)
@@ -70,11 +70,15 @@ namespace Lemonade
 
         override public void update()
         {
+            Console.WriteLine(velocity.Y);
+
+            if (control == Controls.none) color = new Color(0.321f, 0.321f, 0.321f);
+            else color = Color.White;
 
             if (FlxG.keys.justPressed(Keys.B) || FlxG.gamepads.isNewButtonPress(Buttons.Y))
             {
                 piggyBacking = false;
-                FlxG.follow(this, 11.0f);
+                
             }
 
             base.update();
@@ -86,15 +90,15 @@ namespace Lemonade
 
             string overlappedWith = obj.GetType().ToString();
 
-            if (overlappedWith == "Lemonade.Army" || 
+            if ((overlappedWith == "Lemonade.Army" || 
                 overlappedWith == "Lemonade.Inspector" ||
                 overlappedWith == "Lemonade.Chef" ||
-                overlappedWith == "Lemonade.Worker" )
+                overlappedWith == "Lemonade.Worker" ) && !flickering() )
             {
                 if (obj.dead == false && control == Controls.player)
                 {
                     if (dead == false) FlxG.play("Lemonade/sfx/deathSFX", 0.8f, false);
-                    colorFlicker(2);
+                    flicker(2);
                     kill();
                 }
 
@@ -104,7 +108,10 @@ namespace Lemonade
                 if (piggyBacking == false && dead == false)
                 {
                     FlxG.play("Lemonade/sfx/SndOnShoulders", 0.8f, false);
-                    FlxG.follow(this, 11.0f);
+                    
+                    //FlxG.follow(this, 11.0f);
+                    f.currentFollow = 1;
+
 
                     Console.WriteLine("Piggybacking is GO!");
                     control = Controls.player;
