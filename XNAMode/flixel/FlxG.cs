@@ -823,8 +823,14 @@ namespace org.flixel
             if (Target == null)
                 return;
 
+
+            //Console.WriteLine("1. SCROLL {0} {1} _scrollTarget {2} {3}", scroll.X, scroll.Y, _scrollTarget.X, _scrollTarget.Y);
+
             scroll.X = _scrollTarget.X = (width >> 1) - followTarget.x - ((int)followTarget.width >> 1);
             scroll.Y = _scrollTarget.Y = (height >> 1) - followTarget.y - ((int)followTarget.height >> 1);
+
+            //Console.WriteLine("2. SCROLL {0} {1} _scrollTarget {2} {3}", scroll.X, scroll.Y, _scrollTarget.X, _scrollTarget.Y);
+
 		}
 		
         /// <summary>

@@ -57,6 +57,9 @@ namespace Lemonade
 
         override public void update()
         {
+            if (control == Controls.none) color = new Color(0.321f, 0.321f, 0.321f);
+            else color = Color.White;
+
             if (piggyBacking)
             {
                 visible = false;
@@ -114,10 +117,10 @@ namespace Lemonade
 
         public void resetAfterDeath(string Name, uint Frame, int FrameIndex)
         {
-            if (Name == "death")
-            {
-                Console.WriteLine("Death {0}", Frame);
-            }
+            //if (Name == "death")
+            //{
+            //    Console.WriteLine("Death {0}", Frame);
+            //}
             if (Name == "death" && Frame >= _curAnim.frames.Length - 1)
             {
                 //Console.WriteLine("RESEST piggyBacking {0} {1} control {2}", piggyBacking, piggybackingAtTimeOfDeath,  control.ToString());
@@ -137,15 +140,15 @@ namespace Lemonade
 
             string overlappedWith = obj.GetType().ToString();
 
-            if (overlappedWith == "Lemonade.Army" ||
+            if ((overlappedWith == "Lemonade.Army" ||
                 overlappedWith == "Lemonade.Inspector" ||
                 overlappedWith == "Lemonade.Chef" ||
-                overlappedWith == "Lemonade.Worker")
+                overlappedWith == "Lemonade.Worker") && !flickering() )
             {
                 if (obj.dead == false && control == Controls.player)
                 {
                     if (dead == false) FlxG.play("Lemonade/sfx/deathSFX", 0.8f, false);
-                    colorFlicker(2);
+                    flicker(2);
                     kill();
                 }
             }

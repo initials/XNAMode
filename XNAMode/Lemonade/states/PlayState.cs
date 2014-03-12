@@ -8,6 +8,8 @@ using org.flixel;
 using System.Linq;
 using System.Xml.Linq;
 
+using XNATweener;
+
 namespace Lemonade
 {
     public class PlayState : FlxState
@@ -47,6 +49,8 @@ namespace Lemonade
         private bool levelComplete = false;
         private Spike spike;
         private Ramp ramp;
+
+        private Follower follow;
 
         private FlxEmitter bubbleParticle;
         private FlxEmitter crateParticle;
@@ -515,10 +519,20 @@ namespace Lemonade
             crateParticle.createSprites(FlxG.Content.Load<Texture2D>("Lemonade/crateShards"), 200, true, 1.0f, 0.65f);
             add(crateParticle);
 
+            follow = new Follower(0, 0);
+            add(follow);
+
+            follow.follow1 = andre;
+            follow.follow2 = liselot;
+            follow.tweenX = new Tweener(andre.x, andre.x, TimeSpan.FromSeconds(0.45f), Linear.EaseNone);
+            follow.tweenY = new Tweener(andre.y, andre.y, TimeSpan.FromSeconds(0.45f), Linear.EaseNone);
+            andre.f = follow;
+
+
             // follow.
             FlxG.followBounds(0,0,FlxG.levelWidth, FlxG.levelHeight);
 
-            FlxG.follow(andre, LERP);
+            FlxG.follow(follow, LERP);
 
             playSong();
 
@@ -690,35 +704,80 @@ namespace Lemonade
 
             base.update();
 
+            // Console.WriteLine("The current follow target is : {0}  SCROLL {1} {2}", FlxG.followTarget.GetType().ToString() ,FlxG.scroll.X, FlxG.scroll.Y);
+
             // Switch Controlling Character.
             if (FlxG.keys.justPressed(Keys.V) || FlxG.gamepads.isNewButtonPress(Buttons.B))
             {
+<<<<<<< HEAD
+                //Console.WriteLine("The current follow target is : {0} ", FlxG.followTarget.GetType().ToString());
+
+                if (andre.piggyBacking || andre.dead || liselot.dead)
+=======
                 if (andre.piggyBacking)
+>>>>>>> parent of e5ac0ae... character stays on right follow
                 {
 
                 }
                 else
                 {
-                    if (FlxG.followTarget.GetType().ToString() == "Lemonade.Liselot")
+                    if (follow.currentFollow == 1)
                     {
-                        FlxG.follow(andre, LERP);
-                        andre.control = FlxPlatformActor.Controls.player;
-                        liselot.control = FlxPlatformActor.Controls.none;
+                        follow.tweenX = new Tweener(andre.x, liselot.x, TimeSpan.FromSeconds(0.45f), Linear.EaseNone);
+                        follow.tweenY = new Tweener(andre.y, liselot.y, TimeSpan.FromSeconds(0.45f), Linear.EaseNone);
 
-                        bubbleParticle.at(andre);
-                        bubbleParticle.start(true, 0, 30);
+                        follow.tweenX.Start();
+                        follow.tweenY.Start();
+                        
+                        follow.currentFollow = 2;
 
-                    }
-                    else if (FlxG.followTarget.GetType().ToString() == "Lemonade.Andre")
-                    {
-                        FlxG.follow(liselot, LERP);
                         andre.control = FlxPlatformActor.Controls.none;
                         liselot.control = FlxPlatformActor.Controls.player;
 
                         bubbleParticle.at(liselot);
                         bubbleParticle.start(true, 0, 30);
 
+
                     }
+                    else if (follow.currentFollow == 2)
+                    {
+                        follow.tweenX = new Tweener(liselot.x, andre.x, TimeSpan.FromSeconds(0.45f), Linear.EaseNone);
+                        follow.tweenY = new Tweener(liselot.y, andre.y, TimeSpan.FromSeconds(0.45f), Linear.EaseNone);
+                        
+
+                        follow.tweenX.Start();
+                        follow.tweenY.Start();
+
+                        follow.currentFollow = 1;
+
+                        andre.control = FlxPlatformActor.Controls.player;
+                        liselot.control = FlxPlatformActor.Controls.none;
+
+                        bubbleParticle.at(andre);
+                        bubbleParticle.start(true, 0, 30);
+
+                    } 
+
+                    //if (FlxG.followTarget.GetType().ToString() == "Lemonade.Liselot")
+                    //{
+                    //    FlxG.follow(andre, LERP);
+                    //    andre.control = FlxPlatformActor.Controls.player;
+                    //    liselot.control = FlxPlatformActor.Controls.none;
+
+                    //    bubbleParticle.at(andre);
+                    //    bubbleParticle.start(true, 0, 30);
+
+                    //}
+                    //else if (FlxG.followTarget.GetType().ToString() == "Lemonade.Andre")
+                    //{
+                    //    FlxG.follow(liselot, LERP);
+                    //    andre.control = FlxPlatformActor.Controls.none;
+                    //    liselot.control = FlxPlatformActor.Controls.player;
+
+                    //    bubbleParticle.at(liselot);
+                    //    bubbleParticle.start(true, 0, 30);
+
+                    //}
                 }
             }
 
