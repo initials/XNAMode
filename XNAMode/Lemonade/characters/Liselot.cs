@@ -30,7 +30,7 @@ namespace Lemonade
             addAnimation("run_push_crate", new int [] {69,70,71,81,82,83} ,16, true);
             addAnimation("idle", new int [] {2} ,0);
             addAnimation("talk", new int [] {2,55} ,12);
-            addAnimation("jump", new int [] {15,16,17} ,4 , true);
+            addAnimation("jump", new int [] {2, 15,16,17} ,4 , true);
             addAnimation("death", new int [] {64,64,65,65,66,66,67,67} ,12 , false);
 
             play("idle");

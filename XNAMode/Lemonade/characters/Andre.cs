@@ -29,7 +29,7 @@ namespace Lemonade
             addAnimation("dash", new int [] {79} ,0);
             addAnimation("idle", new int [] {51} ,0);
             addAnimation("talk", new int [] {51,48,51,49,51,50} ,12);
-            addAnimation("jump", new int [] {46,47,46} ,4 , true);
+            addAnimation("jump", new int [] {51, 46,47,46} ,4 , true);
             addAnimation("death", new int [] {60,60,61,61,62,62,63,63} ,12 , false);
 
             play("idle");

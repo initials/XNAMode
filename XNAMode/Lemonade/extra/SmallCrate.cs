@@ -82,6 +82,9 @@ namespace Lemonade
             if (parent != null)
             {
                 @fixed = false;
+                solid = false;
+                
+
                 if (((FlxSprite)(parent)).facing == Flx2DFacing.Right)
                 {
                     x = (parent.x-width/2) + 24;
@@ -111,7 +114,7 @@ namespace Lemonade
                 if (parent.dead == true) parent = null;
                 acceleration.Y = 0;
             }
-            else if (trampolineTimer < 0.155f)
+            else if (trampolineTimer < 0.0555f)
             {
                 acceleration.Y = 0;
             }
@@ -122,6 +125,8 @@ namespace Lemonade
 
                 acceleration.Y = Lemonade_Globals.GRAVITY;
                 @fixed = true;
+                solid = true;
+                
             }
 
             base.update();
