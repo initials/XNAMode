@@ -70,7 +70,7 @@ namespace Lemonade
 
         override public void update()
         {
-            Console.WriteLine(velocity.Y);
+            //Console.WriteLine(velocity.Y);
 
             if (control == Controls.none) color = new Color(0.321f, 0.321f, 0.321f);
             else color = Color.White;
