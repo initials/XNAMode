@@ -159,12 +159,28 @@ namespace org.flixel
         /// <returns></returns>
         public static Dictionary<string, string> readAttributesFromTmxFile(string filename, string element)
         {
+			//TO DO: Add Ouya/Android support.
 
             Dictionary<string, string> levelAttrs = new Dictionary<string, string>();
 
             XmlDocument xml = new XmlDocument();
-            xml.Load(filename);
-            //Console.WriteLine("Node Name: {0} ", element);
+
+			#if __ANDROID__
+
+			string content;
+			using (StreamReader sr = new StreamReader (Game.Activity.Assets.Open(filename)))
+			{
+				content = sr.ReadToEnd();
+			}
+			xml.LoadXml(content);
+
+			#endif
+			#if !__ANDROID__
+			xml.Load(filename);
+			#endif
+
+            
+			//Console.WriteLine("Node Name: {0} ", element);
             XmlNodeList xnList = xml.SelectNodes(element);
             foreach (XmlNode xn in xnList)
             {
@@ -335,9 +351,21 @@ namespace org.flixel
         public static List<Dictionary<string, string>> readNodesFromTmxFile(string filename, string element, string name, int type)
         {
             List<Dictionary<string, string>> nodeList = new List<Dictionary<string, string>>();
+			XmlDocument xml = new XmlDocument();
 
-            XmlDocument xml = new XmlDocument();
-            xml.Load(filename);
+			#if __ANDROID__
+
+			string content;
+			using (StreamReader sr = new StreamReader (Game.Activity.Assets.Open(filename)))
+			{
+				content = sr.ReadToEnd();
+			}
+			xml.LoadXml(content);
+
+			#endif
+			#if !__ANDROID__
+			xml.Load(filename);
+			#endif
 
             XmlNodeList xnList = xml.SelectNodes(element);
 
@@ -452,7 +480,21 @@ namespace org.flixel
             List<Dictionary<string, string>> nodeList = new List<Dictionary<string, string>>();
 
             XmlDocument xml = new XmlDocument();
-            xml.Load(filename);
+			#if __ANDROID__
+
+			string content;
+			using (StreamReader sr = new StreamReader (Game.Activity.Assets.Open(filename)))
+			{
+				content = sr.ReadToEnd();
+			}
+			xml.LoadXml(content);
+
+			#endif
+			#if !__ANDROID__
+			xml.Load(filename);
+			#endif
+
+			//TODO Add ouya
 
             XmlNodeList xnList = xml.SelectNodes(element);
             int count = 0;

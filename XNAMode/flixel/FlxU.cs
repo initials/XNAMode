@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using System.Diagnostics;
+using System.IO.IsolatedStorage;
 
 namespace org.flixel
 {
@@ -1436,42 +1437,91 @@ namespace org.flixel
         /// <param name="Filename"></param>
         public static void saveToDevice(string Lines, string Filename)
         {
-            // Write the string to a file.
-            System.IO.StreamWriter file = new System.IO.StreamWriter(Filename);
-            file.WriteLine(Lines);
 
-            file.Close();
+			#if __ANDROID__
+
+			IsolatedStorageFile isoStore = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+
+			using (IsolatedStorageFileStream isoStream = new IsolatedStorageFileStream(Filename, FileMode.Create, isoStore))
+			{
+				using (StreamWriter writer = new StreamWriter(isoStream))
+				{
+					writer.WriteLine(Lines);
+					Console.WriteLine("You have written to the file.");
+					writer.Close();
+				}
+			}
+
+
+			#endif
+			#if !__ANDROID__
+			System.IO.StreamWriter file = new System.IO.StreamWriter(Filename);
+			file.WriteLine(Lines);
+			file.Close();
+			#endif
+
+
+            // Write the string to a file.
+
+
+
         }
+
+		public static string loadFromDevice(string Filename)
+		{
+			return loadFromDevice (Filename, false);
+		}
 
         /// <summary>
         /// Loads a text file from the Hard Drive
         /// </summary>
         /// <param name="Filename"></param>
         /// <returns></returns>
-        public static string loadFromDevice(string Filename)
+		public static string loadFromDevice(string Filename, bool FromIsolatedStorage)
 		{
+			Console.WriteLine ("-- Load from Device -- ", Filename);
 
 			string value1;
 
 			#if __ANDROID__
 
-
+			/*
 			using (StreamReader sr = new StreamReader (Game.Activity.Assets.Open(Filename)))
 			{
 				value1 = sr.ReadToEnd();
 			}
+			*/
 
+			if (FromIsolatedStorage) 
+			{
+
+				IsolatedStorageFile isoStore = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+
+				using (IsolatedStorageFileStream isoStream = new IsolatedStorageFileStream(Filename, FileMode.Open, isoStore))
+				{
+					using (StreamReader reader = new StreamReader(isoStream))
+					{
+						Console.WriteLine("Reading contents:");
+						//Console.WriteLine(reader.ReadToEnd());
+
+						value1 = reader.ReadToEnd();
+
+					}
+				}
+			}
+			else {
+				using (StreamReader sr = new StreamReader (Game.Activity.Assets.Open(Filename)))
+				{
+					value1 = sr.ReadToEnd();
+				}
+			}
 
 			#endif
 			#if !__ANDROID__
 			value1 = File.ReadAllText(Filename);
 			#endif
 
-
-
-            
-
-            return value1.Substring(0, value1.Length - 1);
+			return value1.Substring(0, value1.Length - 1);
 
         }
     }

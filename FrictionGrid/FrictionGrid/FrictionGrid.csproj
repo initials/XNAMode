@@ -88,10 +88,6 @@
       <Project>{50463AEB-DA30-46D5-B01B-93F9C42F5765}</Project>
       <Name>XNAMode</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FrictionGridContent\FrictionGridContent.contentproj">
-      <Name>FrictionGridContent</Name>
-      <XnaReferenceType>Content</XnaReferenceType>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

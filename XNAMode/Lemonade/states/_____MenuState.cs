@@ -71,7 +71,7 @@ namespace Lemonade
             miltary.visible = false;
             add(miltary);
 
-            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
+			//FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
             FlxButton b = new FlxButton((FlxG.width / 2) - 100, 150, startGame);
             b.loadGraphic(new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/button_ny")), new FlxSprite().loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/buttonPressed_ny")));

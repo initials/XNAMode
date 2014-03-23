@@ -124,6 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FlixelEntryPoint.cs" />
     <Compile Include="flixel\data\FlxRecord.cs" />
     <Compile Include="flixel\FlxCamera.cs" />
     <None Include="flixel\php\commands.php" />
@@ -327,7 +328,6 @@
     <Compile Include="XNATweener\Cubic.cs" />
     <Compile Include="XNATweener\Elastic.cs" />
     <Compile Include="XNATweener\Exponential.cs" />
-    <Compile Include="XNATweener\FlixelEntryPoint.cs" />
     <Compile Include="flixel\data\FlxHud.cs" />
     <Compile Include="flixel\FlxCaveGenerator.cs" />
     <Compile Include="flixel\FlxXMLReader.cs" />

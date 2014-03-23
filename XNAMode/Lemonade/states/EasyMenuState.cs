@@ -153,7 +153,7 @@ namespace Lemonade
             add(factory);
 
 
-            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
+			//FlxG.mouse.show(FlxG.Content.Load<Texture2D>("Mode/cursor"));
 
             int pwidth = 260;
             bubbleParticle = new FlxEmitter();
@@ -226,7 +226,7 @@ namespace Lemonade
 
             try
             {
-                FlxG.username = LoadFromDevice();
+				FlxG.username = FlxU.loadFromDevice("nameinfo.txt", true);
                 Console.WriteLine("Your username is: {0}", FlxG.username);
  
             }
@@ -256,7 +256,7 @@ namespace Lemonade
             string prog = "";
             try
             {
-                prog = FlxU.loadFromDevice("gameProgress.slf");
+				prog = FlxU.loadFromDevice("gameProgress.slf", true);
 
                 Lemonade_Globals.gameProgress = new Dictionary<string, GameProgress>();
 
@@ -300,7 +300,7 @@ namespace Lemonade
                 // ---------------- End Save
 
                 // Read new/
-                prog = FlxU.loadFromDevice("gameProgress.slf");
+				prog = FlxU.loadFromDevice("gameProgress.slf", true);
 
                 Lemonade_Globals.gameProgress = new Dictionary<string, GameProgress>();
 
@@ -353,11 +353,11 @@ namespace Lemonade
             return ny;
         }
 
-        public string LoadFromDevice()
-        {
-            string value1 = File.ReadAllText("nameinfo.txt");
-            return value1.Substring(0, value1.Length - 1);
-        }
+//        public string LoadFromDevice()
+//        {
+//            string value1 = File.ReadAllText("nameinfo.txt");
+//            return value1.Substring(0, value1.Length - 1);
+//        }
 
         override public void update()
         {
@@ -373,13 +373,14 @@ namespace Lemonade
 
             //FlxG.cameras[0].angle += 5;
 
+			currentLevel = 1;
+
             tweenBounce.Update(FlxG.elapsedAsGameTime);
 
-            //foreach (var item in Lemonade_Globals.gameProgress)
-            //{
-            //    Console.WriteLine("K.{0} V.{1} {2} {3} {4}", item.Key, item.Value.KilledArmy, item.Value.KilledChef, item.Value.KilledInspector, item.Value.KilledWorker);
-
-            //}
+//            foreach (var item in Lemonade_Globals.gameProgress)
+//            {
+//                Console.WriteLine("K.{0} V.{1} {2} {3} {4}", item.Key, item.Value.KilledArmy, item.Value.KilledChef, item.Value.KilledInspector, item.Value.KilledWorker);
+//            }
 
             int incompleteScale = 2;
 
@@ -594,7 +595,9 @@ namespace Lemonade
 
             if (FlxG.username == "" || FlxG.username == null)
             {
+				#if !__ANDROID__
                 FlxG.state = new DataEntryState();
+				#endif
             }
         }
 

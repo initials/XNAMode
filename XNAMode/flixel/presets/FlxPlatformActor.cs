@@ -248,7 +248,7 @@ namespace org.flixel
         {
             _history = new List<bool[]>();
 
-            string x = FlxU.loadFromDevice(Filename);
+			string x = FlxU.loadFromDevice(Filename);
 
             string[] y = x.Split('\n');
 
