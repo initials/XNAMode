@@ -1,5 +1,5 @@
-﻿w=960
-h=540
+﻿w=1920
+h=1080
 fullscreen=0
 zoom=1
 
