@@ -267,6 +267,8 @@ namespace FourChambers
 
             // used for tutorial prompts.
             FlxG._game.hud.p1HudText.alignment = FlxJustification.Center;
+            FlxG._game.hud.xboxButton.visible = false;
+            FlxG._game.hud.xboxDirection.visible = false;
 
             // Account for minus levels (tutorials etc)
             // -1 = Tutorial
@@ -2699,6 +2701,7 @@ namespace FourChambers
                 for (int i = 0; i < NumberOfActors; i++)
                 {
                     ladder = new FlxTileblock(x,y,16, height );
+                    ladder.auto = FlxTileblock.RANDOM;
                     ladder.loadTiles(FlxG.Content.Load<Texture2D>("fourchambers/ladderTiles_16x16"), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y, 0);
                     ladders.add(ladder);
                 }

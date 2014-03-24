@@ -63,8 +63,11 @@ namespace Lemonade
 
         override public void create()
         {
+			FlxG.maxElapsed = 0.666f;
+
             locked = false;
             lockedPhrase = "";
+			currentLevel = 1;
 
             base.create();
 
@@ -373,7 +376,7 @@ namespace Lemonade
 
             //FlxG.cameras[0].angle += 5;
 
-			currentLevel = 1;
+			//currentLevel = 1;
 
             tweenBounce.Update(FlxG.elapsedAsGameTime);
 
@@ -476,11 +479,11 @@ namespace Lemonade
 
                 bubbleParticle.y = location.y;
 
-                if (FlxControl.RIGHTJUSTPRESSED)
+				if (FlxControl.RIGHTJUSTPRESSED || FlxG.keys.justPressed(Keys.Right))
                 {
                     currentLocation++; tweenBounce.Reset(); FlxG.play("Lemonade/sfx/Blip_Select", 0.7f, false);
                 }
-                if (FlxControl.LEFTJUSTPRESSED)
+				if (FlxControl.LEFTJUSTPRESSED || FlxG.keys.justPressed(Keys.Left))
                 {
                     currentLocation--; tweenBounce.Reset(); FlxG.play("Lemonade/sfx/Blip_Select", 0.7f, false);
                 }
@@ -495,11 +498,11 @@ namespace Lemonade
 
                 bubbleParticle.y = levelText.y;
 
-                if (FlxControl.RIGHTJUSTPRESSED)
+				if (FlxControl.RIGHTJUSTPRESSED|| FlxG.keys.justPressed(Keys.Right))
                 {
                     currentLevel++; FlxG.play("Lemonade/sfx/Blip_Select", 0.7f, false);
                 }
-                if (FlxControl.LEFTJUSTPRESSED)
+				if (FlxControl.LEFTJUSTPRESSED|| FlxG.keys.justPressed(Keys.Left))
                 {
                     currentLevel--; FlxG.play("Lemonade/sfx/Blip_Select", 0.7f, false);
                 }

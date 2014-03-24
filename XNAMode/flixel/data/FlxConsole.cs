@@ -158,16 +158,20 @@ namespace org.flixel
 
                 vcr.update();
 
-                //_FPS[_curFPS] = (int)(1f / FlxG.elapsed);
-                //if (++_curFPS >= _FPS.Length) _curFPS = 0;
-                //_fpsUpdate = !_fpsUpdate;
-                //if (_fpsUpdate)
-                //{
-                //    int fps = 0;
-                //    for (int i = 0; i < _FPS.Length; i++)
-                //        fps += _FPS[i];
-                //    _consoleFPS.text = ((int)Math.Floor((double)(fps / _FPS.Length))).ToString() + " fps";
-                //}
+//                _FPS[_curFPS] = (int)(1f / FlxG.elapsed);
+//                if (++_curFPS >= _FPS.Length) _curFPS = 0;
+//                _fpsUpdate = !_fpsUpdate;
+//                if (_fpsUpdate)
+//                {
+//                    int fps = 0;
+//                    for (int i = 0; i < _FPS.Length; i++)
+//                        fps += _FPS[i];
+//                    _consoleFPS.text = ((int)Math.Floor((double)(fps / _FPS.Length))).ToString() + " fps";
+//                }
+
+
+				_consoleFPS.text = ((int)Math.Floor(1/ FlxG.elapsed)).ToString() + " fps";
+
 
                 _consoleText.y = (-FlxG.spriteBatch.GraphicsDevice.Viewport.Height + _consoleRect.Height + 70);
                 _consoleFPS.y = _consoleText.y;
