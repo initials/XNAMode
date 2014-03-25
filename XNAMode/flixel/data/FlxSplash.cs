@@ -43,6 +43,10 @@ namespace org.flixel
         {
             base.create();
 
+            FlxSprite bg = new FlxSprite(0, 0);
+            bg.createGraphic(FlxG.width, FlxG.height, new Color(10,10,10));
+            add(bg);
+
             //XNAMode.Grid x = new XNAMode.Grid(2, (int)FlxU.random(5,50));
             //add(x);
 
@@ -58,7 +62,7 @@ namespace org.flixel
             _logo.y = FlxG.height / 2 - 24;
             add(_logo);
 
-            _logoTweener = new Tweener(-100, FlxG.height / 2 - 24, TimeSpan.FromSeconds(0.9f), Bounce.EaseOut);
+            _logoTweener = new Tweener(-150, FlxG.height / 2 - 24, TimeSpan.FromSeconds(0.9f), Bounce.EaseOut);
             //_logoTweener.PositionChanged += delegate (float newRotation) { _logo.y = newRotation } 
             
 
@@ -93,13 +97,20 @@ namespace org.flixel
 
             _logoTweener.Update(FlxG.elapsedAsGameTime);
             _logo.y = _logoTweener.Position;
-
+            if (_logoTimer > 1.15f)
+            {
+                FlxG.bloom.Visible = true;
+                FlxG.bloom.bloomIntensity += 1.5f;
+                FlxG.bloom.baseIntensity += 1.0f;
+                FlxG.bloom.blurAmount += 1.1f;
+            }
             if (_f == null && _logoTimer > 2.5f)
             {
 
                 //_logo.visible = false;
 
                 _logoTweener.Reverse();
+                _logoTweener.Start();
 
                 //FlxG.flash.start(FlxG.backColor, 1.0f, null, false);
 
@@ -144,6 +155,7 @@ namespace org.flixel
             }
             if (FlxG.keys.F1)
             {
+                FlxG.bloom.Visible = false;
                 FlxG.destroySounds(true);
 				FlxG.state = new XNAMode.DebugMenuState();
             }
