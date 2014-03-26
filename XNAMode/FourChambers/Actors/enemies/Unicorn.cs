@@ -21,7 +21,7 @@ namespace FourChambers
             // Set up the stats for this actor.
             actorName = "Fabulous Diamond Joe";
             score = 250;
-            health = 1; //25
+            health = 25; //25
             runSpeed = 120;
             _jumpPower = -110.0f;
             _jumpInitialPower = -110.0f;
