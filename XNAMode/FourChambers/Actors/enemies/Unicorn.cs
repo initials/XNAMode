@@ -101,8 +101,6 @@ namespace FourChambers
 
             hurtTimer = 0;
 
-
-
             velocity.X = 0;
             //color = Color.PaleVioletRed;
 
