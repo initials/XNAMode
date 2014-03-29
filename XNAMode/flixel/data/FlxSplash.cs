@@ -99,10 +99,10 @@ namespace org.flixel
             _logo.y = _logoTweener.Position;
             if (_logoTimer > 1.15f)
             {
-                FlxG.bloom.Visible = true;
-                FlxG.bloom.bloomIntensity += 1.5f;
-                FlxG.bloom.baseIntensity += 1.0f;
-                FlxG.bloom.blurAmount += 1.1f;
+                //FlxG.bloom.Visible = true;
+                //FlxG.bloom.bloomIntensity += 1.5f;
+                //FlxG.bloom.baseIntensity += 1.0f;
+                //FlxG.bloom.blurAmount += 1.1f;
             }
             if (_f == null && _logoTimer > 2.5f)
             {
@@ -149,13 +149,13 @@ namespace org.flixel
             {
                 FlxG.destroySounds(true);
 
-                FlxG.bloom.Visible = false;
+                //FlxG.bloom.Visible = false;
 
                 FlxG.state = _nextScreen;
             }
             if (FlxG.keys.F1)
             {
-                FlxG.bloom.Visible = false;
+                //FlxG.bloom.Visible = false;
                 FlxG.destroySounds(true);
 				FlxG.state = new XNAMode.DebugMenuState();
             }

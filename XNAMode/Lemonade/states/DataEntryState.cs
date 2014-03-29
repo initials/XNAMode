@@ -135,7 +135,13 @@ namespace Lemonade
             FlxG.score = 0;
             FlxG.hideHud();
 
+			#if __ANDROID__
+			FlxG.state = new OuyaEasyMenuState();
+			#endif
+			#if !__ANDROID__
             FlxG.state = new EasyMenuState();
+			#endif
+
             return;
         }
 

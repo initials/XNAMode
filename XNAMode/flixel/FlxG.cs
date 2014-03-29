@@ -138,7 +138,7 @@ namespace org.flixel
         public const int CONTROL_TYPE_KEYBOARD = 0;
         public const int CONTROL_TYPE_GAMEPAD = 1;
 
-
+        static public bool colorFlickeringEnabled = false;
 
         /// <summary>
         /// A reference or pointer to the current FlxState object being used by the game

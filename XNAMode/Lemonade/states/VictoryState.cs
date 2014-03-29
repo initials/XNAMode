@@ -83,7 +83,12 @@ namespace Lemonade
             if (FlxG.transition.complete)
             {
                 FlxG.transition.resetAndStop();
-                FlxG.state = new EasyMenuState();
+				#if __ANDROID__
+				FlxG.state = new OuyaEasyMenuState();
+				#endif
+				#if !__ANDROID__
+				FlxG.state = new EasyMenuState();
+				#endif
                 return;
             }
 

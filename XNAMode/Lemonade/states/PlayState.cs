@@ -598,7 +598,12 @@ namespace Lemonade
                     }
                     else if (FlxG.level == 12 && Lemonade_Globals.game_version == 1)
                     {
-                        FlxG.state = new EasyMenuState();
+						#if __ANDROID__
+						FlxG.state = new OuyaEasyMenuState();
+						#endif
+						#if !__ANDROID__
+						FlxG.state = new EasyMenuState();
+						#endif
                         return;
                     }
                     else
@@ -782,7 +787,12 @@ namespace Lemonade
 
             if (FlxG.keys.justPressed(Keys.Escape) || FlxG.gamepads.isButtonDown(Buttons.Back))
             {
-                FlxG.state = new EasyMenuState();
+				#if __ANDROID__
+				FlxG.state = new OuyaEasyMenuState();
+				#endif
+				#if !__ANDROID__
+				FlxG.state = new EasyMenuState();
+				#endif
             }
             if (levelComplete == true)
             {
@@ -825,7 +835,12 @@ namespace Lemonade
                 }
                 else if (FlxG.level == 12 && Lemonade_Globals.game_version == 1)
                 {
-                    FlxG.state = new EasyMenuState();
+					#if __ANDROID__
+					FlxG.state = new OuyaEasyMenuState();
+					#endif
+					#if !__ANDROID__
+					FlxG.state = new EasyMenuState();
+					#endif
                     FlxG.transition.resetAndStop();
                     return;
                 }

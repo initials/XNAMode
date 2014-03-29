@@ -325,6 +325,7 @@ namespace FourChambers
 
         public void startPlayingBack(string Filename)
         {
+
             _history = new List<bool[]>();
             
             string x = FlxU.loadFromDevice(Filename);

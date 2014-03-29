@@ -440,7 +440,8 @@ namespace org.flixel
             updateMotion();
             updateAnimation();
             updateFlickering();
-            //updatecolorFlickering();
+            
+            if (FlxG.colorFlickeringEnabled) updatecolorFlickering();
 
         }
 
