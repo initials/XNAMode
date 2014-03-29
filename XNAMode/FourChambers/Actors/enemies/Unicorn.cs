@@ -104,6 +104,8 @@ namespace FourChambers
             velocity.X = 0;
             //color = Color.PaleVioletRed;
 
+            FlxG.play("fourchambers/sfx/horseHurt", 1.0f, false);
+
             base.hurt(Damage);
         }
     }

@@ -785,6 +785,17 @@ namespace Lemonade
                 }
             }
 
+			#if __ANDROID__
+			if (FlxG.gamepads.isButtonDown(Buttons.RightStick))
+			{
+				#if __ANDROID__
+				FlxG.state = new OuyaEasyMenuState();
+				#endif
+				#if !__ANDROID__
+				FlxG.state = new EasyMenuState();
+				#endif
+			}
+			#endif
             if (FlxG.keys.justPressed(Keys.Escape) || FlxG.gamepads.isButtonDown(Buttons.Back))
             {
 				#if __ANDROID__
@@ -823,9 +834,21 @@ namespace Lemonade
                 {
                     FlxG.level++;
                     Lemonade_Globals.restartMusic = false;
-                    FlxG.state = new PlayState();
-                    FlxG.transition.resetAndStop();
-                    return;
+
+					if (Lemonade_Globals.PAID_VERSION == Lemonade_Globals.DEMO_MODE && FlxG.level >= 3) {
+						#if __ANDROID__
+						FlxG.state = new OuyaEasyMenuState();
+						#endif
+						#if !__ANDROID__
+						FlxG.state = new EasyMenuState();
+						#endif
+						FlxG.transition.resetAndStop();
+						return;
+					} else {
+						FlxG.state = new PlayState ();
+						FlxG.transition.resetAndStop ();
+						return;
+					}
                 }
                 if (FlxG.level == 12 && Lemonade_Globals.game_version == 2)
                 {

@@ -45,6 +45,11 @@ namespace Lemonade
             maxVelocity.X = 530;
             maxVelocity.Y = 2830;
 
+			#if __ANDROID__
+			maxVelocity.X/=1.75f;
+			maxVelocity.Y/=1.75f;
+			#endif
+
             setJumpValues(-340.0f, -410.0f, 0.35f, 0.075f);
             numberOfJumps = 2;
 

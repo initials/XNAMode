@@ -19,6 +19,10 @@ namespace Lemonade
         {
             base.create();
 
+			#if __ANDROID__
+			FlxG.BUILD_TYPE = FlxG.BUILD_TYPE_OUYA;
+			#endif
+
             FlxTilemap bgMap = new FlxTilemap();
             bgMap.auto = FlxTilemap.STRING;
             bgMap.indexOffset = -1;

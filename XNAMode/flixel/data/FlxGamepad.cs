@@ -121,6 +121,7 @@ namespace org.flixel
         *============================================*/
         public void update()
         {
+		
             if (_timerCountDown > 0.0f)
             {
                 _timerCountDown -= FlxG.elapsed;

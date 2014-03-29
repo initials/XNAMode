@@ -15,7 +15,8 @@ namespace FourChambers
 
         private bool hasTouched;
 
-        protected const string SndShoot = "sfx/arrowShoot";
+        protected const string SndShoot = "fourchambers/sfx/arrowShoot1";
+        protected const string SndHit = "fourchambers/sfx/arrowHit1";
         public FlxSprite _ex;
 
         public bool explodesOnImpact = false;
@@ -178,7 +179,7 @@ namespace FourChambers
         }
         override public void kill()
         {
-            
+            FlxG.play(SndHit, 0.5f, false);
             _fire.stop();
 
 
@@ -204,14 +205,13 @@ namespace FourChambers
 
         public void shoot(int X, int Y, int VelocityX, int VelocityY)
         {
-
             _fire.start(false, 0.01f, 0);
-
+            
             // Global counter for arrows fired.
             FourChambers_Globals.arrowsFired++;
 
             visible = true;
-            FlxG.play(SndShoot, 0.05f, false);
+            FlxG.play(SndShoot, 1.0f, false);
 
             play("normal");
             
@@ -222,9 +222,6 @@ namespace FourChambers
             hasTouched = false;
             dead = false;
 
-            
-
         }
-
     }
 }

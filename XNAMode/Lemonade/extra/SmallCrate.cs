@@ -120,9 +120,6 @@ namespace Lemonade
             }
             else
             {
-
-
-
                 acceleration.Y = Lemonade_Globals.GRAVITY;
                 @fixed = true;
                 solid = true;
@@ -210,21 +207,24 @@ namespace Lemonade
 
             if (obj.GetType().ToString() == "Lemonade.Liselot" || obj.GetType().ToString() == "Lemonade.Andre")
             {
-                if (((FlxPlatformActor)(obj)).control == FlxPlatformActor.Controls.player && parent == null)
-                {
-                    FlxG.showHud();
+				if (((FlxPlatformActor)(obj)).control == FlxPlatformActor.Controls.player && parent == null) {
+					FlxG.showHud ();
 
-                    if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_KEYBOARD)
-                    {
-                        FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_KEYBOARD_DIRECTION, FlxHud.Keyboard_Arrow_Down, x - 100, y - 150);
-                        FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_KEYBOARD, FlxHud.Keyboard_C, x + 20, y - 150);
-                    }
-                    else if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_GAMEPAD)
-                    {
-                        FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_XBOX_DIRECTION, FlxHud.xboxDPadDown, x - 100, y - 150);
-                        FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_XBOX, FlxHud.xboxButtonX, x + 20, y - 150);
-                    
-                    }
+					if (FlxG.BUILD_TYPE == FlxG.BUILD_TYPE_PC)
+					{
+						if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_KEYBOARD) {
+							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_KEYBOARD_DIRECTION, FlxHud.Keyboard_Arrow_Down, x - 40, y - 120);
+							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_KEYBOARD, FlxHud.Keyboard_C, x + 20, y - 120);
+						} else if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_GAMEPAD) {
+							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_XBOX_DIRECTION, FlxHud.xboxDPadDown, x - 40, y - 120);
+							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_XBOX, FlxHud.xboxButtonX, x + 20, y - 120);
+	                    
+						}
+					}
+					if (FlxG.BUILD_TYPE == FlxG.BUILD_TYPE_OUYA) {
+						FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_OUYA_DIRECTION, FlxHud.ouyaDPadDown, x - 40, y - 120);
+						FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_OUYA, FlxHud.ouyaButtonU, x+20, y-120);
+					}
 
                     FlxG._game.hud.resetTime();
                     FlxG._game.hud.timeToShowButton = 0.05f;

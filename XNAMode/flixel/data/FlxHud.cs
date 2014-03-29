@@ -365,43 +365,43 @@ namespace org.flixel
             if (Type == TYPE_KEYBOARD)
             {
                 keyboardButton.frame = Button;
-                keyboardButton.x = X * FlxG.zoom;
-                keyboardButton.y = Y * FlxG.zoom;
+				keyboardButton.x = X * FlxG.zoom + FlxG.scroll.X;
+				keyboardButton.y = Y * FlxG.zoom + FlxG.scroll.Y;
                 keyboardButton.visible = true;
             }
             else if (Type == TYPE_XBOX)
             {
                 xboxButton.frame = Button;
-                xboxButton.x = X * FlxG.zoom;
-                xboxButton.y = Y * FlxG.zoom;
+				xboxButton.x = X * FlxG.zoom + FlxG.scroll.X;
+				xboxButton.y = Y * FlxG.zoom + FlxG.scroll.Y;
                 xboxButton.visible = true;
             }
             else if (Type == TYPE_OUYA)
             {
                 ouyaButton.frame = Button;
-                ouyaButton.x = X * FlxG.zoom;
-                ouyaButton.y = Y * FlxG.zoom;
+				ouyaButton.x = X * FlxG.zoom + FlxG.scroll.X;
+				ouyaButton.y = Y * FlxG.zoom + FlxG.scroll.Y;
                 ouyaButton.visible = true;
             }
             else if (Type == TYPE_KEYBOARD_DIRECTION)
             {
                 keyboardDirection.frame = Button;
-                keyboardDirection.x = X * FlxG.zoom;
-                keyboardDirection.y = Y * FlxG.zoom;
+				keyboardDirection.x = X * FlxG.zoom + FlxG.scroll.X;
+				keyboardDirection.y = Y * FlxG.zoom + FlxG.scroll.Y;
                 keyboardDirection.visible = true;
             }
             else if (Type == TYPE_XBOX_DIRECTION)
             {
                 xboxDirection.frame = Button;
-                xboxDirection.x = X * FlxG.zoom;
-                xboxDirection.y = Y * FlxG.zoom;
+				xboxDirection.x = X * FlxG.zoom + FlxG.scroll.X;
+				xboxDirection.y = Y * FlxG.zoom + FlxG.scroll.Y;
                 xboxDirection.visible = true;
             }
             else if (Type == TYPE_OUYA_DIRECTION)
             {
                 ouyaDirection.frame = Button;
-                ouyaDirection.x = X * FlxG.zoom;
-                ouyaDirection.y = Y * FlxG.zoom;
+				ouyaDirection.x = X * FlxG.zoom + FlxG.scroll.X;
+				ouyaDirection.y = Y * FlxG.zoom + FlxG.scroll.Y;
                 ouyaDirection.visible = true;
             }
         }

@@ -396,8 +396,7 @@ namespace FourChambers
             indestructableTilemap.auto = FlxTilemap.STRING;
             indestructableTilemap.loadMap(indestructableAttrs["IndestructableTerrain"], FlxG.Content.Load<Texture2D>("fourchambers/" + indestructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y);
             indestructableTilemap.boundingBoxOverride = true;
-            indestructableTilemap.collideMin = 0;
-            indestructableTilemap.collideMax = 21;
+
             allLevelTiles.add(indestructableTilemap);
 
             actorsAttrs = new List<Dictionary<string, string>>();
