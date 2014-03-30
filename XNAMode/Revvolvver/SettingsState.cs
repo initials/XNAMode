@@ -58,7 +58,7 @@ namespace Revvolvver
 
             FlxG.bloom.Visible = false;
 
-            FlxG.backColor = new Color(0xdb, 0xd8, 0xac);
+            FlxG.backColor = new Color(0xaf, 0xe0, 0xe4);
 
             base.create();
 
@@ -82,7 +82,7 @@ namespace Revvolvver
 			attrs = FlxXMLReader.readAttributesFromOelFile(level, "level/NonDestructable");
             FlxTilemap _tileMap = new FlxTilemap();
             _tileMap.auto = FlxTilemap.STRING;
-            _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
+            _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 21, 21);
             _tileMap.collideMin = 1;
             _tileMap.collideMax = 21;
             add(_tileMap);
@@ -107,15 +107,12 @@ namespace Revvolvver
             {
                 //string value = Revvolvver_Globals.GameSettings[i].Name + ": " + Revvolvver_Globals.GameSettings[i].GameValue;
 
-
-
-
-				playersText = new FlxText(280, 140 + (i * 20), FlxG.width, findMenuString(i));
+				playersText = new FlxText(FlxG.width/2 - 300, 200 + (i * 40), FlxG.width, findMenuString(i));
                 playersText.alignment = FlxJustification.Left;
-                playersText.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Left, new Color(0xff, 0x6e, 0x55));
-                playersText.shadow = new Color(0xff, 0x6e, 0x55);
-                playersText.scale = 1; // size = 32
-                playersText.color = new Color(0xff, 0x6e, 0x55);
+                playersText.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 3, Color.White, FlxJustification.Left, Color.White);
+                playersText.shadow = new Color(0x80, 0x6e, 0x55);
+                playersText.scale = 3; // size = 32
+                playersText.color = Color.White;
                 playersText.antialiasing = false;
                 textGrp.add(playersText);
                 if (i == 0) playersText.color = Color.Red;
@@ -193,7 +190,7 @@ namespace Revvolvver
 
             for (int i = 0; i < textGrp.members.Count; i++)
             {
-                ((FlxText)(textGrp.members[i])).color = Color.White;
+                ((FlxText)(textGrp.members[i])).color = Color.White; ;
             }
 
             ((FlxText)(textGrp.members[currentTextSelected])).color = Color.Red;
@@ -205,8 +202,8 @@ namespace Revvolvver
                 {
 					//Revvolvver_Globals.GameSettings [currentTextSelected].Name = "Play Now!!!";
 
-					//FlxG.play(SndGun2, 0.35f);
-                    FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onFade, false);
+					FlxG.play(SndGun2, 0.35f);
+                    FlxG.fade.start(new Color(0xd0, 0xf4, 0xf7), 1f, onFade, false);
                     return;
                 }
                 else if (Revvolvver_Globals.GameSettings[currentTextSelected].Name == "Randomonium")
@@ -244,7 +241,7 @@ namespace Revvolvver
 
 			if (FlxG.keys.justPressed(Keys.Escape) || FlxG.gamepads.isNewButtonPress(Buttons.RightStick) )
             {
-                FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onExitFade, false);
+                FlxG.fade.start(new Color(0xd0, 0xf4, 0xf7), 1f, onExitFade, false);
                 return;
             }
 

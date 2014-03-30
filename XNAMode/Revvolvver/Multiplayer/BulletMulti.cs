@@ -61,10 +61,10 @@ namespace Revvolvver
 
         override public void hitRight(FlxObject Contact, float Velocity)
         {
-            x = ((int)(x / 8)) * 8;
-            y = ((int)(y / 8)) * 8;
+            x = ((int)(x / 21)) * 21;
+            y = ((int)(y / 21)) * 21;
 
-            tileOffsetX = 9;
+            tileOffsetX = 35;
             tileOffsetY = 0;
 
             //Console.WriteLine("hitRight");
@@ -76,11 +76,11 @@ namespace Revvolvver
 
         public override void hitLeft(FlxObject Contact, float Velocity)
         {
-            tileOffsetX = -4;
+            tileOffsetX = -11;
             tileOffsetY = 0;
 
-            x = ((int)(x / 8)) * 8;
-            y = ((int)(y / 8)) * 8;
+            x = ((int)(x / 21)) * 21;
+            y = ((int)(y / 21)) * 21;
 
             //Console.WriteLine("hitLeft");
             kill();
@@ -93,7 +93,7 @@ namespace Revvolvver
 		override public void hitBottom(FlxObject Contact, float Velocity) 
         {
             tileOffsetX = 0;
-            tileOffsetY = 9;
+            tileOffsetY = 18;
 
             //x = ((int)(x / 8)) * 8;
             //y = ((int)(y / 8)) * 8;
@@ -111,7 +111,7 @@ namespace Revvolvver
             //y = ((int)(y / 8)) * 8;
 
             tileOffsetX = 0;
-            tileOffsetY = -4;
+            tileOffsetY = -18;
 
             //Console.WriteLine("hitTop {0}", x % 8);
             kill(); 

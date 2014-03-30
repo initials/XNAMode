@@ -73,10 +73,10 @@ namespace Revvolvver
 
         public FlxGroup hudElements;
 
-		private  Color p1Color = Color.Red;
-        private  Color p2Color = Color.MediumSpringGreen;
-        private  Color p3Color = Color.MediumSlateBlue;
-        private  Color p4Color = Color.Cyan;
+        private Color p1Color = new Color(0x6f, 0xc4, 0xa9);
+        private Color p2Color = new Color(0x8d, 0xb5, 0xe7);
+        private Color p3Color = new Color(0xf1, 0x9c, 0xb7);
+        private Color p4Color = new Color(0xff, 0xcc, 0x00);
 
         private const string SndClick = "Revvolvver/sfx/gunclick";
         private const string SndGun1 = "Revvolvver/sfx/gunshot1";
@@ -175,45 +175,49 @@ namespace Revvolvver
             _player1.controller = PlayerIndex.One;
             _player1.controllerAsInt = 1;
             _player1.color = p1Color;
+            _player1.addAnims();
 
             int hudTextScale = 3;
 
-            if (FlxG.zoom == 1) hudTextScale = 1;
+            if (FlxG.zoom == 1) hudTextScale = 3;
 
             FlxG._game.hud.p1HudText.scale = hudTextScale;
             FlxG._game.hud.p1HudText.x += 40;
-            FlxG._game.hud.p1HudText.color = p1Color;
+            FlxG._game.hud.p1HudText.color = new Color(0x6f, 0xc4, 0xa9);
 
 
             _player2 = new PlayerMulti(Convert.ToInt32(actorsAttrs[1]["x"]), Convert.ToInt32(actorsAttrs[1]["y"]), _bullets.members, _littleGibs, _bombs2.members);
             _player2.controller = PlayerIndex.Two;
             _player2.controllerAsInt = 2;
             _player2.color = p2Color;
+            _player2.addAnims();
 
             FlxG._game.hud.p2HudText.scale = hudTextScale;
             FlxG._game.hud.p2HudText.x -= 40;
-            FlxG._game.hud.p2HudText.color = p2Color;
+            FlxG._game.hud.p2HudText.color = new Color(0x8d, 0xb5, 0xe7);
 
             _player3 = new PlayerMulti(Convert.ToInt32(actorsAttrs[2]["x"]), Convert.ToInt32(actorsAttrs[2]["y"]), _bullets.members, _littleGibs, _bombs3.members);
             _player3.controller = PlayerIndex.Three;
             _player3.controllerAsInt = 3;
             _player3.color = p3Color;
+            _player3.addAnims();
 
             FlxG._game.hud.p3HudText.scale = hudTextScale;
             FlxG._game.hud.p3HudText.x += 40 ;
             FlxG._game.hud.p3HudText.y -= 20;
-            FlxG._game.hud.p3HudText.color = p3Color;
+            FlxG._game.hud.p3HudText.color = new Color(0xf1, 0x9c, 0xb7);
 
 
             _player4 = new PlayerMulti(Convert.ToInt32(actorsAttrs[3]["x"]), Convert.ToInt32(actorsAttrs[3]["y"]), _bullets.members, _littleGibs, _bombs4.members);
             _player4.controller = PlayerIndex.Four;
             _player4.controllerAsInt = 4;
             _player4.color = p4Color;
+            _player4.addAnims();
 
             FlxG._game.hud.p4HudText.scale = hudTextScale;
             FlxG._game.hud.p4HudText.x -= 40;
             FlxG._game.hud.p4HudText.y -= 20;
-            FlxG._game.hud.p4HudText.color = p4Color;
+            FlxG._game.hud.p4HudText.color = new Color(0xff, 0xcc, 0x00);
 
 
             if (Revvolvver_Globals.PLAYERS == 0)
@@ -271,16 +275,16 @@ namespace Revvolvver
             _blocks.add(_tileMap);
             //_tileMap.color = new Color(FlxU.random(0, 1), FlxU.random(0, 1), FlxU.random(0, 1));
 
-			caveExt = new FlxCaveGeneratorExt(60, 45);
+			caveExt = new FlxCaveGeneratorExt(95, 70);
 			caveExt.numSmoothingIterations = 3;
 			caveExt.initWallRatio = Revvolvver_Globals.GameSettings[2].GameValue / 100.0f;
 			_caveMap.auto = FlxTilemap.AUTO;
-			string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20 }, new int[] { 15, 25 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 37, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 59 });
+            string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 35, 65 }, new int[] { 20 }, new int[] { 35, 65 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 30, 31, 32, 33, 34, 35, 35, 36, 37, 38, 39, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 81, 82, 83, 84, 85, 86, 87, 88, 89 });
 			map = caveExt.convertMultiArrayStringToString(tiles);
 			_caveMap.loadMap(map, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 21, 21);
 
 
-			altTiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20 }, new int[] { 15, 25 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 37, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 59 });
+            altTiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 35, 65 }, new int[] { 20 }, new int[] { 35, 65 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 30, 31, 32, 33, 34, 35, 35, 36,37, 38, 39, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 81, 82, 83, 84, 85, 86, 87, 88, 89 });
 			altMap = caveExt.convertMultiArrayStringToString(altTiles);
 
 
@@ -344,21 +348,21 @@ namespace Revvolvver
             _players.add(_player4);
             add(_players);
 
-            FlxSprite movingPlatform = new FlxSprite(320, 0, FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform"));
+            FlxSprite movingPlatform = new FlxSprite(700, 0, FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform"));
             _blocks.add(movingPlatform);
             FlxPath batpath = new FlxPath(null);
-			batpath.addPointsUsingStrings("320,320,320,320,", "112,430,430,112,");
-            movingPlatform.followPath(batpath, 80, FlxObject.PATH_YOYO, false);
+            batpath.addPointsUsingStrings("700,700,700,700,", "130,880,880,130,");
+            movingPlatform.followPath(batpath, 150, FlxObject.PATH_YOYO, false);
             movingPlatform.pathCornering = 4.0f;
             movingPlatform.solid = true;
             movingPlatform.@fixed = true;
             //movingPlatform.startFollowingPath();
 
-            movingPlatform = new FlxSprite(640, 390, FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform"));
+            movingPlatform = new FlxSprite(1340, 880, FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform"));
             _blocks.add(movingPlatform);
             batpath = new FlxPath(null);
-			batpath.addPointsUsingStrings("640,640,640,640,", "430,112,112,430,");
-            movingPlatform.followPath(batpath, 80, FlxObject.PATH_YOYO, false);
+            batpath.addPointsUsingStrings("1340,1340,1340,1340,", "880,130,130,880,");
+            movingPlatform.followPath(batpath, 150, FlxObject.PATH_YOYO, false);
             movingPlatform.pathCornering = 4.0f;
             movingPlatform.solid = true;
             movingPlatform.@fixed = true;
@@ -424,13 +428,13 @@ namespace Revvolvver
                 //TITLE SAFE
                 //int yp = FlxG.height * 2 - 120;
 
-				int yp = (FlxG.height * FlxG.zoom) - 100;
+				int yp = (FlxG.height * FlxG.zoom) - 150;
 				int xo = 540;
 
                 if (FlxG.zoom == 1)
                 {
-                    yp = (FlxG.height * FlxG.zoom) - 30;
-                    xo = 40;
+					yp = (FlxG.height * FlxG.zoom) - 90;
+                    xo = 540;
                 }
 
                 if (i < 6)
@@ -483,7 +487,7 @@ namespace Revvolvver
 
 
                 FlxSprite bulletHUD = new FlxSprite(xp,yp);
-                bulletHUD.loadGraphic(ImgNotch, true);
+                bulletHUD.loadGraphic(ImgNotch, true,false,21,21);
                 bulletHUD.scrollFactor.X = bulletHUD.scrollFactor.Y = 0;
                 bulletHUD.scale = 2;
                 bulletHUD.color = xc;
@@ -498,7 +502,7 @@ namespace Revvolvver
 
             }
 
-            ImgParticles = FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform");
+            ImgParticles = FlxG.Content.Load<Texture2D>("Revvolvver/tileDestructionParticles");
 
             _littleGibs = new FlxEmitter();
             _littleGibs.delay = 3;
@@ -553,7 +557,7 @@ namespace Revvolvver
 
 
             
-			powerup = new PowerUp( (int)FlxU.random(50, FlxG.width-50), (int)FlxU.random(50, FlxG.height-50));
+			powerup = new PowerUp( (int)FlxU.random(50, FlxG.width-50), (int)FlxU.random(50, FlxG.height-150));
             
             add(powerup);
 
@@ -576,38 +580,35 @@ namespace Revvolvver
 //			string newMap = caveExt.convertMultiArrayStringToString(tiles);
 
 			if (mapToLoad == 0) {
-				_caveMap.loadMap(altMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
+				_caveMap.loadMap(altMap, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 21, 21);
 				mapToLoad = 1;
 			} else if (mapToLoad == 1) {
-				_caveMap.loadMap(map, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
+				_caveMap.loadMap(map, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 21, 21);
 				mapToLoad = 0;
 			}
 
             
 			//FlxU.endProfile (1, "Profiler", true);
 
-            _caveMap.setTile((int)(_player1.x) / 16, (int)(_player1.y) / 16, 0, true);
-            _caveMap.setTile((int)(_player2.x) / 16, (int)(_player2.y) / 16, 0, true);
-            _caveMap.setTile((int)(_player3.x) / 16, (int)(_player3.y) / 16, 0, true);
-            _caveMap.setTile((int)(_player4.x) / 16, (int)(_player4.y) / 16, 0, true);
+            _caveMap.setTile((int)(_player1.x) / 21, (int)(_player1.y) / 21, 0, true);
+            _caveMap.setTile((int)(_player2.x) / 21, (int)(_player2.y) / 21, 0, true);
+            _caveMap.setTile((int)(_player3.x) / 21, (int)(_player3.y) / 21, 0, true);
+            _caveMap.setTile((int)(_player4.x) / 21, (int)(_player4.y) / 21, 0, true);
 
-            _caveMap.setTile((int)(_player1.x + 16) / 16, (int)(_player1.y) / 16, 0, true);
-            _caveMap.setTile((int)(_player2.x + 16) / 16, (int)(_player2.y) / 16, 0, true);
-            _caveMap.setTile((int)(_player3.x + 16) / 16, (int)(_player3.y) / 16, 0, true);
-            _caveMap.setTile((int)(_player4.x + 16) / 16, (int)(_player4.y) / 16, 0, true);
+            _caveMap.setTile((int)(_player1.x + 21) / 21, (int)(_player1.y) / 21, 0, true);
+            _caveMap.setTile((int)(_player2.x + 21) / 21, (int)(_player2.y) / 21, 0, true);
+            _caveMap.setTile((int)(_player3.x + 21) / 21, (int)(_player3.y) / 21, 0, true);
+            _caveMap.setTile((int)(_player4.x + 21) / 21, (int)(_player4.y) / 21, 0, true);
 
-            _caveMap.setTile((int)(_player1.x - 16) / 16, (int)(_player1.y) / 16, 0, true);
-            _caveMap.setTile((int)(_player2.x - 16) / 16, (int)(_player2.y) / 16, 0, true);
-            _caveMap.setTile((int)(_player3.x - 16) / 16, (int)(_player3.y) / 16, 0, true);
-            _caveMap.setTile((int)(_player4.x - 16) / 16, (int)(_player4.y) / 16, 0, true);
+            _caveMap.setTile((int)(_player1.x - 21) / 21, (int)(_player1.y) / 21, 0, true);
+            _caveMap.setTile((int)(_player2.x - 21) / 21, (int)(_player2.y) / 21, 0, true);
+            _caveMap.setTile((int)(_player3.x - 21) / 21, (int)(_player3.y) / 21, 0, true);
+            _caveMap.setTile((int)(_player4.x - 21) / 21, (int)(_player4.y) / 21, 0, true);
 
-            _caveMap.setTile((int)(_player1.x) / 16, (int)(_player1.y - 16) / 16, 0, true);
-            _caveMap.setTile((int)(_player2.x) / 16, (int)(_player2.y - 16) / 16, 0, true);
-            _caveMap.setTile((int)(_player3.x) / 16, (int)(_player3.y - 16) / 16, 0, true);
-            _caveMap.setTile((int)(_player4.x) / 16, (int)(_player4.y - 16) / 16, 0, true);
-
-
-
+            _caveMap.setTile((int)(_player1.x) / 21, (int)(_player1.y - 21) / 21, 0, true);
+            _caveMap.setTile((int)(_player2.x) / 21, (int)(_player2.y - 21) / 21, 0, true);
+            _caveMap.setTile((int)(_player3.x) / 21, (int)(_player3.y - 21) / 21, 0, true);
+            _caveMap.setTile((int)(_player4.x) / 21, (int)(_player4.y - 21) / 21, 0, true);
 
         }
 
@@ -659,14 +660,14 @@ namespace Revvolvver
                         for (int j = -3; j < 4; j++)
                         {
 
-                            int xp = (int)((item.x+item.width/2) + (16*i)) / 16;
-                            int yp = (int)((item.y+item.height/2) + (16*j)) / 16;
-                            if (xp>0 && xp<FlxG.width/16 && yp>0 && yp<FlxG.height/16 ) {
+                            int xp = (int)((item.x+item.width/2) + (21*i)) / 21;
+                            int yp = (int)((item.y+item.height/2) + (21*j)) / 21;
+                            if (xp>0 && xp<FlxG.width/21 && yp>0 && yp<FlxG.height/21 ) {
 
                                 if (_caveMap.getTile(xp, yp) != 0)
                                 {
-                                    _pieces.x = xp * 16;
-                                    _pieces.y = yp * 16;
+                                    _pieces.x = xp * 21;
+                                    _pieces.y = yp * 21;
 
                                     _pieces.start(true, 0, 4);
                                 }
@@ -752,21 +753,21 @@ namespace Revvolvver
             {
                 if (item.exploding == true && item.x>0 && item.y > 0)
                 {
-                    if (_caveMap.getTile((int)(item.x + item.tileOffsetX) / 16, (int)(item.y + item.tileOffsetY) / 16) != 0)
+                    if (_caveMap.getTile((int)(item.x + item.tileOffsetX) / 21, (int)(item.y + item.tileOffsetY) / 21) != 0)
                     {
                         //Console.WriteLine("BulletMulti {0} {1}", item.x, item.y);
 
-                        int x2 = (int)(item.x + item.tileOffsetX) / 16;
-                        x2 *= 16;
-                        int y2 = (int)(item.y + item.tileOffsetY) / 16;
-                        y2 *= 16;
+                        int x2 = (int)(item.x + item.tileOffsetX) / 21;
+                        x2 *= 21;
+                        int y2 = (int)(item.y + item.tileOffsetY) / 21;
+                        y2 *= 21;
 
                         _pieces.x = x2;
                         _pieces.y = y2;
                         _pieces.start(true, 0, 4);
 
-                        _caveMap.setTile((int)(item.x + item.tileOffsetX) / 16, (int)(item.y + item.tileOffsetY) / 16, 0, true);
-                        _caveMap.setTile((int)(item.x + 9) / 16, (int)(item.y + item.tileOffsetY) / 16, 0, true);
+                        _caveMap.setTile((int)(item.x + item.tileOffsetX) / 21, (int)(item.y + item.tileOffsetY) / 21, 0, true);
+                        _caveMap.setTile((int)(item.x + 9) / 21, (int)(item.y + item.tileOffsetY) / 21, 0, true);
 
 
 
@@ -804,21 +805,21 @@ namespace Revvolvver
 //			}
 //
 //
-			if (FlxG.gamepads.isNewButtonPress(Buttons.RightStick)  && FlxG.gamepads.isNewButtonPress(Buttons.LeftStick) )
-			{
-				_fading = true;
-				//FlxG.play(SndHit2);
-				FlxG.flash.start(new Color(0xd1, 0x6e, 0x55), 0.5f, null, false);
-				FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onFade, false);
+//			if (FlxG.gamepads.isNewButtonPress(Buttons.RightStick)  && FlxG.gamepads.isNewButtonPress(Buttons.LeftStick) )
+//			{
+//				_fading = true;
+//				//FlxG.play(SndHit2);
+//                FlxG.flash.start(new Color(0xd0, 0xf4, 0xf7), 0.5f, null, false);
+//                FlxG.fade.start(new Color(0xd0, 0xf4, 0xf7), 1f, onFade, false);
+//
+//			}
 
-			}
-
-			if (FlxG.gamepads.isNewButtonPress(Buttons.Back) || FlxG.keys.ESCAPE || FlxG.gamepads.isButtonDown(Buttons.Start) )
+			if (FlxG.gamepads.isNewButtonPress(Buttons.RightStick) ||FlxG.gamepads.isNewButtonPress(Buttons.Back) || FlxG.keys.ESCAPE || FlxG.gamepads.isButtonDown(Buttons.Start) )
             {
                 _fading = true;
                 //FlxG.play(SndHit2);
-				FlxG.flash.start(new Color(0xd1, 0x6e, 0x55), 0.5f, null, false);
-				FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onFade, false);
+                FlxG.flash.start(new Color(0xd0, 0xf4, 0xf7), 0.5f, null, false);
+                FlxG.fade.start(new Color(0xd0, 0xf4, 0xf7), 1f, onFade, false);
             }
 
             if (FlxG.scores[0] == Revvolvver_Globals.GameSettings[4].GameValue - 1) 
@@ -851,7 +852,7 @@ namespace Revvolvver
                 (FlxG.scores[2] >= Revvolvver_Globals.GameSettings[4].GameValue) ||
                 (FlxG.scores[3] >= Revvolvver_Globals.GameSettings[4].GameValue))
             {
-				FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 3, onVictory, false);
+                FlxG.fade.start(new Color(0xd0, 0xf4, 0xf7), 3, onVictory, false);
             }
 
             adjustHUD();
@@ -924,8 +925,8 @@ namespace Revvolvver
         protected bool checkPowerUp(object Sender, FlxSpriteCollisionEvent e)
         {
             
-			e.Object2.x = FlxU.random(FlxU.random(50, FlxG.width-50), FlxU.random(50, FlxG.height-50));
-			e.Object2.y = FlxU.random(FlxU.random(50, FlxG.width-50), FlxU.random(50, FlxG.height-50));
+			e.Object2.x = FlxU.random(FlxU.random(50, FlxG.width-50), FlxU.random(50, FlxG.height-150));
+			e.Object2.y = FlxU.random(FlxU.random(50, FlxG.width-50), FlxU.random(50, FlxG.height-150));
             ((PowerUp)(e.Object2)).timerInvisible = 0.0f;
 
             if (((PowerUp)(e.Object2)).powerup == 0)
@@ -1005,9 +1006,9 @@ namespace Revvolvver
         protected bool destroyTileAt(object Sender, FlxSpriteCollisionEvent e)
         {
 
-            if (_caveMap.getTile((int)e.Object2.x / 8, (int)e.Object2.y / 8) != 0)
+            if (_caveMap.getTile((int)e.Object2.x / 21, (int)e.Object2.y / 21) != 0)
             {
-                _caveMap.setTile((int)e.Object2.x / 8, (int)e.Object2.y / 8, 0, true);
+                _caveMap.setTile((int)e.Object2.x / 21, (int)e.Object2.y / 21, 0, true);
             }
 
             //if (e.Object1 is BulletMulti)

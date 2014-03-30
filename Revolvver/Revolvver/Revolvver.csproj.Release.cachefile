@@ -37,7 +37,6 @@ Content\mode\tech_tiles.xnb
 Content\mode\tiles_all.xnb
 Content\Lemonade\tiles_sydney.xnb
 Content\fire.xnb
-Content\Revvolvver\bot_bullet.xnb
 Content\Revvolvver\bullet.xnb
 Content\Revvolvver\gibs.xnb
 Content\Revvolvver\spaceman.xnb
@@ -322,6 +321,34 @@ Content\Lemonade\sfx\whoosh.xnb
 Content\fx\BloomCombine.xnb
 Content\fx\BloomExtract.xnb
 Content\fx\GaussianBlur.xnb
+Content\music\ralph\nw hooker.xnb
+Content\music\ralph\snow song.xnb
+Content\music\ralph\stiff run.xnb
+Content\music\ralph\this is the news.xnb
+Content\fourchambers\sfx\arrowHit1.xnb
+Content\fourchambers\sfx\arrowHit2.xnb
+Content\fourchambers\sfx\arrowHit3.xnb
+Content\fourchambers\sfx\arrowShoot1.xnb
+Content\fourchambers\sfx\arrowShoot2.xnb
+Content\fourchambers\sfx\arrowShoot3.xnb
+Content\fourchambers\sfx\horseHurt.xnb
+Content\Revvolvver\spaceman_new.xnb
+Content\Revvolvver\tileDestructionParticles.xnb
+Content\Revvolvver\sfx\p1Shoot1.xnb
+Content\Revvolvver\sfx\p1Shoot2.xnb
+Content\Revvolvver\sfx\p1Shoot3.xnb
+Content\Revvolvver\sfx\p1Shoot4.xnb
+Content\Revvolvver\sfx\p1Shoot5.xnb
+Content\Revvolvver\sfx\shoot1.xnb
+Content\Revvolvver\sfx\shoot10.xnb
+Content\Revvolvver\sfx\shoot2.xnb
+Content\Revvolvver\sfx\shoot3.xnb
+Content\Revvolvver\sfx\shoot4.xnb
+Content\Revvolvver\sfx\shoot5.xnb
+Content\Revvolvver\sfx\shoot6.xnb
+Content\Revvolvver\sfx\shoot7.xnb
+Content\Revvolvver\sfx\shoot8.xnb
+Content\Revvolvver\sfx\shoot9.xnb
 Content\mode\button.wma
 Content\music\ralph\four chambered heart.wma
 Content\music\ralph\goatmp3.wma
@@ -341,6 +368,10 @@ Content\Lemonade\music\minifigs_full.wma
 Content\Lemonade\music\music_menu_1.wma
 Content\music\gwd\ColdMoody_EnergyRemix.wma
 Content\music\gwd\Energy.wma
+Content\music\ralph\nw hooker.wma
+Content\music\ralph\snow song.wma
+Content\music\ralph\stiff run.wma
+Content\music\ralph\this is the news.wma
 FourChambers\ActorRecording\automaton.txt
 FourChambers\ActorRecording\chicken.txt
 FourChambers\ActorRecording\corsair.txt
@@ -666,7 +697,6 @@ Content\mode\tech_tiles.xnb
 Content\mode\tiles_all.xnb
 Content\Lemonade\tiles_sydney.xnb
 Content\fire.xnb
-Content\Revvolvver\bot_bullet.xnb
 Content\Revvolvver\bullet.xnb
 Content\Revvolvver\gibs.xnb
 Content\Revvolvver\spaceman.xnb
@@ -951,6 +981,34 @@ Content\fourchambers\characterSpriteSheets\Mummy_ss_13x19.xnb
 Content\fourchambers\characterSpriteSheets\Nymph_ss_35x30.xnb
 Content\fourchambers\characterSpriteSheets\Paladin_ss_16x26.xnb
 Content\frictionGrid\circle_40x40.xnb
+Content\music\ralph\nw hooker.xnb
+Content\music\ralph\snow song.xnb
+Content\music\ralph\stiff run.xnb
+Content\music\ralph\this is the news.xnb
+Content\fourchambers\sfx\arrowHit1.xnb
+Content\fourchambers\sfx\arrowHit2.xnb
+Content\fourchambers\sfx\arrowHit3.xnb
+Content\fourchambers\sfx\arrowShoot1.xnb
+Content\fourchambers\sfx\arrowShoot2.xnb
+Content\fourchambers\sfx\arrowShoot3.xnb
+Content\fourchambers\sfx\horseHurt.xnb
+Content\Revvolvver\spaceman_new.xnb
+Content\Revvolvver\tileDestructionParticles.xnb
+Content\Revvolvver\sfx\p1Shoot1.xnb
+Content\Revvolvver\sfx\p1Shoot2.xnb
+Content\Revvolvver\sfx\p1Shoot3.xnb
+Content\Revvolvver\sfx\p1Shoot4.xnb
+Content\Revvolvver\sfx\p1Shoot5.xnb
+Content\Revvolvver\sfx\shoot1.xnb
+Content\Revvolvver\sfx\shoot10.xnb
+Content\Revvolvver\sfx\shoot2.xnb
+Content\Revvolvver\sfx\shoot3.xnb
+Content\Revvolvver\sfx\shoot4.xnb
+Content\Revvolvver\sfx\shoot5.xnb
+Content\Revvolvver\sfx\shoot6.xnb
+Content\Revvolvver\sfx\shoot7.xnb
+Content\Revvolvver\sfx\shoot8.xnb
+Content\Revvolvver\sfx\shoot9.xnb
 Content\mode\button.wma
 Content\music\ralph\four chambered heart.wma
 Content\music\ralph\goatmp3.wma
@@ -970,3 +1028,7 @@ Content\Lemonade\music\minifigs_full.wma
 Content\Lemonade\music\music_menu_1.wma
 Content\music\gwd\ColdMoody_EnergyRemix.wma
 Content\music\gwd\Energy.wma
+Content\music\ralph\nw hooker.wma
+Content\music\ralph\snow song.wma
+Content\music\ralph\stiff run.wma
+Content\music\ralph\this is the news.wma

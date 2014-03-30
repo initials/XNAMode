@@ -19,7 +19,7 @@ namespace Revvolvver
             : base(xPos, yPos)
         {
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/bomb"), false, false, 60, 60);
+            loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/bomb"), false, false, 120, 120);
 
             scale = 0;
         }

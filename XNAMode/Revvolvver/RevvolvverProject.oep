@@ -29,8 +29,8 @@
     <LayerDefinition xsi:type="TileLayerDefinition">
       <Name>NonDestructable</Name>
       <Grid>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>21</Width>
+        <Height>21</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -41,8 +41,8 @@
     <LayerDefinition xsi:type="TileLayerDefinition">
       <Name>Destructable</Name>
       <Grid>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>21</Width>
+        <Height>21</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -53,8 +53,8 @@
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>Items</Name>
       <Grid>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>21</Width>
+        <Height>21</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -67,8 +67,8 @@
       <Name>tech_tiles</Name>
       <FilePath>..\..\XNAModeContent\Revvolvver\tech_tiles.png</FilePath>
       <TileSize>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>21</Width>
+        <Height>21</Height>
       </TileSize>
       <TileSep>0</TileSep>
     </Tileset>
@@ -76,8 +76,8 @@
       <Name>square_tiles_16x16</Name>
       <FilePath>..\..\XNAModeContent\Revvolvver\square_tiles_16x16.png</FilePath>
       <TileSize>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>21</Width>
+        <Height>21</Height>
       </TileSize>
       <TileSep>0</TileSep>
     </Tileset>
@@ -85,8 +85,8 @@
   <EntityDefinitions>
     <EntityDefinition Name="player" Limit="4" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>21</Width>
+        <Height>21</Height>
       </Size>
       <Origin>
         <X>0</X>

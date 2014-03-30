@@ -98,16 +98,16 @@ namespace Revvolvver
             //_playback = false;
             frameCount = 0;
 
-            ImgSpaceman = FlxG.Content.Load<Texture2D>("Revvolvver/spaceman");
+            ImgSpaceman = FlxG.Content.Load<Texture2D>("Revvolvver/spaceman_new");
 
-            loadGraphic(ImgSpaceman, true, true, 16);
+            loadGraphic(ImgSpaceman, true, true, 23,23);
             //_restart = 0;
 
             //bounding box tweaks
-            width = 12;
-            height = 14;
-            offset.X = 2;
-            offset.Y = 2;
+            width = 17;
+            height = 19;
+            offset.X = 3;
+            offset.Y = 4;
 
             //basic player physics
             runSpeed = (int)Revvolvver_Globals.GameSettings[5].GameValue;
@@ -119,17 +119,6 @@ namespace Revvolvver
             maxVelocity.Y = 1000;
 
 
-
-
-
-            //animations
-            addAnimation("idle", new int[] { 0 });
-            addAnimation("run", new int[] { 1, 2, 3, 0 }, 12);
-            addAnimation("jump", new int[] { 4 });
-            addAnimation("idle_up", new int[] { 5 });
-            addAnimation("run_up", new int[] { 6, 7, 8, 5 }, 12);
-            addAnimation("jump_up", new int[] { 9 });
-            addAnimation("jump_down", new int[] { 10 });
 
             //bullet stuff
             _bullets = Bullets;
@@ -147,7 +136,19 @@ namespace Revvolvver
             facing = Flx2DFacing.Right;
         }
 
+        public void addAnims()
+        {
+            int offset = (controllerAsInt - 1) * 11;
 
+            //animations
+            addAnimation("idle", new int[] { 0+offset });
+            addAnimation("run", new int[] { 7 + offset, 8 + offset, 9 + offset, 10 + offset }, 12);
+            addAnimation("jump", new int[] { 1 + offset, 2 + offset, 3 + offset, 4 + offset });
+            addAnimation("idle_up", new int[] { 0 + offset });
+            addAnimation("run_up", new int[] { 7 + offset, 8 + offset, 9 + offset, 10 + offset }, 12);
+            addAnimation("jump_up", new int[] { 1 + offset, 2 + offset, 3 + offset, 4 + offset });
+            addAnimation("jump_down", new int[] { 1 + offset, 2 + offset, 3 + offset, 4 + offset });
+        }
 
         override public void update()
         {
@@ -550,8 +551,15 @@ namespace Revvolvver
                     ((BulletMulti)(_bullets[_curBullet])).shoot(bX, bY, bXVel, bYVel, color);
                     ((BulletMulti)(_bullets[_curBullet])).firedFromPlayer = controller.ToString();
                     ((BulletMulti)(_bullets[_curBullet])).bulletNumber = bulletsLeft;
-                    FlxG.play(SndGun1, 0.25f);
 
+                    if (controllerAsInt == 1)
+                    {
+                        FlxG.play(("Revvolvver/sfx/p1Shoot" + ((int)FlxU.random(1, 6)).ToString()), 0.35f);
+                    }
+                    else
+                    {
+                        FlxG.play(("Revvolvver/sfx/shoot" + ((int)FlxU.random(1, 11)).ToString()), 0.35f);
+                    }
 
                     int notchToRender = 6 - bulletsLeft;
 
@@ -591,8 +599,8 @@ namespace Revvolvver
                         FlxG.gamepads.isNewButtonPress(Buttons.B, controller, out pi)))
                 {
                     if ( ! ((Bomb)(_bombs[_curBomb])).onScreen() ) {
-                        ((Bomb)(_bombs[_curBomb])).x = x-26;
-                        ((Bomb)(_bombs[_curBomb])).y = y-26;
+                        ((Bomb)(_bombs[_curBomb])).x = x-60;
+                        ((Bomb)(_bombs[_curBomb])).y = y-60;
                         ((Bomb)(_bombs[_curBomb])).explodeTimer = 0.0f;
                         ((Bomb)(_bombs[_curBomb])).scale = 0.1f;
                         ((Bomb)(_bombs[_curBomb])).color = color;

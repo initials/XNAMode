@@ -17,7 +17,7 @@ namespace Revvolvver
             : base(xPos, yPos)
         {
 
-            loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/cloud"), false, false, 90 , 14);
+            loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/cloud"), false, false, 128 , 71);
 
             //velocity.X = FlxU.random(50, 150);
 

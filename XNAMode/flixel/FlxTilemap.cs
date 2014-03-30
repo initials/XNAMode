@@ -330,7 +330,7 @@ namespace org.flixel
             //now that height and width have been determined, find how many extra 
             //"filler tiles" are at the end of your map.
 
-            int standardLength = 16 * TileWidth;
+            int standardLength = TileHeight * TileWidth;
             int graphicWidth = _tileBitmap.Width;
             _extraMiddleTiles = (graphicWidth - standardLength) / TileWidth;
 
@@ -634,6 +634,7 @@ namespace org.flixel
         /// <returns>A uint containing the value of the tile at this spot in the array.</returns>
         public int getTileByIndex(int Index)
         {
+            if (Index < 0 || Index >= _data.Length) return -1;
             return _data[Index];
         }
 

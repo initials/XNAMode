@@ -73,7 +73,10 @@ namespace Revvolvver
 			//if (FlxG.music.playing)
 			//    FlxG.music.stop();
 
-            FlxG.backColor = new Color(0xdb, 0xd8, 0xac);
+            //afe0e4
+            //FlxG.backColor = new Color(0xdb, 0xd8, 0xac);
+            FlxG.backColor = new Color(0xaf, 0xe0, 0xe4);
+
 
             base.create();
 
@@ -102,7 +105,7 @@ namespace Revvolvver
 			attrs = FlxXMLReader.readAttributesFromOelFile(level, "level/NonDestructable");
             FlxTilemap _tileMap = new FlxTilemap();
             _tileMap.auto = FlxTilemap.STRING;
-            _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
+            _tileMap.loadMap(attrs["NonDestructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 21, 21);
             _tileMap.collideMin = 1;
             _tileMap.collideMax = 21;
             add(_tileMap);
@@ -111,7 +114,7 @@ namespace Revvolvver
 			attrs2 = FlxXMLReader.readAttributesFromOelFile(level, "level/Destructable");
             FlxTilemap _tileMap2 = new FlxTilemap();
             _tileMap2.auto = FlxTilemap.STRING;
-            _tileMap2.loadMap(attrs2["Destructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 16, 16);
+            _tileMap2.loadMap(attrs2["Destructable"], FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 21, 21);
             _tileMap2.collideMin = 1;
             _tileMap2.collideMax = 21;
             add(_tileMap2);
@@ -136,7 +139,7 @@ namespace Revvolvver
             int count = 0;
             foreach (char c in title)
             {
-				createLetter(c, (FlxG.width/2 - 250) + count * 50, 80);
+				createLetter(c, (FlxG.width/2 - 300) + count * 70, 280);
 
                 count++;
             }
@@ -147,12 +150,14 @@ namespace Revvolvver
 
             //SndFlxClick = new FlxSound();
 
+            //80be1f
+            //0x80, 0x6e, 0x55
 
             playersText = new FlxText(0, FlxG.height/2, FlxG.width, "");
-            playersText.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Center, new Color(0xff, 0x6e, 0x55));
-            playersText.shadow = new Color(0xff, 0x6e, 0x55);
-            playersText.scale = 1; // size = 32
-            playersText.color = new Color(0xff, 0x6e, 0x55);
+            playersText.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 3, Color.White, FlxJustification.Center, Color.White);
+            playersText.shadow = new Color(0x80, 0x6e, 0x55);
+            playersText.scale = 3; // size = 32
+            playersText.color = Color.White;
             playersText.antialiasing = false;
             add(playersText);
 
@@ -167,13 +172,13 @@ namespace Revvolvver
 			instruct = "Press O to begin the shootout";
 			#endif
 
-            instruct = "Press O to begin the shootout";
+            //instruct = "Press Enter to begin the shootout";
 
 			playersTextx = new FlxText(0, FlxG.height / 2 + 100, FlxG.width, instruct);
-            playersTextx.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Center, new Color(0xff, 0x6e, 0x55));
-            playersTextx.shadow = new Color(0xff, 0x6e, 0x55);
-            playersTextx.scale = 1; // size = 32
-            playersTextx.color = new Color(0xff, 0x6e, 0x55);
+            playersTextx.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 3, Color.White, FlxJustification.Center, Color.White);
+            playersTextx.shadow = new Color(0x80, 0x6e, 0x55);
+            playersTextx.scale = 3; // size = 32
+            playersTextx.color = Color.White;
             playersTextx.antialiasing = false;
             add(playersTextx);
 
@@ -181,10 +186,10 @@ namespace Revvolvver
             playersTextx.visible = false;
 
             //credits = new FlxText(FlxG.width, FlxG.height/2 + 140, FlxG.width, "Revvolvver is a game by Initials, Art by Cellusious, Additional Game Design by Ees, Engine X-Flixel");
-            //credits.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Left, new Color(0xff, 0x6e, 0x55));
-            //credits.shadow = new Color(0xff, 0x6e, 0x55);
+            //credits.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0x80, 0x6e, 0x55), FlxJustification.Left, new Color(0x80, 0x6e, 0x55));
+            //credits.shadow = new Color(0x80, 0x6e, 0x55);
             //credits.scale = 1; // size = 32
-            //credits.color = new Color(0xff, 0x6e, 0x55);
+            //credits.color = new Color(0x80, 0x6e, 0x55);
             //credits.antialiasing = false;
             
             //add(credits);
@@ -198,8 +203,8 @@ namespace Revvolvver
             FlxText _t1 = new FlxText(x,y,20, Letter.ToString() );
             _t1.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xd1, 0x6e, 0x55), FlxJustification.Left, new Color(0xd1, 0x6e, 0x55));
             _t1.shadow = new Color(0xd1, 0x6e, 0x55);
-            _t1.scale = 3; // size = 32
-            _t1.color = new Color(0xd1, 0x6e, 0x55);
+            _t1.scale = 4; // size = 32
+            _t1.color = Color.White;
             _t1.antialiasing = false;
             _t1.angle = -5;
 
@@ -260,8 +265,13 @@ namespace Revvolvver
                 {
                     //_ok2 = true;
                     //FlxG.play(SndHit2);
-                    FlxG.flash.start(new Color(0xd1, 0x6e, 0x55), 0.5f, null, false);
-                    FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onFade, false);
+
+                    //d0f4f7
+                    FlxG.flash.start(new Color(0xd0, 0xf4, 0xf7), 0.5f, null, false);
+                    FlxG.fade.start(new Color(0xd0, 0xf4, 0xf7), 1f, onFade, false);
+
+                    //FlxG.flash.start(new Color(0xd1, 0x6e, 0x55), 0.5f, null, false);
+                    //FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onFade, false);
                 }
 
             }
@@ -363,8 +373,8 @@ namespace Revvolvver
                     _fading = true;
                     FlxG.play(SndGun2, 0.35f);
                    // _gibs.start(true, 5);
-                    //FlxG.state = new PlayStateMulti();
-                    FlxG.fade.start(new Color(0xd1, 0x6e, 0x55), 1f, onFade, false);
+                    //FlxG.state = new PlayStateMulti();        
+                    FlxG.fade.start(new Color(0xd0, 0xf4, 0xf7), 1f, onFade, false);
                     
                     return;
                 }
