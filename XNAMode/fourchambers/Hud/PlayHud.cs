@@ -45,6 +45,12 @@ namespace FourChambers
 
             ypos = FlxG.height * FlxG.zoom-30;
 
+			#if __ANDROID__
+
+			ypos -= 60;
+
+			#endif
+
             FlxSprite hudGraphic = new FlxSprite(0,0, FlxG.Content.Load<Texture2D>("fourchambers/hudElements"));
             hudGraphic.scrollFactor.X = 0;
             hudGraphic.scrollFactor.Y = 0;
@@ -90,7 +96,7 @@ namespace FourChambers
 
             nestsRemaining = new FlxText(520, ypos - 10, 100);
             nestsRemaining.setFormat(null, 2, Color.White, FlxJustification.Left, Color.Black);
-            nestsRemaining.text = "Nests Remaining: 00";
+			nestsRemaining.text = "Unicorns Left: 00";
             add(nestsRemaining);
 
             tweenScale = new Tweener(10, 1, TimeSpan.FromSeconds(1.0f), Linear.EaseOut);

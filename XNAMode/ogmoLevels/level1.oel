@@ -113,6 +113,12 @@
     <drone id="9" x="1120" y="592" flip="False" />
     <unicorn id="10" x="720" y="464" flip="False" />
     <_event id="11" x="688" y="304" width="32" height="176" event="unicorn" value1="0" value2="0" repeat="1" />
-    <zingernest id="12" x="1056" y="704" />
+    <zingernest id="12" x="208" y="144" />
+    <zingernest id="13" x="992" y="336" />
+    <zingernest id="14" x="864" y="336" />
+    <zingernest id="15" x="1056" y="704" />
+    <zingernest id="16" x="768" y="704" />
+    <zingernest id="17" x="992" y="592" />
+    <seraphine id="18" x="432" y="272" flip="False" />
   </ActorsLayer>
 </level>

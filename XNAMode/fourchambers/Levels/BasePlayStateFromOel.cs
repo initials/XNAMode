@@ -719,9 +719,9 @@ namespace FourChambers
             {
                 localHud.setArrowsRemaining(marksman.arrowsRemaining);
 
-                localHud.nestsRemaining.text = "Nests Remaining: " + actors.countLivingOfType("FourChambers.ZingerNest").ToString();
+				localHud.nestsRemaining.text = "Unicorns Left: " + actors.countLivingOfType("FourChambers.Unicorn").ToString();
             }
-            if (actors.countLivingOfType("FourChambers.ZingerNest") <= 0)
+			if (actors.countLivingOfType("FourChambers.Unicorn") <= 0)
             {
 
                 if (leftExitBlockerWall.velocity.Y == 0)
@@ -738,8 +738,9 @@ namespace FourChambers
             {
                 //Console.WriteLine("SEREAPHINE");
 
-                FlxG.bloom.Visible = true;
-
+				#if !__ANDROID__
+				FlxG.bloom.Visible = true;
+				#endif
                 seraphine.velocity.Y = 0;
                 seraphine.x = marksman.x - marksman.width / 2;
                 seraphine.y = marksman.y - marksman.height;
