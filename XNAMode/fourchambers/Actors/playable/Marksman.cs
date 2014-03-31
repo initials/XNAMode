@@ -171,6 +171,13 @@ namespace FourChambers
 
             float rightX11 = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
             float rightY11 = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
+
+			#if __ANDROID__
+
+			rightY11 *= -1;
+
+			#endif
+
             if (rightX11 != 0 || rightY11 != 0 || hasUsedJoystickToAim)
             {
                 hasUsedJoystickToAim = true;
@@ -208,6 +215,12 @@ namespace FourChambers
 
                 float rightX = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X;
                 float rightY = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y;
+
+				#if __ANDROID__
+
+				rightY *= -1;
+
+				#endif
                 
                 // No Right Stick so do a generic shoot...
                 if (arrowsRemaining >= 1)

@@ -8,8 +8,6 @@ using org.flixel;
 using System.Linq;
 using System.Xml.Linq;
 
-using OgmoXNA;
-
 namespace FourChambers
 {
     public class EmptyIntroTestState : FlxState

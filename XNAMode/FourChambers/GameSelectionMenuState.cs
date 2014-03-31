@@ -264,7 +264,9 @@ namespace FourChambers
 
             if (FlxG.username == "" || FlxG.username==null)
             {
+				#if !__ANDROID__
                 FlxG.state = new DataEntryState();
+				#endif
             }
 
         }
@@ -321,8 +323,10 @@ namespace FourChambers
         }
         public void goToDataEntryState()
         {
+			#if !__ANDROID__
             FlxG.transition.resetAndStop();
             FlxG.state = new FourChambers.DataEntryState();
+			#endif
         }
 
         public void playMultiPlayerGame()

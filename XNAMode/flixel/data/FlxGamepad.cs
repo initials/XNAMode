@@ -236,23 +236,31 @@ namespace org.flixel
             {
                 // Read input from the specified player.
                 playerIndex = controllingPlayer.Value;
-
+				int reverse = 1;
                 int i = (int)playerIndex;
+
+				#if __ANDROID__
+
+				reverse = -1;
+
+				#endif
+
                 if (button == Buttons.LeftThumbstickLeft)
                 {
-                    return (_curGamepad[i].ThumbSticks.Left.X < -0.25);
+
+					return (_curGamepad[i].ThumbSticks.Left.X  < -0.25);
                 }
                 else if (button == Buttons.LeftThumbstickRight)
                 {
-                    return (_curGamepad[i].ThumbSticks.Left.X > 0.25);
+					return (_curGamepad[i].ThumbSticks.Left.X  > 0.25);
                 }
                 else if (button == Buttons.LeftThumbstickUp)
                 {
-                    return (_curGamepad[i].ThumbSticks.Left.Y > 0.25);
+					return (_curGamepad[i].ThumbSticks.Left.Y * reverse > 0.25);
                 }
                 else if (button == Buttons.LeftThumbstickDown)
                 {
-                    return (_curGamepad[i].ThumbSticks.Left.Y < -0.25);
+					return (_curGamepad[i].ThumbSticks.Left.Y * reverse < -0.25);
                 }
                 else
                 {
