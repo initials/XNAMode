@@ -1,6 +1,6 @@
-﻿w=1920
-h=1080
-fullscreen=1
+﻿w=960
+h=540
+fullscreen=0
 zoom=1
 
 
@@ -18,3 +18,12 @@ w=1920
 h=1080
 fullscreen=1
 zoom=2
+
+//
+
+Old full screen revvolvver settings
+
+w=1920
+h=1080
+fullscreen=1
+zoom=1

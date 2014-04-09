@@ -108,7 +108,7 @@ namespace Revvolvver
         {
             base.create();
             
-
+			FlxG.autoHandlePause = true;
 
             FlxG.bloom.Settings = BloomPostprocess.BloomSettings.PresetSettings[6];
 
@@ -275,16 +275,16 @@ namespace Revvolvver
             _blocks.add(_tileMap);
             //_tileMap.color = new Color(FlxU.random(0, 1), FlxU.random(0, 1), FlxU.random(0, 1));
 
-			caveExt = new FlxCaveGeneratorExt(95, 70);
+			caveExt = new FlxCaveGeneratorExt(45, 35);
 			caveExt.numSmoothingIterations = 3;
 			caveExt.initWallRatio = Revvolvver_Globals.GameSettings[2].GameValue / 100.0f;
 			_caveMap.auto = FlxTilemap.AUTO;
-            string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 35, 65 }, new int[] { 20 }, new int[] { 35, 65 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 30, 31, 32, 33, 34, 35, 35, 36, 37, 38, 39, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 81, 82, 83, 84, 85, 86, 87, 88, 89 });
+			string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 35, 65 }, new int[] { 20 }, new int[] { 35, 65 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 35,36,37,38,39,40,41,42,43,44 });
 			map = caveExt.convertMultiArrayStringToString(tiles);
 			_caveMap.loadMap(map, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 21, 21);
 
 
-            altTiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 35, 65 }, new int[] { 20 }, new int[] { 35, 65 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 30, 31, 32, 33, 34, 35, 35, 36,37, 38, 39, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 81, 82, 83, 84, 85, 86, 87, 88, 89 });
+			altTiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 35, 65 }, new int[] { 20 }, new int[] { 35, 65 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 35,36,37,38,39,40,41,42,43,44 });
 			altMap = caveExt.convertMultiArrayStringToString(altTiles);
 
 
@@ -428,7 +428,7 @@ namespace Revvolvver
                 //TITLE SAFE
                 //int yp = FlxG.height * 2 - 120;
 
-				int yp = (FlxG.height * FlxG.zoom) - 150;
+				int yp = (FlxG.height * FlxG.zoom) - 110;
 				int xo = 540;
 
                 if (FlxG.zoom == 1)
@@ -814,14 +814,18 @@ namespace Revvolvver
 //
 //			}
 
-			if (FlxG.gamepads.isNewButtonPress(Buttons.RightStick) ||FlxG.gamepads.isNewButtonPress(Buttons.Back) || FlxG.keys.ESCAPE || FlxG.gamepads.isButtonDown(Buttons.Start) )
+			if (FlxG.keys.ESCAPE)
             {
                 _fading = true;
                 //FlxG.play(SndHit2);
                 FlxG.flash.start(new Color(0xd0, 0xf4, 0xf7), 0.5f, null, false);
                 FlxG.fade.start(new Color(0xd0, 0xf4, 0xf7), 1f, onFade, false);
             }
+			if ( FlxG.gamepads.isButtonDown(Buttons.Start) )
+			{
 
+
+			}
             if (FlxG.scores[0] == Revvolvver_Globals.GameSettings[4].GameValue - 1) 
             {
                 //if (_tileMap.color != p1Color) FlxG.play(SndChord7);
