@@ -80,6 +80,8 @@ namespace Revvolvver
 
             base.create();
 
+			FlxG.autoHandlePause = false;
+
             flower = new FlxSprite(FlxG.width / 2 - 290 / 2, FlxG.height / 2 - 290 / 2 + 60);
             flower.loadGraphic(FlxG.Content.Load<Texture2D>("Revvolvver/flower"), false, false, 290, 290);
             add(flower);
@@ -135,55 +137,53 @@ namespace Revvolvver
 
             letters = new FlxGroup();
 
-            string title = "REVVOLVVER";
-            int count = 0;
-            foreach (char c in title)
-            {
-				createLetter(c, (FlxG.width/2 - 300) + count * 70, 280);
+			string title = "REVVOLVVER";
+			int count = 0;
+			foreach (char c in title)
+			{
+				createLetter(c, (FlxG.width/2 - 250) + count * 50, 80);
 
-                count++;
-            }
+				count++;
+			}
 
-            add(letters);
+			add(letters);
 
-            frameCount = 1;
+			frameCount = 1;
 
-            //SndFlxClick = new FlxSound();
+			//SndFlxClick = new FlxSound();
 
-            //80be1f
-            //0x80, 0x6e, 0x55
 
-            playersText = new FlxText(0, FlxG.height/2, FlxG.width, "");
-            playersText.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 3, Color.White, FlxJustification.Center, Color.White);
-            playersText.shadow = new Color(0x80, 0x6e, 0x55);
-            playersText.scale = 3; // size = 32
-            playersText.color = Color.White;
-            playersText.antialiasing = false;
-            add(playersText);
+			playersText = new FlxText(0, FlxG.height/2, FlxG.width, "");
+			playersText.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Center, new Color(0xff, 0x6e, 0x55));
+			playersText.shadow = new Color(0xff, 0x6e, 0x55);
+			playersText.scale = 1; // size = 32
+			playersText.color = new Color(0xff, 0x6e, 0x55);
+			playersText.antialiasing = false;
+			add(playersText);
 
-            if (Revvolvver_Globals.PLAYERS==1) playersText.text = "<- Players: 1 ->";
-            else if (Revvolvver_Globals.PLAYERS == 2) playersText.text = "<- Players: 2 ->";
-            else if (Revvolvver_Globals.PLAYERS == 3) playersText.text = "<- Players: 3 ->";
-            else if (Revvolvver_Globals.PLAYERS == 4) playersText.text = "<- Players: 4 ->";
-            
+			if (Revvolvver_Globals.PLAYERS==1) playersText.text = "<- Players: 1 ->";
+			else if (Revvolvver_Globals.PLAYERS == 2) playersText.text = "<- Players: 2 ->";
+			else if (Revvolvver_Globals.PLAYERS == 3) playersText.text = "<- Players: 3 ->";
+			else if (Revvolvver_Globals.PLAYERS == 4) playersText.text = "<- Players: 4 ->";
+
 			string instruct = "Press 1, 2, 3 or 4 for more players.\nPress Start or Enter to begin";
 
 			#if __ANDROID__
 			instruct = "Press O to begin the shootout";
 			#endif
 
-            //instruct = "Press Enter to begin the shootout";
+			instruct = "Press O to begin the shootout";
 
 			playersTextx = new FlxText(0, FlxG.height / 2 + 100, FlxG.width, instruct);
-            playersTextx.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 3, Color.White, FlxJustification.Center, Color.White);
-            playersTextx.shadow = new Color(0x80, 0x6e, 0x55);
-            playersTextx.scale = 3; // size = 32
-            playersTextx.color = Color.White;
-            playersTextx.antialiasing = false;
-            add(playersTextx);
+			playersTextx.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Center, new Color(0xff, 0x6e, 0x55));
+			playersTextx.shadow = new Color(0xff, 0x6e, 0x55);
+			playersTextx.scale = 1; // size = 32
+			playersTextx.color = new Color(0xff, 0x6e, 0x55);
+			playersTextx.antialiasing = false;
+			add(playersTextx);
 
-            playersText.visible = false;
-            playersTextx.visible = false;
+			playersText.visible = false;
+			playersTextx.visible = false;
 
             //credits = new FlxText(FlxG.width, FlxG.height/2 + 140, FlxG.width, "Revvolvver is a game by Initials, Art by Cellusious, Additional Game Design by Ees, Engine X-Flixel");
             //credits.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0x80, 0x6e, 0x55), FlxJustification.Left, new Color(0x80, 0x6e, 0x55));

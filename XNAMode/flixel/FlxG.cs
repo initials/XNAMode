@@ -496,7 +496,12 @@ namespace org.flixel
         /// 
         /// whether to automatically handle user pause requests. Typically you'd set this to true only for gameplay states, and set to false for all others (menus, etc.)
         /// </summary>
-        public static bool autoHandlePause = false; 
+        public static bool autoHandlePause = false;
+
+        /// <summary>
+        /// Used to fire off actions during pause.
+        /// </summary>
+        public static string pauseAction = "";
 
         /// <summary>
         /// Content manager

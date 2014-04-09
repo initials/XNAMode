@@ -101,25 +101,28 @@ namespace Revvolvver
             add(_gibs);
 
 
-            textGrp = new FlxGroup();
-            int i = 0;
-            for ( i=0; i < Revvolvver_Globals.GameSettings.Length; i++)
-            {
-                //string value = Revvolvver_Globals.GameSettings[i].Name + ": " + Revvolvver_Globals.GameSettings[i].GameValue;
+			textGrp = new FlxGroup();
+			int i = 0;
+			for ( i=0; i < Revvolvver_Globals.GameSettings.Length; i++)
+			{
+				//string value = Revvolvver_Globals.GameSettings[i].Name + ": " + Revvolvver_Globals.GameSettings[i].GameValue;
 
-				playersText = new FlxText(FlxG.width/2 - 300, 200 + (i * 40), FlxG.width, findMenuString(i));
-                playersText.alignment = FlxJustification.Left;
-                playersText.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 3, Color.White, FlxJustification.Left, Color.White);
-                playersText.shadow = new Color(0x80, 0x6e, 0x55);
-                playersText.scale = 3; // size = 32
-                playersText.color = Color.White;
-                playersText.antialiasing = false;
-                textGrp.add(playersText);
-                if (i == 0) playersText.color = Color.Red;
 
-            }
 
-            add(textGrp);
+
+				playersText = new FlxText(280, 140 + (i * 20), FlxG.width, findMenuString(i));
+				playersText.alignment = FlxJustification.Left;
+				playersText.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Left, new Color(0xff, 0x6e, 0x55));
+				playersText.shadow = new Color(0xff, 0x6e, 0x55);
+				playersText.scale = 1; // size = 32
+				playersText.color = new Color(0xff, 0x6e, 0x55);
+				playersText.antialiasing = false;
+				textGrp.add(playersText);
+				if (i == 0) playersText.color = Color.Red;
+
+			}
+
+			add(textGrp);
 
             timer = 0.0f;
         }

@@ -275,16 +275,16 @@ namespace Revvolvver
             _blocks.add(_tileMap);
             //_tileMap.color = new Color(FlxU.random(0, 1), FlxU.random(0, 1), FlxU.random(0, 1));
 
-			caveExt = new FlxCaveGeneratorExt(45, 35);
+			caveExt = new FlxCaveGeneratorExt(60, 45);
 			caveExt.numSmoothingIterations = 3;
 			caveExt.initWallRatio = Revvolvver_Globals.GameSettings[2].GameValue / 100.0f;
 			_caveMap.auto = FlxTilemap.AUTO;
-			string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 35, 65 }, new int[] { 20 }, new int[] { 35, 65 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 35,36,37,38,39,40,41,42,43,44 });
+			string[,] tiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20 }, new int[] { 15, 25 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 37, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 59 });
 			map = caveExt.convertMultiArrayStringToString(tiles);
 			_caveMap.loadMap(map, FlxG.Content.Load<Texture2D>("Revvolvver/" + attrs["tileset"]), 21, 21);
 
 
-			altTiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 35, 65 }, new int[] { 20 }, new int[] { 35, 65 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 35,36,37,38,39,40,41,42,43,44 });
+			altTiles = caveExt.generateCaveLevel(null, new int[] { 21 }, null, null, new int[] { 15, 25 }, new int[] { 20 }, new int[] { 15, 25 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 37, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 59 });
 			altMap = caveExt.convertMultiArrayStringToString(altTiles);
 
 
@@ -348,25 +348,25 @@ namespace Revvolvver
             _players.add(_player4);
             add(_players);
 
-            FlxSprite movingPlatform = new FlxSprite(700, 0, FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform"));
-            _blocks.add(movingPlatform);
-            FlxPath batpath = new FlxPath(null);
-            batpath.addPointsUsingStrings("700,700,700,700,", "130,880,880,130,");
-            movingPlatform.followPath(batpath, 150, FlxObject.PATH_YOYO, false);
-            movingPlatform.pathCornering = 4.0f;
-            movingPlatform.solid = true;
-            movingPlatform.@fixed = true;
-            //movingPlatform.startFollowingPath();
+			FlxSprite movingPlatform = new FlxSprite(320, 0, FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform"));
+			_blocks.add(movingPlatform);
+			FlxPath batpath = new FlxPath(null);
+			batpath.addPointsUsingStrings("320,320,320,320,", "112,430,430,112,");
+			movingPlatform.followPath(batpath, 80, FlxObject.PATH_YOYO, false);
+			movingPlatform.pathCornering = 4.0f;
+			movingPlatform.solid = true;
+			movingPlatform.@fixed = true;
+			//movingPlatform.startFollowingPath();
 
-            movingPlatform = new FlxSprite(1340, 880, FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform"));
-            _blocks.add(movingPlatform);
-            batpath = new FlxPath(null);
-            batpath.addPointsUsingStrings("1340,1340,1340,1340,", "880,130,130,880,");
-            movingPlatform.followPath(batpath, 150, FlxObject.PATH_YOYO, false);
-            movingPlatform.pathCornering = 4.0f;
-            movingPlatform.solid = true;
-            movingPlatform.@fixed = true;
-            //movingPlatform.startFollowingPath();
+			movingPlatform = new FlxSprite(640, 390, FlxG.Content.Load<Texture2D>("Revvolvver/movingPlatform"));
+			_blocks.add(movingPlatform);
+			batpath = new FlxPath(null);
+			batpath.addPointsUsingStrings("640,640,640,640,", "430,112,112,430,");
+			movingPlatform.followPath(batpath, 80, FlxObject.PATH_YOYO, false);
+			movingPlatform.pathCornering = 4.0f;
+			movingPlatform.solid = true;
+			movingPlatform.@fixed = true;
+			//movingPlatform.startFollowingPath();
 
 
             //FlxG.follow(_player1, 2.5f);
@@ -821,11 +821,28 @@ namespace Revvolvver
                 FlxG.flash.start(new Color(0xd0, 0xf4, 0xf7), 0.5f, null, false);
                 FlxG.fade.start(new Color(0xd0, 0xf4, 0xf7), 1f, onFade, false);
             }
-			if ( FlxG.gamepads.isButtonDown(Buttons.Start) )
-			{
 
+			if (FlxG.pauseAction == "Exit") {
+				_fading = true;
+				//FlxG.play(SndHit2);
+				FlxG.flash.start(new Color(0xd0, 0xf4, 0xf7), 0.5f, null, false);
+				FlxG.fade.start(new Color(0xd0, 0xf4, 0xf7), 1f, onFade, false);
+			}
+
+			if ( FlxG.gamepads.isButtonDown(Buttons.RightStick) )
+			{
+				Console.WriteLine ("Exit Game");
+				if (FlxG.pause) {
+					_fading = true;
+					//FlxG.play(SndHit2);
+					FlxG.flash.start(new Color(0xd0, 0xf4, 0xf7), 0.5f, null, false);
+					FlxG.fade.start(new Color(0xd0, 0xf4, 0xf7), 1f, onFade, false);
+				}
 
 			}
+
+
+
             if (FlxG.scores[0] == Revvolvver_Globals.GameSettings[4].GameValue - 1) 
             {
                 //if (_tileMap.color != p1Color) FlxG.play(SndChord7);

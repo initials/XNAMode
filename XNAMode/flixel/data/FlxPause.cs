@@ -21,6 +21,7 @@ namespace org.flixel
 
         private Texture2D _imgKeyX;
         private string _strKeyX = "A Button";
+
         private Vector2 _posKeyX = new Vector2(4, 36);
         private Texture2D _imgKeyC;
         private string _strKeyC = "B Button";
@@ -122,6 +123,12 @@ namespace org.flixel
 
             _pauseText.render(spriteBatch);
 
+			#if __ANDROID__
+			spriteBatch.DrawString(FlxG.Font, "Press Y To Exit", new Vector2(_posKeyX.X + (14 * _pauseScale), _posKeyX.Y),
+				Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+			#endif
+
+			#if !__ANDROID__
             spriteBatch.Draw(_imgKeyX, _posKeyX, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
             spriteBatch.DrawString(FlxG.Font, _strKeyX, new Vector2(_posKeyX.X + (14 * _pauseScale), _posKeyX.Y),
                 Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
@@ -155,7 +162,7 @@ namespace org.flixel
             spriteBatch.Draw(_imgKey1, _posKey1, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
             spriteBatch.DrawString(FlxG.Font, _strKey1, new Vector2(_posKey1.X + (14 * _pauseScale), _posKey1.Y),
                 Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
-
+			#endif
         }
 
     }

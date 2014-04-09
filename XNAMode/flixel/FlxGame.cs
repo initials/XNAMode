@@ -394,8 +394,24 @@ namespace org.flixel
                 }
             }
 
+
+
+
             if (_paused)
+            {
+
+                if (FlxG.gamepads.isNewButtonPress(Buttons.Y))
+                {
+                    _paused = !_paused;
+                    FlxG.pauseAction = "Exit";
+                }
+                else
+                {
+                    FlxG.pauseAction = "";
+                }
+
                 return;
+            }
 
             if (FlxG.state != null)
             {
@@ -417,6 +433,7 @@ namespace org.flixel
             }
 
             FlxGlobal.cheatString = "";
+            FlxG.pauseAction = "";
         }
 
 
