@@ -433,8 +433,8 @@ namespace Revvolvver
 
                 if (FlxG.zoom == 1)
                 {
-					yp = (FlxG.height * FlxG.zoom) - 90;
-                    xo = 540;
+					yp = (FlxG.height * FlxG.zoom) - 20;
+                    xo = 10;
                 }
 
                 if (i < 6)
