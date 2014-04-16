@@ -166,13 +166,13 @@ namespace Revvolvver
 			else if (Revvolvver_Globals.PLAYERS == 3) playersText.text = "<- Players: 3 ->";
 			else if (Revvolvver_Globals.PLAYERS == 4) playersText.text = "<- Players: 4 ->";
 
-			string instruct = "Press 1, 2, 3 or 4 for more players.\nPress Start or Enter to begin";
+            string instruct = "Press Start or Enter to begin the shootout";
 
 			#if __ANDROID__
 			instruct = "Press O to begin the shootout";
 			#endif
 
-			instruct = "Press O to begin the shootout";
+			//instruct = "Press O to begin the shootout";
 
 			playersTextx = new FlxText(0, FlxG.height / 2 + 100, FlxG.width, instruct);
 			playersTextx.setFormat(FlxG.Content.Load<SpriteFont>("initials/SpaceMarine"), 1, new Color(0xff, 0x6e, 0x55), FlxJustification.Center, new Color(0xff, 0x6e, 0x55));
