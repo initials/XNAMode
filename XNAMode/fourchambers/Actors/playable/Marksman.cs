@@ -174,7 +174,7 @@ namespace FourChambers
 
 			#if __ANDROID__
 
-			rightY11 *= -1;
+			//rightY11 *= -1;
 
 			#endif
 
@@ -218,7 +218,7 @@ namespace FourChambers
 
 				#if __ANDROID__
 
-				rightY *= -1;
+				//rightY *= -1;
 
 				#endif
                 

@@ -37,7 +37,6 @@ Content\mode\tech_tiles.xnb
 Content\mode\tiles_all.xnb
 Content\Lemonade\tiles_sydney.xnb
 Content\fire.xnb
-Content\Revvolvver\bot_bullet.xnb
 Content\Revvolvver\bullet.xnb
 Content\Revvolvver\gibs.xnb
 Content\Revvolvver\spaceman.xnb
@@ -332,6 +331,24 @@ Content\fourchambers\sfx\arrowHit3.xnb
 Content\fourchambers\sfx\arrowShoot1.xnb
 Content\fourchambers\sfx\arrowShoot2.xnb
 Content\fourchambers\sfx\arrowShoot3.xnb
+Content\Revvolvver\spaceman_new.xnb
+Content\Revvolvver\tileDestructionParticles.xnb
+Content\fourchambers\sfx\horseHurt.xnb
+Content\Revvolvver\sfx\p1Shoot1.xnb
+Content\Revvolvver\sfx\p1Shoot2.xnb
+Content\Revvolvver\sfx\p1Shoot3.xnb
+Content\Revvolvver\sfx\p1Shoot4.xnb
+Content\Revvolvver\sfx\p1Shoot5.xnb
+Content\Revvolvver\sfx\shoot1.xnb
+Content\Revvolvver\sfx\shoot10.xnb
+Content\Revvolvver\sfx\shoot2.xnb
+Content\Revvolvver\sfx\shoot3.xnb
+Content\Revvolvver\sfx\shoot4.xnb
+Content\Revvolvver\sfx\shoot5.xnb
+Content\Revvolvver\sfx\shoot6.xnb
+Content\Revvolvver\sfx\shoot7.xnb
+Content\Revvolvver\sfx\shoot8.xnb
+Content\Revvolvver\sfx\shoot9.xnb
 Content\mode\button.wma
 Content\music\ralph\four chambered heart.wma
 Content\music\ralph\goatmp3.wma
@@ -680,7 +697,6 @@ Content\mode\tech_tiles.xnb
 Content\mode\tiles_all.xnb
 Content\Lemonade\tiles_sydney.xnb
 Content\fire.xnb
-Content\Revvolvver\bot_bullet.xnb
 Content\Revvolvver\bullet.xnb
 Content\Revvolvver\gibs.xnb
 Content\Revvolvver\spaceman.xnb
@@ -975,6 +991,24 @@ Content\fourchambers\sfx\arrowHit3.xnb
 Content\fourchambers\sfx\arrowShoot1.xnb
 Content\fourchambers\sfx\arrowShoot2.xnb
 Content\fourchambers\sfx\arrowShoot3.xnb
+Content\fourchambers\sfx\horseHurt.xnb
+Content\Revvolvver\spaceman_new.xnb
+Content\Revvolvver\tileDestructionParticles.xnb
+Content\Revvolvver\sfx\p1Shoot1.xnb
+Content\Revvolvver\sfx\p1Shoot2.xnb
+Content\Revvolvver\sfx\p1Shoot3.xnb
+Content\Revvolvver\sfx\p1Shoot4.xnb
+Content\Revvolvver\sfx\p1Shoot5.xnb
+Content\Revvolvver\sfx\shoot1.xnb
+Content\Revvolvver\sfx\shoot10.xnb
+Content\Revvolvver\sfx\shoot2.xnb
+Content\Revvolvver\sfx\shoot3.xnb
+Content\Revvolvver\sfx\shoot4.xnb
+Content\Revvolvver\sfx\shoot5.xnb
+Content\Revvolvver\sfx\shoot6.xnb
+Content\Revvolvver\sfx\shoot7.xnb
+Content\Revvolvver\sfx\shoot8.xnb
+Content\Revvolvver\sfx\shoot9.xnb
 Content\mode\button.wma
 Content\music\ralph\four chambered heart.wma
 Content\music\ralph\goatmp3.wma

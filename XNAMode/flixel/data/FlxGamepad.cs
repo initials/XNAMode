@@ -241,7 +241,7 @@ namespace org.flixel
 
 				#if __ANDROID__
 
-				reverse = -1;
+				//reverse = -1;
 
 				#endif
 

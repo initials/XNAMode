@@ -1631,7 +1631,7 @@ namespace FourChambers
                     FlxG.follow(mistress,1.0f);
                 }
 
-                else if (FlxGlobal.cheatString.StartsWith("completelevel")) marksman.x = FlxG.levelWidth + 3;
+                else if (FlxGlobal.cheatString.StartsWith("next")) marksman.x = FlxG.levelWidth + 3;
 
             }
             //FlxGlobal.cheatString = "";
