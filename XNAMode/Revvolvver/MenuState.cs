@@ -194,6 +194,15 @@ namespace Revvolvver
             
             //add(credits);
 
+            if (Revvolvver_Globals.GAMES_PLAYS_ITSELF)
+            {
+                _fading = true;
+                FlxG.play(SndGun2, 0.35f);
+                // _gibs.start(true, 5);
+                //FlxG.state = new PlayStateMulti();        
+                FlxG.fade.start(new Color(0xd0, 0xf4, 0xf7), 1f, onFade, false);
+            }
+
 
 
         }

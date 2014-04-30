@@ -125,6 +125,24 @@ namespace Revvolvver
 			add(textGrp);
 
             timer = 0.0f;
+
+
+            if (Revvolvver_Globals.GAMES_PLAYS_ITSELF)
+            {
+
+                for (int i1 = 0; i1 < textGrp.members.Count; i++)
+                {
+                    Revvolvver_Globals.GameSettings[i1].GameValue = (int)FlxU.random(Revvolvver_Globals.GameSettings[i1].MinAmount, Revvolvver_Globals.GameSettings[i1].MaxAmount);
+                    string value = findMenuString(i1);
+                    ((FlxText)(textGrp.members[i1])).text = value;
+                }
+
+                FlxG.play(SndGun2, 0.35f);
+                FlxG.fade.start(new Color(0xd0, 0xf4, 0xf7), 1f, onFade, false);
+                return;
+
+            }
+
         }
 
         public string findMenuString(int i)

@@ -12,6 +12,8 @@ namespace Revvolvver
         /// </summary>
         public static int PLAYERS = 1;
 
+        public static bool GAMES_PLAYS_ITSELF = false;
+
         public static int WINNING_SCORE = 10;
 
         public Revvolvver_Globals()

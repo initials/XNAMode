@@ -220,7 +220,7 @@ namespace Revvolvver
             FlxG._game.hud.p4HudText.color = new Color(0xff, 0xcc, 0x00);
 
 
-            if (Revvolvver_Globals.PLAYERS == 0)
+            if (Revvolvver_Globals.PLAYERS == 0 || Revvolvver_Globals.GAMES_PLAYS_ITSELF)
             {
                 _player1.startPlayingBack();
                 _player2.startPlayingBack();
