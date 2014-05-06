@@ -25,6 +25,8 @@ namespace FrictionGrid
 
         override public void create()
         {
+            FlxG.showHud();
+
             base.create();
 
             wideMult = 1;
@@ -115,18 +117,27 @@ namespace FrictionGrid
             FlxG.follow(player, 11.0f);
             FlxG.followBounds(0, 0, 2500, 2500);
 
+            FlxG.setHudText(2, "hi");
 
         }
 
         override public void update()
         {
+
+            FlxG.setHudText(1, FlxG.mouse.screenX.ToString() + " " + FlxG.mouse.screenY.ToString());
+
+            FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_KEYBOARD_DIRECTION, FlxHud.Keyboard_Arrow_Down, FlxG.mouse.x, FlxG.mouse.y);
+
+
+
+
             if (player.x < 0 || player.y < 0 || player.x > 2500 || player.y > 2500)
             {
                 FlxG.quake.start(0.035f, 1.0f);
 
                 //player.angle += 180;
-                player.x = 1250;
-                player.y = 1250;
+                //player.x = 1250;
+                //player.y = 1250;
             }
 
             foreach (FlxSprite item in grids.members)

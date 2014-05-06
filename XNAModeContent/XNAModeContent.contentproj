@@ -374,11 +374,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="sfx\arrowShoot.wav">
-      <Name>arrowShoot</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="initials\crosshair.png">
@@ -500,11 +495,6 @@
     </Compile>
     <Compile Include="Revvolvver\sfx\gunshot3.wav">
       <Name>gunshot3</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Revvolvver\sfx\spx.wav">
-      <Name>spx</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
@@ -1865,6 +1855,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Revvolvver\spaceman_new.png">
+      <Name>spaceman_new</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Revvolvver\tileDestructionParticles.png">
+      <Name>tileDestructionParticles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="fourchambers\sfx\arrowHit1.wav">
       <Name>arrowHit1</Name>
       <Importer>WavImporter</Importer>
@@ -1895,103 +1899,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="fourchambers\sfx\horseHurt.wav">
       <Name>horseHurt</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Revvolvver\spaceman_new.png">
-      <Name>spaceman_new</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Revvolvver\tileDestructionParticles.png">
-      <Name>tileDestructionParticles</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Revvolvver\sfx\p1Shoot1.wav">
-      <Name>p1Shoot1</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Revvolvver\sfx\p1Shoot2.wav">
-      <Name>p1Shoot2</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Revvolvver\sfx\p1Shoot3.wav">
-      <Name>p1Shoot3</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Revvolvver\sfx\p1Shoot4.wav">
-      <Name>p1Shoot4</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Revvolvver\sfx\p1Shoot5.wav">
-      <Name>p1Shoot5</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Revvolvver\sfx\shoot1.wav">
-      <Name>shoot1</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Revvolvver\sfx\shoot10.wav">
-      <Name>shoot10</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Revvolvver\sfx\shoot2.wav">
-      <Name>shoot2</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Revvolvver\sfx\shoot3.wav">
-      <Name>shoot3</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Revvolvver\sfx\shoot4.wav">
-      <Name>shoot4</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Revvolvver\sfx\shoot5.wav">
-      <Name>shoot5</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Revvolvver\sfx\shoot6.wav">
-      <Name>shoot6</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Revvolvver\sfx\shoot7.wav">
-      <Name>shoot7</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Revvolvver\sfx\shoot8.wav">
-      <Name>shoot8</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Revvolvver\sfx\shoot9.wav">
-      <Name>shoot9</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
