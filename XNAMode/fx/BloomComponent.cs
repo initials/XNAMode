@@ -92,10 +92,13 @@ namespace BloomPostprocess
         protected override void LoadContent()
         {
             //spriteBatch = new SpriteBatch(GraphicsDevice);
+
+			#if !__ANDROID__
+
             bloomCombineEffect = Game.Content.Load<Effect>("fx/BloomCombine");
             bloomExtractEffect = Game.Content.Load<Effect>("fx/BloomExtract");
-
             gaussianBlurEffect = Game.Content.Load<Effect>("fx/GaussianBlur");
+			#endif
 
             // Look up the resolution and format of our main backbuffer.
             PresentationParameters pp = GraphicsDevice.PresentationParameters;

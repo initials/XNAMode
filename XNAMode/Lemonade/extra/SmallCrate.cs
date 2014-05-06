@@ -173,7 +173,7 @@ namespace Lemonade
         {
             base.overlapped(obj);
 
-            if (Math.Abs(velocity.X) > 1)
+            if (Math.Abs(velocity.X) > 1 || Math.Abs(velocity.Y) > 1)
             {
                 if (obj.GetType().ToString() == "Lemonade.Worker" && obj.dead == false)
                 {
@@ -209,15 +209,19 @@ namespace Lemonade
             {
 				if (((FlxPlatformActor)(obj)).control == FlxPlatformActor.Controls.player && parent == null) {
 					FlxG.showHud ();
-
+					Console.WriteLine("Small crate is at {0} {1} collider is {2} {3} ", x, y, obj.x, obj.y);
 					if (FlxG.BUILD_TYPE == FlxG.BUILD_TYPE_PC)
 					{
+
+                        
+
 						if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_KEYBOARD) {
 							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_KEYBOARD_DIRECTION, FlxHud.Keyboard_Arrow_Down, x - 40, y - 120);
-							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_KEYBOARD, FlxHud.Keyboard_C, x + 20, y - 120);
-						} else if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_GAMEPAD) {
+							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_KEYBOARD, FlxHud.Keyboard_C, x + 40, y - 120);
+						} 
+                        else if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_GAMEPAD) {
 							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_XBOX_DIRECTION, FlxHud.xboxDPadDown, x - 40, y - 120);
-							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_XBOX, FlxHud.xboxButtonX, x + 20, y - 120);
+							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_XBOX, FlxHud.xboxButtonX, x + 40, y - 120);
 	                    
 						}
 					}

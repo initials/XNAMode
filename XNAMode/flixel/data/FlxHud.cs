@@ -362,46 +362,59 @@ namespace org.flixel
 
         public void setHudGamepadButton(int Type, int Button, float X, float Y)
         {
+
+            Console.WriteLine("Zoom:{0} X {1} Scroll {2} {3} Adjusted {4} {5}", FlxG.zoom, X, FlxG.scroll.X, FlxG.scroll.Y, X * FlxG.zoom - FlxG.scroll.X, Y * FlxG.zoom - FlxG.scroll.Y);
+
+
+
             if (Type == TYPE_KEYBOARD)
             {
                 keyboardButton.frame = Button;
-				keyboardButton.x = X * FlxG.zoom + FlxG.scroll.X;
-				keyboardButton.y = Y * FlxG.zoom + FlxG.scroll.Y;
+                //keyboardButton.x = X * FlxG.zoom + FlxG.scroll.X;
+                //keyboardButton.y = Y * FlxG.zoom + FlxG.scroll.Y;
+
+                keyboardButton.x = X;
+                keyboardButton.y = Y;
                 keyboardButton.visible = true;
             }
             else if (Type == TYPE_XBOX)
             {
                 xboxButton.frame = Button;
-				xboxButton.x = X * FlxG.zoom + FlxG.scroll.X;
-				xboxButton.y = Y * FlxG.zoom + FlxG.scroll.Y;
+                xboxButton.x = X;// *FlxG.zoom + FlxG.scroll.X;
+                xboxButton.y = Y;// * FlxG.zoom + FlxG.scroll.Y;
                 xboxButton.visible = true;
             }
             else if (Type == TYPE_OUYA)
             {
                 ouyaButton.frame = Button;
-				ouyaButton.x = X * FlxG.zoom + FlxG.scroll.X;
-				ouyaButton.y = Y * FlxG.zoom + FlxG.scroll.Y;
+                ouyaButton.x = X * FlxG.zoom - FlxG.scroll.X;// * FlxG.zoom + FlxG.scroll.X;
+                ouyaButton.y = Y * FlxG.zoom - FlxG.scroll.Y;// * FlxG.zoom + FlxG.scroll.Y;
+
                 ouyaButton.visible = true;
             }
             else if (Type == TYPE_KEYBOARD_DIRECTION)
             {
                 keyboardDirection.frame = Button;
-				keyboardDirection.x = X * FlxG.zoom + FlxG.scroll.X;
-				keyboardDirection.y = Y * FlxG.zoom + FlxG.scroll.Y;
+                //keyboardDirection.x = X * FlxG.zoom + FlxG.scroll.X;
+                //keyboardDirection.y = Y * FlxG.zoom + FlxG.scroll.Y;
+
+                keyboardDirection.x = X ;
+                keyboardDirection.y = Y ;
+
                 keyboardDirection.visible = true;
             }
             else if (Type == TYPE_XBOX_DIRECTION)
             {
                 xboxDirection.frame = Button;
-				xboxDirection.x = X * FlxG.zoom + FlxG.scroll.X;
-				xboxDirection.y = Y * FlxG.zoom + FlxG.scroll.Y;
+                xboxDirection.x = X;// * FlxG.zoom + FlxG.scroll.X;
+                xboxDirection.y = Y;// * FlxG.zoom + FlxG.scroll.Y;
                 xboxDirection.visible = true;
             }
             else if (Type == TYPE_OUYA_DIRECTION)
             {
                 ouyaDirection.frame = Button;
-				ouyaDirection.x = X * FlxG.zoom + FlxG.scroll.X;
-				ouyaDirection.y = Y * FlxG.zoom + FlxG.scroll.Y;
+                ouyaDirection.x = X - FlxG.scroll.X;// * FlxG.zoom + FlxG.scroll.X;
+                ouyaDirection.y = Y - FlxG.scroll.Y;// * FlxG.zoom + FlxG.scroll.Y;
                 ouyaDirection.visible = true;
             }
         }
