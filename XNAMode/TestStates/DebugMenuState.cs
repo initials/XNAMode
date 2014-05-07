@@ -45,6 +45,11 @@ namespace XNAMode
 
         override public void update()
         {
+//			if ((FlxG.gamepads.isButtonDown(Buttons.RightStick) && FlxG.gamepads.isButtonDown(Buttons.LeftStick)))
+//			{
+//				FlxG.state = new HUDTest();
+//			}
+
 #if !__ANDROID__
 
             if (FlxG.keys.justPressed(Keys.F6))

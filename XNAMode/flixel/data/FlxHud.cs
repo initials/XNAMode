@@ -365,8 +365,6 @@ namespace org.flixel
 
             //Console.WriteLine("Zoom:{0} X {1} Scroll {2} {3} Adjusted {4} {5}", FlxG.zoom, X, FlxG.scroll.X, FlxG.scroll.Y, X * FlxG.zoom - FlxG.scroll.X, Y * FlxG.zoom - FlxG.scroll.Y);
 
-
-
             if (Type == TYPE_KEYBOARD)
             {
                 keyboardButton.frame = Button;
@@ -387,8 +385,8 @@ namespace org.flixel
             else if (Type == TYPE_OUYA)
             {
                 ouyaButton.frame = Button;
-                ouyaButton.x = X * FlxG.zoom - FlxG.scroll.X;// * FlxG.zoom + FlxG.scroll.X;
-                ouyaButton.y = Y * FlxG.zoom - FlxG.scroll.Y;// * FlxG.zoom + FlxG.scroll.Y;
+                ouyaButton.x = X;// * FlxG.zoom + FlxG.scroll.X;
+                ouyaButton.y = Y;// * FlxG.zoom + FlxG.scroll.Y;
 
                 ouyaButton.visible = true;
             }
@@ -413,8 +411,8 @@ namespace org.flixel
             else if (Type == TYPE_OUYA_DIRECTION)
             {
                 ouyaDirection.frame = Button;
-                ouyaDirection.x = X - FlxG.scroll.X;// * FlxG.zoom + FlxG.scroll.X;
-                ouyaDirection.y = Y - FlxG.scroll.Y;// * FlxG.zoom + FlxG.scroll.Y;
+                ouyaDirection.x = X ;// * FlxG.zoom + FlxG.scroll.X;
+                ouyaDirection.y = Y ;// * FlxG.zoom + FlxG.scroll.Y;
                 ouyaDirection.visible = true;
             }
         }

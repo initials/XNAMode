@@ -209,23 +209,24 @@ namespace Lemonade
             {
 				if (((FlxPlatformActor)(obj)).control == FlxPlatformActor.Controls.player && parent == null) {
 					FlxG.showHud ();
-					Console.WriteLine("Small crate is at {0} {1} collider is {2} {3} ", x, y, obj.x, obj.y);
+
+					Console.WriteLine("Small crate is at {0} {1} collider is {2} {3} Zoom {4} ", x, y, this.getScreenXY().X, this.getScreenXY().Y, FlxG.zoom);
+
+
 					if (FlxG.BUILD_TYPE == FlxG.BUILD_TYPE_PC)
 					{
-
-                        
 
 						if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_KEYBOARD) 
                         {
                             FlxG._game.hud.setHudGamepadButton(
                                 FlxHud.TYPE_KEYBOARD_DIRECTION, 
                                 FlxHud.Keyboard_Arrow_Down, 
-                                (this.getScreenXY().X * FlxG.zoom) - 40,
+                                (this.getScreenXY().X * FlxG.zoom) - 80,
                                 (this.getScreenXY().Y * FlxG.zoom) - 120);
 
 							FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_KEYBOARD, 
                                 FlxHud.Keyboard_C,
-                                (this.getScreenXY().X * FlxG.zoom) + 40,
+                                (this.getScreenXY().X * FlxG.zoom) + 20,
                                 (this.getScreenXY().Y * FlxG.zoom) - 120);
 
 						} 
@@ -233,12 +234,12 @@ namespace Lemonade
                         {
                             FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_XBOX_DIRECTION, 
                                 FlxHud.xboxDPadDown, 
-                                (this.getScreenXY().X * FlxG.zoom) - 40,
+                                (this.getScreenXY().X * FlxG.zoom) - 80,
                                 (this.getScreenXY().Y * FlxG.zoom) - 120);
 
 							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_XBOX, 
                                 FlxHud.xboxButtonX,
-                                (this.getScreenXY().X * FlxG.zoom) + 40,
+                                (this.getScreenXY().X * FlxG.zoom) + 20,
                                 (this.getScreenXY().Y * FlxG.zoom) - 120);
 	                    
 						}
@@ -246,13 +247,13 @@ namespace Lemonade
 					if (FlxG.BUILD_TYPE == FlxG.BUILD_TYPE_OUYA) {
                         FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_OUYA_DIRECTION, 
                             FlxHud.ouyaDPadDown, 
-                            (this.getScreenXY().X * FlxG.zoom) - 40, 
-                            (this.getScreenXY().Y * FlxG.zoom) - 120);
+							(this.getScreenXY().X * FlxG.zoom) - 80, 
+							(this.getScreenXY().Y * FlxG.zoom) - 120);
 
                         FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_OUYA, 
                             FlxHud.ouyaButtonU,
-                            (this.getScreenXY().X * FlxG.zoom) + 20, 
-                            (this.getScreenXY().Y * FlxG.zoom) - 120);
+							(this.getScreenXY().X * FlxG.zoom) + 20, 
+							(this.getScreenXY().Y * FlxG.zoom) - 120);
 					}
 
                     FlxG._game.hud.resetTime();

@@ -153,7 +153,7 @@ namespace org.flixel
 
                 FlxG.state = _nextScreen;
             }
-            if (FlxG.keys.F1)
+			if (FlxG.keys.F1 || (FlxG.gamepads.isButtonDown(Buttons.RightStick) && FlxG.gamepads.isButtonDown(Buttons.LeftStick)))
             {
                 //FlxG.bloom.Visible = false;
                 FlxG.destroySounds(true);
