@@ -64,7 +64,6 @@ local.properties
 *.vspscc
 .builds
 *.dotCover
-*.wav
 XNAModeContent/music/ralph/*.mp3
 XNAModeContent/music/gwd/*.mp3
 XNAModeContent/Lemonade/music/*.mp3
