@@ -272,8 +272,8 @@ namespace org.flixel
             keyboardButton.play("frame");
             keyboardButton.solid = false;
             keyboardButton.visible = true;
-            keyboardButton.scrollFactor.X = 1;
-            keyboardButton.scrollFactor.Y = 1;
+            keyboardButton.scrollFactor.X = 0;
+            keyboardButton.scrollFactor.Y = 0;
             keyboardButton.boundingBoxOverride = false;
 
             xboxButton = new FlxSprite(targetLeft, -1000);
@@ -282,8 +282,8 @@ namespace org.flixel
             xboxButton.play("frame");
             xboxButton.solid = false;
             xboxButton.visible = true;
-            xboxButton.scrollFactor.X = 1;
-            xboxButton.scrollFactor.Y = 1;
+            xboxButton.scrollFactor.X = 0;
+            xboxButton.scrollFactor.Y = 0;
             xboxButton.boundingBoxOverride = false;
 
 
@@ -293,8 +293,8 @@ namespace org.flixel
             ouyaButton.play("frame");
             ouyaButton.solid = false;
             ouyaButton.visible = true;
-            ouyaButton.scrollFactor.X = 1;
-            ouyaButton.scrollFactor.Y = 1;
+            ouyaButton.scrollFactor.X = 0;
+            ouyaButton.scrollFactor.Y = 0;
             ouyaButton.boundingBoxOverride = false;
 
 
@@ -304,8 +304,8 @@ namespace org.flixel
             keyboardDirection.play("frame");
             keyboardDirection.solid = false;
             keyboardDirection.visible = true;
-            keyboardDirection.scrollFactor.X = 1;
-            keyboardDirection.scrollFactor.Y = 1;
+            keyboardDirection.scrollFactor.X = 0;
+            keyboardDirection.scrollFactor.Y = 0;
             keyboardDirection.boundingBoxOverride = false;
 
 
@@ -315,8 +315,8 @@ namespace org.flixel
             xboxDirection.play("frame");
             xboxDirection.solid = false;
             xboxDirection.visible = true;
-            xboxDirection.scrollFactor.X = 1;
-            xboxDirection.scrollFactor.Y = 1;
+            xboxDirection.scrollFactor.X = 0;
+            xboxDirection.scrollFactor.Y = 0;
             xboxDirection.boundingBoxOverride = false;
 
 
@@ -326,8 +326,8 @@ namespace org.flixel
             ouyaDirection.play("frame");
             ouyaDirection.solid = false;
             ouyaDirection.visible = true;
-            ouyaDirection.scrollFactor.X = 1;
-            ouyaDirection.scrollFactor.Y = 1;
+            ouyaDirection.scrollFactor.X = 0;
+            ouyaDirection.scrollFactor.Y = 0;
             ouyaDirection.boundingBoxOverride = false;
 
 
@@ -363,7 +363,7 @@ namespace org.flixel
         public void setHudGamepadButton(int Type, int Button, float X, float Y)
         {
 
-            Console.WriteLine("Zoom:{0} X {1} Scroll {2} {3} Adjusted {4} {5}", FlxG.zoom, X, FlxG.scroll.X, FlxG.scroll.Y, X * FlxG.zoom - FlxG.scroll.X, Y * FlxG.zoom - FlxG.scroll.Y);
+            //Console.WriteLine("Zoom:{0} X {1} Scroll {2} {3} Adjusted {4} {5}", FlxG.zoom, X, FlxG.scroll.X, FlxG.scroll.Y, X * FlxG.zoom - FlxG.scroll.X, Y * FlxG.zoom - FlxG.scroll.Y);
 
 
 

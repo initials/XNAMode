@@ -23,6 +23,7 @@ namespace XNAMode
             textInfo += "F7. FlxBar Test\n";
             textInfo += "F8. Victory State\n";
             textInfo += "F9. Grid\n";
+            textInfo += "F10. HUD Test.\n";
             textInfo += "1. Level Visualizer\n";
             textInfo += "2. Mode\n";
             textInfo += "3. Path Test\n";
@@ -69,6 +70,10 @@ namespace XNAMode
             if (FlxG.keys.justPressed(Keys.F9))
             {
                 FlxG.state = new Grid();
+            }
+            if (FlxG.keys.justPressed(Keys.F10))
+            {
+                FlxG.state = new HUDTest();
             }
             if (FlxG.keys.ONE)
             {

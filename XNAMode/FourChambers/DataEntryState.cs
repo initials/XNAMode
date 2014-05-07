@@ -29,7 +29,9 @@ namespace FourChambers
         {
             FlxG.backColor = Color.Black;
 
-            base.create();
+
+            /// why was there two?
+            //base.create();
 
             FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
             

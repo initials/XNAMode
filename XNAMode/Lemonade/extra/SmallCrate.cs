@@ -215,19 +215,44 @@ namespace Lemonade
 
                         
 
-						if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_KEYBOARD) {
-							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_KEYBOARD_DIRECTION, FlxHud.Keyboard_Arrow_Down, x - 40, y - 120);
-							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_KEYBOARD, FlxHud.Keyboard_C, x + 40, y - 120);
+						if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_KEYBOARD) 
+                        {
+                            FlxG._game.hud.setHudGamepadButton(
+                                FlxHud.TYPE_KEYBOARD_DIRECTION, 
+                                FlxHud.Keyboard_Arrow_Down, 
+                                (this.getScreenXY().X * FlxG.zoom) - 40,
+                                (this.getScreenXY().Y * FlxG.zoom) - 120);
+
+							FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_KEYBOARD, 
+                                FlxHud.Keyboard_C,
+                                (this.getScreenXY().X * FlxG.zoom) + 40,
+                                (this.getScreenXY().Y * FlxG.zoom) - 120);
+
 						} 
-                        else if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_GAMEPAD) {
-							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_XBOX_DIRECTION, FlxHud.xboxDPadDown, x - 40, y - 120);
-							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_XBOX, FlxHud.xboxButtonX, x + 40, y - 120);
+                        else if (FlxG.lastControlTypeUsed == FlxG.CONTROL_TYPE_GAMEPAD) 
+                        {
+                            FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_XBOX_DIRECTION, 
+                                FlxHud.xboxDPadDown, 
+                                (this.getScreenXY().X * FlxG.zoom) - 40,
+                                (this.getScreenXY().Y * FlxG.zoom) - 120);
+
+							FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_XBOX, 
+                                FlxHud.xboxButtonX,
+                                (this.getScreenXY().X * FlxG.zoom) + 40,
+                                (this.getScreenXY().Y * FlxG.zoom) - 120);
 	                    
 						}
 					}
 					if (FlxG.BUILD_TYPE == FlxG.BUILD_TYPE_OUYA) {
-						FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_OUYA_DIRECTION, FlxHud.ouyaDPadDown, x - 40, y - 120);
-						FlxG._game.hud.setHudGamepadButton (FlxHud.TYPE_OUYA, FlxHud.ouyaButtonU, x+20, y-120);
+                        FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_OUYA_DIRECTION, 
+                            FlxHud.ouyaDPadDown, 
+                            (this.getScreenXY().X * FlxG.zoom) - 40, 
+                            (this.getScreenXY().Y * FlxG.zoom) - 120);
+
+                        FlxG._game.hud.setHudGamepadButton(FlxHud.TYPE_OUYA, 
+                            FlxHud.ouyaButtonU,
+                            (this.getScreenXY().X * FlxG.zoom) + 20, 
+                            (this.getScreenXY().Y * FlxG.zoom) - 120);
 					}
 
                     FlxG._game.hud.resetTime();

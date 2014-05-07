@@ -73,7 +73,7 @@ namespace XNAMode
 
             player = new FlxSprite(150, 150);
             //player.createGraphic(30, 10, Color.HotPink);
-            player.loadGraphic(FlxG.Content.Load<Texture2D>("frictionGrid/oryx_roguelike_16x24"),true, false,16,24);
+            player.loadGraphic(FlxG.Content.Load<Texture2D>("frictionGrid/circle_40x40"), true, false, 16, 24);
             player.frame = 100;
             player.maxAngular = 120;
             player.angularDrag = 400;
@@ -96,6 +96,8 @@ namespace XNAMode
 
             FlxG.follow(player, 11.0f);
             FlxG.followBounds(0, 0, 2500, 2500);
+
+            FlxG.showHud();
 
 
         }

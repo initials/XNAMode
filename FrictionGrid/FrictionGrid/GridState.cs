@@ -25,7 +25,7 @@ namespace FrictionGrid
 
         override public void create()
         {
-            FlxG.showHud();
+           
 
             base.create();
 
@@ -117,7 +117,13 @@ namespace FrictionGrid
             FlxG.follow(player, 11.0f);
             FlxG.followBounds(0, 0, 2500, 2500);
 
-            FlxG.setHudText(2, "hi");
+
+            FlxG.showHud();
+            FlxG.setHudText(1, "Enter name, use @ symbol to specify Twitter handle.\nPress enter when complete.");
+            FlxG.setHudTextScale(1, 2);
+            FlxG.setHudTextScale(3, 2);
+            FlxG.setHudTextPosition(1, 30, 40);
+            FlxG.setHudTextPosition(3, 10, 20);
 
         }
 
