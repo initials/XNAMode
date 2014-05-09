@@ -1012,6 +1012,7 @@
     <None Include="Lemonade\levels\slf\w_level6.oel">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Lemonade\readme.nfo" />
     <None Include="Mode\ModeProject.oep">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
