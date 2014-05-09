@@ -249,6 +249,8 @@ Content\Lemonade\slf1\level3\plant2.xnb
 Content\Lemonade\slf1\icons.xnb
 Content\Lemonade\slf1\levelCompleteGraphic.xnb
 Content\frictionGrid\circle_40x40.xnb
+Content\Revvolvver\spaceman_new.xnb
+Content\Revvolvver\tileDestructionParticles.xnb
 Content\flixel\beep.xnb
 Content\flixel\flixel.xnb
 Content\mode\button.xnb
@@ -320,11 +322,6 @@ Content\Lemonade\sfx\SndExp.xnb
 Content\Lemonade\sfx\SndOnShoulders.xnb
 Content\Lemonade\sfx\SwitchCharacters.xnb
 Content\Lemonade\sfx\whoosh.xnb
-Content\fx\BloomCombine.xnb
-Content\fx\BloomExtract.xnb
-Content\fx\GaussianBlur.xnb
-Content\Revvolvver\spaceman_new.xnb
-Content\Revvolvver\tileDestructionParticles.xnb
 Content\fourchambers\sfx\arrowHit1.xnb
 Content\fourchambers\sfx\arrowHit2.xnb
 Content\fourchambers\sfx\arrowHit3.xnb
@@ -347,6 +344,9 @@ Content\Revvolvver\sfx\shoot6.xnb
 Content\Revvolvver\sfx\shoot7.xnb
 Content\Revvolvver\sfx\shoot8.xnb
 Content\Revvolvver\sfx\shoot9.xnb
+Content\fx\BloomCombine.xnb
+Content\fx\BloomExtract.xnb
+Content\fx\GaussianBlur.xnb
 Content\mode\button.wma
 Content\music\ralph\four chambered heart.wma
 Content\music\ralph\goatmp3.wma

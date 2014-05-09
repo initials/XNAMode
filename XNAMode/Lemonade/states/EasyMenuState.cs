@@ -328,18 +328,18 @@ namespace Lemonade
                 // end read.
             }
 
-            if (Lemonade_Globals.gameProgress["newyork_12"].LevelComplete==true)
-            {
-                possibleLocations.Add("warehouse");
-            }
-            if (Lemonade_Globals.gameProgress["sydney_12"].LevelComplete == true)
-            {
-                possibleLocations.Add("factory");
-            }
-            if (Lemonade_Globals.gameProgress["military_12"].LevelComplete == true)
-            {
-                possibleLocations.Add("management");
-            }
+            //if (Lemonade_Globals.gameProgress["newyork_12"].LevelComplete==true)
+            //{
+            //    possibleLocations.Add("warehouse");
+            //}
+            //if (Lemonade_Globals.gameProgress["sydney_12"].LevelComplete == true)
+            //{
+            //    possibleLocations.Add("factory");
+            //}
+            //if (Lemonade_Globals.gameProgress["military_12"].LevelComplete == true)
+            //{
+            //    possibleLocations.Add("management");
+            //}
 
         }
 
