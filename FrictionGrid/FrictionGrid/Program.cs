@@ -25,13 +25,13 @@ namespace Loader_FrictionGrid
             : base(game)
         {
 
-            int w = 1280;
-            int h = 720;
+            int w = 32;
+            int h = 32;
 
             initGame(w, h, new FrictionGrid.GridState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
 
             FlxG.debug = true;
-            FlxG.zoom = 1280 / w;
+            FlxG.zoom = 320 / w;
             FlxG.level = -1;
 
         }

@@ -27,14 +27,14 @@ namespace Loader_FrictionGrid
         /// resolution parameters used when you call
         /// initGame() in your FlxGame class.
         /// </summary>
-        private int resX = 1280;
+        private int resX = 320;
         /// <summary>
         /// DO NOT CHANGE THESE VALUES!!
         /// your game should only be concerned with the
         /// resolution parameters used when you call
         /// initGame() in your FlxGame class.
         /// </summary>
-        private int resY = 720;
+        private int resY = 320;
 #else
         private int resX = 480; //DO NOT CHANGE THESE VALUES!!
         private int resY = 800;  //your game should only be concerned with the

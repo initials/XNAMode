@@ -791,17 +791,17 @@ namespace Lemonade
                 }
             }
 
-			#if __ANDROID__
-			if (FlxG.gamepads.isButtonDown(Buttons.RightStick))
+#if __ANDROID__
+			if (FlxG.pauseAction == "Exit")
 			{
-				#if __ANDROID__
+#if __ANDROID__
 				FlxG.state = new OuyaEasyMenuState();
-				#endif
-				#if !__ANDROID__
+#endif
+#if !__ANDROID__
 				FlxG.state = new EasyMenuState();
-				#endif
+#endif
 			}
-			#endif
+#endif
             if (FlxG.keys.justPressed(Keys.Escape) || FlxG.gamepads.isButtonDown(Buttons.Back))
             {
 				#if __ANDROID__

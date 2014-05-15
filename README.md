@@ -35,12 +35,12 @@ Four Chambers:
 
 Lemonade:
 - [x] Make BGs bigger, need to be HD 1920x1080
-- [ ] Need to texture pack control buttons.
-- [ ] Make .nfo
+- [x] Need to texture pack control buttons.
+- [x] Make .nfo
 Mode:
 
 Revvolvver:
-- [ ] Switch to OpenGameArt graphics by kenney.nl
+- [x] Switch to OpenGameArt graphics by kenney.nl - complete! Looks great!
 - [x] Revvolvver - switch to 16x16 tiles.
 
 
