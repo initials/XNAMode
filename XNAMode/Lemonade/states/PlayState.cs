@@ -715,6 +715,8 @@ namespace Lemonade
                         crateParticle.at(crate);
                         crateParticle.start(true, 0.0f, 50);
                         crate.kill();
+
+                        FlxG.play("Lemonade/sfx/SndExp", 0.5f, false);
                     }
                 }
             }

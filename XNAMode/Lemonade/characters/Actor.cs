@@ -89,7 +89,7 @@ namespace Lemonade
             else if (obj.GetType().ToString() == "Lemonade.Spike")
             {
                 //Console.WriteLine("Spike overlapp");
-                if (dead == false) FlxG.play("Lemonade/sfx/deathSFX", 0.8f, false);
+                if (dead == false && onScreen() )  FlxG.play("Lemonade/sfx/deathSFX", 0.8f, false);
 
                 hurt(1);
             }

@@ -319,7 +319,7 @@ namespace org.flixel
             _jumpInitialTime = JumpInitialTime;
         }
 
-        private void jump()
+        public void jump()
         {
             //Console.WriteLine("Jump() " + _jump + " Frames since left floor " + framesSinceLeftGround + " {0} ", _jumpInitialPower);
             if (_jump == 0)

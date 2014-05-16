@@ -114,12 +114,6 @@ namespace Lemonade
             }
 
 
-
-            if (framesSinceLeftGround == 1)
-            {
-                FlxG.play("Lemonade/sfx/jump", 0.5f, false);
-            }
-
             base.update();
         }
 
