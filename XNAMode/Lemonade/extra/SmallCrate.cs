@@ -210,7 +210,7 @@ namespace Lemonade
 				if (((FlxPlatformActor)(obj)).control == FlxPlatformActor.Controls.player && parent == null) {
 					FlxG.showHud ();
 
-					Console.WriteLine("Small crate is at {0} {1} collider is {2} {3} Zoom {4} ", x, y, this.getScreenXY().X, this.getScreenXY().Y, FlxG.zoom);
+					//Console.WriteLine("Small crate is at {0} {1} collider is {2} {3} Zoom {4} ", x, y, this.getScreenXY().X, this.getScreenXY().Y, FlxG.zoom);
 
 
 					if (FlxG.BUILD_TYPE == FlxG.BUILD_TYPE_PC)

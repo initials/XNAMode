@@ -57,6 +57,8 @@ namespace Lemonade
 
         private const float LERP = 6.0f;
 
+        private Hud currentCharHud;
+
         public void buildTileset() //string LevelFile, string Tiles
         {
             List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/" + Lemonade_Globals.location + "/bg" + Lemonade_Globals.location + ".tmx", "map", "bg", FlxXMLReader.TILES);
@@ -536,6 +538,10 @@ namespace Lemonade
 
             playSong();
 
+            currentCharHud = new Hud(5, 5);
+            add(currentCharHud);
+
+
         }
 
         /// <summary>
@@ -731,6 +737,9 @@ namespace Lemonade
                 }
                 else
                 {
+
+                    FlxG.play("whoosh");
+
                     if (follow.currentFollow == 1)
                     {
                         follow.tweenX = new Tweener(andre.x, liselot.x, TimeSpan.FromSeconds(0.45f), Linear.EaseNone);

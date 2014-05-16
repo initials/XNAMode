@@ -18,6 +18,8 @@ namespace Lemonade
         {
             loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/currentChar"), true, false, 28, 28);
 
+            setScrollFactors(0, 0);
+
             addAnimation("andre", new int[] { 0 }, 0, true);
             addAnimation("liselot", new int[] { 1 }, 0, true);
 
