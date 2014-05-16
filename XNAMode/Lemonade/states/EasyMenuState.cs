@@ -67,7 +67,7 @@ namespace Lemonade
 
             locked = false;
             lockedPhrase = "";
-			currentLevel = 1;
+			currentLevel = FlxG.level;
 
             base.create();
 
