@@ -738,7 +738,7 @@ namespace Lemonade
                 else
                 {
 
-                    FlxG.play("whoosh");
+                    FlxG.play("Lemonade/sfx/whoosh", 0.5f, false);
 
                     if (follow.currentFollow == 1)
                     {
