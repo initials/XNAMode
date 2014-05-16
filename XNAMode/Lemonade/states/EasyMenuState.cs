@@ -193,6 +193,7 @@ namespace Lemonade
             multiplayerText.text = "-multiplayer-";
             multiplayerText.color = notSelected;
             add(multiplayerText);
+            multiplayerText.visible = false;
 
 
             int YPOS = 125;
@@ -468,8 +469,8 @@ namespace Lemonade
 
             }
 
-            if (currentSelected <= -1) currentSelected = 2;
-            if (currentSelected >= 3) currentSelected = 0;
+            if (currentSelected <= -1) currentSelected = 1;
+            if (currentSelected >= 2) currentSelected = 0;
 
             if (currentSelected == 0)
             {
