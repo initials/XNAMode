@@ -139,6 +139,7 @@
     <Compile Include="Lemonade\extra\CratesBox.cs" />
     <Compile Include="Lemonade\extra\Exit.cs" />
     <Compile Include="Lemonade\extra\FilingCabinet.cs" />
+    <Compile Include="Lemonade\extra\Hud.cs" />
     <Compile Include="Lemonade\extra\LargeCrate.cs" />
     <Compile Include="Lemonade\extra\MovingPlatform.cs" />
     <Compile Include="Lemonade\extra\Palettes.cs" />
@@ -1012,6 +1013,7 @@
     <None Include="Lemonade\levels\slf\w_level6.oel">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Lemonade\readme.nfo" />
     <None Include="Mode\ModeProject.oep">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
