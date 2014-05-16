@@ -541,6 +541,8 @@ namespace Lemonade
             currentCharHud = new Hud(5, 5);
             add(currentCharHud);
 
+            andre.liselot = liselot;
+
 
         }
 
@@ -723,6 +725,24 @@ namespace Lemonade
 
             base.update();
 
+
+
+            if (follow.currentFollow == 1)
+            {
+                currentCharHud.play("andre");
+                andre.control = FlxPlatformActor.Controls.player;
+                liselot.control = FlxPlatformActor.Controls.none;
+            }
+            else if (follow.currentFollow == 2)
+            {
+                currentCharHud.play("liselot");
+                andre.control = FlxPlatformActor.Controls.none;
+                liselot.control = FlxPlatformActor.Controls.player;
+
+            }
+
+
+
             // Console.WriteLine("The current follow target is : {0}  SCROLL {1} {2}", FlxG.followTarget.GetType().ToString() ,FlxG.scroll.X, FlxG.scroll.Y);
 
             // Switch Controlling Character.
@@ -752,8 +772,7 @@ namespace Lemonade
                         
                         follow.currentFollow = 2;
 
-                        andre.control = FlxPlatformActor.Controls.none;
-                        liselot.control = FlxPlatformActor.Controls.player;
+
 
                         bubbleParticle.at(liselot);
                         bubbleParticle.start(true, 0, 30);
@@ -771,8 +790,7 @@ namespace Lemonade
 
                         follow.currentFollow = 1;
 
-                        andre.control = FlxPlatformActor.Controls.player;
-                        liselot.control = FlxPlatformActor.Controls.none;
+
 
                         bubbleParticle.at(andre);
                         bubbleParticle.start(true, 0, 30);

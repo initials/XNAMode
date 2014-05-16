@@ -16,7 +16,7 @@ namespace Lemonade
         public Hud(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/currentChar"), true, false, 28, 28);
+            loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/currentChar"), true, false, 14, 28);
 
             setScrollFactors(0, 0);
 

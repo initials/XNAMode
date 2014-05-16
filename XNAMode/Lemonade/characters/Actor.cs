@@ -17,6 +17,10 @@ namespace Lemonade
         public float dashTimer = 200000;
         protected const float dashMaxLimit = 0.075f;
 
+        /// <summary>
+        /// reference to liselot for destroying piggyback action
+        /// </summary>
+        public Liselot liselot;
 
         public Actor(int xPos, int yPos)
             : base(xPos, yPos)
@@ -61,8 +65,6 @@ namespace Lemonade
             //if (y < 0) y = FlxG.levelHeight;
             if (y > FlxG.levelHeight) y = 0;
 
-
-
             base.update();
         }
 
@@ -90,8 +92,9 @@ namespace Lemonade
             {
                 //Console.WriteLine("Spike overlapp");
                 if (dead == false && onScreen() )  FlxG.play("Lemonade/sfx/deathSFX", 0.8f, false);
-
+                
                 hurt(1);
+
             }
         }
 
@@ -100,6 +103,7 @@ namespace Lemonade
             
             control = Controls.none;
             dead = true;
+
             //base.kill();
         }
 

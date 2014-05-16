@@ -113,7 +113,7 @@ namespace Lemonade
             }
             else if (overlappedWith == "Lemonade.Liselot")
             {
-                if (piggyBacking == false && dead == false)
+                if (piggyBacking == false && dead == false && flickering() == false)
                 {
                     FlxG.play("Lemonade/sfx/SndOnShoulders", 0.8f, false);
 
@@ -130,7 +130,7 @@ namespace Lemonade
             }
             else if (overlappedWith == "Lemonade.FilingCabinet")
             {
-                originalPosition.X = obj.x;
+                originalPosition.X = obj.x+30;
                 originalPosition.Y = obj.y;
 
             }
@@ -159,6 +159,8 @@ namespace Lemonade
             dead = true;
 
             piggyBacking = false;
+            liselot.piggyBacking = false;
+            liselot.parent = null;
 
             //base.kill();
         }
