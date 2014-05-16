@@ -150,12 +150,10 @@ Content\mode\menu_hit.xnb
 Content\mode\menu_hit_2.xnb
 Content\mode\mode.xnb
 Content\mode\shoot.xnb
-Content\sfx\arrowShoot.xnb
 Content\Revvolvver\sfx\gunclick.xnb
 Content\Revvolvver\sfx\gunshot1.xnb
 Content\Revvolvver\sfx\gunshot2.xnb
 Content\Revvolvver\sfx\gunshot3.xnb
-Content\Revvolvver\sfx\spx.xnb
 Content\Revvolvver\sfx\asong.xnb
 Content\Revvolvver\sfx\fullHeavyMetalJacket.xnb
 Content\Revvolvver\sfx\chord_01.xnb
@@ -349,6 +347,7 @@ Content\Revvolvver\sfx\shoot6.xnb
 Content\Revvolvver\sfx\shoot7.xnb
 Content\Revvolvver\sfx\shoot8.xnb
 Content\Revvolvver\sfx\shoot9.xnb
+Content\Lemonade\currentChar.xnb
 Content\mode\button.wma
 Content\music\ralph\four chambered heart.wma
 Content\music\ralph\goatmp3.wma
@@ -810,12 +809,10 @@ Content\mode\menu_hit.xnb
 Content\mode\menu_hit_2.xnb
 Content\mode\mode.xnb
 Content\mode\shoot.xnb
-Content\sfx\arrowShoot.xnb
 Content\Revvolvver\sfx\gunclick.xnb
 Content\Revvolvver\sfx\gunshot1.xnb
 Content\Revvolvver\sfx\gunshot2.xnb
 Content\Revvolvver\sfx\gunshot3.xnb
-Content\Revvolvver\sfx\spx.xnb
 Content\Revvolvver\sfx\asong.xnb
 Content\Revvolvver\sfx\fullHeavyMetalJacket.xnb
 Content\Revvolvver\sfx\chord_01.xnb
@@ -1009,6 +1006,7 @@ Content\Revvolvver\sfx\shoot6.xnb
 Content\Revvolvver\sfx\shoot7.xnb
 Content\Revvolvver\sfx\shoot8.xnb
 Content\Revvolvver\sfx\shoot9.xnb
+Content\Lemonade\currentChar.xnb
 Content\mode\button.wma
 Content\music\ralph\four chambered heart.wma
 Content\music\ralph\goatmp3.wma
