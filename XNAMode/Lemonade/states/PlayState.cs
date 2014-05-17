@@ -59,8 +59,22 @@ namespace Lemonade
 
         private Hud currentCharHud;
 
+
+        FlxSprite badge1;
+        FlxSprite badge2;
+        FlxSprite badge3;
+        FlxSprite badge4;
+
+        int currentSelected;
+        Color notDone;
+        Color done;
+
+        private float transitionPause;
+
         public void buildTileset() //string LevelFile, string Tiles
         {
+            transitionPause = 0.0f;
+
             List<Dictionary<string, string>> bgString = FlxXMLReader.readNodesFromTmxFile("Lemonade/levels/slf2/" + Lemonade_Globals.location + "/bg" + Lemonade_Globals.location + ".tmx", "map", "bg", FlxXMLReader.TILES);
 
             FlxTilemap bgMap = new FlxTilemap();
@@ -544,6 +558,48 @@ namespace Lemonade
             andre.liselot = liselot;
 
 
+
+            int YPOS = 125;
+
+            notDone = new Color(0.1f, 0.1f, 0.1f);
+            done = Color.White;
+            badge1 = new FlxSprite((FlxG.width / 2) - 150, YPOS);
+            badge1.loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/offscreenIcons"), true, false, 12, 12);
+            badge1.frame = 4;
+            badge1.color = notDone;
+            add(badge1);
+            badge1.visible = false;
+            badge1.setScrollFactors(0, 0);
+
+            badge2 = new FlxSprite((FlxG.width / 2) - 50, YPOS);
+            badge2.loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/offscreenIcons"), true, false, 12, 12);
+            badge2.frame = 5;
+            badge2.color = notDone;
+            add(badge2);
+            badge2.setScrollFactors(0, 0);
+
+            badge3 = new FlxSprite((FlxG.width / 2) + 50, YPOS);
+            badge3.loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/offscreenIcons"), true, false, 12, 12);
+            badge3.frame = 3;
+            badge3.color = notDone;
+            add(badge3);
+            badge3.setScrollFactors(0, 0);
+
+            badge4 = new FlxSprite((FlxG.width / 2) + 150, YPOS);
+            badge4.loadGraphic(FlxG.Content.Load<Texture2D>("Lemonade/offscreenIcons"), true, false, 12, 12);
+            badge4.frame = 2;
+            badge4.color = notDone;
+            add(badge4);
+            badge4.setScrollFactors(0, 0);
+
+            badge1.visible = false;
+            badge2.visible = false;
+            badge3.visible = false;
+            badge4.visible = false;
+
+
+
+
         }
 
         /// <summary>
@@ -592,6 +648,18 @@ namespace Lemonade
                 {
                     Lemonade_Globals.PAID_VERSION = Lemonade_Globals.PIRATE_MODE;
                 }
+                if (FlxG.keys.justPressed(Keys.F10) && FlxG.debug==true)
+                {
+                    Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledArmy = true;
+                    Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledChef = true;
+                    Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledInspector = true;
+                    Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledWorker = true;
+                    andre.x = exit.x;
+                    andre.y = exit.y;
+                    liselot.x = exit.x;
+                    liselot.y = exit.y;
+
+                }
                 if (FlxG.keys.justPressed(Keys.F9))
                 {
                     Lemonade_Globals.restartMusic = false;
@@ -629,7 +697,7 @@ namespace Lemonade
                         return;
                     }
                 }
-                else if (FlxG.keys.justPressed(Keys.F7) )
+                else if (FlxG.keys.justPressed(Keys.F7) && FlxG.debug == true)
                 {
                     Lemonade_Globals.restartMusic = false;
                     FlxG.level--;
@@ -638,7 +706,7 @@ namespace Lemonade
 
                     return;
                 }
-                else if (FlxG.keys.justPressed(Keys.F8) )
+                else if (FlxG.keys.justPressed(Keys.F8) && FlxG.debug == true)
                 {
                     Lemonade_Globals.restartMusic = false;
                     FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
@@ -847,16 +915,88 @@ namespace Lemonade
             }
             if (levelComplete == true && ! FlxG.transition.hasStarted)
             {
+                if (transitionPause == 0.0f)
+                {
+                    FlxG.play("initials/initials_empire_tagtone4", 0.8f, false);
+                }
+
+                int incompleteScale = 2;
+
+                if (Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledArmy == false)
+                {
+                    
+                    badge1.scale = incompleteScale;
+                    badge1.color = notDone;
+                }
+                else
+                {
+                    
+                    //badge1.scale = 1;
+                    badge1.color = done;
+                    badge1.scale += 0.25f;
+
+                }
+
+                if (Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledChef == false)
+                {
+                    
+                    badge2.scale = incompleteScale;
+                    badge2.color = notDone;
+                    
+                }
+                else
+                {
+                    
+                    //badge2.scale = 1;
+                    badge2.color = done;
+                    badge2.scale += 0.25f;
+                }
+
+                if (Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledInspector == false)
+                {
+                    badge3.scale = incompleteScale;
+                    badge3.color = notDone;
+                }
+                else
+                {
+                    //badge3.scale = 1;
+                    badge3.color = done;
+                    badge3.scale += 0.25f;
+                }
+
+                if (Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].KilledWorker == false)
+                {
+                    badge4.scale = incompleteScale;
+                    badge4.color = notDone;
+                }
+                else
+                {
+                    //badge4.scale = 1;
+                    badge4.color = done;
+                    badge4.scale += 0.25f;
+                }
+
+                badge1.visible = true;
+                badge2.visible = true;
+                badge3.visible = true;
+                badge4.visible = true;
+
+
                 FlxG.pauseMp3();
-                FlxG.play("initials/initials_empire_tagtone4", 0.8f, false);
+                
 
                 andre.control = FlxPlatformActor.Controls.none;
                 liselot.control = FlxPlatformActor.Controls.none;
 
                 andre.visible = false;
                 liselot.visible = false;
+                transitionPause += FlxG.elapsed;
 
-                FlxG.transition.startFadeOut(0.05f, -90, 150);
+                if (transitionPause > 0.85f)
+                {
+
+                    FlxG.transition.startFadeOut(0.05f, -90, 150);
+                }
             }
             if (FlxG.transition.complete)
             {
