@@ -1447,7 +1447,7 @@ namespace org.flixel
 				using (StreamWriter writer = new StreamWriter(isoStream))
 				{
 					writer.WriteLine(Lines);
-					Console.WriteLine("You have written to the file.");
+					//Console.WriteLine("You have written to the file.");
 					writer.Close();
 				}
 			}
@@ -1479,7 +1479,7 @@ namespace org.flixel
         /// <returns></returns>
 		public static string loadFromDevice(string Filename, bool FromIsolatedStorage)
 		{
-			Console.WriteLine ("-- Load from Device -- ", Filename);
+			//Console.WriteLine ("-- Load from Device -- ", Filename);
 
 			string value1;
 
@@ -1501,7 +1501,7 @@ namespace org.flixel
 				{
 					using (StreamReader reader = new StreamReader(isoStream))
 					{
-						Console.WriteLine("Reading contents:");
+						//Console.WriteLine("Reading contents:");
 						//Console.WriteLine(reader.ReadToEnd());
 
 						value1 = reader.ReadToEnd();
