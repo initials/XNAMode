@@ -13,7 +13,7 @@ namespace org.flixel
     /// </summary>
     public class FlxPause
     {
-        private Rectangle _pauseRect = new Rectangle(0, 0, 180, 100);
+        private Rectangle _pauseRect = new Rectangle(0, 0, 380, 200);
         private Color _pauseColor = new Color(0, 0, 0, 0x7F);
         private int _pauseScale = 1;
 
@@ -34,16 +34,16 @@ namespace org.flixel
         private Vector2 _posKeysArrows = new Vector2(4, 36 + 14 + 14 + 14);
         private Texture2D _imgKeyMinus;
         private string _strKeyMinus = "Sound Down";
-        private Vector2 _posKeyMinus = new Vector2(84, 36);
+        private Vector2 _posKeyMinus = new Vector2(184, 36);
         private Texture2D _imgKeyPlus;
         private string _strKeyPlus = "Sound Up";
-        private Vector2 _posKeyPlus = new Vector2(84, 36 + 14);
+        private Vector2 _posKeyPlus = new Vector2(184, 36 + 14);
         private Texture2D _imgKey0;
         private string _strKey0 = "Mute";
-        private Vector2 _posKey0 = new Vector2(84, 36 + 14 + 14);
+        private Vector2 _posKey0 = new Vector2(184, 36 + 14 + 14);
         private Texture2D _imgKey1;
         private string _strKey1 = "Console";
-        private Vector2 _posKey1 = new Vector2(84, 36 + 14 + 14 + 14);
+        private Vector2 _posKey1 = new Vector2(184, 36 + 14 + 14 + 14);
 
         public string helpX
         {
@@ -129,39 +129,68 @@ namespace org.flixel
 			#endif
 
 			#if !__ANDROID__
-            spriteBatch.Draw(_imgKeyX, _posKeyX, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(FlxG.Font, _strKeyX, new Vector2(_posKeyX.X + (14 * _pauseScale), _posKeyX.Y),
-                Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
 
-            spriteBatch.Draw(_imgKeyC, _posKeyC, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(FlxG.Font, _strKeyC, new Vector2(_posKeyC.X + (14 * _pauseScale), _posKeyC.Y),
-                Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+
+
+            string game = "slf";
+
+
+            if (game == "slf")
+            {
+                spriteBatch.Draw(_imgKeysArrows, _posKeysArrows, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
+                spriteBatch.DrawString(FlxG.Font, _strKeysArrows, new Vector2(_posKeysArrows.X + (43 * _pauseScale), _posKeysArrows.Y),
+                    Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+
+                spriteBatch.DrawString(FlxG.Font, "X = Jump", new Vector2(_posKeyX.X + (14 * _pauseScale), _posKeyX.Y),
+                    Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+                spriteBatch.DrawString(FlxG.Font, "Down+C = Pick Up Crate", new Vector2(_posKeyC.X + (14 * _pauseScale), _posKeyC.Y),
+                    Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+                spriteBatch.DrawString(FlxG.Font, "C = Throw Crate", new Vector2(_posKeyMinus.X + (14 * _pauseScale), _posKeyMinus.Y),
+                    Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+                spriteBatch.DrawString(FlxG.Font, "V = Switch Characters", new Vector2(_posKeyPlus.X + (14 * _pauseScale), _posKeyPlus.Y),
+                    Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+                spriteBatch.DrawString(FlxG.Font, "B = End Piggyback", new Vector2(_posKey0.X + (14 * _pauseScale), _posKey0.Y),
+                    Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+                spriteBatch.DrawString(FlxG.Font, "ESC = Return to Menu", new Vector2(_posKey1.X + (14 * _pauseScale), _posKey1.Y),
+                    Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+            }
+            if (game == "mode")
+            {
+
+                spriteBatch.Draw(_imgKeyX, _posKeyX, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
+                spriteBatch.DrawString(FlxG.Font, _strKeyX, new Vector2(_posKeyX.X + (14 * _pauseScale), _posKeyX.Y),
+                    Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+
+                spriteBatch.Draw(_imgKeyC, _posKeyC, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
+                spriteBatch.DrawString(FlxG.Font, _strKeyC, new Vector2(_posKeyC.X + (14 * _pauseScale), _posKeyC.Y),
+                    Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
 
 #if !XBOX360
-            spriteBatch.Draw(_imgKeyMouse, _posKeyMouse, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(FlxG.Font, _strKeyMouse, new Vector2(_posKeyMouse.X + (14 * _pauseScale), _posKeyMouse.Y),
-                Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+                spriteBatch.Draw(_imgKeyMouse, _posKeyMouse, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
+                spriteBatch.DrawString(FlxG.Font, _strKeyMouse, new Vector2(_posKeyMouse.X + (14 * _pauseScale), _posKeyMouse.Y),
+                    Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
 #endif
 
-            spriteBatch.Draw(_imgKeysArrows, _posKeysArrows, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(FlxG.Font, _strKeysArrows, new Vector2(_posKeysArrows.X + (43 * _pauseScale), _posKeysArrows.Y),
-                Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+                spriteBatch.Draw(_imgKeysArrows, _posKeysArrows, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
+                spriteBatch.DrawString(FlxG.Font, _strKeysArrows, new Vector2(_posKeysArrows.X + (43 * _pauseScale), _posKeysArrows.Y),
+                    Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
 
-            spriteBatch.Draw(_imgKeyMinus, _posKeyMinus, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(FlxG.Font, _strKeyMinus, new Vector2(_posKeyMinus.X + (14 * _pauseScale), _posKeyMinus.Y),
-                Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+                spriteBatch.Draw(_imgKeyMinus, _posKeyMinus, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
+                spriteBatch.DrawString(FlxG.Font, _strKeyMinus, new Vector2(_posKeyMinus.X + (14 * _pauseScale), _posKeyMinus.Y),
+                    Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
 
-            spriteBatch.Draw(_imgKeyPlus, _posKeyPlus, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(FlxG.Font, _strKeyPlus, new Vector2(_posKeyPlus.X + (14 * _pauseScale), _posKeyPlus.Y),
-                Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+                spriteBatch.Draw(_imgKeyPlus, _posKeyPlus, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
+                spriteBatch.DrawString(FlxG.Font, _strKeyPlus, new Vector2(_posKeyPlus.X + (14 * _pauseScale), _posKeyPlus.Y),
+                    Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
 
-            spriteBatch.Draw(_imgKey0, _posKey0, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(FlxG.Font, _strKey0, new Vector2(_posKey0.X + (14 * _pauseScale), _posKey0.Y),
-                Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+                spriteBatch.Draw(_imgKey0, _posKey0, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
+                spriteBatch.DrawString(FlxG.Font, _strKey0, new Vector2(_posKey0.X + (14 * _pauseScale), _posKey0.Y),
+                    Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
 
-            spriteBatch.Draw(_imgKey1, _posKey1, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(FlxG.Font, _strKey1, new Vector2(_posKey1.X + (14 * _pauseScale), _posKey1.Y),
-                Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+                spriteBatch.Draw(_imgKey1, _posKey1, null, Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0f);
+                spriteBatch.DrawString(FlxG.Font, _strKey1, new Vector2(_posKey1.X + (14 * _pauseScale), _posKey1.Y),
+                    Color.White, 0, Vector2.Zero, _pauseScale, SpriteEffects.None, 0);
+            }
 			#endif
         }
 
