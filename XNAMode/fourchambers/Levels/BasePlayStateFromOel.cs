@@ -975,8 +975,6 @@ namespace FourChambers
 
                 destructableTilemap.setTile((int)marksman.meleeHitBox.x / FourChambers_Globals.TILE_SIZE_X, (int)marksman.meleeHitBox.y / FourChambers_Globals.TILE_SIZE_Y, 0, true);
 
-
-
                 tilesExplode.x = (int)marksman.meleeHitBox.x;
                 tilesExplode.y = (int)marksman.meleeHitBox.y;
                 tilesExplode.start(true, 0, 4);
