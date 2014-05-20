@@ -596,32 +596,32 @@ namespace FourChambers
 
             Console.WriteLine("Starting at: " + FlxG.level);
 
-            Dictionary<int, string> music = new Dictionary<int, string>();
-            music.Add(-1, "WarmerMoreSynths");
-            music.Add(1, "OffKilterLoop_haspercus");
-            music.Add(2, "OffKilterLoop_haspercus");
-            music.Add(3, "OffKilterLoop_haspercus");
-            music.Add(4, "ColdMoody");
-            music.Add(5, "ColdMoody");
-            music.Add(6, "ColdMoody");
-            music.Add(7, "FlutesMoody_DontLikeThi");
-            music.Add(8, "MoodyExplorationLoop_ha");
-            music.Add(9, "OffKilterLoop_haspercus");
-            music.Add(10, "ScaryInC#Major");
-            music.Add(11, "SlowedLoop");
-            music.Add(12, "WarmOrgansColdSynths_ha");
-            music.Add(13, "OffKilterLoop_haspercus");
-            music.Add(14, "ColdMoody");
-            music.Add(15, "ColdMoody");
-            music.Add(16, "ColdMoody");
-            music.Add(17, "FlutesMoody_DontLikeThi");
-            music.Add(18, "MoodyExplorationLoop_ha");
-            music.Add(19, "OffKilterLoop_haspercus");
-            music.Add(20, "OffKilterLoop_haspercus");
-            music.Add(21, "OffKilterLoop_haspercus");
-            music.Add(101, "OffKilterLoop_haspercus");
+            //Dictionary<int, string> music = new Dictionary<int, string>();
+            //music.Add(-1, "WarmerMoreSynths");
+            //music.Add(1, "OffKilterLoop_haspercus");
+            //music.Add(2, "OffKilterLoop_haspercus");
+            //music.Add(3, "OffKilterLoop_haspercus");
+            //music.Add(4, "ColdMoody");
+            //music.Add(5, "ColdMoody");
+            //music.Add(6, "ColdMoody");
+            //music.Add(7, "FlutesMoody_DontLikeThi");
+            //music.Add(8, "MoodyExplorationLoop_ha");
+            //music.Add(9, "OffKilterLoop_haspercus");
+            //music.Add(10, "ScaryInC#Major");
+            //music.Add(11, "SlowedLoop");
+            //music.Add(12, "WarmOrgansColdSynths_ha");
+            //music.Add(13, "OffKilterLoop_haspercus");
+            //music.Add(14, "ColdMoody");
+            //music.Add(15, "ColdMoody");
+            //music.Add(16, "ColdMoody");
+            //music.Add(17, "FlutesMoody_DontLikeThi");
+            //music.Add(18, "MoodyExplorationLoop_ha");
+            //music.Add(19, "OffKilterLoop_haspercus");
+            //music.Add(20, "OffKilterLoop_haspercus");
+            //music.Add(21, "OffKilterLoop_haspercus");
+            //music.Add(101, "OffKilterLoop_haspercus");
 
-            FlxG.playMp3("music/gwd/" + music[FlxG.level], 1.0f);
+            FlxG.playMp3("music/" + levelAttrs["music"], 1.0f);
 
             // Exit the game and open up a webpage for buying the game, if it's a pirate copy.
             if (FourChambers_Globals.PIRATE_COPY && FlxG.level >= 4)

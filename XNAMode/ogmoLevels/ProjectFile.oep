@@ -16,7 +16,7 @@
     <Width>3200</Width>
     <Height>3200</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Shane\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
+  <Filename>C:\Users\User\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>true</CameraEnabled>
   <CameraSize>
@@ -28,6 +28,7 @@
     <ValueDefinition xsi:type="StringValueDefinition" Name="levelName" Default="" MaxChars="-1" MultiLine="false" />
     <ValueDefinition xsi:type="StringValueDefinition" Name="bgGraphic" Default="Fear" MaxChars="-1" MultiLine="false" />
     <ValueDefinition xsi:type="StringValueDefinition" Name="timeOfDayPalette" Default="skyPalette" MaxChars="-1" MultiLine="false" />
+    <ValueDefinition xsi:type="StringValueDefinition" Name="music" Default="" MaxChars="-1" MultiLine="false" />
   </LevelValueDefinitions>
   <LayerDefinitions>
     <LayerDefinition xsi:type="TileLayerDefinition">

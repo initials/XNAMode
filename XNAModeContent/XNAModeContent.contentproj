@@ -1214,6 +1214,500 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="fourchambers\allActors.png">
+      <Name>allActors</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\Ambience.png">
+      <Name>Ambience</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\arrowSparkles.png">
+      <Name>arrowSparkles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\arrow_8x1.png">
+      <Name>arrow_8x1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\autotiles_16x16.png">
+      <Name>autotiles_16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\autotiles_generic_16x16.png">
+      <Name>autotiles_generic_16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\autotiles_ice_16x16.png">
+      <Name>autotiles_ice_16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\bgIce.png">
+      <Name>bgIce</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\blood.png">
+      <Name>blood</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Artist_ss_20x20.png">
+      <Name>Artist_ss_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Automaton_ss_11x24.png">
+      <Name>Automaton_ss_11x24</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Bat_12x12.png">
+      <Name>Bat_12x12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Chicken_20x20.png">
+      <Name>Chicken_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Corsair_18x21.png">
+      <Name>Corsair_18x21</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Cow_20x20.png">
+      <Name>Cow_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Deer_30x30.png">
+      <Name>Deer_30x30</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Drone_ss_9x13.png">
+      <Name>Drone_ss_9x13</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Executor_ss_21x21.png">
+      <Name>Executor_ss_21x21</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Feline_20x20.png">
+      <Name>Feline_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Gloom_13x26.png">
+      <Name>Gloom_13x26</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Grizzly_20x20.png">
+      <Name>Grizzly_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Harvester_ss_14x27.png">
+      <Name>Harvester_ss_14x27</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Horse_ss_20x25.png">
+      <Name>Horse_ss_20x25</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Kerberos_30x30.png">
+      <Name>Kerberos_30x30</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Lion_20x20.png">
+      <Name>Lion_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Marksman_ss_31x24.png">
+      <Name>Marksman_ss_31x24</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Medusa_ss_35x30.png">
+      <Name>Medusa_ss_35x30</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Mistress_ss_35x22.png">
+      <Name>Mistress_ss_35x22</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Mummy_ss_13x19.png">
+      <Name>Mummy_ss_13x19</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Nymph_ss_35x30.png">
+      <Name>Nymph_ss_35x30</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Paladin_ss_16x26.png">
+      <Name>Paladin_ss_16x26</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Prism_ss_14x20.png">
+      <Name>Prism_ss_14x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Rat_20x20.png">
+      <Name>Rat_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Seraphine_ss_24x30.png">
+      <Name>Seraphine_ss_24x30</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Snake_20x20.png">
+      <Name>Snake_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Spider_20x20.png">
+      <Name>Spider_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Succubus_ss_35x30.png">
+      <Name>Succubus_ss_35x30</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Tormentor_ss_13x24.png">
+      <Name>Tormentor_ss_13x24</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Unicorn_ss_20x40.png">
+      <Name>Unicorn_ss_20x40</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Vampire_ss_14x19.png">
+      <Name>Vampire_ss_14x19</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Warlock_ss_29x29.png">
+      <Name>Warlock_ss_29x29</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Wolf_20x20.png">
+      <Name>Wolf_20x20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Zinger_ss_12x14.png">
+      <Name>Zinger_ss_12x14</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\characterSpriteSheets\Zombie_ss_13x19.png">
+      <Name>Zombie_ss_13x19</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\colorss.PNG">
+      <Name>colorss</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\decorationsBack_16x16.png">
+      <Name>decorationsBack_16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\decorationsFront_16x16.png">
+      <Name>decorationsFront_16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\door_24x24.png">
+      <Name>door_24x24</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\envir_dusk.png">
+      <Name>envir_dusk</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\exitBlocker.png">
+      <Name>exitBlocker</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\explosion_32x32.png">
+      <Name>explosion_32x32</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\fallAwayBridgeTiles_16x16.png">
+      <Name>fallAwayBridgeTiles_16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\fallAwayBridgeTiles_16x32.png">
+      <Name>fallAwayBridgeTiles_16x32</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\Fear.png">
+      <Name>Fear</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\fire.png">
+      <Name>fire</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\fireThrower.png">
+      <Name>fireThrower</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\hudelements.png">
+      <Name>hudelements</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\icons16x16.png">
+      <Name>icons16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\ladderTiles_16x16.png">
+      <Name>ladderTiles_16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\menuButton.png">
+      <Name>menuButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\menuButtonPressed.png">
+      <Name>menuButtonPressed</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\palette.png">
+      <Name>palette</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\pickups_16x16.png">
+      <Name>pickups_16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\powerup_16x16.png">
+      <Name>powerup_16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\RockTiles.png">
+      <Name>RockTiles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\room.png">
+      <Name>room</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\sfx\arrowHit1.wav">
+      <Name>arrowHit1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\sfx\arrowHit2.wav">
+      <Name>arrowHit2</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\sfx\arrowHit3.wav">
+      <Name>arrowHit3</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\sfx\arrowShoot1.wav">
+      <Name>arrowShoot1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\sfx\arrowShoot2.wav">
+      <Name>arrowShoot2</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\sfx\arrowShoot3.wav">
+      <Name>arrowShoot3</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\sfx\horseHurt.wav">
+      <Name>horseHurt</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\skyPalettes.png">
+      <Name>skyPalettes</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\sparkles.png">
+      <Name>sparkles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\sparkles_glow.png">
+      <Name>sparkles_glow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\sparkles_small.png">
+      <Name>sparkles_small</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\spawner.png">
+      <Name>spawner</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\texture_placement_small.png">
+      <Name>texture_placement_small</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\treasures_16x16.png">
+      <Name>treasures_16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="fourchambers\warlock_fireball.png">
+      <Name>warlock_fireball</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="music\gwd\ColdMoody.mp3">
+      <Name>ColdMoody</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\gwd\ColdMoody_EnergyRemix.mp3">
+      <Name>ColdMoody_EnergyRemix</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\gwd\Dramatic.mp3">
+      <Name>Dramatic</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\gwd\Energy.mp3">
+      <Name>Energy</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\gwd\FlutesMoody_DontLikeThis.mp3">
+      <Name>FlutesMoody_DontLikeThis</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\gwd\MoodyExplorationLoop.mp3">
+      <Name>MoodyExplorationLoop</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\gwd\OffKilterLoop_haspercus.mp3">
+      <Name>OffKilterLoop_haspercus</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\gwd\ScaryInCMajor.mp3">
+      <Name>ScaryInCMajor</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\gwd\SlowedLoop.mp3">
+      <Name>SlowedLoop</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\gwd\WarmerMoreSynths.mp3">
+      <Name>WarmerMoreSynths</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\gwd\WarmOrgansColdSynths_ha.mp3">
+      <Name>WarmOrgansColdSynths_ha</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\ralph\four chambered heart.mp3">
+      <Name>four chambered heart</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\ralph\goatmp3.mp3">
+      <Name>goatmp3</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\ralph\nw hooker.mp3">
+      <Name>nw hooker</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\ralph\snow song.mp3">
+      <Name>snow song</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\ralph\stiff run.mp3">
+      <Name>stiff run</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="music\ralph\this is the news.mp3">
+      <Name>this is the news</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
