@@ -660,7 +660,7 @@ namespace Lemonade
                     liselot.y = exit.y;
 
                 }
-                if (FlxG.keys.justPressed(Keys.F9))
+				if (FlxG.keys.justPressed(Keys.F9) || (FlxG.gamepads.isButtonDown(Buttons.RightStick) && FlxG.debug==true ))
                 {
                     Lemonade_Globals.restartMusic = false;
                     Lemonade_Globals.gameProgress[Lemonade_Globals.location + "_" + FlxG.level.ToString()].LevelComplete = true;

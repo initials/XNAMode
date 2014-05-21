@@ -581,8 +581,24 @@ namespace org.flixel
         public static List<Dictionary<string, string>> readCustomXML(string baseNode, string filename)
         {
             List<Dictionary<string, string>> completeSet = new List<Dictionary<string, string>>();
+			XmlDocument xml = new XmlDocument();
+			XElement xelement;
 
-            XElement xelement = XElement.Load(filename);
+			#if __ANDROID__
+
+			string content;
+			using (StreamReader sr = new StreamReader (Game.Activity.Assets.Open(filename)))
+			{
+				content = sr.ReadToEnd();
+			}
+			xml.LoadXml(content);
+
+			xelement = XElement.Parse(content.ToString());
+
+			#endif
+			#if !__ANDROID__
+			xelement = XElement.Load(filename);
+			#endif
 
             foreach (XElement xEle in xelement.Descendants(baseNode))
             {
