@@ -214,7 +214,8 @@ namespace FourChambers
 
         private FlxSprite leftExitBlockerWall;
         private FlxSprite rightExitBlockerWall;
-
+        private Door door;
+        private FlxGroup doors;
         public void test()
         {
             levelAttrs = new Dictionary<string, string>();
@@ -309,6 +310,8 @@ namespace FourChambers
             powerUps = new FlxGroup();
             eventSprites = new FlxGroup();
             fireBalls = new FlxGroup();
+            doors = new FlxGroup();
+
 
             bigEx = new BigExplosion(-1000, -1000);
 
@@ -640,6 +643,13 @@ namespace FourChambers
 
             comboInfo.limit = 0.74f;
             comboInfo.style = "up";
+
+
+
+            // place marksman at the correct door
+
+
+
 
 
         }
@@ -1660,6 +1670,11 @@ namespace FourChambers
             int PathSpeed=40, 
             float PathCornering=3.0f)
         {
+            if (ActorType == "door")
+            {
+                door = new Door(x - 8, y - 8);
+                doors.add(door);
+            }
             //Console.WriteLine("Building actor " + ActorType + " " + NumberOfActors);
             if (ActorType == "fireThrower")
             {

@@ -28,7 +28,27 @@
     <ValueDefinition xsi:type="StringValueDefinition" Name="levelName" Default="" MaxChars="-1" MultiLine="false" />
     <ValueDefinition xsi:type="StringValueDefinition" Name="bgGraphic" Default="Fear" MaxChars="-1" MultiLine="false" />
     <ValueDefinition xsi:type="StringValueDefinition" Name="timeOfDayPalette" Default="skyPalette" MaxChars="-1" MultiLine="false" />
-    <ValueDefinition xsi:type="StringValueDefinition" Name="music" Default="" MaxChars="-1" MultiLine="false" />
+    <ValueDefinition xsi:type="EnumValueDefinition" Name="music">
+      <Elements>
+        <string>gwd/OffKilterLoop_haspercus</string>
+        <string>gwd/ScaryInCMajor</string>
+        <string>gwd/SlowedLoop</string>
+        <string>gwd/WarmerMoreSynths</string>
+        <string>gwd/WarmOrgansColdSynths_ha</string>
+        <string>gwd/ColdMoody</string>
+        <string>gwd/ColdMoody_EnergyRemix</string>
+        <string>gwd/Dramatic</string>
+        <string>gwd/Energy</string>
+        <string>gwd/FlutesMoody_DontLikeThis</string>
+        <string>gwd/MoodyExplorationLoop</string>
+        <string>ralph/goatmp3</string>
+        <string>ralph/nw hooker</string>
+        <string>ralph/snow song</string>
+        <string>ralph/stiff run</string>
+        <string>ralph/this is the news</string>
+        <string>ralph/four chambered heart</string>
+      </Elements>
+    </ValueDefinition>
   </LevelValueDefinitions>
   <LayerDefinitions>
     <LayerDefinition xsi:type="TileLayerDefinition">
@@ -157,6 +177,23 @@
         <RectColor A="255" R="0" G="255" B="0" />
       </ImageDefinition>
       <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="door" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Rectangle" ImagePath="" Tiled="false">
+        <RectColor A="255" R="0" G="128" B="255" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="IntValueDefinition" Name="levelToGoTo" Default="1" Min="0" Max="100" ShowSlider="false" />
+      </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
     <EntityDefinition Name="fireThrower" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="1">

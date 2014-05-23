@@ -13,6 +13,8 @@ namespace FourChambers
     class Door : FlxSprite
     {
 
+        public int levelToGoTo;
+
         public Door(int xPos, int yPos)
             : base(xPos, yPos)
         {
@@ -22,6 +24,8 @@ namespace FourChambers
             Texture2D Img = FlxG.Content.Load<Texture2D>("fourchambers/door_24x24");
 
             loadGraphic(Img, false, false, 24, 24);
+
+            levelToGoTo = 1;
 
         }
 
