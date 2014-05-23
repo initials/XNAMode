@@ -405,13 +405,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lemonade\tiles_sydney.png">
-      <Name>tiles_sydney</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="fire.png">
       <Name>fire</Name>
       <Importer>TextureImporter</Importer>
@@ -491,275 +484,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lemonade\chars_50x80.png">
-      <Name>chars_50x80</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="initials\FourChambers_IntroTag_03.mp3">
       <Name>FourChambers_IntroTag_03</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\tiles_factory.png">
-      <Name>tiles_factory</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\tiles_management.png">
-      <Name>tiles_management</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\tiles_military.png">
-      <Name>tiles_military</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\tiles_newyork.png">
-      <Name>tiles_newyork</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\tiles_warehouse.png">
-      <Name>tiles_warehouse</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\crateShards.png">
-      <Name>crateShards</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\CrateWithLabel.png">
-      <Name>CrateWithLabel</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\CrateWithLabelBlank.png">
-      <Name>CrateWithLabelBlank</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\LargeCrate.png">
-      <Name>LargeCrate</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\trampoline.png">
-      <Name>trampoline</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\exit.png">
-      <Name>exit</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\bgtiles_military.png">
-      <Name>bgtiles_military</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\bgtiles_newyork.png">
-      <Name>bgtiles_newyork</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\bgtiles_sydney.png">
-      <Name>bgtiles_sydney</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\smallCrateExplode.png">
-      <Name>smallCrateExplode</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\smallSugarBag.png">
-      <Name>smallSugarBag</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\bottle.png">
-      <Name>bottle</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\bubble.png">
-      <Name>bubble</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\buttonPressed_ny.png">
-      <Name>buttonPressed_ny</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\button_ny.png">
-      <Name>button_ny</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\SMALL_PIXEL.spritefont">
-      <Name>SMALL_PIXEL</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\music\cave.mp3">
-      <Name>cave</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\music\here.mp3">
-      <Name>here</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\music\join.mp3">
-      <Name>join</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\music\minifigs_full.mp3">
-      <Name>minifigs_full</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\music\music_menu_1.mp3">
-      <Name>music_menu_1</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\offscreenIcons.png">
-      <Name>offscreenIcons</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\spikes_newyork.png">
-      <Name>spikes_newyork</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\spikes_military.png">
-      <Name>spikes_military</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\spikes_sydney.png">
-      <Name>spikes_sydney</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\illustration\andre_drawing.png">
-      <Name>andre_drawing</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\illustration\army_drawing.png">
-      <Name>army_drawing</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\illustration\liselot_drawing.png">
-      <Name>liselot_drawing</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\illustration\worker_drawing.png">
-      <Name>worker_drawing</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\bgtiles_factory.png">
-      <Name>bgtiles_factory</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\bgtiles_management.png">
-      <Name>bgtiles_management</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\bgtiles_warehouse.png">
-      <Name>bgtiles_warehouse</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\spikes_factory.png">
-      <Name>spikes_factory</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\spikes_management.png">
-      <Name>spikes_management</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\spikes_warehouse.png">
-      <Name>spikes_warehouse</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\filingCab1.png">
-      <Name>filingCab1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\filingCab2.png">
-      <Name>filingCab2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\leaves.png">
-      <Name>leaves</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\plant1.png">
-      <Name>plant1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\plant2.png">
-      <Name>plant2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -789,921 +517,230 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lemonade\slf1\level1\cratesBox.png">
-      <Name>cratesBox</Name>
+    <Compile Include="Revvolvver\bg.png">
+      <Name>bg</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\slf1\level1\CrateWithLabel.png">
-      <Name>CrateWithLabel</Name>
+    <Compile Include="Revvolvver\bgLarge.png">
+      <Name>bgLarge</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\slf1\level1\CrateWithLabelBlank.png">
-      <Name>CrateWithLabelBlank</Name>
+    <Compile Include="Revvolvver\bomb.png">
+      <Name>bomb</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\slf1\level1\L1_Shelf.png">
-      <Name>L1_Shelf</Name>
+    <Compile Include="Revvolvver\bullet.png">
+      <Name>bullet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\slf1\level1\LargeCrate.png">
-      <Name>LargeCrate</Name>
+    <Compile Include="Revvolvver\cloud.png">
+      <Name>cloud</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\slf1\level1\level1_bgSmoothGrad.png">
-      <Name>level1_bgSmoothGrad</Name>
+    <Compile Include="Revvolvver\flower.png">
+      <Name>flower</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\slf1\level1\level1_shelfTile.png">
-      <Name>level1_shelfTile</Name>
+    <Compile Include="Revvolvver\flowersmall.png">
+      <Name>flowersmall</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\slf1\level1\level1_specialBlock.png">
-      <Name>level1_specialBlock</Name>
+    <Compile Include="Revvolvver\flowersmallblue.png">
+      <Name>flowersmallblue</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\slf1\level1\level1_specialPlatform.png">
-      <Name>level1_specialPlatform</Name>
+    <Compile Include="Revvolvver\gibs.png">
+      <Name>gibs</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\slf1\level1\level1_specialPlatformSmall.png">
-      <Name>level1_specialPlatformSmall</Name>
+    <Compile Include="Revvolvver\movingPlatform.png">
+      <Name>movingPlatform</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\slf1\level1\level1_tiles.png">
-      <Name>level1_tiles</Name>
+    <Compile Include="Revvolvver\notch.png">
+      <Name>notch</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\slf1\level1\level1_windows.png">
-      <Name>level1_windows</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level1\noticeBoard.png">
-      <Name>noticeBoard</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level1\palettes.png">
-      <Name>palettes</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level1\sodaPack.png">
-      <Name>sodaPack</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level1\spike0.png">
-      <Name>spike0</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level1\spike1.png">
-      <Name>spike1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level1\spike2.png">
-      <Name>spike2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level1\spike3.png">
-      <Name>spike3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level1\sugarBags.png">
-      <Name>sugarBags</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level1\sugarBagsAndCrates.png">
-      <Name>sugarBagsAndCrates</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\slf1\level2\level2_BG.png">
-      <Name>level2_BG</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_braceLeft.png">
-      <Name>level2_braceLeft</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_braceRight.png">
-      <Name>level2_braceRight</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_chainTile.png">
-      <Name>level2_chainTile</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_FMG3.png">
-      <Name>level2_FMG3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_gradient.png">
-      <Name>level2_gradient</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_greenPipe.png">
-      <Name>level2_greenPipe</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_metalPipe.png">
-      <Name>level2_metalPipe</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_MG2.png">
-      <Name>level2_MG2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_pipe1.png">
-      <Name>level2_pipe1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_specialBlock.png">
-      <Name>level2_specialBlock</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_specialPlatform.png">
-      <Name>level2_specialPlatform</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_specialPlatformSmall.png">
-      <Name>level2_specialPlatformSmall</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_spike0.png">
-      <Name>level2_spike0</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_spike1.png">
-      <Name>level2_spike1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_spike2.png">
-      <Name>level2_spike2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_spike3.png">
-      <Name>level2_spike3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_tank.png">
-      <Name>level2_tank</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_tiles.png">
-      <Name>level2_tiles</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level2\level2_window.png">
-      <Name>level2_window</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\slf1\level3\bookCase.png">
-      <Name>bookCase</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\filingCab1.png">
-      <Name>filingCab1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\filingCab2.png">
-      <Name>filingCab2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\leaves.png">
-      <Name>leaves</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_cloud.png">
-      <Name>level3_cloud</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_desk1.png">
-      <Name>level3_desk1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_desk2.png">
-      <Name>level3_desk2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_desk3.png">
-      <Name>level3_desk3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_gradient.png">
-      <Name>level3_gradient</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_MG.png">
-      <Name>level3_MG</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_MG_pylon.png">
-      <Name>level3_MG_pylon</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_painting1.png">
-      <Name>level3_painting1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_painting2.png">
-      <Name>level3_painting2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_painting3.png">
-      <Name>level3_painting3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_salesChart.png">
-      <Name>level3_salesChart</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_specialBlock.png">
-      <Name>level3_specialBlock</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_specialPlatform.png">
-      <Name>level3_specialPlatform</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_specialPlatformSmall.png">
-      <Name>level3_specialPlatformSmall</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_spike0.png">
-      <Name>level3_spike0</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_spike1.png">
-      <Name>level3_spike1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_spike2.png">
-      <Name>level3_spike2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_spike3.png">
-      <Name>level3_spike3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_tiles.png">
-      <Name>level3_tiles</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\level3_window.png">
-      <Name>level3_window</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\plant1.png">
-      <Name>plant1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Lemonade\slf1\level3\plant2.png">
-      <Name>plant2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\slf1\icons.png">
-      <Name>icons</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\slf1\levelCompleteGraphic.png">
-      <Name>levelCompleteGraphic</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\sfx\Blip_Select.wav">
-      <Name>Blip_Select</Name>
+    <Compile Include="Revvolvver\sfx\asong.wav">
+      <Name>asong</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\sfx\checkPoint.wav">
-      <Name>checkPoint</Name>
+    <Compile Include="Revvolvver\sfx\chord_01.wav">
+      <Name>chord_01</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\sfx\deathSFX.wav">
-      <Name>deathSFX</Name>
+    <Compile Include="Revvolvver\sfx\chord_02.wav">
+      <Name>chord_02</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\sfx\jump.wav">
-      <Name>jump</Name>
+    <Compile Include="Revvolvver\sfx\chord_03.wav">
+      <Name>chord_03</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\sfx\ping.wav">
-      <Name>ping</Name>
+    <Compile Include="Revvolvver\sfx\chord_04.wav">
+      <Name>chord_04</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\sfx\ping2.wav">
-      <Name>ping2</Name>
+    <Compile Include="Revvolvver\sfx\chord_05.wav">
+      <Name>chord_05</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\sfx\powerUp.wav">
-      <Name>powerUp</Name>
+    <Compile Include="Revvolvver\sfx\chord_06.wav">
+      <Name>chord_06</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\sfx\SndExp.wav">
-      <Name>SndExp</Name>
+    <Compile Include="Revvolvver\sfx\chord_07.wav">
+      <Name>chord_07</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\sfx\SndOnShoulders.wav">
-      <Name>SndOnShoulders</Name>
+    <Compile Include="Revvolvver\sfx\fullHeavyMetalJacket.wav">
+      <Name>fullHeavyMetalJacket</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\sfx\SwitchCharacters.wav">
-      <Name>SwitchCharacters</Name>
+    <Compile Include="Revvolvver\sfx\gunclick.wav">
+      <Name>gunclick</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Lemonade\sfx\whoosh.wav">
-      <Name>whoosh</Name>
+    <Compile Include="Revvolvver\sfx\gunshot1.wav">
+      <Name>gunshot1</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="frictionGrid\circle_40x40.png">
-      <Name>circle_40x40</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Lemonade\currentChar.png">
-      <Name>currentChar</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="fourchambers\allActors.png">
-      <Name>allActors</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\Ambience.png">
-      <Name>Ambience</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\arrowSparkles.png">
-      <Name>arrowSparkles</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\arrow_8x1.png">
-      <Name>arrow_8x1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\autotiles_16x16.png">
-      <Name>autotiles_16x16</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\autotiles_generic_16x16.png">
-      <Name>autotiles_generic_16x16</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\autotiles_ice_16x16.png">
-      <Name>autotiles_ice_16x16</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\bgIce.png">
-      <Name>bgIce</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\blood.png">
-      <Name>blood</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Artist_ss_20x20.png">
-      <Name>Artist_ss_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Automaton_ss_11x24.png">
-      <Name>Automaton_ss_11x24</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Bat_12x12.png">
-      <Name>Bat_12x12</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Chicken_20x20.png">
-      <Name>Chicken_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Corsair_18x21.png">
-      <Name>Corsair_18x21</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Cow_20x20.png">
-      <Name>Cow_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Deer_30x30.png">
-      <Name>Deer_30x30</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Drone_ss_9x13.png">
-      <Name>Drone_ss_9x13</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Executor_ss_21x21.png">
-      <Name>Executor_ss_21x21</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Feline_20x20.png">
-      <Name>Feline_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Gloom_13x26.png">
-      <Name>Gloom_13x26</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Grizzly_20x20.png">
-      <Name>Grizzly_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Harvester_ss_14x27.png">
-      <Name>Harvester_ss_14x27</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Horse_ss_20x25.png">
-      <Name>Horse_ss_20x25</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Kerberos_30x30.png">
-      <Name>Kerberos_30x30</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Lion_20x20.png">
-      <Name>Lion_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Marksman_ss_31x24.png">
-      <Name>Marksman_ss_31x24</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Medusa_ss_35x30.png">
-      <Name>Medusa_ss_35x30</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Mistress_ss_35x22.png">
-      <Name>Mistress_ss_35x22</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Mummy_ss_13x19.png">
-      <Name>Mummy_ss_13x19</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Nymph_ss_35x30.png">
-      <Name>Nymph_ss_35x30</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Paladin_ss_16x26.png">
-      <Name>Paladin_ss_16x26</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Prism_ss_14x20.png">
-      <Name>Prism_ss_14x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Rat_20x20.png">
-      <Name>Rat_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Seraphine_ss_24x30.png">
-      <Name>Seraphine_ss_24x30</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Snake_20x20.png">
-      <Name>Snake_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Spider_20x20.png">
-      <Name>Spider_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Succubus_ss_35x30.png">
-      <Name>Succubus_ss_35x30</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Tormentor_ss_13x24.png">
-      <Name>Tormentor_ss_13x24</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Unicorn_ss_20x40.png">
-      <Name>Unicorn_ss_20x40</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Vampire_ss_14x19.png">
-      <Name>Vampire_ss_14x19</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Warlock_ss_29x29.png">
-      <Name>Warlock_ss_29x29</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Wolf_20x20.png">
-      <Name>Wolf_20x20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Zinger_ss_12x14.png">
-      <Name>Zinger_ss_12x14</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\characterSpriteSheets\Zombie_ss_13x19.png">
-      <Name>Zombie_ss_13x19</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\colorss.PNG">
-      <Name>colorss</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\decorationsBack_16x16.png">
-      <Name>decorationsBack_16x16</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\decorationsFront_16x16.png">
-      <Name>decorationsFront_16x16</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\door_24x24.png">
-      <Name>door_24x24</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\envir_dusk.png">
-      <Name>envir_dusk</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\exitBlocker.png">
-      <Name>exitBlocker</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\explosion_32x32.png">
-      <Name>explosion_32x32</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\fallAwayBridgeTiles_16x16.png">
-      <Name>fallAwayBridgeTiles_16x16</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\fallAwayBridgeTiles_16x32.png">
-      <Name>fallAwayBridgeTiles_16x32</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\Fear.png">
-      <Name>Fear</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\fire.png">
-      <Name>fire</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\fireThrower.png">
-      <Name>fireThrower</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\hudelements.png">
-      <Name>hudelements</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\icons16x16.png">
-      <Name>icons16x16</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\ladderTiles_16x16.png">
-      <Name>ladderTiles_16x16</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\menuButton.png">
-      <Name>menuButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\menuButtonPressed.png">
-      <Name>menuButtonPressed</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\palette.png">
-      <Name>palette</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\pickups_16x16.png">
-      <Name>pickups_16x16</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\powerup_16x16.png">
-      <Name>powerup_16x16</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\RockTiles.png">
-      <Name>RockTiles</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\room.png">
-      <Name>room</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\sfx\arrowHit1.wav">
-      <Name>arrowHit1</Name>
+    <Compile Include="Revvolvver\sfx\gunshot2.wav">
+      <Name>gunshot2</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\sfx\arrowHit2.wav">
-      <Name>arrowHit2</Name>
+    <Compile Include="Revvolvver\sfx\gunshot3.wav">
+      <Name>gunshot3</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\sfx\arrowHit3.wav">
-      <Name>arrowHit3</Name>
+    <Compile Include="Revvolvver\sfx\p1Shoot1.wav">
+      <Name>p1Shoot1</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\sfx\arrowShoot1.wav">
-      <Name>arrowShoot1</Name>
+    <Compile Include="Revvolvver\sfx\p1Shoot2.wav">
+      <Name>p1Shoot2</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\sfx\arrowShoot2.wav">
-      <Name>arrowShoot2</Name>
+    <Compile Include="Revvolvver\sfx\p1Shoot3.wav">
+      <Name>p1Shoot3</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\sfx\arrowShoot3.wav">
-      <Name>arrowShoot3</Name>
+    <Compile Include="Revvolvver\sfx\p1Shoot4.wav">
+      <Name>p1Shoot4</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\sfx\horseHurt.wav">
-      <Name>horseHurt</Name>
+    <Compile Include="Revvolvver\sfx\p1Shoot5.wav">
+      <Name>p1Shoot5</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\skyPalettes.png">
-      <Name>skyPalettes</Name>
+    <Compile Include="Revvolvver\sfx\shoot1.wav">
+      <Name>shoot1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Revvolvver\sfx\shoot10.wav">
+      <Name>shoot10</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Revvolvver\sfx\shoot2.wav">
+      <Name>shoot2</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Revvolvver\sfx\shoot3.wav">
+      <Name>shoot3</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Revvolvver\sfx\shoot4.wav">
+      <Name>shoot4</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Revvolvver\sfx\shoot5.wav">
+      <Name>shoot5</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Revvolvver\sfx\shoot6.wav">
+      <Name>shoot6</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Revvolvver\sfx\shoot7.wav">
+      <Name>shoot7</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Revvolvver\sfx\shoot8.wav">
+      <Name>shoot8</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Revvolvver\sfx\shoot9.wav">
+      <Name>shoot9</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Revvolvver\spaceman.png">
+      <Name>spaceman</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\sparkles.png">
-      <Name>sparkles</Name>
+    <Compile Include="Revvolvver\spaceman_new.png">
+      <Name>spaceman_new</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\sparkles_glow.png">
-      <Name>sparkles_glow</Name>
+    <Compile Include="Revvolvver\spawner_gibs.png">
+      <Name>spawner_gibs</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\sparkles_small.png">
-      <Name>sparkles_small</Name>
+    <Compile Include="Revvolvver\square_tiles_16x16.png">
+      <Name>square_tiles_16x16</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\spawner.png">
-      <Name>spawner</Name>
+    <Compile Include="Revvolvver\tech_tiles.png">
+      <Name>tech_tiles</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fourchambers\texture_placement_small.png">
-      <Name>texture_placement_small</Name>
+    <Compile Include="Revvolvver\tileDestructionParticles.png">
+      <Name>tileDestructionParticles</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\treasures_16x16.png">
-      <Name>treasures_16x16</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="fourchambers\warlock_fireball.png">
-      <Name>warlock_fireball</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="music\gwd\ColdMoody.mp3">
-      <Name>ColdMoody</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\gwd\ColdMoody_EnergyRemix.mp3">
-      <Name>ColdMoody_EnergyRemix</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\gwd\Dramatic.mp3">
-      <Name>Dramatic</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\gwd\Energy.mp3">
-      <Name>Energy</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\gwd\FlutesMoody_DontLikeThis.mp3">
-      <Name>FlutesMoody_DontLikeThis</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\gwd\MoodyExplorationLoop.mp3">
-      <Name>MoodyExplorationLoop</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\gwd\OffKilterLoop_haspercus.mp3">
-      <Name>OffKilterLoop_haspercus</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\gwd\ScaryInCMajor.mp3">
-      <Name>ScaryInCMajor</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\gwd\SlowedLoop.mp3">
-      <Name>SlowedLoop</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\gwd\WarmerMoreSynths.mp3">
-      <Name>WarmerMoreSynths</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\gwd\WarmOrgansColdSynths_ha.mp3">
-      <Name>WarmOrgansColdSynths_ha</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\ralph\four chambered heart.mp3">
-      <Name>four chambered heart</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\ralph\goatmp3.mp3">
-      <Name>goatmp3</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\ralph\nw hooker.mp3">
-      <Name>nw hooker</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\ralph\snow song.mp3">
-      <Name>snow song</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\ralph\stiff run.mp3">
-      <Name>stiff run</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="music\ralph\this is the news.mp3">
-      <Name>this is the news</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

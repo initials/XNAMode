@@ -644,8 +644,6 @@ namespace FourChambers
             comboInfo.limit = 0.74f;
             comboInfo.style = "up";
 
-
-
             // place marksman at the correct door
 
 
