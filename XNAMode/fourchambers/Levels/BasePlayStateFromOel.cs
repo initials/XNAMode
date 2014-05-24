@@ -389,11 +389,11 @@ namespace FourChambers
             rightExitBlockerWall.@fixed = true;
             allLevelTiles.add(rightExitBlockerWall);
 
-            if (FlxG.level > 100)
-            {
-                leftExitBlockerWall.x = -1000;
-                rightExitBlockerWall.x = 10000;
-            }
+            //if (FlxG.level > 100)
+            //{
+            //    leftExitBlockerWall.x = -1000;
+            //    rightExitBlockerWall.x = 10000;
+            //}
 
             indestructableTilemap = new FlxTilemap();
             indestructableTilemap.auto = FlxTilemap.STRING;
@@ -924,14 +924,15 @@ namespace FourChambers
         {
             FlxG.level = Level;
 
-            if (FlxG.level > 21) 
-            { 
-                FlxG.level = 1;
-                FlxG.state = new GameSelectionMenuState();
+            //if (FlxG.level > 21) 
+            //{ 
+            //    FlxG.level = 1;
+            //    FlxG.state = new GameSelectionMenuState();
 
-                return true;
-            }
-            else if (FlxG.level < 1) FlxG.level = 10;
+            //    return true;
+            //}
+            //else if (FlxG.level < 1) FlxG.level = 10;
+
             FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
 
             FlxG.transition.startFadeIn(0.2f);
