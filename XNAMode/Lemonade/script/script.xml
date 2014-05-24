@@ -214,8 +214,6 @@
         <dialog character="Andre">Let's go get them.</dialog>
 	</sydney_scene12>
 	<sydney_scene13 name="The End" location="sydney" >
-        <setup character="Andre" x="170" y="135" facing="RIGHT"/>
-        <setup character="Liselot" x="190" y="135" facing="LEFT"/>
         <dialog character="Andre">What luck! Our buddy having an apartment for rent.</dialog>
 		<dialog character="Liselot">We helped our new friends find a place to stay.</dialog>
         <dialog character="Liselot">I'm sure they could have done it on their own.</dialog>
@@ -365,8 +363,6 @@
         <dialog character="Liselot">and danced the night away.</dialog>
 	</newyork_scene12>
 	<newyork_scene13 name="End Sequence For NY" location="newyork" >
-        <setup character="Andre" x="170" y="135" facing="RIGHT"/>
-        <setup character="Liselot" x="190" y="135" facing="RIGHT"/>
 		<dialog character="Andre">The jukebox at the soda shop plays all my favorite songs.</dialog>
         <dialog character="Andre">And all I can think of is the business we left behind.</dialog>
         <dialog character="Andre">The soda bottles clink and I am reminded of home.</dialog>
@@ -449,7 +445,6 @@
         <dialog character="Mr Amsterdaam">Boom!</dialog>
 	</military_scene12>
     <military_scene13 name="Military End Cut Scene" location="military" >
-        <setup character="Mr Amsterdaam" x="230" y="135" facing="LEFT"/>
         <dialog character="Mr Amsterdaam">This is the end.</dialog>
         <dialog character="Mr Amsterdaam">We are done here.</dialog>
         <dialog character="Mr Amsterdaam">You can go home now.</dialog>
