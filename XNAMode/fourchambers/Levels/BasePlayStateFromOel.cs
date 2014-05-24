@@ -455,6 +455,7 @@ namespace FourChambers
                 // these are for fireballs only!
                 if (nodes.ContainsKey("angleCounter")) localWidth = Convert.ToInt32(nodes["angleCounter"]);
                 if (nodes.ContainsKey("shootEvery")) PC = float.Parse(nodes["shootEvery"]);
+                if (nodes.ContainsKey("levelToGoTo")) PC = float.Parse(nodes["levelToGoTo"]);
                 // -----------------------------
 
                 buildActor(nodes["Name"], 1, pc , Convert.ToInt32(nodes["x"]),Convert.ToInt32(nodes["y"]), localWidth, localHeight, PX,PY,PT,PS, PC);
@@ -806,6 +807,7 @@ namespace FourChambers
             FlxU.overlap(actors, fireBalls, overlappFireball);
             FlxU.overlap(seraphine, bullets, overlapped);
 
+            FlxU.overlap(actors, doors, openDoor);
 
             FlxU.overlap(actors, ladders, overlapWithLadder);
 
@@ -939,6 +941,16 @@ namespace FourChambers
             return true;
         }
 
+
+        protected bool openDoor(object Sender, FlxSpriteCollisionEvent e)
+        {
+            if (e.Object1 is Marksman)
+            {
+                goToLevel(((Door)(e.Object2)).levelToGoTo);
+
+            }
+            return true;
+        }
 
 
         /// <summary>
@@ -1673,6 +1685,7 @@ namespace FourChambers
             if (ActorType == "door")
             {
                 door = new Door(x - 8, y - 8);
+                door.levelToGoTo = (int)PathCornering;
                 doors.add(door);
             }
             //Console.WriteLine("Building actor " + ActorType + " " + NumberOfActors);

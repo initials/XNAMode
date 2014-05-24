@@ -119,7 +119,7 @@
     <zingernest id="17" x="992" y="592" />
     <seraphine id="18" x="432" y="272" flip="False" />
     <ladder id="1" x="672" y="432" height="160" />
-    <door id="3" x="32" y="192" levelToGoTo="32" />
+    <door id="3" x="32" y="192" levelToGoTo="100" />
     <door id="19" x="1120" y="736" levelToGoTo="2" />
   </ActorsLayer>
 </level>
