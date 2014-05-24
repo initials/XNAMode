@@ -38,8 +38,8 @@ namespace FourChambers
 
             loadGraphic(FlxG.Content.Load<Texture2D>("fourchambers/characterSpriteSheets/Marksman_ss_31x24"), true, false, 31, 24);
 
-            addAnimation("run", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 12);
-            addAnimation("idle", new int[] { 0 }, 12);
+            addAnimation("run", new int[] { 30, 31, 32, 33, 34, 35, 36, 37, 38, 39 }, 12);
+            addAnimation("idle", new int[] { 30 }, 12);
             addAnimation("idleMelee", new int[] { 28 }, 12);
             addAnimation("attack", new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }, 60 ,true);
             addAnimation("attackMelee", new int[] { 0, 24, 24, 25, 26, 27, 27, 26, 26, 26, 26, 26, 26 }, 60, true);
@@ -49,8 +49,9 @@ namespace FourChambers
             addAnimation("climbidle", new int[] { 20 }, 0, true);
             addAnimation("death", new int[] { 22,23 }, 4, false);
             addAnimation("hurt", new int[] { 22, 23 }, 4, false);
-            
 
+            addAnimation("runRange", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 12);
+            addAnimation("idleRange", new int[] { 0 }, 12);
             //addAnimationCallback(stopAttacking);
 
             //bounding box tweaks
@@ -104,7 +105,7 @@ namespace FourChambers
                             meleeHitBox.dead = false;
                             meleeHitBox.width = 7;
                             meleeHitBox.height = 7;
-                            meleeHitBox.x = x + 18;
+                            meleeHitBox.x = x + 28;
                             meleeHitBox.y = y + 3;
                             break;
                         case 7:
@@ -137,7 +138,7 @@ namespace FourChambers
                             meleeHitBox.dead = false;
                             meleeHitBox.width = 7;
                             meleeHitBox.height = 7;
-                            meleeHitBox.x = x - 14;
+                            meleeHitBox.x = x - 24;
                             meleeHitBox.y = y + 3;
                             break;
                         case 7:
@@ -207,7 +208,7 @@ namespace FourChambers
                 hasUsedJoystickToAim = false;
             }
 
-            if (((_curFrame == 8 || _curFrame == 9 || _curFrame == 10) && attackingJoystick) || (FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder) && velocity.X != 0) )
+            if (hasRangeWeapon && ((_curFrame == 8 || _curFrame == 9 || _curFrame == 10) && attackingJoystick) || (FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder) && velocity.X != 0) )
             {
 
                 Console.WriteLine("Shooting Arrow " + FlxG.elapsedTotal + " This is the frame of the Marksman animation" + _curFrame);
@@ -276,7 +277,7 @@ namespace FourChambers
             }
 
             // use the mouse position to fire a bullet.
-            if ((_curFrame == 8 || _curFrame == 9 || _curFrame == 10) && (attackingMouse))
+            if ((_curFrame == 8 || _curFrame == 9 || _curFrame == 10) && (attackingMouse) && hasRangeWeapon)
             {
                 Console.WriteLine("Shooting Arrow " + FlxG.elapsedTotal + " This is the frame of the Marksman animation" + _curFrame);
 
@@ -344,7 +345,11 @@ namespace FourChambers
                 }
             }
 
-
+            if (FlxGlobal.cheatString == "weapons")
+            {
+                hasMeleeWeapon = true;
+                hasRangeWeapon = true;
+            }
 
             base.update();
 

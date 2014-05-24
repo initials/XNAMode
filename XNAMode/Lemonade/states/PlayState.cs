@@ -513,6 +513,7 @@ namespace Lemonade
             add(movingPlatforms);
             add(actors);
             add(collidableTileblocks);
+            
 
             //set up a little bubble particle system.
 

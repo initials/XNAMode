@@ -524,8 +524,10 @@ namespace FourChambers
             add(bullets);
             add(allLevelTiles);
             add(ladders);
+            add(doors);
             add(actors);
             add(powerUps);
+            
 
             if (seraphine == null)
             {

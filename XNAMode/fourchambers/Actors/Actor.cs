@@ -129,6 +129,9 @@ namespace FourChambers
 
         public bool attackingMelee = false;
 
+        public bool hasRangeWeapon = false;
+        public bool hasMeleeWeapon = false;
+
         /// <summary>
         /// used for tracking the amount of time dead for restarts.
         /// </summary>
@@ -294,7 +297,7 @@ namespace FourChambers
                 attackingMouse = true;
                 attackingMelee = false;
             }
-            if (FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder, FlxG.controllingPlayer, out pi))
+            if (hasRangeWeapon && FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder, FlxG.controllingPlayer, out pi))
             {
                 lastAttack = "range";
 
@@ -305,14 +308,14 @@ namespace FourChambers
 
             //FlxG.gamepads.isButtonDown(Buttons.X, PlayerIndex.One, out pi)
 
-            if ((GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X > DEADZONE ||
+            if (((GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X > DEADZONE ||
                 GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y > DEADZONE ||
                 GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X < DEADZONE * -1.0f ||
                 GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y < DEADZONE * -1.0f) &&
                 
                 FlxG.gamepads.isNewButtonPress(Buttons.RightShoulder)
 
-                )
+                ) && hasRangeWeapon)
             {
                 lastAttack = "range";
                 attackingJoystick = true;
@@ -324,7 +327,7 @@ namespace FourChambers
             //}
 
             // Attacking using mouse.
-            if (FlxG.mouse.justPressedLeftButton())
+            if (FlxG.mouse.justPressedLeftButton() && hasRangeWeapon)
             {
                 lastAttack = "range";
                 attackingMouse = true;
@@ -344,14 +347,14 @@ namespace FourChambers
             //    attackingMouse = false;
             //}
 
-            if (FlxG.keys.O || FlxG.gamepads.isButtonDown(Buttons.X, FlxG.controllingPlayer, out pi) || FlxG.mouse.pressedRightButton())
+            if ( hasMeleeWeapon && (FlxG.keys.O || FlxG.gamepads.isButtonDown(Buttons.X, FlxG.controllingPlayer, out pi) || FlxG.mouse.pressedRightButton()))
             {
                 lastAttack = "melee";
                 attackingMelee = true;
             }
 
 
-            if (FlxG.keys.C)
+            if (FlxG.keys.C && hasRangeWeapon)
             {
                 lastAttack = "range";
                 attackingMouse = true;
@@ -412,11 +415,13 @@ namespace FourChambers
             }
             else if (FlxU.abs(velocity.X) > 1)
             {
-                play("run");
+                if (hasRangeWeapon == true) play("runRange");
+                else play("run");
             }
             else
             {
                 if (lastAttack == "melee") play("idleMelee");
+                else if (hasRangeWeapon == true) play("idleRange");
                 else play("idle");
             }
         }

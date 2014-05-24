@@ -23,7 +23,7 @@ namespace FourChambers
             if (FlxG.debug)
             {
                 visible = true;
-                alpha = 0.75f;
+                alpha = 0.0175f;
             }
             else
             {
