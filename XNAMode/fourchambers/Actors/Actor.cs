@@ -411,6 +411,7 @@ namespace FourChambers
             else if (velocity.X == 0)
             {
                 if (lastAttack == "melee") play("idleMelee");
+                else if (hasRangeWeapon) play("idleRange");
                 else play("idle");
             }
             else if (FlxU.abs(velocity.X) > 1)
