@@ -107,5 +107,7 @@
     <zingernest id="3" x="640" y="256" />
     <merchant id="4" x="224" y="512" flip="False" />
     <priest id="5" x="624" y="592" flip="False" />
+    <door id="6" x="112" y="736" levelToGoTo="4" />
+    <door id="7" x="720" y="368" levelToGoTo="7" />
   </ActorsLayer>
 </level>

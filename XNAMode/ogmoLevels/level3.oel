@@ -147,7 +147,7 @@
     <ladder id="4" x="176" y="624" height="128" />
     <ladder id="10" x="1504" y="608" height="144" />
     <door id="11" x="80" y="736" levelToGoTo="2" />
-    <door id="33" x="1216" y="208" levelToGoTo="4" />
+    <door id="33" x="1216" y="208" levelToGoTo="5" />
     <door id="34" x="1552" y="736" levelToGoTo="4" />
   </ActorsLayer>
 </level>

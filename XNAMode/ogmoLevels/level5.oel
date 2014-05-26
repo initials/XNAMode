@@ -1,4 +1,4 @@
-<level width="800" height="800" levelName="The Lion" bgGraphic="bgIce" timeOfDayPalette="skyPalette" music="gwd/OffKilterLoop_haspercus">
+<level width="800" height="800" levelName="The Lion" bgGraphic="bgIce" timeOfDayPalette="skyPalette" music="gwd/FlutesMoody_DontLikeThis">
   <camera x="32" y="256" />
   <DestructableTerrain tileset="autotiles_ice_16x16" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,7,13,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,16,17,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
@@ -110,6 +110,6 @@
     <zingernest id="6" x="432" y="512" />
     <zingernest id="7" x="176" y="432" />
     <lion id="8" x="304" y="432" flip="False" />
-    <door id="9" x="464" y="688" levelToGoTo="1" />
+    <door id="9" x="464" y="688" levelToGoTo="3" />
   </ActorsLayer>
 </level>

@@ -119,5 +119,8 @@
     <executor id="10" x="528" y="208" flip="False" />
     <_event id="11" x="576" y="176" width="112" height="48" event="executor" value1="0" value2="0" repeat="1" />
     <ladder id="12" x="448" y="416" height="144" />
+    <door id="13" x="96" y="736" levelToGoTo="6" />
+    <door id="15" x="624" y="544" levelToGoTo="8" />
+    <door id="17" x="624" y="112" levelToGoTo="9" />
   </ActorsLayer>
 </level>
