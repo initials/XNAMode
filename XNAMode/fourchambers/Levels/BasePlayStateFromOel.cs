@@ -649,7 +649,14 @@ namespace FourChambers
 
             // place marksman at the correct door
 
-
+            foreach (Door d in doors.members)
+            {
+                if (d.levelToGoTo == FourChambers_Globals.previousLevel)
+                {
+                    marksman.x = d.x;
+                    marksman.y = d.y;
+                }
+            }
 
 
 
@@ -922,6 +929,8 @@ namespace FourChambers
 
         protected bool goToLevel(int Level)
         {
+            FourChambers_Globals.previousLevel = FlxG.level;
+
             FlxG.level = Level;
 
             //if (FlxG.level > 21) 
@@ -945,7 +954,7 @@ namespace FourChambers
 
         protected bool openDoor(object Sender, FlxSpriteCollisionEvent e)
         {
-            if (e.Object1 is Marksman)
+            if (e.Object1 is Marksman && (FlxControl.UP ))
             {
                 goToLevel(((Door)(e.Object2)).levelToGoTo);
 

@@ -96,7 +96,7 @@ namespace org.flixel
         public const string MUSIC_LEVEL18 = "FourChambers_MoodyExplorationLoop_ha";
         public const string MUSIC_LEVEL19 = "FourChambers_OffKilterLoop_haspercus";
 
-
+        public static int previousLevel = 1;
 
         /// <summary>
         /// Releases a lot of Homing Zingers.
