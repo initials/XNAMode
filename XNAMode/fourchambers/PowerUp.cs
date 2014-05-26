@@ -77,9 +77,22 @@ namespace FourChambers
             
         }
 
+        public void TypeOfPowerUp(int Typ)
+        {
+            typeOfPowerUp = Typ;
+
+            addAnimation("item"+Typ.ToString(), new int[] { Typ });
+            play("item" + Typ.ToString());
+        }
+
         override public void update()
         {
 
+            //if (FlxG.keys.F2)
+            //{
+            //    Console.WriteLine("type {0} ", typeOfPowerUp);
+            //    TypeOfPowerUp(typeOfPowerUp + 1);
+            //}
 
             //_curFrame = 1;
 

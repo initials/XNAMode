@@ -653,7 +653,7 @@ namespace FourChambers
             {
                 if (d.levelToGoTo == FourChambers_Globals.previousLevel)
                 {
-                    marksman.x = d.x;
+                    marksman.x = d.x+door.width + 5;
                     marksman.y = d.y;
                 }
             }
@@ -954,7 +954,7 @@ namespace FourChambers
 
         protected bool openDoor(object Sender, FlxSpriteCollisionEvent e)
         {
-            if (e.Object1 is Marksman && (FlxControl.UP ))
+            if (e.Object1 is Marksman && (FlxControl.UPJUSTPRESSED ))
             {
                 goToLevel(((Door)(e.Object2)).levelToGoTo);
 
@@ -1024,6 +1024,14 @@ namespace FourChambers
             {
                 if (marksman != null)
                     marksman.arrowsRemaining += 20;
+            }
+            else if (x == 190)
+            {
+                marksman.hasRangeWeapon = true;
+            }
+            else if (x == 208)
+            {
+                marksman.hasMeleeWeapon = true;
             }
             else
             {
@@ -1660,7 +1668,11 @@ namespace FourChambers
                     marksman.isPlayerControlled = false;
                     FlxG.follow(mistress,1.0f);
                 }
-
+                else if (FlxGlobal.cheatString.StartsWith("door"))
+                {
+                    marksman.x = doors.members[Convert.ToInt32(FlxGlobal.cheatString.Substring(4))].x;
+                    marksman.y = doors.members[Convert.ToInt32(FlxGlobal.cheatString.Substring(4))].y;
+                }
                 else if (FlxGlobal.cheatString.StartsWith("next")) marksman.x = FlxG.levelWidth + 3;
 
             }
@@ -1670,9 +1682,27 @@ namespace FourChambers
 
         public void buildEvent(int x=0, int y=0, int width=0, int height=0, int repeat=-1, string eventOrQuote="")
         {
-            EventSprite s2 = new EventSprite(x, y, eventSpriteRun, repeat, eventOrQuote);
-            s2.createGraphic(width, height, Color.Red);
-            eventSprites.add(s2);
+            if (eventOrQuote == "sword")
+            {
+                powerUp = new PowerUp(x, y);
+                //powerUp.typeOfPowerUp = 201;
+                powerUps.add(powerUp);
+                powerUp.TypeOfPowerUp(208);
+            }
+            else if (eventOrQuote == "bow")
+            {
+                powerUp = new PowerUp(x, y);
+                //powerUp.typeOfPowerUp = 177;
+                powerUps.add(powerUp);
+                powerUp.TypeOfPowerUp(190);
+            }
+            else
+            {
+                EventSprite s2 = new EventSprite(x, y, eventSpriteRun, repeat, eventOrQuote);
+                s2.createGraphic(width, height, Color.Red);
+                eventSprites.add(s2);
+            }
+
         }
 
         public void buildActor(string ActorType, int NumberOfActors)
