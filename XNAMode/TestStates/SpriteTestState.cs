@@ -19,6 +19,9 @@ namespace FourChambers
 
             FlxG.resetHud();
 
+            FlxG.levelWidth = 50;
+            FlxG.levelHeight = 50;
+
             for (int i = 0; i < 50; i++)
             {
                 Firefly f = new Firefly((int)FlxU.random(0, 200), (int)FlxU.random(0, 200));

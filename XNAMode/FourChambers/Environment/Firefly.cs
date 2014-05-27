@@ -58,31 +58,41 @@ namespace FourChambers
 
             }
 
-            //if (x < 10 )
-            //{
-            //    angle = 180;
-            //    angularAcceleration = 3300;
-            //}
-            //if (y < 10 )
-            //{
-            //    angle = 270;
-            //    angularAcceleration = 3300;
-            //}
-
-
-            if (FlxG.mouse.pressed())
+            if (x < 0)
             {
-                targetTimer = 0.0f;
-
-                float ang = FlxU.getAngle(new Vector2(FlxG.mouse.screenX, FlxG.mouse.screenY), new Vector2(x, y));
-                
-                angle = ang + 90;
-                thrust = 50;
-                angularVelocity = 20;
-
-
-
+                x = FlxU.random(0, FlxG.levelWidth);
+                alpha = 0.0f;
             }
+            if (y < 0)
+            {
+                y = FlxU.random(0, FlxG.levelHeight);
+                alpha = 0.0f;
+            }
+            if (x > FlxG.levelWidth)
+            {
+                x = FlxU.random(0, FlxG.levelWidth);
+                alpha = 0.0f;
+            }
+            if (y > FlxG.levelHeight)
+            {
+                y = FlxU.random(0, FlxG.levelHeight);
+                alpha = 0.0f;
+            }
+
+
+            //if (FlxG.mouse.pressed())
+            //{
+            //    targetTimer = 0.0f;
+
+            //    float ang = FlxU.getAngle(new Vector2(FlxG.mouse.screenX, FlxG.mouse.screenY), new Vector2(x, y));
+                
+            //    angle = ang + 90;
+            //    thrust = 50;
+            //    angularVelocity = 20;
+
+
+
+            //}
 
 
             //if (FlxG.keys.A)
