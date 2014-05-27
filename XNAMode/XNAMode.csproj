@@ -134,6 +134,7 @@
     <Compile Include="flixel\presets\FlxPlatformActor.cs" />
     <Compile Include="flixel\presets\FlxRamp.cs" />
     <Compile Include="FourChambers\Actors\BaseActor.cs" />
+    <Compile Include="FourChambers\Environment\Firefly.cs" />
     <Compile Include="FourChambers\Levels\MovingPlatform.cs" />
     <Compile Include="FourChambers\Levels\MultiPlayerPlayState.cs" />
     <Compile Include="Lemonade\extra\CratesBox.cs" />
@@ -322,6 +323,7 @@
     <Compile Include="OgmoXNA\Values\OgmoValueTemplateReader.cs" />
     <Compile Include="TestStates\PathTestState.cs" />
     <Compile Include="TestStates\RotateState.cs" />
+    <Compile Include="TestStates\SpriteTestState.cs" />
     <Compile Include="TestStates\VCRState.cs" />
     <Compile Include="TestStates\VCRStateLegacy.cs" />
     <Compile Include="XNATweener\Back.cs" />

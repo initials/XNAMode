@@ -658,6 +658,15 @@ namespace FourChambers
                 }
             }
 
+            for (int i = 0; i < 50; i++)
+            {
+                Firefly f = new Firefly((int)FlxU.random(0, FlxG.levelWidth), (int)FlxU.random(0, FlxG.levelHeight));
+                add(f);
+
+            }
+
+
+
 
 
         }

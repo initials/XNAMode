@@ -16,7 +16,7 @@
     <Width>3200</Width>
     <Height>3200</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Shane\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
+  <Filename>C:\Users\User\Documents\Visual Studio 2010\Projects\XNAMode\XNAMode\ogmoLevels\ProjectFile.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>true</CameraEnabled>
   <CameraSize>
@@ -48,6 +48,9 @@
         <string>ralph/this is the news</string>
         <string>ralph/four chambered heart</string>
       </Elements>
+    </ValueDefinition>
+    <ValueDefinition xsi:type="ColorValueDefinition" Name="fireflyColor">
+      <Default A="255" R="255" G="255" B="0" />
     </ValueDefinition>
   </LevelValueDefinitions>
   <LayerDefinitions>

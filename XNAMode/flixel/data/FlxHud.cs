@@ -482,6 +482,18 @@ namespace org.flixel
             p4HudText.x = p4OriginalPosition.X;
             p4HudText.y = p4OriginalPosition.Y;
             p4HudText.scale = 1;
+
+
+
+            keyboardButton.visible = false;
+            ouyaButton.visible = false;
+            xboxButton.visible = false;
+
+            keyboardDirection.visible = false;
+            ouyaDirection.visible = false;
+            xboxDirection.visible = false;
+
+
         }
         
         public void render(SpriteBatch spriteBatch)

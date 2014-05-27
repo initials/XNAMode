@@ -19,6 +19,7 @@ namespace XNAMode
 
             string textInfo = "";
             textInfo = "Choose:\n";
+            textInfo += "F5. Sprite Test State\n";
             textInfo += "F6. Open initialsgames.com/FourChambers\n";
             textInfo += "F7. FlxBar Test\n";
             textInfo += "F8. Victory State\n";
@@ -51,7 +52,11 @@ namespace XNAMode
 //			}
 
 #if !__ANDROID__
+            if (FlxG.keys.justPressed(Keys.F5))
+            {
+                FlxG.state = new FourChambers.SpriteTestState();
 
+            }
             if (FlxG.keys.justPressed(Keys.F6))
             {
                 FlxU.openURL("http://initialsgames.com/fourchambers/purchasecopy.php");
