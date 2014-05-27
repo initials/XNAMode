@@ -13,6 +13,8 @@ namespace FourChambers
     class Firefly : FlxSprite
     {
 
+        private float targetTimer = 10.0f;
+
         public Firefly(int xPos, int yPos)
             : base(xPos, yPos)
         {
@@ -24,32 +26,37 @@ namespace FourChambers
 
             maxVelocity.X = 20;
             maxVelocity.Y = 20;
-            maxAngular = 30;
+            maxAngular = 10;
             angularDrag = 50;
-            maxThrust = 60;
+            maxThrust = 20;
             drag.X = 60;
             drag.Y = 60;
             angularAcceleration = FlxU.random(-230, 230);
             angle = FlxU.random(-360, 360);
 
-            color = Color.OrangeRed;
-
         }
+
+
 
         override public void update()
         {
+            targetTimer += FlxG.elapsed;
 
-            alpha += FlxU.random(-0.05f, 0.05f);
+            if (targetTimer > 2.0f)
+            {
+                alpha += FlxU.random(-0.05f, 0.05f);
 
-            thrust += FlxU.random(-60, 60);
+                thrust += FlxU.random(-60, 60);
 
-            if (angle < 180)
-                angle += FlxU.random(0, 150);
-            else
-                angle -= FlxU.random(-150, 0);           
-            
-            if (angularAcceleration<5)
-                angularAcceleration = FlxU.random(-130, 130);
+                if (angle < 180)
+                    angle += FlxU.random(0, 150);
+                else
+                    angle -= FlxU.random(-150, 0);
+
+                if (angularAcceleration < 5)
+                    angularAcceleration = FlxU.random(-130, 130);
+
+            }
 
             //if (x < 10 )
             //{
@@ -63,11 +70,19 @@ namespace FourChambers
             //}
 
 
-            //if (FlxG.mouse.pressed())
-            //{
-            //    x = FlxG.mouse.x;
-            //    y = FlxG.mouse.y;
-            //}
+            if (FlxG.mouse.pressed())
+            {
+                targetTimer = 0.0f;
+
+                float ang = FlxU.getAngle(new Vector2(FlxG.mouse.screenX, FlxG.mouse.screenY), new Vector2(x, y));
+                
+                angle = ang + 90;
+                thrust = 50;
+                angularVelocity = 20;
+
+
+
+            }
 
 
             //if (FlxG.keys.A)

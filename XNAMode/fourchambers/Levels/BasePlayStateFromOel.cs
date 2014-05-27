@@ -658,10 +658,18 @@ namespace FourChambers
                 }
             }
 
-            for (int i = 0; i < 50; i++)
+
+            //plots down some clusters of fireflies.
+            for (int i = 0; i < 10; i++)
             {
-                Firefly f = new Firefly((int)FlxU.random(0, FlxG.levelWidth), (int)FlxU.random(0, FlxG.levelHeight));
-                add(f);
+                int xp = (int)FlxU.random(0, FlxG.levelWidth);
+                int yp = (int)FlxU.random(0, FlxG.levelHeight);
+
+                for (int j = 0; j < 10; j++)
+                {
+                    Firefly f = new Firefly(xp + (int)FlxU.random(-30, 30), yp - (int)FlxU.random(-30, 30));
+                    add(f);
+                }
 
             }
 
