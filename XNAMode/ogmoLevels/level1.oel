@@ -1,4 +1,4 @@
-<level width="1200" height="800" levelName="Home is where the WiFi connects" bgGraphic="Fear" timeOfDayPalette="skyPalette" music="gwd/OffKilterLoop_haspercus">
+<level width="1200" height="800" levelName="Home" bgGraphic="Fear" timeOfDayPalette="skyPalette" music="gwd/OffKilterLoop_haspercus" fireflyColor="#C6C600">
   <camera x="32" y="256" />
   <DestructableTerrain tileset="autotiles_16x16" exportMode="CSV">-1,-1,-1,-1,-1,98,7,17,13,24,40,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,100,7,13,73,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,6,20,15,20,14,14,12,-1,-1,-1,-1,-1,-1,-1,-1,6,12,-1,-1,-1,-1,24,6,15,20,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,12,-1,-1,-1
@@ -119,5 +119,6 @@
     <door id="19" x="1120" y="736" levelToGoTo="2" />
     <_event id="20" x="112" y="496" width="16" height="16" event="bow" value1="0" value2="0" repeat="1" />
     <drone id="5" x="416" y="208" flip="False" />
+    <_event id="6" x="1072" y="704" width="48" height="48" event="Press Up to enter a door" value1="0" value2="0" repeat="1" />
   </ActorsLayer>
 </level>

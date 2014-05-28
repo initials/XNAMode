@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Revolvver", "Revolvver\Revo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrictionGrid", "FrictionGrid\FrictionGrid\FrictionGrid.csproj", "{FD00F68F-7E09-4013-8D44-CBEA38CB6445}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "FrictionGridContent", "FrictionGrid\FrictionGridContent\FrictionGridContent.contentproj", "{EEA6C32D-9EAC-4764-8EC7-CAD187589726}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -52,9 +50,6 @@ Global
 		{FD00F68F-7E09-4013-8D44-CBEA38CB6445}.Release|x86.ActiveCfg = Release|x86
 		{FD00F68F-7E09-4013-8D44-CBEA38CB6445}.Revvolvver|x86.ActiveCfg = Release|x86
 		{FD00F68F-7E09-4013-8D44-CBEA38CB6445}.Revvolvver|x86.Build.0 = Release|x86
-		{EEA6C32D-9EAC-4764-8EC7-CAD187589726}.Debug|x86.ActiveCfg = Debug|x86
-		{EEA6C32D-9EAC-4764-8EC7-CAD187589726}.Release|x86.ActiveCfg = Release|x86
-		{EEA6C32D-9EAC-4764-8EC7-CAD187589726}.Revvolvver|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

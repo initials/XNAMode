@@ -371,29 +371,14 @@ namespace FourChambers
             indestructableAttrs = new Dictionary<string, string>();
             indestructableAttrs = FlxXMLReader.readAttributesFromOelFile(levelFile, "level/IndestructableTerrain");
 
-            //leftExitBlockerWall = new FlxTileblock(0, FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FourChambers_Globals.TILE_SIZE_X * 2, FourChambers_Globals.TILE_SIZE_Y * 3);
-            //leftExitBlockerWall.@fixed = false;
-            //leftExitBlockerWall.loadTiles(FlxG.Content.Load<Texture2D>("fourchambers/" + indestructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y, 0);
-            //leftExitBlockerWall.velocity.X = -2000;
-
             leftExitBlockerWall = new FlxSprite(0, FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FlxG.Content.Load<Texture2D>("fourchambers/exitBlocker"));
             leftExitBlockerWall.@fixed = true;
             allLevelTiles.add(leftExitBlockerWall);
-
-            //rightExitBlockerWall = new FlxTileblock(FlxG.levelWidth - (FourChambers_Globals.TILE_SIZE_X * 2), FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FourChambers_Globals.TILE_SIZE_X * 2, FourChambers_Globals.TILE_SIZE_Y * 3);
-            //rightExitBlockerWall.loadTiles(FlxG.Content.Load<Texture2D>("fourchambers/" + indestructableAttrs["tileset"]), FourChambers_Globals.TILE_SIZE_X, FourChambers_Globals.TILE_SIZE_Y, 0);
-
-            //rightExitBlockerWall.add(rightExitBlockerWall);
 
             rightExitBlockerWall = new FlxSprite(FlxG.levelWidth - (FourChambers_Globals.TILE_SIZE_X * 2), FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FlxG.Content.Load<Texture2D>("fourchambers/exitBlocker"));
             rightExitBlockerWall.@fixed = true;
             allLevelTiles.add(rightExitBlockerWall);
 
-            //if (FlxG.level > 100)
-            //{
-            //    leftExitBlockerWall.x = -1000;
-            //    rightExitBlockerWall.x = 10000;
-            //}
 
             indestructableTilemap = new FlxTilemap();
             indestructableTilemap.auto = FlxTilemap.STRING;
@@ -428,7 +413,6 @@ namespace FourChambers
                 int PS = 0;
                 float PC = 0.0f;
 
-
                 if (nodes.ContainsKey("isPlayerControlled"))
                 {
                     pc = Convert.ToBoolean(nodes["isPlayerControlled"]);
@@ -444,9 +428,6 @@ namespace FourChambers
 
                 if (nodes.ContainsKey("pathNodesX")) PX = nodes["pathNodesX"];
                 if (nodes.ContainsKey("pathNodesY")) PY = nodes["pathNodesY"];
-
-                //Console.WriteLine("PathNodes: {0} {1}", PX, PY);
-
 
                 if (nodes.ContainsKey("pathType")) PT = FlxPath.convertStringValueForPathType(nodes["pathType"]);
                 if (nodes.ContainsKey("pathSpeed")) PS = Convert.ToInt32(nodes["pathSpeed"]);
@@ -596,36 +577,15 @@ namespace FourChambers
 
             //if (FlxG.joystickBeingUsed) FlxG.mouse.hide();
             //else FlxG.mouse.show(FlxG.Content.Load<Texture2D>("fourchambers/crosshair"));
-            FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
+
+
+            if (marksman.hasRangeWeapon) FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
+            else FlxG.mouse.hide();
+
             localHud = new PlayHud();
             FlxG._game.hud.hudGroup = localHud;
 
-            Console.WriteLine("Starting at: " + FlxG.level);
-
-            //Dictionary<int, string> music = new Dictionary<int, string>();
-            //music.Add(-1, "WarmerMoreSynths");
-            //music.Add(1, "OffKilterLoop_haspercus");
-            //music.Add(2, "OffKilterLoop_haspercus");
-            //music.Add(3, "OffKilterLoop_haspercus");
-            //music.Add(4, "ColdMoody");
-            //music.Add(5, "ColdMoody");
-            //music.Add(6, "ColdMoody");
-            //music.Add(7, "FlutesMoody_DontLikeThi");
-            //music.Add(8, "MoodyExplorationLoop_ha");
-            //music.Add(9, "OffKilterLoop_haspercus");
-            //music.Add(10, "ScaryInC#Major");
-            //music.Add(11, "SlowedLoop");
-            //music.Add(12, "WarmOrgansColdSynths_ha");
-            //music.Add(13, "OffKilterLoop_haspercus");
-            //music.Add(14, "ColdMoody");
-            //music.Add(15, "ColdMoody");
-            //music.Add(16, "ColdMoody");
-            //music.Add(17, "FlutesMoody_DontLikeThi");
-            //music.Add(18, "MoodyExplorationLoop_ha");
-            //music.Add(19, "OffKilterLoop_haspercus");
-            //music.Add(20, "OffKilterLoop_haspercus");
-            //music.Add(21, "OffKilterLoop_haspercus");
-            //music.Add(101, "OffKilterLoop_haspercus");
+            Console.WriteLine("Level is: " + FlxG.level);
 
             FlxG.playMp3("music/" + levelAttrs["music"], 1.0f);
 
@@ -669,8 +629,8 @@ namespace FourChambers
                 {
                     Firefly f = new Firefly(xp + (int)FlxU.random(-30, 30), yp - (int)FlxU.random(-30, 30));
                     add(f);
+                    f.color = FlxColor.ToColor(levelAttrs["fireflyColor"]);
                 }
-
             }
 
 

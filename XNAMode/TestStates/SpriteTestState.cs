@@ -25,6 +25,7 @@ namespace FourChambers
             for (int i = 0; i < 50; i++)
             {
                 Firefly f = new Firefly((int)FlxU.random(0, 200), (int)FlxU.random(0, 200));
+                f.color = FlxColor.ToColor("#ff0000");
                 add(f);
 
             }
@@ -39,14 +40,11 @@ namespace FourChambers
                 for (int j = 0; j < 10; j++)
                 {
                     Firefly f = new Firefly(xp + (int)FlxU.random(-10, 10), yp - (int)FlxU.random(-10, 10));
-                    f.color = Color.Red;
+                    f.color = FlxColor.ToColor("#00ff00");
                     add(f);
                 }
-
             }
-
-
-
+        
         }
 
         override public void update()
