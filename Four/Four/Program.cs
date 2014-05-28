@@ -28,8 +28,8 @@ namespace Loader_Four
             ///cd ..
             ///C:\_Files\programs\7-Zip\7z a -tzip FourChambers.zip Release\ -r
 
-            int w = 320;
-            int h = 180;
+            int w = FlxG.resolutionWidth / FlxG.zoom;
+            int h = FlxG.resolutionHeight / FlxG.zoom;
 
             initGame(w, h, new FourChambers.GameSelectionMenuState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
 

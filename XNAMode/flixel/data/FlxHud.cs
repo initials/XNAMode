@@ -261,10 +261,10 @@ namespace org.flixel
             p3OriginalPosition = new Vector2(targetLeft, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 20);
             p4OriginalPosition = new Vector2(targetLeft, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 20);
 
-            p1HudText = new FlxText(targetLeft, 0, targetWidth, "p1HudText").setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
-            p2HudText = new FlxText(targetLeft, 0, targetWidth, "p2HudText").setFormat(null, 1, Color.White, FlxJustification.Right, Color.White);
-            p3HudText = new FlxText(targetLeft, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 20, targetWidth, "p3HudText").setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
-            p4HudText = new FlxText(targetLeft, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 20, targetWidth, "p4HudText").setFormat(null, 1, Color.White, FlxJustification.Right, Color.White);
+            p1HudText = new FlxText(targetLeft, 0, targetWidth, "").setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
+            p2HudText = new FlxText(targetLeft, 0, targetWidth, "").setFormat(null, 1, Color.White, FlxJustification.Right, Color.White);
+            p3HudText = new FlxText(targetLeft, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 20, targetWidth, "").setFormat(null, 1, Color.White, FlxJustification.Left, Color.White);
+            p4HudText = new FlxText(targetLeft, FlxG.spriteBatch.GraphicsDevice.Viewport.Height - 20, targetWidth, "").setFormat(null, 1, Color.White, FlxJustification.Right, Color.White);
 
             keyboardButton = new FlxSprite(targetLeft, -1000);
             keyboardButton.loadGraphic(FlxG.Content.Load<Texture2D>("buttons/MapWhite"), true, false, 100, 100);
@@ -482,18 +482,6 @@ namespace org.flixel
             p4HudText.x = p4OriginalPosition.X;
             p4HudText.y = p4OriginalPosition.Y;
             p4HudText.scale = 1;
-
-
-
-            keyboardButton.visible = false;
-            ouyaButton.visible = false;
-            xboxButton.visible = false;
-
-            keyboardDirection.visible = false;
-            ouyaDirection.visible = false;
-            xboxDirection.visible = false;
-
-
         }
         
         public void render(SpriteBatch spriteBatch)

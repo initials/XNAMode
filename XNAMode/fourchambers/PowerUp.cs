@@ -202,6 +202,7 @@ namespace FourChambers
         public const int FR_WalkingStick = 176;
         public const int FR_WalkingCane = 177;
         public const int FR_WalkingStickEnchanted = 178;
+        /*
         public const int FR_ = 179;
         public const int FR_ = 180;
         public const int FR_ = 181;
@@ -336,7 +337,8 @@ namespace FourChambers
         public const int FR_ = 305;
         public const int FR_ = 306;
         public const int FR_ = 307;
-
+        */
+         
 
         public PowerUp(int xPos, int yPos)
             : base(xPos, yPos)

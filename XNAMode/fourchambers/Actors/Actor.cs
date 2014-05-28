@@ -406,7 +406,8 @@ namespace FourChambers
             }
             else if (velocity.Y != 0)
             {
-                play("jump");
+                if (hasRangeWeapon) play("jumpRange");
+                else play("jump");
             }
             else if (velocity.X == 0)
             {

@@ -1,4 +1,4 @@
-<level width="800" height="800" levelName="Feel The Beat Of A Human Heart In Your Puny Fist" bgGraphic="Fear" timeOfDayPalette="skyPaletteIce" music="gwd/ColdMoody">
+<level width="800" height="800" levelName="Feel The Beat Of A Human Heart In Your Puny Fist" bgGraphic="Fear" timeOfDayPalette="skyPaletteIce" music="ralph/four chambered heart" fireflyColor="#FF0000">
   <camera x="32" y="256" />
   <DestructableTerrain tileset="autotiles_16x16" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,24,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,14,12,-1,-1

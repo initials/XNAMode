@@ -96,7 +96,7 @@ namespace FourChambers
 
             nestsRemaining = new FlxText(520, ypos - 10, 100);
             nestsRemaining.setFormat(null, 2, Color.White, FlxJustification.Left, Color.Black);
-			nestsRemaining.text = "Unicorns Left: 00";
+			nestsRemaining.text = "";
             add(nestsRemaining);
 
             tweenScale = new Tweener(10, 1, TimeSpan.FromSeconds(1.0f), Linear.EaseOut);

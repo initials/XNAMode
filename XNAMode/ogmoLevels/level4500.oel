@@ -1,4 +1,4 @@
-<level width="800" height="800" levelName="" bgGraphic="Fear" timeOfDayPalette="skyPalette" music="gwd/OffKilterLoop_haspercus">
+<level width="800" height="800" levelName="" bgGraphic="Fear" timeOfDayPalette="skyPalette" music="gwd/Energy" fireflyColor="#FF0000">
   <camera x="0" y="0" />
   <DestructableTerrain tileset="autotiles_16x16" exportMode="CSV">-1,-1,-1,-1,24,7,13,83,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,27,-1,-1,-1,98,7,16,13,73,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,6,14,19,18,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,26,6,14,14,12,28,32,6,15,20,17,12,-1,-1,-1,-1,-1,-1,4,-1,-1,-1,-1,-1,-1,-1

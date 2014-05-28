@@ -121,6 +121,7 @@ namespace FourChambers
             //}
 
 
+            //Console.WriteLine(color);
 
 
 

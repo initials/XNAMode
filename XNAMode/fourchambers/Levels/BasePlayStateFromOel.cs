@@ -629,6 +629,10 @@ namespace FourChambers
                 {
                     Firefly f = new Firefly(xp + (int)FlxU.random(-30, 30), yp - (int)FlxU.random(-30, 30));
                     add(f);
+
+                    Console.WriteLine("Color: " + FlxColor.ToColor(levelAttrs["fireflyColor"]));
+
+
                     f.color = FlxColor.ToColor(levelAttrs["fireflyColor"]);
                 }
             }
@@ -714,7 +718,7 @@ namespace FourChambers
             {
                 localHud.setArrowsRemaining(marksman.arrowsRemaining);
 
-				localHud.nestsRemaining.text = "Unicorns Left: " + actors.countLivingOfType("FourChambers.Unicorn").ToString();
+				//localHud.nestsRemaining.text = "Unicorns Left: " + actors.countLivingOfType("FourChambers.Unicorn").ToString();
             }
 			if (actors.countLivingOfType("FourChambers.Unicorn") <= 0)
             {
@@ -832,19 +836,26 @@ namespace FourChambers
 
                 //Console.WriteLine((playerControlledActors.members[i2] as FlxSprite).x + "    " + FlxG.levelWidth + "  " + playerControlledActors.members[i2]);
 
-                if ((playerControlledActors.members[i2] as FlxSprite).x < 0)
+                if ((playerControlledActors.members[i2] as FlxSprite).x < 9)
                 {
-                    Console.WriteLine("ArrowsFired : {0} Arrows Hit : {1}", FourChambers_Globals.arrowsFired, FourChambers_Globals.arrowsHitTarget);
+                    //Console.WriteLine("ArrowsFired : {0} Arrows Hit : {1}", FourChambers_Globals.arrowsFired, FourChambers_Globals.arrowsHitTarget);
                     //int newLevel = (int)FlxU.random(0, FourChambers_Globals.availableLevels.Count);
                     //FlxG.level = FourChambers_Globals.availableLevels[newLevel];
                     //FourChambers_Globals.availableLevels.RemoveAt(newLevel);
 
 
-                    goToLevel(++FlxG.level);
+                    //goToLevel(++FlxG.level);
+
+
+                    (playerControlledActors.members[i2] as FlxSprite).x = 10;
+
                 }
-                if ((playerControlledActors.members[i2] as FlxSprite).x > FlxG.levelWidth)
+                if ((playerControlledActors.members[i2] as FlxSprite).x > FlxG.levelWidth - 10)
                 {
-                    goToLevel(++FlxG.level);
+                    //goToLevel(++FlxG.level);
+
+                    (playerControlledActors.members[i2] as FlxSprite).x = FlxG.levelWidth - 11;
+
                 }
 
                 i2++;
@@ -1005,6 +1016,8 @@ namespace FourChambers
             else if (x == 190)
             {
                 marksman.hasRangeWeapon = true;
+                FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
+
             }
             else if (x == 208)
             {
