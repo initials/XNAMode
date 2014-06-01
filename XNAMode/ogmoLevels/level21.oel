@@ -1,4 +1,4 @@
-<level width="800" height="800" levelName="" bgGraphic="Fear" timeOfDayPalette="skyPalette">
+<level width="800" height="800" levelName="" bgGraphic="Fear" timeOfDayPalette="skyPalette" music="gwd/OffKilterLoop_haspercus" fireflyColor="#FFFF00">
   <camera x="0" y="0" />
   <DestructableTerrain tileset="autotiles_generic_16x16" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
@@ -110,5 +110,9 @@
     <marksman id="7" x="96" y="736" flip="False" isPlayerControlled="True" />
     <ladder id="8" x="400" y="464" height="288" />
     <mistress id="5" x="672" y="272" flip="False" />
+    <door id="9" x="64" y="736" levelToGoTo="20" />
+    <door id="10" x="96" y="416" levelToGoTo="1" />
+    <_event id="11" x="128" y="288" width="64" height="144" event="This door will lead you to the beginning, with no chance of coming back." value1="0" value2="0" repeat="1" />
+    <door id="12" x="704" y="736" levelToGoTo="19" />
   </ActorsLayer>
 </level>
