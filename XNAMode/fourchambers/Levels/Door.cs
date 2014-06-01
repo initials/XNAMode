@@ -14,6 +14,8 @@ namespace FourChambers
     {
 
         public int levelToGoTo;
+        static public int debug_GoToLevel = 0;
+
 
         public Door(int xPos, int yPos)
             : base(xPos, yPos)
