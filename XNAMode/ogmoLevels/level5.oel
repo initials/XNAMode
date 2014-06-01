@@ -111,5 +111,6 @@
     <zingernest id="7" x="176" y="432" />
     <lion id="8" x="304" y="432" flip="False" />
     <door id="9" x="464" y="688" levelToGoTo="3" />
+    <door id="10" x="624" y="224" levelToGoTo="10" />
   </ActorsLayer>
 </level>

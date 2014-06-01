@@ -1,4 +1,4 @@
-<level width="1600" height="800" levelName="A Broken Man" bgGraphic="Fear" timeOfDayPalette="skyPalette" music="gwd/ColdMoody">
+<level width="1600" height="800" levelName="A Broken Man" bgGraphic="Fear" timeOfDayPalette="skyPalette" music="gwd/ColdMoody" fireflyColor="#FFFF00">
   <camera x="32" y="256" />
   <DestructableTerrain tileset="autotiles_16x16" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,7,15,16,13,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,7,15,13,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,14,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,12,-1,-1,-1,-1,-1,-1,6,20,15,20,15,12,-1,-1,-1,-1,6,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,14,14,19,19,18,14,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,14,14,14,14,14,14,14,12,-1,-1
@@ -123,5 +123,10 @@
       <node x="160" y="96" />
       <node x="112" y="64" />
     </bat>
+    <door id="12" x="144" y="720" levelToGoTo="8" />
+    <door id="13" x="1392" y="720" levelToGoTo="12" />
+    <door id="14" x="1376" y="240" levelToGoTo="15" />
+    <door id="15" x="624" y="160" levelToGoTo="14" />
+    <door id="16" x="320" y="192" levelToGoTo="13" />
   </ActorsLayer>
 </level>

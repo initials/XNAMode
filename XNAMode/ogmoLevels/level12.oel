@@ -1,4 +1,4 @@
-<level width="1600" height="800" levelName="The Ego Retreats" bgGraphic="Fear" timeOfDayPalette="skyPalette">
+<level width="1600" height="800" levelName="The Ego Retreats" bgGraphic="Fear" timeOfDayPalette="skyPalette" music="gwd/OffKilterLoop_haspercus" fireflyColor="#FFFF00">
   <camera x="32" y="256" />
   <DestructableTerrain tileset="autotiles_16x16" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,7,13,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,7,13,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,6,16,16,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,14,14,12,-1,-1,-1,-1,-1,6,19,20,14,14,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
@@ -107,6 +107,6 @@
     <zingernest id="3" x="912" y="240" />
     <zingernest id="4" x="608" y="432" />
     <zingernest id="5" x="560" y="544" />
+    <door id="6" x="1072" y="688" levelToGoTo="1" />
   </ActorsLayer>
-  <EventsLayer />
 </level>

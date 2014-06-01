@@ -1,4 +1,4 @@
-<level width="1600" height="800" levelName="The First Chamber of the Human Soul" bgGraphic="Fear" timeOfDayPalette="skyPalette">
+<level width="1600" height="800" levelName="The First Chamber of the Human Soul" bgGraphic="Fear" timeOfDayPalette="skyPalette" music="gwd/OffKilterLoop_haspercus" fireflyColor="#FFFF00">
   <camera x="32" y="256" />
   <DestructableTerrain tileset="autotiles_16x16" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,7,13,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,7,13,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,6,14,14,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,14,14,14,14,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,14,14,14,14,16,20,14,14,14,14,14,12,-1,-1,-1,-1,-1,-1,-1,6,18,16,12,-1,-1,-1,6,14,14,14,14,14,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,6,12,-1,-1,-1,-1
@@ -107,6 +107,8 @@
     <zingernest id="3" x="944" y="528" />
     <zingernest id="4" x="1216" y="384" />
     <zingernest id="5" x="1504" y="624" />
+    <door id="6" x="1472" y="736" levelToGoTo="11" />
+    <door id="7" x="960" y="288" levelToGoTo="16" />
+    <door id="8" x="176" y="256" levelToGoTo="17" />
   </ActorsLayer>
-  <EventsLayer />
 </level>
