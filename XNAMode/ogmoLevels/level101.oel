@@ -1,4 +1,4 @@
-<level width="320" height="176" levelName="" bgGraphic="Fear" timeOfDayPalette="skyPalette" music="gwd/OffKilterLoop_haspercus">
+<level width="320" height="176" levelName="" bgGraphic="Fear" timeOfDayPalette="skyPalette" music="gwd/OffKilterLoop_haspercus" fireflyColor="#FFFF00">
   <camera x="0" y="0" />
   <DestructableTerrain tileset="autotiles_16x16" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
@@ -31,5 +31,6 @@
     <zingernest id="5" x="160" y="128" />
     <zingernest id="6" x="144" y="16" />
     <zingernest id="7" x="160" y="16" />
+    <ladder id="8" x="112" y="64" height="96" />
   </ActorsLayer>
 </level>

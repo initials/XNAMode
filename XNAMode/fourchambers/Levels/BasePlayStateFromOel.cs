@@ -371,13 +371,13 @@ namespace FourChambers
             indestructableAttrs = new Dictionary<string, string>();
             indestructableAttrs = FlxXMLReader.readAttributesFromOelFile(levelFile, "level/IndestructableTerrain");
 
-            leftExitBlockerWall = new FlxSprite(0, FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FlxG.Content.Load<Texture2D>("fourchambers/exitBlocker"));
-            leftExitBlockerWall.@fixed = true;
-            allLevelTiles.add(leftExitBlockerWall);
+            //leftExitBlockerWall = new FlxSprite(0, FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FlxG.Content.Load<Texture2D>("fourchambers/exitBlocker"));
+            //leftExitBlockerWall.@fixed = true;
+            //allLevelTiles.add(leftExitBlockerWall);
 
-            rightExitBlockerWall = new FlxSprite(FlxG.levelWidth - (FourChambers_Globals.TILE_SIZE_X * 2), FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FlxG.Content.Load<Texture2D>("fourchambers/exitBlocker"));
-            rightExitBlockerWall.@fixed = true;
-            allLevelTiles.add(rightExitBlockerWall);
+            //rightExitBlockerWall = new FlxSprite(FlxG.levelWidth - (FourChambers_Globals.TILE_SIZE_X * 2), FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FlxG.Content.Load<Texture2D>("fourchambers/exitBlocker"));
+            //rightExitBlockerWall.@fixed = true;
+            //allLevelTiles.add(rightExitBlockerWall);
 
 
             indestructableTilemap = new FlxTilemap();
@@ -720,18 +720,18 @@ namespace FourChambers
 
 				//localHud.nestsRemaining.text = "Unicorns Left: " + actors.countLivingOfType("FourChambers.Unicorn").ToString();
             }
-			if (actors.countLivingOfType("FourChambers.Unicorn") <= 0)
-            {
+            //if (actors.countLivingOfType("FourChambers.Unicorn") <= 0)
+            //{
 
-                if (leftExitBlockerWall.velocity.Y == 0)
-                {
-                    FlxG.quake.start(0.025f, 1.5f);
-                }
+            //    if (leftExitBlockerWall.velocity.Y == 0)
+            //    {
+            //        FlxG.quake.start(0.025f, 1.5f);
+            //    }
 
-                leftExitBlockerWall.velocity.Y = -50;
-                rightExitBlockerWall.velocity.Y = -50;
+            //    leftExitBlockerWall.velocity.Y = -50;
+            //    rightExitBlockerWall.velocity.Y = -50;
 
-            }
+            //}
 
             if ((FlxG.gamepads.isButtonDown(Buttons.Y) || FlxG.keys.W) && FourChambers_Globals.seraphineHasBeenKilled == false)
             {

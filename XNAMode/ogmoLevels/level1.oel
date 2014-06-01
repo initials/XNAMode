@@ -111,13 +111,12 @@
     <zingernest id="12" x="208" y="144" />
     <zingernest id="13" x="992" y="336" />
     <zingernest id="14" x="864" y="336" />
-    <zingernest id="15" x="1056" y="704" />
-    <zingernest id="17" x="992" y="592" />
     <ladder id="1" x="672" y="432" height="160" />
     <door id="3" x="32" y="192" levelToGoTo="4500" />
     <door id="19" x="1120" y="736" levelToGoTo="2" />
     <_event id="20" x="112" y="496" width="16" height="16" event="sword" value1="0" value2="0" repeat="1" />
     <drone id="5" x="416" y="208" flip="False" />
-    <_event id="6" x="1072" y="704" width="48" height="48" event="Press Up to enter a door" value1="0" value2="0" repeat="-1" />
+    <_event id="6" x="1072" y="704" width="96" height="48" event="Press Up to enter a door" value1="0" value2="0" repeat="-1" />
+    <ladder id="7" x="336" y="624" height="128" />
   </ActorsLayer>
 </level>
