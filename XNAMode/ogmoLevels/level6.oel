@@ -102,12 +102,8 @@
 15,18,17,18,20,16,16,20,18,16,16,15,20,17,16,17,15,20,16,17,20,20,15,20,18,16,18,17,20,20,19,15,17,17,19,18,20,19,20,20,19,17,17,20,16,17,20,16,15,17,19,20,20,20,15</IndestructableTerrain>
   <ActorsLayer>
     <marksman id="0" x="64" y="736" flip="False" isPlayerControlled="True" />
-    <zingernest id="1" x="256" y="464" />
-    <zingernest id="2" x="592" y="416" />
-    <zingernest id="3" x="640" y="256" />
-    <merchant id="4" x="224" y="512" flip="False" />
-    <priest id="5" x="624" y="592" flip="False" />
     <door id="6" x="112" y="736" levelToGoTo="4" />
-    <door id="7" x="720" y="368" levelToGoTo="7" />
+    <door id="1" x="624" y="592" levelToGoTo="7" />
+    <ladder id="2" x="768" y="400" height="352" />
   </ActorsLayer>
 </level>

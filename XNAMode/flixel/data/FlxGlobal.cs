@@ -98,6 +98,9 @@ namespace org.flixel
 
         public static int previousLevel = 1;
 
+        public static bool hasMeleeWeapon = false;
+        public static bool hasRangeWeapon = false;
+
         /// <summary>
         /// Releases a lot of Homing Zingers.
         /// </summary>

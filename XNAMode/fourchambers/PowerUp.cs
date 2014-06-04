@@ -361,19 +361,19 @@ namespace FourChambers
             {
                 if (FlxU.random() > 0.5)
                 {
-                    typeOfPowerUp = 154;
+                    typeOfPowerUp = FR_Arrows;
                 }
                 else if (FlxU.random() > 0.48)
                 {
-                    typeOfPowerUp = 155;
+                    typeOfPowerUp = FR_ArrowsGreen;
                 }
                 else if (FlxU.random() > 0.47)
                 {
-                    typeOfPowerUp = 156;
+                    typeOfPowerUp = FR_ArrowsRed;
                 }
                 else if (FlxU.random() > 0.46)
                 {
-                    typeOfPowerUp = 157;
+                    typeOfPowerUp = FR_ArrowsYellow;
                 }
                 else if (FlxU.random() > 0.45)
                 {
@@ -388,7 +388,7 @@ namespace FourChambers
             {
                 if (FlxU.random() > 0.1)
                 {
-                    typeOfPowerUp = 154;
+                    typeOfPowerUp = FR_Arrows;
                 }
                 else
                 {

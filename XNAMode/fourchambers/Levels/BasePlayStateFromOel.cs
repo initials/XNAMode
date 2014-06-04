@@ -630,7 +630,7 @@ namespace FourChambers
                     Firefly f = new Firefly(xp + (int)FlxU.random(-30, 30), yp - (int)FlxU.random(-30, 30));
                     add(f);
 
-                    Console.WriteLine("Color: " + FlxColor.ToColor(levelAttrs["fireflyColor"]));
+                    //Console.WriteLine("Color: " + FlxColor.ToColor(levelAttrs["fireflyColor"]));
 
 
                     f.color = FlxColor.ToColor(levelAttrs["fireflyColor"]);
