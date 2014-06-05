@@ -47,18 +47,22 @@ namespace FourChambers
 
 
 
-            int cx = 30;
-            int cy = 30;
+            int cx = 130;
+            int cy = 130;
+            int count = 0;
 
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 23; i++)
             {
-                PowerUp p = new PowerUp(cx, cy);
-                add(p);
+                for (int j = 0; j < 20; j++)
+                {
+                    PowerUp p = new PowerUp(cx, cy);
+                    add(p);
 
-                p.velocity.Y = -230;
-                p.velocity.X = (-100 + i);
+                    p.velocity.X = -50 + (j * 25);
+                    p.velocity.Y = ((-10 + i) * 10);
 
-                p.TypeOfPowerUp(i);
+                    p.TypeOfPowerUp(count++);
+                }
 
             }
 
