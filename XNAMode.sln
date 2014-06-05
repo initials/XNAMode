@@ -15,6 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Revolvver", "Revolvver\Revo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrictionGrid", "FrictionGrid\FrictionGrid\FrictionGrid.csproj", "{FD00F68F-7E09-4013-8D44-CBEA38CB6445}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FifthChamber", "FifthChamber\FifthChamber\FifthChamber.csproj", "{30910426-9783-44A7-8AAF-AD97B8E6F8C1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{50463AEB-DA30-46D5-B01B-93F9C42F5765} = {50463AEB-DA30-46D5-B01B-93F9C42F5765}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -50,6 +55,12 @@ Global
 		{FD00F68F-7E09-4013-8D44-CBEA38CB6445}.Release|x86.ActiveCfg = Release|x86
 		{FD00F68F-7E09-4013-8D44-CBEA38CB6445}.Revvolvver|x86.ActiveCfg = Release|x86
 		{FD00F68F-7E09-4013-8D44-CBEA38CB6445}.Revvolvver|x86.Build.0 = Release|x86
+		{30910426-9783-44A7-8AAF-AD97B8E6F8C1}.Debug|x86.ActiveCfg = Debug|x86
+		{30910426-9783-44A7-8AAF-AD97B8E6F8C1}.Debug|x86.Build.0 = Debug|x86
+		{30910426-9783-44A7-8AAF-AD97B8E6F8C1}.Release|x86.ActiveCfg = Release|x86
+		{30910426-9783-44A7-8AAF-AD97B8E6F8C1}.Release|x86.Build.0 = Release|x86
+		{30910426-9783-44A7-8AAF-AD97B8E6F8C1}.Revvolvver|x86.ActiveCfg = Release|x86
+		{30910426-9783-44A7-8AAF-AD97B8E6F8C1}.Revvolvver|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,6 +17,9 @@ namespace FourChambers
             base.create();
 
             //FlxG.playMusic("music/" + FourChambers_Globals.MUSIC_TUTORIAL, 1.0f);
+
+            FlxG.hideHud();
+
         }
 
         override public void update()
