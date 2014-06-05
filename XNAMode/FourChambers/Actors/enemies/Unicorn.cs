@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Unicorn : EnemyActor
+    public class Unicorn : EnemyActor
     {
 
         public Unicorn(int xPos, int yPos)

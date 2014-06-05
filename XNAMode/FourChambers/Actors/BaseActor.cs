@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class BaseActor : FlxSprite
+    public class BaseActor : FlxSprite
     {
         /// <summary>
         /// Character's name;

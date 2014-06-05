@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Actor : BaseActor
+    public class Actor : BaseActor
     {
         // A bunch of helpers for the allActors sprite sheet.
 

@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Marksman : Actor
+    public class Marksman : Actor
     {
         public static int _curArrow;
 

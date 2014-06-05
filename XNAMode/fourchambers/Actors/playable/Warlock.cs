@@ -9,7 +9,7 @@ using org.flixel;
 
 namespace FourChambers
 {
-    class Warlock : Actor
+    public class Warlock : Actor
     {
         private Texture2D ImgWarlock;
 

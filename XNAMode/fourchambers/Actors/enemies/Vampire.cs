@@ -9,7 +9,7 @@ using org.flixel;
 
 namespace FourChambers
 {
-    class Vampire : EnemyActor
+    public class Vampire : EnemyActor
     {
         private Texture2D ImgVampire;
 

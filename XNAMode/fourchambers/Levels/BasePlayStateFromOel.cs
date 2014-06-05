@@ -137,7 +137,7 @@ namespace FourChambers
         private Druid druid;
         private Dwarf dwarf;
         private Embersteed embersteed;
-        private Executor executor;
+        public Executor executor;
         private Feline feline;
         private Floatingeye floatingeye;
         private Fungant fungant;
@@ -161,19 +161,19 @@ namespace FourChambers
         /// A Marksman player actor.
         /// Can shoot arrows.
         /// </summary>
-        private Marksman marksman;
+        public Marksman marksman;
         private Mechanic mechanic;
         private Mephisto mephisto;
         private Merchant merchant;
         private Mermaid mermaid;
         private Mimick mimick;
-        private Mistress mistress;
+        public Mistress mistress;
         private Monk monk;
         private Mummy mummy;
         private Nightmare nightmare;
         private Nymph nymph;
         private Ogre ogre;
-        private Paladin paladin;
+        public Paladin paladin;
         private Phantom phantom;
         private Priest priest;
         private Prism prism;
@@ -192,9 +192,9 @@ namespace FourChambers
         private Tormentor tormentor;
         private Treant treant;
         private Troll troll;
-        private Unicorn unicorn;
-        private Vampire vampire;
-        private Warlock warlock;
+        public Unicorn unicorn;
+        public Vampire vampire;
+        public Warlock warlock;
         private Willowisp willowisp;
         private Wizard wizard;
         private Wolf wolf;

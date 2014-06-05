@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class Mistress : EnemyActor
+    public class Mistress : EnemyActor
     {
         public MeleeHitBox whipHitBox;
 

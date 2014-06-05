@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FourChambers
 {
-    class MeleeHitBox : FlxSprite
+    public class MeleeHitBox : FlxSprite
     {
 
         public string belongsTo;

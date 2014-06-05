@@ -35,7 +35,7 @@ namespace Loader_Four
 
             FlxG.debug = true;
             //FlxG.zoom = 1280 / w;
-            FlxG.level = -1;
+            FlxG.level = 102;
 
             FourChambers_Globals.gif = false;
             FourChambers_Globals.BUILD_TYPE = FourChambers_Globals.BUILD_TYPE_PRESS;
