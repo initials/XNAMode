@@ -138,6 +138,7 @@
     <Compile Include="FourChambers\Environment\Firefly.cs" />
     <Compile Include="FourChambers\Levels\MovingPlatform.cs" />
     <Compile Include="FourChambers\Levels\MultiPlayerPlayState.cs" />
+    <Compile Include="FourChambers\PowerUpProgress.cs" />
     <Compile Include="Lemonade\extra\CratesBox.cs" />
     <Compile Include="Lemonade\extra\Exit.cs" />
     <Compile Include="Lemonade\extra\FilingCabinet.cs" />

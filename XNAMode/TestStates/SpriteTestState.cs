@@ -19,8 +19,8 @@ namespace FourChambers
 
             FlxG.resetHud();
 
-            FlxG.levelWidth = 50;
-            FlxG.levelHeight = 50;
+            FlxG.levelWidth = 501;
+            FlxG.levelHeight = 501;
 
             for (int i = 0; i < 50; i++)
             {
@@ -44,6 +44,28 @@ namespace FourChambers
                     add(f);
                 }
             }
+
+
+
+            int cx = 30;
+            int cy = 30;
+
+            for (int i = 0; i < 200; i++)
+            {
+                PowerUp p = new PowerUp(cx, cy);
+                add(p);
+
+                p.velocity.Y = -230;
+                p.velocity.X = (-100 + i);
+
+                p.TypeOfPowerUp(i);
+
+            }
+
+
+
+
+
         
         }
 
