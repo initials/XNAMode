@@ -864,6 +864,9 @@ namespace FourChambers
             if (playerControlledActors.getFirstAlive() == null)
             {
 
+                FourChambers_Globals.hasMeleeWeapon = false;
+                FourChambers_Globals.hasRangeWeapon = false;
+
                 //FlxG.setHudText(1, "Press X to go to Menu \n Press Y to restart.");
 
                 FlxG._game.hud.p1HudText.alignment = FlxJustification.Center;
@@ -1016,12 +1019,18 @@ namespace FourChambers
             else if (x == 190)
             {
                 marksman.hasRangeWeapon = true;
+
+                FourChambers_Globals.hasRangeWeapon = true;
+
                 FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
 
             }
             else if (x == 208)
             {
                 marksman.hasMeleeWeapon = true;
+
+                FourChambers_Globals.hasMeleeWeapon = true;
+
             }
             else
             {

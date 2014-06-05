@@ -78,6 +78,11 @@ namespace FourChambers
 
             timeDownAfterHurt = 2.0f;
 
+
+            hasMeleeWeapon = FourChambers_Globals.hasMeleeWeapon;
+            hasRangeWeapon = FourChambers_Globals.hasRangeWeapon;
+
+
         }
 
         public void adjustMeleeBox()
@@ -350,6 +355,9 @@ namespace FourChambers
             {
                 hasMeleeWeapon = true;
                 hasRangeWeapon = true;
+
+                FourChambers_Globals.hasMeleeWeapon = true;
+                FourChambers_Globals.hasRangeWeapon = true;
             }
 
             base.update();
