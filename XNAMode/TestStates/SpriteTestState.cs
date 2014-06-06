@@ -51,6 +51,11 @@ namespace FourChambers
             int cy = 130;
             int count = 0;
 
+            FourChambers_Globals.availableLevels = new List<int>();
+
+            FourChambers_Globals.collectedTreasures.Add(1);
+            FourChambers_Globals.collectedTreasures.Add(2);
+
             for (int i = 0; i < 23; i++)
             {
                 for (int j = 0; j < 20; j++)
@@ -61,7 +66,14 @@ namespace FourChambers
                     p.velocity.X = -50 + (j * 25);
                     p.velocity.Y = ((-10 + i) * 10);
 
+                    if (!FourChambers_Globals.collectedTreasures.Contains(count))
+                    {
+                        p.angularVelocity = 200;
+                    }
+
                     p.TypeOfPowerUp(count++);
+
+                    
                 }
 
             }

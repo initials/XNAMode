@@ -133,7 +133,7 @@ namespace org.flixel
         /// </summary>
         public static List<int> availableLevels ;
 
-
+        public static List<int> collectedTreasures;
 
         /// <summary>
         /// 
@@ -159,6 +159,8 @@ namespace org.flixel
             FlxG.level = 1;
 
             health = 3;
+
+            
 
 
             //FourChambers_Globals.availableLevels = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
