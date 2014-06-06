@@ -572,10 +572,8 @@ namespace FourChambers
 
             add(t);
 
-
             //if (FlxG.joystickBeingUsed) FlxG.mouse.hide();
             //else FlxG.mouse.show(FlxG.Content.Load<Texture2D>("fourchambers/crosshair"));
-
 
             if (marksman.hasRangeWeapon) FlxG.mouse.show(FlxG.Content.Load<Texture2D>("initials/crosshair"));
             else FlxG.mouse.hide();
@@ -616,7 +614,6 @@ namespace FourChambers
                 }
             }
 
-
             //plots down some clusters of fireflies.
             for (int i = 0; i < 10; i++)
             {
@@ -634,11 +631,6 @@ namespace FourChambers
                     f.color = FlxColor.ToColor(levelAttrs["fireflyColor"]);
                 }
             }
-
-
-
-
-
         }
 
         override public void update()
