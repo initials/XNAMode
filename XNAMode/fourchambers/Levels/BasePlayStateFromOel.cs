@@ -367,7 +367,6 @@ namespace FourChambers
             destructableTilemap.collideMin = 0;
             destructableTilemap.collideMax = 21;
 
-
             indestructableAttrs = new Dictionary<string, string>();
             indestructableAttrs = FlxXMLReader.readAttributesFromOelFile(levelFile, "level/IndestructableTerrain");
 
@@ -378,7 +377,6 @@ namespace FourChambers
             //rightExitBlockerWall = new FlxSprite(FlxG.levelWidth - (FourChambers_Globals.TILE_SIZE_X * 2), FlxG.levelHeight - (FourChambers_Globals.TILE_SIZE_X * 6), FlxG.Content.Load<Texture2D>("fourchambers/exitBlocker"));
             //rightExitBlockerWall.@fixed = true;
             //allLevelTiles.add(rightExitBlockerWall);
-
 
             indestructableTilemap = new FlxTilemap();
             indestructableTilemap.auto = FlxTilemap.STRING;
@@ -833,29 +831,20 @@ namespace FourChambers
             int l2 = playerControlledActors.members.Count;
             while (i2 < l2)
             {
-
                 //Console.WriteLine((playerControlledActors.members[i2] as FlxSprite).x + "    " + FlxG.levelWidth + "  " + playerControlledActors.members[i2]);
-
                 if ((playerControlledActors.members[i2] as FlxSprite).x < 9)
                 {
                     //Console.WriteLine("ArrowsFired : {0} Arrows Hit : {1}", FourChambers_Globals.arrowsFired, FourChambers_Globals.arrowsHitTarget);
                     //int newLevel = (int)FlxU.random(0, FourChambers_Globals.availableLevels.Count);
                     //FlxG.level = FourChambers_Globals.availableLevels[newLevel];
                     //FourChambers_Globals.availableLevels.RemoveAt(newLevel);
-
-
                     //goToLevel(++FlxG.level);
-
-
                     (playerControlledActors.members[i2] as FlxSprite).x = 10;
-
                 }
                 if ((playerControlledActors.members[i2] as FlxSprite).x > FlxG.levelWidth - 10)
                 {
                     //goToLevel(++FlxG.level);
-
                     (playerControlledActors.members[i2] as FlxSprite).x = FlxG.levelWidth - 11;
-
                 }
 
                 i2++;
@@ -863,14 +852,10 @@ namespace FourChambers
 
             if (playerControlledActors.getFirstAlive() == null)
             {
-
                 FourChambers_Globals.hasMeleeWeapon = false;
                 FourChambers_Globals.hasRangeWeapon = false;
-
                 //FlxG.setHudText(1, "Press X to go to Menu \n Press Y to restart.");
-
                 FlxG._game.hud.p1HudText.alignment = FlxJustification.Center;
-                
 
                 if (marksman.hasUsedJoystickToAim)
                 {
@@ -895,8 +880,6 @@ namespace FourChambers
                     FlxOnlineStatCounter.sendStats("fourchambers", "marksman", FlxG.score);
                     restart();
                 }
-
-
             }
         }
 
@@ -923,15 +906,6 @@ namespace FourChambers
             FourChambers_Globals.previousLevel = FlxG.level;
 
             FlxG.level = Level;
-
-            //if (FlxG.level > 21) 
-            //{ 
-            //    FlxG.level = 1;
-            //    FlxG.state = new GameSelectionMenuState();
-
-            //    return true;
-            //}
-            //else if (FlxG.level < 1) FlxG.level = 10;
 
             FlxG.write(FlxG.level.ToString() + " LEVEL STARTING");
 
