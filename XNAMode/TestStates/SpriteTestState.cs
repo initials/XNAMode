@@ -47,28 +47,49 @@ namespace FourChambers
 
 
 
-            int cx = 130;
-            int cy = 130;
+            int cx = 120;
+            int cy = 120;
             int count = 0;
 
-            FourChambers_Globals.availableLevels = new List<int>();
-
-            FourChambers_Globals.collectedTreasures.Add(1);
-            FourChambers_Globals.collectedTreasures.Add(2);
+            FourChambers_Globals.collectedTreasures[2] = 1;
+            FourChambers_Globals.collectedTreasures[3] = 1;
+            FourChambers_Globals.collectedTreasures[4] = 1;
+            FourChambers_Globals.collectedTreasures[12] = 1;
+            FourChambers_Globals.collectedTreasures[14] = 1;
+            FourChambers_Globals.collectedTreasures[42] = 1;
+            FourChambers_Globals.collectedTreasures[43] = 1;
+            FourChambers_Globals.collectedTreasures[44] = 1;
+            FourChambers_Globals.collectedTreasures[45] = 1;
+            FourChambers_Globals.collectedTreasures[46] = 1;
+            FourChambers_Globals.collectedTreasures[22] = 1;
+            FourChambers_Globals.collectedTreasures[23] = 1;
+            FourChambers_Globals.collectedTreasures[24] = 1;
+            FourChambers_Globals.collectedTreasures[21] = 1;
+            FourChambers_Globals.collectedTreasures[22] = 1;
+            FourChambers_Globals.collectedTreasures[23] = 1;
+            FourChambers_Globals.collectedTreasures[24] = 1;
+            FourChambers_Globals.collectedTreasures[25] = 1;
+            FourChambers_Globals.collectedTreasures[26] = 1;
+            FourChambers_Globals.collectedTreasures[27] = 1;
 
             for (int i = 0; i < 23; i++)
             {
-                for (int j = 0; j < 20; j++)
+                for (int j = 0; j < 14; j++)
                 {
                     PowerUp p = new PowerUp(cx, cy);
                     add(p);
 
-                    p.velocity.X = -50 + (j * 25);
-                    p.velocity.Y = ((-10 + i) * 10);
+                    //p.velocity.X = -50 + (j * 25);
+                    //p.velocity.Y = ((-10 + i) * 10);
 
-                    if (!FourChambers_Globals.collectedTreasures.Contains(count))
+                    p.velocity.X = ((j-7) * 15) ;
+                    p.velocity.Y = ((i-12) * 15) ;
+                    //p.setDrags(1011, 1011);
+
+                    if (FourChambers_Globals.collectedTreasures[count]!=1)
                     {
-                        p.angularVelocity = 200;
+                        //p.angularVelocity = 200;
+                        p.scalesDown = true;
                     }
 
                     p.TypeOfPowerUp(count++);

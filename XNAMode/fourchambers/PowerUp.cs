@@ -13,6 +13,7 @@ namespace FourChambers
     class PowerUp : FlxSprite
     {
         public int typeOfPowerUp = 0;
+        public bool scalesDown = false;
 
         //--Line: 0
         public const int FR_PotionSquareBlue = 0;
@@ -410,7 +411,11 @@ namespace FourChambers
 
         override public void update()
         {
+            if (scalesDown && scale > 0.001)
+            {
+                scale -= 0.005f;
 
+            }
             //if (FlxG.keys.F2)
             //{
             //    Console.WriteLine("type {0} ", typeOfPowerUp);
