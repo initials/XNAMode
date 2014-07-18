@@ -136,7 +136,10 @@
  </layer>
  <objectgroup name="boxes" width="60" height="40">
   <object x="220" y="120">
-   <polyline points="40,0 840,80"/>
+   <polyline points="40,0 660,40"/>
+  </object>
+  <object x="980" y="200">
+   <polyline points="60,0 60,160 40,160 40,0 60,0"/>
   </object>
  </objectgroup>
 </map>
