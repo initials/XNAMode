@@ -35,7 +35,8 @@ namespace Loader_SuperLemonadeFactory
             FlxG.debug = false;
             FlxG.level = 1;
 
-            Lemonade.Lemonade_Globals.PAID_VERSION = Lemonade.Lemonade_Globals.PIRATE_MODE;
+            //Lemonade.Lemonade_Globals.PAID_VERSION = Lemonade.Lemonade_Globals.PIRATE_MODE;
+            Lemonade.Lemonade_Globals.PAID_VERSION = Lemonade.Lemonade_Globals.FULL_MODE;
 
 
             FlxG.BUILD_TYPE = FlxG.BUILD_TYPE_PC;
