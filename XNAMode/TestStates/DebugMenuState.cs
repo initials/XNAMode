@@ -33,8 +33,16 @@ namespace XNAMode
             textInfo += "6. Lemonade Test\n";
             textInfo += "7. VCR Test\n";
             textInfo += "8. Rotate Test\n";
-
             textInfo += "9. Empty Intro\n";
+            textInfo += "\n\n GAMES! \n\n";
+            textInfo += "Q. Mode\n";
+            textInfo += "W. Revvolvver\n";
+            textInfo += "E. Four Chambers of the Human Heart\n";
+            textInfo += "R. Super Lemonade Factory Part Two\n";
+
+
+
+
 
             FlxG.showHud();
 
@@ -130,6 +138,34 @@ namespace XNAMode
                 FlxG.state = new FourChambers.EmptyIntroTestState();
                 //FlxG.hideHud();
             }
+            if (FlxG.keys.Q)
+            {
+                FlxG.state = new MenuState();
+            }
+            if (FlxG.keys.W)
+            {
+                FlxG.state = new Revvolvver.MenuState();
+            }
+            if (FlxG.keys.E)
+            {
+                FlxG.state = new FourChambers.GameSelectionMenuState();
+            }
+            if (FlxG.keys.R)
+            {
+                FlxG.state = new Lemonade.EasyMenuState();
+            }
+
+
+
+
+
+
+
+
+
+
+
+
 #endif
             base.update();
         }

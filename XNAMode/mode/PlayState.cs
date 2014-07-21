@@ -244,7 +244,12 @@ namespace XNAMode
 			FlxU.collide(_blocks,_objects);
 			FlxU.overlap(_enemies,_player,overlapped);
 			FlxU.overlap(_bullets,_enemies,overlapped);
-			
+
+            if (FlxG.keys.justPressed(Keys.B))
+            {
+                FlxG.showBounds = true;
+            }
+
 			//Jammed message
 			if(FlxG.keys.justPressed(Keys.C) && _player.flickering())
 			{
